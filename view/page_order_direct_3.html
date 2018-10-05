@@ -1,0 +1,185 @@
+<style>
+	label{
+		    font-size: 16px;
+	}
+</style>
+
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">直購購買流程</span>
+        </div>
+        <?php
+			//print_r($_SESSION);
+			$allpay = new Allpay(MerchantID,HashKey,HashIV);
+			$or = new Orders();
+			$member = new Member();
+			if($_SESSION['ord_code']!=""){
+			$or_data = $or->getOneOrderByNo($_SESSION['ord_code']);
+			$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+			
+		?>
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/A-B-1.png"/></li>
+                <li class=""><img src="assets/images/A-B-2.png"/></li>
+                <li class="current-step"><img src="assets/images/A-C-3.png"/></li>
+            </ul>
+            <div class="heading-counter warning">訂單建立完成
+            </div>
+			<div class="box-border">
+				<div class="row">
+					<div class="col-sm-12" style="text-align:center">
+						<h3 style="width:50%;background-color:#c5eac2;;text-align:center;border:#f7da21 2px solid;    margin-left: auto;
+    margin-right: auto;">訂單建立完成</h3>
+					<p style="width:50%;background-color:#fff;text-align:center;border:#f7da21 2px solid; font-size:18px;  margin-left: auto;
+    margin-right: auto;">
+						您已完成直購，請立即繳款，並等待出貨通知<br>
+
+						如需查看確認填寫資訊請至會員中心<a href='?item=member_center&action=order'><span style="color:blue">訂單查詢</span></a>
+
+					</p>
+					</div>
+				</div>
+			</div>
+			<div class="cart_navigation">
+                    <!--<a class="prev-btn" href="#">Continue shopping</a>-->
+                    <?php
+					$or->updateStatusTimeDirect('0',$_SESSION['ord_code']);
+					$chosemethod = ($or_data[0]['orPayBy'] != '2') ? 'ATM':'WebATM';
+							$form_array = array(
+									"MerchantID" => '1292961',
+									"MerchantTradeNo" => $_SESSION['ord_code'].time(),
+									"MerchantTradeDate" => date("Y/m/d H:i:s"),
+									"PaymentType" => "aio",
+									"TotalAmount" => $or_data[0]['orPeriodTotal'],
+									"TradeDesc" => '您購買 '.$_SESSION['shopping_product'][0]['proName']. "。 規格：".$or_data[0]['orProSpec']."。 數量：1",
+									"ItemName" => $_SESSION['shopping_product'][0]['proName'],
+									"ChoosePayment" => $chosemethod,
+									"PaymentInfoURL"=>"http://www.allpay.com.tw/paymentinfo.php",
+									"ReturnURL"=>"http://happyfan7.com/php/ATM.php",
+									"NeedExtraPaidInfo" => "Y");
+							ksort($form_array);	
+							$form_array['CheckMacValue'] = $allpay->_getMacValue(HashKey,HashIV, $form_array);
+							$html_code = '<form id=order method=post target="_blank" action="http://payment.allpay.com.tw/Cashier/AioCheckOut">';
+							foreach ($form_array as $key => $val) {
+								$html_code .= "<input type='hidden' name='" . $key . "' value='" . $val . "'>";
+							}
+							$html_code .= "<input  class='button04' type='submit' value='立即繳費' style='float: right; background: #ff3366;color: #fff;    border: 1px solid #ff3366;padding: 10px 20px;'>";
+							$html_code .= "</form>";
+							echo $html_code;
+					mb_internal_encoding('UTF-8');
+					$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1");
+					$paymethod = ($or_data[0]['orPayBy'] != '2') ? 'ATM':'WebATM';
+					$title = "【樂分期-直購通知】".$or_data[0]['orDate'].",流水號:".$_SESSION['ord_code'].", ".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
+					$content = '	
+						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
+							<tbody>
+								<tr>
+									<td style="text-align:center;">
+										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#FF3333;font-weight:bold;text-align:center;">此為系統自動通知信，請勿直接回信！</td>
+								</tr>
+								<tr>
+									<td style="color:black;font-weight:bold;">
+										<p>顧客姓名：<span style="color:#FF9900;">'.$memberData[0]['memName'].' </span> 先生/小姐</p>
+									</td>
+								</tr>
+								<tr>
+									<td style="font-weight:bold;background-color:#F5F3F1;">
+										【樂分期-直購通知】<br>
+
+										身份證字號：'.$memberData[0]['memIdNum'].'<br>
+
+										付款方式：'.$paymethod.'<br>
+
+										商品明細如下：<br>
+
+										訂單編號：'.$or_data[0]['orCaseNo'].'<br>
+
+										訂購日期：'.$or_data[0]['orDate'].'<br> 
+										
+										訂購商品：'.$_SESSION['shopping_product'][0]['proName'].'<br> 
+
+										商品規格：'.$or_data[0]['orProSpec'].'<BR>
+										
+										總金額：'.number_format($or_data[0]['orPeriodTotal']).' 元<BR>
+										
+										
+									</td>
+								</tr>
+							</tbody>
+						</table>';
+					$email = new Email1();					
+					$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);
+					
+					
+					$receiverNameAndEmails2 = Array($memberData[0]['memAccount']=>$memberData[0]['memName']);
+					$title1 = "【樂分期購物網】您訂購的商品(訂單編號: ".$or_data[0]['orCaseNo'].")";
+					$content1 = '	
+						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
+							<tbody>
+								<tr>
+									<td style="text-align:center;">
+										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+									</td>
+								</tr>
+								<tr>
+									<td style="color:#FF3333;font-weight:bold;text-align:center;">此為系統自動通知信，請勿直接回信！</td>
+								</tr>
+								<tr>
+									<td style="color:black;font-weight:bold;">
+										<p>親愛的<span style="color:#FF9900;">'.$_SESSION['shopping_user'][0]['memName'].' </span> 先生/小姐，您好：</p>
+
+									</td>
+								</tr>
+								<tr>
+											<td style="font-weight:bold;background-color:#F5F3F1;">
+												您此次訂購的商品明細如下：<br>
+
+												訂單編號：'.$or_data[0]['orCaseNo'].'<br>
+
+												訂購日期：'.$or_data[0]['orDate'].'<br> 
+												
+												訂購商品：'.$_SESSION['shopping_product'][0]['proName'].'<br> 
+
+												商品規格：'.$or_data[0]['orProSpec'].'<BR>
+												
+												總金額：'.number_format($or_data[0]['orPeriodTotal']).' 元<BR>
+												
+
+												
+											</td>
+										</tr>
+								<tr>
+									<td>
+										<p>
+											感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
+											樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">樂分期購物網</span></a> 選購。
+										</p>
+									</td>
+								</tr>						
+							</tbody>
+						</table>
+						';
+					$email = new Email1();	
+					$send = $email->SendBCCEmail_smtp($receiverNameAndEmails2, "service@happyfan7.com", "樂分期", $title1, $content1);
+					
+							//$or_data[0]['orPeriodTotal']
+							
+							unset($_SESSION['ord_code']);
+							unset($_SESSION['shopping_product']);
+							unset($_SESSION['shopping_user']);
+					}
+					?>
+                </div>
+        </div>
+    </div>
+</div>

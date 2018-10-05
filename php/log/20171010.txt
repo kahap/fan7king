@@ -1,0 +1,2 @@
+20171010 20:42:10inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.0
+{}

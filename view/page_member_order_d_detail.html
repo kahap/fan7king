@@ -1,0 +1,140 @@
+<?php
+$or = new Orders();
+$sr = new Status_Record();
+$pm = new Product_Manage();
+$pro = new Product();
+$sup = new Supplier();
+$mem = new Member();
+
+$orNo = $_GET["orno"];
+$method = $_GET["n"];
+
+//欄位名稱
+$columnName = $or->getAllColumnNames("orders");
+// print_r($columnName);
+
+//訂單
+$orOrigData = $or->getOneOrderByNo($orNo);
+$orData = $or->getOneOrderByNo($orNo);
+$or->changeToReadable($orData[0],$method);
+
+//商品上架
+$pmData = $pm->getOnePMByNo($orData[0]["pmNo"]);
+
+//商品
+$proData = $pro->getOneProByNo($pmData[0]["proNo"]);
+
+//供應商
+$supData = $sup->getOneSupplierByNo($orData[0]["supNo"]);
+
+//會員
+$memData = $mem->getOneMemberByNo($orData[0]["memNo"]);
+$mem->changeToReadable($memData[0]);
+
+//全部有供應該商品的供應商
+$allAvailSup = $pm->getAllByProName($pmData[0]["proNo"]);
+
+//正在使用的商品上架
+$curPmInOr = $pm->getOnePMBySupAndPro($pmData[0]["proNo"], $supData[0]["supNo"]);
+
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">直購訂單查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+					
+				<h2 class="page-heading">
+					<span class="page-heading-title2">直購訂單編號: <?php echo $orData['0']['orCaseNo']; ?></span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">一.　購物商品：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+									<h4>訂單狀態 : <?php echo $orData[0]["orStatus"]; ?></h4>
+									<h4>商品名稱 : <?php echo $proData[0]["proName"]; ?></h4>
+									<h4>商品規格:  <?php echo $orData[0]["orProSpec"]; ?></h4>
+									<h4>單價 :  <?php echo number_format($pmData[0]["pmDirectAmnt"]); ?> 元</h4>
+									<h4>數量 : <?php echo $orData[0]["orAmount"]; ?></h4>
+									<h4>總金額 :  <?php echo number_format($pmData[0]["pmDirectAmnt"]*$orData[0]["orAmount"]); ?> 元</h4>
+									<!--<h4>供應商名稱 :
+									<?php
+										/*foreach($allAvailSup as $key=>$value){
+											$supInData = $sup->getOneSupplierByNo($value["supNo"]);
+											if($supInData[0]["supNo"] == $orData[0]["supNo"]){
+												echo $supInData[0]["supName"]."</h4>"; 
+											}
+										} */
+									?>
+									-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">二.　付款及配送：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+									<h4>付款方式 : <?php echo $orDirectPay[$orData[0]["orPayBy"]]; ?></h4>
+									<?php 
+										foreach($columnName as $key=>$value){ 
+											if(strrpos($value["COLUMN_NAME"], "orBusinessNum") !== false){
+												echo "<h4>".$value["COLUMN_COMMENT"]." : ";
+												if(strrpos($value["COLUMN_NAME"], "If") !== false){ 
+													if($orData[0][$value["COLUMN_NAME"]] == 1){
+														echo "是</h4>";
+													}else{
+														echo "否</h4>";
+													}
+												}else{
+													echo $orData[0][$value["COLUMN_NAME"]]."</h4>";
+												}
+											}
+										} 
+									?>
+									<h4>配送方式 :  宅配</h4>
+									<h4>訂購人姓名 :  <?php echo $memData[0]["memName"]; ?></h4>
+									<h4>訂購人地址 :  <?php echo $memData[0]["memAddr"]; ?></h4>
+									<h4>訂購人電話 :  <?php echo $memData[0]["memPhone"]; ?></h4>
+									<h4>訂購人手機 :  <?php echo $memData[0]["memCell"]; ?></h4>
+									<?php 
+									foreach($columnName as $key=>$value){ 
+										if(strrpos($value["COLUMN_NAME"], "orReceive") !== false){
+											echo "<h4>".$value["COLUMN_COMMENT"]." : ".$orData[0][$value["COLUMN_NAME"]]."</h4>"; 
+										}
+									} 
+									?>
+							</div>
+						</div>
+					</div>
+					<a href="?item=member_center&action=order"><button class="button">上一頁</button></a>
+				</div>	
+				
+				
+				
+				
+				
+            </div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>

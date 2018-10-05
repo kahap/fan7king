@@ -1,0 +1,1030 @@
+<style>
+.dropGeneral .sbHolder, .dropGeneral .sbSelector {
+  width: 100% !important;
+  height: 50px !important;
+}
+
+.dropGeneral .sbHolder {
+  background-color: transparent;
+  border: 2px solid #dedede;
+  margin: 0 0 30px 0;
+  border-radius: 0;
+}
+
+.dropGeneral.border-color .sbHolder {
+  border-color: #47bac1;
+}
+
+.dropGeneral.grayBg .sbHolder {
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+}
+
+.dropGeneral.colorBg .sbHolder {
+  background-color: #47bac1;
+  border-color: #47bac1;
+}
+
+.dropGeneral.border-color .sbHolder {
+  border-color: #47bac1;
+}
+
+.dropGeneral.roundOne .sbHolder {
+  border-radius: 7px;
+}
+
+.dropGeneral.roundTwo .sbHolder {
+  border-radius: 25px;
+}
+
+.dropGeneral.roundThree .sbHolder {
+  border-radius: 3px;
+}
+
+.dropGeneral .sbSelector:link,
+.dropGeneral .sbSelector:visited,
+.dropGeneral .sbSelector:hover {
+  color: #000 !important;
+  text-transform: capitalize;
+}
+
+.dropGeneral.colorBg .sbSelector:link,
+.dropGeneral.colorBg .sbSelector:visited,
+.dropGeneral.colorBg .sbSelector:hover {
+  color: #ffffff !important;
+  text-transform: capitalize;
+}
+
+.dropGeneral .sbSelector {
+  font-family: 'Open Sans', sans-serif;
+  color: #666666;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 48px;
+  text-indent: 20px;
+}
+
+.dropGeneral.colorBg .sbSelector {
+  color: #ffffff;
+}
+
+.dropGeneral .sbToggle {
+  background: transparent url("../img/arrows/drop-down-arrow.jpg") no-repeat scroll 0 0;
+  height: 6px;
+  right: 20px;
+  top: 21px;
+  width: 11px;
+}
+
+.dropGeneral.colorBg .sbToggle {
+  background: transparent url("../img/arrows/down-arrow-white.png") no-repeat scroll 0 0;
+}
+
+.dropGeneral.grayBg .sbToggle {
+  background: transparent url("../img/arrows/down-arrow-gray.png") no-repeat scroll 0 0;
+}
+
+.dropGeneral .sbOptions {
+  width: 100% !important;
+  background-color: #ffffff;
+  border: 1px solid #dedede;
+  right: 0 !important;
+  border-radius: 4px;
+  z-index: 100;
+}
+
+.dropGeneral .sbOptions li {
+  padding: 4px;
+  border-bottom: 1px solid #dedede;
+}
+
+.dropGeneral .sbOptions li:last-child {
+  border-bottom: none;
+}
+
+.dropGeneral .sbOptions a {
+  color: #969696 !important;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  padding: 11px 17px;
+  text-transform: capitalize;
+}
+
+.dropGeneral .sbOptions a:hover {
+  color: #47bac1 !important;
+  background-color: transparent;
+}
+
+.dropGeneral.addCircle .sbHolder {
+  border-radius: 25px;
+}
+
+.priceRange .progress {
+  margin: 20px 0 25px 0;
+  height: 4px;
+  background-color: #f0f0f0;
+  position: relative;
+  overflow: visible;
+}
+
+.priceRange .progress .progress-bar {
+    background-color: #252525;
+}
+
+.priceRange .progress .bulet {
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border: 2px solid #252525;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    left: 0px;
+    top: -5px;
+    position: absolute;
+}
+
+.priceRange .progress .bulet.next {
+      left: 60px;
+}
+
+.priceRange .btn-default {
+  height: 30px;
+  line-height: 30px;
+  padding: 0;
+  text-transform: uppercase;
+  background-color: #252525;
+  border-radius: 0;
+  border: none;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+@media (max-width: 479px) {
+    .priceRange .btn-default {
+      width: 82px;
+      font-size: 14px;
+    }
+}
+
+@media (min-width: 480px) {
+    .priceRange .btn-default {
+      width: 82px;
+      font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .priceRange .btn-default {
+      width: 50px;
+      font-size: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .priceRange .btn-default {
+      width: 45px;
+      font-size: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .priceRange .btn-default {
+      width: 82px;
+      font-size: 14px;
+    }
+}
+
+.priceRange .priceLabel {
+  float: right;
+  line-height: 30px;
+  color: #252525;
+}
+
+@media (min-width: 480px) {
+    .priceRange .priceLabel {
+      font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .priceRange .priceLabel {
+      font-size: 11px;
+    }
+}
+
+@media (min-width: 992px) {
+    .priceRange .priceLabel {
+      font-size: 14px;
+    }
+}
+
+.sidebar-list li a {
+  position: relative;
+}
+
+.recentBlogPosts .media-heading {
+  text-transform: capitalize;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+@media (min-width: 480px) {
+    .recentBlogPosts .media-heading {
+      font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .recentBlogPosts .media-heading {
+      font-size: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .recentBlogPosts .media-heading {
+      font-size: 14px;
+    }
+}
+
+.recentBlogPosts .media-heading a {
+    color: #252525;
+}
+
+.recentBlogPosts p {
+  color: #797979;
+}
+
+.recentBlogPosts p i {
+    margin-right: 8px;
+}
+
+@media (min-width: 480px) {
+    .recentBlogPosts p {
+      font-size: 14px;
+    }
+}
+
+@media (min-width: 768px) {
+    .recentBlogPosts p {
+      font-size: 10px;
+    }
+}
+
+@media (min-width: 992px) {
+    .recentBlogPosts p {
+      font-size: 14px;
+    }
+}
+
+.priceRange {
+  position: relative;
+}
+
+.priceRange .price-slider-inner {
+    display: block;
+    margin: 15px 0 25px 0;
+}
+
+.priceRange .price-slider-inner .amount-wrapper {
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    font-size: 14px;
+    width: 120px;
+}
+
+.priceRange .price-slider-inner .amount-wrapper input {
+    background-color: transparent;
+    border: 0;
+    width: 28%;
+    font-size: 14px;
+    color: #252525;
+    font-weight: 700;
+    text-align: right;
+}
+
+.priceRange .price-slider-inner .ui-widget-content {
+    background: none;
+    border: 0;
+    background-color: #f0f0f0;
+    height: 4px;
+    clear: both;
+    border-radius: 0;
+    margin: 0 5px 0 9px;
+}
+
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-range {
+    background-color: #252525;
+    border: none;
+    border-radius: 0;
+}
+
+.priceRange .price-slider-inner .ui-widget-content .ui-slider-handle {
+    border-radius: 50%;
+    background: none;
+    border: 3px solid #252525;
+    background-color: #ffffff;
+    top: -6px;
+    width: 16px;
+    height: 16px;
+    outline: none;
+}
+
+.label-danger {
+    color: #ec7160;
+    background-color: transparent;
+    border: 2px solid #ec7160;
+}
+
+.label-info {
+    color: #4da5e2;
+    background-color: transparent;
+    border: 2px solid #4da5e2;
+}
+
+.navbar-default .navbar-collapse li.active a:focus, .navbar-default .navbar-collapse li.active a:hover {
+    background-color: transparent;
+    color: #47bac1;
+}
+
+.form-field .btn-link:hover, .form-body .panel .panel-body .btn-link:hover, .signUp .panel .panel-body .btn-link:hover, .lostPassword .panel .panel-body .btn-link:hover, .logIn .panel .panel-body .btn-link:hover, .commentsForm .btn-link:hover, #login .modal-dialog .modal-content .modal-body .btn-link:hover, #signup .modal-dialog .modal-content .modal-body .btn-link:hover {
+    text-decoration: none;
+    color: #4dc8cf;
+}
+
+.commentsArea .media .media-body .btn-link:hover {
+    color: #47bac1;
+    text-decoration: none;
+}
+
+.setp5 .thanksContent .thanksInner .tableBlcok address a {
+    color: #252525;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    color: #7c618a;
+    text-decoration: none;
+}
+
+.logIn .btn-primary {
+    color: #ffffff;
+}
+
+@media (max-width: 479px) {
+    .commentsForm .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (min-width: 480px) {
+    .commentsForm .btn-primary {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .commentsForm .btn-primary {
+        width: 178px;
+    }
+}
+
+.quick-view .modal-dialog .modal-content .modal-body .media .media-body .btn-area .btn-primary,
+.singleProduct .media .media-body .btn-area .btn-primary {
+    color: white;
+}
+
+.cartListInner .checkBtnArea .btn-primary {
+    width: 196px;
+    height: 55px;
+    border-radius: 0;
+    border: none;
+    background-color: #47bac1;
+    color: #ffffff;
+    padding: 0 20px;
+    line-height: 55px;
+    position: relative;
+    text-align: center;
+    font-weight: 700;
+    float: right;
+    font-size: 15px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.cartListInner .checkBtnArea .btn-primary i {
+    margin-left: 10px;
+}
+
+.cartListInner .checkBtnArea .btn-primary:hover {
+    opacity: .8;
+}
+
+.profile .thumbnail .caption .btn-primary, .profile .form-horizontal .form-group .btn-primary {
+    height: 45px;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 15px;
+    border-radius: 0;
+    background-color: #47bac1;
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.profile .thumbnail .caption .btn-primary:hover, .profile .form-horizontal .form-group .btn-primary:hover {
+    opacity: .8;
+}
+
+.profile .thumbnail .caption .btn-primary {
+    padding: 0;
+    line-height: 45px;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:focus {
+    color: #47bac1;
+    border: 2px solid #47bac1;
+    background: transparent;
+}
+
+.btn-primary:hover {
+    color: white;
+    background: #47bac1;
+    border: 2px solid #47bac1;
+}
+
+.btn-primary-filled, .btn-primary-filled:active, .btn-primary-filled:focus {
+    color: white;
+    background: #47bac1;
+    border: 2px solid #47bac1;
+}
+
+.btn-primary-filled:hover {
+    color: white;
+    background: #47bac1;
+    border: 2px solid #47bac1;
+}
+</style>
+
+<?php
+    $ps = new Period_Setting();
+    $psMonthNum = "6,12,18,24";
+    $psData = $ps->getSpecRatio($psMonthNum);
+    $m = new Motorbike();
+    $mbData = $m->getAllMbName();
+    $mcData = $m->getAllMcData();
+    $monBasis = $m->getAllMonthlyBasisMin();
+    $thisYear = date('Y');
+    $allowYear = $thisYear - 8;
+    $money = array();
+    $cccc = array();
+
+?>
+
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12">
+    <form id="order_add" role="form">
+        <input type="hidden" name="mcoType" value="2" />
+        <div class="form-group">
+            <div class="dropGeneral">
+                <label for="">廠牌</label>
+                <select id="motorBrand" name="mcoMotorBrand" class="select-drop" style="display: none;">
+<?php foreach ($mbData as $value) { ?>
+                    <option value="<?php echo $value['mbName']; ?>"><?php echo $value['mbName']; ?></option>
+<?php } ?>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="dropGeneral">
+                <label for="">年份</label>
+                <select id="mcoYear" name="mcoYear" class="select-drop" style="display: none;">
+<?php for ($i = $thisYear; $i >= $allowYear; $i--) { ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+<?php } ?>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">車牌</label>
+            <input id="mcoCarNum" name="mcoCarNum" type="text" class="form-control" value="" placeholder="請輸入車牌 例如 XXX-XXX"/>
+        </div>
+
+        <div class="form-group">
+            <div class="dropGeneral">
+                <label for="">CC數</label>
+                <select id="mcoCcNumber" name="mcoCcNumber" class="select-drop" style="display: none;">
+<?php foreach ($mcData as $value) {
+                    $money[$value['mcNo']] = $m->getYearDiffAndMaxAmountbyMcNo($value['mcNo']);
+                    foreach ($money[$value['mcNo']] as $key => $value2) {
+                        $cccc[$value['mcNo']][] = $value2;
+                    }
+
+?>
+                    <option value='<?php echo $value["mcName"]; ?>'
+                        data-all='<?php echo json_encode($cccc[$value["mcNo"]]); ?>'
+                        data-mcno='<?php echo $value["mcNo"]; ?>'><?php echo $value["mcName"]; ?></option>
+<?php } ?>
+
+                </select>
+            </div>
+        </div>
+        <input type="hidden" id="defaultMoney" value="<?php echo $money[1][0]['mmaAmount']; ?>" /> <!-- 預設使用年份差 = 0 50cc的最大金額 -->
+        <br/><br/>
+        <div class="form-group">
+            <label for="">借款金額</label>
+            <div class="alert alert-info fade in alert-dismissable"  style = "text-align: center;" id="loan_amount">NT$0 元</div>
+            <div class="priceRange">
+                <div class="panel-body clearfix">
+                    <div class="price-slider-inner">
+                        <div id="price-range"></div>
+                    </div>
+                    <span class="amount-wrapper">
+                      NT$:
+                        <input type="text" id="price-amount-1" size = 10 readonly="" />
+                        <input type="text" id="price-amount-2" size = 10 style="float:right; text-align:right;" readonly=""/>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="">分期</label>
+            <div class="btn-group" role="group">
+                <input type="hidden" id="monthNum" value="0" />
+<?php foreach ($psData as $key => $value) { ?>
+                <a href="" id="monthNum_<?php echo $key; ?>">
+                    <span class="label label-danger" data-ratio="<?php echo $value['psRatio']; ?>" data-monthnum="<?php echo $value['psMonthNum']; ?>" data-monthbasis="<?php echo $monBasis[$key]['mbMin']; ?>"><?php echo $value['psMonthNum']; ?>期</span>
+                </a>
+<?php } ?>
+            </div>
+            <input type="hidden" name="mcoPeriodAmount" value="" />
+        </div>
+
+        <div class="form-group">
+            <label for="">月付金額</label>
+            <div class="alert alert-info fade in alert-dismissable" style = "text-align: center;" id="monthPay">NT$0 元</div>
+            <input type="hidden" name="mcoMinMonthlyTotal" value="" />
+            <input type="hidden" name="mcoMaxMonthlyTotal" value="0" />
+        </div>
+
+        <div>
+            <label for="">每日利息僅</label>
+            <div class="alert alert-info fade in alert-dismissable"  style = "text-align: center;" id="commission">NT$0 元</div>
+            <input type="hidden" name="mcoDailyInterest" value="" />
+        </div>
+        <input type="hidden" name="mcoPeriodTotal" value="" />
+        <button id="subButton" type="button" class="btn btn-primary btn-block">立即借款</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+
+        $('.select-drop').selectbox();
+
+        var defaultYear = $('select[name=mcoYear] option:selected').val();
+        var defaultCc = $('select[name=mcoCcNumber] option:selected').val();
+        var defaultMoney = $('#defaultMoney').val();
+        var minimum = 30000;
+        var maximum = parseInt(defaultMoney) * 10000;
+
+        //sander
+        $("#price-amount-1").val("$" + minimum);
+        $("#price-amount-2").val("$" + maximum);
+        $('#loan_amount').html('NT$' + minimum + ' 元');
+
+        $("#price-range").slider({
+            range: "min",
+            min: minimum,
+            max: maximum,
+            values: [minimum],
+            step:1000,
+            slide: function(event, ui) {
+                $('#loan_amount').html('NT$' + ui.values[0] + ' 元');
+
+                if ($('input[name=mcoPeriodAmount]').val() !== "") {
+                    let monthNum = $('input[name=mcoPeriodAmount]').val();
+                    let mRatio;
+                    if (monthNum == 6) {
+                        mRatio = $('#monthNum_0').children().data('ratio');
+                    } else if (monthNum == 12) {
+                        mRatio = $('#monthNum_1').children().data('ratio');
+                    } else if (monthNum == 18) {
+                        mRatio = $('#monthNum_2').children().data('ratio');
+                    } else if (monthNum == 24) {
+                        mRatio = $('#monthNum_3').children().data('ratio');
+                    }
+
+                    let sum = calculateMoney(monthNum,ui.values[0]);
+                    $('#monthPay').html('NT$' + sum + ' 元');
+                    let commission = calculateCommission(monthNum, ui.values[0]);
+                    $('#commission').html('NT$' + commission + ' 元');
+                    $('input[name=mcoDailyInterest]').val(commission + '元');
+                    $('input[name=mcoPeriodTotal]').val(ui.values[0]);
+                    $('input[name=mcoMinMonthlyTotal]').val(sum);
+                    $('#monthNum').val(monthNum);
+                }
+            }
+        });
+
+        //$("#price-amount-1").val("$" + minimum);
+        //$("#price-amount-2").val("$" + $("#price-range").slider("values", 0));
+
+        // year change event
+        $("#mcoYear").change(function() {
+            let sbCC = $('#mcoCcNumber').attr('sb');
+            let sb = $('#mcoYear').attr('sb');
+
+            if ($('#mcoCcNumber').val() != $('#sbSelector_' + sbCC).text()) {
+                $('#mcoCcNumber').val($('#sbSelector_' + sbCC).text());
+            }
+            if ($('#mcoYear').val() != $('#sbSelector_' + sb).text()) {
+                $('#mcoYear').val($('#sbSelector_' + sb).text());
+            }
+
+            let selectedCC = $('select[name=mcoCcNumber] option:selected').data('all');
+            let mcno = $('select[name=mcoCcNumber] option:selected').data('mcno');
+            let now = new Date();
+            let output = now.getFullYear();
+            let selectedYear = $('select[name=mcoYear] option:selected').val();
+            let diff = output - selectedYear;
+            let amount = 0;
+            for (let i = 0; i < selectedCC.length; i++) {
+                if (parseInt(selectedCC[i].mmaYearDiff) === diff) {
+                    amount = parseFloat(selectedCC[i].mmaAmount) * 10000;
+                    break;
+                }
+            }
+            maximum = amount;
+            $("#price-amount-2").val("$" + maximum);
+
+            //sander add
+            let monthNum = $('input[name=mcoPeriodAmount]').val();
+            let before_loan_amount = $('#loan_amount').html().substr(3);
+            before_loan_amount = before_loan_amount.substr(0,before_loan_amount.length -2);
+            if(parseInt(before_loan_amount) > maximum){
+                $('#loan_amount').html('NT$' + maximum + ' 元');
+                before_loan_amount = maximum;
+            }
+            console.log('cc');
+            let sum = calculateMoney(monthNum, before_loan_amount);
+            $('#monthPay').html('NT$' + sum + ' 元');
+            let commission = calculateCommission(monthNum, before_loan_amount);
+            $('#commission').html('NT$' + commission + ' 元');
+            $('input[name=mcoDailyInterest]').val(commission + '元');
+            $('input[name=mcoPeriodTotal]').val(before_loan_amount);
+            $('input[name=mcoMinMonthlyTotal]').val(sum);
+            $('#monthNum').val(monthNum);
+            //sander end
+
+            $("#price-range").slider({
+                range: "min",
+                min: minimum,
+                max: maximum,
+                values: [before_loan_amount],
+                step:1000,
+                slide: function(event, ui) {
+                    //$("#price-amount-1").val("$" + minimum);
+                    //$("#price-amount-2").val("$" + ui.values[0]);
+                    if ($('input[name=mcoPeriodAmount]').val() !== "") {
+                        let monthNum = $('input[name=mcoPeriodAmount]').val();
+                        let mRatio;
+                        if (monthNum == 6) {
+                            mRatio = $('#monthNum_0').children().data('ratio');
+                        } else if (monthNum == 12) {
+                            mRatio = $('#monthNum_1').children().data('ratio');
+                        } else if (monthNum == 18) {
+                            mRatio = $('#monthNum_2').children().data('ratio');
+                        } else if (monthNum == 24) {
+                            mRatio = $('#monthNum_3').children().data('ratio');
+                        }
+
+                        let sum = calculateMoney(monthNum,ui.values[0]);
+                        $('#monthPay').html('NT$' + sum + ' 元');
+                        let commission = calculateCommission(monthNum, ui.values[0]);
+                        $('#commission').html('NT$' + commission + ' 元');
+                        $('input[name=mcoDailyInterest]').val(commission + '元');
+                        $('input[name=mcoPeriodTotal]').val(ui.values[0]);
+                        $('input[name=mcoMinMonthlyTotal]').val(sum);
+                        $('#monthNum').val(monthNum);
+                    }
+                    //sander add
+                    $('#loan_amount').html('NT$' + ui.values[0] + ' 元');
+                }
+            });
+        });
+
+        //cc change event
+        $("#mcoCcNumber").change(function() {
+            let sbCC = $('#mcoCcNumber').attr('sb');
+            let sb = $('#mcoYear').attr('sb');
+
+            if ($('#mcoCcNumber').val() != $('#sbSelector_' + sbCC).text()) {
+                $('#mcoCcNumber').val($('#sbSelector_' + sbCC).text());
+            }
+            if ($('#mcoYear').val() != $('#sbSelector_' + sb).text()) {
+                $('#mcoYear').val($('#sbSelector_' + sb).text());
+            }
+
+            let selectedCC = $('select[name=mcoCcNumber] option:selected').data('all');
+            let mcno = $('select[name=mcoCcNumber] option:selected').data('mcno');
+            let now = new Date();
+            let output = now.getFullYear();
+            let selectedYear = $('select[name=mcoYear] option:selected').val();
+            let diff = output - selectedYear;
+            let amount = 0;
+            for (let i = 0; i < selectedCC.length; i++) {
+                if (parseInt(selectedCC[i].mmaYearDiff) === diff) {
+                    amount = parseFloat(selectedCC[i].mmaAmount) * 10000;
+                    break;
+                }
+            }
+
+            maximum = amount;
+            $("#price-amount-2").val("$" + maximum);
+
+            //sander add
+            let monthNum = $('input[name=mcoPeriodAmount]').val();
+            let before_loan_amount = $('#loan_amount').html().substr(3);
+            before_loan_amount = before_loan_amount.substr(0,before_loan_amount.length -2);
+            if(parseInt(before_loan_amount) > maximum){
+                $('#loan_amount').html('NT$' + maximum + ' 元');
+                before_loan_amount = maximum;
+            }
+            console.log('cc');
+            let sum = calculateMoney(monthNum, before_loan_amount);
+            $('#monthPay').html('NT$' + sum + ' 元');
+            let commission = calculateCommission(monthNum, before_loan_amount);
+            $('#commission').html('NT$' + commission + ' 元');
+            $('input[name=mcoDailyInterest]').val(commission + '元');
+            $('input[name=mcoPeriodTotal]').val(before_loan_amount);
+            $('input[name=mcoMinMonthlyTotal]').val(sum);
+            $('#monthNum').val(monthNum);
+            //sander end
+
+            $("#price-range").slider({
+                range: "min",
+                min: minimum,
+                max: maximum,
+                values: [before_loan_amount],
+                step: 1000,
+                slide: function(event, ui) {
+                    //$("#price-amount-1").val("$" + minimum);
+                    //$("#price-amount-2").val("$" + ui.values[0]);
+                    if ($('input[name=mcoPeriodAmount]').val() !== "") {
+
+                        let monthNum = $('input[name=mcoPeriodAmount]').val();
+                        let mRatio;
+                        if (monthNum == 6) {
+                            mRatio = $('#monthNum_0').children().data('ratio');
+                        } else if (monthNum == 12) {
+                            mRatio = $('#monthNum_1').children().data('ratio');
+                        } else if (monthNum == 18) {
+                            mRatio = $('#monthNum_2').children().data('ratio');
+                        } else if (monthNum == 24) {
+                            mRatio = $('#monthNum_3').children().data('ratio');
+                        }
+
+                        let sum = calculateMoney(monthNum,ui.values[0]);
+                        $('#monthPay').html('NT$' + sum + ' 元');
+                        let commission = calculateCommission(monthNum, ui.values[0]);
+                        $('#commission').html('NT$' + commission + ' 元');
+                        $('input[name=mcoDailyInterest]').val(commission + '元');
+                        $('input[name=mcoPeriodTotal]').val(ui.values[0]);
+                        $('input[name=mcoMinMonthlyTotal]').val(sum);
+                        $('#monthNum').val(monthNum);
+                    }
+                    //sander add
+                    $('#loan_amount').html('NT$' + ui.values[0] + ' 元');
+                }
+            });
+
+
+        });
+
+        $('#monthNum_0').click(function() {
+            event.preventDefault();
+            $('#monthNum_0').children().prop("class", "label label-info");
+            $('#monthNum_1').children().prop("class", "label label-danger");
+            $('#monthNum_2').children().prop("class", "label label-danger");
+            $('#monthNum_3').children().prop("class", "label label-danger");
+            let mRatio = $('#monthNum_0').children().data('ratio');
+            let mMonthNum = $('#monthNum_0').children().data('monthnum');
+            //sander add
+            let let_loan_amount = $('#loan_amount').html().substr(3);
+            let_loan_amount = let_loan_amount.substr(0,let_loan_amount.length -2);
+            //sander end
+            let sum = calculateMoney(mMonthNum,let_loan_amount);
+            $('#monthPay').html('NT$' + sum + ' 元');
+            let commission = calculateCommission(mMonthNum, let_loan_amount);
+            $('#commission').html('NT$' + commission + ' 元');
+            $('input[name=mcoDailyInterest]').val(commission + '元');
+            //$('input[name=mcoPeriodTotal]').val($('#price-amount-2').val().substr(1));
+            $('input[name=mcoPeriodTotal]').val(let_loan_amount);
+            $('input[name=mcoPeriodAmount]').val(mMonthNum);
+            $('input[name=mcoMinMonthlyTotal]').val(sum);
+            $('#monthNum').val(mMonthNum);
+        });
+
+        $('#monthNum_1').click(function() {
+            event.preventDefault();
+            $('#monthNum_0').children().prop("class", "label label-danger");
+            $('#monthNum_1').children().prop("class", "label label-info");
+            $('#monthNum_2').children().prop("class", "label label-danger");
+            $('#monthNum_3').children().prop("class", "label label-danger");
+            let mRatio = $('#monthNum_1').children().data('ratio');
+            let mMonthNum = $('#monthNum_1').children().data('monthnum');
+            //sander add
+            let let_loan_amount = $('#loan_amount').html().substr(3);
+            let_loan_amount = let_loan_amount.substr(0,let_loan_amount.length -2);
+            //sander end
+            let sum = calculateMoney(mMonthNum,let_loan_amount);
+            $('#monthPay').html('NT$' + sum + ' 元');
+            let commission = calculateCommission(mMonthNum, let_loan_amount);
+            $('#commission').html('NT$' + commission + ' 元');
+            $('input[name=mcoDailyInterest]').val(commission + '元');
+            //$('input[name=mcoPeriodTotal]').val($('#price-amount-2').val().substr(1));
+            $('input[name=mcoPeriodTotal]').val(let_loan_amount);
+            $('input[name=mcoPeriodAmount]').val(mMonthNum);
+            $('input[name=mcoMinMonthlyTotal]').val(sum);
+            $('#monthNum').val(mMonthNum);
+        });
+
+        $('#monthNum_2').click(function() {
+            event.preventDefault();
+            $('#monthNum_0').children().prop("class", "label label-danger");
+            $('#monthNum_1').children().prop("class", "label label-danger");
+            $('#monthNum_2').children().prop("class", "label label-info");
+            $('#monthNum_3').children().prop("class", "label label-danger");
+            let mRatio = $('#monthNum_2').children().data('ratio');
+            let mMonthNum = $('#monthNum_2').children().data('monthnum');
+            //sander add
+            let let_loan_amount = $('#loan_amount').html().substr(3);
+            let_loan_amount = let_loan_amount.substr(0,let_loan_amount.length -2);
+            //sander end
+            let sum = calculateMoney(mMonthNum,let_loan_amount);
+            $('#monthPay').html('NT$' + sum + ' 元');
+            let commission = calculateCommission(mMonthNum, let_loan_amount);
+            $('#commission').html('NT$' + commission + ' 元');
+            $('input[name=mcoDailyInterest]').val(commission + '元');
+            //$('input[name=mcoPeriodTotal]').val($('#price-amount-2').val().substr(1));
+            $('input[name=mcoPeriodTotal]').val(let_loan_amount);
+            $('input[name=mcoPeriodAmount]').val(mMonthNum);
+            $('input[name=mcoMinMonthlyTotal]').val(sum);
+            $('#monthNum').val(mMonthNum);
+        });
+
+        $('#monthNum_3').click(function() {
+            event.preventDefault();
+            $('#monthNum_0').children().prop("class", "label label-danger");
+            $('#monthNum_1').children().prop("class", "label label-danger");
+            $('#monthNum_2').children().prop("class", "label label-danger");
+            $('#monthNum_3').children().prop("class", "label label-info");
+            let mRatio = $('#monthNum_3').children().data('ratio');
+            let mMonthNum = $('#monthNum_3').children().data('monthnum');
+            //sander add
+            let let_loan_amount = $('#loan_amount').html().substr(3);
+            let_loan_amount = let_loan_amount.substr(0,let_loan_amount.length -2);
+            //sander end
+            let sum = calculateMoney(mMonthNum,let_loan_amount);
+            $('#monthPay').html('NT$' + sum + ' 元');
+            let commission = calculateCommission(mMonthNum, let_loan_amount);
+            $('#commission').html('NT$' + commission + ' 元');
+            $('input[name=mcoDailyInterest]').val(commission + '元');
+            //$('input[name=mcoPeriodTotal]').val($('#price-amount-2').val().substr(1));
+            $('input[name=mcoPeriodTotal]').val(let_loan_amount);
+            $('input[name=mcoPeriodAmount]').val(mMonthNum);
+            $('input[name=mcoMinMonthlyTotal]').val(sum);
+            $('#monthNum').val(mMonthNum);
+        });
+
+        $('#subButton').click(function() {
+            if (checkInputData() && checkBasis()) {
+
+                $.ajax({
+                    url: 'php/loan_order_period.php',
+                    data: $('#order_add').serialize(),
+                    type:"POST",
+                    dataType:'text',
+                    success: function(msg) {
+                        if (msg !== "success") {
+                            alert(msg);
+                        } else {
+                            location.href = "index.php?item=member_center&action=loan_order_period";
+                        }
+                    }
+                });
+
+            } else {
+                return false;
+            }
+        });
+    });
+
+    function calculateMoney(monthNum,let_loan_amount) {
+        //sander fix
+        //let borrowBase = parseInt($('#price-amount-2').val().substr(1)) / 10000;
+        let borrowBase =  let_loan_amount / 10000;
+        //fix end
+        let period = parseInt(monthNum);
+        let monthBasis = 0;
+        if (period === 6) {
+            monthBasis = $('#monthNum_0').children().data('monthbasis');
+        } else if (period === 12) {
+            monthBasis = $('#monthNum_1').children().data('monthbasis');
+        } else if (period === 18) {
+            monthBasis = $('#monthNum_2').children().data('monthbasis');
+        } else if (period === 24) {
+            monthBasis = $('#monthNum_3').children().data('monthbasis');
+        }
+
+        let sum = Math.floor(monthBasis * borrowBase);
+        return sum;
+    }
+
+    function calculateCommission(monthNum, let_loan_amount) {
+        //sander fix
+        /*let borrow = parseInt($('#price-amount-2').val().substr(1));
+        let borrow = $('#loan_amount').html().substr(3);
+        borrow = borrow.substr(0,borrow.length -2);
+        monthNum = parseInt(monthNum);
+        ratio = parseFloat(ratio);
+        let sum = Math.floor((borrow * ratio - borrow) / (monthNum * 30));
+        return sum;
+        */
+        let let_monthPay =  $('#monthPay').html().substr(3) ==  ""  ? 0 : $('#monthPay').html().substr(3);
+        let_monthPay = let_monthPay.substr(0,let_monthPay.length -2);
+        monthNum = monthNum == "" ? 0 : parseInt(monthNum);
+        if(monthNum == "0"){
+            return 0;
+        }
+        let sum = Math.floor((let_monthPay * monthNum - let_loan_amount) /(monthNum * 30));
+        return sum;
+    }
+
+    function checkBasis() {
+        let borrowBase = $('#loan_amount').html().substr(3);
+        borrowBase = parseInt(borrowBase.substr(0,borrowBase.length -2))/10000;
+        //let borrowBase = parseInt($('#price-amount-2').val().substr(1)) / 10000;
+
+        let period = parseInt($('#monthNum').val());
+        let monthBasis;
+        if (period === 6) {
+            monthBasis = $('#monthNum_0').children().data('monthbasis');
+        } else if (period === 12) {
+            monthBasis = $('#monthNum_1').children().data('monthbasis');
+        } else if (period === 18) {
+            monthBasis = $('#monthNum_2').children().data('monthbasis');
+        } else if (period === 24) {
+            monthBasis = $('#monthNum_3').children().data('monthbasis');
+        }
+
+        if (Math.floor(monthBasis * borrowBase) > 1000) {
+            return true;
+        } else {
+            alert('您的借款金額過低無法使用此' + period + '期分期，請調整借款金額或分期數');
+            return false;
+        }
+    }
+
+    function checkInputData() {
+        let sbbr = $('#motorBrand').attr('sb');
+
+        if ($('#motorBrand').val() != $('#sbSelector_' + sbbr).text()) {
+                $('#motorBrand').val($('#sbSelector_' + sbbr).text());
+        }
+
+        if ($('#motorBrand').val() == null || $('#motorBrand').val() == "0") {
+            alert("請選擇廠牌");
+            $('select').focus();
+            return false;
+        }
+
+        if ($('#mcoCarNum').val().length === 0) {
+            alert("請填寫車牌");
+            $('#mcoCarNum').focus();
+            return false;
+        }
+
+        if ($('#monthNum').val() === "0") {
+            alert("請選擇分期數");
+            $('#monthNum_0').focus();
+            return false;
+        }
+        return true;
+    }
+
+</script>

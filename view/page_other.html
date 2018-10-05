@@ -1,0 +1,57 @@
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">
+				<?php
+					if(array_key_exists($_GET['item'],$page_other )){
+						foreach($page_other as $key => $value){
+							if($_GET['item'] == $key){
+								echo $value;
+								$name = $value;
+								}
+						}
+					}else if(array_key_exists($_GET['item'],$page_other2 )){
+						foreach($page_other2 as $key => $value){
+							if($_GET['item'] == $key){
+								echo $value;
+								$name = $value;
+								}
+						}
+					}
+				?>
+			</span>
+        </div>
+        <!-- row -->
+        <div class="row">
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-12" id="center_column">
+                <!-- page heading-->
+                <h2 class="page-heading">
+                    <span class="page-heading-title2">
+						<?php
+							echo $name;
+						?>
+					</span>
+                </h2>
+                <!-- Content page -->
+                <div class="content-text clearfix">
+					<?php
+						if(array_key_exists($_GET['item'],$page_other )){
+							echo $page_data['0'][$_GET['item']];
+						}else if(array_key_exists($_GET['item'],$page_other2 )){
+							echo $page_data2['0'][$_GET['item']];
+						}
+					?>
+				                   
+                </div>
+                <!-- ./Content page -->
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<!-- ./page wapper-->

@@ -1,0 +1,124 @@
+<?php
+	$member = new Member();
+	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$member->changeToReadable($memberData[0]);	
+	$lg = new Loyal_Guest();
+	$allLgData = $lg->getAllLoyalGuest();
+	$ifLoyal = "否";
+	foreach($allLgData as $keyIn=>$valueIn){
+		if($valueIn["lgIdNum"] == $memOrigData[0]["memIdNum"]){
+			$ifLoyal = "是";
+		}
+	}
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+				<h2 class="page-heading">
+					<span class="page-heading-title2">會員基本資料</span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">會員編號: <?php echo $_SESSION['user']['memNo']; ?>，<?php echo $memOrigData[0]["memName"]." "; echo $memOrigData[0]["memGender"] == 0 ? "小姐" : "先生"; ?></h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+									<h4>是否有推薦人 :<span style="color:blue"><?php echo $memberData[0]["memRecommCode"]; ?></span></h4>
+									<h4>註冊方式 :<?php echo $memberData[0]["memRegistMethod"]; ?></h4>
+									<h4>身分別 :<?php echo $memberData[0]["memClass"]; ?></h4>
+									<!--<h4>身分備註 : <?php echo $memberData[0]["memOther"]; ?></h4>-->
+									<?php if($memberData[0]["memClass"] == '學生'){?>
+										<h4>學校系級  :
+										<?php 
+											$class = json_decode($memberData[0]["memSchool"]);
+											if(is_array($class)){
+												echo $class[0].$class[1]." 年級：".$class[2];
+											}else{
+												echo $memberData[0]["memSchool"];
+											}
+										
+										?></h4>
+									<?php } ?>
+									<h4>常用聯絡Email: <?php echo $memberData[0]["memSubEmail"]; ?></h4>
+									<h4>Email驗證狀態 : <span style="color:red">
+									<?php  
+										if($memberData[0]["memEmailAuthen"] == "尚未" && $memberData[0]["memClass"] == "非學生"){
+											echo "非學生不需認證";
+										}else{
+											echo $memberData[0]["memEmailAuthen"];
+										}
+									?></span></h4>
+									<?php
+										if($memberData[0]["memClass"] == "學生"){
+											if($memberData[0]["memEmailAuthen"] == "尚未" && strrpos($memberData[0]['memAccount'],'edu') == true){ 
+									?>
+										<h4><?=$memberData[0]['memAccount']?>
+										<a href="#"><span  class="reset_email">[點擊重新送認證信]</span></a></h4>
+									<?php 
+											} 
+										}
+									?>
+									
+									<h4>姓名 :<?php echo $memberData[0]["memName"]; ?></h4>
+									<h4>性別 :<?php echo $memberData[0]["memGender"]; ?></h4>
+									<h4>生日 :<?php echo $memberData[0]["memBday"]; ?></h4>
+									<h4>身分證號 :<?php echo $memberData[0]["memIdNum"]; ?></h4>
+									<h4>現住地址 :<?php echo $memberData[0]["memAddr"]; ?></h4>
+									<h4>現住電話 :<?php echo $memberData[0]["memPhone"]; ?></h4>
+									<h4>手機 :<?php echo $memberData[0]["memCell"]; ?></h4>
+									<h4>LineID :<?php echo $memberData[0]["memLineId"]; ?></h4>
+									<h4>帳號申請時間 : <?php echo $memberData[0]["memRegistDate"]; ?></h4>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script>
+	$(".reset_email").click(function(){
+		var memAccount = "<?php echo $memberData[0]['memAccount']?>";
+		var memName = "<?php echo $memberData[0]["memName"]; ?>";
+		var memno = "<?php echo $_SESSION['user']['memNo']; ?>";
+		var pass_number = "<?php echo $memberData[0]["pass_number"]; ?>";
+		$.ajax({
+            url: 'php/member_resetmail.php',
+            data: 'memAccount='+memAccount+"&memName="+memName+"&memno="+memno+"&pass_number="+pass_number,
+            type:"POST",
+            dataType:'text',
+            success: function(msg){
+                if(msg){
+					alert('已寄送到'+memAccount);
+				}else{
+					alert('寄送錯誤 or 瀏覽器未支援');
+				}
+            },
+
+            error:function(xhr, ajaxOptions, thrownError){ 
+                alert(xhr.status); 
+                alert(thrownError);
+            }
+        });
+	})
+</script>

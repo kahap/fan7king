@@ -1,0 +1,8 @@
+20171012 02:45:56inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:0.0,PGA:0.5
+{}
+20171012 14:56:46inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:7.7
+{}
+20171012 16:35:58inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.1
+{}
+20171012 20:38:21inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.9
+{}

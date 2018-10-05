@@ -1,0 +1,842 @@
+<style>
+    h3 {
+        font-size: 16px;
+        color:blue;
+        margin-top:3px;
+        margin-bottom:3px;
+    }
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="assets/js/select/chosen.css">
+<script src="assets/js/aj-address.js" type="text/javascript"></script>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期購買流程</span>
+        </div>
+
+<?php
+    if (isset($_SESSION["mco_code"])) {
+        echo "<script>location.href = 'index.php?item=member_center&action=loan_order_edit&mcono=" . $_SESSION["mco_code"] . "';</script>";
+    }
+    $member = new Member();
+    $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+
+    $mbs = new Motorbike();
+    $mbsData = $mbs->getSalesUserNum();
+
+    $school = new School();
+    $school_data = $school->getAll();
+    foreach($school_data as $k => $v){
+        $school_name[] = $v['schName'];
+    }
+    $major = new Major();
+    $major_data = $major->getAll();
+
+    foreach ($major_data as $k => $v) {
+        $major_combine[$v['schName']][] = $v['majName'];
+    }
+?>
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class="current-step"><img src="assets/images/B-C-1.png"/></li>
+                <li class=""><img src="assets/images/B-B-3.png"/></li>
+                <li class=""><img src="assets/images/B-B-4.png"/></li>
+<?php if (isset($fb_token) && in_array($memberData['0']['memFBtoken'], $fb_token)) { ?>
+                    <li class=""><img src="assets/images/B-B-6.png"/></li>
+<?php } ?>
+                <li class=""><img src="assets/images/B-B-5.png"/></li>
+            </ul>
+
+            <div class="heading-counter warning">申請人基本資料
+                <span style="color:red">*為必填欄位，請務必詳實填寫，如未滿20歲,需父母同意分期購買</span>
+                <br />
+            </div>
+
+            <div class="box-border">
+                <ul>
+                    <form id="order_add">
+                        <div class="row">
+                            <div class="col-sm-6">
+
+                            業務代碼
+                                <span style="color:red">如為業務人員推薦，煩請選擇業務人員</span>
+                                <select style="width: 60px;border-style: groove;" name="aauNo">
+                                    <option value="" selected>無</option>
+<?php foreach ($mbsData as $key => $value) { ?>
+                                    <option value="<?=$value['aauNo'] ?>" <?php echo ( $mco_data[0]['aauNo'] == $value['aauNo']) ? 'selected':''; ?>><?=$value['aauNo']?></option>
+<?php } ?>
+                                </select>
+                                <br />
+
+                                <label style="">
+                                    <input name="mcoIfSecret" type="checkbox" value="1" />申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）
+                                </label>
+                                <a href="#" class="secure">
+                                    <span class="label label-success">什麼是保密照會</span>
+                                </a>
+                                <br />
+
+                                <h3>基本資料</h3>
+                                <label for="first_name" class="required">申請人中文姓名
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <input type="text" class="input form-control memName" name="memName" value="<?php echo $memberData[0]['memName']; ?>" />
+
+                                <label for="first_name" class="required">身份證字號
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <input type="text" class="input form-control" name="memIdNum" value="<?php echo $memberData[0]['memIdNum']; ?>" />
+
+                                <label for="first_name" class="required">出生年月日
+                                    <span style="color:red">*</span> :
+                                </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input type="hidden" name="memBday" id="memBday" value="" />
+                                <label for="first_name" class="required">民國</label>
+                                <select style="width: 60px;border-style: groove;" id="year">
+<?php
+    $year = explode('-',$memberData[0]['memBday']);
+    for ($i = 50; $i <= 105; $i++) {
+?>
+                                    <option value="<?=$i ?>" <?php echo ($year[0] == $i) ? 'selected':''; ?>><?=$i?></option>
+<?php } ?>
+                                </select>
+                                <label for="first_name" class="required">年</label>
+                                <select style="width: 60px;border-style: groove;" id="month">
+<?php for ($i = 1; $i <= 12; $i++) { ?>
+                                    <option value="<?=$i ?>" <?php echo ($year[1] == $i) ? 'selected':''; ?>><?=$i?></option>
+<?php } ?>
+                                </select>
+                                <label for="first_name" class="required">月</label>
+                                <select style="width: 60px;border-style: groove;" id="day">
+<?php for ($i = 1; $i <= 31; $i++) { ?>
+                                    <option value="<?=$i ?>" <?php echo ($year[2] == $i) ? 'selected':''; ?>><?=$i?></option>
+<?php } ?>
+                                </select>
+                                <label for="first_name" class="required">日</label>
+                                <br />
+
+                                <label for="first_name" class="required">身分別
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <select class="input form-control memclass" name="memClass">
+                                    <option value="x">請選擇</option>
+                                    <option value="0" <?php echo ($memberData[0]['memClass'] == 0) ? "selected":""; ?>>學生</option>
+                                    <option value="4" <?php echo ($memberData[0]['memClass'] == 4) ? "selected":""; ?>>非學生</option>
+                                </select>
+                                <label for="first_name" class="required memSchool">學校
+                                    <span style="color:red">*</span> :
+                                </label>
+<?php
+    $School = ($memberData[0]['memClass'] == 0) ? explode('#', $memberData[0]['memSchool']) : '';
+    $status = ($School != '' && in_array($School[0], $school_name)) ? "1" : "0";
+?>
+                                <select data-placeholder="Choose a Country..." class="input chosen-select school"  tabindex="2" name="school">
+                                    <option value=""></option>
+<?php foreach($school_data as $key => $value) { ?>
+                                        <option data-aaa="<?=$value['schNo']?>" value="<?=$value['schName']?>" <?php echo ($School[0] == $value['schName']) ? 'selected' : ''; ?>><?=$value['schName']?></option>
+<? } ?>
+                                </select>
+                                <br />
+                                <label for="first_name" class="required memSchool">系別
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <br />
+
+                                <input type="hidden" name="memSchool" id="schoolFull" value="<?php echo $memberData[0]['memSchool']; ?>" />
+                                <select class="input form-control departments" id="departments" style="display: none;">
+<?php
+foreach ($major_combine as $key => $value) {
+    foreach ($value as $k => $v) { ?>
+                                    <option data-key="<?=$key?>" value="<?=$v?>"><?=$v?></option>
+    <?php  } ?>
+<?php } ?>
+                                </select>
+                                <select class="input form-control departmenttest" style="display: none" id="departmenttest" name="depart">
+                                </select>
+
+                                <label for="first_name" class="required memSchool">年級
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <select class="input form-control memSchool" name="classyear">
+                                    <option value="">請選擇年級</option>
+                                    <option value="一年級">一年級</option>
+                                    <option value="二年級">二年級</option>
+                                    <option value="三年級">三年級</option>
+                                    <option value="四年級">四年級</option>
+                                    <option value="五年級">五年級</option>
+                                    <option value="六年級">六年級</option>
+                                    <option value="七年級">七年級</option>
+                                    <option value="碩一">碩一</option>
+                                    <option value="碩二">碩二</option>
+                                    <option value="碩三">碩三</option>
+                                    <option value="博一">博一</option>
+                                    <option value="博二">博二</option>
+                                    <option value="博三">博三</option>
+                                    <option value="博四">博四</option>
+                                </select>
+<?php if ($memberData[0]['memFBtoken'] != "") { ?>
+                                <div class="memAccount">
+                                    <label for="first_name" class="required">學生Email
+                                        <span style="color:red">*</span>： 請填寫您所就讀的學校所提供給您的個人Email
+                                    </label>
+                                <input type="text" class="input form-control" name="memAccount" value=
+                                    "<?php
+                                        if ($memberData[0]['memclass'] != '0' && $memberData[0]['memFBtoken'] == "") {
+                                            echo $memberData[0]['memAccount'];
+                                        } else {
+                                            echo $memberData[0]['memSubEmail'];
+                                        }
+
+                                    ?>">
+                                </div>
+<?php } ?>
+                                <label for="first_name" class="required">常用聯絡Email
+                                    <span style="color:red">*</span>：
+                                </label>
+                                <input type="text" class="input form-control" name="memSubEmail" value="<?php
+                                        if ($memberData[0]['memclass'] != '0' && $memberData[0]['memFBtoken'] == '') {
+                                            echo $memberData[0]['memAccount'];
+                                        } else {
+                                            echo $memberData[0]['memSubEmail'];
+                                        }
+
+                                    ?>" />
+                                <label for="first_name" class="required">戶籍地址
+                                    <span style="color:red">*</span> :
+                                    <input type="checkbox" name="sameofapplier_3" />同現住資料
+                                </label>
+                                <div class="address-zone">
+                                    <input type="text" name="mcoBirthPostCode" class="input mcoBirthPostCode" style="width:70px" value="<?php echo $mco_data[0]['mcoBirthPostCode'];?>" readonly />
+                                    <select class="city" style="width: 80px;border-style: groove;">
+                                        <option value="">請選擇</option>
+                                    </select>
+                                    <select class="county" style="width: 80px;border-style: groove;">
+                                        <option value="">請選擇</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="input form-control" name="mcoBirthAddr" value="" />
+
+                                <label for="first_name" class="required">戶籍市話
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <input type="text" class="input form-control" name="mcoBirthPhone" value="" placeholder="ex: 02-22898878" />
+                                <label>
+                                    <span style="color:red">註記：填寫市話可以大幅增加審核過件的機率，但如無市話請填手機
+                                    </span>
+                                </label>
+                                <br />
+
+                                <label for="first_name" class="required">現住地址
+                                    <span style="color:red">*</span>:
+                                    <input type="checkbox" name="sameofapplier" />同戶籍資料
+                                </label>
+                                <div class="address-zone">
+                                    <input type="text" name="memPostCode" class="input memPostCode" style="width:70px" value="<?php echo $memberData[0]['memPostCode'];?>" readonly />
+                                    <select class="city" id="city" style="width: 80px;border-style: groove;">
+                                        <option value="">請選擇</option>
+                                    </select>
+                                    <select class="county" id="county" style="width: 80px;border-style: groove;">
+                                        <option value="">請選擇</option>
+                                    </select>
+                                </div>
+                                <input type="text" class="input form-control" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>">
+                                <label for="first_name" class="required">現住市話
+                                    <span style="color:red">*</span> :
+                                </label>
+                                <input type="text" class="input form-control" name="memPhone" value="<?php echo $memberData[0]['memPhone'] ?>" placeholder="ex: 02-22898878" />
+                                <label for="first_name" class="required">行動電話
+                                    <span style="color:red">*</span>:
+                                </label>
+                                <input type="text" class="input form-control" name="memCell" value="<?php echo $memberData[0]['memCell'] ?>" placeholder="ex: 0911222333" />
+
+                                <label for="first_name" class="required">住房所有權 : </label>
+                                <input type="radio" class="input" name="mcoLivingOwnership" value="自有/配偶" checked>自有/配偶
+                                <input type="radio" class="input" name="mcoLivingOwnership" value="父母/子女">父母/子女
+                                <input type="radio" class="input" name="mcoLivingOwnership" value="親友">親友
+                                <input type="radio" class="input" name="mcoLivingOwnership" value="租賃">租賃
+                                <input type="radio" class="input" name="mcoLivingOwnership" value="宿舍">宿舍
+                                <input type="radio" class="input" name="mcoLivingOwnership" value="其他">其他
+                                <br />
+
+                            </div>
+                            <div class="col-sm-6">
+                                <h3>聯絡人資訊：
+                                    <span style="color:red;">請填寫真實資料，造假會導致案件申請失敗</span>
+                                </h3>
+
+                                <label for="first_name" class="required">聯絡人姓名
+                                    <span style="color:red">*</span>:
+                                </label>
+                                <input type="text" class="input form-control" name="mcoContactName" value=""/>
+
+                                <label for="first_name" class="required">聯絡人關係
+                                    <span style="color:red">*</span>:
+                                </label>
+                                <select name="mcoContactRelation" class="input form-control">
+<?php
+
+    foreach ($orAppContactRelaRelation as $key => $value) {
+                                    echo "<option value='".$key."'>".$value."</option>";
+    }
+?>
+                                </select>
+
+                                <label for="first_name" class="required">聯絡人市話
+                                    <span style="color:red">*</span>:
+                                </label>
+                                <input type="text" class="input form-control" name="mcoContactPhone" value="" />
+
+                                <label for="first_name" class="required">聯絡人手機
+                                    <span style="color:red">*</span>:
+                                </label>
+                                <input type="text" class="input form-control" name="mcoContactCell" value="" length="10" maxlength="10" minlength="10" />
+
+                                <span id="non_student" style="display: none;">
+                                    <label for="first_name" class="required">其他聯絡人姓名
+                                        <span style="color:red">*</span>:
+                                    </label>
+                                    <input type="text" class="input form-control" name="mcoContactName2" value=""/>
+
+                                    <label for="first_name" class="required">其他聯絡人關係
+                                        <span style="color:red">*</span>:
+                                    </label>
+                                    <select name="mcoContactRelation2" class="input form-control">
+<?php
+    foreach ($orAppContactRelaRelation as $key => $value) {
+                                    echo "<option value='".$key."'>".$value."</option>";
+    }
+?>
+                                    </select>
+
+                                    <label for="first_name" class="required">其他聯絡人市話
+                                        <span style="color:red">*</span>:
+                                    </label>
+                                    <input type="text" class="input form-control" name="mcoContactPhone2" value="" />
+
+                                    <label for="first_name" class="required">其他聯絡人手機
+                                        <span style="color:red">*</span>:
+                                    </label>
+                                    <input type="text" class="input form-control" name="mcoContactCell2" value="" length="10" maxlength="10" minlength="10" />
+                                </span>
+
+                                <h3 for="first_name" class="required">
+                                    資金用途
+                                    <span style="color:red;">* :</span>
+                                </h3>
+                                <label for="first_name" class="required"></label>
+                                <input type="text" class="input form-control" name="mcoApplyPurpose" value="" />
+
+                                <h3 for="first_name" class="required">
+                                    工作狀態 :
+                                    <input type="radio" class="input" checked name="mcoCompanystatus" value="0" />無
+                                    <input type="radio" class="input" name="mcoCompanystatus" value="1" />有
+                                </h3>
+                                <div id="mcoCompanystatus">
+                                    <label for="first_name" class="required">公司名稱 :</label>
+                                    <input type="text" class="input form-control" name="memCompanyName" value="" />
+                                    <label for="first_name" class="required">年資 :</label>
+                                    <select name="memYearWorked" class="input form-control">
+                                        <option value="">請選擇</option>
+                                        <option value="半年以下">半年以下</option>
+                                        <option value="半年到一年">半年到一年</option>
+                                        <option value="一年">一年</option>
+                                        <option value="兩年">兩年</option>
+                                        <option value="三年">三年</option>
+                                        <option value="三年以上">三年以上</option>
+                                    </select>
+                                    <label for="first_name" class="required">月薪 :</label>
+                                    <select name="memSalary" class="input form-control">
+                                        <option value="">請選擇</option>
+                                        <option value="0-5000">0-5000</option>
+                                        <option value="5000-10000">5000-10000</option>
+                                        <option value="10000-20000">10000-20000</option>
+                                        <option value="20000-30000">20000-30000</option>
+                                        <option value="30000-40000">30000-40000</option>
+                                        <option value="50000以上">50000以上</option>
+                                    </select>
+                                    <label for="first_name" class="required">公司市話 :</label>
+                                    <input type="text" class="input form-control" name="mcoCompanyPhone" value="" />
+                                    <label for="first_name" class="required">公司市話分機 :</label>
+                                    <input type="text" class="input form-control" name="mcoCompanyPhoneExt" value="" />
+                                </div>
+                                <br />
+
+                                <h3 for="first_name" class="required">
+                                    是否持有信用卡 :
+                                    <input type="radio" class="input" checked name="mcoCreditstatus" value="0" />無
+                                    <input type="radio" class="input" name="mcoCreditstatus" value="1" />有
+                                    <span style="color:red">(僅供參考可增加審件速度)</span>
+                                </h3>
+                                <br />
+                                <div id="mcoCreditstatus">
+                                    <label for="first_name" class="required">信用卡號 :</label>
+                                    <input type="text" class="input" style="width:100px;height: 34px;" maxlength='4' name="mcoCreditNum_1" value="" />-
+                                    <input type="text" class="input" style="width:100px;height: 34px;" maxlength='4' name="mcoCreditNum_2" value="" />-
+                                    <input type="text" class="input" style="width:100px;height: 34px;" maxlength='4' name="mcoCreditNum_3" value="" />-
+                                    <input type="text" class="input" style="width:100px;height: 34px;" maxlength='4' name="mcoCreditNum_4" value="" /><br>
+                                    <label for="first_name" class="required">發卡銀行 :</label>
+                                    <input type="text" class="input form-control" name="mcoCreditIssueBank" value="" />
+                                    <label for="first_name" class="required">信用卡有效期限 :</label>
+                                    <select name="mcoCreditDueDate_1" style="width: 80px;border-style: groove;">
+                                        <option value="">請選擇</option>
+<?php for ($i = 1; $i <= 12; $i++) { ?>
+                                        <option value="<?=$i?>"><?=$i; ?></option>
+<?php } ?>
+                                    </select>月
+                                    <select name="mcoCreditDueDate_2" style="width: 80px;border-style: groove;">
+                                        <option value="">請選擇</option>
+<?php for ($i = 2016; $i <= 2030; $i++) { ?>
+                                        <option value="<?=$i?>"><?=$i; ?></option>
+<?php } ?>
+                                    </select>年
+                                </div>
+
+                                <h3>備註：</h3>
+
+                                <label for="first_name" class="required">可照會時間 :</label>
+                                <input type="text" class="input form-control" name="mcoAvailTime" value="" />
+                                <label for="first_name" class="required">注意事項 :</label>
+                                <input type="text" class="input form-control" name="mcoExtraInfo" value="" />
+                            </div>
+                        </div>
+                    </form>
+                </ul>
+            </div>
+            <div class="cart_navigation">
+                <a class="next-btn"><button >下一步</button></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+<script src="assets/js/select/chosen.jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function () {
+
+        $('.address-zone').ajaddress({ city: "請選擇", county: "請選擇" });
+        if ($(".memclass").val() == '0') {
+            $(".memSchool").show();
+            $(".chosen-container").show();
+            $(".memAccount").show();
+        } else {
+            $(".memSchool").hide();
+            $(".chosen-container").hide();
+            $(".memAccount").hide();
+            $('#non_student').show();
+        }
+
+    });
+
+    var config = {
+      '.chosen-select'           : {},
+      '.chosen-select-deselect'  : {allow_single_deselect:true},
+      '.chosen-select-no-single' : {disable_search_threshold:10},
+      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+      '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    $(".secure").click(function() {
+        alert("若你不希望親友知道可以勾選第一步驟申請書姓名前面的保密，勾選之後還是會打電話但不會告知有購物，她們只會接到類似行銷電話確認身份而已。");
+    })
+
+    $("#memBday").val($("#year").val() + "-" + $("#month").val() + "-" + $("#day").val());
+
+    $("#year").change(function() {
+        $("#memBday").val($("#year").val() + "-" + $("#month").val() + "-" + $("#day").val());
+    });
+
+    $("#month").change(function() {
+        $("#memBday").val($("#year").val() + "-" + $("#month").val() + "-" + $("#day").val());
+    });
+
+    $("#day").change(function() {
+        $("#memBday").val($("#year").val() + "-" + $("#month").val() + "-" + $("#day").val());
+    });
+
+    var schoolFull = $("#schoolFull").val();
+    if (schoolFull !== '') {
+        let schoolData = schoolFull.split("#");
+        $("select[name=classyear] option:contains('" + schoolData[2] + "')").prop("selected", "selected");
+        findDepartMent(schoolData[0], 0, 1, schoolData[1]);
+    }
+
+    $(".school").change(function() {
+        let school = $(this).val();
+        findDepartMent(school, 0, 0, '');
+    });
+
+    $("#departmenttest").change(function() {
+        let classYearVal = $("select[name=classyear] option:selected").val();
+        let departmentVal = $("#departmenttest option:selected").val();
+        let schoolVal = $("select[name=school] option:selected").val();
+        $("#schoolFull").val(schoolVal + "#" + departmentVal + "#" + classYearVal);
+    });
+
+    $("select[name=classyear]").change(function() {
+        let classYearVal = $("select[name=classyear] option:selected").val();
+        let departmentVal = $("#departmenttest option:selected").val();
+        let schoolVal = $("select[name=school] option:selected").val();
+        $("#schoolFull").val(schoolVal + "#" + departmentVal + "#" + classYearVal);
+    });
+
+    $("#mcoCreditstatus").hide();
+    $("#mcoCompanystatus").hide();
+
+    $(".memclass").change(function() {
+        let memclass_val = $(this).val();
+        if (memclass_val == '0') {
+            $(".memSchool").show();
+            $(".chosen-container").show();
+            $(".memAccount").show();
+        } else {
+            $(".memSchool").hide();
+            $(".chosen-container").hide();
+            $("#default").hide();
+            $(".memAccount").hide();
+        }
+        if (memclass_val == '4') {
+            $('#non_student').show();
+        } else {
+            $('#non_student').hide();
+        }
+    });
+
+    $(".next-btn").click(function() {
+        if (checkAllContact()) {
+            $.ajax({
+                url: 'php/loan_order_check.php',
+                data: $('#order_add').serialize(),
+                type:"POST",
+                dataType:'text',
+                success: function(response) {
+
+                    let data = $.parseJSON(response);
+                    if (data.status == 1) {
+                        location.href = "index.php?item=member_center&action=loan_order_period&method=2";
+                    } else {
+                        alert(data.message);
+                    }
+                },
+
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        }
+    });
+
+    $("input[name=mcoCompanystatus]").change(function() {
+        if ($('input[name=mcoCompanystatus]:checked').val() == 1) {
+            $("#mcoCompanystatus").show();
+        } else {
+            $("#mcoCompanystatus").hide();
+        }
+    });
+
+    $("input[name=mcoCreditstatus]").change(function() {
+        if ($('input[name=mcoCreditstatus]:checked').val() == 1) {
+            $("#mcoCreditstatus").show();
+        } else {
+            $("#mcoCreditstatus").hide();
+        }
+    });
+
+    $("input[name=sameofapplier]").change(function() {
+        if ($('input[name=sameofapplier]:checked').val() == "on") {
+            $("input[name=memAddr]").val($("input[name=mcoBirthAddr]").val());
+            $("input[name=memPhone]").val($("input[name=mcoBirthPhone]").val());
+            $(".memPostCode").val($(".mcoBirthPostCode").val());
+        } else {
+            $("input[name=memAddr]").val('');
+            $("input[name=memPhone]").val('');
+            $(".memPostCode").val('');
+        }
+    });
+
+    $("input[name=sameofapplier_3]").change(function() {
+        if ($('input[name=sameofapplier_3]:checked').val() == "on") {
+            $("input[name=mcoBirthAddr]").val($("input[name=memAddr]").val());
+            $("input[name=mcoBirthPhone]").val($("input[name=memPhone]").val());
+            $(".mcoBirthPostCode").val($(".memPostCode").val());
+        } else {
+            $("input[name=mcoBirthAddr]").val('');
+            $("input[name=mcoBirthPhone]").val('');
+            $(".mcoBirthPostCode").val('');
+        }
+    });
+
+    $(".city").change(function() {
+        if ($(".city").val() != "") {
+            $("input[name=mcoBirthAddr]").val($(".city").val());
+        }
+    });
+
+    $(".county").change(function() {
+        if ($(".county").val() != "") {
+            var NewArray = new Array();
+            var NewArray = $(".county").val().split(" ");
+            $("input[name=mcoBirthAddr]").val($(".city").val() + NewArray[0]);
+            $(".mcoBirthPostCode").val(NewArray[1]);
+        }
+    });
+
+    $("#city").change(function() {
+        if ($("#city").val() != "") {
+            $("input[name=memAddr]").val($("#city").val());
+        }
+    });
+
+    $("#county").change(function() {
+        if ($("#county").val() != "") {
+            var NewArray = new Array();
+            var NewArray = $("#county").val().split(" ");
+            $("input[name=memAddr]").val($("#city").val()+NewArray[0]);
+            $(".memPostCode").val(NewArray[1]);
+        }
+    });
+
+    function checkAllContact() {
+        let memclass = $("select[name=memClass] option:selected").val();
+
+        if (memclass == '4') {
+                if (!checkname($("input[name=mcoContactName2]").val(), "您輸入的其他聯絡人中文姓名不正確")) {
+                $("input[name=mcoContactName2]").focus();
+                return false;
+            }
+
+            if (!checkPhone($("input[name=mcoContactCell2]"), "您輸入的其他聯絡人手機號碼不正確")) {
+                $("input[name=mcoContactCell2]").focus();
+                return false;
+            }
+
+            if (compareData($("input[name=mcoContactCell]").val(), $("input[name=mcoContactCell2]").val())) {
+                alert('聯絡人、其他聯絡人不可為同一手機號碼');
+                $("input[name=mcoContactCell2]").focus();
+                return false;
+            }
+
+            if (compareData($("input[name=memCell]").val(), $("input[name=mcoContactCell2]").val())) {
+                alert('申請人、其他聯絡人不可為同一手機號碼');
+                $("input[name=mcoContactCell2]").focus();
+                return false;
+            }
+        }
+        /*sander add*/
+        if (memclass == '0') {
+            //if ($('input[name=memAccount]').val() === '') {
+            if ($('input[name=memAccount]').length) {
+                let memAccount = $('input[name=memAccount]').val().toLowerCase();
+                if (memAccount.indexOf('edu') === -1) {
+                    alert("請輸入正確的學校Mail");
+                    $('input[name=memAccount]').focus();
+                    return false;
+                }
+            }
+
+            if ($('select[name=classyear]').val() === '') {
+                alert("請選擇年級!");
+                $('select[name=classyear]').focus();
+                return false;
+            }
+        }
+        /*sander end*/
+
+
+        if (!checkname($("input[name=memName]").val(), "請輸入中文姓名")) {
+            $("input[name=memName]").focus();
+            return false;
+        }
+
+        if (!checkTwID($("input[name=memIdNum]").val())) {
+            $("input[name=memIdNum]").focus();
+            return false;
+        }
+
+        if (!checkDate($("#year").val(), $("#month").val(), $("#day").val())) {
+            $("#year").focus();
+            return false;
+        }
+
+        if (!checkPhone($("input[name=memCell]"), "您輸入的手機號碼不正確!")) {
+            $("input[name=memCell]").focus();
+            return false;
+        }
+
+        if (!checkname($("input[name=mcoContactName]").val(), "您輸入的聯絡人中文姓名不正確")) {
+            $("input[name=mcoContactName]").focus();
+            return false;
+        }
+
+        if (!checkPhone($("input[name=mcoContactCell]"), "您輸入的聯絡人手機號碼不正確")) {
+            $("input[name=mcoContactCell]").focus();
+            return false;
+        }
+
+        if ($('input[name=mcoApplyPurpose]').val() === '') {
+            alert("請填寫資金用途!");
+            $('input[name=mcoApplyPurpose]').focus();
+            return false;
+        }
+        if (compareData($("input[name=memCell]").val(), $("input[name=mcoContactCell]").val())) {
+            alert('申請人、聯絡人不可為同一手機號碼');
+            $("input[name=mcoContactCell]").focus();
+            return false;
+        }
+
+        /*sander add*/
+        if ($('input[name=memSubEmail]').val() === '') {
+            alert("請填寫常用聯絡Email");
+            $('input[name=memSubEmail]').focus();
+            return false;
+        }
+
+        if ($('input[name=mcoBirthAddr]').val() === '') {
+            alert("請填寫戶籍地址!");
+            $('input[name=mcoBirthAddr]').focus();
+            return false;
+        }
+
+        if ($('input[name=memAddr]').val() === '') {
+            alert("請填寫現住地址!");
+            $('input[name=memAddr]').focus();
+            return false;
+        }
+
+        if ($('input[name=mcoBirthPhone]').val() === '') {
+            alert("請填寫戶籍市話!");
+            $('input[name=mcoBirthPhone]').focus();
+            return false;
+        }
+
+        if ($('input[name=memPhone]').val() === '') {
+            alert("請填寫現住市話!");
+            $('input[name=memPhone]').focus();
+            return false;
+        }
+
+        if ($('select[name=mcoContactRelation]').val() === '') {
+            alert("請選擇聯絡人關係!");
+            $('select[name=mcoContactRelation]').focus();
+            return false;
+        }
+
+        if ($('input[name=mcoContactPhone]').val() === '') {
+            alert("請填寫聯絡人市話!");
+            $('input[name=mcoContactPhone]').focus();
+            return false;
+        }
+        /*sander end*/
+        return true;
+    }
+
+    function checkTwID(id) {
+        //建立字母分數陣列(A~Z)
+        let city = new Array(
+             1,10,19,28,37,46,55,64,39,73,82, 2,11,
+            20,48,29,38,47,56,65,74,83,21, 3,12,30
+        )
+        id = id.toUpperCase();
+        // 使用「正規表達式」檢驗格式
+        if (id.search(/^[A-Z](1|2)\d{8}$/i) == -1) {
+            alert('身分證字號錯誤錯誤');
+            return false;
+        } else {
+            //將字串分割為陣列(IE必需這麼做才不會出錯)
+            id = id.split('');
+            //計算總分
+            let total = city[id[0].charCodeAt(0) - 65];
+            for (var i = 1; i <= 8; i++) {
+                total += eval(id[i]) * (9 - i);
+            }
+            //補上檢查碼(最後一碼)
+            total += eval(id[9]);
+            //檢查比對碼(餘數應為0);
+            if (total % 10 == 0 ) {
+                return true;
+            } else {
+                alert('身分證字號錯誤');
+            }
+        }
+    }
+
+    function checkPhone(strPhone, prompt) {
+        let strPhoneNum = strPhone.val();
+        let phoneRegWithArea = /^09[0-9]{8}$/;
+        if (strPhoneNum.length > 9  && strPhoneNum.length <= 10) {
+            if (phoneRegWithArea.test(strPhoneNum)) {
+                return true;
+            } else {
+                alert(prompt);
+                return false;
+            }
+        } else {
+            alert(prompt);
+            return false;
+        }
+    }
+
+    function checkname(strname, prompt) {
+        let check_name = /[^\u3447-\uFA29]/ig;
+        if (check_name.test(strname) || strname.length == 0) {
+            alert(prompt);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function checkDate(year, month, day) {
+        let y = parseInt(year) + 1911;
+        let dt1 = new Date(y, month, day);
+        let dt2 = new Date();
+        diff = (((dt2 - dt1) / (1000 * 86400)) / 365);
+        if (diff >= 17.931) {
+            return true;
+        } else {
+            alert('未滿18歲不能申請');
+            return false;
+        }
+    }
+
+    function compareData(input1, input2) {
+        if (input1 === input2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function findDepartMent(school, index, flag, departMentName) {
+        let departData = $("#departments").find("[data-key='" + school + "']");
+        let departArea = $("#departmenttest");
+        departArea.empty();
+        for (let count = 0; count < departData.length; count++) {
+            let appends = departData[count].cloneNode(true);
+            departArea.append(appends);
+        }
+        departArea.children().attr("style", "display:block;");
+
+        if (1 !== flag) {
+            $("#departmenttest option:eq(" + index + ")").prop("selected", "selected");
+        } else {
+            $("#departmenttest option:contains('" + departMentName + "')").prop("selected", "selected");
+        }
+        departArea.show();
+        let classYearVal = $("select[name=classyear] option:selected").val();
+        let departmentVal = $("#departmenttest option:selected").val();
+        let schoolVal = $("select[name=school] option:selected").val();
+        $("#schoolFull").val(schoolVal + "#" + departmentVal + "#" + classYearVal);
+    }
+
+</script>

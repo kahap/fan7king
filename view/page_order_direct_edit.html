@@ -1,0 +1,188 @@
+<!-- page wapper-->
+<style>
+	h3{
+		font-weight: bold;
+		margin-top: 5px;
+	}
+</style>
+<script>
+	$(function () {
+		if($("input[name=orBusinessNumIfNeed]:checked").val() == '1'){
+			$('.orBusinessNum').show();
+		}else{
+			$('.orBusinessNum').hide();
+		}
+	});
+</script>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">直購購買流程1</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading no-line">
+            <span class="page-heading-title2">請填寫相關表單</span>
+        </h2>
+		<?php
+			//print_r($_SESSION);
+			
+			//欄位名稱
+			$or = new Orders();
+			$columnName = $or->getAllColumnNames("orders");		
+			$or_data = $or->getOneOrderByNo($_SESSION['ord_code']);			
+		?>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class="current-step"><img src="assets/images/A-C-1.png"/></li>
+                <li class=""><img src="assets/images/A-B-2.png"/></li>
+                <li class=""><img src="assets/images/A-B-3.png"/></li>
+            </ul>
+            <div class="heading-counter warning">選擇付款及配送
+            </div>
+			<div class="box-border">
+				<ul>
+					<div class="row">
+						<div class="col-sm-12">
+						<form id="order_add">
+							<h3>請選擇付款方式</h3>
+							<input type='radio' class='pay' name='pay' value='1' id='pay_1' <?php echo ($or_data[0]['orPayBy'] == '1') ? 'checked':'';?>><label for="pay_1" >ATM轉帳</label><br>
+							<input type='radio' class='pay' name='pay' value='2' id='pay_2' <?php echo ($or_data[0]['orPayBy'] == '2') ? 'checked':'';?>><label for="pay_2">Web ATM轉帳</label><br>
+							<h3>是否需要統編：</h3>
+							<?php
+							foreach($columnName as $key=>$value){ 
+								if(strrpos($value["COLUMN_NAME"], "orBusinessNum") !== false){
+							?>
+							
+							
+								<?php if(strrpos($value["COLUMN_NAME"], "If") !== false){ ?>
+									<label for="first_name" class="required"><?php echo $value["COLUMN_COMMENT"]; ?> :</label>
+									<input  type="radio" name="<?php echo $value["COLUMN_NAME"]; ?>" value="1" <?php echo ($or_data[0]['orBusinessNumIfNeed'] == '1') ? 'checked':'';?>>是
+									<input  type="radio" name="<?php echo $value["COLUMN_NAME"]; ?>" value="0" <?php echo ($or_data[0]['orBusinessNumIfNeed'] == '0') ? 'checked':'';?>>否<br>
+									
+								<?php }
+								}
+							} 
+							?>
+								<label for='first_name' class='required orBusinessNum'>統一編號：</label>
+								<input type="text" class="input form-control orBusinessNum" name="orBusinessNumNumber" value="<?php echo $or_data[0]['orBusinessNumNumber']; ?>">
+								<label for='first_name' class='required orBusinessNum'>公司抬頭 :</label>
+								<input type="text" class="input form-control orBusinessNum" name="orBusinessNumTitle" value="<?php echo $or_data[0]['orBusinessNumTitle']; ?>">
+								
+							<br><h3>配送方式:宅配</h3><br>
+							<h3>訂購人資訊：</h3>
+							<label for="first_name" class="required">訂購人姓名：</label>
+							<input type="text" class="input form-control memName" name="memName" value="<?php echo $_SESSION['shopping_user']['0']["memName"]; ?>">
+							<label for="first_name" class="required">訂購人地址:</label>
+							<input type="text" class="input form-control memAddr" name="memAddr" value="<?php echo $_SESSION['shopping_user']['0']["memAddr"]; ?>">
+							<label for="first_name" class="required">訂購人市話:</label>
+							<input type="text" class="input form-control memPhone" name="memPhone" value="<?php echo $_SESSION['shopping_user']['0']["memPhone"]; ?>">
+							<label for="first_name" class="required">訂購人手機:</label>
+							<input type="text" class="input form-control memCell" name="memCell" value="<?php echo $_SESSION['shopping_user']['0']["memCell"]; ?>">
+
+							<br><h3>收貨人資料&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sameofOrder">同訂購人</h3><br>
+							<?php 
+							foreach($columnName as $key=>$value){ 
+								if(strrpos($value["COLUMN_NAME"], "orReceive") !== false){
+							?>
+								<label for="first_name" class="required"><?php echo $value["COLUMN_COMMENT"]; ?> :</label>
+							<?php
+									if($value['COLUMN_NAME'] == 'orReceiveComment'){
+							?>
+									<textarea class="input form-control" name="<?=$value['COLUMN_NAME'];?>"><?=$or_data[0][$value['COLUMN_NAME']] ?></textarea>
+							<?php
+									}else{
+							?>
+									<input type="text" class="input form-control" name="<?=$value['COLUMN_NAME'];?>" value="<?=$or_data[0][$value['COLUMN_NAME']] ?>">
+							<?php							
+									}
+								}
+							} 
+							?>
+					</form>	
+							
+							<input id="check2" type="checkbox" name="check" value="" >
+							<label for="check2" class="agree">我已詳細閱讀並同意<a href="?item=fmFreeRespons" style="color:blue;">免責聲明</a>、<a href="?item=fmServiceRules" style="color:blue;">服務條款</a>、<a href="?item=fmPrivacy" style="color:blue;">隱私權</a>聲明等條款</label><br>
+					</div>
+					
+					</div>
+				</ul>
+			</div>
+                <div class="cart_navigation">
+                    <!--<a class="prev-btn" href="#">Continue shopping</a>-->
+                    <a class="next-btn"><button >下一步</button></a>
+                </div>
+
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+<script>
+	$("select[name='ATM']").hide();
+	$("select[name='WebATM']").hide();
+	$("input[name=orBusinessNumIfNeed]").change(function(){
+		if($("input[name=orBusinessNumIfNeed]:checked").val() == '1'){
+			$('.orBusinessNum').show();
+		}else{
+			$('.orBusinessNum').hide();
+		}
+	})
+	$(".next-btn").click(function(){
+		if($("input[name='pay']:checked").val() == '1' | $("input[name='pay']:checked").val() == '2'){
+				if($("input[name='check']:checked").length == 1){
+					$.ajax({
+						url: 'php/order_direct_update.php',
+						data: $('#order_add').serialize(),
+						type:"POST",
+						dataType:'text',
+						success: function(msg){
+							if(msg == '1'){
+								location.href='index.php?item=member_center&action=order_direct&method=2';
+							}else{
+								alert(msg);
+							}
+						},
+
+						error:function(xhr, ajaxOptions, thrownError){ 
+							alert(xhr.status); 
+							alert(thrownError);
+						}
+					});
+				}else{
+					alert('請勾選同意條款');
+				}
+		}else{
+			alert('請選擇付款方式');
+		}
+	})
+	$('input[name=sameofOrder]').change(function(){
+		if($(this).is(":checked")) {
+			$('input[name=orReceiveName]').val($('input[name=memName]').val());
+			$('input[name=orReceiveAddr]').val($('input[name=memAddr]').val());
+			$('input[name=orReceivePhone]').val($('input[name=memPhone]').val());
+			$('input[name=orReceiveCell]').val($('input[name=memCell]').val());
+		}else{
+			$('input[name=orReceiveName]').val('');
+			$('input[name=orReceiveAddr]').val('');
+			$('input[name=orReceivePhone]').val('');
+			$('input[name=orReceiveCell]').val('');
+		}
+	})
+	$("input[name='pay']").change(function(){
+		if($("input[name='pay']:checked").val() == '1'){
+			$("select[name='ATM']").show();
+			$("select[name='WebATM']").hide();
+			$("select[name='WebATM']").prop( "disabled", true );
+			$("select[name='ATM']").prop( "disabled", false );
+		}else{
+			$("select[name='WebATM']").show();
+			$("select[name='ATM']").hide();
+			$("select[name='ATM']").prop( "disabled", true );
+			$("select[name='WebATM']").prop( "disabled", false );
+		}
+	})
+</script>

@@ -1,0 +1,53 @@
+﻿	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="assets/faq/faq.css"> <!-- Resource style -->
+	<script src="assets/faq/modernizr.js"></script> <!-- Modernizr -->
+
+<div class="columns-container">
+    <div class="container" id="columns">
+	<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">常見問題</span>
+    </div>
+	<div class="cd-faq-items">
+		<ul id="basics" class="cd-faq-group">
+			<?PHP
+				$faq = new Que_And_Ans();
+				$faq_data = $faq->getAllShowQA();
+				$i=1;
+				foreach($faq_data as $key => $value){
+			?>
+			<li>
+				<a class="cd-faq-trigger" href="#0" data-gt='0'><?php echo $value['qaQues']; ?></a>
+				<div class="cd-faq-content" <?php echo ($i==14) ? "style='display: block;'":''; ?>>
+					<p><?php echo $value['qaAnsw']; ?></p>
+				</div> <!-- cd-faq-content -->
+			</li>
+			<?php
+					$i++;
+				}
+			?>
+		</ul> <!-- cd-faq-group -->
+
+
+	
+
+		
+	</div> <!-- cd-faq-items -->
+	</div>
+</div>
+<script>
+	$('.cd-faq-trigger').click(function(){
+		if($(this).attr('data-gt') == '0'){
+			$(this).css('color','#FF3366');
+			$(this).attr('data-gt',1);
+		}else{
+			$(this).css('color','#1b79ca');
+			$(this).attr('data-gt',0);
+		}
+		
+	})
+</script>
+<script src="assets/faq/jquery-2.1.1.js"></script>
+<script src="assets/faq/jquery.mobile.custom.min.js"></script>
+<script src="assets/faq/main.js"></script> <!-- Resource jQuery -->

@@ -1,0 +1,115 @@
+<?php
+    $member = new Member();
+    $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+    $memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+    $member->changeToReadable($memberData[0]);
+    
+    $mco = new Motorbike_Cellphone_Orders();
+    $mcoMemData = $mco->getmcoByMember($_SESSION['user']['memNo']);
+    $status_array = array(
+        "0" => "已下單，Email未認證",
+        "1" => "審查中",
+        "2" => "審查中",
+        "3" => "審核通過",
+        "4" => "審核未通過",
+        "5" => "資料不全需補件",
+        "6" => "審查中",
+        "7" => "取消訂單",
+        "8" => "出貨中",
+        "9" => "已到貨",
+        "10" => "我要繳款",
+        "110" => "未完成下單",
+        "701" => "取消訂單"
+    );
+    
+?>
+<style>
+    td {
+        text-align:center;
+    }
+</style>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期訂單查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+                include_once('view/page_member_left.html');
+            ?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+                    <h3 class="checkout-sep">手機、機車借款訂單查詢</h3>
+                    <div class="box-border">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-responsive cart_summary">
+                                <thead>
+                                    <tr>
+                                        <th>訂單編號 </th>
+                                        <th width="100px">訂單日期 </th>
+                                        <th width="250px">分期期數 </th>
+                                        <th>借款金額 </th>
+                                        <th>訂單狀態 </th>
+                                    </tr>
+                                </thead>
+<?php 
+$order_status = array('未完成下單','取消訂單');
+
+if ($mcoMemData != null) {
+    $os = new Other_Setting();
+    $osData = $os->getAll();
+    foreach ($mcoMemData as $key => $value) {
+        $curTime = strtotime($value["mcoDate"]) + $osData[0]["orderLimitDays"] * 86400;
+        if (($curTime >= time() && in_array($value["mcoStatus"], $order_status)) || (!in_array($value["mcoStatus"], $order_status))) {
+            $orig = $value;
+
+?>
+                                <tr>
+                                    <td>
+                                        <a style="text-decoration:underline;color:blue;" href="?item=member_center&action=mco_purchase&mcono=<?php echo $value["mcoNo"]; ?>">
+                                    <?php  echo $value["mcoCaseNo"];?>
+                                        </a>
+                                    </td>
+                                    <td><?php echo $value["mcoDate"]; ?></td>
+                                    
+                                    <td><?php echo $value['mcoPeriodAmount']; ?></td>
+                                    
+                                    <td><?php echo $value['mcoPeriodTotal']; ?></td>
+                                    
+                                    <td>
+<?php 
+            if ($value["mcoStatus"] == '5' || $value["mcoStatus"] == '110') {// 資料不全需補件 or 未完成下單
+                echo "<a style='text-decoration:underline;color:blue;' href='?item=member_center&action=loan_order_edit&mcono=".$value["mcoNo"]."&front_mange=1'>" . $status_array[$value["mcoStatus"]] . "</a>";
+            } else {
+                echo $status_array[$value["mcoStatus"]];
+            }
+            
+?>
+                                    </td>
+                                </tr>
+<?php 
+        }
+    }
+} else { ?>
+                                    <td colspan="7">沒有任何資料</td>
+<?php } ?>
+                                </tbody>   
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>

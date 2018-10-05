@@ -1,0 +1,2 @@
+20170725 07:24:21inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:1.1
+20170725 16:44:20inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:2.0,PGA:7.1

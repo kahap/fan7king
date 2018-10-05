@@ -1,0 +1,8 @@
+20170721 09:56:55inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:0.8
+20170721 11:10:22inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:0.9
+20170721 14:39:54inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:1.1
+20170721 15:32:45inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:1.1
+20170721 17:30:02inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:4.0,PGA:26.4
+20170721 17:33:51inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:2.0,PGA:5.2
+20170721 20:30:04inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:1.0
+20170721 21:34:06inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:1.1

@@ -1,0 +1,96 @@
+20171027 10:46:49inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 10:51:36inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:51:42inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 10:51:50inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:51:56inst:0000000056194529encode:utf8msg:lineGateway1:@@ꓴꛬ륌ꝃ
+{}
+20171027 10:52:19inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 10:53:37inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:54:34inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:54:44inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 10:54:50inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 10:55:11inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 10:55:30inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 10:55:36inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:55:50inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 10:55:54inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:56:03inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 10:56:39inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171027 10:56:44inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171027 10:56:48inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171027 10:57:07inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171027 10:57:12inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171027 10:57:15inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171027 10:57:23inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 10:57:27inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 10:58:16inst:0000000056194529encode:utf8msg:lineGateway1:@@ꓴꛬ륌ꝃ
+{}
+20171027 10:58:28inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171027 11:03:51inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171027 11:03:54inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171027 11:55:38inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 11:55:40inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 11:55:47inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 11:55:48inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 11:55:50inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 11:55:52inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 15:33:13inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 15:34:05inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171027 15:34:46inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171027 15:39:06inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 15:39:10inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 15:40:15inst:0000000056194529encode:utf8msg:lineGateway1:@@럅ꯗ륌낪
+{}
+20171027 15:40:23inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171027 15:40:28inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.
+{}
+20171027 15:40:35inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171027 15:40:44inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 16:14:01inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171027 16:14:10inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 16:14:36inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171027 16:14:42inst:0000000056194529encode:utf8msg:lineGateway1:@@ꓴꛬ륌ꝃ
+{}

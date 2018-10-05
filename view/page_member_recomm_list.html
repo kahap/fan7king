@@ -1,0 +1,137 @@
+<?php
+	$member = new Member();
+	$memberData = $member->GetmemRecommCodeList($_SESSION['user']['memNo']);
+	function substr_cut($user_name){
+		$strlen     = mb_strlen($user_name, 'utf-8');
+		$firstStr     = mb_substr($user_name, 0, 1, 'utf-8');
+		$lastStr     = mb_substr($user_name, -1, 1, 'utf-8');
+		return $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
+	}
+?>
+<style>
+	td{
+		text-align:center;
+	}
+</style>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">推薦人清單</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+					<h3 class="checkout-sep">推薦人清單查詢, 累積推薦人數：<?php echo ($memberData != "") ? count($memberData):'0'; ?></h3>
+					<div class="box-border">
+					<div class="table-responsive">
+						<table class="table table-bordered table-responsive cart_summary">
+							<thead>
+								<tr>
+									<th>會員編號 </th>
+									<th>姓名</th>
+									<th>學校系級</th>
+									<th>加入日期</th>
+								</tr>
+							</thead>
+							<?php 
+								if($memberData != ""){
+									foreach($memberData as $key => $value){
+							?>
+							<tr>
+								<td><?=$value['memNo'] ?></td>
+								<td><?=substr_cut($value['memName']); ?></td>
+								<td><?=$value['memSchool']; ?></td>
+								<td><?=$value['memRegistDate'] ?></td>
+							</tr>
+							 <?php
+									}
+								}else{
+							 ?>
+								<td colspan="4">沒有任何資料</td>
+							 <?php
+								}
+							 ?>
+							</tbody>   
+						</table>
+					</div>
+					</div>
+				</div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script type="text/javascript"> 
+ $("#copyButton").click(function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+	alert('複製成功');
+});
+
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+
+
+
+
+</script> 

@@ -1,0 +1,121 @@
+<style>
+	#btn{
+		font-size: 14px;
+		line-height: 18px;
+		color: white;
+		padding: 0;
+		font-weight: normal;
+		background: #666;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		border: none;
+		padding: 10px 25px;
+	}
+	#btn:hover {
+    background: #F36;
+	}
+</style>
+<script>
+    function FacebookPixel() {
+		fbq('track', "CompleteRegistration");
+		fbq('track', 'InitiateCheckout');
+		
+    }
+</script>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+			<span class="navigation-pipe">&nbsp;</span>
+			<span class="navigation_page">我要借款</span>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">貸款VIP服務</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">貸款VIP服務</span><br>
+			
+        </h2>
+        <!-- ../page heading-->
+        <div id="contact" class="page-content page-contact">
+            
+            <div class="row">
+                
+                <div class="col-xs-12 col-sm-6" id="contact_form_map">
+                    <h3 class="page-subheading">相關資訊</h3>
+                    <?php 
+						$Front_Manage = new Front_Manage();
+						$page_data = $Front_Manage->getAllFM('fmLoanVIP');
+
+						echo $page_data[0]['fmLoanVIP'];
+					?>
+					<span>
+						聯絡電話：(02)7721-2177<BR>
+						聯絡地址：台北市信義區基隆路一段163號2樓之2
+					</span>
+				</div>
+				<div class="col-sm-6">
+                    <h3 class="page-subheading">申請內容</h3>
+					<span style="color:red">*為必填欄位</span>
+                    <form id="co_company_form" action="php/loanVIP.php" method="POST">
+					<div class="contact-form-box">
+                        <div class="form-selector">
+                            <label>姓名</label><span style="color:red">*</span>
+                            <input type="text" class="form-control input-sm" id="name" name="name"/>
+                        </div>
+						
+						<div class="form-selector">
+                            <label>貸款種類</label><span style="color:red">*</span>
+							<select id="category" class="form-control input-sm" name="category">
+								<option value='汽車貸款'>汽車貸款</option>
+							</select>
+                        </div>
+						
+						<div class="form-selector">
+                            <label>車號</label><span style="color:red">*</span>
+                            <input type="text" class="form-control input-sm"  id="email" name="email"/>
+                        </div>
+                        <div class="form-selector">
+                            <label>電話</label><span style="color:red">*</span>
+                            <input type="text" class="form-control input-sm" id="phone" name="phone" />
+                        </div>
+                        <div class="form-selector">
+                            <label>身分別</label><span style="color:red">*</span>
+							<select id="class" class="form-control input-sm" name="class">
+								<option value=''>請選擇</option>
+								<option value='學生'>學生</option>
+								<option value='上班族'>上班族</option>
+								<option value='家管'>家管</option>
+								<option value='其他'>其他</option>
+							</select>
+                        </div>
+						<div class="form-selector">
+                            <label>備註</label>
+                            <textarea class="form-control input-sm" rows="10" id="message" name="message"></textarea>
+                        </div>
+						<div id="message-box-conact"></div>
+						
+                        <div class="form-selector">
+							<input type="hidden" name="datetime" value="<?=date('Y-m-d H:i:s');?>" />
+                            <a id="btn" class="btn" onclick="FacebookPixel();return false;" >送出</a>
+                        </div>
+                    </div>
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	$(document).on('click','#btn',function(){
+			$('#btn').attr("disabled","disabled");
+            var data = $('#co_company_form').serialize();
+			$('#message-box-conact').html('<img src="http://preloaders.net/preloaders/287/Filling%20broken%20ring.gif"> 請稍後...');
+			$( "#co_company_form").submit();
+    })
+</script>
+<!-- ./page wapper-->

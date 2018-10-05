@@ -1,0 +1,111 @@
+<?php
+	$member = new Member();
+	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$member->changeToReadable($memberData[0]);
+?>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">什麼是推薦碼？</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+				<h2 class="page-heading">
+					<span class="page-heading-title2">什麼是推薦碼？</span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3>分享你的推薦碼</h3>
+								<input type="text" id="copyTarget" class="input form-control"value="http://happyfan7.com/index.php?share=<?php echo $_SESSION['user']['memNo'];?>">
+								<!--<button class="button" id="copyButton">複製</button>-->
+								<?php 
+									$front_Manage = new Front_Manage();
+									$page_data = $front_Manage->getAllFM('fmRecBonus');
+									echo $page_data[0]['fmRecBonus']; 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script type="text/javascript"> 
+ $("#copyButton").click(function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+	alert('複製成功');
+});
+
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+</script> 

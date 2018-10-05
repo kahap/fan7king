@@ -1,0 +1,58 @@
+20171102 09:55:36inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171102 09:55:50inst:0000000056194529encode:utf8msg:lineGateway1:@@請通知現場人員
+{}
+20171102 09:57:11inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171102 09:57:18inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171102 09:57:51inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171102 09:59:42inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://172.20.10.4/bos80
+{}
+20171102 10:17:52inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171102 10:18:02inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171102 11:31:54inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.7
+{}
+20171102 14:26:40inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171102 14:26:54inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171102 14:35:03inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:4.0
+{}
+20171102 14:48:56inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:4.2
+{}
+20171102 14:54:20inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171102 14:56:00inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171102 14:56:10inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://172.20.10.4/bos80
+{}
+20171102 15:29:44inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171102 15:29:56inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171102 15:34:16inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171102 15:40:20inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171102 15:40:23inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171102 15:40:29inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171102 15:40:35inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://172.20.10.4/bos80
+{}
+20171102 15:45:32inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171102 15:45:37inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171102 15:45:45inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171102 16:03:24inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171102 16:03:34inst:0000000056194529encode:utf8msg:lineGateway1:@@럅ꯗ륌낪
+{}
+20171102 16:03:49inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}

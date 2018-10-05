@@ -1,0 +1,71 @@
+<div class="column col-xs-12 col-sm-3" id="left_column">
+                <!-- block category -->
+                <div class="block left-module">
+                    <p class="title_block">會員中心</p>
+                    <div class="block_content">
+                        <!-- layered -->
+                        <div class="layered layered-category">
+                            <div class="layered-content">
+                                <ul class="tree-menu">
+                                    <span style="font-size: 16px;color: cornflowerblue;">我的推薦碼：<?=$_SESSION['user']['memNo']; ?></span>
+                                    <li class='<?php echo ($_GET['action']=='whcode') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=whcode'>分享我的推薦碼網址</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='recomm_list') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=recomm_list'>推薦人清單</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='password_edit') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=password_edit'>一般登入密碼修改</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='purchase') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=purchase'>分期訂單查詢</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='mco_purchase') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=mco_purchase'>手機、機車借款訂單查詢</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='order') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=order'>直購訂單查詢</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='pay') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=pay'>我要繳款</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='query_code') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=query_code'>目前推薦金查詢/領取</a>
+                                    </li>
+                                    <li class='<?php echo ($_GET['action']=='history') ? 'active':''; ?>'><span></span>
+                                        <a href='?item=member_center&action=history'>已領推薦金查詢</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- ./layered -->
+                    </div>
+                </div>
+                <!-- ./block category  -->
+                
+                
+                <!-- left silide -->
+                <div class="col-left-slide left-module">
+                    <ul class="owl-carousel owl-style2" data-loop="true" data-nav = "false" data-margin = "30" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-items="1" data-autoplay="true">
+                        <?php
+                            $ad = new Advertise();
+                            $adData = $ad->getAllOrderBy(3,false);
+                            if($adData !=""){
+                                foreach($adData as $key => $value){ 
+                          ?>
+                        <li><a href="<?php echo $value["adLink"]; ?>"><img src="admin/<?php echo $value["adImage"]; ?>" alt="slide-left"></a></li>
+                        <?php
+                                }
+                            }else{
+                        ?>
+                        <li><a href="#"><img alt="" src="assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
+                        <li><a href="#"><img alt="" src="assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
+                        <?php
+                            }
+                        ?>
+                    </ul>
+
+                </div>
+                <!--./left silde-->
+                
+            </div>

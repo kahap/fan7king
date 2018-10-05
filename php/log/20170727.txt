@@ -1,0 +1,10 @@
+20170727 07:06:25inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:0.7
+20170727 13:52:22inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:0.8
+20170727 17:02:04inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:0.02cm@@[0]Stiffness(x,y):0.0,0.0@@
+20170727 17:07:06inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@
+20170727 17:08:07inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@
+20170727 17:10:19inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@
+20170727 17:10:52inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@
+20170727 17:11:13inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@
+20170727 17:11:47inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@
+20170727 17:11:55inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.50cm@@[0]Stiffness(x,y):0.7,0.0@@

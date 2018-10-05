@@ -1,0 +1,69 @@
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">合作提案</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">合作提案</span>
+        </h2>
+        <!-- ../page heading-->
+        <div id="contact" class="page-content page-contact">
+            <div id="message-box-conact"></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="page-subheading">提案內容</h3>
+                    <form name="co_company_form" action="php/co_company.php" method="post">
+					<div class="contact-form-box">
+                        <div class="form-selector">
+                            <label>廠商名稱</label>
+                            <input type="text" class="form-control input-sm" name="company_name"/>
+                        </div>
+						
+						<div class="form-selector">
+                            <label>聯絡人</label>
+                            <input type="text" class="form-control input-sm" name="contact_name"/>
+                        </div>
+						
+						<div class="form-selector">
+                            <label>Email</label>
+                            <input type="text" class="form-control input-sm" id="email" name="email" />
+                        </div>
+                        <div class="form-selector">
+                            <label>電話</label>
+                            <input type="text" class="form-control input-sm" id="order_reference" name="phone" />
+                        </div>
+                        <div class="form-selector">
+                            <label>主題</label>
+                            <input type="text" class="form-control input-sm" id="order_reference" name="topic" />
+                        </div>
+						<div class="form-selector">
+                            <label>內容</label>
+                            <textarea class="form-control input-sm" rows="10" id="message" name="message"></textarea>
+                        </div>
+                        <div class="form-selector">
+                            <button id="btn-send-contact" class="btn">送出</button>
+                        </div>
+                    </div>
+					</form>
+                </div>
+                <div class="col-xs-12 col-sm-6" id="contact_form_map">
+                    <h3 class="page-subheading">相關資訊</h3>
+                    <?php 
+						$Front_Manage2 = new Front_Manage2();
+						$page_data = $Front_Manage2->getAllFM('fmCoopDetail');
+
+						echo $page_data[0]['fmCoopDetail'];
+					?>        
+				</div>
+				
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->

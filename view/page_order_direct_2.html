@@ -1,0 +1,89 @@
+<!-- page wapper-->
+<style>
+	label{
+		margin: 10px;
+		font-size: 16px;
+	}
+	h3{
+		font-weight: bold;
+		margin-top: 5px;
+		color:blue;
+	}
+</style>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">直購購買流程</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+		<?php
+			//print_r($_SESSION);
+			
+			//欄位名稱
+			$allpay = new Allpay(MerchantID,HashKey,HashIV);
+			$or = new Orders();
+			$or_data = $or->getOneOrderByNo($_SESSION['ord_code']);
+		?>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/A-B-1.png"/></li>
+                <li class="current-step"><img src="assets/images/A-C-2.png"/></li>
+                <li class=""><img src="assets/images/A-B-3.png"/></li>
+            </ul>
+			<div class="box-border">
+				<ul>
+					<div class="row">
+						<div class="col-sm-12">
+							<h3>您所訂購的商品：</h3>
+							<label>商品名稱：<?=$_SESSION['shopping_product']['0']['proName']?></label><br>
+							<label>商品規格：<?=$or_data[0]['orProSpec']?></label><br>
+							<label>數量：<?=$or_data[0]['orAmount']?></label><br>
+							<label>總金額：<?=number_format($or_data[0]['orPeriodTotal'])?> 元</label><br>
+							
+							<h3>訂購人資訊：</h3>
+							<label for="first_name" class="required">訂購人姓名：<?php echo $_SESSION['shopping_user']['0']["memName"]; ?></label><br>
+							<label for="first_name" class="required">訂購人地址:<?php echo $_SESSION['shopping_user']['0']["memAddr"]; ?></label><br>
+							<label for="first_name" class="required">訂購人市話:<?php echo $_SESSION['shopping_user']['0']["memPhone"]; ?></label><br>
+							<label for="first_name" class="required">訂購人手機:<?php echo $_SESSION['shopping_user']['0']["memCell"]; ?></label><br>
+							
+							<h3>收貨人資訊：</h3>
+							<label for="first_name" class="required">收貨人姓名：<?php echo $or_data[0]['orReceiveName']; ?></label><br>
+							<label for="first_name" class="required">收貨人地址:<?php echo $or_data[0]['orReceiveAddr']; ?></label><br>
+							<label for="first_name" class="required">收貨人市話:<?php echo $or_data[0]['orReceivePhone']; ?></label><br>
+							<label for="first_name" class="required">收貨人手機:<?php echo $or_data[0]['orReceiveCell']; ?></label><br>
+							<label for="first_name" class="required">收貨備註:<?php echo $or_data[0]['orReceiveComment']; ?></label><br>
+							<label for="first_name" class="required">備註:<?php echo $or_data[0]['orAppExtraInfo']; ?></label><br>
+							<h3>付款方式</h3>
+							<label for="first_name" class="required"><?php echo $pay_method[$or_data[0]['orPayBy']]; ?></label><br>
+							<label for="first_name" class="required">配送方式：宅配</label><br>
+							
+							<h3>是否需要統編：<?php echo ($or_data[0]['orBusinessNumIfNeed'] =='0') ? '否':'';  ?></h3>
+							<?php
+							if($or_data[0]['orBusinessNumIfNeed'] != '0'){
+								echo "<label for='first_name' class='required'>統一編號：".$or_data[0]['orBusinessNumNumber']."</label><br>";
+								echo "<label for='first_name' class='required'>發票抬頭".$or_data[0]['orBusinessNumTitle']."</label><br>";
+							}
+							?>
+							
+							<input id="check2" type="checkbox" name="check" value="" disabled checked style="margin-top: 15px;margin-right: -5px;">
+							<label for="check2" class="agree">我已詳細閱讀並同意<a href="?item=fmFreeRespons" style="color:blue;">免責聲明</a>、<a href="?item=fmServiceRules" style="color:blue;">服務條款</a>、<a href="?item=fmPrivacy" style="color:blue;">隱私權</a>聲明等條款</label><br>
+						</div>
+					</div>
+				</ul>
+			</div>
+                <div class="cart_navigation">
+					<a class="prev-btn" href="?item=member_center&action=order_direct">上一步</a>
+                    <a href='?item=member_center&action=order_direct&method=3' class="next-btn"><button >確認訂單</button></a>
+                </div>
+
+        </div>
+    </div>
+</div>
+<!-- ./page wapper-->
+
+

@@ -1,0 +1,14 @@
+20170929 09:10:05inst:msg:lineGateway:@@9876543210
+20170929 09:22:27inst:msg:lineGateway:@@中華民
+20170929 10:03:33inst:00000000e1f6da93msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.0
+{}
+20170929 11:25:34inst:msg:lineGateway:@@中華民
+20170929 11:27:58inst:msg:lineGateway:@@中華民國
+20170929 16:53:38inst:msg:lineGateway1:@@中華民國
+20170929 16:56:21inst:msg:lineGateway1:@@中華民國
+20170929 16:56:45inst:msg:lineGateway1:@@中華民國
+20170929 16:56:49inst:msg:lineGateway1:@@中華民國
+20170929 16:59:52inst:msg:lineGateway1:@@
+20170929 17:40:46inst:msg:lineGateway1:@@中華民國
+20170929 17:42:58inst:msg:lineGateway1:@@中華民國
+20170929 17:43:01inst:msg:lineGateway1:@@中華民國

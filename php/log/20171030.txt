@@ -1,0 +1,74 @@
+20171030 12:17:15inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171030 12:17:33inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171030 12:17:39inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171030 12:17:52inst:0000000056194529encode:utf8msg:lineGateway1:@@小心高壓
+{}
+20171030 13:54:34inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171030 13:54:55inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171030 13:55:03inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171030 13:55:25inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171030 13:55:33inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171030 13:55:41inst:0000000056194529encode:utf8msg:lineGateway1:@@ALARM.http://192.168.0.100/bos80
+{}
+20171030 13:56:10inst:0000000056194529encode:utf8msg:lineGateway1:@@ALARM.http://192.168.0.100/bos80
+{}
+20171030 13:56:15inst:0000000056194529encode:utf8msg:lineGateway1:@@LOW
+{}
+20171030 14:03:07inst:0000000056194529encode:utf8msg:lineGateway1:@@LOW_LIMIT
+{}
+20171030 14:03:25inst:0000000056194529encode:utf8msg:lineGateway1:@@TEMP_HIGH
+{}
+20171030 14:03:34inst:0000000056194529encode:utf8msg:lineGateway1:@@TEMP_HIGH
+{}
+20171030 14:03:41inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171030 14:03:47inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171030 14:03:51inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171030 14:03:57inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171030 14:04:03inst:0000000056194529encode:utf8msg:lineGateway1:@@請通知現場人員
+{}
+20171030 14:04:11inst:0000000056194529encode:utf8msg:lineGateway1:@@PLEASE_CALL_STAFF
+{}
+20171030 14:04:32inst:0000000056194529encode:utf8msg:lineGateway1:@@乏呅㩗䅔䕒彂䕌佗㄰〰䍃
+{}
+20171030 14:04:41inst:0000000056194529encode:utf8msg:lineGateway1:@@乏呅㩗䅔䕒彂䕌佗㄰〰䍃
+{}
+20171030 14:04:44inst:0000000056194529encode:utf8msg:lineGateway1:@@ꓴꛬ륌ꝃ
+{}
+20171030 14:04:47inst:0000000056194529encode:utf8msg:lineGateway1:@@럅ꯗ륌낪
+{}
+20171030 14:04:53inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171030 14:26:35inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171030 14:26:41inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171030 14:26:45inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171030 14:26:52inst:0000000056194529encode:utf8msg:lineGateway1:@@LOW_LIMIT
+{}
+20171030 14:26:54inst:0000000056194529encode:utf8msg:lineGateway1:@@LOW_LIMIT
+{}
+20171030 14:27:02inst:0000000056194529encode:utf8msg:lineGateway1:@@192.168.0.10_MACHINE_ERROR
+{}
+20171030 14:36:07inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171030 14:36:23inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171030 14:36:34inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171030 14:36:39inst:0000000056194529encode:utf8msg:lineGateway1:@@請通知現場人員
+{}
+20171030 14:37:05inst:0000000056194529encode:utf8msg:lineGateway1:@@請通知現場人員
+{}

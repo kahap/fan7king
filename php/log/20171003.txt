@@ -1,0 +1,247 @@
+20171003 08:09:36inst:msg:lineGateway1:@@中華民國
+20171003 08:12:11inst:msg:lineGateway1:@@中華民國
+20171003 08:22:17inst:msg:lineGateway1:@@
+20171003 08:24:01inst:msg:lineGateway1:@@
+20171003 08:24:54inst:msg:lineGateway1:@@
+20171003 08:25:28inst:msg:lineGateway1:@@
+20171003 08:25:34inst:msg:lineGateway1:@@
+20171003 08:32:29inst:msg:lineGateway1:@@
+20171003 08:33:21inst:msg:lineGateway1:@@
+20171003 08:34:28inst:msg:lineGateway1:@@
+20171003 08:51:30inst:msg:lineGateway1:@@中華民國
+20171003 08:51:38inst:msg:lineGateway1:@@中華民國
+20171003 08:51:42inst:msg:lineGateway1:@@中華民國
+20171003 08:51:45inst:msg:lineGateway1:@@中華民國
+20171003 08:51:47inst:msg:lineGateway1:@@中華民國
+20171003 08:51:51inst:msg:lineGateway1:@@中華民國
+20171003 08:52:56inst:msg:lineGateway1:@@
+20171003 08:54:24inst:msg:lineGateway1:@@
+20171003 08:55:14inst:msg:lineGateway1:@@中華民國
+20171003 08:59:48inst:msg:lineGateway1:@@
+20171003 09:47:15inst:msg:lineGateway1:@@N-ïlW
+20171003 09:50:25inst:msg:lineGateway1:@@
+20171003 09:51:39inst:msg:lineGateway1:@@中華民國
+20171003 09:52:22inst:00000000e1f6da93msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.9
+{}
+20171003 09:56:31inst:msg:lineGateway1:@@中華民國
+20171003 10:07:36inst:msg:lineGateway1:@@
+20171003 10:09:39inst:msg:lineGateway1:@@N-ïlW
+20171003 10:10:37inst:msg:lineGateway1:@@¤¤µØ¥Á°ê
+20171003 10:13:07inst:msg:lineGateway1:@@-Nïl
+20171003 10:13:57inst:msg:lineGateway1:@@N-ïlW
+20171003 10:17:35inst:msg:lineGateway1:@@N-ïlW
+20171003 10:18:00inst:msg:lineGateway1:@@
+20171003 10:18:07inst:msg:lineGateway1:@@
+20171003 10:50:17inst:msg:lineGateway1:@@中華民國
+20171003 10:50:41inst:msg:楬敮teway1:@@中華民國
+20171003 10:51:08inst:msg:楬敮teway1:@@中華民國
+20171003 10:51:22inst:msg:楬敮teway1:@@中華民國
+20171003 10:54:56inst:msg:楬敮teway1:@@中華民國
+20171003 10:55:13inst:msg:楬湩敮䝥
+20171003 10:58:37inst:msg:ⵎ茭泯
+20171003 11:00:44inst:msg:ⵎ茭泯
+20171003 11:02:29inst:msg:中華ᆃ
+20171003 11:04:01inst:msg:中華ᆃ
+20171003 11:04:19inst:msg:中華民國
+20171003 11:05:56inst:msg:꒤
+20171003 11:09:07inst:msg:꒤
+20171003 11:11:28inst:msg:꒤
+20171003 11:12:13inst:msg:lineGateway1:@@中華民國
+20171003 11:12:27inst:msg:lineGateway1:@@中華民國
+20171003 11:13:49inst:msg:中華民國:@@中華民國
+20171003 11:18:53inst:msg:中華民國:@@中華民國
+20171003 11:19:13inst:msg:中華民國
+20171003 11:23:22inst:msg:中華民國
+20171003 11:28:39inst:msg:中華民國
+20171003 11:31:21inst:msg:꒤���솥
+20171003 11:58:01inst:msg:꒤���솥
+20171003 11:58:34inst:msg:lineGateway1:@@-N||�||l||
+20171003 11:59:38inst:msg:lineGateway1:@@N-||��||l||W
+20171003 12:00:09inst:msg:lineGateway1:@@中華民國
+20171003 12:02:16inst:msg:lineGateway1:@@中華民國
+20171003 12:02:19inst:msg:lineGateway1:@@中華民國
+20171003 12:05:04inst:msg:lineGateway1:@@中華民國
+20171003 12:05:22inst:msg:lineGateway1:@@
+20171003 12:06:04inst:msg:lineGateway1:@@中華民國
+20171003 12:06:14inst:msg:lineGateway1:@@N-||��||l||W
+20171003 12:52:19inst:msg:lineGateway1:@@N-||��||l||W
+20171003 12:52:45inst:msg:lineGateway1:@@0001||0001||0001||0001
+20171003 12:54:54inst:msg:lineGateway1:@@0001||0001||0001||0001
+20171003 13:02:25inst:msg:lineGateway1:@@0x4E02X|0xFFFFFF0x6C02X|0x5702
+20171003 13:03:45inst:msg:lineGateway1:@@0x4E2D||0xFFFFFF0x6C11||0x570B
+20171003 13:09:11inst:msg:lineGateway1:@@0x4E2D||0x83EF||0x6C11||0x570B
+20171003 13:09:43inst:msg:lineGateway1:@@中華民國
+20171003 13:53:19inst:0000000056194529msg:lineGateway1:@@
+20171003 13:53:46inst:0000000056194529msg:lineGateway1:@@中華民國
+20171003 14:00:26inst:0000000056194529encode:unicodemsg:lineGateway1:@@0x4E2D||0x83EF||0x6C11||0x570B
+20171003 14:01:16inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國
+20171003 14:13:55inst:0000000056194529encode:unicodemsg:lineGateway1:@@0x4E2D||0x83EF||0x6C11||0x570B
+{"message":"Could not read the request body"}
+20171003 14:14:33inst:0000000056194529encode:unicodemsg:lineGateway1:@@0x4E2D||0x83EF||0x6C11||0x570B
+{"message":"Could not read the request body"}
+20171003 14:14:42inst:0000000056194529encode:unicodemsg:lineGateway1:@@0x4E2D||0x83EF||0x6C11||0x570B
+{"message":"Could not read the request body"}
+20171003 15:16:46inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:4.0,PGA:25.3
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"}]}
+20171003 15:25:26inst:0000000056194529encode:unicodemsg:@@0x4E2D||0x83EF||0x6C11||0x570B
+{}
+20171003 15:59:14inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:5.3
+20171003 15:59:17inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:5.3
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 15:59:44inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:4.4
+20171003 15:59:45inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:4.4
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:00:09inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:00:09inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:13.2
+20171003 16:00:21inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:5.0,PGA:81.5
+20171003 16:00:23inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:00:23inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:5.0,PGA:81.5
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:00:53inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:8.7
+20171003 16:01:03inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:01:19inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:01:31inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:8.7
+20171003 16:08:37inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:4.0,PGA:36.8
+20171003 16:08:38inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:36.8
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:10:03inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:3.6
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:10:03inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.6
+20171003 16:10:20inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:13.4
+20171003 16:10:20inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:13.4
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:11:54inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:12:38inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:14:20inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:4.6
+20171003 16:14:20inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:4.6
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:15:45inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:9.9
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"}]}
+20171003 16:15:46inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:9.9
+{"message":"The request body has 2 error(s)","details":[{"message":"May not be empty","property":"messages[0].text"},{"message":"May not be empty","property":"to"}]}
+20171003 16:18:23inst:0000000056194529encode:unicodemsg:lineGateway1:@@0x4E2D||0x83EF||0x6C11||0x570B
+{}
+20171003 16:18:52inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:8.5
+{}
+20171003 16:18:53inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:8.5
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 16:27:14inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:5.5
+{}
+20171003 16:27:15inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:5.5
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 16:33:50inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:4.0,PGA:25.7
+{}
+20171003 16:33:51inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 16:33:51inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:25.7
+{}
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 16:35:22inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:8.3
+{}
+20171003 16:38:05inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+{}
+20171003 16:38:06inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:5.0,PGA:130.9
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 16:48:45inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+{}
+20171003 16:48:46inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:5.0,PGA:144.5
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 16:55:04inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.6
+{}
+20171003 16:56:16inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:20.3
+{}
+20171003 17:06:03inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:4.0,PGA:62.9
+{}
+20171003 17:06:04inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:62.9
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 17:06:07inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-03_14:50:28@@103.41dB
+20171003 17:06:07inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:5.0,PGA:171.2
+{}
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 17:06:08inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-03_17:06:09@@105.34dB
+{}
+20171003 17:09:51inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:1.0,PGA:2.2
+20171003 17:09:51inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:2.2
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171003 17:09:58inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:2.6
+20171003 17:09:58inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:2.6
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171003 17:24:24inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.0
+{}
+20171003 17:27:43inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.6
+{}
+20171003 17:28:58inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.5
+{}
+20171003 17:29:57inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.7
+{}
+20171003 17:30:29inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.6
+{}
+20171003 17:32:15inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.6
+{}
+20171003 17:32:18inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:9.7
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 17:34:34inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:2.0
+{}
+20171003 17:34:36inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:1.0,PGA:2.0
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 18:02:19inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.6
+20171003 18:02:19inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:3.6
+{}
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171003 18:04:00inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:3.6
+20171003 18:04:01inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.6
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171003 20:38:20inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國
+{}
+20171003 21:13:42inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國
+{}
+20171003 21:32:01inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國
+{}
+20171003 21:32:52inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國鏃證嘉
+{}
+20171003 21:36:29inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國黃證嘉
+{}
+20171003 21:42:41inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈
+{}
+20171003 21:44:55inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈U董��嘉
+{"message":"Could not read the request body"}
+20171003 21:46:30inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈U董��嘉
+{"message":"Could not read the request body"}
+20171003 21:50:17inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈U董��嘉
+{"message":"Could not read the request body"}
+20171003 21:55:01inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國萬歲
+{}
+20171003 22:00:27inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈U董
+{}
+20171003 22:02:53inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈U董
+{}
+20171003 22:12:29inst:0000000056194529encode:utf8msg:lineGateway1:@@中媯薔穈U董
+{}
+20171003 22:16:14inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國萬歲
+{}
+20171003 22:24:41inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國萬歲千秋
+{}
+20171003 22:28:03inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 22:28:32inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 22:29:13inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 22:33:14inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國萬歲
+{}
+20171003 22:34:29inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 22:41:40inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國萬歲
+{}
+20171003 22:42:14inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 22:54:20inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 23:00:27inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民
+{}
+20171003 23:18:07inst:0000000056194529encode:utf8msg:lineGateway1:@@中
+{}
+20171003 23:34:15inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國還在
+{}

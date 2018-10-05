@@ -1,0 +1,948 @@
+<script type="text/javascript" src="assets/js/jquery.form.js"></script>
+<script src="assets/draw/jquery.jqscribble.js" type="text/javascript"></script>
+<script src="assets/draw/jqscribble.extrabrushes.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        $("#colors_sketch").jqScribble();
+        $("#colors_sketch_1").jqScribble();
+    });
+</script>
+<style>
+    .btn_id_pos, .btn_id_neg, .btn_lic_pos,
+    .btn_veh_pos, .btn_stu_pos, .btn_stu_neg,
+    .btn_ban, .btn_ban_con, .btn_oth_dat {
+        position: relative;
+        overflow: hidden;
+        margin-right: 4px;
+        display: inline-block; 
+        *display: inline;
+        padding: 4px 10px 4px;
+        font-size: 14px;
+        line-height: 18px; 
+        *line-height: 20px;
+        color: #fff; 
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        background: #5bb75b; 
+        border: 1px solid #cccccc;
+        border-color: #e6e6e6 #e6e6e6 #bfbfbf; 
+        border-bottom-color: #b3b3b3;
+        -webkit-border-radius: 4px; 
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+    } 
+    .btn_id_pos input, .btn_id_neg input, .btn_lic_pos input,
+    .btn_veh_pos input, .btn_stu_pos input, .btn_stu_neg input,
+    .btn_ban input, .btn_ban_con input, .btn_oth_dat input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        border: solid transparent; 
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer;
+    } 
+    .progress_id_pos, .progress_id_neg, .progress_lic_pos,
+    .progress_veh_pos, .progress_stu_pos, .progress_stu_neg,
+    .progress_ban, .progress_ban_con, .progress_oth_dat {
+        position: relative;
+        margin-left: 100px;
+        margin-top:-24px;  
+        width: 200px;
+        padding: 1px;
+        border-radius: 3px;
+        display:none;
+    } 
+    .bar_id_pos, .bar_id_neg, .bar_lic_pos,
+    .bar_veh_pos, .bar_stu_pos, .bar_stu_neg,
+    .bar_ban, .bar_ban_con, .bar_oth_dat {
+        background-color: green;
+        display: block; width:0%;
+        height: 20px;  
+        border-radius: 3px; 
+    } 
+    .percent_id_pos, .percent_id_neg, .percent_lic_pos,
+    .percent_veh_pos, .percent_stu_pos, .percent_stu_neg,
+    .percent_ban, .percent_ban_con, .percent_oth_dat {
+        position: absolute;
+        height: 20px;
+        display: inline-block;  
+        top: 3px;
+        left: 2%;
+        color: #fff
+    } 
+    .files_id_pos, .files_id_neg, .files_lic_pos,
+    .files_veh_pos, .files_stu_pos, .files_stu_neg,
+    .files_ban, .files_ban_con, .files_oth_dat {
+        height: 22px;
+        line-height: 22px;
+        margin: 10px 0;
+    } 
+    label {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px;
+        margin-right: 15px;
+        font-size: 14px;
+    }
+    label:before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        bottom: 1px;
+        background-color: #aaa;
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    }
+    input[type=checkbox] {
+        display: none;
+    }
+    .checkbox label {
+        margin-bottom: 10px;
+    }
+    .checkbox label:before {
+        border-radius: 3px;
+    }
+    input[type=checkbox]:checked + label:before {
+        content: "\2713";
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+        font-size: 15px;
+        color: #f3f3f3;
+        text-align: center;
+        line-height: 15px;
+    }
+</style>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期購買流程</span>
+        </div>
+<?php
+    $member = new Member();
+    $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+    $year = explode('-',$memberData[0]['memBday']);
+?>
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/B-B-1.png"/></li>
+                <li class="current-step"><img src="assets/images/B-C-3.png"/></li>
+                <li class=""><img src="assets/images/B-B-4.png"/></li>
+<?php if (isset($fb_token) && in_array($memberData['0']['memFBtoken'], $fb_token)) { ?>
+                <li class=""><img src="assets/images/B-B-6.png"/></li>
+<?php } ?>
+                <li class=""><img src="assets/images/B-B-5.png"/></li>
+            </ul>
+            <div class="heading-counter warning">簽名及附件上傳
+                <span style="">*為必填欄位，請務必詳實填寫，如未滿20歲,需父母同意分期購買</span>
+                <br />
+            </div>
+            <div class="heading-counter warning">
+                <span style="color:red;">***上傳證件時請確認圖檔「不反光」且「對焦清楚」要近拍，以利案件申請***</span>
+            </div>
+            <div class="box-border">
+                <ul>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form id="order_add">
+                                <span>身分證發證日期</span>
+                                <select style="width:60px;border-style:groove;" name="mcoIdIssueYear">
+<?php
+    $year = date('Y',time()) - 1911;
+    for ($i = 50; $i <= $year; $i++) {
+?>
+                                    <option value="<?=$i ?>" <?php echo ($mco_data[0]["mcoIdIssueYear"] == $i) ? 'selected':''; ?>>
+                                        <?=$i?>
+                                    </option>
+<?php } ?>
+                                </select>
+                                <span>年</span>
+                                
+                                <select style="width:60px;border-style:groove;" name="mcoIdIssueMonth">
+<?php
+    for ($i = 1; $i <= 12; $i++) { ?>
+                                    <option value="<?=$i ?>" <?php echo ($mco_data[0]["mcoIdIssueMonth"] == $i) ? 'selected' : ''; ?>>
+                                        <?=$i?>
+                                    </option>
+<?php } ?>
+                                </select>
+                                <span>月</span>
+                                
+                                <select style="width:60px;border-style:groove;" name="mcoIdIssueDay">
+<?php
+    for ($i = 1; $i <= 31; $i++) { ?>
+                                    <option value="<?=$i ?>" <?php echo ($mco_data[0]["mcoIdIssueDay"] == $i) ? 'selected' : ''; ?>>
+                                        <?=$i?>
+                                    </option>
+<?php } ?>
+                                </select>
+                                <span>日</span>
+                                <br />
+                                
+                                <span>發證地點</span>
+                                <select class="input form-control" name="mcoIdIssuePlace">
+                                    <option value="">請選擇</option>
+<?php 
+    foreach ($IdPlace as $key => $value) {
+        $IdSelected = ($value == $mco_data[0]['mcoIdIssuePlace']) ? "selected" : "";
+?>
+                                    <option value="<?php echo $value; ?>" <?php echo $IdSelected?>>
+                                        <?php echo $value; ?>
+                                    </option>
+<?php } ?>
+                                </select>
+                                
+                                <span>補換發類別</span>
+                                <select class="input form-control" name="mcoIdIssueType">
+                                    <option value="初發" <?php echo ($mco_data[0]['mcoIdIssueType'] == "初發") ? "selected" : ""; ?>>初發</option>
+                                    <option value="補發" <?php echo ($mco_data[0]['mcoIdIssueType'] == "初發") ? "selected" : ""; ?>>補發</option>
+                                    <option value="換發" <?php echo ($mco_data[0]['mcoIdIssueType'] == "初發") ? "selected" : ""; ?>>換發</option>
+                                </select>
+                            </form>
+
+                            <h3>證件資料上傳</h3>
+
+                            <div class="demo">
+                                <p>說明：圖片大小不能超過10M。</p>
+                                <div class="btn_id_pos">
+                                    <span>申請人身份證正面：<span style="color:red;">*</span></span>
+                                    <input id="idPositive" type="file" name="idPositive">
+                                </div>
+                                
+                                <div class="progress_id_pos">
+                                    <span class="bar_id_pos"></span>
+                                    <span class="percent_id_pos">0%</span>
+                                </div>
+                                <div class="files_id_pos"></div>
+                                <div id="showimg_id_pos">
+<?php 
+    if ($mco_data[0]['mcoIdImgTop'] != "")
+                            echo "<img src='".$mco_data[0]['mcoIdImgTop']."' />";
+?>
+                                </div>
+                            </div>
+
+                            <div class="demo">
+                                <div class="btn_id_neg">
+                                    <span>申請人身份證反面：<span style="color:red;">*</span></span>
+                                    <input id="idNegative" type="file" name="idNegative">
+                                </div>
+                                
+                                <div class="progress_id_neg">
+                                    <span class="bar_id_neg"></span>
+                                    <span class="percent_id_neg">0%</span>
+                                </div>
+                                <div class="files_id_neg"></div>
+                                <div id="showimg_id_neg">
+<?php 
+    if ($mco_data[0]['mcoIdImgBot'] != "")
+                            echo "<img src='".$mco_data[0]['mcoIdImgBot']."' />";
+?>
+                                </div>
+                            </div>
+
+                            <div class="demo">
+                                <div class="btn_lic_pos">
+                                    <span>申請人健保卡或駕照正面：<span style="color:red;">*</span></span>
+                                    <input id="licensePositive" type="file" name="licensePositive">
+                                </div>
+                                
+                                <div class="progress_lic_pos">
+                                    <span class="bar_lic_pos"></span>
+                                    <span class="percent_lic_pos">0%</span>
+                                </div>
+                                <div class="files_lic_pos"></div>
+                                <div id="showimg_lic_pos">
+<?php 
+    if ($mco_data[0]['mcoSubIdImgTop'] != "")
+                            echo "<img src='".$mco_data[0]['mcoSubIdImgTop']."' />";
+?>
+                                </div>
+                            </div>
+<?php if($mco_data[0]['mcoType'] == '2') { ?>
+                            <div class="demo">
+                                <div class="btn_veh_pos">
+                                    <span>申請人行照正面：</span>
+                                    <input id="vehiclePositive" type="file" name="vehiclePositive">
+                                </div>
+                                <div class="progress_veh_pos">
+                                    <span class="bar_veh_pos"></span>
+                                    <span class="percent_veh_pos">0%</span>
+                                </div>
+                                <div class="files_veh_pos"></div>
+                                <div id="showimg_veh_pos">
+<?php 
+    if ($mco_data[0]['mcoCarIdImgTop'] != "")
+                            echo "<img src='".$mco_data[0]['mcoCarIdImgTop']."' />";
+?>
+                                </div>
+                            </div>
+<?php } ?>
+
+<?php
+    if ($memberData[0]['memClass'] == '0') {
+?>
+                            <div class="demo">
+                                <div class="btn_stu_pos">
+                                    <span>申請人學生證正面：</span>
+                                    <input id="studentPositive" type="file" name="studentPositive">
+                                </div>
+                                <div class="progress_stu_pos">
+                                    <span class="bar_stu_pos"></span>
+                                    <span class="percent_stu_pos">0%</span>
+                                </div>
+                                <div class="files_stu_pos"></div>
+                                <div id="showimg_stu_pos">
+<?php 
+        if ($mco_data[0]['mcoStudentIdImgTop'] != "")
+                            echo "<img src='".$mco_data[0]['mcoStudentIdImgTop']."' />";
+?>
+                                </div>
+                            </div>
+
+                            <div class="demo">
+                                <div class="btn_stu_neg">
+                                    <span>申請人學生證反面：</span>
+                                    <input id="studentNegtive" type="file" name="studentNegtive">
+                                </div>
+                                <div class="progress_stu_neg">
+                                    <span class="bar_stu_neg"></span>
+                                    <span class="percent_stu_neg">0%</span>
+                                </div>
+                                <div class="files_stu_neg"></div>
+                                <div id="showimg_stu_neg">
+<?php 
+        if ($mco_data[0]['mcoStudentIdImgBot'] != "")
+                            echo "<img src='".$mco_data[0]['mcoStudentIdImgBot']."' />";
+                                ?>
+                                </div>
+                            </div>
+<?php } ?>
+
+                            <div class="demo">
+                                <div class="btn_ban">
+                                    <span>存摺封面：</span>
+                                    <input id="bankbook" type="file" name="bankbook">
+                                </div>
+                                <div class="progress_ban">
+                                    <span class="bar_ban"></span>
+                                    <span class="percent_ban">0%</span>
+                                </div>
+                                <div class="files_ban"></div>
+                                <div id="showimg_ban">
+<?php 
+    if ($mco_data[0]['mcoBankBookImgTop'] != "")
+                            echo "<img src='".$mco_data[0]['mcoBankBookImgTop']."' />";
+?>
+                                </div>
+                            </div>
+
+                            <div class="demo">
+                                <div class="btn_ban_con">
+                                    <span>近六個月往來(薪轉戶佳) 可加速審件</span>
+                                    <input id="bankContent" type="file" name="bankContent">
+                                </div>
+                                <div class="progress_ban_con">
+                                    <span class="bar_ban_con"></span>
+                                    <span class="percent_ban_con">0%</span>
+                                </div>
+                                <div class="files_ban_con"></div>
+                                <div id="showimg_ban_con">
+<?php 
+    if ($mco_data[0]['mcoRecentTransactionImgTop'] != "")
+                            echo "<img src='".$mco_data[0]['mcoRecentTransactionImgTop']."' />";
+?>
+                                </div>
+                            </div>
+
+                            <div class="demo">
+                                <div class="btn_oth_dat">
+                                    <span>其他附件資料：</span>
+                                    <input id="otherData" type="file" name="otherData[]" multiple="multiple" />
+                                </div>
+                                <div class="progress_oth_dat">
+                                    <span class="bar_oth_dat"></span>
+                                    <span class="percent_oth_dat">0%</span>
+                                </div>
+                                <div class="files_oth_dat"></div>
+                                <div id="showimg_oth_dat">
+<?php 
+    //if ($mco_data[0]['mcoExtraInfoUpload'] != "")
+                            //echo "<img src='".$mco_data[0]['mcoExtraInfoUpload']."' />";
+?>
+                                </div>
+                            </div>
+
+                            <h3>條款聲明</h3>
+                          
+                            <div class="table-responsive" style="border:2px solid #000;padding:10px;padding:15px">
+                                <span>★分期付款期間未繳清以前禁止出售或典當，以免觸法</span>
+                                <br />
+                                <span>分期付款約定事項：</span>
+                                <span>一、    申請人(即買方)及其連帶保證人向商品經銷商(即賣方)以分期付款方式購買消費性商品，並簽約本「分期付款申請書暨約定書」，業經申請人及其連帶保證人對本條約所有條款均已經合理天數詳細審閱，且已充份理解契約內容，同意與商品經銷商共同遵守
+                                    <span>「
+                                        <a href="?item=fmPeriodDeclare" target="_blank" style="text-decoration:underline;">分期付款約定書(點文字可連結閱讀詳文)</a>
+                                    」之各項約定條款。
+                                    </span>
+                                    <br />
+                                    二、申請人及其連帶保證人於簽約時同意商品經銷商不另書面通知得將支付分期金額之權利及依本約定書約定所有之其他一切權利及利益轉讓與
+                                    <span>廿一世紀數位科技有限公司</span>
+                                    及其帳款收買人，受讓人對於分期付款買賣案件擁有核准與否同意權，並茲授權帳款收買人將分期付款總額或核准金額，逕行扣除手續費及相關費用，撥付與商品經銷商指定銀行帳戶，相關手續費金額之約定則按商品經銷商與
+                                    <span>廿一世紀數位科技有限公司</span>所簽訂相關之合約約定之，申請人及其連帶保證人絕無異議。
+                                    <br />三、申請人（即買方）及其連帶保證人聲明確實填寫及簽訂本「分期付款申請書暨約定書」內容，且交付商品經銷商之任何文件中並無不實之陳述或說明之情事。
+                                </span>
+                                <input id="check2" type="checkbox" name="check" value="" />
+                                <label for="check2" class="agree">我已詳細閱讀並同意以上條款及
+                                    <span>「
+                                        <a href="?item=fmPeriodDeclare" target="_blank" style="text-decoration:underline;">分期付款約定書(點文字可連結閱讀詳文)</a>」
+                                    </span>之內容及所有條款
+                                </label>
+                                <br />
+<?php
+    $dault = $year['0']+1911;
+    $didf = (time() - strtotime($dault . "-" . $year[1] . "-" . $year[2])) / (86400 * 365);
+    if ($didf < 20) {
+?>
+                                <input id="check3" type="checkbox" name="check3" />
+                                <label for="check3" class="agree">我已徵求父母或法定代理人同意分期購買此商品</label>
+                                <br />
+<?php } ?>
+                                <input id="check4" type="checkbox" name="check4" value="" style="margin-top: 15px;margin-right: -5px;" />
+                                <label for="check4" class="agree">我已詳細閱讀並同意
+                                    <a href="?item=fmFreeRespons" style="">免責聲明</a>、
+                                    <a href="?item=fmServiceRules" style="">服務條款</a>、
+                                    <a href="?item=fmPrivacy" style="">隱私權</a>聲明等條款
+                                </label>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="cart_navigation">
+<?php if ($didf < 20) { ?>
+                <a class="next-btn" id="next_1">
+                    <button >下一步</button>
+                </a>
+<?php } else { ?>
+                <a class="next-btn" id="next"><button >下一步</button></a>
+<?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $("#next").click(function() {
+        if ($("#check2").prop("checked")) {
+            if ($("#check4").is(":checked")) {
+                
+                $.ajax({
+                    url: 'php/default_loan_check_file.php',
+                    data: $('#order_add').serialize(),
+                    type:"POST",
+                    dataType:'text',
+                    success: function(msg) {
+                        if (msg == 1) {
+                            location.href='index.php?item=member_center&action=loan_order_period&method=3';
+                        } else {
+                            alert(msg);
+                        }
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) { 
+                        alert(xhr.status); 
+                        alert(thrownError);
+                    }
+                });
+            } else {
+                alert("請勾選同意條款");
+            }
+        } else {
+            alert("請勾選同意條款");
+        }
+    });
+
+    $("#next_1").click(function() {
+        if ($("input[name='check']:checked").length == 1 && $("input[name='check3']:checked").length == 1 && $("input[name='check4']:checked").length == 1) {
+            $.ajax({
+                url: 'php/default_loan_check_file.php',
+                data: $('#order_add').serialize(),
+                type:"POST",
+                dataType:'text',
+                success: function(msg) {
+                    if (msg == 1) {
+                        location.href='index.php?item=member_center&action=loan_order_period&method=3';
+                    } else {
+                        alert(msg);
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) { 
+                    alert(xhr.status); 
+                    alert(thrownError);
+                }
+            });
+        } else {
+            alert("請勾選同意條款及父母同意確認購買此商品");
+        }
+    });
+
+    $(document).ready(function() {
+
+    	//申請人身份證正面
+        var bar = $('.bar_id_pos');
+        var percent = $('.percent_id_pos');
+        var showimg = $('#showimg_id_pos');
+        var progress = $(".progress_id_pos");
+        var files = $(".files_id_pos");
+        var btn = $(".btn_id_pos span");
+
+        $("#idPositive").wrap("<form id='myupload1' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#idPositive").change(function() {
+            $("#myupload1").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg.empty();
+                    progress.show();
+                    let percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                    btn.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function(data) {
+                	if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg.html("<img src='"+img+"'>");
+                        btn.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn.html("上傳失敗");
+                        bar.width('0')
+                        files.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn.html("上傳失敗");
+                    bar.width('0')
+                    files.html(jqXHR.responseText);
+                }
+            });
+        });
+    
+    	//申請人身份證反面
+    	var bar2 = $('.bar_id_neg');
+        var percent2 = $('.percent_id_neg');
+        var showimg2 = $('#showimg_id_neg');
+        var progress2 = $(".progress_id_neg");
+        var files2 = $(".files_id_neg");
+        var btn2 = $(".btn_id_neg span");
+
+        $("#idNegative").wrap("<form id='myupload2' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#idNegative").change(function() {
+            $("#myupload2").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg2.empty();
+                    progress2.show();
+                    let percentVal = '0%';
+                    bar2.width(percentVal);
+                    percent2.html(percentVal);
+                    btn2.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar2.width(percentVal);
+                    percent2.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg2.html("<img src='"+img+"'>");
+                        btn2.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn2.html("上傳失敗");
+                        bar2.width('0')
+                        files2.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn2.html("上傳失敗");
+                    bar2.width('0')
+                    files2.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //申請人健保卡或駕照正面
+    	var bar3 = $('.bar_lic_pos');
+        var percent3 = $('.percent_lic_pos');
+        var showimg3 = $('#showimg_lic_pos');
+        var progress3 = $(".progress_lic_pos");
+        var files3 = $(".files_lic_pos");
+        var btn3 = $(".btn_lic_pos span");
+
+        $("#licensePositive").wrap("<form id='myupload3' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#licensePositive").change(function() {
+            $("#myupload3").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg3.empty();
+                    progress3.show();
+                    let percentVal = '0%';
+                    bar3.width(percentVal);
+                    percent3.html(percentVal);
+                    btn3.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar3.width(percentVal);
+                    percent3.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg3.html("<img src='"+img+"'>");
+                        btn3.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn3.html("上傳失敗");
+                        bar3.width('0')
+                        files3.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn3.html("上傳失敗");
+                    bar3.width('0')
+                    files3.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //申請人行照正面
+    	var bar4 = $('.bar_veh_pos');
+        var percent4 = $('.percent_veh_pos');
+        var showimg4 = $('#showimg_veh_pos');
+        var progress4 = $(".progress_veh_pos");
+        var files4 = $(".files_veh_pos");
+        var btn4 = $(".btn_veh_pos span");
+
+        $("#vehiclePositive").wrap("<form id='myupload4' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#vehiclePositive").change(function() {
+            $("#myupload4").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg4.empty();
+                    progress4.show();
+                    let percentVal = '0%';
+                    bar4.width(percentVal);
+                    percent4.html(percentVal);
+                    btn4.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar4.width(percentVal);
+                    percent4.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg4.html("<img src='"+img+"'>");
+                        btn4.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn4.html("上傳失敗");
+                        bar4.width('0')
+                        files4.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn4.html("上傳失敗");
+                    bar4.width('0')
+                    files4.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //申請人學生證正面
+    	var bar5 = $('.bar_stu_pos');
+        var percent5 = $('.percent_stu_pos');
+        var showimg5 = $('#showimg_stu_pos');
+        var progress5 = $(".progress_stu_pos");
+        var files5 = $(".files_stu_pos");
+        var btn5 = $(".btn_stu_pos span");
+
+        $("#studentPositive").wrap("<form id='myupload5' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#studentPositive").change(function() {
+            $("#myupload5").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg5.empty();
+                    progress5.show();
+                    let percentVal = '0%';
+                    bar5.width(percentVal);
+                    percent5.html(percentVal);
+                    btn5.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar5.width(percentVal);
+                    percent5.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg5.html("<img src='"+img+"'>");
+                        btn5.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn5.html("上傳失敗");
+                        bar5.width('0')
+                        files5.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn5.html("上傳失敗");
+                    bar5.width('0')
+                    files5.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //申請人學生證反面
+    	var bar6 = $('.bar_stu_neg');
+        var percent6 = $('.percent_stu_neg');
+        var showimg6 = $('#showimg_stu_neg');
+        var progress6 = $(".progress_stu_neg");
+        var files6 = $(".files_stu_neg");
+        var btn6 = $(".btn_stu_neg span");
+
+        $("#studentNegtive").wrap("<form id='myupload6' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#studentNegtive").change(function() {
+            $("#myupload6").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg6.empty();
+                    progress6.show();
+                    let percentVal = '0%';
+                    bar6.width(percentVal);
+                    percent6.html(percentVal);
+                    btn6.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar6.width(percentVal);
+                    percent6.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg6.html("<img src='"+img+"'>");
+                        btn6.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn6.html("上傳失敗");
+                        bar6.width('0')
+                        files6.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn6.html("上傳失敗");
+                    bar6.width('0')
+                    files6.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //存摺封面
+    	var bar7 = $('.bar_ban');
+        var percent7 = $('.percent_ban');
+        var showimg7 = $('#showimg_ban');
+        var progress7 = $(".progress_ban");
+        var files7 = $(".files_ban");
+        var btn7 = $(".btn_ban span");
+
+        $("#bankbook").wrap("<form id='myupload7' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#bankbook").change(function() {
+            $("#myupload7").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg7.empty();
+                    progress7.show();
+                    let percentVal = '0%';
+                    bar7.width(percentVal);
+                    percent7.html(percentVal);
+                    btn7.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar7.width(percentVal);
+                    percent7.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg7.html("<img src='"+img+"'>");
+                        btn7.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn7.html("上傳失敗");
+                        bar7.width('0')
+                        files7.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn7.html("上傳失敗");
+                    bar7.width('0')
+                    files7.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //近六個月往來
+    	var bar8 = $('.bar_ban_con');
+        var percent8 = $('.percent_ban_con');
+        var showimg8 = $('#showimg_ban_con');
+        var progress8 = $(".progress_ban_con");
+        var files8 = $(".files_ban_con");
+        var btn8 = $(".btn_ban_con span");
+
+        $("#bankContent").wrap("<form id='myupload8' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#bankContent").change(function() {
+            $("#myupload8").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg8.empty();
+                    progress8.show();
+                    let percentVal = '0%';
+                    bar8.width(percentVal);
+                    percent8.html(percentVal);
+                    btn8.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar8.width(percentVal);
+                    percent8.html(percentVal);
+                },
+                success: function(data) {
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        let img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                        showimg8.html("<img src='"+img+"'>");
+                        btn8.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn8.html("上傳失敗");
+                        bar8.width('0')
+                        files8.html(data.msg);
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn8.html("上傳失敗");
+                    bar8.width('0')
+                    files8.html(jqXHR.responseText);
+                }
+            });
+        });
+
+        //其他附件資料
+    	var bar9 = $('.bar_oth_dat');
+        var percent9 = $('.percent_oth_dat');
+        var showimg9 = $('#showimg_oth_dat');
+        var progress9 = $(".progress_oth_dat");
+        var files9 = $(".files_oth_dat");
+        var btn9 = $(".btn_oth_dat span");
+
+        $("#otherData").wrap("<form id='myupload9' action='php/file_loan.php' method='post' enctype='multipart/form-data'></form>");
+
+        $("#otherData").change(function() {
+            $("#myupload9").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg9.empty();
+                    progress9.show();
+                    let percentVal = '0%';
+                    bar9.width(percentVal);
+                    percent9.html(percentVal);
+                    btn9.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    let percentVal = percentComplete + '%';
+                    bar9.width(percentVal);
+                    percent9.html(percentVal);
+                },
+                success: function(data) {
+                	
+                    if (data.status == 'OK') {
+                		//var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.pic;
+                		let img;
+                		
+                		for (let s = 0; s < data.count; s++) {
+                			img = "admin/file/<?php echo $memberData[0]['memNo'];?>/" + data.data[s].pic;
+                			showimg9.append("<img src='" + img + "'>");
+                		}
+                        btn9.html("上傳檔案");
+                	}
+
+                	if (data.status == 'FAIL') {
+                		btn9.html("上傳失敗");
+                        bar9.width('0')
+                		for (let s = 0; s < data.count; s++) {
+                			files9.append(data.data[s].msg);
+                		}
+                	}
+                },
+                error: function(jqXHR) {
+
+                    btn9.html("上傳失敗");
+                    bar9.width('0')
+                    files9.html(jqXHR.responseText);
+                }
+            });
+        });
+    
+    });
+</script>

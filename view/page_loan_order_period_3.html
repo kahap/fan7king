@@ -1,0 +1,421 @@
+<style>
+    h3 {
+        font-size: 16px;
+        color:blue;
+        margin-top:3px;
+        margin-bottom:3px;
+    }
+</style>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期購買流程</span>
+        </div>
+<?php
+    //欄位名稱
+    $mco = new Motorbike_Cellphone_Orders();
+	$mco_data = $mco->getOneOrderByNo($_SESSION['mco_code']);
+    $member = new Member();
+    $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+
+?>
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/B-B-1.png"/></li>
+                <li class=""><img src="assets/images/B-B-3.png"/></li>
+                <li class="current-step"><img src="assets/images/B-C-4.png"/></li>
+<?php
+    if (isset($fb_token) && in_array($memberData['0']['memFBtoken'], $fb_token)) {
+?>
+                <li class=""><img src="assets/images/B-B-6.png"/></li>
+<?php } ?>
+                <li class=""><img src="assets/images/B-B-5.png"/></li>
+            </ul>
+            <div class="heading-counter warning">確認訂單資訊
+                <span style="color:green">*保密：指不會告知購買事由</span>
+                <span style="color:red">*為必填欄位，請務必詳實填寫，如未滿20歲,需父母同意分期購買</span>
+<?php 
+    echo ($mco_data['mcoDocProvideReason'] != '') ? '補件原因 :' . $mco_data['mcoDocProvideReason'] : '';
+?>
+            </div>
+            <div class="box-border">
+                <ul>
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <h3>一、申請人資料</h3>
+                            <label style="">
+                                <input name="agree" type="checkbox" value='1' <?php echo ($mco_data['0']["mcoIfSecret"] == '1') ? 'checked disabled':'disabled'; ?>/>申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）
+                            </label>
+                            <br />
+                            <label for="first_name" class="required">申請人姓名 :</label>
+                            <label for="first_name" class="required">
+<?php echo $_SESSION['shopping_user']['0']["memName"]; ?>
+                            </label>
+                            <br />
+                            
+                            <label for="first_name" class="required">身分證字號 : </label>
+                            <label for="first_name" class="required">
+<?php echo $_SESSION['shopping_user']['0']["memIdNum"]; ?>
+                            </label>
+                            <br />
+
+                        	<label>申請人身份證發證日期：
+<?php echo $mco_data[0]['mcoIdIssueYear'] . "-" . $mco_data[0]['mcoIdIssueMonth'] . "-" . $mco_data[0]['mcoIdIssueDay']; ?>
+                            </label>
+                            <br />
+
+                            <label>申請人身份證發證地點：
+<?php echo $mco_data[0]['mcoIdIssuePlace'];?>
+                            </label>
+                            <br />
+
+                            <label>申請人身份證發證類別：
+<?php echo $mco_data[0]['mcoIdIssueType']; ?>
+                            </label>
+                            <br />
+                            
+<?php $year = explode('-',$_SESSION['shopping_user']['0']['memBday']); ?>
+                            <label for="first_name" class="required">出生年月日 : </label>
+                            <label for="first_name" class="required">民國
+<?php echo $year[0];?> 年 <?php echo $year[1];?> 月 <?php echo $year[2];?> 日</label>
+                            <br />
+
+                            <label for="first_name" class="required">身分別 : 
+<?php echo $memclass[$memberData[0]['memClass']]; ?>
+                            </label>
+                            <br />
+<?php $school = explode("#", $memberData[0]['memSchool']); ?>
+                            <label for="first_name" class="required">學校 : 
+<?php echo $school[0]; ?>
+                            </label>
+                            <br />
+                            <label for="first_name" class="required">系別 : 
+<?php echo $school[1]; ?>
+                            </label>
+                            <br />
+                            <label for="first_name" class="required">年級 : 
+<?php echo $school[2]; ?>
+                            </label>
+                            <br />
+<?php 
+    if ($memberData[0]['memFBtoken'] != "" && $memberData[0]['memClass'] == '0') { ?>
+                            <label for="first_name" class="required">學生Email： 
+<?php echo $memberData[0]["memAccount"]; ?>
+                            </label>
+                            <br />
+<?php } ?>
+                            <label for="first_name" class="required">常用聯絡Email：
+<?php echo $memberData[0]["memSubEmail"]; ?>
+                            </label>
+                            <br />
+                        <label for="first_name" class="required">戶籍地址 :
+<?php echo $mco_data[0]["mcoBirthAddr"]; ?>
+                        </label>
+                        <br />
+                        <label for="first_name" class="required">戶籍電話 :
+<?php echo $mco_data[0]["mcoBirthPhone"]; ?>
+                        </label>
+                        <br />
+                        <label for="first_name" class="required">現住地址 :
+<?php echo $memberData[0]['memAddr']; ?>
+                        </label>
+                        <br />
+                        <label for="first_name" class="required">現住電話 :
+<?php echo $memberData[0]['memCell']; ?>
+                        </label>
+                        <br />
+                        <label for="first_name" class="required">行動電話 :
+<?php echo $memberData[0]['memPhone']; ?>
+                        </label>
+                        <br />
+                        <label for="first_name" class="required">住房所有權 :
+<?php echo $mco_data[0]['mcoLivingOwnership']; ?>
+                        </label>
+                        <br />
+                        <br />
+
+						<h3>二、聯絡人資料</h3>
+<?php
+$mcoContactName = json_decode($mco_data[0]['mcoContactName'], true);
+$mcoContactRelation = json_decode($mco_data[0]['mcoContactRelation'], true);
+$mcoContactPhone = json_decode($mco_data[0]['mcoContactPhone'], true);
+$mcoContactCell = json_decode($mco_data[0]['mcoContactCell'], true); 
+?>
+<?php if ($mco_data[0]['memClass'] == 0) { ?>
+						<label for="first_name" class="required">聯絡人姓名 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactName[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">聯絡人關係 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactRelation[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">聯絡人市話 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactPhone[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">聯絡人手機 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactCell[0]; ?></label>
+                        <br />
+<?php } else if ($mco_data[0]['memClass'] == 4) { ?>
+						<label for="first_name" class="required">聯絡人姓名 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactName[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">聯絡人關係 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactRelation[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">聯絡人市話 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactPhone[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">聯絡人手機 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactCell[0]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">其他聯絡人姓名 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactName[1]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">其他聯絡人關係 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactRelation[1]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">其他聯絡人市話 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactPhone[1]; ?></label>
+                        <br />
+                        <label for="first_name" class="required">其他聯絡人手機 :</label>
+                        <label for="first_name" class="required"><?php echo $mcoContactCell[1]; ?></label>
+                        <br />
+<?php } ?>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3>三、資金用途</h3>
+
+                            <label for="first_name" class="required">資金用途 :</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoApplyPurpose']; ?></label>
+                            <br /><br />
+
+                            <h3>四、公司</h3>
+
+                            <label for="first_name" class="required">公司名稱 :
+<?php echo $mco_data[0]['mcoCompanyName']; ?>
+                        	</label>
+                        	<br />
+                        	<label for="first_name" class="required">年資 :
+<?php echo $memberData[0]['memYearWorked']; ?>
+                        	</label>
+                        	<br />
+                        	<label for="first_name" class="required">月薪 :
+<?php echo $memberData[0]['memSalary'] ?>
+                        	</label>
+                        	<br />
+                        	<label for="first_name" class="required">公司電話 :
+<?php echo $mco_data[0]['mcoCompanyPhone']; ?>
+                        	</label>
+                        	<br />
+                        	<label for="first_name" class="required">公司電話分機 :
+<?php echo $mco_data[0]['mcoCompanyPhoneExt']; ?>
+                        	</label>
+                            <br /><br />
+
+							<h3>五、信用卡</h3>
+							<label for="first_name" class="required">信用卡號 :
+<?php echo ($mco_data[0]['mcoCreditNum'] = '---') ? '' : $mco_data[0]['mcoCreditNum']; ?>
+                        	</label>
+                        	<br />
+                        	<label for="first_name" class="required">發卡銀行 :
+<?php echo $mco_data[0]['mcoCreditIssueBank']; ?>
+                        	</label>
+                        	<br />
+                        	<label for="first_name" class="required">信用卡有效期限 :
+<?php echo $mco_data[0]['mcoCreditDueDate']; ?>
+                        	</label>
+                            <br /><br />
+
+                            <h3>六、備註：</h3>
+
+                            <label for="first_name" class="required">可照會時間 :</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoAvailTime']; ?></label>
+                            <br />
+                            <label for="first_name" class="required">注意事項 :</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoExtraInfo']; ?></label>
+                            <br />
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <br />
+            <div class="box-border">
+                <ul>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>七、證件資料上傳：</h3>
+                            
+                            <label>申請人身份證正面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoIdImgTop']; ?>"/>
+                            </div>
+
+                            <label>申請人身份證反面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoIdImgBot']; ?>"/>
+                            </div>
+
+				 			<label>健保卡或駕照正面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoSubIdImgTop']; ?>"/>
+                            </div>
+<?php if ($mco_data[0]['mcoType'] == 2) { ?>
+                            <label>行照正面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoCarIdImgTop']; ?>"/>
+                            </div>
+<?php } ?>
+<?php if ($mco_data[0]['memClass'] == 0) { ?>
+                            <label>申請人學生證正面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoStudentIdImgTop']; ?>"/>
+                            </div>
+
+                            <label>申請人學生證反面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoStudentIdImgBot']; ?>"/>
+                            </div>
+<?php } ?>
+                            <label>存摺封面：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoBankBookImgTop']; ?>"/>
+                            </div>
+
+							<label>近6個月往來(薪轉戶佳)：</label>
+                            <div id="showimg">
+                                <img src="<?php echo $mco_data[0]['mcoRecentTransactionImgTop']; ?>"/>
+                            </div>
+
+                            <label>補件資料：</label>
+                            <div id="showimg">
+<?php 
+	if ($mco_data[0]['mcoExtraInfoUpload'] != "" & $mco_data[0]['mcoExtraInfoUpload'] != null) {
+	$mcoExtraInfoUpload = json_decode($mco_data[0]['mcoExtraInfoUpload'], true);
+	foreach ($mcoExtraInfoUpload as $value) { ?>
+                                <img src="<?php echo $value; ?>"/>
+	<?php }} ?>
+                            </div>
+                            <br />
+                            
+                            <h3>八、借款內容：</h3>
+<?php  if ($mco_data[0]['mcoType'] == 1) { ?>
+                            <label for="first_name" class="required">廠牌：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoCellBrand']; ?></label>
+                            <br />
+                            <label for="first_name" class="required">型號：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoCellphoneSpec']; ?></label>
+                            <br />
+                            <label for="first_name" class="required">借款金額：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoPeriodTotal']; ?></label>
+                            <br />
+							<label for="first_name" class="required">分期期數：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoPeriodAmount']; ?></label>
+                            <br />
+                            <label for="first_name" class="required">月付金額：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoMinMonthlyTotal']; ?></label>
+                            <br />
+                            <label for="first_name" class="required">每日利息僅：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoDailyInterest']; ?></label>
+                            <br />
+<?php } else if ($mco_data[0]['mcoType'] == 2) { ?>
+							<label for="first_name" class="required">廠牌：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoMotorBrand']; ?></label>
+                            <br />
+
+                            <label for="first_name" class="required">年份：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoYear']; ?></label>
+                            <br />
+
+                            <label for="first_name" class="required">車牌：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoCarNum']; ?></label>
+                            <br />
+
+                            <label for="first_name" class="required">CC數：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoCcNumber']; ?></label>
+                            <br />
+
+                            <label for="first_name" class="required">借款金額：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoPeriodTotal']; ?></label>
+                            <br />
+
+							<label for="first_name" class="required">分期期數：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoPeriodAmount']; ?></label>
+                            <br />
+
+                            <label for="first_name" class="required">月付金額：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoMinMonthlyTotal']; ?></label>
+                            <br />
+
+                            <label for="first_name" class="required">每日利息僅：</label>
+                            <label for="first_name" class="required"><?php echo $mco_data[0]['mcoDailyInterest']; ?></label>
+                            <br /><br />
+<?php } ?>
+							<h3>九、其他：</h3>
+                            
+                            <input id="check3" type="checkbox" name="check1" value="1" disabled <?php echo ($mco_data[0]['mcoIfSecret'] == 1) ? 'checked':'';  ?> />
+                            <label for="check3" class="agree">申請案件如需保密請打勾(照會親友聯絡人時，不告知購買理由)</label>
+                            <br />
+                            
+                            <input id="check2" type="checkbox" name="check" value="" checked disabled />
+                            <label for="check2" class="agree">我已詳細閱讀並同意以上條款
+                            </label>
+                            <br /><br />
+
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="cart_navigation">
+<?php
+    if (isset($fb_token) && in_array($memberData['0']['memFBtoken'], $fb_token)) {
+        echo "<a class='next'><button >下一步</button></a>";
+    } else if (is_file($mco_data[0]['mcoIdImgTop'])) {
+?>
+                <a class="next-btn">
+                    <button >完成
+<?php if ($_GET['pro'] == '10190') { ?>
+                    <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:31" style="width:1px;height:1px;" alt="" />
+<?php } ?>
+                    </button>
+                </a>
+<?php } else { ?>
+                <a style="float: right;border: 1px solid #ff3366;" href="http://happyfan7.com/?item=fmContactService" target="_blank">
+                    <button>證件未上傳成功，請洽詢客服人員!!</button>
+                </a>
+<?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".next-btn").click(function() {
+        
+        $.ajax({
+            url: 'php/loan_order_finish.php',
+            data: "member_data=11",
+            type:"POST",
+            dataType:'text',
+            success: function(msg) {
+                if (msg) {
+                    //thankButton();
+                    alert('購買完成，等待結果通知');
+                    location.href='index.php?item=member_center&action=loan_order_period&method=4';
+                } else {
+                    alert('系統操作錯誤');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status); 
+                alert(thrownError);
+            }
+        });
+    });
+
+    $(".next").click(function() {
+        location.href='index.php?item=member_center&action=order_period&method=auto';
+    })
+</script>

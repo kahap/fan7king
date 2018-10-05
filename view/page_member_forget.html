@@ -1,0 +1,56 @@
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">忘記密碼</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">			
+			<div class="center_column col-xs-12 col-sm-12" id="center_column">
+               <!-- page heading-->
+                <h2 class="page-heading">
+                    <span class="page-heading-title2">忘記密碼</span>
+                </h2>
+                <!-- ../page heading-->
+                <div class="box-border box-wishlist">
+                    <h2>請輸入帳號</h2>
+                    <label for="wishlist-name">帳號(Email)</label>
+                    <input type="text" class="form-control input memAccount">
+                    <button class="button reset_email">送出</button>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(".reset_email").click(function(){
+		var memAccount = $('.memAccount').val();
+		if(memAccount != ''){
+			$.ajax({
+				url: 'php/member_forget.php',
+				data: "memAccount="+memAccount,
+				type:"POST",
+				dataType:'text',
+				success: function(msg){
+					if(msg){
+						alert('已寄送到'+memAccount);
+					}else{
+						alert('不存在的EMAIL');
+					}
+				},
+
+				error:function(xhr, ajaxOptions, thrownError){ 
+					alert(xhr.status); 
+					alert(thrownError);
+				}
+			});	
+		}else{
+			alert('不准為空值');		
+		}
+        
+	})
+</script>

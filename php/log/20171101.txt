@@ -1,0 +1,16 @@
+20171101 10:54:20inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.7
+{}
+20171101 11:12:09inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:8.4
+{}
+20171101 11:13:22inst:00000000e1f6da93encode:msg:EEWS_exercise@@SanlienCube@@Intensity:5,Countdown:30
+{}
+20171101 11:13:23inst:00000000e1f6da93encode:msg:EEWS_alert@@SanlienCube@@Intensity:5,Countdown:30
+{}
+20171101 11:13:33inst:00000000e1f6da93encode:msg:EEWS_alert@@SanlienCube@@Intensity:5,Countdown:20
+{}
+20171101 11:13:43inst:00000000e1f6da93encode:msg:EEWS_alert@@SanlienCube@@Intensity:5,Countdown:10
+{}
+20171101 11:13:53inst:00000000e1f6da93encode:msg:EEWS_alert@@SanlienCube@@Intensity:5,Countdown:0
+{}
+20171101 11:14:03inst:00000000e1f6da93encode:msg:EEWS_alert@@SanlienCube@@Intensity:5,Countdown:-10
+{}

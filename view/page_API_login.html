@@ -1,0 +1,161 @@
+<style>
+	info, .success, .warning, .error, .validation {
+		border: 1px solid;
+		margin: 10px 0px;
+		padding:15px 10px 15px 50px;
+		background-repeat: no-repeat;
+		background-position: 10px center;
+	}
+	.success {
+		color: #4F8A10;
+		background-color: #DFF2BF;
+		background-image:url('assets/images/success.png');
+	}
+	.warning {
+		color: #9F6000;
+		background-color: #FEEFB3;
+		background-image: url('assets/images/warning.png');
+	}
+	.error {
+		color: #D8000C;
+		background-color: #FFBABA;
+		background-image: url('assets/images/error.png');
+	}
+	label {
+		display: inline-block;
+		cursor: pointer;
+		position: relative;
+		padding-left: 25px;
+		margin-right: 15px;
+		font-size: 14px;
+	}
+	label:before {
+		content: "";
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		margin-right: 10px;
+		position: absolute;
+		left: 0;
+		bottom: 1px;
+		background-color: #aaa;
+		box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+	}
+	input[type=checkbox] {
+		display: none;
+	}
+	.checkbox label {
+		margin-bottom: 10px;
+	}
+	.checkbox label:before {
+		border-radius: 3px;
+	}
+	input[type=checkbox]:checked + label:before {
+		content: "\2713";
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+		font-size: 15px;
+		color: #f3f3f3;
+		text-align: center;
+		line-height: 15px;
+	}
+
+</style><!-- page wapper-->
+<?php
+require_once 'fb-php/src/Facebook/autoload.php';
+
+$helper = $fb->getRedirectLoginHelper();
+$permissions = ['email'];
+$loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/fb-php/fbconfig.php', $permissions);
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page"><?php echo ($_GET['item'] == "login_register") ? "註冊":"登入"; ?></span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">樂分期支付登入資訊</span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="box-authentication">
+                        <h3>建立新的帳號 並下載 APP才能使用樂分期支付</h3>
+                        <p>使用FB 快速註冊</p>
+						
+						<p>推薦碼 : <a href="?item=fmRecBonus" style="color:blue">什麼是推薦碼</a></p>
+						<input type="text" class="input form-control" name="memRecommCode" value="<?php echo $_SESSION['user']['sharcode']; ?>">
+						<input id="check2" type="checkbox" name="check" value="0" >
+						<label for="check2" class="agree">我已詳細閱讀並同意<a href="?item=fmFreeRespons" style="color:blue;">免責聲明</a>、<a href="?item=fmServiceRules" style="color:blue;">服務條款</a>、<a href="?item=fmPrivacy" style="color:blue;">隱私權</a>聲明等條款</label><br>
+						<button class="button fb" style="background-color:#577CC1"><i class="fa fa-user"></i> FB 快速建立</button>
+						<a href="<?php echo $loginUrl; ?>"><button class="button" style="background-color:#577CC1"><i class="fa fa-user"></i> FB 登入
+						</button></a><br>
+						<p style="color: red;">樂分期為實名註冊，請使用自己的facebook帳號註冊。</p>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+					<div class="box-authentication">
+						<img src="assets/images/loginAPIright.png"  alt="Lights" style="width:100%">
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+	$('#login').click(function(){
+		var emmail_login = $('#emmail_login').val();
+		var password_login = $('#password_login').val();
+		if(emmail_login != '' && password_login != ''){
+		$.ajax({
+                url: 'php/login.php',
+                data: "emmail_login="+emmail_login+"&password_login="+password_login,
+                type:"POST",
+                dataType:'text',
+                success: function(msg){
+                    if(msg == 1){
+						alert('登入成功');
+						location.href='index.php<?php echo ($_GET['pro'] != "") ? '?item=product&pro='.$_GET['pro']:''; ?>';
+					}else if(msg == 2){
+						alert('您的帳號已經設定停權，如有任何問題請洽客服人員，謝謝');
+					}else{
+						alert('帳號密碼錯誤');
+					}
+                },
+
+            error:function(xhr, ajaxOptions, thrownError){ 
+                alert(xhr.status); 
+                alert(thrownError);
+            }
+        });
+		}else{
+			alert('帳號密碼必須填寫');
+		}
+	})
+	$(".fb").click(function(){
+		if($("input[name='check']:checked").length == 1){
+			var sharcode = $("input[name='memRecommCode']").val();
+			<?php $_SESSION['pro'] = $_GET['pro']; ?>
+			location.href="fb-php/sharcode.php?sharcode="+sharcode;
+		}else{
+			alert("請勾選同意條款");
+			$("input[name='check']").val('');
+		}
+	})
+	$(".normal").click(function(){
+		var str = "&share="+$('input[name=memRecommCode]').val();
+		if($("input[name='check']:checked").length == 1){
+			location.href="?item=register"+str;
+		}else{
+			alert("請勾選同意條款");
+			$("input[name='check']").val('');
+		}
+	})
+</script>
+<!-- ./page wapper-->

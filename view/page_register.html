@@ -1,0 +1,191 @@
+<style>
+	.red{
+		color:red;
+	}
+</style>
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">註冊</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">帳號註冊(<span class="red">*</span>為必填欄位)</span>
+        </h2>
+        <!-- ../page heading-->
+        <div class="page-content">
+            <div class="row">
+							<div class="col-sm-6">
+								<form id="member_register">
+									<label for="first_name" class="required">身分別<span class="red">*</span> : </label>
+									<select class="input form-control memclass" name="memClass">
+										<option value="0">學生</option>
+										<option value="1">上班族</option>
+										<option value="2">家管</option>
+										<option value="3">其他</option>
+									</select>
+									<label for="first_name" class="required memSchool" >學校系級<span class="red">*</span> :</label>
+									<input type="text" class="input form-control memSchool" name="memSchool" value="" placeholder="台灣大學法律學系大二">
+									<label for="first_name" class="required">帳號(Email)<span class="red">*</span> : 學生請填寫學校Email認證 <span style="color:red"> Email需認證 </span></label><br>
+									<input type="text" class="input form-control memAccount" name="memAccount" value="">
+									<label for="first_name" class="required">密碼<span class="red">*</span> : </label>
+									<input type="password" class="input form-control memPwd" name="memPwd" value="">
+									<label for="first_name" class="required">確認密碼<span class="red">*</span> : </label>
+									<input type="password" class="input form-control rememPwd" name="rememPwd" value="">
+									
+									<label for="first_name" class="required memSubEmail">常用聯絡Email : </label>
+									<input type="text" class="input form-control memSubEmail" name="memSubEmail" value="">
+									<label for="first_name" class="required">推薦碼 : <a href="?item=fmRecBonus" style="color:blue">什麼是推薦碼</a></label>
+									<input type="text" class="input form-control" name="memRecommCode" value="<?=$_SESSION['user']['sharcode'];?>">
+									
+									
+							</div>
+							<div class="col-sm-6">
+									<label for="first_name" class="required">姓名<span class="red">*</span> :</label>
+									<input type="text" class="input form-control memName" name="memName" value="">
+									
+									<label for="first_name" class="required">性別<span class="red">*</span> : </label>
+									<label for="radio_button_5">
+										<input type="radio" name="memGender"  value="1">男									
+									</label>
+									<label for="radio_button_5">
+										<input type="radio" name="memGender"  value="0">女
+									</label><br>
+									<label for="first_name" class="required">出生年月日<span class="red">*</span> : </label><br>
+									<label for="first_name" class="required">民國</label>
+									<select style="width: 60px;border-style: groove;" name="year">
+										<?php for($i=50;$i<=105;$i++){ ?>
+											<option value="<?=$i ?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+									
+									<label for="first_name" class="required">月</label>
+									<select style="width: 60px;border-style: groove;" name="month">
+										<?php for($i=1;$i<=12;$i++){ ?>
+											<option value="<?=$i ?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+									
+									<label for="first_name" class="required">日 </label>
+									<select style="width: 60px;border-style: groove;" name="date">
+										<?php for($i=1;$i<=31;$i++){ ?>
+											<option value="<?=$i ?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+									
+									<br>
+									<label for="first_name" class="required">身分證號<span class="red">*</span> : </label>
+									<input type="text" class="input form-control" name="memIdNum" value="">
+									<label for="first_name" class="required">現住地址<span class="red">*</span> :</label>
+									<input type="text" class="input form-control" name="memAddr" value="">
+									<label for="first_name" class="required">現住市話<span class="red">*</span> : </label>
+									<input type="text" class="input form-control" name="memPhone" value="" placeholder="ex: 02-22898878">
+									<label for="first_name" class="required">手機<span class="red">*</span> : </label>
+									<input type="text" class="input form-control" name="memCell" value="" placeholder="ex: 0911222333">
+									<label for="first_name" class="required">LineID : </label>
+									<input type="text" class="input form-control" name="memLineId" value="">
+									
+							</div>
+							</form>
+							<button class="button" id="register" style="margin-left: 15px;">註冊</button>
+							
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	$(".memother").hide();
+	$(".memclass").change(function(){
+		var memclass_val = $(this).val();
+		if(memclass_val == '0'){
+			$(".memSchool").show();
+			$(".memSubEmail").show();
+		}else{
+			$(".memSchool").hide();
+			$(".memSchool").val('');
+			$(".memSubEmail").hide();
+			$(".memSubEmail").val('');
+		}
+	})
+	$('#register').click(function(){
+		var memPwd = $('.memPwd').val();
+		var rememPwd = $('.rememPwd').val();
+		var mail = $('.memAccount').val();
+		var memGender = $("input[name=memGender]").val();
+		var memIdNum = $("input[name=memIdNum]").val();
+		if(checkPwd(memPwd,rememPwd) && checkmail(mail) && checkTwID(memIdNum)) {
+			if(!$("input[name=memGender]:checked").val()){
+				alert('請選擇性別!!');
+			}else{
+				$.ajax({
+						url: 'php/register.php',
+						data: $('#member_register').serialize(),
+						type:"POST",
+						dataType:'text',
+						success: function(msg){
+							if(msg == '4'){
+								alert('註冊成功，請開啟認證信');
+								location.href='index.php';
+							}else {
+								alert(msg);
+							}
+						}
+				});
+			}
+		}
+	})
+	function checkPwd(first_pwd,secend_pwd){
+		if(first_pwd == secend_pwd){
+			return true;
+		}else{
+			alert('密碼請輸入相同!!');
+		}
+	}
+	function checkTwID(id){
+		//建立字母分數陣列(A~Z)
+		var city = new Array(
+			 1,10,19,28,37,46,55,64,39,73,82, 2,11,
+			20,48,29,38,47,56,65,74,83,21, 3,12,30
+		)
+		id = id.toUpperCase();
+		// 使用「正規表達式」檢驗格式
+		if (id.search(/^[A-Z](1|2)\d{8}$/i) == -1) {
+			alert('身分證字號錯誤錯誤');
+			return false;
+		} else {
+			//將字串分割為陣列(IE必需這麼做才不會出錯)
+			id = id.split('');
+			//計算總分
+			var total = city[id[0].charCodeAt(0)-65];
+			for(var i=1; i<=8; i++){
+				total += eval(id[i]) * (9 - i);
+			}
+			//補上檢查碼(最後一碼)
+			total += eval(id[9]);
+			//檢查比對碼(餘數應為0);
+			if(total%10 == 0 ){
+				return true;
+			}else{
+				alert('身分證字號錯誤');
+				return false;
+			}
+		}
+	}
+	function checkmail(mail){
+		var mailcheck = mail;
+		emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+		if(mailcheck.search(emailRule)!= -1){
+			return true;
+		}else{
+			alert('Email驗證有誤')
+			return false;
+		}
+	}
+</script>
+<!-- ./page wapper-->

@@ -1,0 +1,243 @@
+<?php
+	$member = new Member();
+	$or = new Orders();
+	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$origMemberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$member->changeToReadable($memberData[0]);
+	
+	$lg = new Loyal_Guest();
+	$allLgData = $lg->getAllLoyalGuest();
+	$ifLoyal = "否";
+	foreach($allLgData as $keyIn=>$valueIn){
+		if($valueIn["lgIdNum"] == $memOrigData[0]["memIdNum"]){
+			$ifLoyal = "是";
+		}
+	}
+	
+	$iforder = $or->getOrderhistory($_SESSION['user']['memNo']);
+    $disabled = ($iforder != '') ? "disabled":"";
+?>
+
+<script>
+	 $(function () {
+			if($(".memclass").val() == '0'){
+					$(".memSchool").show();
+				}else{
+					$(".memSchool").hide();
+				}
+        });
+</script>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員基本資料修改</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+				<h2 class="page-heading">
+					<span class="page-heading-title2">會員基本資料修改</span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">會員編號: <?php echo $_SESSION['user']['memNo']; ?>，<?php echo $memOrigData[0]["memName"]." "; echo $memOrigData[0]["memGender"] == 0 ? "小姐" : "先生"; ?></h3>
+					<div class="box-border">
+						<ul>
+							<div class="row">
+								<div class="col-sm-6">
+								<form id="member_edit">
+									<h4>註冊方式 :<?php echo $memberData[0]["memRegistMethod"]; ?></h4>
+									<label for="first_name" class="required">身分別<span style="color:red">*</span> : </label>
+									<select class="input form-control memclass" name="memClass">
+										<option <?php if($memberData[0]["memClass"]=='學生') echo "selected"; ?> value="0">學生</option>
+										<option <?php if($memberData[0]["memClass"]=='上班族') echo "selected"; ?> value="1">上班族</option>
+										<option <?php if($memberData[0]["memClass"]=='家管') echo "selected"; ?> value="2">家管</option>
+										<option <?php if($memberData[0]["memClass"]=='其他') echo "selected"; ?> value="3">其他</option>
+									</select>
+									<label for="first_name" class="required memSchool">學校系級<span style="color:red">*</span> :</label>
+									<input type="text" class="input form-control memSchool" name="memSchool" value="<?php echo $memberData[0]["memSchool"]; ?>">
+									<label for="first_name" class="required">常用聯絡Email<span style="color:red">*</span> : </label>
+									<input type="text" class="input form-control" name="memSubEmail" value="<?php echo $memberData[0]["memSubEmail"]; ?>">
+									<label for="first_name" class="required">帳號(Email)<span style="color:red">*</span> : 請填寫您所就讀的學校所提供給您的個人Email</label><br>
+									<label for="first_name" class="required">(帳號驗證狀態 : <?php echo $memberData[0]["memEmailAuthen"]; ?>)</label>
+									<?php if($memberData[0]["memEmailAuthen"] == "尚未"){ ?>
+										/*<!--<a href="#"><label for="first_name" class="required reset_email" style="color: #1B26BB;">點擊重新送認證信</label></a>-->*/
+									<?php } 
+										$status = ($memberData[0]["memEmailAuthen"] == "通過") ? 'disabled':'';
+									?>
+									<input type="text" class="input form-control memAccount" <?=$status;?> name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>">
+									<label for="first_name" class="required">姓名<span style="color:red">*</span> :</label>
+									<input type="text" class="input form-control memName" name="memName" value="<?php echo $memberData[0]["memName"]; ?>" <?=$disabled?>>
+									<label for="first_name" class="required">性別<span style="color:red">*</span> : </label>
+									<label for="radio_button_5">
+										<input type="radio" name="memGender"  value="1" 
+										<?php if($origMemberData[0]["memGender"]==1) echo "checked"; ?>>男
+									</label>
+									<label for="radio_button_5">
+										<input type="radio" name="memGender"  value="0"
+										<?php if($origMemberData[0]["memGender"]==0) echo "checked"; ?>>女
+									</label><br>
+									<label for="first_name" class="required">出生年月日<span style="color:red">*</span> : </label><br>
+									<label for="first_name" class="required">民國</label>
+									<select style="width: 60px;border-style: groove;"  name="year" <?=$status?> <?=$disabled?>>
+										<?php 
+											$year =  explode('-',$memberData[0]["memBday"]);
+											echo ($year[0] != "") ? "<option value='".$year[0]."'>".$year[0]."</option>":"";
+											for($i=50;$i<=105;$i++){ ?>
+											<option value="<?=$i ?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+									<label for="first_name" class="required">年</label>
+									<select style="width: 60px;border-style: groove;"  name="month" <?=$status?> <?=$disabled?>>
+										<?php
+										
+											$year =  explode('-',$memberData[0]["memBday"]);
+											echo ($year[1] != "") ? "<option value='".$year[1]."'>".$year[1]."</option>":"";
+											for($i=1;$i<=12;$i++){ ?>
+											<option value="<?=$i ?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+									<label for="first_name" class="required">月</label>
+									
+									<select style="width: 60px;border-style: groove;"  name="date" <?=$status?> <?=$disabled?>>
+										<?php
+											$year =  explode('-',$memberData[0]["memBday"]);
+											echo ($year[2] != "") ? "<option value='".$year[2]."'>".$year[2]."</option>":"";
+											for($i=1;$i<=31;$i++){ ?>
+											<option value="<?=$i ?>"><?=$i?></option>
+										<?php } ?>
+									</select>
+									<label for="first_name" class="required">日 </label>
+									<br>
+								</div>
+								<div class="col-sm-6">
+									<label for="first_name" class="required">身分證號<span style="color:red">*</span> : </label>
+									<input type="text" class="input form-control"  name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" <?=$status?> <?=$disabled?>>
+									<label for="first_name" class="required">現住地址<span style="color:red">*</span> :</label>
+									<input type="text" class="input form-control" name="memAddr" value="<?php echo $memberData[0]["memAddr"]; ?>">
+									<label for="first_name" class="required">現住電話<span style="color:red">*</span> : </label>
+									<input type="text" class="input form-control" name="memPhone" value="<?php echo $memberData[0]["memPhone"]; ?>">
+									<label for="first_name" class="required">手機<span style="color:red">*</span> : </label>
+									<input type="text" class="input form-control" name="memCell" value="<?php echo $memberData[0]["memCell"]; ?>">
+									<label for="first_name" class="required">LineID : </label>
+									<input type="text" class="input form-control" name="memLineId" value="<?php echo $memberData[0]["memLineId"]; ?>">
+									<!--<label for="first_name" class="required">是否為老客戶 : <?=$ifLoyal?> </label>-->
+									<input type="hidden" name="pass_number" value="<?php echo $memberData[0]["pass_number"]; ?>" />
+									<input type="hidden" name="memNo" value="<?php echo $_SESSION['user']['memNo']; ?>" />
+								</div>
+								</form>
+							</div>
+						</ul>
+						<button class="button" id="update">更新資料</button>
+					</div>
+					
+				</div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script>
+	$(".memother").hide();
+	$(".memclass").change(function(){
+		var memclass_val = $(this).val();
+		if(memclass_val == '0'){
+			$(".memSchool").show();
+		}else{
+			$(".memSchool").hide();
+			$(".memSchool").val('');
+		}
+	})
+	$("#update").click(function(){
+		if(checkTwID($("input[name=memIdNum]").val())){
+			$.ajax({
+				url: 'php/member_edit.php',
+				data: $('#member_edit').serialize(),
+				type:"POST",
+				dataType:'text',
+				success: function(msg){
+					if(msg == '1'){
+						alert('更新成功');
+						location.href='index.php?item=member_center&action=member_edit';
+					}else{
+						alert(msg + '請填寫相關欄位');
+					}
+				},
+
+				error:function(xhr, ajaxOptions, thrownError){ 
+					alert(xhr.status); 
+					alert(thrownError);
+				}
+			});
+		}
+	})
+	
+	$(".reset_email").click(function(){
+		var memAccount = $('.memAccount').val();
+		var memName = $('.memName').val();
+		var memno = <?php echo $_SESSION['user']['memNo']; ?>;
+		$.ajax({
+            url: 'php/member_resetmail.php',
+            data: $('#member_edit').serialize(),
+            type:"POST",
+            dataType:'text',
+            success: function(msg){
+                if(msg){
+					alert('已寄送到'+memAccount);
+				}else{
+					alert('寄送錯誤');
+				}
+            },
+
+            error:function(xhr, ajaxOptions, thrownError){ 
+                alert(xhr.status); 
+                alert(thrownError);
+            }
+        });
+	})
+	
+	function checkTwID(id){
+		//建立字母分數陣列(A~Z)
+		var city = new Array(
+			 1,10,19,28,37,46,55,64,39,73,82, 2,11,
+			20,48,29,38,47,56,65,74,83,21, 3,12,30
+		)
+		id = id.toUpperCase();
+		// 使用「正規表達式」檢驗格式
+		if (id.search(/^[A-Z](1|2)\d{8}$/i) == -1) {
+			alert('身分證字號錯誤錯誤');
+			return false;
+		} else {
+			//將字串分割為陣列(IE必需這麼做才不會出錯)
+			id = id.split('');
+			//計算總分
+			var total = city[id[0].charCodeAt(0)-65];
+			for(var i=1; i<=8; i++){
+				total += eval(id[i]) * (9 - i);
+			}
+			//補上檢查碼(最後一碼)
+			total += eval(id[9]);
+			//檢查比對碼(餘數應為0);
+			if(total%10 == 0 ){
+				return true;
+			}else{
+				alert('身分證字號錯誤');
+			}
+		}
+	}
+</script>

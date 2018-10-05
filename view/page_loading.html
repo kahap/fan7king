@@ -1,0 +1,306 @@
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<script src="assets/faq/modernizr.js"></script> <!-- Modernizr -->
+<style>
+        #bonfire-pageloader {
+            background-color: #1FB6DB;
+            /* background-color: #d41e6d; */
+        }
+        
+        #bonfire-pageloader svg {
+            fill: #fff;
+        }
+        
+        #bonfire-pageloader {
+            position: absolute;
+            z-index: 99999999999999;
+            width: 100%;
+            height: 1000%;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin-top: -50px;
+        }
+        
+        .bonfire-pageloader-fade {
+            opacity: 0 !important;
+            -webkit-transition: all 2s ease;
+            -moz-transition: all 2s ease;
+            -o-transition: all 2s ease;
+            -ms-transition: all 2s ease;
+            transition: all 2s ease;
+        }
+        
+        .bonfire-pageloader-hide {
+            display: none;
+        }
+        
+        .bonfire-pageloader-icon {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            margin: 100px 0 0 0;
+            opacity: 1;
+            top: 0;
+        }
+        
+        .bonfire-pageloader-icon-hide {
+            opacity: 0 !important;
+            -webkit-transition: all .5s ease;
+            -moz-transition: all .5s ease;
+            -o-transition: all .5s ease;
+            -ms-transition: all .5s ease;
+            transition: all .5s ease;
+        }
+        
+        #bonfire-pageloader svg {
+            -webkit-animation: spin 3s linear infinite;
+            -moz-animation: spin 3s linear infinite;
+            animation: spin 3s linear infinite;
+            width: 100px;
+            height: 100px;
+        }
+        
+        @-webkit-keyframes spin {
+            100% {
+                -webkit-transform: rotate(-360deg);
+            }
+        }
+        
+        @-moz-keyframes spin {
+            100% {
+                -moz-transform: rotate(-360deg);
+            }
+        }
+        
+        @keyframes spin {
+            100% {
+                -webkit-transform: rotate(-360deg);
+                transform: rotate(-360deg);
+            }
+        }
+        
+        html {
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform-origin: top;
+            -moz-transform-origin: top;
+            -ms-transform-origin: top;
+            -o-transform-origin: top;
+            transform-origin: top;
+            -webkit-transition: all .75s ease;
+            -moz-transition: all .75s ease;
+            -o-transition: all .75s ease;
+            -ms-transition: all .75s ease;
+            transition: all .75s ease;
+        }
+        
+        .bonfire-html-onload {
+            -webkit-transform: translateY(-50px);
+            -moz-transform: translateY(-50px);
+            -ms-transform: translateY(-50px);
+            -o-transform: translateY(-50px);
+            transform: translateY(-50px);
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+    </style>
+	<!-- BEGIN THE LOADING SCREEN -->
+    <div id="bonfire-pageloader">
+
+        <!-- BEGIN THE ICON -->
+        <div class="bonfire-pageloader-icon">
+
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+        <path id="loading-12-icon" d="M291,82.219c0,16.568-13.432,30-30,30s-30-13.432-30-30s13.432-30,30-30S291,65.65,291,82.219z
+             M261,404.781c-15.188,0-27.5,12.312-27.5,27.5s12.312,27.5,27.5,27.5s27.5-12.312,27.5-27.5S276.188,404.781,261,404.781z
+             M361.504,113.167c-4.142,7.173-13.314,9.631-20.487,5.489c-7.173-4.141-9.631-13.313-5.49-20.487
+            c4.142-7.173,13.314-9.631,20.488-5.489C363.188,96.821,365.645,105.994,361.504,113.167z M188.484,382.851
+            c-14.348-8.284-32.697-3.368-40.98,10.98c-8.285,14.349-3.367,32.696,10.98,40.981c14.35,8.283,32.697,3.367,40.98-10.981
+            C207.75,409.482,202.834,391.135,188.484,382.851z M421.33,184.888c-8.368,4.831-19.07,1.965-23.901-6.404
+            c-4.832-8.368-1.965-19.07,6.404-23.902c8.368-4.831,19.069-1.964,23.9,6.405C432.566,169.354,429.699,180.056,421.33,184.888z
+             M135.399,329.767c-8.285-14.35-26.633-19.266-40.982-10.982c-14.348,8.285-19.264,26.633-10.979,40.982
+            c8.284,14.348,26.632,19.264,40.981,10.98C138.767,362.462,143.683,344.114,135.399,329.767z M436.031,277.249
+            c-11.044,0-20-8.953-20-19.999c0-11.045,8.955-20.001,20.001-20.001c11.044,0,19.999,8.955,19.999,20.002
+            C456.031,268.295,447.078,277.249,436.031,277.249z M115.97,257.251c-0.001-16.57-13.433-30.001-30.001-30.002
+            c-16.568,0.001-29.999,13.432-30,30.002c0.001,16.566,13.433,29.998,30.001,30C102.538,287.249,115.969,273.817,115.97,257.251z
+             M401.333,364.248c-10.759-6.212-14.446-19.97-8.234-30.73c6.212-10.759,19.971-14.446,30.731-8.233
+            c10.759,6.211,14.445,19.971,8.232,30.73C425.852,366.774,412.094,370.46,401.333,364.248z M135.398,184.736
+            c8.285-14.352,3.368-32.698-10.98-40.983c-14.349-8.283-32.695-3.367-40.981,10.982c-8.282,14.348-3.366,32.696,10.981,40.981
+            C108.768,204,127.115,199.082,135.398,184.736z M326.869,421.328c-6.902-11.953-2.807-27.242,9.148-34.145
+            s27.243-2.806,34.146,9.149c6.902,11.954,2.806,27.243-9.15,34.145C349.059,437.381,333.771,433.284,326.869,421.328z
+             M188.482,131.649c14.352-8.286,19.266-26.633,10.982-40.982c-8.285-14.348-26.631-19.264-40.982-10.98
+            c-14.346,8.285-19.264,26.633-10.98,40.982C155.787,135.017,174.137,139.932,188.482,131.649z" />
+      </svg>
+            <h3 style="color:#fff;margin-top: 1vh;text-align: center; margin-bottom: 3vh;font-size: 20px;font-weight: 500;">驗證中...</h3>
+            <h3 class="text01" style="color:#fff;margin-top:1vh;margin-left:-50%;width: 250px;font-size: 20px;font-weight: 500;line-height: 25px;">
+                <span style="font-size: 24px;">✓</span> 會員資料已填寫完整</h3>
+            <h3 class="text02" style="color:#fff;margin-top:1vh;margin-left:-50%;width: 250px;font-size: 20px;font-weight: 500;line-height: 25px;">
+                <span style="font-size: 24px;">✓</span> 通訊資料已確認</h3>
+            <h3 class="text03" style="color:#fff;margin-top:1vh;margin-left:-50%;width: 250px;font-size: 20px;font-weight: 500;line-height: 25px;">
+                <span style="font-size: 24px;">✓</span> 綁定FACEBOOK</h3>
+        </div>
+        <!-- END THE ICON -->
+    </div>
+    <!-- END THE LOADING SCREEN -->
+
+    <div class="columns-container">
+        <div class="container" id="columns">
+            <!-- breadcrumb -->
+            <div class="breadcrumb clearfix">
+                <a class="home" href="https://happyfan7.com/index.php?item=login#" title="Return to Home">Home</a>
+                <span class="navigation-pipe">&nbsp;</span>
+                <span class="navigation_page">會員驗證</span>
+            </div>
+            <!-- ./breadcrumb -->
+            <!-- page heading-->
+            <h2 class="page-heading">
+                <span class="page-heading-title2">會員驗證成功</span>
+            </h2>
+            <!-- ../page heading-->
+            <div class="page-content" style="margin-top: 10px;">
+                <section class="whiteSection clearfix aboutPeople">
+                    <div class="container">
+                        <!-- ../page heading-->
+                        <div class="page-content" style="margin-top: 10px;">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <img src="img/lottery_02_compress.jpg" class="img-responsive" alt="Image" style="border-radius: 5px;">
+                                </div>
+                            </div>
+
+
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                                        <a href="?item=award">
+                                            <button class="button" style="background-color:#d41e6d;margin-top: 30px;padding:20px 40px; font-size:20px;">
+                                              中獎名單
+                                            </button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                </section>
+                </div>
+            </div>
+        </div>
+
+        <style type="text/css">
+            /* define bootstrap 5 columns */
+            
+            .col-xs-1-5,
+            .col-sm-1-5,
+            .col-md-1-5,
+            .col-lg-1-5 {
+                position: relative;
+                min-height: 1px;
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+            
+            .col-xs-1-5 {
+                width: 20%;
+                float: left;
+            }
+            
+            @media (min-width: 768px) {
+                .col-sm-1-5 {
+                    width: 20%;
+                    float: left;
+                }
+            }
+            
+            @media (min-width: 992px) {
+                .col-md-1-5 {
+                    width: 20%;
+                    float: left;
+                }
+            }
+            
+            @media (min-width: 1200px) {
+                .col-lg-1-5 {
+                    width: 20%;
+                    float: left;
+                }
+            }
+        </style>
+        <!-- servives -->
+
+
+    </div>
+<script>
+	$('.cd-faq-trigger').click(function(){
+		if($(this).attr('data-gt') == '0'){
+			$(this).css('color','#FF3366');
+			$(this).attr('data-gt',1);
+		}else{
+			$(this).css('color','#1b79ca');
+			$(this).attr('data-gt',0);
+		}
+		
+	})
+</script>
+   <script>
+        function resizenow() {
+            var browserwidth = jQuery(window).width();
+            var browserheight = jQuery(window).height();
+            jQuery('.bonfire-pageloader-icon').css('right',
+                ((browserwidth - jQuery(".bonfire-pageloader-icon").width()) / 2)).css('top', ((browserheight - jQuery(
+                ".bonfire-pageloader-icon").height()) / 2));
+        };
+        resizenow();
+        jQuery(window).resize(function() {
+            resizenow();
+        });
+
+        function resizenow() {
+            var browserwidth = jQuery(window).width();
+            var browserheight = jQuery(window).height();
+            jQuery('.bonfire-pageloader-icon').css('right', ((browserwidth - jQuery(".bonfire-pageloader-icon").width()) / 2))
+                .css('top',
+                    ((browserheight - jQuery(".bonfire-pageloader-icon").height()) / 2));
+        };
+        resizenow();
+        jQuery("html").addClass('bonfire-html-onload');
+        jQuery(document.body).on("touchmove", function(e) {
+            e.preventDefault();
+        });
+        var scrollPosition = [self.pageXOffset || document.documentElement.scrollLeft ||
+            document.body.scrollLeft, self.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+        ];
+        var html = jQuery('html');
+        html.data('scroll-position', scrollPosition);
+        html.data('previous-overflow', html.css('overflow'));
+        html.css('overflow',
+            'hidden');
+        window.scrollTo(scrollPosition[0], scrollPosition[1]);
+
+        jQuery(window).load(function() {
+            setTimeout(function() {
+                jQuery(".bonfire-pageloader-icon").addClass('bonfire-pageloader-icon-hide');
+            }, 9000);
+            setTimeout(function() {
+                jQuery(document.body).unbind('touchmove');
+                var html = jQuery('html');
+                var scrollPosition = html.data('scroll-position');
+                html.css('overflow', html.data('previous-overflow'));
+                window.scrollTo(scrollPosition[0], scrollPosition[1]);
+                jQuery("#bonfire-pageloader").addClass('bonfire-pageloader-fade');
+                jQuery("html").removeClass('bonfire-html-onload');
+            }, 9000);
+            setTimeout(function() {
+                jQuery("#bonfire-pageloader").addClass('bonfire-pageloader-hide');
+            }, 10000);
+
+        });
+    </script>
+<script src="assets/faq/jquery-2.1.1.js"></script>
+<script src="assets/faq/jquery.mobile.custom.min.js"></script>
+<script src="assets/faq/main.js"></script> <!-- Resource jQuery -->

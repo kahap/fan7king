@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1>產生超商繳費條碼</h1>
+    用post傳送繳費資料轉換成超商條碼，<br />
+    傳入資料<br />
+    1.撥款銀行[bank] CMC、21數位、21數位小額支付、CMC滯納金<br />
+    CMC部分:<br />
+    應繳款日[ExpectedRepaymentDate]<br />
+    應繳金額[MonthlyPayment]<br />
+    第一段條碼後3碼[shopCode1Later3]<br />
+    第2段條碼[shopCode2]<br /><br />
+    21數位:<br />
+    應繳款日[ExpectedRepaymentDate]<br />
+    案件編號[ID]<br />
+    應繳金額[MonthlyPayment]<br /><br />
+    21數位小額支付:<br />
+    應繳款日[ExpectedRepaymentDate]<br />
+    會員編號[ID]<br />
+    應繳金額[MonthlyPayment]<br /><br />
+    CMC滯納金:<br />
+    應繳款日[ExpectedRepaymentDate]<br />
+    案件編號[ID]<br />
+    應繳金額[MonthlyPayment]<br />
+    <br />
+    <div>
+        <p>CMC</p>
+        <form action="barcode.php" method="post">
+            <input name="bank" type="hidden" value="CMC" />
+            應繳款日 :
+            <input name="ExpectedRepaymentDate" value="20161121" /><br />
+            <br />
+            應繳金額 :
+            <input name="MonthlyPayment" value="8618" /><br />
+            <br />
+            第一段條碼後3碼 :
+            <input name="shopCode1Later3" value="6IF" /><br />
+            <br />
+            第2段條碼 :
+            <input name="shopCode2" value="B497000161021001" /><br />
+            <br />
+            <input type="submit" value="送出" />
+        </form>
+    </div>
+    <br />
+    <br />
+    <div>
+        <p>21數位</p>
+        <form action="barcode.php" method="post">
+            <input name="bank" type="hidden" value="21數位" />
+            應繳款日 :
+            <input name="ExpectedRepaymentDate" value="20161027" /><br />
+            <br />
+            案件編號 :
+            <input name="ID" value="201612080025" /><br />
+            <br />
+            應繳金額 :
+            <input name="MonthlyPayment" value="1000" /><br />
+            <br />
+            <input type="submit" value="送出" />
+        </form>
+    </div>
+    <br />
+    <br />
+    <div>
+        <p>21數位小額支付</p>
+        <form action="barcode.php" method="post">
+            <input name="bank" type="hidden" value="21數位小額支付" />
+            應繳款日 :
+            <input name="ExpectedRepaymentDate" value="20161027" /><br />
+            <br />
+            會員編號 :
+            <input name="ID" value="1234567" /><br />
+            <br />
+            應繳金額 :
+            <input name="MonthlyPayment" value="1000" /><br />
+            <br />
+            <input type="submit" value="送出" />
+        </form>
+    </div>
+    <br />
+    <br />
+    <div>
+        <p>CMC滯納金</p>
+        <form action="barcode.php" method="post">
+            <input name="bank" type="hidden" value="滯納金" />
+            應繳款日 :
+            <input name="ExpectedRepaymentDate" value="20161027" /><br />
+            <br />
+            案件編號 :
+            <input name="ID" value="201611080001" /><br />
+            <br />
+            應繳金額 :
+            <input name="MonthlyPayment" value="300" /><br />
+            <br />
+            <input type="submit" value="送出" />
+        </form>
+    </div>
+</body>
+</html>

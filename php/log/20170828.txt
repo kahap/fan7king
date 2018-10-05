@@ -1,0 +1,1 @@
+20170828 08:15:44inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:1.0,PGA:0.7

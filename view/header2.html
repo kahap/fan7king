@@ -1,0 +1,349 @@
+﻿<?php
+	$src = ($_GET['pro'] != "") ? 'https://'.DOMAIN.'/index.php?item=product&pro='.$_GET['pro'].'&share='.$_SESSION['user']['memNo']:'https://'.DOMAIN.'/index.php';
+	$pm = new Product_Manage();
+	if($_GET['pro'] != ""){
+		$pm_detail = $pm->getAllByProName($_GET['pro']); //商品內容
+		$img = json_decode($pm_detail[0]['proImage']);
+		$img[0] = ($img[0] !="") ? $img[0]:"admin/images/indexImg/20160607062650.jpg";
+		$ps = new Period_Setting();
+		$month = $ps->getAllPS();
+		foreach($month as $k => $v){
+			$price[$v['psMonthNum']] = ceil($v['psRatio']*$pm_detail[0]['pmPeriodAmnt']/$v['psMonthNum']);
+		}
+		$str_price = "月付: NT $".number_format(min($price))."*". array_search(min($price),$price)."期";
+		
+	}else{
+		$str_price = '最受大學生歡迎的分期購物網站!';
+	}
+	$category = new Category();
+	$cate_head = $category->getAllCatDisplayAndOrder();
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>樂分期-HappyFan7</title>
+	<meta property="og:url"           content="<?php echo $src; ?>" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="<?php echo ($pm_detail[0]['proName'] != '')? $pm_detail[0]['proName']:'樂分期-HappyFan7'; ?>" />
+	<meta property="og:description"   content="<?php echo $str_price; ?>" />
+	<meta property="og:image"         content="https://<?=DOMAIN?>/<?php echo ($img[0] !="") ? "admin/".$img[0]:"admin/images/indexImg/20160607062650.jpg";?>" />
+   
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="assets/data/page_icon.png">
+    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/fancyBox/jquery.fancybox.css" />
+    <link rel="stylesheet" type="text/css" href="assets/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
+	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>
+	<script src="assets/js/jquery.placeholder.js"></script>
+    <!-- Facebook Pixel Code -->
+	<script>
+	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	document,'script','https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '1786588334914903');
+	fbq('track', 'PageView');
+		<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'order_period' && $_GET['method'] == '4'){ ?>
+			fbq('track', 'InitiateCheckout');			
+		<?PHP } ?>
+		<?php if($_GET['item'] == '' && $_GET['action'] == '' ){ ?>
+			fbq('track', 'ViewContent');
+		<?PHP } ?>
+		<?php if($_GET['item'] == 'product'  ){ ?>
+	    	fbq('track', 'AddToCart');
+			fbq('track', 'ViewContent');
+		<?PHP } ?>
+		<?php if($_GET['item'] == 'search'  ){ ?>
+			fbq('track', 'Search');
+		<?PHP } ?>		
+		<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'member_idnum' ){ ?>
+			fbq('track', 'Lead');
+		<?PHP } ?>
+	</script>
+	
+	<!--yahoo!-->
+	<script type="application/javascript">(function(w,d,t,r,u){w[u]=w[u]||[];w[u].push({'projectId':'10000','properties':{'pixelId':'10023389'}});var s=d.createElement(t);s.src=r;s.async=true;s.onload=s.onreadystatechange=function(){var y,rs=this.readyState,c=w[u];if(rs&&rs!="complete"&&rs!="loaded"){return}try{y=YAHOO.ywa.I13N.fireBeacon;w[u]=[];w[u].push=function(p){y([p])};y(c)}catch(e){}};var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr)})(window,document,"script","https://s.yimg.com/wi/ytc.js","dotq");
+	</script>
+	
+	<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'order_period' && $_GET['method'] == '4'){ ?>
+		<script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"5564633"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script><noscript><img src="//bat.bing.com/action/0?ti=5564633&Ver=2" height="0" width="0" style="display:none; visibility: hidden;" /></noscript>
+	<?php } ?>
+	
+	<noscript><img height="1" width="1" style="display:none"
+	src="https://www.facebook.com/tr?id=1786588334914903&ev=PageView&noscript=1"
+	/></noscript>
+    <script>
+	!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+	t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	document,'script','https://connect.facebook.net/en_US/fbevents.js');
+	fbq('init', '975681702573156');
+	fbq('track', 'PageView');
+		<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'order_period' && $_GET['method'] == '4'){ ?>
+			fbq('track', 'InitiateCheckout');
+		<?PHP } ?>
+		<?php if($_GET['item'] == '' && $_GET['action'] == '' ){ ?>
+			fbq('track', 'ViewContent');
+		<?PHP } ?>
+		<?php if($_GET['item'] == 'product'  ){ ?>
+	    	fbq('track', 'AddToCart');
+			fbq('track', 'ViewContent');
+		<?PHP } ?>
+		<?php if($_GET['item'] == 'search'  ){ ?>
+			fbq('track', 'Search');
+		<?PHP } ?>
+		<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'member_idnum' ){ ?>
+			fbq('track', 'Lead');
+		<?PHP } ?>
+    </script>
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=975681702573156&ev=PageView&noscript=1" />
+    </noscript>
+
+	<!-- DO NOT MODIFY -->
+	<!-- End Facebook Pixel Code -->
+</head>
+
+<body class="home">
+	<?php include_once("php/analyticstracking.php") ?>
+	<div id="fb-root"></div>
+	<!--華維廣告CODE---->
+	<script src="assets/js/ad/rtid.js"></script>
+	<script src="assets/js/ad/eland_tracker.js"></script>
+	<script>
+		clickforce_rtid("1014001");
+		ElandTracker.Track({'source':'CAP1014',
+		'trackType':'view',
+		'trackSubfolderDepth':3,
+		'targetType':'usual'
+		});
+	<?php if($_GET['item'] != 'member_center' && $_GET['action'] != 'order_period' && $_GET['method'] != '3'){ ?>
+		clickforce_rtid("1014003");
+		ElandTracker.Track({'source':'CAP1014',
+		'trackType':'click',
+		'trackSubfolderDepth':3,
+		'targetType':'homePageP'
+		});
+	<?php } ?>
+	</script>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v2.6&appId=1557221921249508";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+		<script>
+			// To test the @id toggling on password inputs in browsers that don’t support changing an input’s @type dynamically (e.g. Firefox 3.6 or IE), uncomment this:
+			// $.fn.hide = function() { return this; }
+			// Then uncomment the last rule in the <style> element (in the <head>).
+			$(function() {
+				// Invoke the plugin
+				$('input, textarea').placeholder({customClass:'my-placeholder'});				
+				var html;
+				if (html) {
+					$('<p class="note">' + html + '</p>').insertBefore('form');
+				}
+			});
+		</script>
+		<style>
+			.my-placeholder { color: #aaa; }
+			.note { border: 1px solid orange; font-size: 13px; padding: 1em; background: #ffffe0; }
+		</style>
+		<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'order_period' && $_GET['method'] == '4'){ ?>
+		<!-- Google Code for &#27138;&#20998;&#26399;&#23436;&#25104;&#36092;&#36023; Conversion Page -->
+		<script type="text/javascript">
+		/* <![CDATA[ */
+		var google_conversion_id = 872321587;
+		var google_conversion_language = "en";
+		var google_conversion_format = "3";
+		var google_conversion_color = "ffffff";
+		var google_conversion_label = "3v-TCLrmu2oQs6T6nwM";
+		var google_remarketing_only = false;
+		/* ]]> */
+		</script>
+		<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+		</script>
+		<noscript>
+		<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/872321587/?label=3v-TCLrmu2oQs6T6nwM&amp;guid=ON&amp;script=0"/>
+		</div>
+		</noscript>
+		<?php } ?>
+		
+		
+		<?php if($_GET['item'] == 'member_center' && $_GET['action'] == 'order_period' && $_GET['method'] == '3'){ ?>
+		<!-- 華維廣告 -->
+		<script>
+			function thankButton(){
+				clickforce_rtid("1014002");
+				ElandTracker.Track({'source':'CAP1014',
+				'trackType':'click',
+				'trackSubfolderDepth':3,
+				'targetType':'thankButton'
+				});
+			};
+		</script>
+
+
+		<?php } ?>
+		
+
+<div id="header" class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="nav-top-links">
+                <?php /* <a href="mailto:service@happyfan7.com"><img alt="email" src="assets/images/email.png" /> 客服信箱</a> */ ?>
+				
+				
+				 <a href="http://www.facebook.com/sharer.php?u=http://<?=DOMAIN?>/index.php%3Fshare%3D<?php echo $_SESSION['user']['memNo'] ?>" target="_blank"><img src="assets/images/fb_share.png"/></a>
+			</div>
+			
+            
+            <div class="support-link">
+			<?php 
+				if($_SESSION['user']['memName'] != ""){
+			?>
+				<a href="?item=member_center"> <?php echo $_SESSION['user']['memName']?>  您好</a>
+                <a href="?item=member_center&action=pay">我要繳款</a>
+				<a href="php/logout.php">登出</a>
+			<?php
+				}else{
+			?>
+                <a href="?item=login_register<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>">註冊</a>
+                <a href="?item=login<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>">登入</a>
+            <?php
+				}
+			?>
+			</div>
+			
+        </div>
+    </div>
+    <!--/.top-header -->
+    <!-- MAIN HEADER -->
+    <div class="container main-header">
+        <div class="row">
+            <div class="col-xs-12 col-sm-5 logo">
+                <a href="index.php"><img alt="Kute Shop" src="assets/images/logo_new.png" /></a>
+            </div>
+            <div class="col-xs-12 col-sm-7 header-search-box">
+                <form class="form-inline" action="?item=search" method="GET">
+                      <div class="form-group form-category">
+					  <input name="item" value="search" type="hidden">
+                        <select class="select-category" name="category">
+                            <option value="0">全部</option>
+							<?php
+								foreach($cate_head as $key => $value){
+									if($value['catIfDisplay'] != "0"){
+										echo "<option value='".$value['catOrder']."'>".$value['catName']."</option>";
+									}
+								}
+							?>
+                        </select>
+                      </div>
+                      <div class="form-group input-serach">
+                        <input type="text"  placeholder="<?php 
+							$string = new Hotkeys(); 
+							$string_key = $string->getAllHK(); 
+							if($string_key[0]['hkEnable'] != '0'){
+								echo $string_key[0]['hkKey']; 
+							}else{
+								echo 'Apple, Sony, Phone'; 
+							}
+						?>" name="search">
+                      </div>
+                      <button type="submit" class="pull-right btn-search"></button>
+                </form>
+            </div>
+            
+        </div>    
+    </div>
+    <!-- END MANIN HEADER -->
+    <div id="nav-top-menu" class="nav-top-menu">
+        <div class="container">
+            <div class="row">
+				<?php
+					if(array_key_exists($itemVal,$page_other ) or $itemVal != "" or $_POST['Firm_Number'] != "" or $_SESSION['ThirdData'] != ""){
+					}else{
+				?>
+                <div class="col-sm-3" id="box-vertical-megamenus">
+                    <div class="box-vertical-megamenus">
+                        <h4 class="title">
+                            <span class="title-menu">商品分類</span>
+                            <span class="btn-open-mobile pull-right home-page"><i class="fa fa-bars"></i></span>
+                        </h4>
+                        <div class="vertical-menu-content is-home">
+                            <ul class="vertical-menu-list">
+								<?php 
+									$i=1;
+									foreach($cate_head as $key => $value){
+										if($value['catIfDisplay'] != "0"){
+										echo "<li><a href='?item=category&c=".$value['catOrder']."'>
+													<img class='icon-menu' src='assets/data/F".$value['catOrder'].".svg'>".$value['catName']."</a>
+											  </li>";
+										}
+										$i++;
+									}
+									//admin/".$value['catIcon']."
+								?>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+				<?php
+					}
+				?>
+                <div id="main-menu" class="col-sm-9 main-menu">
+                    <nav class="navbar navbar-default">
+                        <div class="container-fluid">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                                <a class="navbar-brand" href="#">功能列表</a>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav" style="float:right">
+									<li class="<?php echo ($_GET['item'] == 'member_center') ? 'active':''; ?>">
+										<a href="?item=member_center">會員中心</a>                                           
+                                    </li>
+									<li class="<?php echo ($_GET['item'] == 'loan_menu') ? 'active':''; ?>">
+										<a href="?item=loan_menu">我要借款</a>                                           
+                                    </li>
+                                    <li class="<?php echo ($_GET['item'] == 'fmBuyStep') ? 'active':''; ?>">
+										<a href="?item=fmBuyStep">購物流程</a>
+									</li>
+                                    <li class="<?php echo ($_GET['item'] == 'faq') ? 'active':''; ?>">
+                                        <a href="?item=faq">常見問題</a>
+                                    </li>
+                                    <li class="<?php echo ($_GET['item'] == 'fmAboutUs') ? 'active':''; ?>">
+                                        <a href="?item=fmAboutUs">關於我們</a>
+                                    </li>
+                                    <li class="<?php echo ($_GET['item'] == 'fmContactService') ? 'active':''; ?>">
+										<a href="?item=fmContactService">聯絡客服</a>
+									</li>
+                                </ul>
+                            </div><!--/.nav-collapse -->
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- userinfo on top-->
+        </div>
+    </div>
+</div>
+<!-- end header -->

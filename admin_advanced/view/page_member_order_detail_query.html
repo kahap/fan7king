@@ -1,0 +1,130 @@
+<?php
+	$member = new Member();
+	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$member->changeToReadable($memberData[0]);
+    $rcType = "0";
+	
+
+    if($_GET["rctype"] != "") 
+    {
+        $rcType = $_GET["rctype"];
+        $mco = new Orders_Other();
+        $orNo = $_GET["orno"];
+        $realNo =  $_GET["orno"];
+        $orInternalCaseNo ="";
+    }
+    else
+    {
+        $or = new Orders();
+        $pm = new Product_Manage();
+	    $pro = new Product();
+	
+	    //訂單
+	    $orNo = $_GET["orno"];
+	    $orOrigData = $or->getOneOrderByNo($orNo);
+	    $orData = $or->getOneOrderByNo($orNo);
+	    $or->changeToReadable($orData[0],$method);
+	
+	    //欄位名稱
+	    $columnName = $or->getAllColumnNames("orders");
+	
+	    //商品上架
+	    $pmData = $pm->getOnePMByNo($orData[0]["pmNo"]);
+	
+	    //商品
+        $proData = $pro->getOneProByNo($pmData[0]["proNo"]);
+        $realNo = $orData['0']['orNo'] ;
+    
+         if($orData[0]['orInternalCaseNo'] != "")
+         {
+           $orInternalCaseNo = $orData[0]['orInternalCaseNo'] ;
+         }
+     
+    }
+?>
+<style>
+table { border-collapse: collapse; border-spacing: 0; }
+#GridView1{
+  margin: 0 auto;
+  font-size: 1.2em;
+  margin-bottom: 10px;	
+}
+
+#GridView1 th  {
+  cursor: pointer;
+  background: #000000;
+  text-align: center;
+}
+#GridView1 thead tr th font{ 
+  font-weight: bold;
+  padding: 12px 15px;
+  padding-left: 42px;
+}
+
+#GridView1 tbody tr td {
+  text-align: center;
+  padding: 15px 10px;
+}
+
+</style>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期訂單查詢</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">查看繳款分期</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+				<h2 class="page-heading">
+					<span class="page-heading-title2">查看繳款分期</span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+				  
+				         <h3 class="checkout-sep">分期案件編號: <?php echo  $orNo; ?></h3>
+				
+					
+					<div class="box-border">
+						<div class="row">
+									<!--<iframe class="iframe_style" scrolling="yes" src="http://api.21-finance.com/query.aspx?id=<?php echo  $orData['0']['orInternalCaseNo'];?>"></iframe>-->
+									<?php
+										if($$orInternalCaseNo != ""){
+											$url = "http://api.21-finance.com/query.aspx?id=".$$orInternalCaseNo;
+										}else{
+											$url = "https://happyfan7.com/admin_advanced/ajax/payment/paylist.php?rctype=".$rcType."&id=".$realNo;
+										}
+                                        echo "AAAA->".$url;
+										$content = @file_get_contents($url);
+										print_r($content);
+									?>
+						</div>
+						<p style="color:red">
+							*提醒：分期帳單將於收到貨後的3-5個工作天產生。
+						</p>
+						<p style="color:red">
+							*提醒：因每個超商代收結算日不同，故已繳款訊息至少3-7個工作天後才能查詢。請繳款後，務必保留收據至少1個月。
+						</p>
+						<a href="?item=member_center&action=purchase&rctype=<?php echo $rcType; ?>&orno=<?php echo $orNo; ?>"><button class="button">上一頁</button></a>
+					</div>
+				</div>
+            </div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>

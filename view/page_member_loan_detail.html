@@ -1,0 +1,206 @@
+<?php
+    $member = new Member();
+    $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+    $member->changeToReadable($memberData[0]);
+    
+    $mco = new Motorbike_Cellphone_Orders();
+    $mco_data = $mco->getOneOrderByNo($_GET['mcono']);
+
+    
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">手機、機車借款訂單查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+<?php include_once('view/page_member_left.html'); ?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+               
+                <h2 class="page-heading">
+                    <span class="page-heading-title2">分期訂單編號: 
+                        <?php echo $mco_data['0']['mcoCaseNo']; ?>
+                    </span>
+                </h2>
+                <!-- ../page heading-->
+                <div class="page-content checkout-page">
+                    <h3 class="checkout-sep">一.　借款資料：</h3>
+                    <div class="box-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4>申請案件如需保密請打勾 ( 照會親友聯絡人時，不告之購買事由 )</h4>
+                                <h4>廠牌 : 
+                                    <?php if ($mco_data[0]['mcoType'] == "2") {
+                                            echo $mco_data[0]['mcoMotorBrand'];
+                                        } else if ($mco_data[0]['mcoType'] == "1") {
+                                            echo $mco_data[0]['mcoCellBrand'];
+                                        }
+                                    
+                                     ?>
+                                </h4>
+<?php if ($mco_data[0]['mcoType'] == "1") { ?>
+                                <h4>型號 : <?php echo $mco_data[0]['mcoCellphoneSpec']; ?></h4>
+<?php } ?>
+<?php if ($mco_data[0]['mcoType'] == "2") { ?>
+                                <h4>年份 : <?php echo $mco_data[0]['mcoYear']; ?></h4>
+                                <h4>車牌 : <?php echo $mco_data[0]['mcoCarNum']; ?></h4>
+                                <h4>CC數 : <?php echo $mco_data[0]['mcoCcNumber']; ?></h4>
+<?php } ?>
+                                <h4>借款金額 : <?php echo $mco_data[0]['mcoPeriodTotal']; ?></h4>
+                                <h4>分期期數 : <?php echo $mco_data[0]['mcoPeriodAmount'] . "期"; ?></h4>
+                                <h4>月付金額 : <?php echo "NT$" . $mco_data[0]['mcoMinMonthlyTotal'] . "元"; ?></h4>
+                                <h4>每日利息僅 : <?php echo $mco_data[0]['mcoDailyInterest']; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<?php
+$memSchool = explode("#", $memberData[0]["memSchool"]);
+?>                
+                <div class="page-content checkout-page">
+                    <h3 class="checkout-sep">二.　申請人資料：</h3>
+                    <div class="box-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4>申請人姓名 :  <?php echo $memberData[0]["memName"]; ?></h4>
+                                <h4>身分證字號 :  <?php echo $memberData[0]["memIdNum"]; ?></h4>
+                                <h4>發證日期 : <?php echo $mco_data[0]['mcoIdIssueYear'] . "年" . $mco_data[0]['mcoIdIssueMonth'] . "月" . $mco_data[0]['mcoIdIssueDay'] . "日"; ?></h4>
+                                <h4>發證地點 : <?php echo $mco_data[0]['mcoIdIssuePlace']; ?></h4>
+                                <h4>補換發類別 : <?php echo $mco_data[0]['mcoIdIssueType']; ?></h4>
+                                <h4>出生日期 :  <?php echo $memberData[0]["memBday"]; ?></h4>
+                                <h4>身分別 :  <?php echo $memberData[0]["memClass"]; ?></h4>
+<?php if ($memberData[0]["memClass"] == "學生") { ?>
+                                <h4>學校 :  <?php echo $memSchool[0]; ?></h4>
+                                <h4>系別 :  <?php echo $memSchool[1]; ?></h4>
+                                <h4>年級 :  <?php echo $memSchool[2]; ?></h4>
+                                <h4>學校Email : <?php echo $memberData[0]['memAccount']; ?></h4>
+<?php } ?>
+                                <h4>常用聯絡Email :  <?php echo $memberData[0]["memSubEmail"]; ?></h4>
+                                <h4>手機 :  <?php echo $memberData[0]["memCell"]; ?></h4>
+                                <h4>現住地址 : <?php echo $memberData[0]["memAddr"]; ?></h4>
+                                <h4>現住市話 : <?php echo $memberData[0]["memPhone"]; ?></h4>
+                                <h4>戶籍地址 : <?php echo $mco_data[0]['mcoBirthAddr']; ?></h4>
+                                <h4>戶籍市話 : <?php echo $mco_data[0]['mcoBirthPhone']; ?></h4>
+                                <h4>住房所有權 : <?php echo $mco_data[0]['mcoLivingOwnership']; ?></h4>
+                                <h4>工作狀態 : <?php echo ($mco_data[0]['mcoCompanyStatus'] == "1") ? "有" : "無"; ?></h4>
+<?php if ($mco_data[0]['mcoCompanyStatus'] == "1") { ?>
+                                <h4>公司名稱 : <?php echo $memberData[0]['memCompanyName']; ?></h4>
+                                <h4>年資 : <?php echo $memberData[0]['memYearWorked']; ?></h4>
+                                <h4>月薪 : <?php echo $memberData[0]['memSalary']; ?></h4>
+                                <h4>公司市話 : <?php echo $mco_data[0]['mcoCompanyPhone']; ?></h4>
+                                <h4>公司市話分機 : <?php echo $mco_data[0]['mcoCompanyPhoneExt']; ?></h4>
+<?php } ?>
+                                <h4>信用卡號 : <?php echo $mco_data[0]['mcoCreditNum']; ?></h4>
+                                <h4>發卡銀行 : <?php echo $mco_data[0]['mcoCreditIssueBank']; ?></h4>
+                                <h4>信用卡有效期限 : <?php echo $mco_data[0]['mcoCreditDueDate']; ?></h4>
+                                <h4>帳號申請時間 : <?php echo $memberData[0]['memRegistDate']; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page-content checkout-page">
+                    <h3 class="checkout-sep">三.　資金用途：</h3>
+                    <div class="box-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4>資金用途 : <?php echo $mco_data[0]['mcoApplyPurpose']; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+<?php 
+$mcoContactName = json_decode($mco_data[0]['mcoContactName'], true);
+$mcoContactRelation = json_decode($mco_data[0]['mcoContactRelation'], true);
+$mcoContactPhone = json_decode($mco_data[0]['mcoContactPhone'], true);
+$mcoContactCell = json_decode($mco_data[0]['mcoContactCell'], true); 
+?>
+                <div class="page-content checkout-page">
+                    <h3 class="checkout-sep">四.　聯絡人資料：</h3>
+                    <div class="box-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4>聯絡人姓名 : <?php echo $mcoContactName[0]; ?></h4>
+                                <h4>聯絡人關係 : <?php echo $mcoContactRelation[0]; ?></h4>
+                                <h4>聯絡人市話 : <?php echo $mcoContactPhone[0]; ?></h4>
+                                <h4>聯絡人手機 : <?php echo $mcoContactCell[0]; ?></h4>
+<?php if ($memberData[0]["memClass"] == "非學生") { ?>
+                                <h4>其他聯絡人姓名 : <?php echo $mcoContactName[1]; ?></h4>
+                                <h4>其他聯絡人關係 : <?php echo $mcoContactRelation[1]; ?></h4>
+                                <h4>其他聯絡人市話 : <?php echo $mcoContactPhone[1]; ?></h4>
+                                <h4>其他聯絡人手機 : <?php echo $mcoContactCell[1]; ?></h4>
+<?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="page-content checkout-page">
+                    <h3 class="checkout-sep">五.　備註：</h3>
+                    <div class="box-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h4>可照會時間 : <?php echo $mco_data[0]['mcoAvailTime']; ?></h4>
+                                <h4>注意事項 : <?php echo $mco_data[0]['mcoExtraInfo']; ?></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="page-content checkout-page">
+                    <h3 class="checkout-sep">六.　證件上傳：</h3>
+                    <div class="box-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>申請人身份證正面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoIdImgTop']; ?>"/></div>
+                                <label>申請人身份證反面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoIdImgBot']; ?>"/></div>
+                                
+                                <?php if ($memberData[0]['memClass'] == '學生') { ?>
+                                <label>申請人學生證正面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoStudentIdImgTop']; ?>"/></div>
+                                <label>申請人學生證反面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoStudentIdImgBot']; ?>"/></div>
+                                <?php } ?>
+<?php if ($mco_data[0]['mcoType'] == "2") { ?>
+                                <label>申請人行照正面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoCarIdImgTop']; ?>"/></div>
+<?php } ?>
+                                <label>申請人健保卡或駕照正面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoSubIdImgTop']; ?>"/></div>
+
+                                <label>存摺封面：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoIdImgTop']; ?>"/></div>
+
+                                <label>申請人近六個月薪資往來：</label>
+                                <div id="showimg"><img src="<?php echo $mco_data[0]['mcoRecentTransactionImgTop']; ?>"/></div>
+
+                                <label>其他附件資料：</label>
+<?php if ($mco_data[0]['mcoExtraInfoUpload'] != "") {
+    $mcoExtraInfoUpload = json_decode($mco_data[0]['mcoExtraInfoUpload'], true);
+    foreach ($mcoExtraInfoUpload as $value) { 
+?>
+        <div id="showimg"><img src="<?php echo $value; ?>"/></div>
+<?php }} ?>
+                                
+                                <br>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+                
+            </div>
+        </div>
+    </div>
+</div>

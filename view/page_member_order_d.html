@@ -1,0 +1,175 @@
+<?php
+	$member = new Member();
+	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$member->changeToReadable($memberData[0]);
+	
+	$or = new Orders();
+	$orMemData = $or->getOrByMemberAndMethod($_SESSION['user']['memNo'],0);
+
+	$pm = new Product_Manage();
+	$pro = new Product();
+?>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">直購訂單查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+					<h3 class="checkout-sep">直購訂單查詢</h3>
+					<div class="box-border">
+					<div class="table-responsive">
+						<table class="table table-bordered table-responsive cart_summary">
+							<thead>
+								<tr>
+									<th>訂單狀態 </th>
+									<th>訂單編號 </th>
+									<th>訂單日期 </th>
+									<th>商品名稱 </th>
+									<th>商品規格 </th>
+									<th>繳款狀態 </th>
+									<th>我要繳款 </th>
+								</tr>
+							</thead>
+							<?php 
+								if($orMemData != null && substr($orMemData['0']['orCaseNo'],-1) =="D"){
+									foreach($orMemData as $key=>$value){
+										$orig = $value;
+										$or->changeToReadable($value,$value["orMethod"]);
+										$pmData = $pm->getOnePMByNo($value["pmNo"]);
+										$proData = $pro->getOneProByNo($pmData[0]["proNo"]);
+							?>	
+							<tr>
+								<td><?php echo $value["orStatus"]; ?></td>
+								<td>
+									<a style="text-decoration:underline;color:blue;" href="?item=member_center&action=order&orno=<?php echo $value["orNo"]; ?>">
+									<?php echo $value["orCaseNo"]; ?>
+									</a>
+								</td>
+								<td><?php echo $value["orDate"]; ?></td>
+								<td><?php echo $proData[0]["proName"]; ?></td>
+								<td><?php echo $value["orProSpec"]; ?></td>
+								<td><?php echo $value["orPaySuccess"] ?></td>
+								<td>
+									<?php
+										//$or_data[0]['orPeriodTotal']
+										if($value["orPaySuccess"] == "未付款"){
+										$allpay = new Allpay(MerchantID,HashKey,HashIV);
+										$chosemethod = ($value['orPayBy'] != '2') ? 'ATM':'WebATM';
+										$form_array = array(
+												"MerchantID" => '1292961',
+												"MerchantTradeNo" => $value["orNo"].time(),
+												"MerchantTradeDate" => date("Y/m/d H:i:s"),
+												"PaymentType" => "aio",
+												"TotalAmount" => $value["orPeriodTotal"],
+												"TradeDesc" => '您購買 '.$proData[0]["proName"]. "。 規格：".$value['orProSpec']."。 數量：1",
+												"ItemName" => $proData[0]["proName"],
+												"ChoosePayment" => $chosemethod,
+												"PaymentInfoURL"=>"http://www.allpay.com.tw/paymentinfo.php",
+												"ReturnURL"=>"http://happyfan7.com/php/ATM.php",
+												"NeedExtraPaidInfo" => "Y");
+										ksort($form_array);	
+										$form_array['CheckMacValue'] = $allpay->_getMacValue(HashKey,HashIV, $form_array);
+										$html_code = '<form id=order method=post target="_blank" action="http://payment.allpay.com.tw/Cashier/AioCheckOut">';
+										foreach ($form_array as $k => $val) {
+											$html_code .= "<input type='hidden' name='" . $k . "' value='" . $val . "'>";
+										}
+										$html_code .= "<input  class='button04' type='submit' value='立即繳費' style='float: right; background: #ff3366;color: #fff;    border: 1px solid #ff3366;padding: 10px 20px;'>";
+										$html_code .= "</form>";
+										echo $html_code;
+										}
+										
+								?>
+								</td>
+							</tr>
+							 <?php 
+									}
+								}else{
+							 ?>
+								<td colspan="6">沒有任何資料</td>
+							 <?php
+								}
+							 ?>
+							</tbody>   
+						</table>
+					</div>	
+					</div>
+				</div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script type="text/javascript"> 
+ $("#copyButton").click(function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+	alert('複製成功');
+});
+
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+</script> 

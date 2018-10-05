@@ -1,0 +1,234 @@
+<?php
+	$rbs = new Recomm_Bonus_Apply();
+	$orders = new Orders();
+	$mem = new Member();
+	$allRbsData = $rbs->getRBAByMemNo($_SESSION['user']['memNo']);
+	//$order_data = $orders->getOneOrderByNo($allRbsData[0]["orNo"]);
+	
+
+	$re = new Recomm_Setting();
+	$re_data = $re->getSetting();
+?>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">目前推薦金查詢/領取</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+			<?php 
+				include_once('view/page_member_left.html');
+				unset($_SESSION['MackMoney']);
+				unset($_SESSION['rbsTotal']);
+				
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+					<h3 class="checkout-sep">推薦獎金明細</h3>
+					<p>申請獎金將會收取手續費<?=$re_data[0]['rsCharge'];?>,申請金額必須要超過<?=$re_data[0]['rsMinimum'];?> </p>
+					<div class="box-border">
+						<table class="table table-bordered table-responsive cart_summary">
+							<thead>
+								<tr>
+									<th>訂單日期 </th>
+									<th>訂單編號</th>
+									<th>訂單狀態 </th>
+									<th>獎金 </th>
+									<th>購買人</th>
+									<th>是否可以領取 </th>
+								</tr>
+							</thead>
+							<?php
+								$count = 0;
+								if($allRbsData != null){
+									foreach($allRbsData as $key=>$value){
+										if($value['rbaRecMemNo'] == $_SESSION['user']['memNo'] && $value['rbaExtract'] != '1'){
+									$count++;
+										
+							?>
+							<tr class="pointer">
+								<td class=" "><?php echo $value["rbaDate"]; ?></td>
+								<td class=" ">
+									<?php 
+										$ord_member = $orders->getOneOrderByNo($value['orNo']);
+										echo $ord_member[0]['orCaseNo'];
+									?>
+								</td>
+								<td class=" ">
+								<?php 
+								if($ord_member[0]["orStatus"] == '8'){
+									echo $ord_member[0]["orHandleTransportSerialNum"] != "" ? '出貨中' : "備貨中";
+								}else if($ord_member[0]["orStatus"] == '10'){
+									echo "已完成 ".$ord_member[0]['orReportPeriod10Date']; 
+								}else{
+									echo $orders->status($ord_member[0]['orStatus']); 
+								}
+								?>
+								</td>
+								<td class=" "><?php echo $re_data[0]['rsTotalPerOrder'];?></td>
+								<td class=" "><?php 
+													$member_data = $mem->getOneMemberByNo($value['rbamemNo']);
+													echo substr_cut($member_data[0]['memName']);
+												?>
+								</td>
+								<td><?php 
+										if($orders->status($ord_member[0]['orStatus']) == "我要繳款" && strtotime($ord_member[0]['orReportPeriod10Date'])+(86400*$re_data[0]['rsDaysLimit']) < time()){ 
+											echo "是";
+											$MakeMoney += $re_data[0]['rsTotalPerOrder'];
+											$_SESSION['MackMoney'][] = $value["rbaNo"];
+										}else{ 
+											echo "否";
+										} ?>
+								</td>
+								
+							</tr>
+									
+							<?php 
+											}elseif($value['rbamemNo'] == $_SESSION['user']['memNo'] && $value['memExtract'] != '1'){
+												
+							?>
+							<tr class="pointer">
+								<td class=" "><?php echo $value["rbaDate"]; ?></td>
+								<td class=" ">
+									<?php 
+										$ord_member = $orders->getOneOrderByNo($value['orNo']);
+										echo $ord_member[0]['orCaseNo'];
+									?>
+								</td>
+								<td class=" ">
+								<?php 
+								if($ord_member[0]["orStatus"] == '8'){
+									echo $ord_member[0]["orHandleTransportSerialNum"] != "" ? '出貨中' : "備貨中";
+								}else{
+									echo $orders->status($ord_member[0]['orStatus']); 
+								}
+								?>
+								</td>
+								<td class=" "><?php echo $re_data[0]['rsTotalPerOrder'];?></td>
+								<td class=" "><?php 
+													$member_data = $mem->getOneMemberByNo($value['rbamemNo']);
+													echo substr_cut($member_data[0]['memName']);
+												?>
+								</td>
+								<td><?php 
+										if($orders->status($ord_member[0]['orStatus']) == "已完成" && strtotime($ord_member[0]['orHandlePaySupDate'])+(86400*$re_data[0]['rsDaysLimit']) < time()){ 
+											echo "是";
+											$MakeMoney += $re_data[0]['rsTotalPerOrder'];
+											$_SESSION['MackMoney'][] = $value["rbaNo"];
+										}else{ 
+											echo "否";
+										} ?>
+								</td>
+								
+							</tr>
+							
+							<?
+										}
+									}
+							?>
+								<tr>
+									<td colspan="6">總共累積可領金額:<?php echo ($MakeMoney != '') ? $MakeMoney-$re_data[0]['rsCharge']." 元":" 無"; 
+											$_SESSION['rbsTotal']=$MakeMoney-$re_data[0]['rsCharge']; 
+										?>
+									</td>
+								</tr>
+							<?
+									}else{
+							 ?>
+									<td colspan="6">沒有任何資料</td>
+							 <?php
+									}
+							?>		
+							
+							</tbody>   
+						</table>
+						<?PHP
+								if($MakeMoney >= $re_data[0]['rsMinimum']){
+							 
+							?>
+								<a href="?item=member_center&action=query_code&n=apply_ADS"><button class="button">領取推薦獎金</button></a>
+							<?php
+								}
+							?>
+					</div>
+				</div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<?php
+	function substr_cut($user_name){
+		$strlen     = mb_strlen($user_name, 'utf-8');
+		$firstStr     = mb_substr($user_name, 0, 1, 'utf-8');
+		$lastStr     = mb_substr($user_name, -1, 1, 'utf-8');
+		return $strlen == 2 ? $firstStr . str_repeat('*', mb_strlen($user_name, 'utf-8') - 1) : $firstStr . str_repeat("*", $strlen - 2) . $lastStr;
+	}
+?>
+<script type="text/javascript"> 
+ $("#copyButton").click(function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+	alert('複製成功');
+});
+
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+</script> 

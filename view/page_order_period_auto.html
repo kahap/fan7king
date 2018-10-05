@@ -1,0 +1,93 @@
+<style>
+	label{
+		    font-size: 16px;
+			color:blue;
+	}
+</style>
+
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期購買流程</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+		<?php
+			$member = new Member();
+			$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+		?>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/B-B-1.png"/></li>
+                <li class=""><img src="assets/images/B-B-3.png"/></li>
+                <li class=""><img src="assets/images/B-B-4.png"/></li>
+				<?php
+					if(in_array($memberData['0']['memFBtoken'],$fb_token)){
+				?>
+					<li class="current-step"><img src="assets/images/B-C-6.png"/></li>
+				<?php
+					}
+				?>
+				<li class=""><img src="assets/images/B-B-5.png"/></li>
+            </ul>
+            <div class="heading-counter warning">啟動自動審核
+            </div>
+			<div class="box-border">
+				<div class="row">
+					<div class="col-sm-12" style="text-align:center">
+						<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" />
+						<p style="color:#01C5E0">線上自動審核程序運算中，請等候約<span id='div1' style="color:red"></span>秒 (請勿切斷畫面…)</p>
+						
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+//設定倒數秒數
+var t = 30;
+
+//顯示倒數秒收
+function showTime()
+{
+    t -= 1;
+    document.getElementById('div1').innerHTML= t;
+    
+    if(t==0)
+    {
+       $.ajax({
+                url: 'php/order_finish.php',
+                data: "member_data=11",
+                type:"POST",
+                dataType:'text',
+                success: function(msg){
+                    if(msg){
+						alert('自動審核已經完成，感謝您的配合!!');
+						location.href='index.php?item=member_center&action=order_period&method=4';
+						thankButton();
+					}else{
+						alert('系統操作錯誤');
+					}
+                },
+
+            error:function(xhr, ajaxOptions, thrownError){ 
+                alert(xhr.status); 
+                alert(thrownError);
+            }
+		});
+    }
+    
+    //每秒執行一次,showTime()
+    setTimeout("showTime()",1000);
+}
+
+//執行showTime()
+showTime();
+</script>

@@ -1,0 +1,23 @@
+/* Write your custom CSS here */
+.clear-fix{
+	clear:both;
+}
+input[type='text']:not([readonly]),input[type='password'],.select-dropdown,textarea.materialize-textarea{
+	border-bottom: 1px dotted rgba(255,0,0,0.7) !important;
+}
+input[type='text']:not([readonly]):focus,input[type='password']:focus,.select-dropdown:focus,textarea.materialize-textarea:focus{
+	border:none !important;
+}
+input[readonly]{
+	color:inherit !important;
+}
+input[readonly]+label{
+	color:#000000;
+}
+input[readonly].datepicker{
+	border-bottom: 1px dotted rgba(255,0,0,0.7) !important;
+	cursor:pointer;
+}
+.btn{
+	margin:10px;
+}

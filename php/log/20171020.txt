@@ -1,0 +1,52 @@
+20171020 09:33:51inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:5.2
+{}
+20171020 09:38:46inst:0000000056194529encode:utf8msg:lineGateway1:@@䅂䌠†††
+{}
+20171020 09:39:05inst:0000000056194529encode:utf8msg:lineGateway1:@@䅂䌠†††
+{}
+20171020 09:39:15inst:0000000056194529encode:utf8msg:lineGateway1:@@䅂䌠†††
+{}
+20171020 09:39:55inst:0000000056194529encode:utf8msg:lineGateway1:@@䅂䌠†††
+{}
+20171020 09:40:45inst:0000000056194529encode:utf8msg:lineGateway1:@@䝇††††
+{}
+20171020 09:41:51inst:0000000056194529encode:utf8msg:lineGateway1:@@䱌††††
+{}
+20171020 09:42:23inst:0000000056194529encode:utf8msg:lineGateway1:@@LL
+{}
+20171020 09:42:33inst:0000000056194529encode:utf8msg:lineGateway1:@@AB789EFG
+{}
+20171020 09:42:49inst:0000000056194529encode:utf8msg:lineGateway1:@@ALARM-A11
+{}
+20171020 09:43:08inst:0000000056194529encode:utf8msg:lineGateway1:@@DEC83-AA
+{}
+20171020 09:46:31inst:0000000056194529encode:utf8msg:lineGateway1:@@2345
+{}
+20171020 09:47:20inst:0000000056194529encode:utf8msg:lineGateway1:@@䄴䄴†††
+{}
+20171020 09:47:34inst:0000000056194529encode:utf8msg:lineGateway1:@@㑅㉄†††
+{}
+20171020 09:47:43inst:0000000056194529encode:utf8msg:lineGateway1:@@4E2D
+{}
+20171020 09:51:30inst:0000000056194529encode:utf8msg:lineGateway1:@@中華
+{}
+20171020 09:51:40inst:0000000056194529encode:utf8msg:lineGateway1:@@꒤뗘†††
+{}
+20171020 09:51:45inst:0000000056194529encode:utf8msg:lineGateway1:@@中華
+{}
+20171020 12:37:54inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.0
+{}
+20171020 14:00:28inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.8
+{}
+20171020 15:35:15inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171020 15:35:27inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171020 15:35:38inst:0000000056194529encode:utf8msg:lineGateway1:@@DFGDYUY
+{}
+20171020 15:35:51inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生
+{}
+20171020 15:38:16inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171020 20:07:52inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.3
+{}

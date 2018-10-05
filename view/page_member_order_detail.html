@@ -1,0 +1,262 @@
+<?php
+	$member = new Member();
+	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+	$member->changeToReadable($memberData[0]);
+	
+	$pm = new Product_Manage();
+	$pro = new Product();
+	$or = new Orders();
+	//訂單
+	$orNo = $_GET["orno"];
+	$orOrigData = $or->getOneOrderByNo($orNo);
+	$orData = $or->getOneOrderByNo($orNo);
+	$or->changeToReadable($orData[0],1);
+	
+	//欄位名稱
+	$columnName = $or->getAllColumnNames("orders");
+	
+	//商品上架
+	$pmData = $pm->getOnePMByNo($orData[0]["pmNo"]);
+	
+	//商品
+	$proData = $pro->getOneProByNo($pmData[0]["proNo"]);
+	
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期訂單查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+				//print_r($_SESSION);
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+					<? /*?><!--<a href="php/print_order_details.php?orno=<?php echo $orNo; ?>" target="_blank"><button class="button">列印申請書</button></a>!><?*/?>
+					
+					<?php if($orData['0']['orInternalCaseNo'] != "" && $orData[0]["orHandlePaySupDate"] != ""){ ?>
+					<a href="?item=member_center&action=purchase&orno=<?php echo $orNo; ?>&query=p"><button class="button">查看繳款分期</button></a>
+					<?php } ?>
+					
+					<?php
+						if(in_array($orData[0]["orStatus"],$CanselstatusArr)){
+					?>
+						<a href="?item=member_center&action=cancel&orno=<?php echo $orNo; ?>&query=p"><button class="button">取消訂單</button></a>
+					<?php
+						}
+						//print_r($orData);
+					?>
+				<h2 class="page-heading">
+					<span class="page-heading-title2">分期訂單編號: <?php echo $orData['0']['orCaseNo']; ?></span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">一.　購物商品：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+									<?php if($orData[0]["orStatus"] == '出貨中' && $orData[0]["orHandleTransportSerialNum"] != ""){ ?>
+									<h4>宅配公司 : <?php echo $orData[0]["orHandleTransportComp"]; ?></h4>
+									<h4>宅配單號 : <?php echo $orData[0]["orHandleTransportSerialNum"]; ?></h4>
+									<?php } ?>
+									<h4>
+									訂單狀態 : 
+									<?php 
+									if($orData[0]["orStatus"] == '出貨中'){
+										echo $orData[0]["orHandleTransportSerialNum"] != "" ? "出貨中" : "備貨中";
+									}else{
+										echo ($orData[0]["orStatus"] == '未進件') ? '審查中':$orData[0]["orStatus"]; 
+									}
+									?>
+									</h4>
+									<h4>商品名稱 : <?php echo $proData[0]["proName"]; ?></h4>
+									<h4>商品規格:  <?php echo $orData[0]["orProSpec"]; ?></h4>
+									<h4>月付金額 : <?php echo number_format($orData[0]["orPeriodTotal"]/$orData[0]["orPeriodAmnt"]); ?> 元</h4>
+									<h4>期數 : <?php echo $orData[0]["orPeriodAmnt"]; ?> 期</h4>
+									<h4>分期總金額 : <?php echo number_format($orData[0]["orPeriodTotal"]); ?> 元</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">二.　申請人資料：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+									<h4>申請人姓名 :  <?php echo $memberData[0]["memName"]; ?></h4>
+									<h4>身分證字號 :  <?php echo $memberData[0]["memIdNum"]; ?></h4>
+									<h4>出生日期 :  <?php echo $memberData[0]["memBday"]; ?></h4>
+									<h4>身分別 :  <?php echo $memberData[0]["memClass"]; ?></h4>
+									<h4>學校系級 :  <?php echo $memberData[0]["memSchool"]; ?></h4>
+									<h4>常用聯絡Email :  <?php echo $memberData[0]["memSubEmail"]; ?></h4>
+									<h4>手機 :  <?php echo $memberData[0]["memCell"]; ?></h4>
+									<h4>現住地址 : <?php echo $memberData[0]["memAddr"]; ?></h4>
+									<h4>現住市話 : <?php echo $memberData[0]["memPhone"]; ?></h4>
+									<?php 
+									foreach($columnName as $key=>$value){ 
+										if(strrpos($value["COLUMN_NAME"], "orAppApplier") !== false){
+											if($value["COLUMN_NAME"] != 'orAppApplierCreditSecurityNum'){
+									?>
+									<h4>
+										<?php echo $value["COLUMN_COMMENT"]; ?> :
+											<?php 
+											if(is_numeric($orData[0][$value["COLUMN_NAME"]])){
+												if($value["COLUMN_NAME"] == 'orAppApplierCompanystatus' or	 $value["COLUMN_NAME"] == 'orAppApplierCreditstatus'){
+													echo ($orData[0][$value["COLUMN_NAME"]] == '0') ? "無":"有";
+												}else{
+													echo ($orData[0][$value["COLUMN_NAME"]]); 
+												}
+											}else{
+												
+												echo $orData[0][$value["COLUMN_NAME"]];
+												
+												
+											}
+											?>
+									</h4>
+									<?php 
+											}
+										}
+									} 
+									?>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">三.　收貨人資料：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+								<?php 
+								foreach($columnName as $key=>$value){ 
+									if(strrpos($value["COLUMN_NAME"], "orReceive") !== false){
+										echo "<h4>".$value["COLUMN_COMMENT"]; 
+										if(strrpos($value["COLUMN_NAME"], "Comment") !== false){ 
+											echo " : </h4><p>".$orData[0][$value[COLUMN_NAME]]."</p>";
+										}else{
+											echo " : ".$orData[0][$value["COLUMN_NAME"]]."</h4>"; 
+										} 
+									}
+								} 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">四.　是否需要統編：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+								<?php 
+								foreach($columnName as $key=>$value){ 
+									if(strrpos($value["COLUMN_NAME"], "orBusinessNum") !== false){
+										echo "<h4>".$value["COLUMN_COMMENT"]." : ";
+										if(strrpos($value["COLUMN_NAME"], "If") !== false){ 
+											if($orData[0][$value["COLUMN_NAME"]] == 1){
+												echo "是</h4>";
+											}else{
+												echo "否</h4>";
+											}
+										}else{
+											echo $orData[0][$value["COLUMN_NAME"]]."</h4>";
+										}
+									}
+								} 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">五.　聯絡人資訊：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+								<?php 
+								foreach($columnName as $key=>$value){ 
+									if(strrpos($value["COLUMN_NAME"], "orAppContact") !== false){
+										$orContact = json_decode($orData[0][$value["COLUMN_NAME"]]);
+										echo "<h4>".$value["COLUMN_COMMENT"]." : ".$orContact[0]."</h4>";
+									}
+								} 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">六.　備註：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+								<?php 
+								foreach($columnName as $key=>$value){ 
+									if(strrpos($value["COLUMN_NAME"], "orAppExtra") !== false){
+										echo "<h4>".$value["COLUMN_COMMENT"]." : ".$orData[0][$value["COLUMN_NAME"]]."</h4>";
+									}
+								} 
+								?>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">七.　證件上傳：</h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+								<label>申請人身份證正面：</label>
+								<div id="showimg"><img src="<?php echo $orData[0]['orAppAuthenIdImgTop']; ?>"/></div>
+								<label>申請人身份證反面：</label>
+								<div id="showimg"><img src="<?php echo $orData[0]['orAppAuthenIdImgBot']; ?>"/></div>
+								
+								<?php
+									if($memberData[0]['memClass'] == '學生'){
+								?>
+								<label>申請人學生證正面：</label>
+								<div id="showimg"><img src="<?php echo $orData[0]['orAppAuthenStudentIdImgTop']; ?>"/></div>
+								<label>申請人學生證反面：</label>
+								<div id="showimg"><img src="<?php echo $orData[0]['orAppAuthenStudentIdImgBot']; ?>"/></div>
+								<?php
+									}
+								?>
+								<label>補件資料：</label>
+								<div id="showimg"><img src="<?php echo $orData[0]['orAppAuthenExtraInfo']; ?>"/></div>
+								<br>
+							</div>
+						</div>
+						<!--<a href="php/print_order_details.php?orno=<?php echo $orNo; ?>" target="_blank"><button class="button">列印申請書</button></a>-->
+						<?php if($orData['0']['orInternalCaseNo'] != "" && $orData[0]["orHandlePaySupDate"] != ""){ ?>
+							<a href="?item=member_center&action=purchase&orno=<?php echo $orNo; ?>&query=p"><button class="button">查看繳款分期</button></a>
+						<?php } ?>
+					</div>
+				</div>
+				
+				
+				
+				
+            </div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>

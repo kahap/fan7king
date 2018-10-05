@@ -1,0 +1,182 @@
+20180523 00:01:26inst:happyfan7encode:msg:【樂分期-未進件】2018-05-22_23:58:27,流水號:74475,萬翰先生/小姐,訂單編號:A201805220316
+{"message":"Failed to send messages"}
+20180523 00:10:42inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_00:06:54,流水號:74477,柯昱誠先生/小姐,訂單編號:A201805230002
+{"message":"Failed to send messages"}
+20180523 00:27:41inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_00:24:06,流水號:74478,楊宏智先生/小姐,訂單編號:A201805230003
+{"message":"Failed to send messages"}
+20180523 00:28:24inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805220169,流水號:14276,尤勝慧先生/小姐,訂單編號:A201805220169
+{"message":"Failed to send messages"}
+20180523 00:35:04inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_00:33:08,流水號:74480,曾皇凱先生/小姐,訂單編號:A201805230005
+{"message":"Failed to send messages"}
+20180523 00:44:27inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_00:28:36,流水號:74479,謝岱軒先生/小姐,訂單編號:A201805230004
+{"message":"Failed to send messages"}
+20180523 01:15:08inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_01:09:17,流水號:74482,李昇柏先生/小姐,訂單編號:A201805230007
+{"message":"Failed to send messages"}
+20180523 01:18:37inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_01:13:37,流水號:74483,陳威諺先生/小姐,訂單編號:A201805230008
+{"message":"Failed to send messages"}
+20180523 01:33:13inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_01:27:28,流水號:74484,王惠儒先生/小姐,訂單編號:A201805230009
+{"message":"Failed to send messages"}
+20180523 01:34:59inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_01:33:35,流水號:74488,張承皓先生/小姐,訂單編號:A201805230013
+{"message":"Failed to send messages"}
+20180523 01:38:04inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_01:36:55,流水號:74490,黃明翔先生/小姐,訂單編號:A201805230015
+{"message":"Failed to send messages"}
+20180523 01:39:29inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_01:35:53,流水號:74489,呂泓霖先生/小姐,訂單編號:A201805230014
+{"message":"Failed to send messages"}
+20180523 02:07:03inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_02:05:38,流水號:74492,劉建鴻先生/小姐,訂單編號:A201805230020
+{"message":"Failed to send messages"}
+20180523 02:20:29inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_02:11:47,流水號:74493,古雅文先生/小姐,訂單編號:A201805230021
+{"message":"Failed to send messages"}
+20180523 02:41:51inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_02:38:54,流水號:74494,劉亦晨先生/小姐,訂單編號:A201805230023
+{"message":"Failed to send messages"}
+20180523 03:59:13inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_03:52:18,流水號:74495,楊子萱先生/小姐,訂單編號:A201805230027
+{"message":"Failed to send messages"}
+20180523 05:52:01inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_05:32:33,流水號:74497,林岳德先生/小姐,訂單編號:A201805230030
+{"message":"Failed to send messages"}
+20180523 06:43:24inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_06:41:19,流水號:74501,陳昭霖先生/小姐,訂單編號:A201805230036
+{"message":"Failed to send messages"}
+20180523 06:44:41inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230035,流水號:14305,林彥廷先生/小姐,訂單編號:A201805230035
+{"message":"Failed to send messages"}
+20180523 06:59:39inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230037,流水號:14306,林宏憲先生/小姐,訂單編號:A201805230037
+{"message":"Failed to send messages"}
+20180523 09:48:27inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_09:43:55,流水號:74504,林佳葦先生/小姐,訂單編號:A201805230044
+{"message":"Failed to send messages"}
+20180523 10:29:40inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_10:28:00,流水號:74506,羅郁婷先生/小姐,訂單編號:A201805230047
+{"message":"Failed to send messages"}
+20180523 10:30:18inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_10:29:02,流水號:74507,張裕祥先生/小姐,訂單編號:A201805230048
+{"message":"Failed to send messages"}
+20180523 10:36:57inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_10:30:42,流水號:74509,劉昭汶先生/小姐,訂單編號:A201805230050
+{"message":"Failed to send messages"}
+20180523 10:52:09inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230051,流水號:14312,黎冠頡先生/小姐,訂單編號:A201805230051
+{"message":"Failed to send messages"}
+20180523 10:56:20inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230052,流水號:14313,林祖兒先生/小姐,訂單編號:A201805230052
+{"message":"Failed to send messages"}
+20180523 11:01:39inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_10:57:47,流水號:74510,曾至逸先生/小姐,訂單編號:A201805230053
+{"message":"Failed to send messages"}
+20180523 11:02:59inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_10:58:09,流水號:74511,劉冠甫先生/小姐,訂單編號:A201805230054
+{"message":"Failed to send messages"}
+20180523 11:12:17inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:08:45,流水號:74513,楊皓巽先生/小姐,訂單編號:A201805230057
+{"message":"Failed to send messages"}
+20180523 11:12:20inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:09:24,流水號:74514,盧柏宇先生/小姐,訂單編號:A201805230058
+{"message":"Failed to send messages"}
+20180523 11:19:39inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:14:43,流水號:74517,廖慧如先生/小姐,訂單編號:A201805230061
+{"message":"Failed to send messages"}
+20180523 11:22:20inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:15:27,流水號:74518,莊英豐先生/小姐,訂單編號:A201805230062
+{"message":"Failed to send messages"}
+20180523 11:24:44inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:13:19,流水號:74516,呂哲瑋先生/小姐,訂單編號:A201805230060
+{"message":"Failed to send messages"}
+20180523 11:33:01inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:21:56,流水號:74520,李柏融先生/小姐,訂單編號:A201805230064
+{"message":"Failed to send messages"}
+20180523 11:44:26inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:42:03,流水號:74522,張博雅先生/小姐,訂單編號:A201805230067
+{"message":"Failed to send messages"}
+20180523 11:50:41inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:49:40,流水號:74524,楊勝閔先生/小姐,訂單編號:A201805230069
+{"message":"Failed to send messages"}
+20180523 11:56:48inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:52:20,流水號:74526,全慧倫先生/小姐,訂單編號:A201805230071
+{"message":"Failed to send messages"}
+20180523 12:03:41inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_11:55:10,流水號:74529,劉淑萍先生/小姐,訂單編號:A201805230074
+{"message":"Failed to send messages"}
+20180523 12:28:34inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_12:23:09,流水號:74531,姜捷捷先生/小姐,訂單編號:A201805230076
+{"message":"Failed to send messages"}
+20180523 12:34:19inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230077,流水號:14316,許凱嘉先生/小姐,訂單編號:A201805230077
+{"message":"Failed to send messages"}
+20180523 12:34:33inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230077,流水號:14316,許凱嘉先生/小姐,訂單編號:A201805230077
+{"message":"Failed to send messages"}
+20180523 12:38:09inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_12:34:45,流水號:74536,劉仁超先生/小姐,訂單編號:A201805230082
+{"message":"Failed to send messages"}
+20180523 12:38:14inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_12:37:04,流水號:74538,許晉源先生/小姐,訂單編號:A201805230084
+{"message":"Failed to send messages"}
+20180523 12:57:56inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_12:54:33,流水號:74541,李學昌先生/小姐,訂單編號:A201805230087
+{"message":"Failed to send messages"}
+20180523 13:32:00inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_13:28:41,流水號:74543,張楚淵先生/小姐,訂單編號:A201805230093
+{"message":"Failed to send messages"}
+20180523 13:55:09inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_13:51:48,流水號:74545,郭于杏先生/小姐,訂單編號:A201805230095
+{"message":"Failed to send messages"}
+20180523 14:34:00inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_14:27:13,流水號:74550,方龍浚先生/小姐,訂單編號:A201805230103
+{"message":"Failed to send messages"}
+20180523 14:38:38inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_14:35:08,流水號:74552,駱心妍先生/小姐,訂單編號:A201805230106
+{"message":"Failed to send messages"}
+20180523 14:48:07inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_14:15:28,流水號:74548,謝佩純先生/小姐,訂單編號:A201805230100
+{"message":"Failed to send messages"}
+20180523 14:53:05inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_14:46:48,流水號:74556,潘湛瀅先生/小姐,訂單編號:A201805230110
+{"message":"Failed to send messages"}
+20180523 15:11:03inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_15:08:32,流水號:74562,詹飄飄先生/小姐,訂單編號:A201805230118
+{"message":"Failed to send messages"}
+20180523 15:42:01inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_15:35:05,流水號:74567,洪可親先生/小姐,訂單編號:A201805230124
+{"message":"Failed to send messages"}
+20180523 15:42:42inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_15:41:48,流水號:74569,張文杰先生/小姐,訂單編號:A201805230127
+{"message":"Failed to send messages"}
+20180523 15:43:37inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230125,流水號:14328,羅方均先生/小姐,訂單編號:A201805230125
+{"message":"Failed to send messages"}
+20180523 15:51:37inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_15:31:03,流水號:74566,楊凱先生/小姐,訂單編號:A201805230123
+{"message":"Failed to send messages"}
+20180523 15:53:24inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_15:48:49,流水號:74573,鄭惟中先生/小姐,訂單編號:A201805230131
+{"message":"Failed to send messages"}
+20180523 15:56:14inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_15:53:19,流水號:74575,李星翰先生/小姐,訂單編號:A201805230133
+{"message":"Failed to send messages"}
+20180523 16:09:34inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_16:06:35,流水號:74583,廖宜軒先生/小姐,訂單編號:A201805230142
+{"message":"Failed to send messages"}
+20180523 16:39:59inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_16:19:33,流水號:74592,林宥騰先生/小姐,訂單編號:A201805230151
+{"message":"Failed to send messages"}
+20180523 16:40:59inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_16:36:12,流水號:74596,魏琮翰先生/小姐,訂單編號:A201805230156
+{"message":"Failed to send messages"}
+20180523 17:15:42inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_17:10:34,流水號:74600,盧易佑先生/小姐,訂單編號:A201805230161
+{"message":"Failed to send messages"}
+20180523 17:16:23inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_17:13:26,流水號:74601,張皓博先生/小姐,訂單編號:A201805230162
+{"message":"Failed to send messages"}
+20180523 17:22:03inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_17:18:49,流水號:74603,陳永傑先生/小姐,訂單編號:A201805230164
+{"message":"Failed to send messages"}
+20180523 17:29:02inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_17:25:35,流水號:74608,柯兪先先生/小姐,訂單編號:A201805230169
+{"message":"Failed to send messages"}
+20180523 17:36:49inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_17:34:48,流水號:74609,賴嬿如先生/小姐,訂單編號:A201805230170
+{"message":"Failed to send messages"}
+20180523 17:49:39inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230173,流水號:14332,李昆翰先生/小姐,訂單編號:A201805230173
+{"message":"Failed to send messages"}
+20180523 18:01:17inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_17:57:08,流水號:74612,龍毅先生/小姐,訂單編號:A201805230174
+{"message":"Failed to send messages"}
+20180523 18:23:35inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_18:17:09,流水號:74615,莊宜庭先生/小姐,訂單編號:A201805230178
+{"message":"Failed to send messages"}
+20180523 18:52:32inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230180,流水號:14335,陳茜如先生/小姐,訂單編號:A201805230180
+{"message":"Failed to send messages"}
+20180523 19:25:44inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_19:23:22,流水號:74616,涂德志先生/小姐,訂單編號:A201805230181
+{"message":"Failed to send messages"}
+20180523 19:51:57inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_19:38:19,流水號:74618,楊念慈先生/小姐,訂單編號:A201805230183
+{"message":"Failed to send messages"}
+20180523 19:56:10inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_19:55:01,流水號:74619,李樹明先生/小姐,訂單編號:A201805230184
+{"message":"Failed to send messages"}
+20180523 20:11:15inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_20:06:58,流水號:74620,李春瑄先生/小姐,訂單編號:A201805230185
+{"message":"Failed to send messages"}
+20180523 20:32:11inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_20:25:38,流水號:74621,柯旻輝先生/小姐,訂單編號:A201805230186
+{"message":"Failed to send messages"}
+20180523 21:00:10inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_20:49:56,流水號:74623,林元智先生/小姐,訂單編號:A201805230188
+{"message":"Failed to send messages"}
+20180523 21:20:36inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_21:14:18,流水號:74625,吳瑞翔先生/小姐,訂單編號:A201805230190
+{"message":"Failed to send messages"}
+20180523 21:39:29inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_21:32:25,流水號:74627,鄧皓元先生/小姐,訂單編號:A201805230192
+{"message":"Failed to send messages"}
+20180523 21:53:24inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805200078,流水號:14147,林一介先生/小姐,訂單編號:A201805200078
+{"message":"Failed to send messages"}
+20180523 21:59:44inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_21:50:18,流水號:74631,黃俊邦先生/小姐,訂單編號:A201805230196
+{"message":"Failed to send messages"}
+20180523 22:00:54inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_21:49:13,流水號:74630,曾秀雅先生/小姐,訂單編號:A201805230195
+{"message":"Failed to send messages"}
+20180523 22:16:29inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_22:09:51,流水號:74633,張起卉先生/小姐,訂單編號:A201805230199
+{"message":"Failed to send messages"}
+20180523 22:17:09inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_22:15:52,流水號:74635,楊凱閎先生/小姐,訂單編號:A201805230203
+{"message":"Failed to send messages"}
+20180523 22:18:28inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230202,流水號:14338,金惠安先生/小姐,訂單編號:A201805230202
+{"message":"Failed to send messages"}
+20180523 22:26:16inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_22:22:10,流水號:74636,劉佳和先生/小姐,訂單編號:A201805230205
+{"message":"Failed to send messages"}
+20180523 22:29:59inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_22:29:03,流水號:74638,林婕語先生/小姐,訂單編號:A201805230209
+{"message":"Failed to send messages"}
+20180523 22:33:47inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230208,流水號:14341,曾家誼先生/小姐,訂單編號:A201805230208
+{"message":"Failed to send messages"}
+20180523 23:03:09inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_22:45:01,流水號:74643,張禮必先生/小姐,訂單編號:A201805230215
+{"message":"Failed to send messages"}
+20180523 23:04:11inst:happyfan7encode:msg:【樂分期-手機/機車_未進件】A201805230217,流水號:14343,施崇傑先生/小姐,訂單編號:A201805230217
+{"message":"Failed to send messages"}
+20180523 23:04:44inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_23:01:54,流水號:74645,吳亞儒先生/小姐,訂單編號:A201805230218
+{"message":"Failed to send messages"}
+20180523 23:08:03inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_23:06:38,流水號:74647,吳文耀先生/小姐,訂單編號:A201805230221
+{"message":"Failed to send messages"}
+20180523 23:11:09inst:happyfan7encode:msg:【樂分期-未進件】2018-05-23_23:07:10,流水號:74648,向麗如先生/小姐,訂單編號:A201805230222
+{"message":"Failed to send messages"}

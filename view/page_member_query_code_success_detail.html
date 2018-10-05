@@ -1,0 +1,73 @@
+<?php
+	$rbs = new Recomm_Bonus_Success();
+	$mem = new Member();
+	$orders = new Orders();
+	$allRbsData = $rbs->getOneRBSByNo($_GET['d'],$_SESSION['user']['memNo']);
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">已領推薦金明細查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+				<h2 class="page-heading">
+					<span class="page-heading-title2">已領推薦金明細查詢</span>
+				</h2>
+				<!-- ../page heading-->
+				<div class="page-content checkout-page">
+					<h3 class="checkout-sep">推薦獎金申請編號: <?php echo $allRbsData[0]['rbsNo']; ?></h3>
+					<div class="box-border">
+						<div class="row">
+							<div class="col-sm-12">
+									<h4>申請日期 :<?php echo $allRbsData[0]['rbsDate']; ?></h4>
+									<h4>戶名 :<?php echo $allRbsData[0]['rbsBankAccName']; ?></h4>
+									<h4>身分證字號 : <?php echo $allRbsData[0]['rbsIdNum']; ?></h4>
+									<h4>銀行名稱: <?php echo $allRbsData[0]['rbsBankName']; ?></h4>
+									<h4>分行名稱 : <?php echo $allRbsData[0]['rbsBankBranchName']; ?></h4>
+									<h4>帳號 : <?php echo $allRbsData[0]['rbsBankAcc']; ?></h4>
+									<h4>申請總金額 : <?php echo $allRbsData[0]['rbsTotal']; ?></h4>
+									<h4>身分證正面 :</h4>
+										<?php 
+											$rbsIdTopImg = ($allRbsData[0]['rbsIdTopImg'] != "") ? $allRbsData[0]['rbsIdTopImg']:"assets/images/Not-found.png"; 
+										?>
+									<img style="width:40%" src="<?php echo $rbsIdTopImg; ?>" />
+									<h4>身分證反面 :</h4>
+										<?php 
+											$rbsIdBotImg = ($allRbsData[0]['rbsIdBotImg'] != "") ? $allRbsData[0]['rbsIdBotImg']:"assets/images/Not-found.png"; 
+										?>
+									<img style="width:40%" src="<?php echo $rbsIdBotImg; ?>" />
+									<h4>存摺帳號正面 :</h4>
+										<?php 
+											$rbsBankBookImg = ($allRbsData[0]['rbsBankBookImg'] != "") ? $allRbsData[0]['rbsBankBookImg']:"assets/images/Not-found.png"; 
+										?>
+									<img style="width:40%" src="<?php echo $rbsBankBookImg; ?>" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="page-content checkout-page">
+					<a href="?item=member_center&action=history"><button class="button">上一頁</button></a>
+				</div>
+				
+            </div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>

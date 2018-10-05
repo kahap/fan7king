@@ -1,0 +1,127 @@
+<?php
+	$rbs = new Recomm_Bonus_Success();
+	$mem = new Member();
+	$allRbsData = $rbs->getRBSByMem($_SESSION['user']['memNo']);
+?>
+
+<div class="columns-container">
+    <div class="container" id="columns">
+		<div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">首頁</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">會員中心</span>
+			<span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">已領推薦金查詢</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            <!-- Left colunm -->
+            <?php 
+				include_once('view/page_member_left.html');
+			?>
+            <!-- ./left colunm -->
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-9" id="center_column">
+                <div class="row">
+					<h3 class="checkout-sep">已領推薦金查詢明細</h3>
+					<div class="box-border">
+						<table class="table table-bordered table-responsive cart_summary">
+							<thead>
+								<tr>
+									<th>推薦獎金申請編號 </th>
+									<th>申請日期 </th>
+									<th>申請總金額 </th>
+									<th>是否已撥款 </th>
+									<th>詳細資料</th>
+								</tr>
+							</thead>
+							<?php 
+								if($allRbsData != null){
+									foreach($allRbsData as $key=>$value){
+										$rbaNoArr = json_decode($value["rbaNo"]);
+							?>
+								<tr>
+									<td class=" "><?php echo $value["rbsNo"]; ?></td>
+									<td class=" "><?php echo $value["rbsDate"]; ?></td>
+									<td class=" "><?php echo $value["rbsTotal"]; ?></td>
+									<td class=" "><?php echo ($value["rbsStatus"] == 1) ? "是":"否"; ?></td>
+									<td><a href="?item=member_center&action=history&d=<?php echo $value["rbsNo"]?>">
+										<button class="button">明細</button></a>
+									</td>
+								</tr>
+							<?php
+									}
+								}else{
+							?>
+								<td colspan="5">沒有任何資料</td>
+							 <?php
+								}
+							 ?>
+							</tbody>   
+						</table>
+					</div>
+				</div>
+                
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script type="text/javascript"> 
+ $("#copyButton").click(function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+	alert('複製成功');
+});
+
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+    
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+    
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+</script> 

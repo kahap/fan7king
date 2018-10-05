@@ -1,0 +1,73 @@
+<!-- page wapper-->
+<style>
+	.btnclass{
+		font-size: 14px;
+		line-height: 18px;
+		color: white;
+		padding: 0;
+		font-weight: normal;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		border: none;
+		margin: 0px auto;
+		display: -webkit-box;
+		width:300px;
+		
+	}
+	.btnclass:hover {
+    background: #F36;
+	}
+</style>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+			<span class="navigation_page">我要借款</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+        <h2 class="page-heading">
+            <span class="page-heading-title2">我要借款</span><br>
+			
+        </h2>
+        <!-- ../page heading-->
+        <div id="contact" class="page-content page-contact">
+            
+            <div class="row">
+                
+                <div class="col-xs-12">
+            		<a href="?item=loan_Cell">
+            			<button class="btnclass">
+            				<img src="assets/images/loan_cell.jpg" width="240px" height="350px" alt="">
+            			</button>
+            		</a>
+            		<br />
+					<a href="?item=loan_Moto">
+						<button class="btnclass">
+							<img src="assets/images/loan_motor.jpg" width="240px" height="350px" alt="">
+						<button>
+					</a>
+					<br />
+                    <a href="?item=loan_vip">
+                    	<button class="btnclass">
+                    		<img src="assets/images/loan_car.jpg" width="240px" height="350px" alt="">
+                    	</button>
+                   	</a> 
+				</div>
+				
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	$(document).on('click','.btnclass',function(){
+			$('.btnclass').attr("disabled","disabled");
+            var data = $('#co_company_form').serialize();
+			$('#message-box-conact').html('<img src="http://preloaders.net/preloaders/287/Filling%20broken%20ring.gif"> 請稍後...');
+			$( "#co_company_form").submit();
+    })
+</script>
+<!-- ./page wapper-->
