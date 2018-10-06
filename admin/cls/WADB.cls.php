@@ -3,6 +3,7 @@
 	class WADB
 	{
 		/* Database Host */
+        var $oDbLink;
 		var $sDbHost;           
 		var $sDbName;           // Database Name
 		var $sDbUser;           // Database User
@@ -19,21 +20,21 @@
 		/* Constructor */
 		function WADB ($sDbHost, $sDbName, $sDbUser, $sDbPwd)
 		{
-			$oDbLink = mysql_connect ($sDbHost, $sDbUser, $sDbPwd) or die ("MySQL DB could not be connected");
-			@mysql_select_db ($sDbName, $oDbLink)or die ("MySQL DB could not be selected");
-			@mysql_query("set names 'utf8'");
+			$this->oDbLink = mysqli_connect ($sDbHost, $sDbUser, $sDbPwd, $sDbName) or die ("MySQL DB could not be connected");
+//			@mysqli_select_db ($this->oDbLink, $sDbName)or die ("MySQL DB could not be selected");
+			@mysqli_query($this->oDbLink,"set names 'utf8'");
 		}
 		
 		/* seelct Record Object */
 		function selectRecordsObject($sSqlQuery){
 			unset($this->aSelectRecords);
-			$this->oQueryResult = mysql_query($sSqlQuery) or die(mysql_error());
-			$this->iNoOfRecords = mysql_num_rows($this->oQueryResult);
+            $this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			$this->iNoOfRecords = mysqli_num_rows($this->oQueryResult);
 			if ($this->iNoOfRecords > 0) {
-				while($obj = mysql_fetch_object($this->oQueryResult)) {
+				while($obj = mysqli_fetch_object($this->oQueryResult)) {
 					$this->aSelectRecords[] = $obj;
 				}	
-				mysql_free_result($this->oQueryResult);				
+				mysqli_free_result($this->oQueryResult);				
 			}						
 			$this->aArrRec = $this->aSelectRecords;
 			return $this->aArrRec;	
@@ -44,13 +45,13 @@
 		function selectRecords ($sSqlQuery)
 		{
 			unset($this->aSelectRecords);
-			$this->oQueryResult = mysql_query($sSqlQuery) or die(mysql_error());
-			$this->iNoOfRecords = mysql_num_rows($this->oQueryResult);
+            $this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			$this->iNoOfRecords = mysqli_num_rows($this->oQueryResult);
 			if ($this->iNoOfRecords > 0) {
-				while ($oRow = mysql_fetch_array($this->oQueryResult,MYSQL_ASSOC)) {
+				while ($oRow = mysqli_fetch_array($this->oQueryResult,MYSQLI_ASSOC)) {
 					$this->aSelectRecords[] = $oRow;
 				}
-				mysql_free_result($this->oQueryResult);
+				mysqli_free_result($this->oQueryResult);
 			}else{
 				$this->aSelectRecords = null;
 			}
@@ -71,8 +72,8 @@
 		/* Insert Records */
 		function insertRecords($sSqlQuery)
 		{
-			$this->bInsertRecords = mysql_query ($sSqlQuery) or die (mysql_error());
-			$this->iInsertRecId = mysql_insert_id();
+            $this->bInsertRecords = mysqli_query($this->oDbLink, $sSqlQuery) or die (mysqli_error());
+			$this->iInsertRecId = mysqli_insert_id();
 			return $this->iInsertRecId;
 		}
 	
@@ -85,22 +86,22 @@
 		/* Update Records */
 		function updateRecords($sSqlQuery)
 		{
-			return mysql_query($sSqlQuery) or die(mysql_error());
+            return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
 		}
 		function deleteRecords($sSqlQuery)
 		{
-			return mysql_query($sSqlQuery) or die(mysql_error());
+            return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
 		}
 		/* 測試新增用 */
 		function insertUser($sSqlQuery)
 		{
-			return mysql_query($sSqlQuery) or die(mysql_error());
+            return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
 		}
 		
 		/* 建立資料表 */
 		function creatTable($sSqlQuery)
 		{
-			return mysql_query($sSqlQuery) or die(mysql_error());
+            return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
 		}
 		
 		
