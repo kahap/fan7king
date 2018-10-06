@@ -4695,9 +4695,7 @@
       <path value="$PROJECT_DIR$/admin_advanced/assets/plugins/weather-icons-master/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
+  <component name="ProjectFrameBounds">
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
