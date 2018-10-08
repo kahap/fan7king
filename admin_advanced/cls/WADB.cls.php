@@ -47,7 +47,7 @@
 			$this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
 			$this->iNoOfRecords = mysqli_num_rows($this->oQueryResult);
 			if ($this->iNoOfRecords > 0) {
-				while ($oRow = mysqli_fetch_array($this->oQueryResult,MYSQL_ASSOC)) {
+				while ($oRow = mysqli_fetch_array($this->oQueryResult,MYSQLI_ASSOC)) {
 					$this->aSelectRecords[] = $oRow;
 				}
 				mysqli_free_result($this->oQueryResult);
