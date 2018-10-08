@@ -73,7 +73,7 @@
 		function insertRecords($sSqlQuery)
 		{
             $this->bInsertRecords = mysqli_query($this->oDbLink, $sSqlQuery) or die (mysqli_error());
-			$this->iInsertRecId = mysqli_insert_id();
+			$this->iInsertRecId = mysqli_insert_id($this->oDbLink);
 			return $this->iInsertRecId;
 		}
 	
