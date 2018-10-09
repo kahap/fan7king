@@ -13,10 +13,10 @@
             $sql = "select
                         *
                     from
-                        `supplier_sales`
+                        `supplier`
                     where
-                        `ssLogId`='".$ssLogId."'&&
-                        `ssPwd` = '".$ssPwd."'
+                        `supLogId`='".$ssLogId."'&&
+                        `supPwd` = '".$ssPwd."'
                     ";
             $data = $this->db->selectRecords($sql);
             return $data[0];

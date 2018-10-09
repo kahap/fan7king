@@ -7,7 +7,7 @@
 	$supplier_sales_data = $supplier_sales->getSupplier_sales_information($_POST['memAccount'],$_POST['memPwd']);
 	if($supplier_sales_data != ""){
 			$_SESSION['ss_supNo']=(string)$supplier_sales_data['supNo'];
-			$_SESSION['ss_ssNo']=(string)$supplier_sales_data['ssNo'];
+			// $_SESSION['ss_ssNo']=(string)$supplier_sales_data['ssNo'];
 			$_SESSION['ss_aauNo']=(string)$supplier_sales_data['aauNo'];
 			echo 0;
 	}else{
