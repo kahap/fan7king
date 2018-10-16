@@ -1,13 +1,10 @@
 <?php
+
 //載入Class
-
-function __autoload($ClassName){
-
+function __autoload($ClassName)
+{
 	include_once('cls/'.$ClassName.".cls.php");
-
 }
-
-
 
 require_once('cfg/cfg.inc.php');
 

@@ -14,8 +14,15 @@ $allCat = $cat->getAllCatOrder();
 $bra = new Brand();
 $allBra = $bra->getAllBrandOrder();
 
+$items = new B_items();
+$allItems = $items->getAllItemsOrder();
+
 //相簿圖片
 $imgArr = getAllImgs();
+$imgArr = isset($imgArr) ?: [];
+
+
+$tabIndex = 0;
 
 ?>
 
@@ -92,6 +99,20 @@ $imgArr = getAllImgs();
 	                      <ul class="parsley-errors-list"><li id="braErr"></li></ul>
 	                  </div>
                     </div>
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                              所屬品項 :
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <select name="biNo" class="form-control">
+                                  <option selected value="">請選擇</option>
+                                  <?php foreach($allItems as $key=>$value){ ?>
+                                      <option <?php if($_GET["action"]=="edit") if($proData[0]["biNo"]==$value["biNo"]) echo "selected"; ?> value="<?php echo $value["biNo"]; ?>"><?php echo $value["biName"]; ?></option>
+                                  <?php } ?>
+                              </select>
+                              <ul class="parsley-errors-list"><li id="biErr"></li></ul>
+                          </div>
+                      </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                       	商品名稱 : 
@@ -101,6 +122,26 @@ $imgArr = getAllImgs();
                       	<ul class="parsley-errors-list"><li id="nameErr"></li></ul>
                       </div>
                     </div>
+
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                              主題優惠 :
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input value='<?php /*if($_GET["action"]=="edit") echo $proData[0]["proName"];*/ ?>' type="text" class="form-control" name="themeOffer" />
+                              <ul class="parsley-errors-list"><li id="themeOfferErr"></li></ul>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                              商品加贈 :
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input value='<?php /*if($_GET["action"]=="edit") echo $proData[0]["proName"];*/ ?>' type="text" class="form-control" name="productGift" />
+                              <ul class="parsley-errors-list"><li id="productGiftErr"></li></ul>
+                          </div>
+                      </div>
+
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                       	商品型號(#號分開內容): 
@@ -266,7 +307,7 @@ $imgArr = getAllImgs();
                     <div style="margin:30px;"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                         <button id="confirm-form" type="submit" class="btn btn-primary">
+                         <button id="confirm-form" type="button" class="btn btn-primary">
                          	<?php if($_GET["action"]=="edit") echo "確認修改"; else echo "確認新增" ?>
                          </button>
                      
@@ -303,7 +344,7 @@ $imgArr = getAllImgs();
 					                <div class="x_content">
 					                  <div class="" role="tabpanel" data-example-id="togglable-tabs">
 					                  	<?php 
-					                	  if(!empty(array_filter($imgArr))){
+					                	  if(!is_null(array_filter($imgArr))){
 					                	?>
 					                	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					                	  <?php 
@@ -385,11 +426,11 @@ $imgArr = getAllImgs();
 $(function(){
 	//歷史相簿搜尋
 	$(document).on("click","li[role='presentation']",function(){
-		/*if($(this).index() == <?php echo $tabIndex; ?>){
-			$("#history-search-area").stop(true,false).fadeIn(300);
-		}else{
-			$("#history-search-area").stop(true,false).fadeOut(300);
-		}*/
+		//if($(this).index() == <?php //echo $tabIndex; ?>//){
+		//	$("#history-search-area").stop(true,false).fadeIn(300);
+		//}else{
+		//	$("#history-search-area").stop(true,false).fadeOut(300);
+		//}
 	});
 	
 	$("#history-search").on("keyup",function(){
@@ -562,12 +603,15 @@ $(function(){
 			processData: false,
 			success:function(result){
 				var results = JSON.parse(result);
-				if(results.errMsg != ""){
+                if(results.errMsg != ""){
+				// if(!results.status){
 					addError($("#catErr"),results.errMsg.catNoErr);
 					addError($("#braErr"),results.errMsg.braNoErr);
+                    addError($("#biErr"),results.errMsg.biNoErr);
 					addError($("#nameErr"),results.errMsg.proNameErr);
 					addError($("#stampImgErr"),results.errMsg.supStampImgErr);
 				}else if(results.errMsg == ""){
+                // } else {
 					alert(results.success);
 					<?php if($_GET["action"]=="edit"){ ?>
 						location.href= redirect;

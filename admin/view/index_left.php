@@ -52,12 +52,12 @@
               </h3>
               <ul class="nav side-menu">
                 <?php if(in_array(0, $curRrightArr)){ ?>
-              	<li><a><i class="fa fa-home"></i> 摘要資訊 <span class="fa fa-chevron-down"></span></a>
-                  <ul class="nav child_menu" style="display: none">
-                    <li><a href="?page=briefInfo&type=general">摘要資訊</a></li>
-                    <li><a href="?page=briefInfo&type=monthly&year=<?php echo $year; ?>">每月統計</a></li>
-                  </ul>
-                </li>
+<!--              	<li><a><i class="fa fa-home"></i> 摘要資訊 <span class="fa fa-chevron-down"></span></a>-->
+<!--                  <ul class="nav child_menu" style="display: none">-->
+<!--                    <li><a href="?page=briefInfo&type=general">摘要資訊</a></li>-->
+<!--                    <li><a href="?page=briefInfo&type=monthly&year=--><?php //echo $year; ?><!--">每月統計</a></li>-->
+<!--                  </ul>-->
+<!--                </li>-->
                 <?php } ?>
 				<?php if(in_array(10, $curRrightArr) || in_array(11, $curRrightArr) || in_array(12, $curRrightArr) || in_array(13, $curRrightArr)){ ?>
                 <li><a><i class="fa fa-user"></i> 會員管理 <span class="fa fa-chevron-down"></span></a>
@@ -66,17 +66,17 @@
                     <li><a href="?page=member&type=member">會員資訊</a></li>
                     <?php } ?>
                     <?php if(in_array(15, $curRrightArr)){ ?>
-                    <li><a href="?page=member&type=recomm_list">推薦人清單</a></li>
+<!--                    <li><a href="?page=member&type=recomm_list">推薦人清單</a></li>-->
                     <?php } ?>
                     <?php if(in_array(11, $curRrightArr)){ ?>
-                    <li><a href="?page=member&type=loyalGuest">老客戶查詢</a></li>
+<!--                    <li><a href="?page=member&type=loyalGuest">老客戶查詢</a></li>-->
                     <?php } ?>
                     <?php if(in_array(13, $curRrightArr)){ ?>
-                    <li><a href="?page=recommBonus&type=confirm&status=0">推薦碼獎金撥款</a></li>
+<!--                    <li><a href="?page=recommBonus&type=confirm&status=0">推薦碼獎金撥款</a></li>-->
                 	<?php } ?>
                     <?php if(in_array(12, $curRrightArr)){ ?>
-                    <li><a href="?page=customer&type=textmsg">簡訊通知</a></li>
-                    <li><a href="?page=customer&type=email">Email通知</a></li>
+<!--                    <li><a href="?page=customer&type=textmsg">簡訊通知</a></li>-->
+<!--                    <li><a href="?page=customer&type=email">Email通知</a></li>-->
                     <?php } ?>
                   </ul>
                 </li>
@@ -98,8 +98,8 @@
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="?page=supplier">供應商瀏覽</a></li>
                     <li><a href="?page=supplier&action=productList">供貨商品清單</a></li>
-                    <li><a href="?page=supplier&action=1&supno=all&orDateFrom=2016-01-01&orDateTo=<?php echo $date; ?>&status=3">分期訂貨(核准)</a></li>
-                    <li><a href="?page=supplier&action=0&supno=all&orDateFrom=2016-01-01&orDateTo=<?php echo $date; ?>&status=0&orPaySuccess=1">直購訂貨(已付處理)</a></li>
+<!--                    <li><a href="?page=supplier&action=1&supno=all&orDateFrom=2016-01-01&orDateTo=--><?php //echo $date; ?><!--&status=3">分期訂貨(核准)</a></li>-->
+<!--                    <li><a href="?page=supplier&action=0&supno=all&orDateFrom=2016-01-01&orDateTo=--><?php //echo $date; ?><!--&status=0&orPaySuccess=1">直購訂貨(已付處理)</a></li>-->
                   </ul>
                 </li>
                 <?php } ?>
@@ -108,6 +108,7 @@
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="?page=product&type=general&which=category">分類管理</a></li>
                     <li><a href="?page=product&type=general&which=brand">品牌管理</a></li>
+                    <li><a href="?page=product&type=general&which=items">品項管理</a></li>
                     <li><a href="?page=product&type=product">商品總覽</a></li>
                     <li><a href="?page=product&type=productManage">商品上架管理</a></li>
                     <li><a href="?page=product&type=productManage&special=new">最新排序</a></li>
@@ -116,13 +117,13 @@
                   </ul>
                 </li>
                 <?php } ?>
-                <?php if(in_array(50, $curRrightArr)){ ?>
+                <?php  /*  if(in_array(50, $curRrightArr)){ ?>
                 <li><a><i class="fa fa-briefcase"></i> 案件審查時間報表 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="?page=report&type=statusReport&orDateFrom=<?php echo $date; ?>&orDateTo=<?php echo $date; ?>"> 案件審查時間報表</a></li>
                   </ul>
                 </li>
-                <?php } ?>
+                <?php }  */  ?>
                 <?php if(in_array(60, $curRrightArr) || in_array(61, $curRrightArr)){ ?>
                 <li><a><i class="fa fa-file-text-o"></i> 分期進件 <span class="fa fa-chevron-down"></span></a>
                   <ul id="order-submenu" class="nav child_menu" style="display: none">
@@ -131,7 +132,7 @@
                     foreach($or->statusArr as $key=>$value){
 						if(in_array(61, $curRrightArr) && !in_array(60, $curRrightArr)){
 							if($key == 1 || $key == 110 || $key == 2 || $key == 5 || $key == 6 || $key == 0 || $key == 3 || $key == 4 || $key == 7){
-                    ?>
+                         ?>
                     	<li>
 	                    	<a href="?page=order&method=1&status=<?php echo $key; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date;?>">
 	                    		<?php echo $value; ?>
@@ -216,10 +217,10 @@
 	                    		?>
 	                    	</a>
                     	</li>
-                    <?php 
+                            <?php
 							}
 						}else if(in_array(60, $curRrightArr)){
-					?>
+					        ?>
 						<li>
 	                    	<a href="?page=order&method=1&status=<?php echo $key; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date;?>">
 	                    		<?php echo $value; ?>
@@ -304,14 +305,14 @@
 	                    		?>
 	                    	</a>
                     	</li>
-					<?php		
+					        <?php
 						}
                     } 
                     ?>
                   </ul>
                 </li>
                 <?php } ?>
-                <?php if(in_array(70, $curRrightArr)){ ?>
+                <?php  /*  if(in_array(70, $curRrightArr)){    ?>
                 <li><a><i class="fa fa-file-text-o"></i> 直購進件 <span class="fa fa-chevron-down"></span></a>
                   <ul id="order-submenu" class="nav child_menu" style="display: none">
                   	<li><a href="?page=order&action=query&method=0"> 直購案件查詢</a></li>
@@ -319,7 +320,7 @@
                     	<li>
 	                    	<a href="?page=order&method=0&status=<?php echo $key; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date;?>">
 	                    		<?php echo $value; ?>
-	                    		<?php 
+	                    		<?php
 	                    		switch($key){
 	                    			case 0:
 	                    		?>
@@ -359,7 +360,7 @@
 									case 7:
 	                    		?>
 	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(7,0)); ?> / 未處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(7,0,0)); ?>)
-	                    		<?php 
+	                    		<?php
 	                    			break;
 	                    		}
 	                    		?>
@@ -368,7 +369,7 @@
                     <?php } ?>
                   </ul>
                 </li>
-                <?php } ?>
+                <?php  }  */  ?>
                 <?php if(in_array(80, $curRrightArr)){ ?>
                 <li><a><i class="fa fa-key"></i> 權限管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
@@ -396,7 +397,7 @@
                   </ul>
                 </li>
                 <?php } ?>
-                <?php if(in_array(100, $curRrightArr)){ ?>
+                <?php  /*  if(in_array(100, $curRrightArr)){    ?>
                 <li><a><i class="fa fa-dollar"></i> 發票號碼串接 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="?page=receipt&type=setting">鑑賞期天數設定</a></li>
@@ -404,21 +405,21 @@
                     <li><a href="?page=receipt&type=import">匯入發票明細</a></li>
                   </ul>
                 </li>
-                <?php } ?>
+                <?php }  */  ?>
                 <?php if(in_array(110, $curRrightArr)){ ?>
                 <li><a><i class="fa fa-windows"></i> 其餘功能 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="?page=other&type=orderDays">訂單過N天隱藏</a></li>
-                    <li><a href="?page=other&type=txtmsgSwitch">簡訊通知開關</a></li>
+<!--                    <li><a href="?page=other&type=txtmsgSwitch">簡訊通知開關</a></li>-->
                     <li><a href="?page=other&type=advertise">廣告管理</a></li>
                     <li><a href="?page=other&type=news">最新消息</a></li>
-                    <li><a href="?page=other&type=recommSetting">推薦獎金設定</a></li>
+<!--                    <li><a href="?page=other&type=recommSetting">推薦獎金設定</a></li>-->
                     <li><a href="?page=other&type=fbLink">FB粉絲團連結</a></li>
                     <li><a href="?page=other&type=hotkeys">商品熱門字設定</a></li>
                     <li><a href="?page=other&type=periodSetting">分期月付計算設定-1</a></li>
                     <li><a href="?page=other&type=periodSetting2">分期月付計算設定-2</a></li>
                     <li><a href="?page=other&type=companyCoop">廠商合作提案</a></li>
-                    <li><a href="?page=other&type=loan_vip">貸款VIP服務</a></li>
+<!--                    <li><a href="?page=other&type=loan_vip">貸款VIP服務</a></li>-->
                   </ul>
                 </li>
                 <?php } ?>
@@ -453,15 +454,17 @@
           <!-- /menu footer buttons -->
         </div>
       </div>
-<script>
-	$(function(){
-		//即時更新推薦獎金是否可領取
-		$.ajax({
-			url:"ajax/rba/edit_status_all.php",
-			type:"post",
-			success:function(result){
-				
-			}
-		});
-	});
-</script>
+
+
+    <script>
+        $(function(){
+            //即時更新推薦獎金是否可領取
+            $.ajax({
+                url:"ajax/rba/edit_status_all.php",
+                type:"post",
+                success:function(result){
+
+                }
+            });
+        });
+    </script>

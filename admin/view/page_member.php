@@ -26,7 +26,7 @@ $allLgData = $lg->getAllLoyalGuest();
                   <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
-                        <th>訊息發送</th>
+<!--                        <th>訊息發送</th>-->
                         <th>會員編號 </th>
                         <th>姓名 </th>
                         <th>身分證字號 </th>
@@ -39,46 +39,46 @@ $allLgData = $lg->getAllLoyalGuest();
                       </tr>
                     </thead>
                     <tbody>
-                    <?php 
+                        <?php
 	                    if($allMemberData != null){
 	                    	foreach($allMemberData as $key=>$value){
 	                    		$member->changeToReadable($value);
 	                    		$ifLoyal = "否";
-	                    		foreach($allLgData as $keyIn=>$valueIn){
+	                    		if (isset($allLgData))foreach($allLgData as $keyIn=>$valueIn){
 	                    			if($valueIn["lgIdNum"] == $value["memIdNum"]){
 	                    				$ifLoyal = "是";
 	                    			}
 	                    		}
-                    ?>
-                      <tr class="pointer">
-                        <td>
-	                        <a href="?page=customer&type=textmsg&memno=<?php echo $value["memNo"]; ?>"><button class="btn btn-success">簡訊</button></a>
-	                        <a href="?page=customer&type=email&memno=<?php echo $value["memNo"]; ?>"><button class="btn btn-success">Email</button></a>
-                        </td>
-                        <td class=" ">
-	                        <a style="text-decoration:underline;color:blue;" href="?page=member&type=member&action=view&memno=<?php echo $value["memNo"]; ?>"><?php echo $value["memNo"]; ?></a>
-                        </td>
-                        <td class=" "><?php echo $value["memName"]; ?></td>
-                        <td class=" "><?php echo $value["memIdNum"]; ?></td>
-                        <td class=" "><?php echo $value["memRegistDate"]; ?></td>
-                        <td class=" "><?php echo $ifLoyal; ?></td>
-						<td class=" "><?php echo $value["memRecommCode"]; ?></td>
-                        <td class=" "><?php echo "<a target='blank' style='text-decoration:underline;color:blue;' href='https://www.facebook.com/".$value["memFBtoken"]."'>".$value["memRegistMethod"]."</a>"; ?></td>
-                        <td class=" ">
-	                        <?php 
-							//echo "<a target='blank' style='text-decoration:underline;color:blue;' href='https://www.facebook.com/".$value["memFBtoken"]."'>".$value["memRegistMethod"]."</a>";
-	                        if($member->loginfromAPP($value["memNo"])){
-	                        	echo " 是";
-	                        }else{
-	                        	echo " 否"; 
-	                        }
-	                        ?>
-                        </td>
-                        <td class=" last">
-	                        <input class="change-login" type="checkbox" <?php if($value["memAllowLogin"] == "允許") echo "checked"; ?>>
-                        </td>
-                      </tr>
-                     <?php 
+                                ?>
+                              <tr class="pointer">
+<!--                                <td>-->
+<!--                                    <a href="?page=customer&type=textmsg&memno=--><?php //echo $value["memNo"]; ?><!--"><button class="btn btn-success">簡訊</button></a>-->
+<!--                                    <a href="?page=customer&type=email&memno=--><?php //echo $value["memNo"]; ?><!--"><button class="btn btn-success">Email</button></a>-->
+<!--                                </td>-->
+                                <td class=" ">
+                                    <a style="text-decoration:underline;color:blue;" href="?page=member&type=member&action=view&memno=<?php echo $value["memNo"]; ?>"><?php echo $value["memNo"]; ?></a>
+                                </td>
+                                <td class=" "><?php echo $value["memName"]; ?></td>
+                                <td class=" "><?php echo $value["memIdNum"]; ?></td>
+                                <td class=" "><?php echo $value["memRegistDate"]; ?></td>
+                                <td class=" "><?php echo $ifLoyal; ?></td>
+                                <td class=" "><?php echo $value["memRecommCode"]; ?></td>
+                                <td class=" "><?php echo "<a target='blank' style='text-decoration:underline;color:blue;' href='https://www.facebook.com/".$value["memFBtoken"]."'>".$value["memRegistMethod"]."</a>"; ?></td>
+                                <td class=" ">
+                                    <?php
+                                    //echo "<a target='blank' style='text-decoration:underline;color:blue;' href='https://www.facebook.com/".$value["memFBtoken"]."'>".$value["memRegistMethod"]."</a>";
+                                    if($member->loginfromAPP($value["memNo"])){
+                                        echo " 是";
+                                    }else{
+                                        echo " 否";
+                                    }
+                                    ?>
+                                </td>
+                                <td class=" last">
+                                    <input class="change-login" type="checkbox" <?php if($value["memAllowLogin"] == "允許") echo "checked"; ?>>
+                                </td>
+                              </tr>
+                            <?php
                     		}
                     	}
                      ?>

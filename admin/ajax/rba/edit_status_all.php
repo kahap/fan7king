@@ -10,7 +10,7 @@
 	
 	$allRbaData = $rba->getAllRBA();
 	
-	foreach($allRbaData as $key=>$value){
+	if (isset($allRbaData))foreach($allRbaData as $key=>$value){
 		$orData = $or->getOneOrderByNo($value["orNo"]);
 		$orDate = $orData[0]["orReportPeriod10Date"];
 		$ifPass = false;

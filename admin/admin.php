@@ -34,7 +34,8 @@
 					break;
 				case "edit_front":
 					if(in_array(90, $curRrightArr)){
-						switch($type){
+						switch($type)
+                        {
 							//免責聲明編輯
 							case "fmLoanVIP":
 								include('view/page_fm.php');
@@ -109,7 +110,8 @@
 				//會員頁
 				case "member":
 					if(isset($type)){
-						switch($type){
+						switch($type)
+                        {
 							//一般會員
 							case "member":
 								if(in_array(10, $curRrightArr)){
@@ -304,9 +306,14 @@
 													include "view/page_category.php";
 												}
 												break;
+                                            //品牌管理
 											case "brand":
 												include "view/page_brand.php";
 												break;
+                                            //品項管理
+                                            case "items":
+                                                include "view/page_items.php";
+                                                break;
 										}
 									}else{
 										include "view/page_category.php";

@@ -4,6 +4,7 @@
 	$pro = new Product();
 	$cat = new Category();
 	$bra = new Brand();
+//	$items = new B_items();
 	$catData = array();
 	
 	$newProNo = "";
@@ -18,7 +19,8 @@
 	$errMsg = array();
 	//成功訊息
 	$success="";
-	
+
+
 	if($proName == ""){
 		$errMsg["proNameErr"] = "必須填入商品名稱";
 	}
@@ -27,6 +29,9 @@
 	}
 	if($braNo == ""){
 		$errMsg["braNoErr"] = "請選擇所屬品牌";
+	}
+	if($biNo == ""){
+		$errMsg["biNoErr"] = "請選擇所屬品項";
 	}
 	
 	
@@ -86,12 +91,13 @@
 			$errMsg["supStampImgErr"] = $err;
 		}
 	}
-	
-	
+
+
 	//如果沒有錯誤訊息
 	if(empty(array_filter($errMsg))){
 		$insert = $pro->insert($_POST,$newProNo);
 		$success="新增成功";
+        $errMsg='';
 	}
 	$result = array("success"=>$success,"errMsg"=>$errMsg,"procaseno"=>$newProNo);
 	echo json_encode($result,true);
