@@ -24,16 +24,57 @@
 
 		
 		//取得所有商品
-		public function getAllPro(){
+		public function getAllPro($p,$a){
 			$sql = "select
 						proNo,proCaseNo,proName,catNo,braNo,biNo
 					from
 						`product`
 					order by
-						`proNo` desc limit 300";
+						`proNo` desc 
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        //取得所有商品的總數
+        public function getAllProCount(){
+            $sql = "select
+						proNo,proCaseNo,proName,catNo,braNo,biNo
+					from
+						`product`
+					order by
+						`proNo` desc ";
+					//limit " .$p. " , " .$a ;
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
+
+
+        //取得所有商品 datatable
+        public function getAllProWhitDT($sort_arr,$search_word ,$sort_name='`proNo`', $sort_dir='desc' ,$iDisplayStart,$iDisplayLength)
+        {
+            if ($sort_arr) {
+                $query = ' where ';
+                foreach ($sort_arr as $item) {
+                    $query .= $item . ' like ' . '%' . $search_word . '%' . ' OR ' ;
+                }
+                $query .= ' 1 ';
+            } else {
+                $query = '';
+            }
+
+            $sql = "select
+						proNo,proCaseNo,proName,catNo,braNo,biNo
+					from
+						`product`                     
+                      " .$query. " 
+					order by
+						".$sort_name." ".$sort_dir." 
+                     limit ".$iDisplayStart." , ".$iDisplayLength;
+
+            $data = $this->db->selectRecords($sql);
+            return $data;
+        }
+
 		
 		//取得名稱類似
 		public function getAllProByLikeName($proName){
@@ -125,7 +166,8 @@
 		
 		
 		//根據種類取得商品
-		public function getAllProByCatName($catName){
+		public function getAllProByCatName($catName,$p,$a=30)
+        {
 			$sql = "select
 						*
 					from
@@ -135,13 +177,31 @@
 					on
 						`category`.`catNo` = `product`.`catNo`
 					where
-						`catName`='".$catName."'";
+						`catName`='".$catName."'
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+		//根據種類取得商品總數
+        public function getAllProByCatNameCount($catName)
+        {
+            $sql = "select
+						*
+					from
+						`product`
+					inner join 
+						`category`
+					on
+						`category`.`catNo` = `product`.`catNo`
+					where
+						`catName`='".$catName."'";
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
 		
 		//根據品牌取得商品
-		public function getAllProByBraName($braName){
+		public function getAllProByBraName($braName,$p=0,$a=30)
+        {
 			$sql = "select
 						*
 					from
@@ -151,10 +211,28 @@
 					on
 						`brand`.`braNo` = `product`.`braNo`
 					where
-						`braName`='".$braName."'";
+						`braName`='".$braName."'
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        //根據品牌取得商品總數
+        public function getAllProByBraNameCount($braName)
+        {
+            $sql = "select
+						*
+					from
+						`product`
+					inner join 
+						`brand`
+					on
+						`brand`.`braNo` = `product`.`braNo`
+					where
+						`braName`='".$braName."'";
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
+
 
         //根據品項取得商品
         public function getAllProByItemName($biName){
