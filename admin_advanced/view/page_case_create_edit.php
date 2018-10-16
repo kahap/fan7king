@@ -917,6 +917,7 @@ table tr td,table tr th{
 <script src="assets/js/pages/ui-modals.js"></script>
 <script>
 $(function(){
+	isChange = false;
 	$('.status').hide();
 	//增加狀態備註
 	$(".confirm-insert-comment").click(function(){
@@ -986,6 +987,7 @@ $(function(){
 				console.log(result);
 				if(result.indexOf("OK") != -1){
 					alert("儲存成功！");
+					isChange = true;
 					location.reload();
 				}else{
 					var results = JSON.parse(result);
@@ -1030,6 +1032,7 @@ $(function(){
 						}
 					});
 					<?php } ?>
+					isChange = true;
 					location.href = "?page=case";
 				}else{
 					var results = JSON.parse(result);
@@ -1129,7 +1132,14 @@ $('.look').click(function(){
 	$.ajax({
         type: "post",
         url: "http://api.21-finance.com/api/ViewDocument",
-        data: { AID: "<?php echo ($rcData[0]["rcType"] == "0") ? $orData[0]["orCaseNo"]:$motoData[0]["mcoCaseNo"]; ?>", Name: "<?echo $_SESSION['adminUserData']['aauName']; ?>", Page: "進件作業", Btn: "查看證件上傳", Ip: "<?echo $_SERVER["REMOTE_ADDR"]; ?>", LookDate: "<?echo date("Y-m-d H:i:s"); ?>" },
+        data: {
+			AID: "<?php echo ($rcData[0]["rcType"] == "0") ? $orData[0]["orCaseNo"]:$motoData[0]["mcoCaseNo"]; ?>", 
+			Name: "<?php echo $_SESSION['adminUserData']['aauName']; ?>", 
+			Page: "進件作業", 
+			Btn: "查看證件上傳", 
+			Ip: "<?php echo $_SERVER["REMOTE_ADDR"]; ?>", 
+			LookDate: "<?php echo date("Y-m-d H:i:s"); ?>" 
+		},
         success: function (data, status) {}
     });
 });
@@ -1138,9 +1148,43 @@ $('.look').click(function(){
 	$.ajax({
         type: "post",
         url: "http://api.21-finance.com/api/ViewDocument",
-        data: { AID: "<?php echo ($rcData[0]["rcType"] == "0") ? $orData[0]["orCaseNo"]:$motoData[0]["mcoCaseNo"]; ?>", Name: "<?echo $_SESSION['adminUserData']['aauName']; ?>", Page: "進件作業", Btn: "列印", Ip: "<?echo $_SERVER["REMOTE_ADDR"]; ?>", LookDate: "<?echo date("Y-m-d H:i:s"); ?>" },
+        data: { 
+			AID: "<?php echo ($rcData[0]["rcType"] == "0") ? $orData[0]["orCaseNo"]:$motoData[0]["mcoCaseNo"]; ?>", 
+			Name: "<?php echo $_SESSION['adminUserData']['aauName']; ?>", 
+			Page: "進件作業", Btn: "列印", 
+			Ip: "<?php echo $_SERVER["REMOTE_ADDR"]; ?>", 
+			LookDate: "<?php echo date("Y-m-d H:i:s"); ?>" },
         success: function (data, status) {}
     });
 });
 
+	//登入時更換鎖定
+	$(document).ready(function(){
+		$.ajax({
+			url:"ajax/order/orderLockIn.php",
+			type:"POST",
+			data:{
+				"rcNo":<?php echo $_GET["no"];?>
+			},
+			datatype:"text",
+			success:function(result){}
+		});
+	});
+
+	//離開頁面時，取消案件鎖定
+	$(window).bind('beforeunload', function (e) {
+		$.ajax({
+			type: "post",
+			url: "ajax/order/orderLockOut.php",
+			data: {
+				"rcNo":<?php echo $_GET["no"];?>
+			},
+			datatype:"text",
+			success: function (result) {
+			}
+		});
+		if(!isChange){
+			return " ";   
+		}
+	});
 </script>

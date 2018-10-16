@@ -68,7 +68,7 @@ $aarNo = array('1','4','7','8','9','10');
 							<tr>
      							<td><?php echo $key+1; ?></td>
      							<td>
-     								<a href="?page=credit&type=insert&no=<?php echo $value["rcNo"]; ?>"><?php echo $value["rcCaseNo"]; ?></a>
+     								<a class="OrderConnect" href="#" orderNo="<?php echo $value["rcNo"]; ?>" value="?page=credit&type=insert&no=<?php echo $value["rcNo"]; ?>"><?php echo $value["rcCaseNo"]; ?></a>
      							</td>
      							<td><?php echo $memData[0]["memName"]; ?><font style="color:red"><?php echo $mark; ?></font></td>
      							<td><?php echo $memData[0]["memIdNum"]; ?></td>
@@ -119,5 +119,30 @@ $(document).ready(function() {
     	
     });
     $('.dataTables_length select').addClass('browser-default');
+});
+
+$('.OrderConnect').click(function(){
+	var ht = $(this).attr("value");
+	var orderNo = $(this).attr("orderNo");
+	$.ajax({
+		url:"ajax/order/orderLock.php",
+		type:"post",
+		data:{
+			"rcno":orderNo
+		},
+		datatype:"text",
+		success:function(result){
+			var myJson = JSON.parse(result);
+			var isLock = myJson.isLock;
+			var ServiceName = myJson.aaNo;
+			if(isLock==0){
+				location.href= ht;
+			}else{
+				if(confirm("目前"+ServiceName+"使用中，是否確認修改")){
+					location.href= ht;
+				}else{}
+			}
+		}
+	});
 });
 </script>

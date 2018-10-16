@@ -1,32 +1,34 @@
 <?php 
-if($_GET['item'] == "change"){
-	$api = new API("real_cases");
-	$or = new API("orders");
-	
-	$rcData = $api->getOne($no);
-	
-	$api->setWhereArray(array("rcRelateDataNo"=>$_GET['orderNO']));
-	$newRcData = $api->getWithConditions();
-	
-	
-	$coArray = array("rcNo"=>$no,"orNo_old"=>$rcData[0]["rcRelateDataNo"],"rcNo_new"=>$newRcData[0]['rcNo'],"orNo_new"=>$newRcData[0]['rcRelateDataNo']);	
-	$co = new API("Change_Order");
-	$co->insert($coArray);
-	
-	//更新目前的案件內的訂單編號,將舊的訂單取消掉
-	$apiUpdate = array("supNo"=>$newRcData[0]['supNo'],"rcRelateDataNo"=>$newRcData[0]['rcRelateDataNo'],"rcPeriodTotal"=>$newRcData[0]['rcPeriodTotal'],"rcPeriodAmount"=>$newRcData[0]['rcPeriodAmount']);
-	$NewrcUpdate = array("supNo"=>$rcData[0]["supNo"],"rcRelateDataNo"=>$rcData[0]["rcRelateDataNo"],"rcPeriodTotal"=>$rcData[0]['rcPeriodTotal'],"rcPeriodAmount"=>$rcData[0]['rcPeriodAmount']);
-	
-	
-	$api->update($apiUpdate,$no);
-	$AA = new API("real_cases");
-	$AA->update($NewrcUpdate,$newRcData['0']['rcNo']);
-	$AA->update(array("rcStatus"=>"7"),$newRcData['0']['rcNo']);
-	$or->update(array("orStatus"=>"7"),$rcData['0']['rcRelateDataNo']);
-	$or->update(array("orStatus"=>"2"),$newRcData['0']['rcRelateDataNo']);
-	
-	echo "<script>alert('更改訂單成功!')</script>";
-	echo "<script>location.href ='?page=credit&type=insert&no=".$no."';</script>";
+if(isset($_GET['item']) ){
+	if($_GET['item'] == "change"){
+		$api = new API("real_cases");
+		$or = new API("orders");
+		
+		$rcData = $api->getOne($no);
+		
+		$api->setWhereArray(array("rcRelateDataNo"=>$_GET['orderNO']));
+		$newRcData = $api->getWithConditions();
+		
+		
+		$coArray = array("rcNo"=>$no,"orNo_old"=>$rcData[0]["rcRelateDataNo"],"rcNo_new"=>$newRcData[0]['rcNo'],"orNo_new"=>$newRcData[0]['rcRelateDataNo']);	
+		$co = new API("Change_Order");
+		$co->insert($coArray);
+		
+		//更新目前的案件內的訂單編號,將舊的訂單取消掉
+		$apiUpdate = array("supNo"=>$newRcData[0]['supNo'],"rcRelateDataNo"=>$newRcData[0]['rcRelateDataNo'],"rcPeriodTotal"=>$newRcData[0]['rcPeriodTotal'],"rcPeriodAmount"=>$newRcData[0]['rcPeriodAmount']);
+		$NewrcUpdate = array("supNo"=>$rcData[0]["supNo"],"rcRelateDataNo"=>$rcData[0]["rcRelateDataNo"],"rcPeriodTotal"=>$rcData[0]['rcPeriodTotal'],"rcPeriodAmount"=>$rcData[0]['rcPeriodAmount']);
+		
+		
+		$api->update($apiUpdate,$no);
+		$AA = new API("real_cases");
+		$AA->update($NewrcUpdate,$newRcData['0']['rcNo']);
+		$AA->update(array("rcStatus"=>"7"),$newRcData['0']['rcNo']);
+		$or->update(array("orStatus"=>"7"),$rcData['0']['rcRelateDataNo']);
+		$or->update(array("orStatus"=>"2"),$newRcData['0']['rcRelateDataNo']);
+		
+		echo "<script>alert('更改訂單成功!')</script>";
+		echo "<script>location.href ='?page=credit&type=insert&no=".$no."';</script>";
+	}
 }
 
 
@@ -265,8 +267,8 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 			<div class="col s12 m12 l12">
 				<div class="card">
 					<div class="card-content">
-						<a class="modal-trigger waves-effect waves-light btn blue m-b-xs" href="?page=credit&type=insert&no=<?php echo $rcData[0]['rcNo']; ?>&level=1" <?php echo ($_GET['level'] == 1) ? "disabled":"";?>>申請人徵信</a> 
-						<a class="modal-trigger waves-effect waves-light btn blue m-b-xs credit_view" <?php echo ($_GET['level'] == 2) ? "disabled":"";?>>自動徵信資料表</a>
+						<a class="modal-trigger waves-effect waves-light btn blue m-b-xs" href="?page=credit&type=insert&no=<?php echo $rcData[0]['rcNo']; ?>&level=1" <?php echo isset($_GET['level'])&&($_GET['level'] == 1) ? "disabled":"";?>>申請人徵信</a> 
+						<a class="modal-trigger waves-effect waves-light btn blue m-b-xs credit_view" <?php echo isset($_GET['level'])&&($_GET['level'] == 2) ? "disabled":"";?>>自動徵信資料表</a>
 						<a class="modal-trigger waves-effect waves-light btn red m-b-xs credit_score">評分項目</a>
 						<br>  
 						<div class="row">
@@ -979,7 +981,7 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 									<label class="">聯絡人手機</label>
 								</div>
 							</div>
-						<?
+						<?php
 									$nl->setWhereArray(array("npNo"=>3));
 									$contactNlData = $nl->getWithConditions();
 									foreach($contactNlData as $keyNl=>$valueNl){
@@ -1012,11 +1014,11 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 								</div>
 							</div>
 							
-						<?		
+						<?php
 									}
 								echo "</div>";
 								}
-						}		
+						}
 						?>
 					</div>
 				</div>
@@ -1266,6 +1268,7 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 <script src="assets/js/pages/form_elements.js"></script>
 <script>
 $(function(){
+	isChange = false;
 	$(".status").hide();
 	//申請人 歷史紀錄
 	$(document).on("click",".history-record-applier",function(){
@@ -1335,6 +1338,7 @@ $(function(){
 			success:function(result){
 				if(result.indexOf("OK") != -1){
 					alert("儲存成功！");
+					isChange = true;
 					location.reload();
 				}else{
 					alert(result);
@@ -1359,6 +1363,7 @@ $(function(){
 			success:function(result){
 				if(result.indexOf("OK") != -1){
 					alert("儲存成功！");
+					isChange = true;
 					location.href = "?page=credit&type=view";
 				}else{
 					var results = JSON.parse(result);
@@ -1389,6 +1394,7 @@ $(function(){
 			success:function(result){
 				if(result.indexOf("OK") != -1){
 					alert("儲存成功！");
+					isChange = true;
 					location.href = "?page=credit&type=view";
 				}else{
 					alert(result);
@@ -1462,6 +1468,7 @@ $(function(){
 						success:function(result){
 							if(result.indexOf("OK") != -1){
 								alert("儲存成功！");
+								isChange = true;
 								location.href = "?page=credit&type=insert&no=<?php echo $_GET["no"];?>";
 							}else{
 								alert(result);
@@ -1489,7 +1496,14 @@ $('.look').click(function(){
 	$.ajax({
         type: "post",
         url: "http://api.21-finance.com/api/ViewDocument",
-        data: { AID: "<?echo $rcData[0]["rcCaseNo"]; ?>", Name: "<?echo $_SESSION['adminUserData']['aauName']; ?>", Page: "徵信作業", Btn: "查看證件上傳", Ip: "<?echo $_SERVER["REMOTE_ADDR"]; ?>", LookDate: "<?echo date("Y-m-d H:i:s"); ?>" },
+        data: { 
+			AID: "<?php echo $rcData[0]["rcCaseNo"]; ?>", 
+			Name: "<?php echo $_SESSION['adminUserData']['aauName']; ?>", 
+			Page: "徵信作業", 
+			Btn: "查看證件上傳", 
+			Ip: "<?php echo $_SERVER["REMOTE_ADDR"]; ?>", 
+			LookDate: "<?php echo date("Y-m-d H:i:s"); ?>" 
+		},
         success: function (data, status) {}
     });
 });
@@ -1498,8 +1512,44 @@ $('.look').click(function(){
 	$.ajax({
         type: "post",
         url: "http://api.21-finance.com/api/ViewDocument",
-        data: { AID: "<?echo $rcData[0]["rcCaseNo"]; ?>", Name: "<?echo $_SESSION['adminUserData']['aauName']; ?>", Page: "徵信作業", Btn: "列印", Ip: "<?echo $_SERVER["REMOTE_ADDR"]; ?>", LookDate: "<?echo date("Y-m-d H:i:s"); ?>" },
+        data: { 
+			AID: "<?php echo $rcData[0]["rcCaseNo"]; ?>", 
+			Name: "<?php echo $_SESSION['adminUserData']['aauName']; ?>", 
+			Page: "徵信作業", 
+			Btn: "列印", 
+			Ip: "<?php echo $_SERVER["REMOTE_ADDR"]; ?>", 
+			LookDate: "<?php echo date("Y-m-d H:i:s"); ?>" 
+		},
         success: function (data, status) {}
     });
 });
+	//登入時更換鎖定
+	$(document).ready(function(){
+		$.ajax({
+			url:"ajax/order/orderLockIn.php",
+			type:"POST",
+			data:{
+				"rcNo":<?php echo $_GET["no"];?>
+			},
+			datatype:"text",
+			success:function(result){}
+		});
+	});
+
+	//離開頁面時，取消案件鎖定
+	$(window).bind('beforeunload', function (e) {
+		$.ajax({
+			type: "post",
+			url: "ajax/order/orderLockOut.php",
+			data: {
+				"rcNo":<?php echo $_GET["no"];?>
+			},
+			datatype:"text",
+			success: function (result) {
+			}
+		});
+		if(!isChange){
+			return " ";   
+		}
+	});
 </script>

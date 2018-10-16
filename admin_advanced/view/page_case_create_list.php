@@ -10,56 +10,62 @@ $lg = new API("loyal_guest");
 
 $lgData = $lg->getAll();
 $lgArr = array();
-foreach($lgData as $key=>$value){
-	$lgArr[] = $value["lgIdNum"];
+if(count($lgData)>0){
+	foreach($lgData as $key=>$value){
+		$lgArr[] = $value["lgIdNum"];
+	}
 }
-switch($type){
-	case "fixed":
-		$pageTitle = "進件作業 - 未進件但已完成補件案件列表";
-		$cardTitle = "未進件但已完成補件案件";
-		$api->setWhereArray(array("rcStatus"=>6,"rcIfCredit"=>"0","rcIfAuthen"=>"0"));
-		$str = "a.rcStatus = '6' && a.rcIfCredit = '0' && a.rcIfAuthen = '0'";
-		break;
-	case "unfixed":
-		$pageTitle = "進件作業 - 未進件補件案件案件列表";
-		$cardTitle = "未進件補件案件";
-		$api->setWhereArray(array("rcStatus"=>5,"rcIfCredit"=>"0","rcIfAuthen"=>"0"));
-		$str = "a.rcStatus = '5' && a.rcIfCredit = '0' && a.rcIfAuthen = '0'  && YEAR(a.rcDate) = YEAR(CURDATE())";
-		break;
-	case "after_fixed":
-		$pageTitle = "進件作業 - 授信後但已完成補件案件列表";
-		$cardTitle = "授信後但已完成補件案件";
-		$api->setWhereArray(array("rcStatus"=>6,"rcIfCredit"=>"1","rcIfAuthen"=>">0"));
-		$str = "a.rcStatus = '6' && a.rcIfCredit = '1' && a.rcIfAuthen = '0'";
-		break;
-	case "after_unfixed":
-		$pageTitle = "進件作業 - 授信後待補案件列表";
-		$cardTitle = "授信後待補案件";
-		$api->setWhereArray(array("rcStatus"=>5,"rcIfCredit"=>"1","rcIfAuthen"=>"0"));
-		$str = "a.rcStatus = '5' && a.rcIfCredit = '1' && a.rcIfAuthen = '0'"; 
-		break;
-		
-	case "EmailNotIdentify":
-		$pageTitle = "進件作業 - 已下單-Email未認證案件列表";
-		$cardTitle = "Email未認證";
-		$api->setWhereArray(array("rcStatus"=>0));
-		$api->setOrderArray(array("rcStatus0Time"=>"desc"));
-		$api->limitArr("400");
-		$str = "a.rcStatus = '0'  && YEAR(a.rcDate) = YEAR(CURDATE()) && c.memClass =  '0' && c.memEmailAuthen = '0'";
-		break;	
-		
-	default:
-		$pageTitle = "進件作業 - 未進件案件列表";
-		$cardTitle = "未進件案件";
-		$api->setWhereArray(array("rcStatus"=>1));
-		$str = "a.rcStatus = '1'";
-		break;
+if(isset($type)){
+	switch($type){
+		case "fixed":
+			$pageTitle = "進件作業 - 未進件但已完成補件案件列表";
+			$cardTitle = "未進件但已完成補件案件";
+			$api->setWhereArray(array("rcStatus"=>6,"rcIfCredit"=>"0","rcIfAuthen"=>"0"));		
+			$str = "a.rcStatus = '6' && a.rcIfCredit = '0' && a.rcIfAuthen = '0'";
+			break;
+		case "unfixed":
+			$pageTitle = "進件作業 - 未進件補件案件案件列表";
+			$cardTitle = "未進件補件案件";
+			$api->setWhereArray(array("rcStatus"=>5,"rcIfCredit"=>"0","rcIfAuthen"=>"0"));
+			$str = "a.rcStatus = '5' && a.rcIfCredit = '0' && a.rcIfAuthen = '0'  && YEAR(a.rcDate) = YEAR(CURDATE())";
+			break;
+		case "after_fixed":
+			$pageTitle = "進件作業 - 授信後但已完成補件案件列表";
+			$cardTitle = "授信後但已完成補件案件";
+			$api->setWhereArray(array("rcStatus"=>6,"rcIfCredit"=>"1","rcIfAuthen"=>">0"));
+			$str = "a.rcStatus = '6' && a.rcIfCredit = '1' && a.rcIfAuthen = '0'";
+			break;
+		case "after_unfixed":
+			$pageTitle = "進件作業 - 授信後待補案件列表";
+			$cardTitle = "授信後待補案件";
+			$api->setWhereArray(array("rcStatus"=>5,"rcIfCredit"=>"1","rcIfAuthen"=>"0"));
+			$str = "a.rcStatus = '5' && a.rcIfCredit = '1' && a.rcIfAuthen = '0'"; 
+			break;
+			
+		case "EmailNotIdentify":
+			$pageTitle = "進件作業 - 已下單-Email未認證案件列表";
+			$cardTitle = "Email未認證";
+			$api->setWhereArray(array("rcStatus"=>0));
+			$api->setOrderArray(array("rcStatus0Time"=>"desc"));
+			$api->limitArr("400");
+			$str = "a.rcStatus = '0'  && YEAR(a.rcDate) = YEAR(CURDATE()) && c.memClass =  '0' && c.memEmailAuthen = '0'";
+			break;	
+			
+		default:
+		break;		
+	}
+}else{
+	$pageTitle = "進件作業 - 未進件案件列表";
+	$cardTitle = "未進件案件";
+	$api->setWhereArray(array("rcStatus"=>1));
+	$str = "a.rcStatus = '1'";	
 }
+
 $sql = "SELECT a.rcCaseNo,a.rcNo,a.rcType,a.rcDate,a.rcStatus,a.rcRelateDataNo,a.memNo,b.orCaseNo,b.orIfProcessInCurrentStatus,b.orProSpec,c.memName,c.memIdNum,c.memBday,c.memClass,d.proNo,e.proName,f.aauNo
 		FROM `real_cases` a, orders b,member c,product_manage d,product e,supplier f
 		where 
 			".$str."&& a.rcType = '0'
-			&& a.rcStatus = b.orStatus && a.rcRelateDataNo = b.orNo && b.pmNo = d.pmNo && d.proNo = e.proNo && a.memNo = c.memNo && a.supNo = f.supNo".(($type == 'EmailNotIdentify') ? ' limit 500':'');
+			&& a.rcStatus = b.orStatus && a.rcRelateDataNo = b.orNo && b.pmNo = d.pmNo && d.proNo = e.proNo && a.memNo = c.memNo && a.supNo = f.supNo".(isset($type)&&($type == 'EmailNotIdentify') ? ' limit 500':'');
 $data = $api->customSql($sql);
 
 $sql1 = "SELECT a.rcCaseNo,a.rcNo,a.rcType,a.rcDate,a.rcStatus,a.rcRelateDataNo,a.memNo,b.mcoCaseNo,b.mcoIfProcessInCurrentStatus,c.memName,c.memIdNum,c.memBday,c.memClass
@@ -67,7 +73,7 @@ $sql1 = "SELECT a.rcCaseNo,a.rcNo,a.rcType,a.rcDate,a.rcStatus,a.rcRelateDataNo,
 		where 
 			".$str."&& a.rcType > '0'
 			&& a.rcStatus = b.mcoStatus && a.rcRelateDataNo = b.mcoNo  && a.memNo = c.memNo";
-if( $_GET['type'] != ''){
+if(isset($_GET['type']) && $_GET['type'] != ''){
 	$data1 = $api->customSql($sql1);
 }
 ?>
@@ -119,7 +125,7 @@ if( $_GET['type'] != ''){
 								</td>
 								<?php } ?>
      							<td><?php echo $value["rcCaseNo"]; ?></td>
-     							<td><a href="?page=case&type=edit&no=<?php echo $value["rcNo"]; ?>"><?php echo $value['orCaseNo'] ?></a></td>
+     							<td><a class="OrderConnect" href="#" orderNo="<?php echo $value["rcNo"]; ?>" value="?page=case&type=edit&no=<?php echo $value["rcNo"]; ?>"><?php echo $value['orCaseNo'] ?></a></td>
 								<td style="width:400px"><?php echo $value["proName"]; ?></td>
 								<td><?php echo  $value["orProSpec"]; ?></td>
 								<td><?php echo $value["memName"]; ?><font style="color:red"><?php echo $mark;?></font></td>
@@ -132,7 +138,7 @@ if( $_GET['type'] != ''){
      					<?php
 								}
 						}
-						if($data1 != null){
+						if( isset($data1) && $data1 != null){
 							foreach($data1 as $key=> $value){
 						?>		
 							<tr>
@@ -191,5 +197,30 @@ $(document).ready(function() {
 		"iDisplayLength": 100
     });
     $('.dataTables_length select').addClass('browser-default');
+});
+//確認是否正在被閱讀
+$('.OrderConnect').click(function(){
+	var ht = $(this).attr("value");
+	var orderNo = $(this).attr("orderNo");
+	$.ajax({
+		url:"ajax/order/orderLock.php",
+		type:"post",
+		data:{
+			"rcno":orderNo
+		},
+		datatype:"text",
+		success:function(result){
+			var myJson = JSON.parse(result);
+			var isLock = myJson.isLock;
+			var ServiceName = myJson.aaNo;
+			if(isLock==0){
+				location.href= ht;
+			}else{
+				if(confirm("目前"+ServiceName+"使用中，是否確認修改")){
+					location.href= ht;
+				}else{}
+			}
+		}
+	});
 });
 </script>
