@@ -132,7 +132,7 @@
 		//根據搜尋取得商品
 		public function getSearchProduct($array){
 			foreach($array as $key => $value){
-				$$key= mysql_real_escape_string($value);
+				$$key= mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$str .= ($category != "0") ? "catNo = '".$category."' &&":'';
 			$str .= "proName like '%".$search."%'";

@@ -201,9 +201,9 @@ class travel_information extends Img{
 		/**	旅遊資訊顯示
 	**/
 	public function travel_information_show($data){
-		$id		= mysql_real_escape_string($data['id']);
-		$type		= mysql_real_escape_string($data['type']);
-		$stop_use		= mysql_real_escape_string($data['stop_use']);
+		$id		= mysqli_real_escape_string($this->db->oDbLink, $data['id']);
+		$type		= mysqli_real_escape_string($this->db->oDbLink, $data['type']);
+		$stop_use		= mysqli_real_escape_string($this->db->oDbLink, $data['stop_use']);
 		
 		$sql = "update 
 					travels 
@@ -217,7 +217,7 @@ class travel_information extends Img{
 	/**	給予旅遊資訊權限
 	**/
 	public function audit_travel_information($id,$audit){
-		$aduit		= mysql_real_escape_string($audit);
+		$aduit		= mysqli_real_escape_string($this->db->oDbLink, $audit);
 		
 		$sql = "update 
 					travels 
@@ -232,7 +232,7 @@ class travel_information extends Img{
 	/**	查詢權限清單
 	**/
 	public function travel_information_audit_list($audit){
-		$aduit		= mysql_real_escape_string($audit);
+		$aduit		= mysqli_real_escape_string($this->db->oDbLink, $audit);
 		
 		$sql = "select
 					*

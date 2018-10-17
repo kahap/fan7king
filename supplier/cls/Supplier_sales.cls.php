@@ -61,7 +61,7 @@
         //編輯 encore
         public function update($array,$ssNo){
             foreach($array as $key =>$value){
-                $$key = mysql_real_escape_string($value);
+                $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
             }
             $sql = "update
                         `supplier_sales`
@@ -79,7 +79,7 @@
         //新增 encore
         function insert($array,$supNo){
             foreach($array as $key =>$value){
-                $$key = mysql_real_escape_string($value);
+                $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
             }
             $sql = "insert into `supplier_sales`(`supNo`, `ssName` ,`ssLogId` ,`ssPwd`)
                     values('".$supNo."',

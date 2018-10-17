@@ -18,16 +18,16 @@ class Login
 	
 	//判斷是否停權
 	public function stop_use($company_code,$username,$titles){
-		$company_code 	= 	mysql_real_escape_string($company_code);
-		$username		=	mysql_real_escape_string($username);
-		$titles 		= 	mysql_real_escape_string($titles);
+		$company_code 	= 	mysqli_real_escape_string($this->db->oDbLink, $company_code);
+		$username		=	mysqli_real_escape_string($this->db->oDbLink, $username);
+		$titles 		= 	mysqli_real_escape_string($this->db->oDbLink, $titles);
 		if($titles == 1){
 			$sql = "select	   
 						*
 					from
 						".USER_ADMIN."
 					where
-						user_name = '".mysql_real_escape_string($username)."'
+						user_name = '".mysqli_real_escape_string($this->db->oDbLink, $username)."'
 					limit 0,1 ";			
 		}
 		if($titles == 2){
@@ -36,9 +36,9 @@ class Login
 					from
 						".USER_COMPANY."
 					where
-						company_code = '".mysql_real_escape_string($company_code)."'
+						company_code = '".mysqli_real_escape_string($this->db->oDbLink, $company_code)."'
 						&&
-						user_name = '".mysql_real_escape_string($username)."'
+						user_name = '".mysqli_real_escape_string($this->db->oDbLink, $username)."'
 					limit 0,1 ";			
 		}else if($titles == 3){
 			$sql = "select	   
@@ -46,9 +46,9 @@ class Login
 					from
 						".USER_STAFF."
 					where
-						company_code = '".mysql_real_escape_string($company_code)."'
+						company_code = '".mysqli_real_escape_string($this->db->oDbLink, $company_code)."'
 						&&
-						user_name = '".mysql_real_escape_string($username)."'
+						user_name = '".mysqli_real_escape_string($this->db->oDbLink, $username)."'
 					limit 0,1 ";				
 		}
 
@@ -58,13 +58,13 @@ class Login
 
 	/*檢查公司是否被停權*/
 	public function Check_Stop_Use_Company($company_code){
-		$company_code 	= 	mysql_real_escape_string($company_code);
+		$company_code 	= 	mysqli_real_escape_string($this->db->oDbLink, $company_code);
 		$sql = "select	   
 					*
 				from
 					".USER_COMPANY."
 				where
-					company_code = '".mysql_real_escape_string($company_code)."'
+					company_code = '".mysqli_real_escape_string($this->db->oDbLink, $company_code)."'
 				limit 0,1 ";	
 		$company_stop_use= $this->db->selectRecords($sql);
 		return $company_stop_use[0]['stop_use'] ;	
@@ -72,13 +72,13 @@ class Login
 	
 	//取得公司工種授權
 	private function Get_Company_Worker_Type($company_code){
-		$company_code 	= 	mysql_real_escape_string($company_code);
+		$company_code 	= 	mysqli_real_escape_string($this->db->oDbLink, $company_code);
 		$sql = "select	   
 					worker_type
 				from
 					".USER_COMPANY."
 				where
-					company_code = '".mysql_real_escape_string($company_code)."'
+					company_code = '".mysqli_real_escape_string($this->db->oDbLink, $company_code)."'
 				limit 0,1 ";	
 		$worker_type= $this->db->selectRecords($sql);
 		return $worker_type[0]['worker_type'] ;			
@@ -112,9 +112,9 @@ class Login
 				from
 					system_manager
 				where
-					smAccount = '".mysql_real_escape_string($username)."'
+					smAccount = '".mysqli_real_escape_string($this->db->oDbLink, $username)."'
 					&&
-					smPwd = '".mysql_real_escape_string($password)."'
+					smPwd = '".mysqli_real_escape_string($this->db->oDbLink, $password)."'
 				limit 0,1 ";
 	 	$this->userdata = $this->db->selectRecords($sql);
 		$record =  $this->db->getNumberOfRecords();
@@ -160,9 +160,9 @@ class Login
 				from
 					".PROJECT_LIST."
 				where
-					manager_acount = '".mysql_real_escape_string($username)."'
+					manager_acount = '".mysqli_real_escape_string($this->db->oDbLink, $username)."'
 					&&
-					manager_passwd = '".mysql_real_escape_string($password)."'
+					manager_passwd = '".mysqli_real_escape_string($this->db->oDbLink, $password)."'
 				limit 0,1 ";
 	 	$this->userdata = $this->db->selectRecords($sql);
 		$record =  $this->db->getNumberOfRecords();

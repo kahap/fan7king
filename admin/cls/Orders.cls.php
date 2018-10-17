@@ -411,7 +411,7 @@
 			$sql = "select
 						*
 					from
-						`orders`
+						`orders` 
 					where
 						`orMethod` = 1";
 			if(isset($orDateFrom) && isset($orDateTo)){
@@ -436,7 +436,8 @@
 			$sql = "select
 						*
 					from
-						`orders`
+						`orders` 
+                    inner join `real_cases` on `orders`.`orNo` = `real_cases`.`rcRelateDataNo` 
 					where
 						`orMethod` = '".$orMethod."'";
 			if(isset($orDateFrom) && isset($orDateTo)){
@@ -484,6 +485,7 @@
 						*
 					from
 						`orders`
+                    inner join `real_cases` on `orders`.`orNo` = `real_cases`.`rcRelateDataNo` 
 					where
 						`orMethod`=".$orMethod;
 			$data = $this->db->selectRecords($sql);
@@ -494,7 +496,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
@@ -565,120 +567,120 @@
 			$sql = "update
 						`orders`
 					set
-						`orInternalCaseNo`='".mysql_real_escape_string($orInternalCaseNo)."'
+						`orInternalCaseNo`='".mysqli_real_escape_string($this->db->oDbLink,$orInternalCaseNo)."'
 					where
 						`orNo`='".$orNo."'";
-				
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯內部訂貨到收貨流程
 		public function updateOrderAndGetFromSup($orHandleSupOutDate,$orHandleTransportComp,$orHandleTransportSerialNum,$orHandleGetFromSupDate,$orNo){
 			$orHandleSupOutDate = !empty($orHandleSupOutDate) ? "'$orHandleSupOutDate'" : "NULL";
 			$orHandleGetFromSupDate = !empty($orHandleGetFromSupDate) ? "'$orHandleGetFromSupDate'" : "NULL";
-			
+
 			$sql = "update
 						`orders`
 					set
 						`orHandleSupOutDate`= $orHandleSupOutDate ,
-						`orHandleTransportComp`='".mysql_real_escape_string($orHandleTransportComp)."',
-						`orHandleTransportSerialNum`='".mysql_real_escape_string($orHandleTransportSerialNum)."',
+						`orHandleTransportComp`='".mysqli_real_escape_string($this->db->oDbLink,$orHandleTransportComp)."',
+						`orHandleTransportSerialNum`='".mysqli_real_escape_string($this->db->oDbLink,$orHandleTransportSerialNum)."',
 						`orHandleGetFromSupDate`= $orHandleGetFromSupDate 
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯內部撥款日期
 		public function updatePaySupDate($orHandlePaySupDate,$orNo){
 			$orHandlePaySupDate = !empty($orHandlePaySupDate) ? "'$orHandlePaySupDate'" : "NULL";
-			
+
 			$sql = "update
 						`orders`
 					set
 						`orHandlePaySupDate`= $orHandlePaySupDate
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯內部換貨簽收日期
 		public function updateChangeProDate($orHandleChangeProDate,$orNo){
 			$orHandleChangeProDate = !empty($orHandleChangeProDate) ? "'$orHandleChangeProDate'" : "NULL";
-				
+
 			$sql = "update
 						`orders`
 					set
 						`orHandleChangeProDate`= $orHandleChangeProDate
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯內部退貨簽收日期
 		public function updateRefundDate($orHandleRefundDate,$orNo){
 			$orHandleRefundDate = !empty($orHandleRefundDate) ? "'$orHandleRefundDate'" : "NULL";
-		
+
 			$sql = "update
 						`orders`
 					set
 						`orHandleRefundDate`= $orHandleRefundDate
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯完成退貨處理時間
 		public function updateProcessTime($orProcessTime,$orNo){
 			$orProcessTime = !empty($orProcessTime) ? "'$orProcessTime'" : "NULL";
-		
+
 			$sql = "update
 						`orders`
 					set
 						`orProcessTime`= $orProcessTime
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯補件原因
 		public function updateDocProvideReason($orDocProvideReason,$orDocProvideComment,$orNo){
 			$sql = "update
 						`orders`
 					set
-						`orDocProvideReason`= '".mysql_real_escape_string($orDocProvideReason)."',
-						`orDocProvideComment`= '".mysql_real_escape_string($orDocProvideComment)."'
+						`orDocProvideReason`= '".mysqli_real_escape_string($this->db->oDbLink,$orDocProvideReason)."',
+						`orDocProvideComment`= '".mysqli_real_escape_string($this->db->oDbLink,$orDocProvideComment)."'
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯供貨價
 		public function updateOrSupPrice($orSupPrice,$orNo){
 			$sql = "update
 						`orders`
 					set
-						`orSupPrice`= '".mysql_real_escape_string($orSupPrice)."'
+						`orSupPrice`= '".mysqli_real_escape_string($this->db->oDbLink,$orSupPrice)."'
 					where
 						`orNo`='".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯訂貨日期
 		public function updateOrderFromSupDate($orHandleOrderFromSupDate,$orNo){
 			$sql = "update
@@ -687,11 +689,11 @@
 						`orHandleOrderFromSupDate`= '".$orHandleOrderFromSupDate."'
 					where
 						`orNo` = '".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯處理狀態
 		public function updateIfProcess($orIfProcessInCurrentStatus,$orNo){
 			$sql = "update
@@ -700,11 +702,11 @@
 						`orIfProcessInCurrentStatus`= '".$orIfProcessInCurrentStatus."'
 					where
 						`orNo` = '".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯處理狀態
 		public function updateIfSetReceipt($orIfSetReceipt,$orNo){
 			date_default_timezone_set('Asia/Taipei');
@@ -716,11 +718,11 @@
 						`orSetReceiptTime`= '".$date."'
 					where
 						`orNo` = '".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯是否可編輯訂單
 		public function updateIfEditable($orIfEditable,$orNo){
 			$sql = "update
@@ -729,32 +731,32 @@
 						`orIfEditable`= '".$orIfEditable."'
 					where
 						`orNo` = '".$orNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯該會員所有訂單戶籍資料
 		public function updateBirth($orAddr,$orPhone,$memNo){
 			$sql = "update
 						`orders`
 					set
-						`orAppApplierBirthAddr`= '".mysql_real_escape_string($orAddr)."',
-						`orAppApplierBirthPhone` = '".mysql_real_escape_string($orPhone)."'
+						`orAppApplierBirthAddr`= '".mysqli_real_escape_string($this->db->oDbLink,$orAddr)."',
+						`orAppApplierBirthPhone` = '".mysqli_real_escape_string($this->db->oDbLink,$orPhone)."'
 					where
 						`memNo` = '".$memNo."'";
-		
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯該會員所有訂單現住資料
 		public function updateCurrent($orAddr,$orPhone,$memNo){
 			$sql = "update
 						`member`
 					set
-						`memAddr`= '".mysql_real_escape_string($orAddr)."',
-						`memPhone` = '".mysql_real_escape_string($orPhone)."'
+						`memAddr`= '".mysqli_real_escape_string($this->db->oDbLink,$orAddr)."',
+						`memPhone` = '".mysqli_real_escape_string($this->db->oDbLink,$orPhone)."'
 					where
 						`memNo` = '".$memNo."'";
 		
@@ -765,7 +767,7 @@
 		//編輯訂單明細
 		public function update($array,$orNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			if(!isset($orInternalCaseNo)){
 				$orInternalCaseNo = "";

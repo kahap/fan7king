@@ -8,11 +8,11 @@ class Emailnotice{
 						$user_password,
 						$company_email,
 						$admin_email){
-		$company_name 		= mysql_real_escape_string($company_name);
-		$user_name 		= mysql_real_escape_string($user_name);
-		$user_password 		= mysql_real_escape_string($user_password);
-		$company_email 		= mysql_real_escape_string($company_email);
-		$admin_email 		= mysql_real_escape_string($admin_email);	
+		$company_name 		= mysqli_real_escape_string($this->db->oDbLink, $company_name);
+		$user_name 		= mysqli_real_escape_string($this->db->oDbLink, $user_name);
+		$user_password 		= mysqli_real_escape_string($this->db->oDbLink, $user_password);
+		$company_email 		= mysqli_real_escape_string($this->db->oDbLink, $company_email);
+		$admin_email 		= mysqli_real_escape_string($this->db->oDbLink, $admin_email);	
 		include("email/class.phpmailer.php");
 			// 產生 Mailer 實體
 			$mail = new PHPMailer();		
@@ -74,11 +74,11 @@ class Emailnotice{
 						$user_password,
 						$company_email,
 						$admin_email){
-		$company_name 		= mysql_real_escape_string($company_name);
-		$user_name 		= mysql_real_escape_string($user_name);
-		$user_password 		= mysql_real_escape_string($user_password);
-		$company_email 		= mysql_real_escape_string($company_email);
-		$admin_email 		= mysql_real_escape_string($admin_email);	
+		$company_name 		= mysqli_real_escape_string($this->db->oDbLink, $company_name);
+		$user_name 		= mysqli_real_escape_string($this->db->oDbLink, $user_name);
+		$user_password 		= mysqli_real_escape_string($this->db->oDbLink, $user_password);
+		$company_email 		= mysqli_real_escape_string($this->db->oDbLink, $company_email);
+		$admin_email 		= mysqli_real_escape_string($this->db->oDbLink, $admin_email);	
 		include("email/class.phpmailer.php");
 			// 產生 Mailer 實體
 			$mail = new PHPMailer();		

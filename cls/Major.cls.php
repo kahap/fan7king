@@ -39,7 +39,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "insert into `major`(`schNo`,`majName` )
 					values('".$schNo."',

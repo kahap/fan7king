@@ -271,7 +271,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "insert into `product_manage`(`proNo`, `supNo` ,`pmSupPrice`,`pmMainSup`,
 					`pmPeriodAmnt`,`pmPeriodAmnt2`,`pmUpDate`,`pmIfDirect`,`pmDirectAmnt`,`pmStatus`,`pmNewest`,
@@ -427,7 +427,7 @@
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			//若要統一更改上架狀態
 			$sql = "update

@@ -253,7 +253,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
@@ -288,7 +288,7 @@
 		//統一編輯
 		public function updateMember($array,$memNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'其他','NULL'=>'無');
 			$flipped = array_flip($memberClass_array);

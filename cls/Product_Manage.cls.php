@@ -105,7 +105,7 @@
 		
 		//取得所有商品上架
 		public function getAllPM_forSup($supNo){
-			$supNo = mysql_real_escape_string($supNo);
+			$supNo = mysqli_real_escape_string($this->db->oDbLink, $supNo);
 			$sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.proName, c.proImage
 					from 
 						`product_manage` a, product c
