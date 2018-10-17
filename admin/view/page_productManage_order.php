@@ -1,12 +1,21 @@
 <?php 
 require_once('model/require_general.php');
 
+
+$page = isset($_GET["paginate"])? $_GET["paginate"] : 1;
+
+
 $pm = new Product_Manage();
 $pro = new Product();
 $key = "";
 $col = "";
 $ifIsCol = "";
-$pmData = $pm->getAllPMGroupByProName();
+
+$pmData = $pm->getAllPMGroupByProName( ($page-1)*30 , 30);
+$totalProData = $pm->getAllPMGroupByProNameCount();
+$lastPage = ceil($totalProData/30);
+
+
 switch ($_GET["special"]){
 	case "new":
 		$key = "最新";
@@ -48,7 +57,46 @@ switch ($_GET["special"]){
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_content">
+
+
+                    <div class="top">
+                        <div class="dataTables_paginate paging_full_numbers" id="example_paginate">
+                            <a href="admin.php?page=product&type=productManage&special=new<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=1" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">
+                                第一頁
+                            </a>
+                            <?php if ($page>1){ ?>
+                            <a href="admin.php?page=product&type=productManage&special=new<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page-1;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
+                                前一頁
+                            </a>
+                            <?php } ?>
+                            <span>
+                                <select class="paginate_button choosePage" data-href="admin.php?page=product&type=productManage&special=new<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>">
+                                <?php for ($i=1;$i<$lastPage;$i++){ ?>
+                                    <option value="<?php echo $i;?>" <?php if($page==$i)echo 'selected';?> >
+                                        <?php echo $i;?>
+                                    </option>
+                                <?php } ?>
+                                </select>
+                                <!--                                <a  href="&paginate=2" class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">2</a>-->
+                                <!--                                <a  href="&paginate=3" class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">3</a>-->
+                            </span>
+                            <a href="admin.php?page=product&type=productManage&special=new<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page+1;?>" class="paginate_button next" aria-controls="example" data-dt-idx="5" tabindex="0" id="example_next">
+                                下一頁
+                            </a>
+                            <a href="admin.php?page=product&type=productManage&special=new<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $lastPage;?>" class="paginate_button last" aria-controls="example" data-dt-idx="6" tabindex="0" id="example_last">
+                                最後一頁
+                            </a>
+                        </div>
+                    </div>
+                    <div class="top">
+                        <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($page-1)*30+1;?> 筆 到 第 <?php echo ($page)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
+                    </div>
+                    <br />
+
+
+
                 <form>
+                    <div  style="overflow-x:scroll; ">
                   <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
@@ -62,22 +110,24 @@ switch ($_GET["special"]){
 	                    if($pmData != null){
 	                    	foreach($pmData as $key=>$value){
 	                    		$proData = $pro->getOneProByNo($value["proNo"]);
-                    ?>
-                      <tr class="pointer">
-                        <td class=" "><input type="hidden" name="proNo[]" value="<?php echo $proData[0]["proNo"]; ?>"><?php echo $proData[0]["proName"]; ?></td>
-                        <td class=" ">
-                        	<span style="display:none;"><?php echo $value[$ifIsCol]; ?></span>
-                        	<input type="checkbox" class="checked-one" name="<?php echo $ifIsCol."[]"; ?>" <?php if($value[$ifIsCol] == 1) echo "checked=true"; ?> value="1">
-                        	<input style="display:none;" type="checkbox" class="unchecked-one" name="<?php echo $ifIsCol."[]"; ?>" <?php if($value[$ifIsCol] == 0) echo "checked=true"; ?> value="0">
-                        </td>
-                        <td class=" "><span style="display:none;"><?php echo $value[$col]; ?></span><input type="text" name="<?php echo $col."[]"; ?>" value="<?php echo $value[$col]; ?>"></td>
-                      </tr>
-                     <?php 
+                                ?>
+                                  <tr class="pointer">
+                                    <td class=" "><input type="hidden" name="proNo[]" value="<?php echo $proData[0]["proNo"]; ?>"><?php echo $proData[0]["proName"]; ?></td>
+                                    <td class=" ">
+                                        <span style="display:none;"><?php echo $value[$ifIsCol]; ?></span>
+                                        <input type="checkbox" class="checked-one" name="<?php echo $ifIsCol."[]"; ?>" <?php if($value[$ifIsCol] == 1) echo "checked=true"; ?> value="1">
+                                        <input style="display:none;" type="checkbox" class="unchecked-one" name="<?php echo $ifIsCol."[]"; ?>" <?php if($value[$ifIsCol] == 0) echo "checked=true"; ?> value="0">
+                                    </td>
+                                    <td class=" "><span style="display:none;"><?php echo $value[$col]; ?></span><input type="text" name="<?php echo $col."[]"; ?>" value="<?php echo $value[$col]; ?>"></td>
+                                  </tr>
+                                 <?php
                     		}
                     	}
                      ?>
                     </tbody>
                   </table>
+                    </div>
+
                 </form>
                 </div>
               </div>
@@ -130,14 +180,25 @@ switch ($_GET["special"]){
     var asInitVals = new Array();
     $(document).ready(function() {
       var oTable = $('#example').dataTable({
+          "paging": false,
+          "processing": true,
         "oLanguage": {
           "sSearch": "搜尋: "
         },
         "order": [[ 0, "asc" ]],
-        'iDisplayLength': 100,
+        // 'iDisplayLength': 100,
         "sPaginationType": "full_numbers"
       })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
-      $("tfoot input").keyup(function() {
+
+        $('#example_info').hide();
+        $('.bottom').next('.dataTables_info').hide();
+
+        $('.choosePage').change(function () {
+            location.href = $(this).data('href') + '&paginate=' + $(this).val();
+        });
+
+
+        $("tfoot input").keyup(function() {
         /* Filter on the column based on the index of this element's parent <th> */
         oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
       });

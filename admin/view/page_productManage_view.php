@@ -1,11 +1,18 @@
 <?php 
 require_once('model/require_general.php');
 
+
+$page = isset($_GET["paginate"])? $_GET["paginate"] : 1;
+
 $pm = new Product_Manage();
-$proNo = $_GET["prono"];
-$pmData = $pm->getAllByProNameAndGroup($proNo);
+$proNo = isset($_GET["prono"])? $_GET["prono"] : '';
+$pmData = $pm->getAllByProNameAndGroup($proNo, ($page-1)*30 , 30);
+
 $pm->changeToReadable($pmData[0]);
-$pmDataNoGroup = $pm->getAllByProName($proNo);
+$pmDataNoGroup = $pm->getAllByProName($proNo, ($page-1)*30 , 30);
+$totalProData = $pm->getAllByProNameCount($proNo);
+$lastPage = ceil($totalProData/30);
+
 
 $pp = new Product_Period();
 $ppData = $pp->getPPByProduct($proNo);
@@ -132,26 +139,26 @@ $supNoArr = array();
                       <div style="display:inline-block;">
                         <?php 
                         if($ppData != null){
-                        ?>
-                      	<table style="text-align:center;">
-                      	  <tr>
-                      		<th style="padding:5px 10px;">期數</th>
-							<th style="padding:5px 10px;">利率倍數</th>
-							<th style="padding:5px 10px;">行銷字眼</th>
-                      	  </tr>
-                      	  <?php foreach($ppData as $key=>$value){?>
-                      	  <tr>
-                      		<td><?php echo $value["ppPeriodAmount"]; ?></td>
-                      		<td><?php echo $value["ppPercent"]; ?></td>
-							<td><?php echo $value["ppIntroText"]; ?></td>
-                      	  </tr>
-                      	  <?php }?>
-                      	</table>
-                      	<?php 
+                            ?>
+                            <table style="text-align:center;">
+                              <tr>
+                                <th style="padding:5px 10px;">期數</th>
+                                <th style="padding:5px 10px;">利率倍數</th>
+                                <th style="padding:5px 10px;">行銷字眼</th>
+                              </tr>
+                              <?php foreach($ppData as $key=>$value){?>
+                              <tr>
+                                <td><?php echo $value["ppPeriodAmount"]; ?></td>
+                                <td><?php echo $value["ppPercent"]; ?></td>
+                                <td><?php echo $value["ppIntroText"]; ?></td>
+                              </tr>
+                              <?php }?>
+                            </table>
+                            <?php
 						}else{
-                      	?>
-                      	<h5 style="color:#999;">該商品尚未設定獨立利率，將參照利率基本表</h5>
-                      	<?php 
+                            ?>
+                            <h5 style="color:#999;">該商品尚未設定獨立利率，將參照利率基本表</h5>
+                            <?php
                       	}
                       	?>
                       </div>
@@ -174,7 +181,44 @@ $supNoArr = array();
 	                </div>
 	                <div class="x_content">
 	                  <br>
-	                  <table class="table table-striped">
+
+
+                        <div class="top">
+                            <div class="dataTables_paginate paging_full_numbers" id="example_paginate">
+                                <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=1" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">
+                                    第一頁
+                                </a>
+                                <?php if ($page>1){ ?>
+                                <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page-1;?>"  class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
+                                    前一頁
+                                </a>
+                                <?php } ?>
+                                <span>
+                                <select class="paginate_button choosePage" data-href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>">
+                                <?php for ($i=1;$i<$lastPage;$i++){ ?>
+                                    <option value="<?php echo $i;?>" <?php if($page==$i)echo 'selected';?> >
+                                        <?php echo $i;?>
+                                    </option>
+                                <?php } ?>
+                                </select>
+                                    <!--                                <a  href="&paginate=2" class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">2</a>-->
+                                    <!--                                <a  href="&paginate=3" class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">3</a>-->
+                            </span>
+                                <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page+1;?>" class="paginate_button next" aria-controls="example" data-dt-idx="5" tabindex="0" id="example_next">
+                                    下一頁
+                                </a>
+                                <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $lastPage;?>" class="paginate_button last" aria-controls="example" data-dt-idx="6" tabindex="0" id="example_last">
+                                    最後一頁
+                                </a>
+                            </div>
+                        </div>
+                        <div class="top">
+                            <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($page-1)*30+1;?> 筆 到 第 <?php echo ($page)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
+                        </div>
+                        <br />
+
+
+                        <table id="example"  class="table table-striped">
 	                    <thead>
 	                      <tr>
 	                        <th>#</th>
@@ -195,30 +239,30 @@ $supNoArr = array();
 		                      	array_push($supNoArr, $value["supNo"]);
 		                      	$supData = $sup->getOneSupplierByNo($value["supNo"]);
 		                      	$pm->changeToReadable($value);
-	                      ?>
-	                      
-		                      <tr>
-		                        <th scope="row"><?php echo $i ?></th>
-		                        <td><span style="display:none;"><?php echo $value["pmNo"]; ?></span><?php echo $value["supNo"]; ?></td>
-		                        <td><?php echo $supData[0]["supName"]; ?></td>
-		                        <td><?php echo $value["pmSupPrice"]; ?></td>
-		                        <td><input data-supno="<?php echo $value["supNo"]; ?>" class="change-main" type="radio" name="pmMainSup" <?php if($value["pmMainSup"] == "是") echo "checked=true"; ?>></td>
-		                      	<!--
-								<td>
-		                      		<select class="change-status" name="pmStatus">
-			                      		<option <?php if($value["pmStatus"] == "下架中") echo "selected"; ?> value="0">下架中</option>
-			                      		<option <?php if($value["pmStatus"] == "上架中") echo "selected"; ?> value="1">上架中</option>
-			                      		<option <?php if($value["pmStatus"] == "缺貨中") echo "selected"; ?> value="2">缺貨中</option>
-			                      	</select>
-		                      	</td>
-								-->
-		                      	<td>
-		                      		<a class="content-edit" style="text-decoration: none;" href="#">
-			                        	<span style="margin-right:10px;" class="glyphicon glyphicon-pencil"></span>
-			                        </a>
-		                      	</td>
-		                      </tr>
-	                      <?php 
+                                  ?>
+
+                                      <tr>
+                                        <th scope="row"><?php echo $i ?></th>
+                                        <td><span style="display:none;"><?php echo $value["pmNo"]; ?></span><?php echo $value["supNo"]; ?></td>
+                                        <td><?php echo $supData[0]["supName"]; ?></td>
+                                        <td><?php echo $value["pmSupPrice"]; ?></td>
+                                        <td><input data-supno="<?php echo $value["supNo"]; ?>" class="change-main" type="radio" name="pmMainSup" <?php if($value["pmMainSup"] == "是") echo "checked=true"; ?>></td>
+                                        <!--
+                                        <td>
+                                            <select class="change-status" name="pmStatus">
+                                                <option <?php if($value["pmStatus"] == "下架中") echo "selected"; ?> value="0">下架中</option>
+                                                <option <?php if($value["pmStatus"] == "上架中") echo "selected"; ?> value="1">上架中</option>
+                                                <option <?php if($value["pmStatus"] == "缺貨中") echo "selected"; ?> value="2">缺貨中</option>
+                                            </select>
+                                        </td>
+                                        -->
+                                        <td>
+                                            <a class="content-edit" style="text-decoration: none;" href="#">
+                                                <span style="margin-right:10px;" class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                        </td>
+                                      </tr>
+                                  <?php
 	                      		$i++;
 	                      	} 
 	                      }
@@ -305,7 +349,25 @@ $supNoArr = array();
                 </div>
 <script>
 $(function(){
-	<?php if(isset($_GET["pageIndex"])) echo "$(window).scrollTop($(document).height());"; ?>
+    var oTable = $('#example').dataTable({
+        "paging": false,
+        "processing": true,
+        "oLanguage": {
+            "sSearch": "搜尋: "
+        },
+        "sPaginationType": "full_numbers"
+    })<?php if(isset($_GET["pageIndex"])) echo "$(window).scrollTop($(document).height());"; ?>;
+
+
+    $('#example_info').hide();
+    $('.bottom').next('.dataTables_info').hide();
+
+    $('.choosePage').change(function () {
+        location.href = $(this).data('href') + '&paginate=' + $(this).val();
+    });
+
+
+
 	$(document).on("change",".change-main",function(){
 		var supNo = $(".change-main:checked").attr("data-supno");
 		var data = {"proNo":<?php echo $proNo; ?>, "supNo":supNo};
