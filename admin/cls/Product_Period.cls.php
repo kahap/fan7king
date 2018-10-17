@@ -80,7 +80,14 @@
 		//編輯
 		public function update($array){
 			foreach($array as $key =>$value){
-				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+			    if (is_array($value)){
+			        foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value[0];
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
 			}
 			$sql = "update
 						`product_period`

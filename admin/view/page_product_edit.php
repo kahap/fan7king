@@ -258,14 +258,14 @@ $tabIndex = 0;
 				                        if($_GET["action"] == "edit" && !empty($proImageArray)){
 				                        	foreach($proImageArray as $value){ 
 												if($value != ""){
-				                        ?>
-											
-				                        	<div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">
-				                        		<img style="max-width:300px;margin-bottom:10px;" src="<?php echo $value; ?>">
-				                        		<br>
-				                        		<button data-index="<?php echo $value; ?>" class="remove-img btn btn-danger">刪除</button>
-				                        	</div>
-				                        <?php 
+                                                    ?>
+
+                                                        <div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">
+                                                            <img style="max-width:300px;margin-bottom:10px;" src="<?php echo $value; ?>">
+                                                            <br>
+                                                            <button data-index="<?php echo $value; ?>" class="remove-img btn btn-danger">刪除</button>
+                                                        </div>
+				                                    <?php
 												}
 				                        	} 
 				                        }
@@ -283,14 +283,14 @@ $tabIndex = 0;
 				                        if($_GET["action"] == "edit" && !empty($proImageArray)){
 				                        	foreach($proImageArray as $value){ 
 												if($value != ""){
-				                        ?>
-											
-				                        	<div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">
-				                        		<img style="max-width:300px;margin-bottom:10px;" src="<?php echo $value; ?>">
-				                        		<br>
-				                        		<button data-index="<?php echo $value; ?>" class="remove-img btn btn-danger">刪除</button>
-				                        	</div>
-				                        <?php 
+                                                    ?>
+
+                                                        <div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">
+                                                            <img style="max-width:300px;margin-bottom:10px;" src="<?php echo $value; ?>">
+                                                            <br>
+                                                            <button data-index="<?php echo $value; ?>" class="remove-img btn btn-danger">刪除</button>
+                                                        </div>
+                                                    <?php
 												}
 				                        	} 
 				                        }

@@ -266,7 +266,14 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                if (is_array($value)){
+                    foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value[0];
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
 			}
 			$sql = "insert into `product_manage`(`proNo`, `supNo` ,`pmSupPrice`,`pmMainSup`,
 					`pmPeriodAmnt`,`pmUpDate`,`pmIfDirect`,`pmDirectAmnt`,`pmStatus`,`pmNewest`,

@@ -110,7 +110,7 @@
 			$errg[] = "曾下單審查不通過之用戶在婉拒後6個月內將無法再次申請分期，如有疑問請洽客服。";
 		}*/ 
 	}
-	$msg = implode(',',$errg);
+	$msg = implode("," ,$errg);
 	
 	if($msg == ""){
 		$_POST['orCaseNo'] = $or->product_number('1');

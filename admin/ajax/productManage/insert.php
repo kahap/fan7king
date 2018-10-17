@@ -21,57 +21,65 @@
 		$errMsg["supNoErr"] = "請選擇商品供應商";
 	}
 	
-	if($pmSupPrice == ""){
+	if(isset($pmSupPrice) && $pmSupPrice == ""){
 		$_POST["pmSupPrice"] = 0;
 	}
 	
-	if($pmPeriodAmnt == ""){
+	if(isset($pmPeriodAmnt) && $pmPeriodAmnt == ""){
 		$_POST["pmPeriodAmnt"] = 0;
 	}
-	if($pmPeriodAmnt != "" && !is_numeric($pmPeriodAmnt)){
+	if(isset($pmPeriodAmnt) && $pmPeriodAmnt != "" && !is_numeric($pmPeriodAmnt)){
 		$errMsg["pmPeriodAmntErr"] = "請填入數字";
 	}
 	
-	if($pmDirectAmnt == ""){
+	if(isset($pmDirectAmnt) && $pmDirectAmnt == ""){
 		$_POST["pmDirectAmnt"] = 0;
 	}
-	if($pmDirectAmnt != "" && !is_numeric($pmDirectAmnt)){
+	if(isset($pmDirectAmnt) && $pmDirectAmnt != "" && !is_numeric($pmDirectAmnt)){
 		$errMsg["pmDirectAmntErr"] = "請填入數字";
 	}
 	
-	if($pmPopular == ""){
+	if(isset($pmPopular) && $pmPopular == ""){
 		$_POST["pmPopular"] = 0;
 	}
-	if($pmPopular != "" && !is_numeric($pmPopular)){
+	if(isset($pmPopular) && $pmPopular != "" && !is_numeric($pmPopular)){
 		$errMsg["pmPopularErr"] = "請填入數字";
 	}
 	
-	if($pmUpDate != "" && !preg_match('/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/',$pmUpDate)){
+	if(isset($pmUpDate) && $pmUpDate != "" && !preg_match('/(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})/',$pmUpDate)){
 		$errMsg["pmUpDateErr"] = "日期格式錯誤";
 	}
+
+	if(isset($ppIntroText) && $ppIntroText == ""){
+		$_POST["ppIntroText"] = null;
+	}
+
 	
 	//商品利率
 	$pp = new Product_Period();
-	$ppPeriodAmountArr = $_POST["ppPeriodAmount"];
-	$ppPercentArr = $_POST["ppPercent"];
-	$proNo = $_POST["proNo"];
+	$ppPeriodAmountArr = isset($_POST["ppPeriodAmount"])? $_POST["ppPeriodAmount"] : '';
+	$ppPercentArr = isset($_POST["ppPercent"])? $_POST["ppPercent"]:'';
+$ppIntroTextArr = isset($_POST["ppIntroText"])? $_POST["ppIntroText"]:'';
+	$proNo = isset($_POST["proNo"])? $_POST["proNo"] : '';
 	
 	$ppData = $pp->getPPByProduct($proNo);
 	if($ppData != null){
-		foreach($ppPeriodAmountArr as $key=>$value){
+		if ($ppPeriodAmountArr)foreach($ppPeriodAmountArr as $key=>$value){
 			$ppDataEach = $pp->getPPByProductAndPeriodsAmount($proNo,$value);
 			$dataInsert = array();
 			$dataInsert["ppNo"] = $ppDataEach[0]["ppNo"];
 			$dataInsert["ppPeriodAmount"] = $value;
 			$dataInsert["ppPercent"] = $ppPercentArr[$key];
+            $dataInsert["ppIntroText"] = $ppIntroTextArr;
 			$pp->update($dataInsert);
 		}
 	}else{
-		foreach($ppPeriodAmountArr as $key=>$value){
+		if ($ppPeriodAmountArr)foreach($ppPeriodAmountArr as $key=>$value){
 			$dataInsert = array();
 			$dataInsert["proNo"] = $proNo;
 			$dataInsert["ppPeriodAmount"] = $value;
 			$dataInsert["ppPercent"] = $ppPercentArr[$key];
+            $dataInsert["ppIntroText"] = $ppIntroTextArr;
 			$pp->insert($dataInsert);
 		}
 	}
