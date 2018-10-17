@@ -251,7 +251,7 @@ table tr td,table tr th{
 						<span class="card-title">申請人基本資料</span><br>
 						<div class="row">
 							<div class="row">
-								<a class="modal-trigger waves-effect waves-light btn blue m-b-xs credit_view" <?php echo ($_GET['level'] == 2) ? "disabled":"";?>>自動徵信資料表</a>
+								<a class="modal-trigger waves-effect waves-light btn blue m-b-xs credit_view" <?php echo isset($_GET['level']) && ($_GET['level'] == 2) ? "disabled":"";?>>自動徵信資料表</a>
 								<br>
 								<div class="input-field col s4">
 									<input type="text" readonly value="<?php echo $memData[0]["memName"]; ?>">
@@ -819,15 +819,16 @@ table tr td,table tr th{
 							<?php if($rcData['0']['rcType'] == '0'){ ?>
 							<div class="row">
 								<div class="input-field col s4">
-									<select name="rcPeriodAmount" id="period">
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "6" ? "selected" : ""; ?> value="6">6</option>
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "9" ? "selected" : ""; ?> value="9">9</option>
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "12" ? "selected" : ""; ?> value="12">12</option>
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "15" ? "selected" : ""; ?> value="15">15</option>
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "18" ? "selected" : ""; ?> value="18">18</option>
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "21" ? "selected" : ""; ?> value="21">21</option>
-										<option <?php echo $rcData[0]["rcPeriodAmount"] == "24" ? "selected" : ""; ?> value="24">24</option>
-									</select>
+									<!-- <select name="rcPeriodAmount" id="period" > -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "6" ? "selected" : ""; ?> value="6">6</option> -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "9" ? "selected" : ""; ?> value="9">9</option> -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "12" ? "selected" : ""; ?> value="12">12</option> -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "15" ? "selected" : ""; ?> value="15">15</option> -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "18" ? "selected" : ""; ?> value="18">18</option> -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "21" ? "selected" : ""; ?> value="21">21</option> -->
+										<!-- <option <?php echo $rcData[0]["rcPeriodAmount"] == "24" ? "selected" : ""; ?> value="24">24</option> -->
+									<!-- </select> -->
+									<input type="text" name="rcPeriodAmount" id="period" readonly value="<?php echo $rcData[0]["rcPeriodAmount"]; ?>">
 									<label class="">分期期數</label>
 								</div>
 								<div class="input-field col s4">
@@ -1131,7 +1132,7 @@ $(function(){
 
 	//計算分期總金額
 	$("#calculate-total").click(function(){
-		var period = $("#period option:selected").val();
+		var period = $("#period").val();
 		var eachAmount = $("#each-amount").val();
 		var cal1 = $("#cal1").val();
 		var cal2 = $("#cal2").val();
@@ -1190,9 +1191,9 @@ $(function(){
 					data:form,
 					datatype:"json",
 					success:function(result){
-						if(result.indexOf("OK") != -1){
+						if(result.indexOf("OK") != -1){							
+							window.open('view/print_report_export.php?no=<?php echo $no; ?>', '_blank');
 							alert("儲存成功！");
-							window.open('http://test.happyfan7.com/admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>', '_blank');
 							location.reload();
 						}else{
 							alert(result);

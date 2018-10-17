@@ -17,9 +17,9 @@ if($access_right_counts > 0){
 }
 
 if(isset($already)){
-	$sql = "select a.rcNo,a.rcCaseNo,a.rcStatus,a.rcIfAuthen,a.rcType,a.memNo,b.memName,b.memIdNum,b.memClass,b.memBday,a.aauNoAuthen,c.aauName from real_cases a,member b, admin_advanced_user c where a.rcIfCredit = 1 and a.memNo = b.memNo && a.aauNoAuthen = c.aauNo ".$str." order by a.rcDate desc limit 5000";
+	$sql = "select a.rcIfCredit,a.rcNo,a.rcCaseNo,a.rcStatus,a.rcIfAuthen,a.rcType,a.memNo,b.memName,b.memIdNum,b.memClass,b.memBday,a.aauNoAuthen,c.aauName from real_cases a,member b, admin_advanced_user c where a.rcIfCredit = 1 and a.memNo = b.memNo && a.aauNoAuthen = c.aauNo ".$str." order by a.rcDate desc limit 5000";
 }else{
-	$sql = "select a.rcNo,a.rcCaseNo,a.rcStatus,a.rcIfAuthen,a.rcType,a.memNo,a.aauNoAuthen,b.memName,b.memIdNum,b.memClass,b.memBday,c.aauName from real_cases a,member b, admin_advanced_user c where (a.aauNoAuthen != '' or a.aauNoAuthen != NULL) and a.rcIfCredit = 1 and a.rcIfAuthen = 0 and a.rcStatus = 2  and a.memNo = b.memNo and a.aauNoAuthen = c.aauNo  ".$str." order by a.rcCaseNo desc";
+	$sql = "select a.rcIfCredit,a.rcNo,a.rcCaseNo,a.rcStatus,a.rcIfAuthen,a.rcType,a.memNo,a.aauNoAuthen,b.memName,b.memIdNum,b.memClass,b.memBday,c.aauName from real_cases a,member b, admin_advanced_user c where (a.aauNoAuthen != '' or a.aauNoAuthen != NULL) and a.rcIfCredit = 1 and a.rcIfAuthen = 0 and a.rcStatus = 2  and a.memNo = b.memNo and a.aauNoAuthen = c.aauNo  ".$str." order by a.rcCaseNo desc";
 }
 //echo $sql;
 $data = $api->customSql($sql);

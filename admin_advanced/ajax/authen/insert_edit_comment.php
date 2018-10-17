@@ -59,7 +59,7 @@ if(!isset($errMsg)){
 			$or = new API("orders");
 			$inputDataOrders['orIfEditable'] = "0";
 			$inputDataOrders['orPeriodAmnt'] = $_POST["rcPeriodAmount"];
-			$inputDataOrders['orPeriodTotal'] = $_POST["rcPeriodTotal"];
+			$inputDataOrders['orPeriodTotal'] = $_POST["rcPeriodTotal"];			
 			$or->update($inputDataOrders, $rcData[0]["rcRelateDataNo"]);
 			$sf = new API("servicefixed");
 			$str = ($_POST['rcDocProvideReason'] == '1') ? $_POST['rcDocProvideComment']:$sf->reasonArr[$_POST['rcDocProvideReason']];
@@ -126,7 +126,7 @@ if(!isset($errMsg)){
 			//EMAIL
 			$or = new API("orders");
 				$inputDataOrders['orPeriodAmnt'] = $_POST['rcPeriodAmount'];
-				$inputDataOrders['orPeriodTotal'] = $_POST['rcPeriodAmount']*$_POST['eachAmount'];
+				$inputDataOrders['orPeriodTotal'] = $_POST['rcPeriodAmount']*$_POST['eachAmount'];			
 			$or->update($inputDataOrders, $rcData[0]["rcRelateDataNo"]);
 			$pm = new API("product_manage");
 			$pro = new API("product");
