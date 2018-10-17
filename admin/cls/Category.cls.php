@@ -94,7 +94,7 @@
 		public function update($array,$catNo)
         {
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "update
 						`category`

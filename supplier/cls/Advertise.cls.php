@@ -56,7 +56,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
@@ -86,7 +86,7 @@
 		//編輯
 		public function update($array,$adNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "update
 						`advertise`

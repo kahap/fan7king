@@ -1,11 +1,31 @@
 <?php
 	class Status_Record{
 		var $db;
-		var $statusArr = array("已下單，Email未驗證","未進件","審查中","核准","婉拒",
-				"補件","取消訂單","出貨中","已出貨","已完成",
-				"換貨中","退貨中","完成退貨");
-		var $statusDirectArr = array("處理中","取消訂單","出貨中","已收貨","已完成",
-				"換貨中","退貨中","完成退貨");
+		var $statusArr = array(
+		    "已下單，Email未驗證",
+            "未進件",
+            "審查中",
+            "核准",
+            "婉拒",
+				"補件",
+            "取消訂單",
+            "出貨中",
+            "已出貨",
+            "已完成",
+				"換貨中",
+            "退貨中",
+            "完成退貨"
+        );
+		var $statusDirectArr = array(
+		    "處理中",
+            "取消訂單",
+            "出貨中",
+            "已收貨",
+            "已完成",
+				"換貨中",
+            "退貨中",
+            "完成退貨"
+        );
 		
 		//建構函式
 		public function Status_Record(){
@@ -95,7 +115,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
@@ -111,7 +131,7 @@
 		//編輯
 		public function update($array,$srNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "update
 						`status_record`

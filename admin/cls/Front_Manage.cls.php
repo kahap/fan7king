@@ -24,7 +24,7 @@
 			$sql = "update
 						`front_manage`
 					set
-						`".$key."`='".mysql_real_escape_string($str)."'";
+						`".$key."`='".mysqli_real_escape_string($this->db->oDbLink, $str)."'";
 			
 			$update = $this->db->updateRecords($sql);
 			return $update;

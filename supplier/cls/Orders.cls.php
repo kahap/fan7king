@@ -1,19 +1,48 @@
 <?php
 	class Orders{
 		var $db;
-		var $statusArr = array(0=>"已下單，Email未驗證",110=>"未完成下單",1=>"未進件",2=>"審查中",3=>"核准",4=>"婉拒",
-				5=>"待補",6=>"補件",7=>"取消訂單",701=>"客戶自行撤件",8=>"出貨中",9=>"已到貨",10=>"已完成",
-				11=>"換貨中",12=>"退貨中",13=>"完成退貨");
-		var $statusDirectArr = array(0=>"處理中",1=>"取消訂單",2=>"出貨中",3=>"已到貨",4=>"已完成",
-				5=>"換貨中",6=>"退貨中",7=>"完成退貨");
+		var $statusArr = array(
+		    0=>"已下單，Email未驗證",
+            110=>"未完成下單",
+            1=>"未進件",
+            2=>"審查中",
+            3=>"核准",
+            4=>"婉拒",
+				5=>"待補",
+            6=>"補件",
+            7=>"取消訂單",
+            701=>"客戶自行撤件",
+            8=>"出貨中",
+            9=>"已到貨",
+            10=>"已完成",
+				11=>"換貨中",
+            12=>"退貨中",
+            13=>"完成退貨"
+        );
+		var $statusDirectArr = array(
+		    0=>"處理中",
+            1=>"取消訂單",
+            2=>"出貨中",
+            3=>"已到貨",
+            4=>"已完成",
+				5=>"換貨中",
+            6=>"退貨中",
+            7=>"完成退貨"
+        );
 		//補件原因
-		var $reasonArr = array(0=>"無",1=>"自訂",3=>"請重新上傳清楚不反光及不切字的【身分證】正反面",
-		4=>"請重新上傳清楚不反光及不切字的【學生證】正反面",5=>"請重新補上第二步驟之正楷中文簽名",
-		6=>"請補上一親一友之姓名及市內電話",
-		7=>"請補上軍人證正反面影本",8=>"請重新上傳提供最新補換發身分證影本"
-		,9=>"請補半年薪轉證明，存摺封面加內頁整面照片",
-		10=>"請提供您及親友可以接電話的【照會時間】",
-		11=>"請提供您登入學校系統的截圖畫面內容需包含學校名稱及您的姓名和學號");
+		var $reasonArr = array(
+		    0=>"無",
+            1=>"自訂",
+            3=>"請重新上傳清楚不反光及不切字的【身分證】正反面",
+		    4=>"請重新上傳清楚不反光及不切字的【學生證】正反面",
+            5=>"請重新補上第二步驟之正楷中文簽名",
+            6=>"請補上一親一友之姓名及市內電話",
+            7=>"請補上軍人證正反面影本",
+            8=>"請重新上傳提供最新補換發身分證影本",
+            9=>"請補半年薪轉證明，存摺封面加內頁整面照片",
+            10=>"請提供您及親友可以接電話的【照會時間】",
+            11=>"請提供您登入學校系統的截圖畫面內容需包含學校名稱及您的姓名和學號"
+        );
 		
 		//建構函式
 		public function Orders(){
@@ -479,7 +508,7 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
@@ -550,7 +579,7 @@
 			$sql = "update
 						`orders`
 					set
-						`orInternalCaseNo`='".mysql_real_escape_string($orInternalCaseNo)."'
+						`orInternalCaseNo`='".mysqli_real_escape_string($this->db->oDbLink, $orInternalCaseNo)."'
 					where
 						`orNo`='".$orNo."'";
 				
@@ -567,8 +596,8 @@
 						`orders`
 					set
 						`orHandleSupOutDate`= $orHandleSupOutDate ,
-						`orHandleTransportComp`='".mysql_real_escape_string($orHandleTransportComp)."',
-						`orHandleTransportSerialNum`='".mysql_real_escape_string($orHandleTransportSerialNum)."',
+						`orHandleTransportComp`='".mysqli_real_escape_string($this->db->oDbLink, $orHandleTransportComp)."',
+						`orHandleTransportSerialNum`='".mysqli_real_escape_string($this->db->oDbLink, $orHandleTransportSerialNum)."',
 						`orHandleGetFromSupDate`= $orHandleGetFromSupDate 
 					where
 						`orNo`='".$orNo."'";
@@ -642,8 +671,8 @@
 			$sql = "update
 						`orders`
 					set
-						`orDocProvideReason`= '".mysql_real_escape_string($orDocProvideReason)."',
-						`orDocProvideComment`= '".mysql_real_escape_string($orDocProvideComment)."'
+						`orDocProvideReason`= '".mysqli_real_escape_string($this->db->oDbLink, $orDocProvideReason)."',
+						`orDocProvideComment`= '".mysqli_real_escape_string($this->db->oDbLink, $orDocProvideComment)."'
 					where
 						`orNo`='".$orNo."'";
 		
@@ -656,7 +685,7 @@
 			$sql = "update
 						`orders`
 					set
-						`orSupPrice`= '".mysql_real_escape_string($orSupPrice)."'
+						`orSupPrice`= '".mysqli_real_escape_string($this->db->oDbLink, $orSupPrice)."'
 					where
 						`orNo`='".$orNo."'";
 		
@@ -724,8 +753,8 @@
 			$sql = "update
 						`orders`
 					set
-						`orAppApplierBirthAddr`= '".mysql_real_escape_string($orAddr)."',
-						`orAppApplierBirthPhone` = '".mysql_real_escape_string($orPhone)."'
+						`orAppApplierBirthAddr`= '".mysqli_real_escape_string($this->db->oDbLink, $orAddr)."',
+						`orAppApplierBirthPhone` = '".mysqli_real_escape_string($this->db->oDbLink, $orPhone)."'
 					where
 						`memNo` = '".$memNo."'";
 		
@@ -738,8 +767,8 @@
 			$sql = "update
 						`member`
 					set
-						`memAddr`= '".mysql_real_escape_string($orAddr)."',
-						`memPhone` = '".mysql_real_escape_string($orPhone)."'
+						`memAddr`= '".mysqli_real_escape_string($this->db->oDbLink, $orAddr)."',
+						`memPhone` = '".mysqli_real_escape_string($this->db->oDbLink, $orPhone)."'
 					where
 						`memNo` = '".$memNo."'";
 		
@@ -750,7 +779,7 @@
 		//編輯訂單明細
 		public function update($array,$orNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			if(!isset($orInternalCaseNo)){
 				$orInternalCaseNo = "";

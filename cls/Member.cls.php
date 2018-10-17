@@ -254,7 +254,7 @@
 							'".$date."',
 							'".$pass_number."')";
 			$insert = $this->db->insertRecords($sql);
-			return mysql_insert_id();
+			return mysqli_insert_id($this->db->oDbLink );
 		}
 
 		//統一編輯
@@ -353,7 +353,7 @@
 		//判斷是否是會員
 		public function getMemberinformation($array){
 			foreach($array as $key => $value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "select
 						*
@@ -371,7 +371,7 @@
 		// jimmy
 		public function getMemberinformationNew($array){
 			foreach ($array as $key => $value) {
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "select
 						*
@@ -388,7 +388,7 @@
 		// sander
 		public function getMemberinformationNewApp($array){
 			foreach ($array as $key => $value) {
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "select
 						*
@@ -405,7 +405,7 @@
 		//判斷是否認證
 		public function getMembermemEmailAuthen($array){
 			foreach($array as $key => $value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "select
 						*
@@ -436,7 +436,7 @@
 		//前台編輯
 		public function update_fornMember($array,$memNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			if($memName != ''){
 			$sql = "update
@@ -479,7 +479,7 @@
         //編輯身份證號
 		public function update_Member_IdNum($array,$memNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 
             $sql = "update
@@ -496,7 +496,7 @@
 		//前台編輯
 		public function update_fornMember_FB($array,$memNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			if($memName != ''){
 				$sql = "update
@@ -540,7 +540,7 @@
 
 		//忘記密碼使用account判斷
 		public function getMemberforgetdata($memAccount){
-			$memAccount = mysql_real_escape_string($memAccount);
+			$memAccount = mysqli_real_escape_string($this->db->oDbLink, $memAccount);
 			$sql = "select
 						*
 					from
@@ -553,7 +553,7 @@
 		}
 
 		public function check_id($memIdNum){
-			$memIdNum = mysql_real_escape_string($memIdNum);
+			$memIdNum = mysqli_real_escape_string($this->db->oDbLink, $memIdNum);
 			$sql = "select
 						count(*) as count
 					from
@@ -565,7 +565,7 @@
 		}
 
 		public function check_account($memAccount){
-			$memAccount = mysql_real_escape_string($memAccount);
+			$memAccount = mysqli_real_escape_string($this->db->oDbLink, $memAccount);
 			$sql = "select
 						count(*) as count
 					from
@@ -576,7 +576,7 @@
 			if($data[0]['count'] > 0) return "1";
 		}
 		public function check_FBtoken($memFBtoken){
-			$memAccount = mysql_real_escape_string($memAccount);
+			$memAccount = mysqli_real_escape_string($this->db->oDbLink, $memAccount);
 			$sql = "select
 						*
 					from
@@ -588,13 +588,13 @@
 		}
 
 		public function memRecommCode($memRecommCode){
-			$memRecommCode = mysql_real_escape_string($memRecommCode);
+			$memRecommCode = mysqli_real_escape_string($this->db->oDbLink, $memRecommCode);
 			$sql = "SELECT `memNo` FROM `member` WHERE `memNo` = '".$memRecommCode."'";
 			$data = $this->db->selectRecords($sql);
 			if($data[0]['count'] > 0) return "1";
 		}
 		public function GetmemRecommCodeList($memRecommCode){
-			$memRecommCode = mysql_real_escape_string($memRecommCode);
+			$memRecommCode = mysqli_real_escape_string($this->db->oDbLink, $memRecommCode);
 			$sql = "SELECT * FROM `member` WHERE `memRecommCode` = '".$memRecommCode."'";
 			$data = $this->db->selectRecords($sql);
 			return $data;
@@ -603,7 +603,7 @@
 
 		public function insert_FBtoken($array){
 			foreach($array as $key => $value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
@@ -620,13 +620,13 @@
 							'0',
 							'".$pass_number."')";
 			$insert = $this->db->insertRecords($sql);
-			return mysql_insert_id();
+			return mysqli_insert_id($this->db->oDbLink );
 		}
 
 		//前台編輯
 		public function update_fornMember_password($array,$memNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "update
 						`member`
@@ -642,7 +642,7 @@
 		public function updatememAddr($str,$memNo){
 			foreach($str as $k =>$v){
 				$name = $k;
-				$value = mysql_real_escape_string($v);
+				$value = mysqli_real_escape_string($this->db->oDbLink, $v);
 			}
 			$sql = "update
 						`member`
@@ -658,7 +658,7 @@
 		public function update_information_stu($array,$memNo){
 			foreach($array as $key =>$value){
 				if($key != "memSchool"){
-					$$key = mysql_real_escape_string($value);
+					$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 				}
 			}
 
@@ -683,7 +683,7 @@
 
 		public function update_information_emy($array,$memNo){
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 
 			$sql = "update

@@ -8,21 +8,21 @@
 		private $message;
 		private $data;
 		private $result;
-		//where±ø¥ó¥y
+		//whereï¿½ï¿½ï¿½ï¿½y
 		private $whereArr = array(); //column=>value
-		//join table±ø¥ó¥y
+		//join tableï¿½ï¿½ï¿½ï¿½y
 		private $joinArr = array(); //table=>column
 		//group by
 		private $groupArr = array();
 		//order by
 		private $orderArr = "";
-		//·Q­n§ì¨úªº¸ê®Æ
+		//ï¿½Qï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		private $retrieveArr = array();
 		//webView page
 		private $webViewArr = array("front_manage","front_manage2");
-		//·í¸ê®Æ¬°°}¦C®É
+		//ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½}ï¿½Cï¿½ï¿½
 		private $arrayDataList = array("proImage","orAppAuthenExtraInfo");
-		//¸ê®Æ¸ô®|(KEY:Äæ¦ì VAL:¦³µLADMIN(BOOL))
+		//ï¿½ï¿½Æ¸ï¿½ï¿½|(KEY:ï¿½ï¿½ï¿½ VAL:ï¿½ï¿½ï¿½LADMIN(BOOL))
 		private $pathArr = array(
 			"proImage"=>false,
 			"adImage"=>false,
@@ -40,16 +40,16 @@
 			"orAppAuthenPromiseLetter"=>true
 		);
 		
-		//«Øºc¨ç¦¡
+		//ï¿½Øºcï¿½ç¦¡
 		public function API($table){
-			//§ì¨ú¸ê®Æ®w©w¸q¤º®e
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Æ®wï¿½wï¿½qï¿½ï¿½ï¿½e
 			$this->db = new WADB(SYSTEM_DBHOST, SYSTEM_DBNAME, SYSTEM_DBUSER, SYSTEM_DBPWD);
 			
-			if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$table."'"))==1){
-				//ªì©ltable¦WºÙ
+			if(mysqli_num_rows(mysqli_query($this->db->oDbLink, "SHOW TABLES LIKE '".$table."'"))==1){
+				//ï¿½ï¿½ltableï¿½Wï¿½ï¿½
 				$this->table = $table;
 				
-				//ªì©lpkÄæ¦ì¦W
+				//ï¿½ï¿½lpkï¿½ï¿½ï¿½W
 				$metaSql = "SHOW KEYS FROM ".$table." WHERE Key_name = 'PRIMARY'";
 				$metaData = $this->db->selectRecords($metaSql);
 				$this->idColumn = $metaData[0]['Column_name'];
@@ -70,66 +70,66 @@
 								case "memClass":
 									switch($columnValue){
 										case "0":
-											$columnValue = "¾Ç¥Í";
+											$columnValue = "ï¿½Ç¥ï¿½";
 											break;
 										case "1":
-											$columnValue = "¤W¯Z±Ú";
+											$columnValue = "ï¿½Wï¿½Zï¿½ï¿½";
 											break;
 										case "2":
-											$columnValue = "®aºÞ";
+											$columnValue = "ï¿½aï¿½ï¿½";
 											break;
 										case "3":
-											$columnValue = "¨ä¥L";
+											$columnValue = "ï¿½ï¿½L";
 											break;
 									}
 									break;
 								case "memGender":
 									switch($columnValue){
 										case "0":
-											$columnValue = "¤k";
+											$columnValue = "ï¿½k";
 											break;
 										case "1":
-											$columnValue = "¨k";
+											$columnValue = "ï¿½k";
 											break;
 									}
 									break;
 								case "memRegistMethod":
 									switch($columnValue){
 										case "0":
-											$columnValue = "FB³sµ²";
+											$columnValue = "FBï¿½sï¿½ï¿½";
 											break;
 										case "1":
-											$columnValue = "¤@¯ë¥Ó½Ð";
+											$columnValue = "ï¿½@ï¿½ï¿½Ó½ï¿½";
 											break;
 									}
 									break;
 								case "memEmailAuthen":
 									switch($columnValue){
 										case "0":
-											$columnValue = "©|¥¼ÅçÃÒ";
+											$columnValue = "ï¿½|ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 											break;
 										case "1":
-											$columnValue = "³q¹LÅçÃÒ";
+											$columnValue = "ï¿½qï¿½Lï¿½ï¿½ï¿½ï¿½";
 											break;
 									}
 									break;
 								case "memAllowLogin":
 									switch($columnValue){
 										case "0":
-											$columnValue = "°±Åv";
+											$columnValue = "ï¿½ï¿½ï¿½v";
 											break;
 										case "1":
-											$columnValue = "¤¹³\µn¤J";
+											$columnValue = "ï¿½ï¿½ï¿½\ï¿½nï¿½J";
 											break;
 									}
 									break;
 								case "memAllowLogin":
 									switch($columnValue){
 										case "0":
-											$columnValue = "°±Åv";
+											$columnValue = "ï¿½ï¿½ï¿½v";
 											break;
 										case "1":
-											$columnValue = "¤¹³\µn¤J";
+											$columnValue = "ï¿½ï¿½ï¿½\ï¿½nï¿½J";
 											break;
 									}
 									break;
@@ -211,7 +211,7 @@
 					set ";
 		
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 				if($key != "adTokenId" && $key != $this->idColumn){
 					if(array_pop(array_keys($array)) != $key){
 						$sql .= " `".$key."` = '".$value."', ";
@@ -226,9 +226,9 @@
 			$update = $this->db->updateRecords($sql);
 			
 			if($update){
-				$this->setInformation(true, 1, 1, "¦¨¥\­×§ï¡I");
+				$this->setInformation(true, 1, 1, "ï¿½ï¿½ï¿½\ï¿½×§ï¿½I");
 			}else{
-				$this->setInformation(false, 0, 0, "­×§ï¥¢±Ñ¡I");
+				$this->setInformation(false, 0, 0, "ï¿½×§ï¥¢ï¿½Ñ¡I");
 			}
 				
 			$this->setResult();
@@ -238,15 +238,15 @@
 			$columns = "";
 			$values = "";
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 				$arrKeys = array_keys($array);
 				$lastArrKey = array_pop($arrKeys);
 				if($lastArrKey != $key){
 					$columns .= "`".$key."`, ";
-					$values .= "'".mysql_real_escape_string($value)."', ";
+					$values .= "'".mysqli_real_escape_string($this->db->oDbLink, $value)."', ";
 				}else{
 					$columns .= "`".$key."`";
-					$values .= "'".mysql_real_escape_string($value)."'";
+					$values .= "'".mysqli_real_escape_string($this->db->oDbLink, $value)."'";
 				}
 			}
 			
@@ -254,7 +254,7 @@
 			values( $values )";
 			$insert = $this->db->insertRecords($sql);
 			
-			$this->setInformation($this->db->bInsertRecords, 1, $this->db->iNoOfRecords, "¦¨¥\·s¼W¡I");
+			$this->setInformation($this->db->bInsertRecords, 1, $this->db->iNoOfRecords, "ï¿½ï¿½ï¿½\ï¿½sï¿½Wï¿½I");
 			
 			$this->setResult();
 		}
@@ -268,7 +268,7 @@
 						`".$key."` = '".$value."'";
 			$delete = $this->db->deleteRecords($sql);
 			
-			$this->setInformation(true, 1, 1, "¦¨¥\§R°£¡I");
+			$this->setInformation(true, 1, 1, "ï¿½ï¿½ï¿½\ï¿½Rï¿½ï¿½ï¿½I");
 				
 			$this->setResult();
 		}
@@ -402,7 +402,7 @@
 					foreach($curData as $key=>&$value){
 						if($value != null){
 							foreach($value as $keyIn=>&$valueIn){
-								//¸ô®|Âà¦¨µ´¹ï¸ô®|
+								//ï¿½ï¿½ï¿½|ï¿½à¦¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½|
 								if(array_key_exists($keyIn,$this->pathArr)){
 									if(!empty(json_decode($valueIn))){
 										$curJsonObj = json_decode($valueIn);
@@ -424,19 +424,19 @@
 										}
 									}
 								}
-								//°}¦C¦r¦êÂà´«°}¦C
+								//ï¿½}ï¿½Cï¿½rï¿½ï¿½ï¿½à´«ï¿½}ï¿½C
 								if(in_array($keyIn,$this->arrayDataList)){
 									$valueIn = json_decode($valueIn);
 								}
-								//¤À´Á»ùÂà¬°°}¦C
+								//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à¬°ï¿½}ï¿½C
 								if($keyIn == "pmPeriodAmnt"){
 									$valueIn = $this->calculatePeriodAmount($value["pmNo"]);
 								}
-								//°Ó«~³W®æÂà°}¦C
+								//ï¿½Ó«~ï¿½Wï¿½ï¿½ï¿½ï¿½}ï¿½C
 								if($keyIn == "proSpec" || $keyIn == "memSchool"){
 									$valueIn = explode("#",$valueIn);
 									foreach($valueIn as &$eachSpec){
-										if($eachSpec == "µL"){
+										if($eachSpec == "ï¿½L"){
 											$eachSpec = "";
 										}
 									}

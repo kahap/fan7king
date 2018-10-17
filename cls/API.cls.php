@@ -64,7 +64,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 			//抓取資料庫定義內容
 			$this->db = new WADB(SYSTEM_DBHOST, SYSTEM_DBNAME, SYSTEM_DBUSER, SYSTEM_DBPWD);
 
-			if(mysql_num_rows(mysql_query("SHOW TABLES LIKE '".$table."'"))==1){
+			if(mysqli_num_rows(mysqli_query($this->db->oDbLink, "SHOW TABLES LIKE '".$table."'"))==1){
 				//初始table名稱
 				$this->table = $table;
 
@@ -235,7 +235,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 			$arrkeys = array_keys($array);
 			$lastArrKey = array_pop($arrkeys);
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 				if($key != "adTokenId" && $key != $this->idColumn){
 					if($lastArrKey != $key){
 						$sql .= " `".$key."` = '".$value."', ";
@@ -266,7 +266,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 			$arrkeys = array_keys($array);
 			$lastArrKey = array_pop($arrkeys);
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 				if($key != "adTokenId" && $key != $this->idColumn){
 					if($lastArrKey != $key){
 						$sql .= " `".$key."` = '".$value."', ";
@@ -291,15 +291,15 @@ require_once("../admin/cls/Product_Period.cls.php");
 			$columns = "";
 			$values = "";
 			foreach($array as $key =>$value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 				$arrKeys = array_keys($array);
 				$lastArrKey = array_pop($arrKeys);
 				if($lastArrKey != $key){
 					$columns .= "`".$key."`, ";
-					$values .= "'".mysql_real_escape_string($value)."', ";
+					$values .= "'".mysqli_real_escape_string($this->db->oDbLink, $value)."', ";
 				}else{
 					$columns .= "`".$key."`";
-					$values .= "'".mysql_real_escape_string($value)."'";
+					$values .= "'".mysqli_real_escape_string($this->db->oDbLink, $value)."'";
 				}
 			}
 
@@ -581,7 +581,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 		//取得所有搜尋商品上架
 		public function getSearchPM($array){
 			foreach($array as $key => $value){
-				$$key= mysql_real_escape_string($value);
+				$$key= mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$str = ($catNo != "0") ? "`product`.catNo = '".$catNo."' &&":'';
 			$str .= "`product`.proName like '%".$search."%'";

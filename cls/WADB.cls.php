@@ -30,7 +30,7 @@
 		/* seelct Record Object */
 		function selectRecordsObject($sSqlQuery){
 			unset($this->aSelectRecords);
-			$this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			$this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
 			$this->iNoOfRecords = mysqli_num_rows($this->oQueryResult);
 			if ($this->iNoOfRecords > 0) {
 				while($obj = mysqli_fetch_object($this->oQueryResult)) {
@@ -74,7 +74,7 @@
 		/* Insert Records */
 		function insertRecords($sSqlQuery)
 		{
-			$this->bInsertRecords = mysqli_query($this->oDbLink, $sSqlQuery) or die (mysqli_error());
+			$this->bInsertRecords = mysqli_query($this->oDbLink, $sSqlQuery) or die (mysqli_error($this->oDbLink));
 			$this->iInsertRecId = mysqli_insert_id();
 			return $this->iInsertRecId;
 		}
@@ -88,22 +88,22 @@
 		/* Update Records */
 		function updateRecords($sSqlQuery)
 		{
-			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
 		}
 		function deleteRecords($sSqlQuery)
 		{
-			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
 		}
 		/* 測試新增用 */
 		function insertUser($sSqlQuery)
 		{
-			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
 		}
 		
 		/* 建立資料表 */
 		function creatTable($sSqlQuery)
 		{
-			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error());
+			return mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
 		}
 		
 		

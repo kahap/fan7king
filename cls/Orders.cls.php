@@ -687,7 +687,7 @@
 		//jimmy edit
 		public function insertorder($array){
 			foreach($array as $key => $value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
             $sql = "INSERT INTO `orders`(`orSupPrice`,`orCaseNo`,`memNo`,`memClass`, `pmNo`, `orProSpec`, `orAmount`, `orMethod`, `orStatus`, `supNo`,`orDate`,  `orPeriodAmnt`, `orPeriodTotal`,`orPayBy`,`orChosemethod`, `orIpAddress`, `orReceiveName`, `orReceiveAddr`, `orReceivePhone`, `orReceiveCell`, `orReceiveComment`, `orAppApplierBirthPhone`,`orAppApplierBirthAddrPostCode`, `orAppApplierBirthAddr`, `orAppApplierLivingOwnership`, `orAppApplierCompanystatus`, `orAppApplierCompanyName`, `orAppApplierYearExperience`, `orAppApplierMonthSalary`, `orAppApplierCompanyPhone`, `orAppApplierCompanyPhoneExt`, `orAppApplierCreditNum`, `orAppApplierCreditSecurityNum`, `orAppApplierCreditIssueBank`, `orAppApplierCreditDueDate`, `orBillAddr`, `orBusinessNumIfNeed`, `orBusinessNumNumber`, `orBusinessNumTitle`, `orAppContactRelaName`, `orAppContactRelaRelation`, `orAppContactRelaPhone`, `orAppContactRelaCell`, `orAppContactFrdName`, `orAppContactFrdRelation`, `orAppContactFrdPhone`, `orAppContactFrdCell`, `orAppAssureName`, `orAppAssureRelation`, `orAppAssureIdNum`, `orAppAssureBday`, `orAppAssureBirthPhone`, `orAppAssureAddr`, `orAppAssureCurPhone`, `orAppAssureCompName`, `orAppAssureCompPhone`, `orAppAssureCell`, `orAppExtraAvailTime`, `orAppExtraInfo`,`orReportPeriod110Date`, `pmPeriodAmnt`) VALUES ('".$orSupPrice."','".$orCaseNo."','".$memNo."','".$memClass."','".$pmNo."','".$orProSpec."','".$orAmount."','".$orMethod."','".$orStatus."','".$supNo."','".$orDate."','".$orPeriodAmnt."','".$orPeriodTotal."','".$orPayBy."','".$orChosemethod."','".$orIpAddress."','".$orReceiveName."','".$orReceiveAddr."','".$orReceivePhone."','".$orReceiveCell."','".$orReceiveComment."','".$orAppApplierBirthPhone."','".$orAppApplierBirthAddrPostCode."','".$orAppApplierBirthAddr."','".$orAppApplierLivingOwnership."','".$orAppApplierCompanystatus."','".$orAppApplierCompanyName."','".$orAppApplierYearExperience."','".$orAppApplierMonthSalary."','".$orAppApplierCompanyPhone."','".$orAppApplierCompanyPhoneExt."','".$orAppApplierCreditNum."','".$orAppApplierCreditSecurityNum."','".$orAppApplierCreditIssueBank."','".$orAppApplierCreditDueDate."','".$orBillAddr."','".$orBusinessNumIfNeed."','".$orBusinessNumNumber."','".$orBusinessNumTitle."','".$orAppContactRelaName."','".$orAppContactRelaRelation."','".$orAppContactRelaPhone."','".$orAppContactRelaCell."','".$orAppContactFrdName."','".$orAppContactFrdRelation."','".$orAppContactFrdPhone."','".$orAppContactFrdCell."','".$orAppAssureName."','".$orAppAssureRelation."','".$orAppAssureIdNum."','".$orAppAssureBday."','".$orAppAssureBirthPhone."','".$orAppAssureAddr."','".$orAppAssureCurPhone."','".$orAppAssureCompName."','".$orAppAssureCompPhone."','".$orAppAssureCell."','".$orAppExtraAvailTime."','".$orAppExtraInfo."','".$orReportPeriod110Date."','".$pmPeriodAmnt."')";
             $aa = $this->db->insertRecords($sql);
@@ -696,7 +696,7 @@
 		
 		public function updateorder($array,$orNo){
 			foreach($array as $key => $value){
-				$$key = mysql_real_escape_string($value);
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
 			$sql = "update `orders` set
 				`memClass` = '".$memClass."',
