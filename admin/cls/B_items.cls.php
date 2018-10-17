@@ -1,5 +1,5 @@
 <?php
-	class Brand{
+	class B_items{
 		var $db;
 		
 		//建構函式
@@ -10,105 +10,105 @@
 		
 		
 		//取得所有品牌
-		public function getAllBrand(){
+		public function getAllItems(){
 			$sql = "select
 						*
 					from
-						`brand`
+						`b_items`
 					order by
-						`braNo`";
+						`biNo`";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//取得所有品牌
-		public function getAllBrandOrder(){
+		public function getAllItemsOrder(){
 			$sql = "select
 						*
 					from
-						`brand`
+						`b_items`
 					order by
-						`braOrder`";
+						`biOrder`";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//取得所有品牌(順序反)
-		public function getAllBrandDesc(){
+		public function getAllItemsDesc(){
 			$sql = "select
 						*
 					from
-						`brand`
+						`b_items`
 					order by
-						`braNo`
+						`biNo`
 					desc";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//編號取得單一品牌
-		public function getOneBrandByNo($braNo){
+		public function getOneItemsByNo($biNo){
 			$sql = "select
 						*
 					from
-						`brand`
+						`b_items`
 					where
-						`braNo`='".$braNo."'";
+						`biNo`='".$biNo."'";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		
 		//新增
-		function insert($array,$braNo){
+		function insert($array,$biNo){
 			foreach($array as $key =>$value){
 				$$key = mysqli_real_escape_string($this->db->oDbLink,$value);
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
-			$sql = "insert into `brand`(`braNo`,`braName`,`braOrder`,`braIfDisplay`,`braDate` )
-					values('".$braNo."',
-							'".$braName."',
-							'".$braOrder."',
+			$sql = "insert into `b_items`(`biNo`,`biName`,`biOrder`,`biShow`,`biDate` )
+					values('".$biNo."',
+							'".$biName."',
+							'".$biOrder."',
 							'1',
 							'".$date."')";
 			$insert = $this->db->insertRecords($sql);
 			return $insert;
 		}
-		
+
 		//編輯
-		public function update($array,$braNo){
+		public function update($array,$biNo){
 			foreach($array as $key =>$value){
 				$$key = mysqli_real_escape_string($this->db->oDbLink,$value);
 			}
 			$sql = "update
-						`brand`
+						`b_items`
 					set
-						`braName`='".$braName."',
-						`braOrder`='".$braOrder."'
+						`biName`='".$biName."',
+						`biOrder`='".$biOrder."'
 					where
-						`braNo`='".$braNo."'";
-			
+						`biNo`='".$biNo."'";
+
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-		
+
 		//編輯
-		public function updateDisplay($braIfDisplay,$braNo){
+		public function updateDisplay($biIfDisplay,$biNo){
 			$sql = "update
-						`brand`
+						`b_items`
 					set
-						`braIfDisplay`='".$braIfDisplay."'
+						`biShow`='".$biIfDisplay."'
 					where
-						`braNo`='".$braNo."'";
+						`biNo`='".$biNo."'";
 				
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
 		
 		//刪除
-		function delete($braNo){
-			$sql = "delete from `brand` where `braNo` = ".$braNo;
+		function delete($biNo){
+			$sql = "delete from `b_items` where `biNo` = ".$biNo;
 			$delete = $this->db->deleteRecords($sql);
 			return $delete;
 		}

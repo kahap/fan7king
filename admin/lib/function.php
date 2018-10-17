@@ -125,13 +125,14 @@
 			foreach($arr as &$value){
 				if($value != "." && $value != ".."){
 					$imgArr = array();
-					$arrIn = scandir("images/product/".$value);
-					foreach($arrIn as &$valueIn){
+					$arrIn = @scandir("images/product/".$value);
+					if ($arrIn)foreach($arrIn as &$valueIn){
 						if($valueIn != "." && $valueIn != ".."){
 							array_push($imgArr,$valueIn);
 						}
 					}
-					$value = iconv("utf-8", "utf-8", $value);
+                    $value = mb_convert_encoding($value, "utf-8", "utf-8");
+//					$value = iconv("utf-8", "utf-8", $value);
 // 					$value = iconv("big5", "utf-8", $value);
 					$result[$value] = $imgArr;
 				}
@@ -139,7 +140,8 @@
 		}
 		return $result;
 	}
-	
+
+
 	//圖片上傳+驗證
 	function uploadImg($editOrInsert,$oldData,$isAllowNull,$folderName,$columnName){
 		//Stores the filename as it was on the client computer.
@@ -254,7 +256,7 @@
 				}
 			}else{
 				if($editOrInsert == "edit"){
-					foreach(json_decode($oldData) as $value){
+					if (isset($oldData))foreach(json_decode($oldData) as $value){
 						array_push($finalData,$value);
 					}
 				}else{

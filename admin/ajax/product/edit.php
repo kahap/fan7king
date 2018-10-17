@@ -98,6 +98,7 @@
 	if(empty(array_filter($errMsg))){
 		$update = $pro->update($_POST,$newProNo , $_POST["proNo"]);
 		$success="更新成功";
+        $errMsg='';
 	}
 	
 	$result = array("success"=>$success,"errMsg"=>$errMsg);

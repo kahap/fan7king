@@ -3,17 +3,18 @@
 	require_once('../../model/require_login.php');
 	
 	$pro = new Product();
-	$proNo = $_POST["proNo"];
+	$proNo = @$_POST["proNo"] ;
 	
 	$newProNo = "";
 	$last3Num = "";
 	
-	$proData = $pro->getOneProByNo($proNo);
+	$proData = isset($proNo)? $pro->getOneProByNo($proNo) : null;
 	
-	foreach ($proData[0] as $key=>$value){
+	if ($proData)foreach ($proData[0] as $key=>$value){
 		$_POST[$key] = $value;
 	}
-	
+
+
 	//最後一筆
 	$lastData = $pro->getAllProDescWithCatAndBra($_POST["braNo"], $_POST["catNo"]);
 	if($lastData != null){

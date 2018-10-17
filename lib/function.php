@@ -1,4 +1,5 @@
 <?php
+
 	//擷取出網域名稱
 	function get_domain_name($ip)
 	{
@@ -11,8 +12,10 @@
 		//return $match[1];
 		//return 'newa1-3.com';
 	}
-	
-	function get_client_ip() {
+
+
+	function get_client_ip()
+    {
 		$ipaddress = '';
 		if (getenv('HTTP_CLIENT_IP'))
 			$ipaddress = getenv('HTTP_CLIENT_IP');
@@ -33,7 +36,8 @@
 	
 	
 	//取得所有資料夾裡面的圖片
-	function getAllImgs(){
+	function getAllImgs()
+    {
 		$result = array();
 		if(file_exists(iconv("utf-8","utf-8","images/product/"))){
 // 		if(file_exists(iconv("utf-8","big5","images/product/"))){
@@ -56,9 +60,11 @@
 		}
 		return $result;
 	}
-	
+
+
 	//圖片上傳+驗證
-	function uploadImg($editOrInsert,$oldData,$isAllowNull,$folderName,$columnName){
+	function uploadImg($editOrInsert,$oldData,$isAllowNull,$folderName,$columnName)
+    {
 		//Stores the filename as it was on the client computer.
 		date_default_timezone_set('Asia/Taipei');
 		$errMsg = "";
@@ -116,9 +122,11 @@
 		}
 		return $errMsg;
 	}
-	
+
+
 	//上傳多張時
-	function uploadMultipleImg($editOrInsert,$oldData,$isAllowNull,$folderName,$columnName){
+	function uploadMultipleImg($editOrInsert,$oldData,$isAllowNull,$folderName,$columnName)
+    {
 		$total = count($_FILES[$columnName]['name']);
 		$finalData = array();
 		$errMsg = "";

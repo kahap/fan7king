@@ -1,6 +1,7 @@
 <?php
 session_start();
 header('Content-Type: text/html; charset=utf8');
+
 	require_once('../../cls/WADB.cls.php');
 	require_once('../../cls/Login.cls.php');
 	require_once('../../cfg/cfg.inc.php');
