@@ -19,6 +19,8 @@
 	$notbing1 = array('orAppApplierCompanyName','orAppApplierCompanyPhone','orAppApplierCompanyPhoneExt','orBusinessNumTitle','orAppApplierCreditNum_1','orAppApplierCreditNum_2','orAppApplierCreditNum_3','orAppApplierCreditNum_4','orAppApplierCreditSecurityNum','orAppApplierCreditIssueBank','orAppApplierCreditDueDate','orAppExtraInfo','orAppExtraAvailTime','orAppApplierYearExperience','orBusinessNumNumber','orAppApplierMonthSalary','orAppApplierCreditDueDate_1','orAppApplierCreditDueDate_2','memOther','orReceiveComment','orAppApplierCreditstatus','orAppApplierCompanystatus','orAppContactFrdPhone','orReceivePhone','orAppContactRelaPhone','memSchool','memAccount','memClass','school','department','classyear');
 	
 	$class_1 = array('orAppApplierCompanyName','orAppApplierYearExperience','orAppApplierMonthSalary','orAppApplierCompanyPhone');
+
+    $errg = array();
 	if($_SESSION['user']['memNo'] != ""){
 		$errg = false;
 		foreach($_POST as $key =>$value){
