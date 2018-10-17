@@ -8,6 +8,7 @@ $pro = new Product();
 $sup = new Supplier();
 $mem = new Member();
 
+
 //時間
 date_default_timezone_set('Asia/Taipei');
 $date = date('Y-m-d', time());
@@ -52,6 +53,7 @@ if(isset($orDateFrom) && isset($orDateTo)){
                       <tr class="headings">
                       	<th>訂單狀態 </th>
                       	<th>訂單編號 </th>
+                          <th>案件編號 </th>
                         <th>內部訂單編號 </th>
                         <th>訂購日期</th>
                         <th>訂購人 </th>
@@ -74,22 +76,23 @@ if(isset($orDateFrom) && isset($orDateTo)){
 	                    		$pmData = $pm->getOnePMByNo($value["pmNo"]);
 	                    		$proData = $pro->getOneProByNo($pmData[0]["proNo"]);
 	                    		$supData = $sup->getOneSupplierByNo($value["supNo"])
-                    ?>
-                      <tr class="pointer">
-                      	<td class=" "><a style="color:blue;text-decoration:underline;" href="?page=order&method=1&status=<?php echo $statusNo; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date; ?>"><?php echo $value["orStatus"]; ?></a></td>
-                      	<td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=order&action=view&method=1&orno=<?php echo $value["orNo"]; ?>"><?php echo $value["orCaseNo"]; ?></a></td>
-                        <td class=" "><?php echo $value["orInternalCaseNo"]; ?></td>
-                        <td class=" "><?php echo $value["orDate"]; ?></td>
-                        <td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=member&type=member&action=view&memno=<?php echo $memData[0]["memNo"]; ?>"><?php echo $memData[0]["memName"]; ?></a></td>
-                        <td class=" "><?php echo $memData[0]["memIdNum"]; ?></td>
-                        <td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=product&type=productManage&action=view&prono=<?php echo $proData[0]["proNo"]; ?>"><?php echo $proData[0]["proName"]; ?></td>
-                        <td class=" "><?php echo $value["orProSpec"]; ?></td>
-                        <td class=" "><?php echo number_format($value["orPeriodTotal"]/$value["orPeriodAmnt"]); ?></td>
-                        <td class=" "><?php echo $value["orPeriodAmnt"]; ?></td>
-                        <td class=" "><?php echo number_format($value["orPeriodTotal"]); ?></td>
-                        <td class=" "><?php echo $supData[0]["supName"]; ?></td>
-                      </tr>
-                     <?php 
+                                ?>
+                                  <tr class="pointer">
+                                    <td class=" "><a style="color:blue;text-decoration:underline;" href="?page=order&method=1&status=<?php echo $statusNo; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date; ?>"><?php echo $value["orStatus"]; ?></a></td>
+                                    <td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=order&action=view&method=1&orno=<?php echo $value["orNo"]; ?>"><?php echo $value["orCaseNo"]; ?></a></td>
+                                      <td class=" "><?php echo $value["rcCaseNo"]; ?></td>
+                                    <td class=" "><?php echo $value["orInternalCaseNo"]; ?></td>
+                                    <td class=" "><?php echo $value["orDate"]; ?></td>
+                                    <td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=member&type=member&action=view&memno=<?php echo $memData[0]["memNo"]; ?>"><?php echo $memData[0]["memName"]; ?></a></td>
+                                    <td class=" "><?php echo $memData[0]["memIdNum"]; ?></td>
+                                    <td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=product&type=productManage&action=view&prono=<?php echo $proData[0]["proNo"]; ?>"><?php echo $proData[0]["proName"]; ?></td>
+                                    <td class=" "><?php echo $value["orProSpec"]; ?></td>
+                                    <td class=" "><?php echo number_format($value["orPeriodTotal"]/$value["orPeriodAmnt"]); ?></td>
+                                    <td class=" "><?php echo $value["orPeriodAmnt"]; ?></td>
+                                    <td class=" "><?php echo number_format($value["orPeriodTotal"]); ?></td>
+                                    <td class=" "><?php echo $supData[0]["supName"]; ?></td>
+                                  </tr>
+                                 <?php
                     		}
                     	}
                      ?>
