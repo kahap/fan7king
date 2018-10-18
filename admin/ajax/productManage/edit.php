@@ -40,13 +40,17 @@
 	if($pmUpDate != $origData[0]["pmUpDate"]){
 		$_POST["newDate"] = $pmUpDate;
 	}
-	
-	
-	//商品利率
+
+	if($ppIntroText == ""){
+		$_POST["ppIntroText"] = null;
+	}
+
+
+//商品利率
 	$pp = new Product_Period();
 	$ppPeriodAmountArr = $_POST["ppPeriodAmount"];
 	$ppPercentArr = $_POST["ppPercent"];
-	$ppIntroTextArr = $_POST["ppIntroText"];
+	$ppIntroTextArr = isset($_POST["ppIntroText"])?$_POST["ppIntroText"]:[];
 	$proNo = $_POST["proNo"];
 	
 	$ppData = $pp->getPPByProduct($proNo);

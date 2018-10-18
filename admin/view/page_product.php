@@ -83,9 +83,11 @@ $allBraData = $bra->getAllBrand();
                             <a href="admin.php?page=product&type=product<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=1" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">
                                     第一頁
                             </a>
+                            <?php if ($page>1){ ?>
                             <a href="admin.php?page=product&type=product<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page-1;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
                                     前一頁
                             </a>
+                            <?php } ?>
                             <span>
                                 <select class="paginate_button choosePage" data-href="admin.php?page=product&type=product<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>">
                                 <?php for ($i=1;$i<$lastPage;$i++){ ?>
@@ -110,7 +112,8 @@ $allBraData = $bra->getAllBrand();
                     </div>
                     <br />
 
-                  <table id="example" class="table table-striped responsive-utilities jambo_table">
+                    <div  style="overflow-x:scroll; ">
+                    <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
                         <th>商品編號 </th>
@@ -158,6 +161,7 @@ $allBraData = $bra->getAllBrand();
                      ?>
                     </tbody>
                   </table>
+                    </div>
 
                     <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($page-1)*30+1;?> 筆 到 第 <?php echo ($page)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
 

@@ -65,7 +65,7 @@ if($_GET["action"] == "edit"){
 }else{
 
 	
-	if($_GET['procaseno'] != ""){
+	if(isset($_GET['procaseno']) && $_GET['procaseno'] != ""){
 		$pm = new Product_Manage();
 		/*$allPmGroup = $pm->getAllPMGroupByProName();
 		$proNoArr = array();

@@ -87,7 +87,7 @@
 		}
 		
 		//取得所有商品上架(依照商品名稱)
-		public function getAllPMGroupByProName(){
+		public function getAllPMGroupByProName($p,$a){
 			$sql = "select
 						proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate
 					from
@@ -97,10 +97,26 @@
 					group by
 						`proNo`
 					order by
-						`pmUpDate` desc limit 3000";
+						`pmUpDate` desc 
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+		//取得所有商品上架(依照商品名稱) 總數
+        public function getAllPMGroupByProNameCount(){
+            $sql = "select
+						proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate
+					from
+						`product_manage`
+					where 
+					`pmMainSup` = '1'
+					group by
+						`proNo`
+					order by
+						`pmUpDate` desc " ;
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
 		
 		//取得該供應商所有商品上架
 		public function getAllPMBySupNo($supNo){
@@ -141,7 +157,7 @@
 		}
 		
 		//依據商品取得該商品
-		public function getAllByProName($proNo){
+		public function getAllByProName($proNo,$p,$a){
 			$sql = "select
 						*
 					from
@@ -155,13 +171,33 @@
 					on
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
-						`product`.`proNo`='".$proNo."'";
+						`product`.`proNo`='".$proNo."' 
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        //依據商品取得該商品總數
+        public function getAllByProNameCount($proNo){
+            $sql = "select
+						*
+					from
+						`product_manage`
+					inner join
+						`supplier`
+					on
+						`supplier`.`supNo` = `product_manage`.`supNo`
+					inner join
+						`product`
+					on
+						`product`.`proNo` = `product_manage`.`proNo`
+					where
+						`product`.`proNo`='".$proNo."'";
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
 		
 		//依據商品取得該商品並且group
-		public function getAllByProNameAndGroup($proNo){
+		public function getAllByProNameAndGroup($proNo,$p,$a){
 			$sql = "select
 						*
 					from
@@ -177,7 +213,8 @@
 					where
 						`product`.`proNo`='".$proNo."'
 					group by
-						`product`.`proNo`";
+						`product`.`proNo` 
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
@@ -266,7 +303,14 @@
 		//新增
 		function insert($array){
 			foreach($array as $key =>$value){
-				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                if (is_array($value)){
+                    foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value[0];
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
 			}
 			$sql = "insert into `product_manage`(`proNo`, `supNo` ,`pmSupPrice`,`pmMainSup`,
 					`pmPeriodAmnt`,`pmUpDate`,`pmIfDirect`,`pmDirectAmnt`,`pmStatus`,`pmNewest`,

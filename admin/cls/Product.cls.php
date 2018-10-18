@@ -145,7 +145,7 @@
 					from
 						`product`
 					where
-						`proNo`='".$proNo."'";
+						`proNo`='".$proNo."' ";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}

@@ -51,7 +51,7 @@
                             <div class="tab-panel active" id="tab-4">
                                 <ul class="product-list owl-carousel" data-dots="false" data-loop="true" data-nav = "true" data-margin = "0" data-autoplayTimeout="1000" data-autoplayHoverPause = "true" data-responsive='{"0":{"items":1},"600":{"items":3},"1000":{"items":4}}'>
 									<?php
-									/*$pm_data = $pm->getAllCatPMNew($valueCat["catNo"]);
+									$pm_data = $pm->getAllCatPMNew($valueCat["catNo"]);
 									if(count($pm_data) >= 3){
 										foreach($pm_data as $key => $value){
 											$img = json_decode($value['proImage']);
@@ -62,30 +62,30 @@
 													$price[$v['psMonthNum']] = $total;
 												}
 											}
-									?>
-									<li>
-                                        <div class="left-block">
-                                            <a href="?item=product&pro=<?php echo $value['proNo'];  ?>">
-                                                <img class="img-responsive" alt="product" src="<?php echo $img[0];?>" />
-                                            </a>
+                                            ?>
+                                            <li>
+                                                <div class="left-block">
+                                                    <a href="?item=product&pro=<?php echo $value['proNo'];  ?>">
+                                                        <img class="img-responsive" alt="product" src="<?php echo $img[0];?>" />
+                                                    </a>
 
-                                            <div class="add-to-cart">
-                                                <a title="立即購買" href="?item=product&pro=<?php echo $value['proNo'];  ?>">立即購買</a>
-                                            </div>
-                                        </div>
-                                        <div class="right-block">
-                                            <h5 class="product-name"><a href="?item=product&pro=<?php echo $value['proNo'];  ?>"><?php echo $value['proName'] ?></a></h5>
-                                            <div class="content_price">
-                                                <span class="price product-price" >
-													<?php echo "月付NT $".number_format(min($price)); ?>
-													<font style="color:#000;font-size:12px;line-height:25px">
-														<?php echo "*".array_search(min($price),$price)."期"; ?>
-													</font>
-												</span>
-                                            </div>
-                                        </div>
-                                    </li>
-									<?php
+                                                    <div class="add-to-cart">
+                                                        <a title="立即購買" href="?item=product&pro=<?php echo $value['proNo'];  ?>">立即購買</a>
+                                                    </div>
+                                                </div>
+                                                <div class="right-block">
+                                                    <h5 class="product-name"><a href="?item=product&pro=<?php echo $value['proNo'];  ?>"><?php echo $value['proName'] ?></a></h5>
+                                                    <div class="content_price">
+                                                        <span class="price product-price" >
+                                                            <?php echo "月付NT $".number_format(min($price)); ?>
+                                                            <font style="color:#000;font-size:12px;line-height:25px">
+                                                                <?php echo "*".array_search(min($price),$price)."期"; ?>
+                                                            </font>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <?php
 										}
 									}else{
 										for($i=0;$i<=3;$i++){
@@ -94,35 +94,35 @@
 											foreach($month as $k => $v){
 												$price[$v['psMonthNum']] = ceil($v['psRatio']*$pm_data[$i]['pmPeriodAmnt']/$v['psMonthNum']);
 											}
-									?>
-									<li>
-                                        <div class="left-block">
-                                            <a href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>">
-                                                <img class="img-responsive" alt="product" src="<?php echo $img[0];?>" />
-                                            </a>
-                                            <div class="quick-view">
-                                                    <a title="Quick view" class="search" href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>"></a>
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <a title="立即購買" href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>">立即購買</a>
-                                            </div>
-                                        </div>
-                                        <div class="right-block">
-                                            <h5 class="product-name"><a href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>"><?php echo $pm_data[$i]['proName'] ?></a></h5>
-                                            <div class="content_price">
-                                                <span class="price product-price">
-													<?php echo "月付NT $".number_format(min($price)); ?>
-													<font style="color:#000;font-size:12px;line-height:25px">
-														<?php echo "*".array_search(min($price),$price)."期"; ?>
-													</font>
-												</span>
-                                            </div>
-                                        </div>
-                                    </li>
-									<?php
-									
+                                            ?>
+                                            <li>
+                                                <div class="left-block">
+                                                    <a href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>">
+                                                        <img class="img-responsive" alt="product" src="<?php echo $img[0];?>" />
+                                                    </a>
+                                                    <div class="quick-view">
+                                                            <a title="Quick view" class="search" href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>"></a>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <a title="立即購買" href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>">立即購買</a>
+                                                    </div>
+                                                </div>
+                                                <div class="right-block">
+                                                    <h5 class="product-name"><a href="?item=product&pro=<?php echo $pm_data[$i]['proNo'];  ?>"><?php echo $pm_data[$i]['proName'] ?></a></h5>
+                                                    <div class="content_price">
+                                                        <span class="price product-price">
+                                                            <?php echo "月付NT $".number_format(min($price)); ?>
+                                                            <font style="color:#000;font-size:12px;line-height:25px">
+                                                                <?php echo "*".array_search(min($price),$price)."期"; ?>
+                                                            </font>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <?php
+
 										}
-									}*/
+									}
 									?>
                                 </ul>
                             </div>
