@@ -46,7 +46,7 @@
     <meta name="rating" content="general" />
     <meta name="author" content="Tsai. Cheng Peng (Canboo)"/>
 
-    <title>Nowait</title>
+    <title><?php echo $_SESSION['vTitle'];?></title>
 
 
 <!--	<title>樂分期-HappyFan7</title>-->
@@ -89,7 +89,7 @@
             <div class="navbar-box">
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
-                        <a href="index.php" title="Nowait" class="navbar-brand">
+                        <a href="" title="Nowait" class="navbar-brand">
                             <img class="img-fluid" src="assets/images/svg/logo.svg" data-src-base="images/svg/" data-src="<991:logo-mobile.svg,>991:logo.svg" width="284" height="85" alt="Nowait">
                         </a>
                     </div>

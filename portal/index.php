@@ -56,6 +56,7 @@
 
 
     /************************* layout *******************************/
+    $_SESSION['vTitle'] = 'Nowait';
     include_once('views/_header.php');
 
 
@@ -75,12 +76,13 @@
 
 
     //會員已登入
-    if($_SESSION['user']['memName'] != ""){
-    if($_SESSION['user']['memIdNum'] == "" || $_SESSION['user']['memIdNum']==null)
+    if($_SESSION['user']['memName'] != "")
     {
-        $itemVal = "member_center" ;
-        $actionVal = "member_idnum" ;
-    }
+        if($_SESSION['user']['memIdNum'] == "" || $_SESSION['user']['memIdNum']==null)
+        {
+            $itemVal = "member_center" ;
+            $actionVal = "member_idnum" ;
+        }
 
         if($itemVal != ""  ){
             switch($itemVal){
@@ -441,52 +443,96 @@
             }
         }elseif($itemVal == 'product'){
             include_once('view/page_detail.html');
-        }elseif($itemVal == 'product_sup'){
+        }
+        elseif($itemVal == 'product_sup'){
             include_once('view/page_detail_sup.html');
-        }elseif($itemVal=="member_center"){
-            include_once('view/page_login.html');
-        }elseif($itemVal=="forget"){
-            include_once('view/page_member_forget.html');
-        }elseif($itemVal=="register1"){
-            include_once('view/page_register1.html');
-        }elseif($itemVal=="search"){
+        }
+        elseif($itemVal=="search"){
             include_once('view/page_search.html');
-        }elseif($itemVal=="login" or $itemVal=="login_register"){
-            include_once('view/page_login.html');
-        }elseif($itemVal=="category"){
+        }
+
+        elseif($itemVal=="member_center"){
+            include_once('views/login/login.php');
+        }
+
+        // ---------------- register ------------------
+        elseif($itemVal=="login_register"){
+            include_once('views/register/register-1.php');
+        }
+        elseif($itemVal=="register2"){
+            include_once('views/register/register-2.php');
+        }
+        elseif($itemVal=="register3"){
+            include_once('views/register/register-3.php');
+        }
+        elseif($itemVal=="register4"){
+            include_once('views/register/register-4.php');
+        }
+
+        // ---------------- login ------------------
+        elseif($itemVal=="login" /*or $itemVal=="login_register"*/){
+            include_once('views/login/login.php');
+        }
+        elseif($itemVal=="forgetpwd1"){
+            include_once('views/login/forgetpwd-1.php');
+        }
+        elseif($itemVal=="forgetpwd2"){
+            include_once('views/login/forgetpwd-2.php');
+        }
+        elseif($itemVal=="forgetpwd3"){
+            include_once('views/login/forgetpwd-3.php');
+        }
+
+
+        // ---------------- other ------------------
+        elseif($itemVal=="category"){
             include_once('view/page_category.html');
-       }elseif($itemVal=="sup_center"){
+        }
+        elseif($itemVal=="sup_center"){
             include_once('view/page_sup_center_new.html'); //encore
             //include_once('view/page_sup_center.html');
-        }elseif($itemVal=="faq"){
+        }
+        elseif($itemVal=="faq"){
             include_once('view/page_faq.html');
-        }elseif($itemVal=="co_company"){
+        }
+        elseif($itemVal=="co_company"){
             include_once('view/page_contact.html');
-        }elseif($itemVal=="loan_vip"){
+        }
+        elseif($itemVal=="loan_vip"){
             include_once('view/page_loanVIP.html');
-        }elseif($itemVal=="loan_menu"){
+        }
+        elseif($itemVal=="loan_menu"){
             include_once('view/page_loan_menu.html');
-        }elseif($itemVal=="information_edit"){
+        }
+        elseif($itemVal=="information_edit"){
             include_once('view/page_member_information.html');
-        }elseif($itemVal=="loan_Cell"){
+        }
+        elseif($itemVal=="loan_Cell"){
             include_once('view/page_loanCell.html');
-        }elseif($itemVal=="loan_Moto"){
+        }
+        elseif($itemVal=="loan_Moto"){
             include_once('view/page_loanMoto.html');
-        }elseif($itemVal=="loan_cell"){
+        }
+        elseif($itemVal=="loan_cell"){
             include_once('view/page_loan_cell.html'); // add jimmy
             echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
-        }elseif($itemVal=="loan_moto"){
+        }
+        elseif($itemVal=="loan_moto"){
             include_once('view/page_loan_moto.html'); // add jimmy
             echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
-        }else{
-            include_once('view/slider.php');
-            include_once('view/page_top.html');
-            include_once('view/page_content.html');
+        }
+        else{
+            //首頁(沒有目標頁面itemVal)
+//            include_once('view/slider.php');
+//            include_once('view/page_top.html');
+//            include_once('view/page_content.html');
+            include_once('views/_index.php');
+            include_once('views/_page_service.php');
         }
     }
     //首頁(沒有目標頁面itemVal)
     else{
-        include_once('views/index.php');
+        include_once('views/_index.php');
 //        include_once('views/page_top.html');
 //        include_once('views/page_content.html');
         include_once('views/_page_service.php');
