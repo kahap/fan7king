@@ -1,0 +1,40 @@
+20171024 09:38:46inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:38:59inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:39:05inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:39:13inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:40:13inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:40:19inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:40:43inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171024 09:45:17inst:0000000056194529encode:utf8msg:lineGateway1:@@䅁䄠†††
+{}
+20171024 09:45:28inst:0000000056194529encode:utf8msg:lineGateway1:@@꒤뗘†††
+{}
+20171024 09:45:43inst:0000000056194529encode:utf8msg:lineGateway1:@@꒤뗘†††
+{}
+20171024 09:45:56inst:0000000056194529encode:utf8msg:lineGateway1:@@中華
+{}
+20171024 09:46:08inst:0000000056194529encode:utf8msg:lineGateway1:@@ABC
+{}
+20171024 09:58:32inst:0000000056194529encode:utf8msg:lineGateway1:@@配方1
+{}
+20171024 09:58:40inst:0000000056194529encode:utf8msg:lineGateway1:@@配方2
+{}
+20171024 09:59:02inst:0000000056194529encode:utf8msg:lineGateway1:@@끴ꓨ㄀
+{}
+20171024 09:59:08inst:0000000056194529encode:utf8msg:lineGateway1:@@끴ꓨ㈀
+{}
+20171024 11:39:56inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.7
+{}
+20171024 12:13:57inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.3
+{}
+20171024 12:56:23inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.8
+{}
+20171024 13:49:57inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.8
+{}

@@ -1,0 +1,46 @@
+20171123 10:33:43inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 10:34:25inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 10:35:39inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 10:36:30inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 10:36:48inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 10:37:08inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 10:37:24inst:0000000056194529encode:utf8msg:lineGateway1:@@溫
+{}
+20171123 10:37:41inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171123 10:38:28inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171123 11:26:09inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 11:26:18inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171123 14:20:07inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171123 14:29:25inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171123 14:29:33inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}
+20171123 14:30:20inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171123 14:32:30inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171123 14:32:40inst:0000000056194529encode:utf8msg:lineGateway1:@@請告知技術人員
+{}
+20171123 14:32:46inst:0000000056194529encode:utf8msg:lineGateway1:@@請告知技術人員
+{}
+20171123 14:32:52inst:0000000056194529encode:utf8msg:lineGateway1:@@普羅菲司技術部
+{}
+20171123 14:36:38inst:0000000056194529encode:utf8msg:lineGateway1:@@小心高壓
+{}
+20171123 14:36:44inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171123 14:42:43inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171123 14:42:53inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.100/bos80
+{}

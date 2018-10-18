@@ -1,0 +1,20 @@
+20171103 10:50:09inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.7
+{}
+20171103 13:17:20inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171103 13:17:44inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171103 13:17:49inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171103 13:17:52inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171103 13:24:38inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171103 13:24:53inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171103 13:25:12inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://172.20.10.4/bos80
+{}
+20171103 13:45:09inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171103 13:45:31inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}

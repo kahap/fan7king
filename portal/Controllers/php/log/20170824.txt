@@ -1,0 +1,5 @@
+20170824 08:45:36inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:2.0,PGA:4.4
+20170824 12:26:09inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:1.0,PGA:0.7
+20170824 14:50:44inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:1.0,PGA:2.3
+20170824 18:20:04inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:1.0,PGA:1.7
+20170824 20:36:16inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:1.0,PGA:1.2

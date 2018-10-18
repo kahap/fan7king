@@ -1,0 +1,4 @@
+20170729 20:49:02inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.10cm@@[1]Stiffness(x,y):89.5,87.4@@
+20170729 20:51:10inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:0.70cm@@[1]Stiffness(x,y):92.7,64.6@@
+20170729 20:52:30inst:00000000e1f6da93msg:Onsite_alert@@TOM's86@@Intensity:1.0,PGA:0.7
+20170729 20:53:12inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:1.40cm@@[1]Stiffness(x,y):78.7,-141.3@@

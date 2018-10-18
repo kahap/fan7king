@@ -1,0 +1,20 @@
+20171018 09:57:16inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:12.6
+{}
+20171018 10:18:27inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:14.0
+{}
+20171018 11:43:56inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.8
+{}
+20171018 12:19:59inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.6
+{}
+20171018 13:47:11inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:8.8
+{}
+20171018 14:02:07inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:5.5
+{}
+20171018 14:12:00inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.8
+{}
+20171018 16:17:37inst:0000000056194529encode:utf8msg:lineGateway1:@@大師兄測試測試
+{}
+20171018 17:59:44inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.9
+{}
+20171018 19:48:01inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.7
+{}

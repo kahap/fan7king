@@ -1,0 +1,36 @@
+20171013 10:45:26inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:4.8
+{}
+20171013 11:57:07inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.6
+{}
+20171013 16:45:22inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 16:45:34inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 16:45:56inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 16:49:21inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 16:50:01inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 16:55:02inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 16:56:48inst:0000000056194529encode:utf8msg:lineGateway1:@@師兄讚國還在
+{}
+20171013 17:22:52inst:0000000056194529encode:utf8msg:lineGateway1:@@大師兄
+{}
+20171013 17:24:13inst:0000000056194529encode:utf8msg:lineGateway1:@@大師兄讚
+{}
+20171013 17:26:26inst:0000000056194529encode:utf8msg:lineGateway1:@@大師兄讚還在
+{}
+20171013 17:26:44inst:0000000056194529encode:utf8msg:lineGateway1:@@三聯五十還在
+{}
+20171013 17:29:19inst:0000000056194529encode:utf8msg:lineGateway1:@@大師兄水
+{}
+20171013 17:29:32inst:0000000056194529encode:utf8msg:lineGateway1:@@三聯五十
+{}
+20171013 17:33:11inst:0000000056194529encode:utf8msg:lineGateway1:@@三聯五十大師兄讚
+{}
+20171013 17:45:29inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.2
+{}
+20171013 18:00:27inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.9
+{}
