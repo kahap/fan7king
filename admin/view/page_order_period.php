@@ -174,6 +174,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
                         ?>
                         <th>訂單狀態 </th>
                         <th>訂單編號 </th>
+                          <th>案件編號 </th>
                         <?php 
                         if($status != 0 && $status != 110 && $status != 3 && $status != 4 && $status != 7 && $status != 8 && $status != 9 && $status != 10 && $status != 11 && $status != 12 && $status != 13){ 
                         	if($status == 2 || $status == 5 ||  $status == 6){
@@ -425,6 +426,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 						<?php if($status == 2){ ?>
 						<!--<td class=" "><?php echo $value["orReportPeriod1Date"]; ?></td>-->
 						<?php } ?>
+                          <td class=" "><?php echo $value["rcCaseNo"]; ?></td>
                         <td class=" "><?php echo $value["orDate"]; ?></td>
                         <td class=" "><a style="color:blue;text-decoration:underline;" target="_blank" href="?page=member&type=member&action=view&memno=<?php echo $memData[0]["memNo"]; ?>"><?php echo $memData[0]["memName"]; ?></a></td>
                         <?php if($status != 8 && $status != 9 && $status != 10 && $status != 11 && $status != 12 && $status != 13){ ?>

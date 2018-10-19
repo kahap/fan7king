@@ -422,12 +422,16 @@
     				break;
             }
         }else{
-            include_once('view/slider.php');
-            include_once('view/page_top.html');
-            include_once('view/page_content.html');
+            //首頁(沒有目標頁面itemVal)
+//            include_once('view/slider.php');
+//            include_once('view/page_top.html');
+//            include_once('view/page_content.html');
+            include_once('views/_index.php');
+            include_once('views/_page_service.php');
         }
     }
-    //目標頁面(為登入)
+
+    //目標頁面(未登入)
     elseif($itemVal != ""){
         if(array_key_exists($itemVal,$page_other ) || array_key_exists($itemVal,$page_other2 )){
             switch($itemVal){
@@ -543,6 +547,7 @@
             include_once('views/_page_service.php');
         }
     }
+
     //首頁(沒有目標頁面itemVal)
     else{
         include_once('views/_index.php');
