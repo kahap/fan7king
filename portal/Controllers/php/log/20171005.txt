@@ -1,0 +1,208 @@
+20171005 08:18:56inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:4.8
+{}
+20171005 08:21:16inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:2.3
+{}
+20171005 08:22:47inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_08:22:48@@89.65dB
+{}
+20171005 08:32:03inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:6.0
+{}
+20171005 08:33:42inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:4.9
+{}
+20171005 08:36:17inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:6.2
+{}
+20171005 08:37:22inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_08:37:23@@91.25dB
+{}
+20171005 08:37:38inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:6.2
+{}
+20171005 08:37:38inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:6.2
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 08:44:36inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:5.0
+{}
+20171005 08:44:37inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:5.0
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 08:51:44inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:1.9
+{}
+20171005 08:51:45inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:2.9
+{}
+20171005 08:58:30inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_08:58:31@@93.67dB
+20171005 08:58:30inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:58.1
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 09:10:57inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:1.0,PGA:1.0
+20171005 09:10:57inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:1.0
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 09:12:14inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:2.0
+{}
+20171005 09:12:15inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:1.0,PGA:2.0
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 09:12:16inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:2.9
+20171005 09:12:16inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:2.9
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 09:32:23inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_09:32:24@@94.18dB
+20171005 09:32:23inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:5.0,PGA:136.6
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 09:32:24inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_09:32:25@@113.16dB
+{}
+20171005 09:32:26inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_09:32:25@@113.16dB
+{}
+20171005 09:56:00inst:000000001ef24ef1encode:msg:EEWS_exercise@@OSMOS_TEST@@Intensity:5,Countdown:30
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 09:56:01inst:000000001ef24ef1encode:msg:EEWS_alert@@OSMOS_TEST@@Intensity:5,Countdown:30
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 09:56:11inst:000000001ef24ef1encode:msg:EEWS_alert@@OSMOS_TEST@@Intensity:5,Countdown:20
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 09:56:20inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_09:32:25@@113.16dB
+20171005 09:56:20inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:5.0,PGA:187.9
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 10:01:04inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:2.5
+{}
+20171005 10:01:06inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:2.5
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:04:48inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_09:32:25@@113.16dB
+{}
+20171005 10:04:49inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:13.4
+{}
+20171005 10:04:49inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:13.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:05:09inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_09:32:25@@113.16dB
+{}
+20171005 10:08:22inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.4
+{}
+20171005 10:08:23inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:3.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:11:50inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_09:32:25@@113.16dB
+{}
+20171005 10:11:50inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:7.0,PGA:530.3
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:11:51inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:7.0,PGA:530.3
+{}
+20171005 10:11:52inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_10:11:53@@120.18dB
+{}
+20171005 10:15:56inst:000000001ef24ef1encode:msg:EEWS_exercise@@OSMOS_TEST@@Intensity:5,Countdown:30
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:15:57inst:000000001ef24ef1encode:msg:EEWS_alert@@OSMOS_TEST@@Intensity:5,Countdown:30
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:16:07inst:000000001ef24ef1encode:msg:EEWS_alert@@OSMOS_TEST@@Intensity:5,Countdown:20
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:16:11inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:4.4
+20171005 10:16:11inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:4.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 10:20:23inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_10:11:53@@120.18dB
+{}
+20171005 10:26:12inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:3.3
+20171005 10:26:12inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.3
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 10:27:05inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:1.0,PGA:2.2
+20171005 10:27:05inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:2.2
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 10:27:06inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:3.0
+20171005 10:27:06inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:3.0
+{}
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 10:35:27inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_10:11:53@@120.18dB
+{}
+20171005 11:13:47inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_10:11:53@@120.18dB
+{}
+20171005 11:13:48inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:37.5
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:19:08inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_10:11:53@@120.18dB
+{}
+20171005 11:19:09inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:1.0,PGA:1.5
+20171005 11:19:09inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:1.0,PGA:1.5
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 11:23:35inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:5.8
+20171005 11:23:35inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:5.8
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 11:23:38inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:9.4
+20171005 11:23:38inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:9.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 11:25:21inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_11:25:22@@97.93dB
+{}
+20171005 11:25:22inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:40.0
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:30:55inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:4.1
+20171005 11:30:55inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:4.1
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 11:31:03inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:10.8
+20171005 11:31:03inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:10.8
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 11:36:54inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:20.4
+{}
+20171005 11:36:55inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:20.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:37:14inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:16.2
+{}
+20171005 11:37:17inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:16.2
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:39:11inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:19.4
+{}
+20171005 11:39:12inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:19.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:39:29inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:4.0,PGA:27.1
+{}
+20171005 11:39:31inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:27.1
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:41:17inst:000000001ef24ef1encode:msg:EEWS_exercise@@OSMOS_TEST@@Intensity:5,Countdown:30
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:41:18inst:000000001ef24ef1encode:msg:EEWS_alert@@OSMOS_TEST@@Intensity:5,Countdown:30
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:41:36inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:5.8
+{}
+20171005 11:41:38inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:5.8
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:41:41inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:9.6
+20171005 11:41:41inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:9.6
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+{}
+20171005 11:42:09inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:15.5
+{}
+20171005 11:43:39inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:15.9
+{}
+20171005 11:45:08inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:9.5
+{}
+20171005 11:45:48inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:15.4
+{}
+20171005 11:45:50inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:4.0,PGA:32.4
+{}
+20171005 11:45:52inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:32.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 11:46:09inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:3.0,PGA:16.6
+{}
+20171005 11:46:11inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:3.0,PGA:16.6
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 13:31:23inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:2.6
+20171005 13:31:23inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:2.6
+{}
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 13:38:54inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_13:38:56@@97.58dB
+{}
+20171005 13:38:55inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:4.0,PGA:45.3
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 13:38:56inst:00000000594caf81encode:msg:ISO2631_Alert:OSMOS_TEST_PLAERT@@2017-10-05_13:38:58@@99.86dB
+{}
+20171005 13:38:58inst:00000000594caf81encode:msg:ISO2631_Warn.:OSMOS_TEST_PLAERT@@2017-10-05_13:38:58@@99.86dB
+{}
+20171005 13:41:47inst:00000000594caf81encode:msg:Onsite_alert@@OSMOS_TEST_PLAERT@@Intensity:2.0,PGA:6.4
+{}
+20171005 13:41:48inst:000000001ef24ef1encode:msg:Onsite_alert@@OSMOS_TEST@@Intensity:2.0,PGA:6.4
+{"message":"The request body has 1 error(s)","details":[{"message":"May not be empty","property":"to"}]}
+20171005 16:48:03inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:1.2
+{}
+20171005 16:55:35inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:6.6
+{}
+20171005 19:47:25inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.5
+{}
+20171005 20:46:08inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.7
+{}

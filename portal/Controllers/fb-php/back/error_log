@@ -1,0 +1,24 @@
+[13-Dec-2015 05:15:13 Asia/Taipei] PHP Fatal error:  Uncaught exception 'Facebook\Exceptions\FacebookSDKException' with message 'Sessions are not active. Please make sure session_start() is at the top of your script.' in /home/guidemec/public_html/fb-php/src/Facebook/PersistentData/FacebookSessionPersistentDataHandler.php:50
+Stack trace:
+#0 /home/guidemec/public_html/fb-php/src/Facebook/Helpers/FacebookRedirectLoginHelper.php(80): Facebook\PersistentData\FacebookSessionPersistentDataHandler->__construct()
+#1 /home/guidemec/public_html/fb-php/src/Facebook/Facebook.php(323): Facebook\Helpers\FacebookRedirectLoginHelper->__construct(Object(Facebook\Authentication\OAuth2Client), NULL, NULL, NULL)
+#2 /home/guidemec/public_html/fb-php/fb.php(9): Facebook\Facebook->getRedirectLoginHelper()
+#3 {main}
+  thrown in /home/guidemec/public_html/fb-php/src/Facebook/PersistentData/FacebookSessionPersistentDataHandler.php on line 50
+[13-Dec-2015 05:17:00 Asia/Taipei] PHP Fatal error:  Uncaught exception 'Facebook\Exceptions\FacebookSDKException' with message 'Sessions are not active. Please make sure session_start() is at the top of your script.' in /home/guidemec/public_html/fb-php/src/Facebook/PersistentData/FacebookSessionPersistentDataHandler.php:50
+Stack trace:
+#0 /home/guidemec/public_html/fb-php/src/Facebook/Helpers/FacebookRedirectLoginHelper.php(80): Facebook\PersistentData\FacebookSessionPersistentDataHandler->__construct()
+#1 /home/guidemec/public_html/fb-php/src/Facebook/Facebook.php(323): Facebook\Helpers\FacebookRedirectLoginHelper->__construct(Object(Facebook\Authentication\OAuth2Client), NULL, NULL, NULL)
+#2 /home/guidemec/public_html/fb-php/fb.php(9): Facebook\Facebook->getRedirectLoginHelper()
+#3 {main}
+  thrown in /home/guidemec/public_html/fb-php/src/Facebook/PersistentData/FacebookSessionPersistentDataHandler.php on line 50
+[13-Dec-2015 05:37:54 Asia/Taipei] PHP Fatal error:  Uncaught exception 'Facebook\Exceptions\FacebookSDKException' with message 'Access token metadata contains unexpected app ID.' in /home/guidemec/public_html/fb-php/src/Facebook/Authentication/AccessTokenMetadata.php:329
+Stack trace:
+#0 /home/guidemec/public_html/fb-php/fb-callback.php(51): Facebook\Authentication\AccessTokenMetadata->validateAppId(NULL)
+#1 {main}
+  thrown in /home/guidemec/public_html/fb-php/src/Facebook/Authentication/AccessTokenMetadata.php on line 329
+[14-Dec-2015 11:04:07 Asia/Taipei] PHP Fatal error:  Uncaught exception 'Facebook\Exceptions\FacebookSDKException' with message 'Access token metadata contains unexpected app ID.' in /home/guidemec/public_html/fb-php/src/Facebook/Authentication/AccessTokenMetadata.php:329
+Stack trace:
+#0 /home/guidemec/public_html/fb-php/fb-callback.php(51): Facebook\Authentication\AccessTokenMetadata->validateAppId(NULL)
+#1 {main}
+  thrown in /home/guidemec/public_html/fb-php/src/Facebook/Authentication/AccessTokenMetadata.php on line 329

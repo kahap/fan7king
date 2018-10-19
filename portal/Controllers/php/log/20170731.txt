@@ -1,0 +1,14 @@
+20170731 10:29:24inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:34:34inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:35:45inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:38:37inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:39:26inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:40:27inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:42:33inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:43:29inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:44:23inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:46:40inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:47:27inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 10:48:29inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 13:28:18inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@
+20170731 13:29:53inst:00000000e1f6da93msg:結構狀況[TOM's86]:警告@@Max_Displacement:15.60cm@@[1]Stiffness(x,y):100.2,-314.4@@

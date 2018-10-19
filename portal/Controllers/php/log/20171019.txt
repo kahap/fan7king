@@ -1,0 +1,78 @@
+20171019 08:41:05inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:2.0,PGA:6.8
+{}
+20171019 11:30:43inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:31:18inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:34:06inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國
+{}
+20171019 11:36:49inst:0000000056194529encode:utf8msg:lineGateway1:@@aaaa
+{}
+20171019 11:37:57inst:0000000056194529encode:utf8msg:lineGateway1:@@LINETEST
+{}
+20171019 11:39:52inst:0000000056194529encode:utf8msg:lineGateway1:@@L
+{}
+20171019 11:40:14inst:0000000056194529encode:utf8msg:lineGateway1:@@LINETEST
+{}
+20171019 11:52:42inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:53:08inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:53:26inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:54:14inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:56:00inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 11:56:49inst:0000000056194529encode:utf8msg:lineGateway1:@@N-
+{}
+20171019 11:59:12inst:0000000056194529encode:utf8msg:lineGateway1:@@中華民國萬歲
+{}
+20171019 11:59:33inst:0000000056194529encode:utf8msg:lineGateway1:@@TEST
+{}
+20171019 11:59:42inst:0000000056194529encode:utf8msg:lineGateway1:@@TEST_LINE
+{}
+20171019 13:31:08inst:0000000056194529encode:utf8msg:lineGateway1:@@*
+{}
+20171019 13:35:44inst:0000000056194529encode:utf8msg:lineGateway1:@@*
+{}
+20171019 13:35:58inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 13:36:07inst:0000000056194529encode:utf8msg:lineGateway1:@@*
+{}
+20171019 13:37:50inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171019 13:43:06inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 13:43:12inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 13:44:50inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 13:44:55inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 13:46:18inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2AAAAA
+{}
+20171019 13:49:07inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 13:49:13inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 13:51:14inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 13:51:30inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 13:51:34inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 14:28:22inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 14:28:26inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 14:48:12inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 15:17:51inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:3.0,PGA:9.1
+{}
+20171019 16:02:33inst:0000000056194529encode:utf8msg:lineGateway1:@@AAAA
+{}
+20171019 16:02:47inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生2
+{}
+20171019 20:35:53inst:00000000e1f6da93encode:msg:Onsite_alert@@SanlienCube@@Intensity:1.0,PGA:0.8
+{}

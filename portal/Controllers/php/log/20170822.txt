@@ -1,0 +1,7 @@
+20170822 11:36:56inst:00000000e1f6da93msg:EEWS_exercise@@SanlienTest@@Intensity:5,Countdown:30
+20170822 11:36:57inst:00000000e1f6da93msg:EEWS_alert@@SanlienTest@@Intensity:5,Countdown:30
+20170822 11:37:08inst:00000000e1f6da93msg:EEWS_alert@@SanlienTest@@Intensity:5,Countdown:20
+20170822 11:37:27inst:00000000e1f6da93msg:EEWS_alert@@SanlienTest@@Intensity:5,Countdown:0
+20170822 14:46:04inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:3.0,PGA:12.0
+20170822 17:28:55inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:3.0,PGA:8.6
+20170822 20:36:08inst:00000000e1f6da93msg:Onsite_alert@@SanlienTest@@Intensity:1.0,PGA:0.8

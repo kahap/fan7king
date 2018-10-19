@@ -1,0 +1,10 @@
+20171201 08:54:21inst:0000000056194529encode:msg:2017/01/01_13:40:40@@地震快訊:震度5級@@87.3Gal
+{}
+20171201 08:55:57inst:0000000056194529encode:msg:2017/01/01_13:40:40@@地震快訊:震度5級@@87.3Gal
+{}
+20171201 08:57:12inst:0000000056194529encode:msg:2017/01/01_13:40:40@@地震快訊:震度5級@@87.3Gal
+{}
+20171201 13:04:24inst:0000000056194529encode:msg:2017/01/01_13:40:40@@地震快訊:震度5級@@87.3Gal
+{"message":"The API rate limit has been exceeded. Try again later."}
+20171201 13:05:58inst:0000000056194529encode:msg:2017/01/01_13:40:40@@地震快訊:震度5級@@87.3Gal
+{"message":"The API rate limit has been exceeded. Try again later."}

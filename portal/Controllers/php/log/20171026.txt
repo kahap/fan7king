@@ -1,0 +1,84 @@
+20171026 10:21:09inst:0000000056194529encode:utf8msg:lineGateway1:@@穭
+{}
+20171026 10:24:41inst:0000000056194529encode:utf8msg:lineGateway1:@@穭
+{}
+20171026 10:25:41inst:0000000056194529encode:utf8msg:lineGateway1:@@穭
+{}
+20171026 10:28:34inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 10:28:42inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 10:28:46inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 10:28:52inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.
+{}
+20171026 10:29:05inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171026 10:29:13inst:0000000056194529encode:utf8msg:lineGateway1:@@濕度過高
+{}
+20171026 10:31:12inst:0000000056194529encode:utf8msg:lineGateway1:@@濕度過高
+{}
+20171026 10:31:17inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 10:34:47inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:02:26inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:02:49inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:03:08inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:04:30inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:04:33inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:04:36inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171026 11:04:39inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:04:43inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:04:46inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:05:12inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:05:18inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:05:31inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:05:54inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:10:14inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:16:58inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:17:02inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171026 11:17:06inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171026 11:17:12inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:17:19inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:27:44inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171026 11:27:54inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171026 11:27:58inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171026 11:28:31inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171026 11:28:33inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171026 11:29:32inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
+20171026 11:29:37inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:29:40inst:0000000056194529encode:utf8msg:lineGateway1:@@水位過低
+{}
+20171026 11:29:44inst:0000000056194529encode:utf8msg:lineGateway1:@@警報發生.http://192.168.0.88/bos80
+{}
+20171026 13:26:10inst:0000000056194529encode:utf8msg:lineGateway1:@@
+{}
+20171026 13:26:20inst:0000000056194529encode:utf8msg:lineGateway1:@@溫度過高
+{}
