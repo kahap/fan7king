@@ -25,3 +25,32 @@
             </div>
         </section>
     </main>
+
+    <script>
+        $(".reset_email").click(function(){
+            var memAccount = $('.memAccount').val();
+            if(memAccount != ''){
+                $.ajax({
+                    url: 'php/member_forget.php',
+                    data: "memAccount="+memAccount,
+                    type:"POST",
+                    dataType:'text',
+                    success: function(msg){
+                        if(msg){
+                            alert('已寄送到'+memAccount);
+                        }else{
+                            alert('不存在的EMAIL');
+                        }
+                    },
+
+                    error:function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+            }else{
+                alert('不准為空值');
+            }
+
+        })
+    </script>

@@ -371,6 +371,23 @@
 			return $data[0];
 		}
 
+        // jimmy 新版前台用手機號碼登入
+        public function getMemberinformationWithCell($array){
+            foreach ($array as $key => $value) {
+                $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+            }
+            $sql = "select
+                            *
+                        from
+                            `member`
+                        where
+                            `memCell` = '" . $memCell . "'&&
+                            `memPwd` = '" . $memPwd . "'";
+
+            $data = $this->db->selectRecords($sql);
+            return $data[0];
+        }
+
 		// jimmy
 		public function getMemberinformationNew($array){
 			foreach ($array as $key => $value) {

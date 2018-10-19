@@ -150,7 +150,7 @@
                         }else{
                             ?>
                             <li class="list-inline-item item-register">
-                                <a href="?item=login_register<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>" title="註冊">註冊</a>
+                                <a href="?item=register<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>" title="註冊">註冊</a>
                                 <a href="?item=login<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>" title="登入">登入</a>
                             </li>
                             <?php

@@ -92,6 +92,8 @@
 				case "award":
 					include('view/page_award.html');
 				break;
+
+				//會員中心
                 case "member_center":
                     switch($actionVal){
 										
@@ -115,8 +117,9 @@
                             include_once('view/page_member_fbedit.html');
     						break;
 
+                        // 變更密碼
                         case "password_edit":
-                            include_once('view/page_member_password_edit.html');
+                            include_once('views/member/member-change.php');
     						break;
 
                         case "purchase":
@@ -137,15 +140,23 @@
                                 include('view/page_member_loan_order.html');
                             }
                             break;
+
+                        // 我要繳款
                         case "pay":
-                            include('view/page_member_pay.html');
+                            if($_GET['orno'] != ""){
+                                include('views/member/member-pay-detail.php');
+                            }else{
+                                include('views/member/member-pay.php');
+                            }
+                            break;
     						break;
 
+                        // 訂單查詢
                         case "order":
                             if($_GET['orno'] != ""){
-                                include('view/page_member_order_d_detail.html');
+                                include('views/member/member-order-detail.php');
                             }else{
-                                include('view/page_member_order_d.html');
+                                include('views/member/member-order.php');
                             }
     						break;
 
@@ -335,15 +346,17 @@
 
     						break;
 
+                        //會員資料
                         default:
-                            include('view/page_member.html');
+                            include('views/member/member-info.php');
     						break;
                     }
     				break;
 
+                case "logout":
                 case "login":
                 case "login_register":
-                    include_once('view/page_login.html');
+                    include_once('views/login/login.php');
     				break;
 
                 case "contact":
@@ -414,7 +427,7 @@
             include_once('view/page_content.html');
         }
     }
-    //目標頁面
+    //目標頁面(為登入)
     elseif($itemVal != ""){
         if(array_key_exists($itemVal,$page_other ) || array_key_exists($itemVal,$page_other2 )){
             switch($itemVal){
@@ -456,7 +469,7 @@
         }
 
         // ---------------- register ------------------
-        elseif($itemVal=="login_register"){
+        elseif($itemVal=="register"){
             include_once('views/register/register-1.php');
         }
         elseif($itemVal=="register2"){

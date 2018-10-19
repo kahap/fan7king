@@ -6,12 +6,32 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="list-group">
-                            <a href="member-info.php" class="list-group-item list-group-item-action">基本資料</a>
-                            <a href="member-change.php" class="list-group-item list-group-item-action active">變更密碼</a>
-                            <a href="member-order.php" class="list-group-item list-group-item-action">訂單查詢</a>
-                            <a href="member-pay.php" class="list-group-item list-group-item-action">我要繳款</a>
+                            <a href="?item=member_center" class="list-group-item list-group-item-action active">基本資料</a>
+                            <a href="?item=member_center&action=password_edit" class="list-group-item list-group-item-action">變更密碼</a>
+                            <a href="?item=member_center&action=order" class="list-group-item list-group-item-action">訂單查詢</a>
+                            <a href="?item=member_center&action=pay" class="list-group-item list-group-item-action">我要繳款</a>
                         </div>
-                        <div class="sell xs-none" style="height: 430px;background-image: linear-gradient(151deg, #ff7f00,#fff0c9);">
+                        <div class="sell xs-none" style="height: auto;background-image: linear-gradient(151deg, #ff7f00,#fff0c9);">
+                            <?php
+                            $ad = new Advertise();
+                            $adData = $ad->getAllOrderBy(3,false);
+                            if($adData != ""){
+                                foreach($adData as $key => $value){
+                                    ?>
+                                    <li>
+                                        <a href="<?php echo $value["adLink"]; ?>">
+                                            <img src="../admin/<?php echo $value["adImage"]; ?>" alt="slide-left" style="width: 100%">
+                                        </a>
+                                    </li>
+                                    <?php
+                                }
+                            }else{
+                                ?>
+                                <li><a href="#"><img alt="" src="assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
+                                <li><a href="#"><img alt="" src="assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                     <div class="col-lg-9">
