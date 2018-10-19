@@ -1,6 +1,7 @@
 <?php
 
-	class Member{
+	class Member
+    {
 		var $db;
 
 		//建構函式
