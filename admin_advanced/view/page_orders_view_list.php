@@ -88,11 +88,11 @@ $NotStatus = array('1','0','110');
 										
 										case "3":
 											if($value["rcType"] == "0"){
-												if($value["orStatus"] == "8"){
+												if($value["rcStatus"] == "8"){
 													$status = "出貨中";
-												}else if($value["orStatus"] == "9"){
+												}else if($value["rcStatus"] == "9"){
 													$status = "已收貨";
-												}else if($value["orStatus"] == "10"){
+												}else if($value["rcStatus"] == "10"){
 													$status = "已完成";
 												}else{
 													$status = "授信完成";
