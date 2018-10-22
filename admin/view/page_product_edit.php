@@ -128,7 +128,7 @@ $tabIndex = 0;
                               主題優惠 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input value='<?php /*if($_GET["action"]=="edit") echo $proData[0]["proName"];*/ ?>' type="text" class="form-control" name="themeOffer" />
+                              <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proOffer"]; ?>' type="text" class="form-control" name="proOffer" />
                               <ul class="parsley-errors-list"><li id="themeOfferErr"></li></ul>
                           </div>
                       </div>
@@ -137,7 +137,7 @@ $tabIndex = 0;
                               商品加贈 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input value='<?php /*if($_GET["action"]=="edit") echo $proData[0]["proName"];*/ ?>' type="text" class="form-control" name="productGift" />
+                              <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proGift"]; ?>' type="text" class="form-control" name="proGift" />
                               <ul class="parsley-errors-list"><li id="productGiftErr"></li></ul>
                           </div>
                       </div>
@@ -230,8 +230,12 @@ $tabIndex = 0;
 							  </div>
 							</div>
 		
-							<div id="editor"><?php if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?></div>
-							<textarea name="proDetail" id="descr" style="display:none;"></textarea>
+<!--							<div id="editor">--><?php //if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?><!--</div>-->
+<!--							<textarea name="proDetail" id="descr" style="display:none;"></textarea>-->
+
+                            <textarea name="proDetail" id="TextArea1" cols="20" rows="2" class="ckeditor"></textarea>
+                            <div id="eImg"></div>
+
 							<br />
                       </div>
                     </div>
@@ -420,8 +424,57 @@ $tabIndex = 0;
                  
   <!-- richtext editor -->
   <script src="js/editor/bootstrap-wysiwyg.js"></script>
-  <script src="js/editor/external/jquery.hotkeys.js"></script>
-  <script src="js/editor/external/google-code-prettify/prettify.js"></script>
+<!--  <script src="js/editor/external/jquery.hotkeys.js"></script>-->
+<!--  <script src="js/editor/external/google-code-prettify/prettify.js"></script>-->
+
+    <!--  CKEditor CDN  -->
+          <script src="js/ckeditor/ckeditor.js"></script>
+          <script>
+              var editor = CKEDITOR.replace( 'proDetail', {
+                  baseHref : 'images/product/test/',
+              } );
+
+              function processData(){
+                  // getting data
+                  var data = CKEDITOR.instances.content.getData();
+                  alert(data);
+              }
+
+              function Get_eWebEditor_Img()
+              {
+                  var imgs = text.getData();
+                  alert(imgs);
+                  retImgArr = imgs.match(/src\s*=\s*[\"|\']?\s*[^>\"\'\s]*\.(jpg|jpeg|png|gif|bmp)/gi);
+                  retImgArr = imgs.match('<img src');
+                  var imgstr = "";
+                  for(var img=0;img<retImgArr.length;img++)
+                  {
+                      imgstr = imgstr + '<img onclick="Set_Img(this.src)" '+retImgArr[img]+'" /> ';
+                  }
+                  if(imgstr!="")
+                  {
+                      $('#eImg').innerHTML = imgstr;
+                      // $('#eImg').style.display = "block";
+                      alert(imgstr);
+                  }
+                  else
+                  {
+                      alert("编辑器没有图片");
+                  }
+              }
+              function Set_Img(src)
+              {
+                  var sPath = document.location.host + document.location.pathname;
+                  sPath = sPath.substr(0, sPath.length-16);
+                  var tmp = sPath.split("/");
+                  var url = "http://";
+                  for(var i=0;i<tmp.length-2;i++)
+                      url = url + tmp[i] + "/";
+                  Form.PicFile.value = src.replace(url,"");
+
+              }
+          </script>
+
 <script>
 $(function(){
 	//歷史相簿搜尋
@@ -570,6 +623,12 @@ $(function(){
 
 	$("#descr").val("");
 	$("#confirm-form").click(function(e){
+
+
+        Get_eWebEditor_Img();
+        return ;
+
+
 		$('#descr').val($('#editor').html());
 		$("#stampImgErr").text("");
 		$(".parsley-errors-list li").text("");
@@ -648,7 +707,7 @@ function readURL(input,curOrder) {
 	    	          '<img class="remove-new" style="cursor:pointer;position:absolute;top:-14px;right:-14px;background-color:#EEE;border-radius:100%;" src="images/remove_icon.png">'+
 	    	          '<img class="news-insert-img" style="max-width:300px;" src="' + e.target.result + '" />'+
 	    	          '</div>');
-        }
+        };
 
         reader.readAsDataURL(input.files[0]);
     }
@@ -720,7 +779,7 @@ $(function() {
       } else {
         $('#voiceBtn').hide();
       }
-    };
+    }
 
     function showErrorAlert(reason, detail) {
       var msg = '';
@@ -731,7 +790,7 @@ $(function() {
       }
       $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
         '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
-    };
+    }
     initToolbarBootstrapBindings();
     $('#editor').wysiwyg({
       fileUploadError: showErrorAlert

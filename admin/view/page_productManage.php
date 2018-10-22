@@ -7,6 +7,7 @@ $page = isset($_GET["paginate"])? $_GET["paginate"] : 1;
 
 $pp = new Product_Period();
 $pm = new Product_Manage();
+
 $allData = $pm->getAllPMGroupByProName(($page-1)*30 , 30);
 $totalProData = $pm->getAllPMGroupByProNameCount();
 $lastPage = ceil($totalProData/30);

@@ -101,9 +101,26 @@
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
-		
+
+        //取得所有商品(順序反)
+        public function getAllProDescWithCatAndBra($braNo,$catNo)
+        {
+            $sql = "select
+						*
+					from
+						`product`
+					where
+						`braNo` = '".$braNo."'
+					and
+						`catNo` = '".$catNo."'
+					order by
+						`proCaseNo`
+					desc";
+            $data = $this->db->selectRecords($sql);
+            return $data;
+        }
 		//取得所有商品(順序反)
-		public function getAllProDescWithCatAndBra($braNo,$catNo)
+		public function getAllProDescWithCatAndBraAndItem($braNo,$catNo, $biNo)
         {
 			$sql = "select
 						*
@@ -113,6 +130,8 @@
 						`braNo` = '".$braNo."'
 					and
 						`catNo` = '".$catNo."'
+					and
+						`biNo` = '".$biNo."'
 					order by
 						`proCaseNo`
 					desc";
@@ -275,13 +294,15 @@
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
-			$sql = "insert into `product`(`proCaseNo`,`catNo`, `braNo`, `biNo`, `proName` ,`proModelID`,`proSpec`,
+			$sql = "insert into `product`(`proCaseNo`,`catNo`, `braNo`, `biNo`, `proName`, `proOffer`, `proGift`, `proModelID`, `proSpec`,
 					`proDetail`,`proImage`)
 					values('".$newProNo."',
 							'".$catNo."',
 							'".$braNo."',
 							'".$biNo."',
 							'".$proName."',
+							'".$proOffer."',
+							'".$proGift."',
 							'".$proModelID."',
 							'".$proSpec."',
 							'".$proDetail."',
@@ -303,6 +324,8 @@
 						`braNo`='".$braNo."',
 						`biNo`='".$biNo."',
 						`proName`='".$proName."',
+						`proOffer`='".$proOffer."',
+						`proGift`='".$proGift."',
 						`proModelID`='".$proModelID."',
 						`proSpec`='".$proSpec."',
 						`proDetail`='".$proDetail."',

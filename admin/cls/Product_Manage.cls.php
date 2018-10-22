@@ -89,7 +89,7 @@
 		//取得所有商品上架(依照商品名稱)
 		public function getAllPMGroupByProName($p,$a){
 			$sql = "select
-						proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate
+						proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate,pmPopular,pmBuyAmnt,pmClickNum
 					from
 						`product_manage`
 					where 

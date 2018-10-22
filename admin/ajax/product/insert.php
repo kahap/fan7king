@@ -39,9 +39,9 @@
 	
 	
 	//取得商品編號
-	if(trim($_POST["catNo"]) != "" && trim($_POST["braNo"]) != ""){
+	if(trim($_POST["catNo"]) != "" && trim($_POST["braNo"]) != "" && trim($_POST["biNo"]) != ""){
 		//最後一筆
-		$lastData = $pro->getAllProDescWithCatAndBra($braNo, $catNo);
+		$lastData = $pro->getAllProDescWithCatAndBraAndItem($braNo, $catNo, $biNo);
 		if($lastData != null){
 			if(substr($lastData[0]["proCaseNo"], -3)<9){
 				$old3Num = substr($lastData[0]["proCaseNo"], -3);
