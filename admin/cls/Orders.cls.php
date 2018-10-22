@@ -460,6 +460,7 @@
 						*
 					from
 						`orders`
+                    inner join `real_cases` on `orders`.`orNo` = `real_cases`.`rcRelateDataNo` 
 					where
 						`orMethod` = '".$orMethod."'
 					and

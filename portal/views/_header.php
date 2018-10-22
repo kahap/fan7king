@@ -89,7 +89,7 @@
             <div class="navbar-box">
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
-                        <a href="" title="Nowait" class="navbar-brand">
+                        <a href="index.php" title="Nowait" class="navbar-brand">
                             <img class="img-fluid" src="assets/images/svg/logo.svg" data-src-base="images/svg/" data-src="<991:logo-mobile.svg,>991:logo.svg" width="284" height="85" alt="Nowait">
                         </a>
                     </div>
@@ -150,7 +150,7 @@
                         }else{
                             ?>
                             <li class="list-inline-item item-register">
-                                <a href="?item=login_register<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>" title="註冊">註冊</a>
+                                <a href="?item=register<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>" title="註冊">註冊</a>
                                 <a href="?item=login<?php echo ($_GET['share'] != "") ? '&share='.$_GET['share']:'';?>" title="登入">登入</a>
                             </li>
                             <?php

@@ -22,7 +22,7 @@ use Facebook\Entities\AccessToken;
 use Facebook\HttpClients\FacebookCurlHttpClient;
 use Facebook\HttpClients\FacebookHttpable;
 // init app with app id and secret
-FacebookSession::setDefaultApplication( '358306487860510','bbff3360de628c59397f27261daceb02' );
+FacebookSession::setDefaultApplication( AutoloadAPPId , AutoloadAPPSecret );
 // login helper with redirect_uri
     $helper = new FacebookRedirectLoginHelper('https://happyfan7.com/fb-php/fbconfig.php');
 try {

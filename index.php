@@ -1,10 +1,23 @@
-    <?php
+<?php
+
+    include_once('cfg/cfg.inc.php');
+
+/*
+ * **********************************************************************************
+ */
+header('location: https://' . DOMAIN . '/portal') or header('location: http://' . DOMAIN . '/portal');
+/*
+ * **********************************************************************************
+ */
+
+
     session_start();
     error_reporting(0);
 	//允許看到我要抽獎的會員清單
 	$memArray = array('1000001','1140333','1145319','1145356','1149599','1149600','1002870');
     include_once('lib/lib.php');
-    include_once('cfg/cfg.inc.php');
+
+
 
     function __autoload($ClassName){
         require_once('cls/'.$ClassName.".cls.php");

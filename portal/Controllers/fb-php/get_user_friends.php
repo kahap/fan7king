@@ -66,7 +66,7 @@ try {
 
 
 // init app with app id and secret
-FacebookSession::setDefaultApplication( '358306487860510','bbff3360de628c59397f27261daceb02' );
+FacebookSession::setDefaultApplication( AutoloadAPPId , AutoloadAPPSecret );
 
 // If you already have a valid access token:
 $session = new FacebookSession($_SESSION['user']["fb_access_token"]);

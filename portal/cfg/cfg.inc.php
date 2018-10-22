@@ -34,8 +34,8 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
     {
     //    define ('DOMAIN','127.0.0.1/happyfan7');
         define('DOMAIN', '127.0.0.1/fan7king_dev2');
-        define('AutoloadAPPId', '358306487860510');
-        define('AutoloadAPPSecret', 'bbff3360de628c59397f27261daceb02');
+        define('AutoloadAPPId', '1845375422218419');
+        define('AutoloadAPPSecret', '1184f8ce3bd0b4cb440f1dd066f3ab26');
         define('FbADVersion', 'v2.9');
     }
 

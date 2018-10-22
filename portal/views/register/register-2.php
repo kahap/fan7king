@@ -36,13 +36,17 @@
                                     <div class="col-10">
                                         <input type="text" class="form-control input-orange" id="form-phone" placeholder="請輸入您的手機號碼">
                                         <div class="form-check text-left m-2">
-                                            <input class="form-check-input" type="checkbox" id="FieldsetCheck">
-                                            <label class="form-check-label sz-12" for="FieldsetCheck">我已詳細閱讀並同意<a href="#" class="text-orange">免責聲明</a>、<a href="#" class="text-orange">服務條款</a>、<a href="#" class="text-orange">隱私權聲明</a>等條款</label>
+                                            <input class="form-check-input" type="checkbox" id="FieldsetCheck" name="check">
+                                            <label class="form-check-label sz-12" for="FieldsetCheck">我已詳細閱讀並同意
+                                                <a href="?item=fmFreeRespons" class="text-orange">免責聲明</a>、
+                                                <a href="?item=fmServiceRules" class="text-orange">服務條款</a>、
+                                                <a href="?item=fmPrivacy" class="text-orange">隱私權聲明</a>等條款
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group form-btn text-center">
-                                    <a href="?item=register3" class="btn btn-next bg-yellow">下一步</a>
+                                    <a class="btn btn-next bg-yellow">下一步</a>
                                 </div>
                             </form>
                         </div>
@@ -51,3 +55,16 @@
             </div>
         </section>
     </main>
+
+    <script>
+        $(".btn-next").click(function(){
+            // var str = "&share="+$('input[name=memRecommCode]').val();
+            var str = "&cell="+$('input[id=form-phone]').val();
+            if($("input[name='check']:checked").length == 1){
+                location.href="?item=register3"+str;
+            }else{
+                alert("請勾選同意條款");
+                $("input[name='check']").val('');
+            }
+        })
+    </script>

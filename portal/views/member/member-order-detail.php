@@ -5,14 +5,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="list-group">
-                            <a href="member-info.php" class="list-group-item list-group-item-action">基本資料</a>
-                            <a href="member-change.php" class="list-group-item list-group-item-action">變更密碼</a>
-                            <a href="member-order.php" class="list-group-item list-group-item-action active">訂單查詢</a>
-                            <a href="member-pay.php" class="list-group-item list-group-item-action">我要繳款</a>
-                        </div>
-                        <div class="sell xs-none" style="height: 430px;background-image: linear-gradient(151deg, #ff7f00,#fff0c9);">
-                        </div>
+                        <?php
+                        $active = 3;
+                        require_once 'views/member/_left.php';
+                        ?>
                     </div>
                     <div class="col-lg-9">
                         <div class="section-order bg-pale">

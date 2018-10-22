@@ -126,11 +126,11 @@ if ( isset( $accessToken ) ) {
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '358306487860510',
+      appId      : AutoloadAPPId,
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page
-      version    : 'v2.8' // use graph api version 2.8
+      version    : FbADVersion // use graph api version 2.8
     });
 
     // Now that we've initialized the JavaScript SDK, we call 

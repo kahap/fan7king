@@ -1,4 +1,10 @@
 
+<?php
+
+    $cell = isset($_GET['cell'])? $_GET['cell'] : '';
+    $cell = $cell!='' ? $cell : '沒有電話號碼';
+
+?>
     <main role="main">
         <h1><span>註冊</span><small>rigester</small></h1>
         <section id="login-zone">
@@ -25,7 +31,7 @@
                                     <a href="#" class="bs-wizard-dot">4</a>
                                 </div>
                             </div>
-                            <p class="text-black">手機號碼：0999999999</p>
+                            <p class="text-black">手機號碼：<?php echo $cell;?></p>
 
                             <form action="#" class="form">
                                 <div class="form-group row">
