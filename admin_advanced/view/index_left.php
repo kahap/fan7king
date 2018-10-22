@@ -59,7 +59,7 @@
 <?php if(in_array(104,$rightsOwned)){ ?><li><a href="?page=case&type=fixed" <?php echo isset($page,$type) && $page == "case" && $type == "fixed" ? 'class="active-page"' : ""; ?>>未進件列表-客戶自行補件</a></li><?php } ?>
 <?php if(in_array(105,$rightsOwned)){ ?><li><a href="?page=case&type=after_unfixed" <?php echo isset($page,$type) && $page == "case" && $type == "after_unfixed" ? 'class="active-page"' : ""; ?>>已授信列表-待補</a></li><?php } ?>
 <?php if(in_array(106,$rightsOwned)){ ?><li><a href="?page=case&type=after_fixed" <?php echo isset($page,$type) && $page == "case" && $type == "after_fixed" ? 'class="active-page"' : ""; ?>>已授信列表-客戶自行補件</a></li><?php } ?>
-<?php if(in_array(107,$rightsOwned)){ ?><li><a href="?page=case&type=mco" <?php echo isset($page,$type) && $page == "case" && $type == "mco" ? 'class="active-page"' : ""; ?>>未進件列表(機車/手機)</a></li><?php } ?>
+<!-- <?php if(in_array(107,$rightsOwned)){ ?><li><a href="?page=case&type=mco" <?php echo isset($page,$type) && $page == "case" && $type == "mco" ? 'class="active-page"' : ""; ?>>未進件列表(機車/手機)</a></li><?php } ?> -->
 <?php if(in_array(108,$rightsOwned)){ ?><li><a href="?page=case&type=query" <?php echo isset($page,$type) && $page == "case" && $type == "query" ? 'class="active-page"' : ""; ?>>進件查核表</a></li><?php } ?>
                             </ul>
                         </div>

@@ -3,6 +3,7 @@
 $mem = new Member();
 $or = new Orders();
 $forMem = new API("member");
+$orderContact = new API("orderContact");
 
 //先取得所有欄位的中文
 $memColumnsArr = array();
@@ -356,15 +357,34 @@ if(!isset($errMsg)){
 					$finalRelaPhone = array_merge($orAppContactRelaPhone1,$orAppContactFrdPhone1);
 					$finalRelaCell = array_merge($orAppContactRelaCell1,$orAppContactFrdCell1);
 				}*/
-				
-				$rcDataInput = array(
-					"rcContactName"=>urldecode(json_encode($finalRelaName)),
-					"rcContactRelation"=>urldecode(json_encode($finalRelaRealtion)),
-					"rcContactPhone"=>urldecode(json_encode($finalRelaPhone)),
-					"rcContactCell"=>urldecode(json_encode($finalRelaCell))
-				);
-				
-				$rc->update($rcDataInput,$rcNo);
+				$orderContact->setWhereArray(array("rcNo"=>$no));
+				$orderContact->setOrderArray(array("ContactSort"=>false));
+				$ocData=$orderContact->getWithConditions();
+				$arrayName = urldecode($finalRelaName);
+				$arrayRelation = urldecode($finalRelaRealtion);
+				$arrayPhone = urldecode($finalRelaPhone);
+				$arrayCell = urldecode($finalRelaCell);
+				for ($i=0; $i < count($arrayName); $i++) {
+					if (count($ocData)<=($i+1) && count($ocData)>0) {
+						$sql = "UPDATE orderContact 
+								SET rcContactName='".$arrayName[$i]."'
+								,rcContactRelation='".$arrayRelation[$i]."'
+								,rcContactPhone='".$arrayPhone[$i]."'
+								,rcContactCell='".$arrayCell[$i]."'
+								WHERE rcno='".$rcNo."' and ContactSort='".($i+1)."'";
+						$orderContact->customSql($sql);
+					}else{
+						$sql = array(
+							"rcNo"=>$rcNo,
+							"ContactSort"=>($i+1),
+							"rcContactName"=>$arrayName[$i],
+							"rcContactRelation"=>$arrayRelation[$i],
+							"rcContactPhone"=>$arrayPhone[$i],
+							"rcContactCell"=>$arrayCell[$i]
+						);
+						$orderContact->insert($sql);
+					}					
+				}
 			}
 			
 			$api->setInformation(array("orNo"=>$orNo), 1, 1, "訂單基本資料填寫成功。");
@@ -389,15 +409,34 @@ if(!isset($errMsg)){
 				$finalRelaRealtion = $orAppContactFrdRelation1;
 				$finalRelaPhone = $orAppContactFrdPhone1;
 				$finalRelaCell = $orAppContactFrdCell1;
-				
-				$rcDataInput = array(
-					"rcContactName"=>urldecode(json_encode($finalRelaName)),
-					"rcContactRelation"=>urldecode(json_encode($finalRelaRealtion)),
-					"rcContactPhone"=>urldecode(json_encode($finalRelaPhone)),
-					"rcContactCell"=>urldecode(json_encode($finalRelaCell)),
-				);
-				
-				$rc->update($rcDataInput,$rcNo);
+				$orderContact->setWhereArray(array("rcNo"=>$no));
+				$orderContact->setOrderArray(array("ContactSort"=>false));
+				$ocData=$orderContact->getWithConditions();
+				$arrayName = urldecode($finalRelaName);
+				$arrayRelation = urldecode($finalRelaRealtion);
+				$arrayPhone = urldecode($finalRelaPhone);
+				$arrayCell = urldecode($finalRelaCell);
+				for ($i=0; $i < count($arrayName); $i++) {
+					if (count($ocData)<=($i+1) && count($ocData)>0) {
+						$sql = "UPDATE orderContact 
+								SET rcContactName='".$arrayName[$i]."'
+								,rcContactRelation='".$arrayRelation[$i]."'
+								,rcContactPhone='".$arrayPhone[$i]."'
+								,rcContactCell='".$arrayCell[$i]."'
+								WHERE rcno='".$rcNo."' and ContactSort='".($i+1)."'";
+						$orderContact->customSql($sql);
+					}else{
+						$sql = array(
+							"rcNo"=>$rcNo,
+							"ContactSort"=>($i+1),
+							"rcContactName"=>$arrayName[$i],
+							"rcContactRelation"=>$arrayRelation[$i],
+							"rcContactPhone"=>$arrayPhone[$i],
+							"rcContactCell"=>$arrayCell[$i]
+						);
+						$orderContact->insert($sql);
+					}					
+				}
 			}
 			
 			$api->setInformation(array("orNo"=>$_POST["orNo"]), 1, 1, "訂單基本資料修改成功。");

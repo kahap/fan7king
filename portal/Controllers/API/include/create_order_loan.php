@@ -3,7 +3,7 @@
 $mem = new Member();
 $or = new Orders();
 $forMem = new API("member");
-
+$orderContact = new API("orderContact");
 
 
 //先取得所有欄位的中文
@@ -230,12 +230,36 @@ if(!isset($errMsg)){
 			$rcData = $rc->getData();
 			if($rcData != null){
 				$rcNo = $rcData[0]["rcNo"];
-				
+				$orderContact->setWhereArray(array("rcNo"=>$no));
+				$orderContact->setOrderArray(array("ContactSort"=>false));
+				$ocData=$orderContact->getWithConditions();
+				$arrayName = json_decode($orDataInputArr['mcoContactName']);
+				$arrayRelation = json_decode($orDataInputArr['mcoContactRelation']);
+				$arrayPhone = json_decode($orDataInputArr['mcoContactPhone']);
+				$arrayCell = json_decode($orDataInputArr['mcoContactCell']);
+
+				for ($i=0; $i < count($arrayName); $i++) {
+					if (count($ocData)<=($i+1) && count($ocData)>0) {
+						$sql = "UPDATE orderContact 
+								SET rcContactName='".$arrayName[$i]."'
+								,rcContactRelation='".$arrayRelation[$i]."'
+								,rcContactPhone='".$arrayPhone[$i]."'
+								,rcContactCell='".$arrayCell[$i]."'
+								WHERE rcno='".$rcNo."' and ContactSort='".($i+1)."'";
+						$orderContact->customSql($sql);
+					}else{
+						$sql = array(
+							"rcNo"=>$rcNo,
+							"ContactSort"=>($i+1),
+							"rcContactName"=>$arrayName[$i],
+							"rcContactRelation"=>$arrayRelation[$i],
+							"rcContactPhone"=>$arrayPhone[$i],
+							"rcContactCell"=>$arrayCell[$i]
+						);
+						$orderContact->insert($sql);
+					}					
+				}
 				$rcDataInput = array(
-					"rcContactName"=>$orDataInputArr['mcoContactName'],
-					"rcContactRelation"=>$orDataInputArr['mcoContactRelation'],
-					"rcContactPhone"=>$orDataInputArr['mcoContactPhone'],
-					"rcContactCell"=>$orDataInputArr['mcoContactCell'],
 					"rcBirthAddrPostCode"=>$orDataInputArr["mcoBirthPostCode"]
 				);
 				
@@ -255,12 +279,37 @@ if(!isset($errMsg)){
 			$rcData = $rc->getData();
 			if($rcData != null){
 				$rcNo = $rcData[0]["rcNo"];
+				$orderContact->setWhereArray(array("rcNo"=>$no));
+				$orderContact->setOrderArray(array("ContactSort"=>false));
+				$ocData=$orderContact->getWithConditions();
+				$arrayName = json_decode($orDataInputArr['mcoContactName']);
+				$arrayRelation = json_decode($orDataInputArr['mcoContactRelation']);
+				$arrayPhone = json_decode($orDataInputArr['mcoContactPhone']);
+				$arrayCell = json_decode($orDataInputArr['mcoContactCell']);
+
+				for ($i=0; $i < count($arrayName); $i++) {
+					if (count($ocData)<=($i+1) && count($ocData)>0) {
+						$sql = "UPDATE orderContact 
+								SET rcContactName='".$arrayName[$i]."'
+								,rcContactRelation='".$arrayRelation[$i]."'
+								,rcContactPhone='".$arrayPhone[$i]."'
+								,rcContactCell='".$arrayCell[$i]."'
+								WHERE rcno='".$rcNo."' and ContactSort='".($i+1)."'";
+						$orderContact->customSql($sql);
+					}else{
+						$sql = array(
+							"rcNo"=>$rcNo,
+							"ContactSort"=>($i+1),
+							"rcContactName"=>$arrayName[$i],
+							"rcContactRelation"=>$arrayRelation[$i],
+							"rcContactPhone"=>$arrayPhone[$i],
+							"rcContactCell"=>$arrayCell[$i]
+						);
+						$orderContact->insert($sql);
+					}					
+				}
 				
 				$rcDataInput = array(
-					"rcContactName"=>$orDataInputArr['mcoContactName'],
-					"rcContactRelation"=>$orDataInputArr['mcoContactRelation'],
-					"rcContactPhone"=>$orDataInputArr['mcoContactPhone'],
-					"rcContactCell"=>$orDataInputArr['mcoContactCell'],
 					"rcBirthAddrPostCode"=>$orDataInputArr["mcoBirthPostCode"]
 				);
 				
