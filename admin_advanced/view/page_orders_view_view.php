@@ -1,5 +1,5 @@
 <?php 
-$allowed_hosts = array("localhost","127.0.0.1","test.perfecthome.com.tw","test.happyfan7.com");
+foreach (json_decode(ALLOWED_HOSTS) as $key => $value) {array_push($allowed_hosts,$value);}
 if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_hosts)) {
 	$errMsg = "您無權限造訪此頁";
 }else{
