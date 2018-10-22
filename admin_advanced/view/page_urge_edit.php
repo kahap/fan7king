@@ -1,5 +1,5 @@
 <?php 
-$allowed_hosts = array("localhost","127.0.0.1","happyfan7.com","test.happyfan7.com");
+foreach (json_decode(ALLOWED_HOSTS) as $key => $value) {array_push($allowed_hosts,$value);}
 if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_hosts)) {
 	$errMsg = "您無權限造訪此頁";
 }else{
@@ -50,6 +50,7 @@ if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_h
 				$pm = new API("product_manage");
 				$ur = new API("urge_records");
 				$utr = new API("urge_txt_records");
+				$orderContact = new API("orderContact");
 					
 				$memData = $mem->getOne($rcData[0]["memNo"]);
 				$tpi->setWhereArray(array("rcNo"=>$no));
@@ -85,13 +86,22 @@ if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_h
 					"number"=>$memData[0]["memCell"],
 					"name"=>$memData[0]["memName"]
 				);
-				$contactArr = json_decode($rcData[0]["rcContactName"]);
-				if(is_array($contactArr) && !empty(array_filter($contactArr))){
-					$contactNameArr = json_decode($rcData[0]["rcContactName"]);
-					$contactRelaArr = json_decode($rcData[0]["rcContactRelation"]);
-					$contactPhoneArr = json_decode($rcData[0]["rcContactPhone"]);
-					$contactCellArr = json_decode($rcData[0]["rcContactCell"]);
-					foreach($contactArr as $key=>$value){
+
+				$orderContact->setWhereArray(array("rcNo"=>$no));
+				$orderContact->setOrderArray(array("ContactSort"=>false));
+				$ocData=$orderContact->getWithConditions();
+				$contactNameArr=array();
+				$contactRelaArr=array();
+				$contactPhoneArr=array();
+				$contactCellArr=array();
+				if (count($ocData)>0) {
+					for ($i=0; $i < count($ocData); $i++) {
+						array_push($contactNameArr,$ocData[$i]["rcContactName"]);
+						array_push($contactRelaArr,$ocData[$i]["rcContactRelation"]);
+						array_push($contactPhoneArr,$ocData[$i]["rcContactPhone"]);
+						array_push($contactCellArr,$ocData[$i]["rcContactCell"]);
+					}
+					foreach($contactNameArr as $key=>$value){
 						$curArr = array(
 							"role"=>"聯絡人",
 							"relationship"=>$contactRelaArr[$key],
@@ -125,12 +135,20 @@ if (!isset($_SERVER['HTTP_HOST']) || !in_array($_SERVER['HTTP_HOST'], $allowed_h
 				$ncd->setWhereArray(array("rcNo"=>$no));
 				$ncd->setOrderArray(array("nlNo"=>false));
 				$ncdData = $ncd->getWithConditions();
-				$contactArr = json_decode($rcData[0]["rcContactName"]);
-				if(is_array($contactArr) && !empty(array_filter($contactArr))){
-					$contactNameArr = json_decode($rcData[0]["rcContactName"]);
-					$contactRelaArr = json_decode($rcData[0]["rcContactRelation"]);
-					$contactPhoneArr = json_decode($rcData[0]["rcContactPhone"]);
-					$contactCellArr = json_decode($rcData[0]["rcContactCell"]);
+				$orderContact->setWhereArray(array("rcNo"=>$no));
+				$orderContact->setOrderArray(array("ContactSort"=>false));
+				$ocData=$orderContact->getWithConditions();
+				$contactNameArr=array();
+				$contactRelaArr=array();
+				$contactPhoneArr=array();
+				$contactCellArr=array();
+				if (count($ocData)>0) {
+					for ($i=0; $i < count($ocData); $i++) { 
+						array_push($contactNameArr,$ocData[$i]["rcContactName"]);
+						array_push($contactRelaArr,$ocData[$i]["rcContactRelation"]);
+						array_push($contactPhoneArr,$ocData[$i]["rcContactPhone"]);
+						array_push($contactCellArr,$ocData[$i]["rcContactCell"]);
+					}
 				}
 					
 				//撥款銀行

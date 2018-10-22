@@ -6,40 +6,22 @@ $apiOr = new API("real_cases");
 $ncd = new API("note_contact_details");
 $rcData = $apiOr->getOne($_POST['rcNo']);
 
+$orderContact = new API("orderContact");
+$orderContact->setWhereArray(array("rcNo"=>$_POST['rcNo']));
+$orderContact->setOrderArray(array("ContactSort"=>false));
+$ocData=$orderContact->getWithConditions();
+
 $or = new API("orders");
 $moto = new API("motorbike_cellphone_orders");
 	if($rcData	!= null){
-		$array['rcContactName'] = json_decode($rcData[0]['rcContactName']);
-		$array['rcContactRelation'] = json_decode($rcData[0]['rcContactRelation']);
-		$array['rcContactPhone'] = json_decode($rcData[0]['rcContactPhone']);
-		$array['rcContactCell'] = json_decode($rcData[0]['rcContactCell']);
-		
-		
-		$array['rcContactName'][] = $_POST['rcContactName'][0];
-		$array['rcContactRelation'][] = $_POST['rcContactRelation'][0];
-		$array['rcContactPhone'][] = $_POST['rcContactPhone'][0];
-		$array['rcContactCell'][] = $_POST['rcContactCell'][0];
-	
-	
-	$data = Array("rcContactName"=>json_encode($array['rcContactName'],JSON_UNESCAPED_UNICODE),
-				"rcContactRelation"=>json_encode($array['rcContactRelation'],JSON_UNESCAPED_UNICODE),
-				"rcContactPhone"=>json_encode($array['rcContactPhone'],JSON_UNESCAPED_UNICODE),
-				"rcContactCell"=>json_encode($array['rcContactCell'],JSON_UNESCAPED_UNICODE));
-	
-	$apiOr->update($data,$_POST['rcNo']);
-	if($rcData[0]['rcType'] == 0){
-		$data = Array("orAppContactFrdName"=>json_encode($array['rcContactName'],JSON_UNESCAPED_UNICODE),
-				"orAppContactFrdRelation"=>json_encode($array['rcContactRelation'],JSON_UNESCAPED_UNICODE),
-				"orAppContactFrdPhone"=>json_encode($array['rcContactPhone'],JSON_UNESCAPED_UNICODE),
-				"orAppContactFrdCell"=>json_encode($array['rcContactCell'],JSON_UNESCAPED_UNICODE));	
-		$or->update($data,$rcData[0]['rcRelateDataNo']);
-	}else{
-		$data = Array("mcoContactName"=>json_encode($array['rcContactName'],JSON_UNESCAPED_UNICODE),
-				"mcoContactRelation"=>json_encode($array['rcContactRelation'],JSON_UNESCAPED_UNICODE),
-				"mcoContactPhone"=>json_encode($array['rcContactPhone'],JSON_UNESCAPED_UNICODE),
-				"mcoContactCell"=>json_encode($array['rcContactCell'],JSON_UNESCAPED_UNICODE));
-		$moto->update($data,$rcData[0]['rcRelateDataNo']);
-	}
+	$orderContact->insert(array(
+		"rcNo"=>$_POST['rcNo'],
+		"ContactSort"=>(count($ocData)+1),
+		"rcContactName"=>$_POST['rcContactName'][0],
+		"rcContactRelation"=>$_POST['rcContactRelation'][0],
+		"rcContactPhone"=>$_POST['rcContactPhone'][0],
+		"rcContactCell"=>$_POST['rcContactCell'][0]
+	));
 	
 	$inputDataNcd = array();
 	$inputDataNcd["nlNo"] = $_POST['contactNlNo']['0'];

@@ -19,7 +19,8 @@ if(isset($no)){
 		$aau = new API("admin_advanced_user");
 		$pro = new API("product");
 		$pm = new API("product_manage");
-		
+		$orderContact = new API("orderContact");
+
 		$memData = $mem->getOne($rcData[0]["memNo"]);
 		$tbData = $tb->getAll();
 		
@@ -30,13 +31,21 @@ if(isset($no)){
 		//$ncd->setOrderArray(array("nlNo"=>true));
 		
 		$ncdData = $ncd->getWithConditions();
-		
-		$contactArr = json_decode($rcData[0]["rcContactName"]);
-		if(is_array($contactArr) && !empty(array_filter($contactArr))){
-			$contactNameArr = json_decode($rcData[0]["rcContactName"]);
-			$contactRelaArr = json_decode($rcData[0]["rcContactRelation"]);
-			$contactPhoneArr = json_decode($rcData[0]["rcContactPhone"]);
-			$contactCellArr = json_decode($rcData[0]["rcContactCell"]);
+
+		$orderContact->setWhereArray(array("rcNo"=>$no));
+		$orderContact->setOrderArray(array("ContactSort"=>false));
+		$ocData=$orderContact->getWithConditions();
+		$contactNameArr=array();
+		$contactRelaArr=array();
+		$contactPhoneArr=array();
+		$contactCellArr=array();
+		if (count($ocData)>0) {
+			for ($i=0; $i < count($ocData); $i++) { 
+				array_push($contactNameArr,$ocData[$i]["rcContactName"]);
+				array_push($contactRelaArr,$ocData[$i]["rcContactRelation"]);
+				array_push($contactPhoneArr,$ocData[$i]["rcContactPhone"]);
+				array_push($contactCellArr,$ocData[$i]["rcContactCell"]);
+			}
 		}
 		
 		//補件上傳

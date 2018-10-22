@@ -69,12 +69,21 @@ if(isset($no)){
 		$contactArr = json_decode($rcData[0]["rcContactName"]);
 		$hasContact = false;
 		$hasAssure = false;
-		if(is_array($contactArr) && !empty(array_filter($contactArr))){
+		$orderContact->setWhereArray(array("rcNo"=>$no));
+		$orderContact->setOrderArray(array("ContactSort"=>false));
+		$ocData=$orderContact->getWithConditions();
+		$contactNameArr=array();
+		$contactRelaArr=array();
+		$contactPhoneArr=array();
+		$contactCellArr=array();
+		if (count($ocData)>0) {
 			$hasContact = true;
-			$contactNameArr = json_decode($rcData[0]["rcContactName"]);
-			$contactRelaArr = json_decode($rcData[0]["rcContactRelation"]);
-			$contactPhoneArr = json_decode($rcData[0]["rcContactPhone"]);
-			$contactCellArr = json_decode($rcData[0]["rcContactCell"]);
+			for ($i=0; $i < count($ocData); $i++) { 
+				array_push($contactNameArr,$ocData[$i]["rcContactName"]);
+				array_push($contactRelaArr,$ocData[$i]["rcContactRelation"]);
+				array_push($contactPhoneArr,$ocData[$i]["rcContactPhone"]);
+				array_push($contactCellArr,$ocData[$i]["rcContactCell"]);
+			}
 		}
 	}else{
 		$errMsg = "查無此訂單。";

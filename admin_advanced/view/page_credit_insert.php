@@ -47,7 +47,9 @@ if(isset($no)){
 		$ncd = new API("note_contact_details");
 		$pro = new API("product");
 		$pm = new API("product_manage");
-		
+		$orderContact = new API("orderContact");
+		$sup = new API("supplier");
+		$supData = $sup->getOne($rcData[0]["supNo"]);
 		
 		$memData = $mem->getOne($rcData[0]["memNo"]);
 		
@@ -79,12 +81,21 @@ if(isset($no)){
 		$contactArr = json_decode($rcData[0]["rcContactName"]);
 		$hasContact = false;
 		$hasAssure = false;
-		if(is_array($contactArr) && !empty(array_filter($contactArr))){
+		$orderContact->setWhereArray(array("rcNo"=>$no));
+		$orderContact->setOrderArray(array("ContactSort"=>false));
+		$ocData=$orderContact->getWithConditions();
+		$contactNameArr=array();
+		$contactRelaArr=array();
+		$contactPhoneArr=array();
+		$contactCellArr=array();
+		if (count($ocData)>0) {
 			$hasContact = true;
-			$contactNameArr = json_decode($rcData[0]["rcContactName"]);
-			$contactRelaArr = json_decode($rcData[0]["rcContactRelation"]);
-			$contactPhoneArr = json_decode($rcData[0]["rcContactPhone"]);
-			$contactCellArr = json_decode($rcData[0]["rcContactCell"]);
+			for ($i=0; $i < count($ocData); $i++) { 
+				array_push($contactNameArr,$ocData[$i]["rcContactName"]);
+				array_push($contactRelaArr,$ocData[$i]["rcContactRelation"]);
+				array_push($contactPhoneArr,$ocData[$i]["rcContactPhone"]);
+				array_push($contactCellArr,$ocData[$i]["rcContactCell"]);
+			}
 		}
 		
 		$ncd->setWhereArray(array("rcNo"=>$no));
@@ -99,7 +110,7 @@ if(isset($no)){
 				$finalKey = $value["ncdKey"] > $finalKey ? $value["ncdKey"] : $finalKey;
 			}
 		}else{
-			$finalKey = count($contactArr)-1;
+			$finalKey = count($contactNameArr)-1;
 		}
 		
 		if($rcData[0]["rcType"] == "0"){
@@ -878,7 +889,7 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 						<?php 
 						if($ncdData == null){
 							if($hasContact){							
-								foreach($contactArr as $key=>$value){
+								foreach($contactNameArr as $key=>$value){
 						?>
 						<div class="row" style="border-bottom:3px dotted #CCC;">
 							<div class="row">
@@ -955,7 +966,7 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 								}
 							}
 						}else{
-								$total= count($contactArr)-1;
+								$total= count($contactNameArr)-1;
 								for($i=0;$i<=$total;$i++){
 						?>
 						<div class="row" style="border-bottom:3px dotted #CCC;">
