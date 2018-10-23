@@ -89,7 +89,7 @@
 		}
 		
 		//取得所有商品上架
-		public function getAllPM_forCategory(){
+		public function getAllPM_forCategory($p=1,$a=30){
 			$sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.proName, c.proImage
 					from 
 						`product_manage` a, product c
@@ -100,11 +100,29 @@
 					group by 
 						c.proNo
 					order by
-						a.pmUpDate desc";
+						c.catNo desc 
+					limit " .$p. " , " .$a ;
 						
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+		//取得所有商品上架 total
+        public function getAllPM_forCategoryCount(){
+            $sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.proName, c.proImage
+					from 
+						`product_manage` a, product c
+					where
+						a.`pmStatus` = '1' &&
+						a.pmMainSup = '1' &&
+						a.proNo = c.proNo 
+					group by 
+						c.proNo
+					order by
+						a.pmUpDate desc";
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
+
 		
 		//取得所有商品上架
 		public function getAllPM_forSup($supNo){

@@ -366,9 +366,12 @@
                     //include_once('view/page_sup_center.html');
                     include_once('view/page_sup_center_new.html'); //encore
     				break;
+
+
                 case "category":
-                    include_once('view/page_category.html');
+                    include_once('views/product/page_category.php');
     				break;
+
 
                 case "search":
                     include_once('view/page_search.html');
@@ -503,8 +506,10 @@
 
         // ---------------- other ------------------
         elseif($itemVal=="category"){
-            include_once('view/page_category.html');
+            include_once('views/product/page_category.php');
         }
+
+
         elseif($itemVal=="sup_center"){
             include_once('view/page_sup_center_new.html'); //encore
             //include_once('view/page_sup_center.html');
