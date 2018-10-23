@@ -2,15 +2,19 @@
     $member = new Member();
     $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
     $memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
-
     $member->changeToReadable($memberData[0]);
 
     $or = new Orders();
-    $orMemData = $or->getOrByMemberAndMethod($_SESSION['user']['memNo'],0);
+    $orMemData = $or->getOrByMemberAndMethod($_SESSION['user']['memNo'],1);
 
     $pm = new Product_Manage();
     $pro = new Product();
 ?>
+<style>
+    td{
+        text-align:center;
+    }
+</style>
 
     <main role="main">
         <h1><span>會員中心</span><small>member center</small></h1>
@@ -38,31 +42,48 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                if($orMemData != null && substr($orMemData['0']['orCaseNo'],-1) =="D"){
-                                    foreach($orMemData as $key=>$value){
-                                        $orig = $value;
-
-                                        $or->changeToReadable($value,$value["orMethod"]);
-
-                                        $pmData = $pm->getOnePMByNo($value["pmNo"]);
-
-                                        $proData = $pro->getOneProByNo($pmData[0]["proNo"]);
-                                        ?>
-                                    <tr>
-                                        <td data-th="訂單編號" nowrap="nowrap">
-                                            <a style="text-decoration:underline;color:blue;" href="?item=member_center&action=order&orno=<?php echo $value["orNo"]; ?>">
-                                                <?php echo $value["orCaseNo"]; ?>
-                                            </a>
-                                        </td>
-                                        <td data-th="訂單日期" nowrap="nowrap"><?php echo $value["orDate"]; ?></td>
-                                        <td data-th="商品名稱"><?php echo $proData[0]["proName"]; ?></td>
-                                        <td data-th="商品規格" nowrap="nowrap"><?php echo $value["orProSpec"]; ?></td>
-                                        <td data-th="商品型號" nowrap="nowrap"></td>
-                                        <td data-th="狀態" nowrap="nowrap"><?php echo $value["orPaySuccess"] ?></td>
-                                    </tr>
-                                        <?php
+                                $order_status = array('未完成下單','取消訂單');
+                                if($orMemData != null){
+                                    $os = new Other_Setting();
+                                    $osData = $os->getAll();
+                                    foreach($orMemData as $key=>$value) {
+                                        $curTIme = strtotime($value["orDate"]) + $osData[0]["orderLimitDays"] * 86400;
+                                        if (($curTIme >= time() && in_array($value["orStatus"], $order_status)) || (!in_array($value["orStatus"], $order_status))) {
+                                            $orig = $value;
+                                            $or->changeToReadable($value, $value["orMethod"]);
+                                            $pmData = $pm->getOnePMByNo($value["pmNo"]);
+                                            $proData = $pro->getOneProByNo($pmData[0]["proNo"]);
+                                            ?>
+                                            <tr>
+                                                <td data-th="訂單編號" nowrap="nowrap">
+                                                    <a style="text-decoration:underline;color:blue;"
+                                                       href="?item=member_center&action=order&orno=<?php echo $value["orNo"]; ?>">
+                                                        <?php echo $value["orCaseNo"]; ?>
+                                                    </a>
+                                                </td>
+                                                <td data-th="訂單日期" nowrap="nowrap"><?php echo $value["orDate"]; ?></td>
+                                                <td data-th="商品名稱"><?php echo $proData[0]["proName"]; ?></td>
+                                                <td data-th="商品規格"
+                                                    nowrap="nowrap"><?php echo $value["orProSpec"]; ?></td>
+                                                <td data-th="商品型號" nowrap="nowrap"></td>
+                                                <td data-th="狀態" nowrap="nowrap">
+                                                    <?php
+                                                    if ($value["orStatus"] == '出貨中') {
+                                                        echo $value["orHandleTransportSerialNum"] != "" ? '<a style="text-decoration:underline;color:blue;" href="?item=member_center&action=purchase&orno=' . $value["orNo"] . '">出貨中</a>' : "備貨中";
+                                                    } else {
+                                                        if ($value["orStatus"] == '資料不全需補件') {
+                                                            echo "<a style='text-decoration:underline;color:blue;' href='?item=member_center&action=order_edit&method=1&orno=" . $value["orNo"] . "&front_mange=1'>" . $value["orStatus"] . "</a>";
+                                                        } else {
+                                                            echo ($value["orStatus"] == '未進件') ? '審查中' : $value["orStatus"];
+                                                        }
+                                                    }
+                                                    ?>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                        }
                                     }
-                                }else{
+                                } else {
                                     ?>
                                     <tr>
                                         <td colspan="6">沒有任何資料</td>
