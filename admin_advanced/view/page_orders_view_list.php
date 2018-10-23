@@ -1,7 +1,16 @@
 <?php
 
+require_once('model/require_general.php');
+
+$page = isset($_GET['paginate'])? $_GET['paginate'] : '1';
+$_POS = isset($_POS)? $_POS : '';
+
+
 $search = new Search();
-$rcData = $search->searchDataForAllan($_POST,2);
+$rcData = $search->searchData($_POS, ($page-1)*30 , 30, 2);
+$totalProData = $search->getSearchDataCount($_POS, 2);
+$lastPage = ceil($totalProData/30);
+
 
 $rc = new API("real_cases");
 $or = new API("orders");
@@ -9,6 +18,8 @@ $mco = new API("motorbike_cellphone_orders");
 $sup = new API("supplier");
 $NotStatus = array('1','0','110');
 
+
+$key_word = isset($key_word)? $key_word : '';
 
 ?>
 <main class="mn-inner">
@@ -26,6 +37,44 @@ $NotStatus = array('1','0','110');
 		<div class="col s12 m12 l12">
 			<div class="card">
 				<div class="card-content">
+
+
+                    <div class="top dataTables_wrapper no-footer">
+                        <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($page-1)*30+1;?> 筆 到 第 <?php echo ($page)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
+
+                        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                            <!--                            <a href="?page=orders_view_general&type=list&paginate=1" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">-->
+                            <!--                                第一頁-->
+                            <!--                            </a>-->
+                            <?php if ($page>1){ ?>
+                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $page-1;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
+                                    <i class="material-icons">chevron_left</i>
+                                </a>
+                            <?php } ?>
+
+                            <?php for ($i=1;$i<=$lastPage;$i++){ ?>
+                                <span>
+                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $i;?>" class="paginate_button <?php if ($page==$i)echo 'current';?>" aria-controls="example" data-dt-idx="2" tabindex="0">
+                                <?php echo $i; ?>
+                                </a>
+                            </span>
+                            <?php } ?>
+                            <!--                            <input class="paginate_button choosePage" value="--><?php //echo $page;?><!--" data-href="?page=orders_view_general&type=list">-->
+
+                            <?php if ($page<$lastPage){ ?>
+                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $page+1;?>" class="paginate_button next disabled" aria-controls="example" data-dt-idx="3" tabindex="0" id="example_next">
+                                    <i class="material-icons">chevron_right</i>
+                                </a>
+                            <?php } ?>
+                            <!--                            <a href="?page=orders_view_general&type=list&paginate=--><?php //echo $lastPage;?><!--" class="paginate_button last disabled" aria-controls="example" data-dt-idx="4" tabindex="0" id="example_last">-->
+                            <!--                                最後一頁-->
+                            <!--                            </a>-->
+                        </div>
+                    </div>
+                    <br />
+
+
+                    <div  style="overflow-x:scroll; ">
    					<table id="example" class="display responsive-table datatable-example">
 						<thead>
      						<tr>
@@ -186,6 +235,7 @@ $NotStatus = array('1','0','110');
      					?>
      					</tbody>
 					</table>
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -206,19 +256,31 @@ $(document).ready(function() {
             sSearch: '',
             sLengthMenu: '顯示數 _MENU_',
             sLength: 'dataTables_length',
-            oPaginate: {
-                sFirst: '<i class="material-icons">chevron_left</i>',
-                sPrevious: '<i class="material-icons">chevron_left</i>',
-                sNext: '<i class="material-icons">chevron_right</i>',
-                sLast: '<i class="material-icons">chevron_right</i>' 
-            }
+            // oPaginate: {
+            //     sFirst: '<i class="material-icons">chevron_left</i>',
+            //     sPrevious: '<i class="material-icons">chevron_left</i>',
+            //     sNext: '<i class="material-icons">chevron_right</i>',
+            //     sLast: '<i class="material-icons">chevron_right</i>'
+            // }
         },
-	    "order": [[ 0 , "asc" ]],
-	    "iDisplayLength": 100,
+        "paging": false,
+        "processing": true,
+	    // "order": [[ 0 , "asc" ]],
+	    "iDisplayLength": 30,
 		"dom": '<"top"iflp<"clear">>rt<"bottom"iflp<"clear">>'
     	
     });
     $('.dataTables_length select').addClass('browser-default');
+
+    /*
+    *
+    */
+    $('#example_info').hide();
+    $('.bottom').next('.dataTables_info').hide();
+
+    $('.choosePage').change(function () {
+        location.href = $(this).data('href') + '&paginate=' + $(this).val();
+    });
 });
 </script>
 

@@ -82,7 +82,7 @@
 		}
 
 
-		public function getAll($desc=false){
+		public function getAll( $p,$a,  $desc=false){
 			$sql = "select
 					*
 				from
@@ -92,11 +92,26 @@
 			}else{
 				$sql .= " order by ".$this->idColumn;
 			}
+            $sql.=' limit '.$p.','.$a;
 			$data = $this->db->selectRecords($sql);
 			$this->data = $data;
 
 			return $data;
 		}
+		public function getAllCount($desc=false){
+            $sql = "select
+                        *
+                    from
+                        `".$this->table."`";
+            if($desc){
+                $sql .= " order by ".$this->idColumn." desc";
+            }else{
+                $sql .= " order by ".$this->idColumn;
+            }
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
+
 
 		public function getOne($no){
 			$sql = "select
