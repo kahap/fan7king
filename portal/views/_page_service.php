@@ -45,5 +45,3 @@
     </div>
 </section>
 <!-- end services -->
-
-</main>

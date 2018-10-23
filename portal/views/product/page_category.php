@@ -316,4 +316,9 @@
             </div>
         </div>
     </section>
+
+<?php
+include_once ('views/_page_service.php');
+?>
+
 </main>

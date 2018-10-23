@@ -371,11 +371,16 @@
                 case "category":
                     include_once('views/product/page_category.php');
     				break;
-
-
+                case "product":
+                    include_once('views/product/page_detail.php');
+                    break;
+                case "product_sup":
+                    include_once('views/product/page_detail_sup.php');
+                    break;
                 case "search":
-                    include_once('view/page_search.html');
+                    include_once('views/product/page_search.php');
     				break;
+
 
                 case "faq":
                     include_once('view/page_faq.html');
@@ -402,12 +407,6 @@
                 case "loan_cell":
                     include_once('view/page_loan_cell.html'); // add jimmy
                     break;
-                case "product":
-                    include_once('view/page_detail.html');
-    				break;
-                case "product_sup":
-                    include_once('view/page_detail_sup.html');
-    				break;
                 case "information_edit":
                     include_once('view/page_member_information.html');
     				break;
@@ -430,7 +429,6 @@
 //            include_once('view/page_top.html');
 //            include_once('view/page_content.html');
             include_once('views/_index.php');
-            include_once('views/_page_service.php');
         }
     }
 
@@ -456,19 +454,13 @@
     				break;
 
                 default:
-                    include_once('view/slider.php');
-                    include_once('view/page_top.html');
-                    include_once('view/page_content.html');
+                    //首頁(沒有目標頁面itemVal)
+//            include_once('view/slider.php');
+//            include_once('view/page_top.html');
+//            include_once('view/page_content.html');
+                    include_once('views/_index.php');
     				break;
             }
-        }elseif($itemVal == 'product'){
-            include_once('view/page_detail.html');
-        }
-        elseif($itemVal == 'product_sup'){
-            include_once('view/page_detail_sup.html');
-        }
-        elseif($itemVal=="search"){
-            include_once('view/page_search.html');
         }
 
         elseif($itemVal=="member_center"){
@@ -507,6 +499,15 @@
         // ---------------- other ------------------
         elseif($itemVal=="category"){
             include_once('views/product/page_category.php');
+        }
+        elseif($itemVal == 'product'){
+            include_once('views/product/page_detail.php');
+        }
+        elseif($itemVal == 'product_sup'){
+            include_once('views/product/page_detail_sup.php');
+        }
+        elseif($itemVal=="search"){
+            include_once('views/product/page_search.php');
         }
 
 
@@ -549,7 +550,6 @@
 //            include_once('view/page_top.html');
 //            include_once('view/page_content.html');
             include_once('views/_index.php');
-            include_once('views/_page_service.php');
         }
     }
 
@@ -558,7 +558,6 @@
         include_once('views/_index.php');
 //        include_once('views/page_top.html');
 //        include_once('views/page_content.html');
-        include_once('views/_page_service.php');
     }
 
 
