@@ -57,7 +57,7 @@ $relationArr = $_POST["rcContactRelation"];
 $phoneArr = $_POST["rcContactPhone"];
 $cellArr = $_POST["rcContactCell"];
 if(!empty(array_filter($nameArr))){
-	for ($i=0; $i < count($nameArr); $i++) { 
+	for ($i=0; $i < count($nameArr); $i++) {
 		$sql = "UPDATE orderContact 
 				SET rcContactName='".$nameArr[$i]."'
 				,rcContactRelation='".$relationArr[$i]."'
@@ -66,6 +66,21 @@ if(!empty(array_filter($nameArr))){
 				WHERE rcno='".$rcNo."' and ContactSort='".($i+1)."'";
 		$orderContact->customSql($sql);
 	}	
+	if($rcData[0]['rcType'] == 0){
+		$ord = new API("orders");
+		$data = Array("orAppContactFrdName"=>json_encode($nameArr,JSON_UNESCAPED_UNICODE),
+				"orAppContactFrdRelation"=>json_encode($relationArr,JSON_UNESCAPED_UNICODE),
+				"orAppContactFrdPhone"=>json_encode($phoneArr,JSON_UNESCAPED_UNICODE),
+				"orAppContactFrdCell"=>json_encode($cellArr,JSON_UNESCAPED_UNICODE));	
+		$ord->update($data,$rcData[0]['rcRelateDataNo']);
+	}else{
+		$moto = new API("motorbike_cellphone_orders");
+		$data = Array("mcoContactName"=>json_encode($nameArr,JSON_UNESCAPED_UNICODE),
+				"mcoContactRelation"=>json_encode($relationArr,JSON_UNESCAPED_UNICODE),
+				"mcoContactPhone"=>json_encode($phoneArr,JSON_UNESCAPED_UNICODE),
+				"mcoContactCell"=>json_encode($cellArr,JSON_UNESCAPED_UNICODE));
+		$moto->update($data,$rcData[0]['rcRelateDataNo']);
+	}
 }
 
 //申請人區

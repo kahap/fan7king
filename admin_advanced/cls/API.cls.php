@@ -82,7 +82,7 @@
 		}
 
 
-		public function getAll( $p,$a,  $desc=false){
+		public function getAll( $p="",$a="",  $desc=false){
 			$sql = "select
 					*
 				from
@@ -92,7 +92,9 @@
 			}else{
 				$sql .= " order by ".$this->idColumn;
 			}
-            $sql.=' limit '.$p.','.$a;
+			if ($p!="") {
+				$sql.=' limit '.$p.','.$a;
+			}            
 			$data = $this->db->selectRecords($sql);
 			$this->data = $data;
 
