@@ -29,7 +29,8 @@ $ps = new Period_Setting();
 $pp = new Product_Period();
 $order = new Orders();
 
-$pm_detail = $pm->getAllByProName($_GET['pro']); //商品內容
+$proNo = isset($_GET['pro'])? $_GET['pro'] : 0;
+$pm_detail = $pm->getAllByProName($proNo); //商品內容
 
 if($pm_detail == ""){
     echo "<script>alert('查無此商品，或商品已經下架。')</script>";
@@ -37,7 +38,7 @@ if($pm_detail == ""){
 }
 $cat = $category->getOneCatByNo($pm_detail[0]['catNo']); //分類內容
 
-$pm->updatepmClickNum($_GET['pro'],$pm_detail[0]['pmClickNum']);
+$pm->updatepmClickNum($proNo,$pm_detail[0]['pmClickNum']);
 $img = json_decode($pm_detail[0]['proImage']);
 $img[0] = ($img[0] !="") ? $img[0]:$img[1];
 
@@ -68,7 +69,7 @@ if($followDefault){
 }
 //利率待修改區-END
 
-$_SESSION['pro'] = $_GET['pro'];
+$_SESSION['pro'] = $proNo;
 ?>
 <main role="main">
     <section>
@@ -125,7 +126,7 @@ $_SESSION['pro'] = $_GET['pro'];
                             <a href="#">ipad + ipod 限量搶購</a>
                             <a href="#">送亞太399上網吃到飽 + 手機Fun心險</a>
                         </p>
-                        <form action="#">
+                        <form id='shopping'>
                             <br>
                             <div class="selector selector-bd row">
                                 <div class="col-lg-6">
@@ -179,7 +180,7 @@ $_SESSION['pro'] = $_GET['pro'];
 //                                                echo "<li style='background:rgba(12, 59, 144, 0.09); text-align:center;margin: 5px;' class='select_per active".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
                                                 $first = $key;
                                                 ?>
-                                                <label class="btn bg-gray <?php echo $active;?> staging" data-id="<?php echo $key;?>">
+                                                <label class="btn bg-gray <?php echo $active;?> staging select_per" data-id="<?php echo $key;?>" data-gt="<?php echo $key;?>">
                                                     <input type="radio" name="staging" value="<?php echo $key;?>" autocomplete="off" id="<?php echo $key;?>"> <?php echo $key;?>期
                                                 </label>
                                                 <?php
@@ -188,7 +189,7 @@ $_SESSION['pro'] = $_GET['pro'];
                                             if($value > 1000){
 //                                                echo "<li style='background:rgba(12, 59, 144, 0.09);text-align:center;margin: 5px;' class='select_per ".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
                                                 ?>
-                                                <label class="btn bg-gray <?php echo $active;?> staging" data-id="<?php echo $key;?>">
+                                                <label class="btn bg-gray <?php echo $active;?> staging select_per" data-id="<?php echo $key;?>" data-gt="<?php echo $key;?>">
                                                     <input type="radio" name="staging" value="<?php echo $key;?>" checked autocomplete="off" id="<?php echo $key;?>"> <?php echo $key;?>期
                                                 </label>
                                                 <?php
@@ -207,7 +208,7 @@ $_SESSION['pro'] = $_GET['pro'];
                                     ?>
                                     <button class="btn bg-orange period">
                                         立即分期
-                                        <?php if($_GET['pro'] == '10190'){ ?>
+                                        <?php if($proNo == '10190'){ ?>
                                             <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" />
                                         <?PHP } ?>
                                     </button>
@@ -225,7 +226,7 @@ $_SESSION['pro'] = $_GET['pro'];
                                         if($value > 1000){
 //                                            echo "<li style='background:rgba(144, 12, 72, 0.09);width: 126px;'  class='select_price' id='price_".$key."'><a href='javascript:'>NT $".number_format($value)."X".$key."期</a></li>";
                                             ?>
-                                            <a class="btn price_" id='price_<?php echo $key;?>' style="display: none;">
+                                            <a class="btn select_price price_" id='price_<?php echo $key;?>' style="display: none;">
                                                 <?php echo number_format($value);?>*<?php echo $key;?>期
                                             </a>
                                             <?php
@@ -234,7 +235,7 @@ $_SESSION['pro'] = $_GET['pro'];
                                         if($value > 1000){
 //                                            echo "<li style='background:rgba(144, 12, 72, 0.09);width: 126px; display:none;'  class='select_price' id='price_".$key."'><a href='javascript:'>NT $".number_format($value)."X".$key."期</a></li>";
                                             ?>
-                                            <a class="btn price_" id='price_<?php echo $key;?>' style="display: none;">
+                                            <a class="btn select_price price_" id='price_<?php echo $key;?>' style="display: none;">
                                                 <?php echo number_format($value);?>*<?php echo $key;?>期
                                             </a>
                                             <?php
@@ -245,7 +246,7 @@ $_SESSION['pro'] = $_GET['pro'];
                                 $reject  = ($reject_custom == "") ? $first:"";
                                 echo "<input type='hidden' name='period' value='".$reject."'/>";
                                 echo "<input type='hidden' name='user' value='".$_SESSION['user']['memNo']."'/>";
-                                echo "<input type='hidden' name='pro' value='".$_GET['pro']."'/>";
+                                echo "<input type='hidden' name='pro' value='".$proNo."'/>";
                                 ?>
                             </div>
                         </form>
@@ -336,7 +337,7 @@ $_SESSION['pro'] = $_GET['pro'];
 </main>
 
 <script>
-    //
+    //選擇期數
     $('.staging').click(function () {
         var id = $(this).data('id');
         $('.price_').hide();
@@ -349,19 +350,21 @@ $_SESSION['pro'] = $_GET['pro'];
         alert('曾下單婉拒之用戶在婉拒後6個月內將無法再次申請分期，如有疑問請洽客服。');
     });
 
+    //選擇期數
     $('.select_per').click(function(e){
-        var number = $(this).attr('dat-gt');
+        var number = $(this).data('gt');
         $(this).addClass('active').siblings().removeClass('active');
         $('.select_price').hide();
         $('#price_'+number).show();
         $('input[name=period]').val(number);
     });
 
+    //立即分期
     $('.period').click(function(){
         if($('input[name=period]').val() != ""){
             if($('input[name=user]').val() != ""){
                 $.ajax({
-                    url: 'php/order_period.php',
+                    url: 'Controllers/php/order_period.php',
                     data: $('#shopping').serialize(),
                     type:"POST",
                     dataType:'text',
@@ -375,13 +378,16 @@ $_SESSION['pro'] = $_GET['pro'];
                 });
             }else{
                 alert('請先登入帳號');
-                location.href='index.php?item=login&pro=<?=$_GET['pro']; ?>&share=<?=$_GET['share']; ?>';
+                location.href="index.php?item=login&pro=<?=$proNo; ?>&share=<?php echo $_GET['share']? $_GET['share'] : ''; ?>";
             }
         }else{
             alert('請選擇期數');
         }
     });
 
+    /*
+    ////直購，現在無用
+    */
     $('.direct').click(function(){
         if($('input[name=user]').val() != ""){
             $.ajax({
@@ -404,7 +410,7 @@ $_SESSION['pro'] = $_GET['pro'];
             });
         }else{
             alert('請先登入帳號');
-            location.href='index.php?item=login&pro=<?php echo $_GET['pro']; ?>';
+            location.href='index.php?item=login&pro=<?php echo $proNo; ?>';
         }
     });
 
