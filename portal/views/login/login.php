@@ -1,5 +1,6 @@
 
 <style>
+    /*
     info, .success, .warning, .error, .validation {
         border: 1px solid;
         margin: 10px 0px;
@@ -59,7 +60,7 @@
         text-align: center;
         line-height: 15px;
     }
-
+*/
 </style><!-- page wapper-->
 
 <?php

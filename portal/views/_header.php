@@ -70,16 +70,21 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
-	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>
+<!--	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>-->
 	<script src="assets/js/jquery.placeholder.js"></script>
 
-    <script src="assets/lib/jquery-ui/jquery-ui.js"></script>
+<!--    <script src="assets/lib/jquery-ui/jquery-ui.js"></script>-->
 <!--    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>-->
 
 
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/slick/slick.css" />
     <link rel="stylesheet" href="assets/theme/css/theme.css" />
+    <style>
+        /*.card_1 {border:none;box-shadow:0 5px 6px 0 rgba(0,0,0,.16);border-radius:0;height:97%;margin:0 .5rem;padding-bottom:18px}*/
+        .card_1{border:none;height:200px;text-align:center;background-image:linear-gradient(to left,transparent,transparent 50%,#f8f8f8 50%,#f8f8f8);background-position:100% 0;background-size:200% 100%;transition:all .25s ease-in}
+        .card_1:hover{background-position:0 0}
+    </style>
 
 </head>
 <body class="home">
