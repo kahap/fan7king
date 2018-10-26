@@ -97,7 +97,10 @@
                         <img src="assets/images/slogan.png" class="img-fluid" alt="免卡分期 享購現在">
                     </div>
                     <div class="col-5 d-flex align-items-center">
-                        <form class="form form-search" action="?item=search" method="GET">
+                        <form class="form form-search" action="index.php" method="GET" >
+
+                            <input type="hidden" name="item" value="search" />
+
                             <div class="input-group input-serach">
                                 <input type="text" class="form-control" placeholder="熱門關鍵字：<?php
                                     $string = new Hotkeys();
@@ -108,7 +111,7 @@
                                     }else{
                                         echo 'Apple, Sony, Phone';
                                     }
-                                ?>" name="search">
+                                ?>" name="search" value=""/>
                                 <div class="input-group-append">
                                     <span class="input-group-btn">
                                         <button class="btn btn-dark btn-searc" type="submit">
@@ -118,10 +121,10 @@
                                 </div>
                             </div>
                             <p class="text-orange">
-                                <a href="?item=search&search=<?php echo $string_key2[0];?>" title="">
+                                <a href="?item=search&search=<?php echo trim($string_key2[0]);?>" title="">
                                     <?php  echo ($string_key2)? $string_key2[0] : '任天堂Switch'; ?>
                                 </a>
-                                <a href="?item=search&search=<?php echo $string_key2[1];?>" title="">
+                                <a href="?item=search&search=<?php echo trim($string_key2[1]);?>" title="">
                                     <?php  echo ($string_key2)? $string_key2[1] : 'PS4 pro'; ?>
                                 </a>
 <!--                                <a href="#" title="小米手環">小米手環</a>-->

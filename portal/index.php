@@ -497,7 +497,7 @@
 
 
         // ---------------- other ------------------
-        elseif($itemVal=="category"){
+        elseif($itemVal == "category"){
             include_once('views/product/page_category.php');
         }
         elseif($itemVal == 'product'){
@@ -506,7 +506,7 @@
         elseif($itemVal == 'product_sup'){
             include_once('views/product/page_detail_sup.php');
         }
-        elseif($itemVal=="search"){
+        elseif($itemVal == "search"){
             include_once('views/product/page_search.php');
         }
 

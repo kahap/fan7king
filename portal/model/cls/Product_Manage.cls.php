@@ -144,29 +144,73 @@
 		}
 		
 		//取得所有搜尋商品上架
-		public function getSearchPM($array){
+		public function getSearchPM($array ,$p=1,$a=30){
 			foreach($array as $key => $value){
-				$$key= mysqli_real_escape_string($this->db->oDbLink, $value);
+//				$$key= mysqli_real_escape_string($this->db->oDbLink, $value);
+                $$key= $value;
 			}
-			echo $search;
 			
 			if($search != ''){
-				$str = ($category != "0") ? " `product`.catNo = '".$category."' ":'';
-				
+				$str = ($category)? " `product`.catNo = '".$category."' " : '';
+
 				// $str .= " `product`.proName like '%".$search."%' ";
-				
-				$searchArray = explode(' ',$search);			
+
+				$searchArray = explode(' ',$search);
 				foreach($searchArray as $searchKeyWord){
 					if ($str !=""){
 						$str .= " && ";
 					}
-					$str .= " `product`.proName like '%".$searchKeyWord."%' ";					
+					$str .= " `product`.proName like '%".$searchKeyWord."%' ";
 				}
-				
+
 			}else{
-				$str = ($category != "0") ? " `product`.catNo = '".$category."'":' 1 ';
+				$str = ($category) ? " `product`.catNo = '".$category."' ":' 1 ';
 			}
 			$sql = "select
+						*
+					from
+						`product_manage`
+					inner join
+						`supplier`
+					on
+						`supplier`.`supNo` = `product_manage`.`supNo`
+					inner join
+						`product`
+					on
+						`product`.`proNo` = `product_manage`.`proNo`
+					where
+						`product_manage`.`pmStatus` != '0' && 
+						`product_manage`.`pmMainSup` = '1' && 
+					".$str." 
+					order by 
+						`product`.`proNo` asc 
+					limit " .$p. " , " .$a ;
+			$data = $this->db->selectRecords($sql);
+			return $data;
+		}
+        //取得所有搜尋商品上架
+        public function getSearchPMCount($array){
+            foreach($array as $key => $value){
+                $$key= mysqli_real_escape_string($this->db->oDbLink, $value);
+            }
+
+            if($search != ''){
+                $str = ($category) ? " `product`.catNo = '".$category."' ":'';
+
+                // $str .= " `product`.proName like '%".$search."%' ";
+
+                $searchArray = explode(' ',$search);
+                foreach($searchArray as $searchKeyWord){
+                    if ($str !=""){
+                        $str .= " && ";
+                    }
+                    $str .= " `product`.proName like '%".$searchKeyWord."%' ";
+                }
+
+            }else{
+                $str = ($category) ? " `product`.catNo = '".$category."' ":' 1 ';
+            }
+            $sql = "select
 						*
 					from
 						`product_manage`
@@ -184,9 +228,9 @@
 					".$str."
 					order by
 						`product`.`proName` asc";
-			$data = $this->db->selectRecords($sql);
-			return $data;
-		}
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
 		
 		//取得所有商品上架
 		public function getAllCatPM($cat){
