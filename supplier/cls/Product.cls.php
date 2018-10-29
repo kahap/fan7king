@@ -138,13 +138,15 @@
 			return $data;
 		}
         //取得商品編號
-		public function getProNo_Sup($catNo,$braNo,$proName){
+		public function getProNo_Sup($catNo,$braNo,$biNo,$proName){
 			$sql = "select
 						*
 					from
 						`product`
 					where      
                         `braNo`='".$braNo."' 
+                    and    
+                        `biNo`='".$biNo."' 
                     and 
                         `catNo`='".$catNo."' 
                     and 
@@ -182,12 +184,15 @@
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
-			$sql = "insert into `product`(`proCaseNo`,`catNo`, `braNo`, `proName` ,`proModelID`,`proSpec`,
+			$sql = "insert into `product`(`proCaseNo`,`catNo`, `braNo`, `biNo`,  `proName`, `proOffer`, `proGift`, `proModelID`,`proSpec`,
 					`proDetail`,`proImage`,`bySup`)
 					values('".$newProNo."',
 							'".$catNo."',
 							'".$braNo."',
+							'".$biNo."',
 							'".$proName."',
+							'".$proOffer."',
+							'".$proGift."',
 							'".$proModelID."',
 							'".$proSpec."',
 							'".$proDetail."',

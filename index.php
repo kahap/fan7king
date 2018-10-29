@@ -2,14 +2,6 @@
 
     include_once('cfg/cfg.inc.php');
 
-/*
- * **********************************************************************************
- */
-header('location: https://' . DOMAIN . '/portal') or header('location: http://' . DOMAIN . '/portal');
-/*
- * **********************************************************************************
- */
-
 
     session_start();
     error_reporting(0);
