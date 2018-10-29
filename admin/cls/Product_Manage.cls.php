@@ -157,7 +157,7 @@
 		}
 		
 		//依據商品取得該商品
-		public function getAllByProName($proNo,$p,$a){
+		public function getAllByProName($proNo,$p=1,$a=30){
 			$sql = "select
 						*
 					from

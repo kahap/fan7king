@@ -936,7 +936,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
                       	</div>
                       <?php 
 					  }else if(strrpos($value["COLUMN_NAME"], "ExtraInfo") !== false ){
-						$orAppAuthenExtraInfoArr = array_filter(json_decode($orData[0][$value["COLUMN_NAME"]]));
+						$orAppAuthenExtraInfoArr = array_filter( json_decode($orData[0][$value["COLUMN_NAME"]],true)?:[] );
 						if(!empty($orAppAuthenExtraInfoArr)){
 					  ?>
 					  <div class="col-md-9 col-sm-9 col-xs-12">

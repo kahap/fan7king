@@ -347,6 +347,19 @@ $supNoArr = array();
                     </div>
                   </div>
                 </div>
+
+
+<!-- Datatables -->
+<script src="js/datatables/js/jquery.dataTables.js"></script>
+<script src="js/datatables/tools/js/dataTables.tableTools.js"></script>
+
+<!--  <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">-->
+<!--  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>-->
+<!--  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>-->
+
+
+<!-- pace -->
+<script src="js/pace/pace.min.js"></script>
 <script>
 $(function(){
     var oTable = $('#example').dataTable({

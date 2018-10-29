@@ -16,7 +16,7 @@ $rba = new Recomm_Bonus_Apply();
 $rbaMemData = $rba->getRBAByMemNo($memNo);
 
 $lg = new Loyal_Guest();
-$allLgData = $lg->getAllLoyalGuest();
+$allLgData = $lg->getAllLoyalGuest()? $lg->getAllLoyalGuest() : [];
 $ifLoyal = "否";
 foreach($allLgData as $keyIn=>$valueIn){
 	if($valueIn["lgIdNum"] == $memOrigData[0]["memIdNum"]){
