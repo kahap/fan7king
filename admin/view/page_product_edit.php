@@ -8,12 +8,15 @@ if($_GET["action"] == "edit"){
 	$proImageArray = json_decode($proData[0]["proImage"]);
 }
 
+//分類
 $cat = new Category();
 $allCat = $cat->getAllCatOrder();
 
+//品牌
 $bra = new Brand();
 $allBra = $bra->getAllBrandOrder();
 
+//品項
 $items = new B_items();
 $allItems = $items->getAllItemsOrder();
 

@@ -5,6 +5,15 @@
 	$pm = new Product_Manage();
 	$prod = new Product();
 
+///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
+	$cat = new Category();
+	$bra = new Brand();
+	$catData = array();
+
+	$newProNo = "";
+	$last3Num = "";
+///////////////////////////////////// //////////////////////////////////////////////////////
+
 	foreach($_POST as $key=>$value){
 		$$key = trim($value);
 	}
@@ -24,25 +33,93 @@
 
     if(!isset($_POST["braNo"]) || $braNo == ""){
 		$errMsg["braErr"] = "請選擇所屬品牌";
-	}	
+	}
 
+	if(!isset($_POST["biNo"]) || $biNo == ""){
+		$errMsg["biNoErr"] = "請選擇所屬品項";
+	}
+
+
+	//上架金額
 	if($pmPeriodAmnt == ""){
 		$_POST["pmPeriodAmnt"] = 0;
         $pmPeriodAmnt =0;
 	}
+	//撥款金額
     if($pmPeriodAmnt2 == ""){
 		$_POST["pmPeriodAmnt2"] = 0;
         $pmPeriodAmnt2=0;
 	}
 
-	if(!isset($_POST["pmPeriodAmnt"]) || !is_numeric($pmPeriodAmnt)){
-		$errMsg["pmPeriodAmntErr"] = "請填入數字";
-	}
+	//商品說明，文字編輯器
+	$_POST["proDetail"] = preg_replace("/\r\n|\r|\n/","",nl2br($_POST["proDetail"]));
+
 
 	if(!isset($_POST["pmPeriodAmnt2"]) || !is_numeric($pmPeriodAmnt2)){
 		$errMsg["pmPeriodAmntErr2"] = "請填入數字";
 	}
-	if(empty(array_filter($errMsg))){
+
+
+
+///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
+	//取得商品編號
+	if(trim($_POST["catNo"]) != "" && trim($_POST["braNo"]) != "" && trim($_POST["biNo"]) != ""){
+		//最後一筆
+		$lastData = $pro->getAllProDescWithCatAndBraAndItem($braNo, $catNo, $biNo);
+		if($lastData != null){
+			if(substr($lastData[0]["proCaseNo"], -3)<9){
+				$old3Num = substr($lastData[0]["proCaseNo"], -3);
+				$last3Num = "00".++$old3Num;
+			}else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
+				$old3Num = substr($lastData[0]["proCaseNo"], -3);
+				$last3Num = "0".++$old3Num;
+			}else{
+				$old3Num = substr($lastData[0]["proCaseNo"], -3);
+				$last3Num = ++$old3Num;
+			}
+		}else{
+			$last3Num = "001";
+		}
+		$newProNo = $catNo.$braNo.$last3Num;
+	}
+
+	//upload part
+	$catName = "";
+	if(trim($_POST["catNo"]) != ""){
+		$catData = $cat->getOneCatByNo($catNo);
+		if($catData != null){
+			$catName = $catData[0]["catName"];
+		}else{
+			$catName = "其他";
+		}
+	}else{
+		$catName = "其他";
+	}
+	if($_POST["imgMethod"] == "album"){
+		$imgArr = explode(",", $_POST["album"]);
+		if(isset($_FILES["single"])){
+			$err = uploadMultipleImg("insert", "", true, "product/".$catName, 'single');
+			if($err != ""){
+				$errMsg["supStampImgErr"] = $err;
+			}
+			foreach(json_decode($_POST["single"]) as $value){
+				array_push($imgArr, $value);
+			}
+		}
+		$imgArr = array_values(array_filter($imgArr));
+		$_POST["proImage"] = json_encode($imgArr,JSON_UNESCAPED_UNICODE);
+	}else{
+		//圖片上傳
+		$err = uploadMultipleImg("insert", "", true, "product/".$catName, 'proImage');
+		if($err != ""){
+			$errMsg["supStampImgErr"] = $err;
+		}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+if(empty(array_filter($errMsg))){
         $dt = new DateTime();
         $pmUpDate =$dt->format('Y-m-d H:i:s'); 	
            	    
@@ -50,10 +127,18 @@
 		$dataS["proName"] = $proNo;
         $dataS["bySup"] = 1;
         $dataS["catNo"] = $catNo;
-		$dataS["braNo"] = $braNo;	
-	    $prod->insert($dataS);
+		$dataS["braNo"] = $braNo;
+		//
+    	$dataS["biNo"] = $biNo;
+		$dataS["proOffer"] = $proOffer;
+		$dataS["proGift"] = $proGift;
+		$dataS["proModelID"] = $proModelID;
+		$dataS["proSpec"] = $proSpec;
+		//
+    $prod->insert($dataS);
 
-        $checkData  = $prod->getProNo_Sup($catNo,$braNo,$proNo) ;
+
+        $checkData  = $prod->getProNo_Sup($catNo,$braNo,$biNo,$proNo) ;
         $_POST["proNo"] = $checkData[0]["proNo"] ;
        
         $proNo = $_POST["proNo"]  ;
@@ -61,7 +146,8 @@
 	    //商品利率
 	    $pp = new Product_Period();
 	    $ppPeriodAmountArr = $_POST["ppPeriodAmount"];
-	    $ppPercentArr = $_POST["ppPercent"];
+//	    $ppPercentArr = $_POST["ppPercent"];
+    	$ppPercentArr = $_POST["ppPercent1"];
 	
 	    $ppData = $pp->getPPByProduct($proNo);
 	    if($ppData != null){

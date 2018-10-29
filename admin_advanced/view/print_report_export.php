@@ -106,7 +106,7 @@ $scData = $sc->getWithConditions(true);*/
 				</td>
 			</tr>
 		</table>
-			<img src="../../assets/images/logo.png" style="margin: 0 auto;display: block;"/>
+			<img src="../../assets/images/logo_old.png" style="margin: 0 auto;display: block;"/>
 			<p style="text-align:center">
 				廿一世紀數位有限公司<br>
 				電話:(02)7721-2177 傳真:(02) 2765-1011<br>
