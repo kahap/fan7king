@@ -841,7 +841,7 @@ table tr td,table tr th{
 									<label class="">分期期數</label>
 								</div>
 								<div class="input-field col s4">
-									<input type="text" id="each-amount" name="eachAmount" data-val="<?php echo ($rcData[0]["rcPeriodTotal"]-($rcData[0]["rcBankRiskFeeMonth"]*$rcData[0]["rcPeriodAmount"])-$rcData[0]["rcBankRiskFeeTotal"])/$rcData[0]["rcPeriodAmount"]; ?>" value="<?php echo ($rcData[0]["rcPeriodTotal"]-($rcData[0]["rcBankRiskFeeMonth"]*$rcData[0]["rcPeriodAmount"])-$rcData[0]["rcBankRiskFeeTotal"])/$rcData[0]["rcPeriodAmount"]; ?>">
+									<input type="text" id="each-amount" readonly name="eachAmount" data-val="<?php echo ($rcData[0]["rcPeriodTotal"]-($rcData[0]["rcBankRiskFeeMonth"]*$rcData[0]["rcPeriodAmount"])-$rcData[0]["rcBankRiskFeeTotal"])/$rcData[0]["rcPeriodAmount"]; ?>" value="<?php echo ($rcData[0]["rcPeriodTotal"]-($rcData[0]["rcBankRiskFeeMonth"]*$rcData[0]["rcPeriodAmount"])-$rcData[0]["rcBankRiskFeeTotal"])/$rcData[0]["rcPeriodAmount"]; ?>">
 									<label class="">期付款</label>
 								</div>
 								<div class="input-field col s4">
@@ -858,7 +858,7 @@ table tr td,table tr th{
 									<input type="text" id="riskTotal" name="rcBankRiskFeeTotal" data-val="<?php echo $rcData[0]["rcBankRiskFeeTotal"]; ?>" value="<?php echo $rcData[0]["rcBankRiskFeeTotal"]; ?>">
 									<label class="">風管費(總額累加)</label>
 								</div>
-								<div class="input-field col s3">
+								<div class="input-field col s3" style="display:none">
 <!-- 									<input type="text" name="rcBankTransferAmount" value="<?php echo $rcData[0]["rcBankTransferAmount"]; ?>"> -->
 <!-- sander -->
 									<input type="text" name="rcBankTransferAmount" value=
@@ -876,7 +876,7 @@ table tr td,table tr th{
 									>
 									<label class="">撥款金額</label>
 								</div>
-								<div class="input-field col s3">
+								<div class="input-field col s3" style="display:none">
 									<select name="tbNo">
 										<option <?php echo $rcData[0]["tbNo"] == "" ? "selected" : ""; ?> value="">請選擇</option>
 										<?php foreach($tbData as $key=>$value){?>
@@ -889,16 +889,16 @@ table tr td,table tr th{
 							<?php }else{ ?>
 							<div class="row">
 								<div class="input-field col s4">
-									<input type="text" id="mcoPeriodAmount" name="rcPeriodAmount" value="<?php echo $motoData[0]["mcoPeriodAmount"]; ?>">
+									<input type="text" id="mcoPeriodAmount" readonly name="rcPeriodAmount" value="<?php echo $motoData[0]["mcoPeriodAmount"]; ?>">
 									<label class="">分期期數</label>
 								</div>
 								<div class="input-field col s4">
-									<input type="text" id="dismcoMaxMonthlyTotal" name="dismcoMaxMonthlyTotal" value="<?php echo $motoData[0]["mcoMinMonthlyTotal"]; ?>" disabled>
-									<input type="hidden" id="mcoMaxMonthlyTotal" name="mcoMinMonthlyTotal" value="<?php echo $motoData[0]["mcoMinMonthlyTotal"]; ?>">
+									<input type="text" id="dismcoMaxMonthlyTotal" readonly name="dismcoMaxMonthlyTotal" value="<?php echo $motoData[0]["mcoMinMonthlyTotal"]; ?>" disabled>
+									<input type="hidden" id="mcoMaxMonthlyTotal" readonly name="mcoMinMonthlyTotal" value="<?php echo $motoData[0]["mcoMinMonthlyTotal"]; ?>">
 									<label class="">期付款</label>
 								</div>
 								<div class="input-field col s4">
-									<input type="text" id="mcoPeriodTotal" name="rcPeriodTotal" value="<?php echo $motoData[0]["mcoPeriodTotal"]; ?>">
+									<input type="text" id="mcoPeriodTotal" readonly name="rcPeriodTotal" value="<?php echo $motoData[0]["mcoPeriodTotal"]; ?>">
 									<label class="">申請總金額　　<button style="color:#FFF;background-color:#2ab7a9;" id="Mcocalculate-total" type="button">計算總金額</button></label>
 								</div>
 									<input type="hidden" id="mbMax_6" value="<?echo $rateData['0']['mbMin']; ?>">
@@ -907,11 +907,11 @@ table tr td,table tr th{
 									<input type="hidden" id="mbMax_24" value="<?echo $rateData['3']['mbMin']; ?>">
 							</div>
 							<div class="row">
-								<div class="input-field col s6">
+								<div class="input-field col s6" style="display:none">
 									<input type="text" name="rcBankTransferAmount" id="rcBankTransferAmount" readonly value="<?php echo ($rcData[0]["rcBankTransferAmount"] !="") ? $rcData[0]["rcBankTransferAmount"]:round($motoData[0]["mcoPeriodTotal"]*0.9); ?>">
 									<label class="">撥款金額</label>
 								</div>
-								<div class="input-field col s6">
+								<div class="input-field col s6" style="display:none">
 									<select name="tbNo">
 										<option <?php echo $rcData[0]["tbNo"] == "" ? "selected" : ""; ?> value="">請選擇</option>
 										<?php foreach($tbData as $key=>$value){?>
