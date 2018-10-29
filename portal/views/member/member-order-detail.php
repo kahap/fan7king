@@ -419,15 +419,15 @@
                             <div class="section-order-title">證件資料</div>
                             <div class="form-group row">
                                 <div class="col">申請人學生證正面</div>
-                                <div class="col-12"><img id="showimg" src="../<?php echo $orData[0]['orAppAuthenStudentIdImgTop']; ?>" alt=""></div>
+                                <div class="col-12"><img id="showimg" src="../<?php echo $orData[0]['orAppAuthenStudentIdImgTop']; ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">申請人學生證反面</div>
-                                <div class="col-12"><img id="showimg" src="../<?php echo $orData[0]['orAppAuthenStudentIdImgBot']; ?>" alt=""></div>
+                                <div class="col-12"><img id="showimg" src="../<?php echo $orData[0]['orAppAuthenStudentIdImgBot']; ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">申請人自拍照</div>
-                                <div class="col-12"><img src="https://via.placeholder.com/510x284" alt=""></div>
+                                <div class="col-12"><img src="https://via.placeholder.com/510x284" class="img-fluid" alt=""></div>
                             </div>
                             <div class="section-order-title">請在下方兩處，以滑鼠或手寫功能簽上正楷簽名</div>
                             <p>本票： 憑票於中華民國 年 月 日無條件支付 大方藝彩行銷顧問股份有限公司或指定人

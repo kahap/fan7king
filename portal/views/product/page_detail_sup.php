@@ -1,0 +1,391 @@
+<style>
+	.btn-per{
+		width: auto;
+		line-height: 35px;
+		font-size: 14px;
+		color: #fff;
+		display: inline-block;
+		margin: 0px auto;
+		text-align: center;
+		clear: both;
+		padding-left: 15px;
+		padding-right: 15px;
+		margin-right: 10px;
+		background: #F44336;
+	}
+</style>
+<script>
+	var fbhtml_url=window.location.toString();
+
+</script>
+<?php
+	unset($_SESSION['ord_code']);
+	unset($_SESSION['shopping_user']['0']);
+	unset($_SESSION['shopping_product']['0']);
+	
+	$pm = new Product_Manage();
+	$category = new Category();
+	$ps = new Period_Setting();
+	$pp = new Product_Period();
+	$order = new Orders();
+	
+	$pm_detail = $pm->getAllByProName_Sup($_GET['pro']); //商品內容
+	
+	if($pm_detail == ""){
+		echo "<script>alert('查無此商品，或商品已經下架。')</script>";
+		echo "<script>location.href='index.php'</script>";
+	}
+	$cat = $category->getOneCatByNo($pm_detail[0]['catNo']); //分類內容
+
+	$pm->updatepmClickNum($_GET['pro'],$pm_detail[0]['pmClickNum']);
+	$img = json_decode($pm_detail[0]['proImage']);
+	$img[0] = ($img[0] !="") ? $img[0]:$img[1];
+	
+	
+	//利率待修改區-START
+	$month = $ps->getAllPS();
+	$ppData = $pp->getPPByProduct($pm_detail[0]["proNo"]);
+	$followDefault = true;
+	if($ppData != null){
+		foreach($ppData as $key=>$value){
+			if($value["ppPercent"] != ""){
+				$followDefault = false;
+				break;
+			}
+		}
+	}
+	
+	if($followDefault){
+		foreach($month as $k => $v){
+			$priceProduct[$v['psMonthNum']] = ceil($v['psRatio']*$pm_detail[0]['pmPeriodAmnt']/$v['psMonthNum']);
+		}
+	}else{
+		foreach($ppData as $k=>$v){
+			if(!empty($v['ppPercent'])){
+				$priceProduct[$v['ppPeriodAmount']] = ceil($v['ppPercent']*$pm_detail[0]['pmPeriodAmnt']/$v['ppPeriodAmount']);
+			}
+		}
+	}
+	//利率待修改區-END
+	
+	$_SESSION['pro'] = $_GET['pro'];
+	$_SESSION['item'] = $_GET['item'];
+?>
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="index.php" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <a href="?item=category&c=<?=$cat[0]['catOrder']?>" title="Return to Home"><?php echo ($cat[0]['catName']);?></a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <a href="#" title="Return to Home"><?php echo $pm_detail[0]['proName'] ?></a>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- row -->
+        <div class="row">
+            
+            <!-- Center colunm-->
+            <div class="center_column col-xs-12 col-sm-12" id="center_column">
+                <!-- Product -->
+                    <div id="product">
+                        <div class="primary-box row">
+                            <div class="pb-left-column col-xs-12 col-sm-5">
+                                <!-- product-imge-->
+                                <div class="product-image">
+                                    <div class="product-full">
+                                        <img id="product-zoom" src='<?php echo "admin/".$img[0] ?>' data-zoom-image="<?php echo "admin/".$img[0] ?>"/>
+                                    </div>
+                                    <div class="product-img-thumb" id="gallery_01">
+                                         <ul class="owl-carousel" data-items="3" data-nav="true" data-dots="false" data-margin="20" data-loop="false">
+                                            <?php
+												foreach($img as $key => $value){
+													if($value != ""){
+											?>
+											<li>
+                                                <a href="#" data-image="<?php echo "admin/".$value ?>" data-zoom-image="<?php echo "admin/".$value ?>">
+                                                    <img id="product-zoom"  src="<?php echo "admin/".$value ?>" /> 
+                                                </a>
+                                            </li>
+											<?php
+													}
+											}
+											?>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- product-imge-->
+                            </div>
+                            <div class="pb-right-column col-xs-12 col-sm-7">
+                                <h1 class="product-name"><?php echo $pm_detail[0]['proName'] ?></h1>
+                                <!--<div class="product-price-group">
+                                    <p></p>
+									<span class="price">
+										月付: NT $<?php echo number_format(min($priceProduct)) ?>*
+										<?php echo array_search(min($priceProduct),$priceProduct)."期"; ?>
+									</span>
+                                </div>-->
+                                <div class="info-orther">
+								<form id='shopping'>                                  
+                                    <p>購買人數: <?php echo ($pm_detail[0]['pmBuyAmnt'] != '') ? $pm_detail[0]['pmBuyAmnt']+$pm_detail[0]['pmPopular']:'1'."人"; ?>									
+									</p>
+
+                                </div>
+                                <div class="form-option">
+                                    <p class="form-option-title">請選擇:</p>
+                                    <?php
+										if($pm_detail[0]['proModelID'] != ""){
+										$model = explode('#',$pm_detail[0]['proModelID']);
+										
+									?>
+									<div class="attributes">
+                                        <div class="attribute-label">型號</div>
+                                        <div class="attribute-list">
+                                            <select name="model">
+											<?php
+												foreach($model as $key  => $value){
+													echo "<option value='".$value."'>".$value."</option>";
+												}
+											?>
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+									<?php
+										}
+									?>
+                                 
+                                    <?php
+										if($pm_detail[0]['proSpec'] != ""){
+										$spec = explode('#',$pm_detail[0]['proSpec']);
+										
+									?>
+									<div class="attributes">
+                                        <div class="attribute-label">規格</div>
+                                        <div class="attribute-list">
+                                            <select name="spec">
+											<?php
+												foreach($spec as $key  => $value){
+													echo "<option value='".$value."'>".$value."</option>";
+												}
+											?>
+                                            </select>
+                                        </div>
+                                        
+                                    </div>
+									<?php
+										}
+									?>
+                                </div>
+                                <div class="form-option">
+									<div class="attributes">
+										<p class="form-option-title" style="font-weight: bold;">選擇期數:</p>
+										<div style="display:none;"><?php print_r($priceProduct);?></div>
+                                        <div class="attribute-list">
+											 <ul class="list-color">
+												<?php
+												krsort($priceProduct);
+												$i=0;
+													foreach($priceProduct as $key  => $value){
+														if($i == 0){
+															if($value > 1000){
+																echo "<li style='background:rgba(12, 59, 144, 0.09); text-align:center;margin: 5px;' class='select_per active".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
+																$first = $key;
+															}
+														}else{
+															if($value > 1000){
+																echo "<li style='background:rgba(12, 59, 144, 0.09);text-align:center;margin: 5px;' class='select_per ".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
+															}
+														}
+														$i++;
+													}
+												?>
+                                                
+                                            </ul>
+										
+                                        </div>
+										<br>
+										<p class="form-option-title" style="font-weight: bold;">月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付:</p>
+										<ul class="list-color">
+												<?php
+												krsort($priceProduct);
+												$i=0;
+													foreach($priceProduct as $key  => $value){
+														if($i==0){
+															if($value > 1000){
+																echo "<li style='background:rgba(144, 12, 72, 0.09);width: 126px;'  class='select_price' id='price_".$key."'><a href='javascript:'>NT $".number_format($value)."X".$key."期</a></li>";
+															}
+														}else{
+															if($value > 1000){
+																echo "<li style='background:rgba(144, 12, 72, 0.09);width: 126px; display:none;'  class='select_price' id='price_".$key."'><a href='javascript:'>NT $".number_format($value)."X".$key."期</a></li>";
+															}
+														}
+														
+														$i++;
+														
+													}
+												$reject  = ($reject_custom == "") ? $first:"";	
+												echo "<input type='hidden' name='period' value='".$reject."'/>";
+												echo "<input type='hidden' name='user' value='".$_SESSION['user']['memNo']."'/>";
+                                                echo "<input type='hidden' name='memclass' value='".$_SESSION['user']['memClass']."'/>";
+												echo "<input type='hidden' name='pro' value='".$_GET['pro']."'/>";												
+												?>
+                                                
+                                        </ul>
+                                </form>        
+                                    </div>
+                                    <div class="button-group" style="position: absolute;">
+                                        <?php 
+											/*擋住被婉拒客戶*/
+											$reject_custom = $order->reject_custom($_SESSION['user']['memNo']);
+											if($reject_custom == ""){
+										?>
+										<button class="btn-add-cart period">立即分期
+										<?php if($_GET['pro'] == '10190'){ ?>
+											<img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" />
+										<?PHP } ?>
+										</button>
+										<?php
+											}else{
+												echo "<button class='btn-add-cart message'>立即分期</button>";
+											}
+										?>
+                                    </div>
+									<?php
+										if($pm_detail[0]['pmIfDirect'] != 0){
+									?>
+										<div class="button-group" style="position: absolute;margin-left: 160px;">
+											<button class="btn-buy direct">立即直購</button>
+										</div>
+									<?php
+										}
+									?>
+									<br>
+									</br>
+                                </div>
+								
+                                <div class="form-share">
+                                    <div class="social-link">
+                                        <p><a href="?item=fmRecBonus">推薦碼分享拿獎金：</a></p>
+										<a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fhappyfan7.com%2Findex.php%3Fitem%3Dproduct%26pro%3D<?=$_GET['pro'] ?>%26share%3D<?=$_SESSION['user']['memNo'] ?>" target="_blank">
+											<i class="fa fa-facebook"></i>
+										</a>
+										
+                                    </div>
+                                    <div class="network-share">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tab product -->
+                        <div class="product-tab">
+                            <ul class="nav-tab">
+                                <li class="active">
+                                    <a aria-expanded="false" data-toggle="tab" href="#product-detail">商品說明</a>
+                                </li>
+                                <li>
+                                    <a aria-expanded="true" data-toggle="tab" href="#information">購物須知</a>
+                                </li>
+                            </ul>
+                            <div class="tab-container">
+                                <div id="product-detail" class="tab-panel active">
+                                    <?php echo $pm_detail[0]['proDetail']; ?>
+                                </div>
+                                <div id="information" class="tab-panel">
+                                    <?php
+										$front_Manage2 = new Front_Manage2();
+										$page_data2 = $front_Manage2->getAllFM('fmBuyMustKnow');
+										echo $page_data2[0]['fmBuyMustKnow']; 
+									?>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                        <!-- ./tab product -->
+                       
+                        <!--
+                        <div class="page-product-box">
+                            <?php //include ('view/page_top.html');?>
+                        </div>
+                        ./box product -->
+                    </div>
+                <!-- Product -->
+            </div>
+            <!-- ./ Center colunm -->
+        </div>
+        <!-- ./row-->
+    </div>
+</div>
+<script>
+	$('.product_hide').hide();
+	$('.message').click(function(){
+		alert('曾下單婉拒之用戶在婉拒後6個月內將無法再次申請分期，如有疑問請洽客服。');
+	})
+
+	$('.select_per').click(function(e){
+		var number = $(this).attr('dat-gt');
+		$(this).addClass('active').siblings().removeClass('active');
+		$('.select_price').hide();
+		$('#price_'+number).show();
+		$('input[name=period]').val(number);
+	})
+
+	$('.period').click(function(){
+
+		if($('input[name=period]').val() != ""){
+			if($('input[name=user]').val() != ""){
+            
+				$.ajax({
+					url: 'php/order_period_sup.php',
+					data: $('#shopping').serialize(),
+					type:"POST",
+					dataType:'text',
+					success: function(msg){
+						if(msg == "1"){
+							location.href='index.php?item=member_center&action=order_period';
+						}else{
+							alert(msg);
+						}
+					}
+				});
+            
+			}else{
+				alert('請先登入帳號');
+				location.href='index.php?item=login&pro=<?=$_GET['pro']; ?>&share=<?=$_GET['share']; ?>';
+			}
+		}else{
+			alert('請選擇期數');
+		}
+	})
+
+	$('.direct').click(function(){
+			if($('input[name=user]').val() != ""){
+       
+				$.ajax({
+					url: 'php/order_direct.php',
+					data: $('#shopping').serialize(),
+					type:"POST",
+					dataType:'text',
+					success: function(msg){
+						if(msg == "1"){
+							location.href='index.php?item=member_center&action=order_direct';
+						}else{
+							alert(msg);
+						}
+					},
+
+					error:function(xhr, ajaxOptions, thrownError){
+						alert(xhr.status);
+						alert(thrownError);
+					}
+				});
+   
+			}else{
+				alert('請先登入帳號');
+				location.href='index.php?item=login&pro=<?php echo $_GET['pro']; ?>';
+			}
+	})
+
+
+</script>

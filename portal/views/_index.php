@@ -38,8 +38,8 @@
                         foreach($cate_head as $key => $value){
                             if($value['catIfDisplay'] != "0"){
                                 echo '<div class="col-2">
-                                        <div class="card">
-                                            <a class="cate-'.$key.'" href="?item=category&c='.$value['catOrder'].'" title="">
+                                        <div class="card_1">
+                                            <a class="cate-'.($key+1).'" href="?item=category&c='.$value['catOrder'].'" title="">
                                                 <img class="icon-menu" src="assets/data/F'.$value['catOrder'].'.svg">'.$value['catName'].'
                                             </a>
                                         </div>
@@ -245,3 +245,9 @@
         <?php
     }
         ?>
+
+
+        <?php
+        include_once ('views/_page_service.php');
+        ?>
+    </main>

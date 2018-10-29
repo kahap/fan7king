@@ -1,16 +1,21 @@
 <?php
 	session_start();
-	include('../model/php_model.php');
+	include('../../model/php_model.php');
+
+
 	$member = new Member();
 	$pm = new Product_Manage();
 	$ps = new Period_Setting();
 	$pp = new Product_Period();
+
 	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
 	$pm_detail = $pm->getAllByProName($_POST['pro']);
+
 	//利率待修改區-START
 	$month = $ps->getAllPS();
 	$ppData = $pp->getPPByProduct($pm_detail[0]["proNo"]);
 	$followDefault = true;
+
 	if($ppData != null){
 		foreach($ppData as $key=>$value){
 			if($value["ppPercent"] != ""){
@@ -31,6 +36,7 @@
 			}
 		}
 	}
+
 	//利率待修改區-END
 	if($_SESSION['user']['memNo'] != ""){
 		if($price[$_POST['period']] !=""){

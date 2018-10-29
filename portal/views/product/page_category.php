@@ -110,19 +110,19 @@
                         <p class="product-pick br-b-gray">
                             <span class="io io-list"></span>品項
                             <span class="nowait-tag orange">
-                                    <a href="#" title="手機">手機</a>
-                                    <a href="#" title="平板" class="active">平板</a>
-                                    <a href="#" title="10吋以上大螢幕手機">10吋以上大螢幕手機</a>
-                                    <a href="#" title="大螢幕老人機">大螢幕老人機</a>
-                                </span>
+                                <a href="#" title="手機">手機</a>
+                                <a href="#" title="平板" class="active">平板</a>
+                                <a href="#" title="10吋以上大螢幕手機">10吋以上大螢幕手機</a>
+                                <a href="#" title="大螢幕老人機">大螢幕老人機</a>
+                            </span>
                         </p>
                         <p class="product-pick">
                             <span class="io io-order"></span>排序
                             <span class="nowait-tag">
-                                    <a href="#" title="依熱銷度">依熱銷度</a>
-                                    <a href="#" title="價格低者優先">價格低者優先</a>
-                                    <a href="#" title="依商品上架時間">依商品上架時間</a>
-                                </span>
+                                <a href="#" title="依熱銷度">依熱銷度</a>
+                                <a href="#" title="價格低者優先">價格低者優先</a>
+                                <a href="#" title="依商品上架時間">依商品上架時間</a>
+                            </span>
                         </p>
 
                         <h1 class="pd-less">
@@ -316,4 +316,9 @@
             </div>
         </div>
     </section>
+
+<?php
+include_once ('views/_page_service.php');
+?>
+
 </main>

@@ -70,16 +70,21 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
-	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>
+<!--	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>-->
 	<script src="assets/js/jquery.placeholder.js"></script>
 
-    <script src="assets/lib/jquery-ui/jquery-ui.js"></script>
+<!--    <script src="assets/lib/jquery-ui/jquery-ui.js"></script>-->
 <!--    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>-->
 
 
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/slick/slick.css" />
     <link rel="stylesheet" href="assets/theme/css/theme.css" />
+    <style>
+        /*.card_1 {border:none;box-shadow:0 5px 6px 0 rgba(0,0,0,.16);border-radius:0;height:97%;margin:0 .5rem;padding-bottom:18px}*/
+        .card_1{border:none;height:200px;text-align:center;background-image:linear-gradient(to left,transparent,transparent 50%,#f8f8f8 50%,#f8f8f8);background-position:100% 0;background-size:200% 100%;transition:all .25s ease-in}
+        .card_1:hover{background-position:0 0}
+    </style>
 
 </head>
 <body class="home">
@@ -97,7 +102,10 @@
                         <img src="assets/images/slogan.png" class="img-fluid" alt="免卡分期 享購現在">
                     </div>
                     <div class="col-5 d-flex align-items-center">
-                        <form class="form form-search" action="?item=search" method="GET">
+                        <form class="form form-search" action="index.php" method="GET" >
+
+                            <input type="hidden" name="item" value="search" />
+
                             <div class="input-group input-serach">
                                 <input type="text" class="form-control" placeholder="熱門關鍵字：<?php
                                     $string = new Hotkeys();
@@ -108,7 +116,7 @@
                                     }else{
                                         echo 'Apple, Sony, Phone';
                                     }
-                                ?>" name="search">
+                                ?>" name="search" value=""/>
                                 <div class="input-group-append">
                                     <span class="input-group-btn">
                                         <button class="btn btn-dark btn-searc" type="submit">
@@ -118,10 +126,10 @@
                                 </div>
                             </div>
                             <p class="text-orange">
-                                <a href="?item=search&search=<?php echo $string_key2[0];?>" title="">
+                                <a href="?item=search&search=<?php echo trim($string_key2[0]);?>" title="">
                                     <?php  echo ($string_key2)? $string_key2[0] : '任天堂Switch'; ?>
                                 </a>
-                                <a href="?item=search&search=<?php echo $string_key2[1];?>" title="">
+                                <a href="?item=search&search=<?php echo trim($string_key2[1]);?>" title="">
                                     <?php  echo ($string_key2)? $string_key2[1] : 'PS4 pro'; ?>
                                 </a>
 <!--                                <a href="#" title="小米手環">小米手環</a>-->
