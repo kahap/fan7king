@@ -259,6 +259,7 @@ if(!isset($errMsg)){
 		$scArr["scNo"] = json_encode($scNo,true);
 	}
 	$scArr["scrInfo"] = $records;
+	$scArr["scrDate"] = date('Y-m-d H:i:s',time()); 
 	$scr->insert($scArr);
 	 
 	unset($_POST["scNo"]);
