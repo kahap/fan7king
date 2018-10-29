@@ -24,11 +24,18 @@
 
 		
 		//取得所有商品
-		public function getAllPro($p,$a){
+		public function getAllPro($p,$a , $search){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
 			$sql = "select
 						proNo,proCaseNo,proName,catNo,braNo,biNo
 					from
-						`product`
+						`product` 
+                    where 
+                        1 
+					".$key." 
 					order by
 						`proNo` desc 
 					limit " .$p. " , " .$a ;
@@ -36,11 +43,18 @@
 			return $data;
 		}
         //取得所有商品的總數
-        public function getAllProCount(){
+        public function getAllProCount($search){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
             $sql = "select
 						proNo,proCaseNo,proName,catNo,braNo,biNo
 					from
-						`product`
+						`product` 
+                    where 
+                        1 
+					".$key." 
 					order by
 						`proNo` desc ";
 					//limit " .$p. " , " .$a ;
@@ -158,13 +172,16 @@
         }
 		
 		//編號取得單一商品
-		public function getOneProByNo($proNo){
+		public function getOneProByNo($proNo, $search=0){
 			$sql = "select
 						proNo,proCaseNo,proName,catNo,braNo,biNo,proModelID,proSpec,proImage
 					from
 						`product`
 					where
 						`proNo`='".$proNo."' ";
+			if ($search){
+			    $sql.=' and `proName` LIKE "%'.$search.'%" ';
+            }
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
@@ -185,8 +202,12 @@
 		
 		
 		//根據種類取得商品
-		public function getAllProByCatName($catName,$p,$a=30)
+		public function getAllProByCatName($catName,$p=1,$a=30 ,$search=0)
         {
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
 			$sql = "select
 						*
 					from
@@ -196,14 +217,19 @@
 					on
 						`category`.`catNo` = `product`.`catNo`
 					where
-						`catName`='".$catName."'
+						`catName`='".$catName."' 
+					".$key." 
 					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		//根據種類取得商品總數
-        public function getAllProByCatNameCount($catName)
+        public function getAllProByCatNameCount($catName , $search=0)
         {
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
             $sql = "select
 						*
 					from
@@ -213,14 +239,19 @@
 					on
 						`category`.`catNo` = `product`.`catNo`
 					where
-						`catName`='".$catName."'";
+						`catName`='".$catName."' 
+					".$key." ";
             $data = $this->db->selectRecords($sql);
             return $this->db->iNoOfRecords;
         }
 		
 		//根據品牌取得商品
-		public function getAllProByBraName($braName,$p=0,$a=30)
+		public function getAllProByBraName($braName,$p=0,$a=30 ,$search=0)
         {
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
 			$sql = "select
 						*
 					from
@@ -230,14 +261,19 @@
 					on
 						`brand`.`braNo` = `product`.`braNo`
 					where
-						`braName`='".$braName."'
+						`braName`='".$braName."' 
+					".$key." 
 					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
         //根據品牌取得商品總數
-        public function getAllProByBraNameCount($braName)
+        public function getAllProByBraNameCount($braName ,$search=0)
         {
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
             $sql = "select
 						*
 					from
@@ -247,7 +283,8 @@
 					on
 						`brand`.`braNo` = `product`.`braNo`
 					where
-						`braName`='".$braName."'";
+						`braName`='".$braName."' 
+					".$key." ";
             $data = $this->db->selectRecords($sql);
             return $this->db->iNoOfRecords;
         }

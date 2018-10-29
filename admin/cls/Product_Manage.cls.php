@@ -87,33 +87,47 @@
 		}
 		
 		//取得所有商品上架(依照商品名稱)
-		public function getAllPMGroupByProName($p,$a){
+		public function getAllPMGroupByProName($p,$a, $search=0){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
 			$sql = "select
-						proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate,pmPopular,pmBuyAmnt,pmClickNum
+						`product_manage`.proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate,pmPopular,pmBuyAmnt,pmClickNum
 					from
 						`product_manage`
+                    join
+                        `product` on `product_manage`.`proNo`=`product`.`proNo`
 					where 
-					`pmMainSup` = '1'
+					`pmMainSup` = '1' 
+					".$key." 
 					group by
-						`proNo`
+						`product_manage`.`proNo`
 					order by
-						`pmUpDate` desc 
+						`product_manage`.`pmUpDate` desc 
 					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		//取得所有商品上架(依照商品名稱) 總數
-        public function getAllPMGroupByProNameCount(){
+        public function getAllPMGroupByProNameCount($search=0){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
             $sql = "select
-						proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate
+						`product_manage`.proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate,pmPopular,pmBuyAmnt,pmClickNum
 					from
 						`product_manage`
+                    join
+                        `product` on `product_manage`.`proNo`=`product`.`proNo`
 					where 
-					`pmMainSup` = '1'
+					`pmMainSup` = '1' 
+					".$key." 
 					group by
-						`proNo`
+						`product_manage`.`proNo`
 					order by
-						`pmUpDate` desc " ;
+						`product_manage`.`pmUpDate` desc " ;
             $data = $this->db->selectRecords($sql);
             return $this->db->iNoOfRecords;
         }
