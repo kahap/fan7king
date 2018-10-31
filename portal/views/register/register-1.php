@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                             <p class="text-black">使用Facebook帳號快速成為會員！</p>
-                            <img src="images/reg-fb.png" width="112" height="112" alt="facebook" class="m-60">
+                            <img src="portal/images/reg-fb.png" width="112" height="112" alt="facebook" class="m-60">
                             <p>
                                 <a class="btn btn-facebook" onclick="FacebookPixel();return false;">
                                     Facebook帳號登入
@@ -72,7 +72,7 @@
             var sharcode = $("input[name='memRecommCode']").val();
             if (!sharcode)sharcode='';
             <?php $_SESSION['pro'] = isset($_GET['pro'])? $_GET['pro'] : null; ?>
-            location.href="Controllers/fb-php/sharcode.php?sharcode="+sharcode;
+            location.href="portal/Controllers/fb-php/sharcode.php?sharcode="+sharcode;
         // }else{
         //     alert("請勾選同意條款");
         //     $("input[name='check']").val('');

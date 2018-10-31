@@ -24,7 +24,7 @@
                     <div class="col-lg-3">
                         <?php
                         $active = 3;
-                        require_once 'views/member/_left.php';
+                        require_once 'portal/views/member/_left.php';
                         ?>
                     </div>
                     <div class="col-lg-9">

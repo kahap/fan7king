@@ -65,7 +65,7 @@
 
 <?php
 
-    require_once 'Controllers/fb-php/src/Facebook/autoload.php';
+    require_once 'portal/Controllers/fb-php/src/Facebook/autoload.php';
 
     $helper = $fb->getRedirectLoginHelper();
     $permissions = ['email'];
@@ -136,7 +136,7 @@
                         <div class="section-inner bg-white">
                             <h2><span>還沒有Nowait帳號？</span></h2>
                             <div class="register-now text-center text-orange">
-                                <img src="images/reg-logo.png" width="176" height="203" alt="nowait icon" class="m-60">
+                                <img src="portal/images/reg-logo.png" width="176" height="203" alt="nowait icon" class="m-60">
                                 <p>立即註冊享受購物快感</p>
                                 <a href="?item=register" class="btn btn-register bg-orange">立即註冊</a>
                             </div>
@@ -157,7 +157,7 @@
         // if(emmail_login != '' && password_login != ''){
         if(cell_login != '' && password_login != ''){
             $.ajax({
-                url: 'Controllers/php/login.php',
+                url: 'portal/Controllers/php/login.php',
                 // data: "emmail_login="+emmail_login+"&password_login="+password_login,
                 data: "cell_login="+cell_login+"&password_login="+password_login,
                 type: "POST",

@@ -56,15 +56,15 @@
                             <dd>
                                 <div class="row">
                                     <div class="col">
-                                        <img class="img-fluid" src="assets/images/icon-applestore.png" alt="Apple Store">
+                                        <img class="img-fluid" src="portal/assets/images/icon-applestore.png" alt="Apple Store">
                                         <a href="#" title="下載NoWait">
-                                            <img class="img-fluid" src="assets/images/Tmp/qrcode.png" alt="Apple Store">
+                                            <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Apple Store">
                                         </a>
                                     </div>
                                     <div class="col">
-                                        <img class="img-fluid" src="assets/images/icon-googleplay.png" alt="Google Play">
+                                        <img class="img-fluid" src="portal/assets/images/icon-googleplay.png" alt="Google Play">
                                         <a href="#" title="下載NoWait">
-                                            <img class="img-fluid" src="assets/images/Tmp/qrcode.png" alt="Android">
+                                            <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Android">
                                         </a>
                                     </div>
                                 </div>
@@ -82,22 +82,26 @@
 
     <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
     <!-- Script-->
-    <script type='text/javascript' src='assets/lib/jquery/jquery-1.11.2.min.js'></script>
-    <script type="text/javascript" src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/lib/select2/js/select2.min.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
-    <script type="text/javascript" src="assets/lib/owl.carousel/owl.carousel.min.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery.elevatezoom.js"></script>
-    <script type="text/javascript" src="assets/lib/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery.actual.min.js"></script>
-    <script type="text/javascript" src="assets/js/theme-script.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/select2/js/select2.min.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/owl.carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/jquery.countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/jquery.elevatezoom.js"></script>
+    <script type="text/javascript" src="portal/assets/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="portal/assets/js/jquery.actual.min.js"></script>
+    <script type="text/javascript" src="portal/assets/js/theme-script.js"></script>
 
+<!--	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>-->
+<script src="portal/assets/js/jquery.placeholder.js"></script>
 
-    <script src="assets/jquery-3.3.1.min.js" defer></script>
-    <script src="assets/bootstrap/bootstrap.min.js" defer></script>
-    <script src="assets/slick/slick.min.js" defer></script>
-    <script src="assets/theme/js/setting.js" defer></script>
+<!--    <script src="assets/lib/jquery-ui/jquery-ui.js"></script>-->
+<!--    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>-->
+
+<!--    <script src="portal/assets/jquery-3.3.1.min.js" defer></script>-->
+    <script src="portal/assets/bootstrap/bootstrap.min.js" defer></script>
+    <script src="portal/assets/slick/slick.min.js" defer></script>
+    <script src="portal/assets/theme/js/setting.js" defer></script>
 
 
 </body>

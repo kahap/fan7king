@@ -12,7 +12,7 @@
 	{
 		$pm_detail = $pm->getAllByProName($_GET['pro']); //商品內容
 		$img = json_decode($pm_detail[0]['proImage']);
-		$img[0] = ($img[0] != "")? $img[0] : "../admin/images/indexImg/20160607062650.jpg";
+		$img[0] = ($img[0] != "")? $img[0] : "admin/images/indexImg/20160607062650.jpg";
 
 		//設定商品期數與行銷字眼
 		$ps = new Period_Setting();
@@ -53,37 +53,35 @@
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="<?php echo ($pm_detail && $pm_detail[0]['proName'] != '')? $pm_detail[0]['proName'] : '樂分期-HappyFan7'; ?>" />
 	<meta property="og:description"   content="<?php echo $str_price; ?>" />
-	<meta property="og:image"         content="https://<?php echo DOMAIN; ?>/<?php echo ($img[0]!="")? "../admin/".$img[0] : "../admin/images/indexImg/20160607062650.jpg"; ?>" />
+	<meta property="og:image"         content="https://<?php echo DOMAIN; ?>/<?php echo ($img[0]!="")? "admin/".$img[0] : "admin/images/indexImg/20160607062650.jpg"; ?>" />
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!--	<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<link rel="icon" href="assets/data/page_icon.png">
+    <script type='text/javascript' src='portal/assets/lib/jquery/jquery-1.11.2.min.js'></script>
 <!--    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />-->
-    <link rel="stylesheet" type="text/css" href="assets/lib/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/select2/css/select2.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/jquery.bxslider/jquery.bxslider.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/owl.carousel/owl.carousel.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/fancyBox/jquery.fancybox.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/jquery-ui/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" />
-<!--	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>-->
-	<script src="assets/js/jquery.placeholder.js"></script>
-
-<!--    <script src="assets/lib/jquery-ui/jquery-ui.js"></script>-->
-<!--    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="portal/assets/lib/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/lib/jquery.bxslider/jquery.bxslider.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/lib/owl.carousel/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/lib/fancyBox/jquery.fancybox.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/lib/jquery-ui/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="portal/assets/css/responsive.css" />
 
 
-    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css" />
-    <link rel="stylesheet" href="assets/slick/slick.css" />
-    <link rel="stylesheet" href="assets/theme/css/theme.css" />
+    <link rel="stylesheet" href="portal/assets/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="portal/assets/slick/slick.css" />
+    <link rel="stylesheet" href="portal/assets/theme/css/theme.css" />
     <style>
         /*.card_1 {border:none;box-shadow:0 5px 6px 0 rgba(0,0,0,.16);border-radius:0;height:97%;margin:0 .5rem;padding-bottom:18px}*/
         .card_1{border:none;height:200px;text-align:center;background-image:linear-gradient(to left,transparent,transparent 50%,#f8f8f8 50%,#f8f8f8);background-position:100% 0;background-size:200% 100%;transition:all .25s ease-in}
         .card_1:hover{background-position:0 0}
+        .btn-group-toggle label.btn
     </style>
+
 
 </head>
 <body class="home">
@@ -94,11 +92,11 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
                         <a href="index.php" title="Nowait" class="navbar-brand">
-                            <img class="img-fluid" src="assets/images/svg/logo.svg" data-src-base="images/svg/" data-src="<991:logo-mobile.svg,>991:logo.svg" width="284" height="85" alt="Nowait">
+                            <img class="img-fluid" src="portal/assets/images/svg/logo.svg" data-src-base="portal/images/svg/" data-src="<991:logo-mobile.svg,>991:logo.svg" width="284" height="85" alt="Nowait">
                         </a>
                     </div>
                     <div class="col-4 d-flex align-items-center">
-                        <img src="assets/images/slogan.png" class="img-fluid" alt="免卡分期 享購現在">
+                        <img src="portal/assets/images/slogan.png" class="img-fluid" alt="免卡分期 享購現在">
                     </div>
                     <div class="col-5 d-flex align-items-center">
                         <form class="form form-search" action="index.php" method="GET" >
@@ -119,7 +117,7 @@
                                 <div class="input-group-append">
                                     <span class="input-group-btn">
                                         <button class="btn btn-dark btn-searc" type="submit">
-                                            <img src="assets/images/icon-search.png" alt="搜尋">
+                                            <img src="portal/assets/images/icon-search.png" alt="搜尋">
                                         </button>
                                     </span>
                                 </div>
@@ -151,7 +149,7 @@
                             ?>
                             <li class="list-inline-item item-register">
                                 <a href="?item=member_center"> <?php echo $_SESSION['user']['memName']?>，您好</a>
-                                <a href="Controllers/php/logout.php"  title="登出" class="xs-none">登出</a>
+                                <a href="portal/Controllers/php/logout.php"  title="登出" class="xs-none">登出</a>
                             </li>
                             <?php
                         }else{
@@ -188,15 +186,15 @@
                                         <dd>
                                             <div class="row">
                                                 <div class="col">
-                                                    <img class="img-fluid" src="assets/images/icon-applestore.png" alt="Apple Store">
+                                                    <img class="img-fluid" src="portal/assets/images/icon-applestore.png" alt="Apple Store">
                                                     <a href="#" title="下載NoWait">
-                                                        <img class="img-fluid" src="assets/images/Tmp/qrcode.png" alt="Apple Store">
+                                                        <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Apple Store">
                                                     </a>
                                                 </div>
                                                 <div class="col">
-                                                    <img class="img-fluid" src="assets/images/icon-googleplay.png" alt="Google Play">
+                                                    <img class="img-fluid" src="portal/assets/images/icon-googleplay.png" alt="Google Play">
                                                     <a href="#" title="下載NoWait">
-                                                        <img class="img-fluid" src="assets/images/Tmp/qrcode.png" alt="Android">
+                                                        <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Android">
                                                     </a>
                                                 </div>
                                             </div>
@@ -206,7 +204,7 @@
                             </li>
                             <li class="list-inline-item xs-none">
                                 <a class="facebook" href="http://www.facebook.com/sharer.php?u=http://<?=DOMAIN?>/index.php%3Fshare%3D<?php echo $_SESSION['user']['memNo'] ?>" target="_blank">
-                                    <img src="assets/images/fb_share.png"/>
+                                    <img src="portal/assets/images/fb_share.png"/>
                                 </a>
 <!--                                <a class="facebook" href="#" title="追蹤Nowait">追蹤Nowait</a>-->
                             </li>

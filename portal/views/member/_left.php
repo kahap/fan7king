@@ -18,15 +18,15 @@
                     ?>
                     <li>
                         <a href="<?php echo $value["adLink"]; ?>">
-                            <img src="../admin/<?php echo $value["adImage"]; ?>" alt="slide-left" style="width: 100%">
+                            <img src="admin/<?php echo $value["adImage"]; ?>" alt="slide-left" style="width: 100%">
                         </a>
                     </li>
                     <?php
                 }
             }else{
                 ?>
-                <li><a href="#"><img alt="" src="assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
-                <li><a href="#"><img alt="" src="assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
+                <li><a href="#"><img alt="" src="portal/assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
+                <li><a href="#"><img alt="" src="portal/assets/images/Not-found.png" title=""  alt="slide-left"></a></li>
                 <?php
             }
             ?>

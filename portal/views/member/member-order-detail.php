@@ -32,7 +32,7 @@
                     <div class="col-lg-3">
                         <?php
                         $active = 3;
-                        require_once 'views/member/_left.php';
+                        require_once 'portal/views/member/_left.php';
                         ?>
                     </div>
                     <div class="col-lg-9">
@@ -419,11 +419,11 @@
                             <div class="section-order-title">證件資料</div>
                             <div class="form-group row">
                                 <div class="col">申請人學生證正面</div>
-                                <div class="col-12"><img id="showimg" src="../<?php echo $orData[0]['orAppAuthenStudentIdImgTop']; ?>" class="img-fluid" alt=""></div>
+                                <div class="col-12"><img id="showimg" src="<?php echo $orData[0]['orAppAuthenStudentIdImgTop']; ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">申請人學生證反面</div>
-                                <div class="col-12"><img id="showimg" src="../<?php echo $orData[0]['orAppAuthenStudentIdImgBot']; ?>" class="img-fluid" alt=""></div>
+                                <div class="col-12"><img id="showimg" src="<?php echo $orData[0]['orAppAuthenStudentIdImgBot']; ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">申請人自拍照</div>

@@ -31,7 +31,7 @@
             var memAccount = $('.memAccount').val();
             if(memAccount != ''){
                 $.ajax({
-                    url: 'php/member_forget.php',
+                    url: 'portal/php/member_forget.php',
                     data: "memAccount="+memAccount,
                     type:"POST",
                     dataType:'text',

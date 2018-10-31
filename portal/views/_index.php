@@ -13,7 +13,7 @@
                         ?>
                         <div class="carousel-item">
                             <a href="<?php echo $value["adLink"]; ?>">
-                                <img class="d-block w-100"  src="../admin/<?php echo $value["adImage"]; ?>" alt="First slide" style="height: 375px;">
+                                <img class="d-block w-100"  src="admin/<?php echo $value["adImage"]; ?>" alt="First slide" style="height: 375px;">
                             </a>
                         </div>
                         <?php
@@ -83,7 +83,7 @@
                         $i = 1;
                         foreach($hot as $key => $value){
                             $img = json_decode($value['proImage']);
-                            $img[0] = ($img[0] !="") ? "../admin/".$img[0]:"../admin/".$img[1];
+                            $img[0] = ($img[0] !="") ? "admin/".$img[0]:"admin/".$img[1];
                             foreach($month as $k => $v){
                                 $price[$v['psMonthNum']] = ceil($v['psRatio']*$value['pmPeriodAmnt']/$v['psMonthNum']);
                             }
@@ -142,7 +142,7 @@
                         $i = 1;
                         foreach($news as $key => $value){
                             $img = json_decode($value['proImage']);
-                            $img[0] = ($img[0] != "") ? "../admin/" . $img[0] : "../admin/" . $img[1];
+                            $img[0] = ($img[0] != "") ? "admin/" . $img[0] : "admin/" . $img[1];
                             foreach ($month as $k => $v) {
                                 $price[$v['psMonthNum']] = ceil($v['psRatio'] * $value['pmPeriodAmnt'] / $v['psMonthNum']);
                             }
@@ -202,7 +202,7 @@
                         $i = 1;
                         foreach($special as $key => $value){
                             $img = json_decode($value['proImage']);
-                            $img[0] = ($img[0] !="") ? "../admin/".$img[0]:"../admin/".$img[1];
+                            $img[0] = ($img[0] !="") ? "admin/".$img[0]:"admin/".$img[1];
                             foreach($month as $k => $v){
                                 $price[$v['psMonthNum']] = ceil($v['psRatio']*$value['pmPeriodAmnt']/$v['psMonthNum']);
                             }
@@ -248,6 +248,6 @@
 
 
         <?php
-        include_once ('views/_page_service.php');
+        include_once ('portal/views/_page_service.php');
         ?>
     </main>
