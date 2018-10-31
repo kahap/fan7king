@@ -179,9 +179,16 @@
 
 		//新增
 		function insert($array,$newProNo){
-			foreach($array as $key =>$value){
-				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
-			}
+            foreach($array as $key =>$value){
+                if (is_array($value)){
+                    foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value[0];
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
+            }
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
 			$sql = "insert into `product`(`proCaseNo`,`catNo`, `braNo`, `biNo`,  `proName`, `proOffer`, `proGift`, `proModelID`,`proSpec`,
@@ -243,5 +250,27 @@
 			$delete = $this->db->deleteRecords($sql);
 			return $delete;
 		}
+
+
+
+        //取得所有商品(順序反)
+        public function getAllProDescWithCatAndBraAndItem($braNo,$catNo, $biNo)
+        {
+            $sql = "select
+                            *
+                        from
+                            `product`
+                        where
+                            `braNo` = '".$braNo."'
+                        and
+                            `catNo` = '".$catNo."'
+                        and
+                            `biNo` = '".$biNo."'
+                        order by
+                            `proCaseNo`
+                        desc";
+            $data = $this->db->selectRecords($sql);
+            return $data;
+        }
 	}
 ?>

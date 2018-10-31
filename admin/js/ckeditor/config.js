@@ -28,6 +28,8 @@ CKEDITOR.editorConfig = function( config ) {
         { name: 'image' }
 	];
 
+    config.extraPlugins = 'image';
+
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';
@@ -40,5 +42,6 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// config.extraPlugins = 'imagepaste,uploadimage,image2';
 	// config.uploadUrl = '';
-    config.filebrowserImageUploadUrl = '/php/upload.php.php';
+    config.filebrowserImageUploadUrl = 'upload.php';
+    config.filebrowserImageBrowseUrl = 'browser.php';  // 放置你的瀏覽檔案程式
 };

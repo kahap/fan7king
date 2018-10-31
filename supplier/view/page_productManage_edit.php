@@ -337,6 +337,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </label><br>
                           <div class="col-md-12 col-sm-12 col-xs-12">
                               <div id="alerts"></div>
+                              <?php /* ?>
                               <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
                                   <div class="btn-group">
                                       <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa icon-font"></i><b class="caret"></b></a>
@@ -400,11 +401,15 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                                       <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
                                   </div>
                               </div>
+ <?php */ ?>
 
                               <!--							<div id="editor">--><?php //if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?><!--</div>-->
                               <!--							<textarea name="proDetail" id="descr" style="display:none;"></textarea>-->
 
-                              <textarea name="proDetail" id="TextArea1" cols="20" rows="2" class="ckeditor"></textarea>
+<!--                              <textarea name="proDetail" id="TextArea1" cols="20" rows="2" class="ckeditor"></textarea>-->
+                              <textarea name="proDetail" id="editor2" cols="20" rows="2" class="ckeditor">
+                                <?php if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?>
+                              </textarea>
                               <div id="eImg"></div>
 
                               <br />
@@ -502,11 +507,12 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
   <!--  <script src="js/editor/external/google-code-prettify/prettify.js"></script>-->
 
   <!--  CKEditor CDN  -->
-        <script src="js/ckeditor/ckeditor.js"></script>
+          <script src="https://cdn.ckeditor.com/4.10.1/standard-all/ckeditor.js"></script>
+<!--        <script src="js/ckeditor/ckeditor.js"></script>-->
           <script>
-              var editor = CKEDITOR.replace( 'proDetail', {
-                  baseHref : 'images/product/test/',
-              } );
+              // var editor = CKEDITOR.replace( 'proDetail', {
+              //     baseHref : 'images/product/test/',
+              // } );
 
               function processData(){
                   // getting data
@@ -547,6 +553,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                   Form.PicFile.value = src.replace(url,"");
 
               }
+
           </script>
 
 
@@ -560,16 +567,19 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 // });
 $(function() {
     $('#period-amnt2').focusout(function() {
-        var val = $("#period-amnt2").val()*0.95;
-        // $("#period-amnt2").val(val*0.95);
+        var val = $("#period-amnt2").val();
+        $("#period-amnt").val(val*0.95);
         getRadio(val) ;
     });
+
+    getRadio() ;
 });
 
-function getRadio(val)
+function getRadio()
 {
     var which = $(this).data("follow");
     // var val = $("#period-amnt").val();
+    var val = $("#period-amnt2").val();
 	if(val !="")
     {
 	<?php foreach($psData as $key=>$value){ ?>
@@ -691,18 +701,21 @@ $(function(){
 
 
     $("button[type='submit']").click(function(e){
-        var val = $("#period-amnt").val();
+        // var val = $("#period-amnt").val();
+        var val = $("#period-amnt2").val();
         if(val=='')
         {
             alert("請輸入上架金額");
             return;
         }
-	    $("#period-amnt2").val(val*0.95);
-        getRadio() ;
+	    $("#period-amnt2").val(val);
+        getRadio(val) ;
 
 		$("#stampImgErr").text("");
 		$(".parsley-errors-list li").text("");
 		e.preventDefault();
+
+        $("#editor2").val(CKEDITOR.instances.editor2.getData());
 		
 		var form = new FormData($("form")[0]);
 		var url = "ajax/productManage/<?php echo $_GET["action"]; ?>.php";
@@ -856,63 +869,41 @@ $(document).ready(function()
 
 
 
-///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
+
 $(function() {
-    function initToolbarBootstrapBindings() {
-        var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-                'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-                'Times New Roman', 'Verdana'
-            ],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-        $.each(fonts, function(idx, fontName) {
-            fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
-        });
-        $('a[title]').tooltip({
-            container: 'body'
-        });
-        $('.dropdown-menu input').click(function() {
-            return false;
-        })
-            .change(function() {
-                $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-            })
-            .keydown('esc', function() {
-                this.value = '';
-                $(this).change();
-            });
+    CKEDITOR.addCss( '.cke_editable { font-size: 15px; padding: 2em; }' );
 
-        $('[data-role=magic-overlay]').each(function() {
-            var overlay = $(this),
-                target = $(overlay.data('target'));
-            overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-        });
-        if ("onwebkitspeechchange" in document.createElement("input")) {
-            var editorOffset = $('#editor').offset();
-            $('#voiceBtn').css('position', 'absolute').offset({
-                top: editorOffset.top,
-                left: editorOffset.left + $('#editor').innerWidth() - 35
-            });
-        } else {
-            $('#voiceBtn').hide();
-        }
-    }
+    CKEDITOR.replace( 'proDetail', {
+        toolbar: [
+            { name: 'document', items: [ 'Print' ] },
+            { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+            { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+            { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+            { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+            '/',
+            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
+            { name: 'links', items: [ 'Link', 'Unlink' ] },
+            { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+            { name: 'insert', items: [ 'Image', 'Table' ] },
+            { name: 'tools', items: [ 'Maximize' ] },
+            { name: 'editing', items: [ 'Scayt' ] }
+        ],
 
-    function showErrorAlert(reason, detail) {
-        var msg = '';
-        if (reason === 'unsupported-file-type') {
-            msg = "Unsupported format " + detail;
-        } else {
-            console.log("error uploading file", reason, detail);
-        }
-        $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
-            '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
-    }
-    initToolbarBootstrapBindings();
-    $('#editor').wysiwyg({
-        fileUploadError: showErrorAlert
-    });
-    window.prettyPrint && prettyPrint();
+        extraAllowedContent: 'h3{clear};h2{line-height};h2 h3{margin-left,margin-top}',
+
+        // Adding drag and drop image upload.
+        extraPlugins: 'print,format,font,colorbutton,justify,uploadimage',
+        uploadUrl: 'js/ckeditor_full/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        filebrowserBrowseUrl: 'js/ckeditor_full/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: 'js/ckeditor_full/ckfinder/ckfinder.html?type=Images',
+        filebrowserUploadUrl: 'js/ckeditor_full/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: 'js/ckeditor_full/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+
+        // height: 560,
+
+        removeDialogTabs: 'image:advanced;link:advanced'
+    } );
 });
-///////////////////////////////////// ///////////////////////////////////////////////////////////////////
-
 </script>

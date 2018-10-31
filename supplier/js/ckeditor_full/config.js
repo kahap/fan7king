@@ -8,6 +8,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
 
+    config.language = 'fr';
+    config.uiColor = '#AADC6E';
 
+    config.toolbar = [
+        ['Bold','Italic','Underline','Strike','JustifyLeft','JustifyCenter','JustifyRight'],
+        ['Image','Table','HorizontalRule','SpecialChar'],
+        ['TextColor','BGColor','RemoveFormat','Font','FontSize','Source']
+    ]
 
 };

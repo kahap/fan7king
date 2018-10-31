@@ -30,8 +30,8 @@ $tabIndex = 0;
 ?>
 
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-	<link href="css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">
-	<link href="css/editor/index.css" rel="stylesheet">
+<!--	<link href="css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">-->
+<!--	<link href="css/editor/index.css" rel="stylesheet">-->
 <!-- page content -->
       <div class="right_col" role="main" style="min-height: 949px;">
         <div class="">
@@ -131,7 +131,7 @@ $tabIndex = 0;
                               主題優惠 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proOffer"]; ?>' type="text" class="form-control" name="proOffer" />
+                              <input value='<?php if($_GET["action"]=="edit") echo isset($proData[0]["proOffer"])?$proData[0]["proOffer"]:''; ?>' type="text" class="form-control" name="proOffer" />
                               <ul class="parsley-errors-list"><li id="themeOfferErr"></li></ul>
                           </div>
                       </div>
@@ -140,7 +140,7 @@ $tabIndex = 0;
                               商品加贈 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proGift"]; ?>' type="text" class="form-control" name="proGift" />
+                              <input value='<?php if($_GET["action"]=="edit") echo isset($proData[0]["proGift"])?$proData[0]["proGift"]:''; ?>' type="text" class="form-control" name="proGift" />
                               <ul class="parsley-errors-list"><li id="productGiftErr"></li></ul>
                           </div>
                       </div>
@@ -169,6 +169,7 @@ $tabIndex = 0;
                         </label><br>
                         <div class="col-md-12 col-sm-12 col-xs-12">
 							<div id="alerts"></div>
+                            <?php /* ?>
 							<div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
 							  <div class="btn-group">
 								<a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa icon-font"></i><b class="caret"></b></a>
@@ -232,11 +233,14 @@ $tabIndex = 0;
 								<a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
 							  </div>
 							</div>
+ <?php */ ?>
 		
 <!--							<div id="editor">--><?php //if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?><!--</div>-->
 <!--							<textarea name="proDetail" id="descr" style="display:none;"></textarea>-->
 
-                            <textarea name="proDetail" id="TextArea1" cols="20" rows="2" class="ckeditor"></textarea>
+                            <textarea name="proDetail" id="editor1" cols="20" rows="2" class="ckeditor">
+                                <?php if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?>
+                            </textarea>
                             <div id="eImg"></div>
 
 							<br />
@@ -431,12 +435,15 @@ $tabIndex = 0;
 <!--  <script src="js/editor/external/google-code-prettify/prettify.js"></script>-->
 
     <!--  CKEditor CDN  -->
-          <script src="js/ckeditor/ckeditor.js"></script>
+          <script src="https://cdn.ckeditor.com/4.10.1/standard-all/ckeditor.js"></script>
+<!--          <link href="https://sdk.ckeditor.com/theme/css/sdk-inline.css" rel="stylesheet">-->
+<!--          <script src="js/ckeditor/ckeditor.js"></script>-->
           <script>
-              var editor = CKEDITOR.replace( 'proDetail', {
-                  baseHref : 'images/product/test/',
-              } );
+              // var editor = CKEDITOR.replace( 'proDetail', {
+              //     baseHref : 'images/product/test/',
+              // } );
 
+              var text;
               function processData(){
                   // getting data
                   var data = CKEDITOR.instances.content.getData();
@@ -628,14 +635,16 @@ $(function(){
 	$("#confirm-form").click(function(e){
 
 
-        Get_eWebEditor_Img();
-        return ;
+        // Get_eWebEditor_Img();
+        // return ;
 
 
-		$('#descr').val($('#editor').html());
+		// $('#descr').val($('#editor1').html());
 		$("#stampImgErr").text("");
 		$(".parsley-errors-list li").text("");
 		e.preventDefault();
+
+		$("#editor1").val(CKEDITOR.instances.editor1.getData());
 
 		//清空空白input
 		for(var i=0; i<$(".single-file").length; i++){
@@ -744,60 +753,41 @@ function addError(selector, errMsg){
 	selector.text(errMsg);
 }
 
+
 $(function() {
-    function initToolbarBootstrapBindings() {
-      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-          'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-          'Times New Roman', 'Verdana'
+    CKEDITOR.addCss( '.cke_editable { font-size: 15px; padding: 2em; }' );
+
+    CKEDITOR.replace( 'proDetail', {
+        toolbar: [
+            { name: 'document', items: [ 'Print' ] },
+            { name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+            { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+            { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+            { name: 'align', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+            '/',
+            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat', 'CopyFormatting' ] },
+            { name: 'links', items: [ 'Link', 'Unlink' ] },
+            { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+            { name: 'insert', items: [ 'Image', 'Table' ] },
+            { name: 'tools', items: [ 'Maximize' ] },
+            { name: 'editing', items: [ 'Scayt' ] }
         ],
-        fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-      $.each(fonts, function(idx, fontName) {
-        fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
-      });
-      $('a[title]').tooltip({
-        container: 'body'
-      });
-      $('.dropdown-menu input').click(function() {
-          return false;
-        })
-        .change(function() {
-          $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-        })
-        .keydown('esc', function() {
-          this.value = '';
-          $(this).change();
-        });
 
-      $('[data-role=magic-overlay]').each(function() {
-        var overlay = $(this),
-          target = $(overlay.data('target'));
-        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-      });
-      if ("onwebkitspeechchange" in document.createElement("input")) {
-        var editorOffset = $('#editor').offset();
-        $('#voiceBtn').css('position', 'absolute').offset({
-          top: editorOffset.top,
-          left: editorOffset.left + $('#editor').innerWidth() - 35
-        });
-      } else {
-        $('#voiceBtn').hide();
-      }
-    }
+        extraAllowedContent: 'h3{clear};h2{line-height};h2 h3{margin-left,margin-top}',
 
-    function showErrorAlert(reason, detail) {
-      var msg = '';
-      if (reason === 'unsupported-file-type') {
-        msg = "Unsupported format " + detail;
-      } else {
-        console.log("error uploading file", reason, detail);
-      }
-      $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
-        '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
-    }
-    initToolbarBootstrapBindings();
-    $('#editor').wysiwyg({
-      fileUploadError: showErrorAlert
-    });
-    window.prettyPrint && prettyPrint();
-  });
+        // Adding drag and drop image upload.
+        extraPlugins: 'print,format,font,colorbutton,justify,uploadimage',
+        uploadUrl: 'js/ckeditor_full/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+
+        // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+        filebrowserBrowseUrl: 'js/ckeditor_full/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: 'js/ckeditor_full/ckfinder/ckfinder.html?type=Images',
+        filebrowserUploadUrl: 'js/ckeditor_full/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: 'js/ckeditor_full/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+
+        // height: 560,
+
+        removeDialogTabs: 'image:advanced;link:advanced'
+    } );
+});
 </script>

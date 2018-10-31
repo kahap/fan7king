@@ -176,9 +176,9 @@ $imgArr = getAllImgs();
 								  <button class="btn" type="button">Add</button>
 								</div>
 								<a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
-		
+
 							  </div>
-		
+
 							  <div class="btn-group">
 								<a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
 								<input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
@@ -188,7 +188,7 @@ $imgArr = getAllImgs();
 								<a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
 							  </div>
 							</div>
-		
+
 							<div id="editor"><?php if($_GET["action"]=="edit") echo $proData[0]["proDetail"]; ?></div>
 							<textarea name="proDetail" id="descr" style="display:none;"></textarea>
 							<br />
@@ -302,8 +302,8 @@ $imgArr = getAllImgs();
 					              <div class="x_panel">
 					                <div class="x_content">
 					                  <div class="" role="tabpanel" data-example-id="togglable-tabs">
-					                  	<?php 
-					                	  if(!empty(array_filter($imgArr))){
+					                  	<?php
+                                        if(!is_null(array_filter($imgArr))){
 					                	?>
 					                	<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					                	  <?php 
@@ -385,11 +385,11 @@ $imgArr = getAllImgs();
 $(function(){
 	//歷史相簿搜尋
 	$(document).on("click","li[role='presentation']",function(){
-		/*if($(this).index() == <?php echo $tabIndex; ?>){
+		if($(this).index() == <?php echo $tabIndex; ?>){
 			$("#history-search-area").stop(true,false).fadeIn(300);
 		}else{
 			$("#history-search-area").stop(true,false).fadeOut(300);
-		}*/
+		}
 	});
 	
 	$("#history-search").on("keyup",function(){
@@ -638,60 +638,6 @@ function addError(selector, errMsg){
 	selector.text(errMsg);
 }
 
-$(function() {
-    function initToolbarBootstrapBindings() {
-      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-          'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-          'Times New Roman', 'Verdana'
-        ],
-        fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-      $.each(fonts, function(idx, fontName) {
-        fontTarget.append($('<li><a data-edit="fontName ' + fontName + '" style="font-family:\'' + fontName + '\'">' + fontName + '</a></li>'));
-      });
-      $('a[title]').tooltip({
-        container: 'body'
-      });
-      $('.dropdown-menu input').click(function() {
-          return false;
-        })
-        .change(function() {
-          $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
-        })
-        .keydown('esc', function() {
-          this.value = '';
-          $(this).change();
-        });
 
-      $('[data-role=magic-overlay]').each(function() {
-        var overlay = $(this),
-          target = $(overlay.data('target'));
-        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-      });
-      if ("onwebkitspeechchange" in document.createElement("input")) {
-        var editorOffset = $('#editor').offset();
-        $('#voiceBtn').css('position', 'absolute').offset({
-          top: editorOffset.top,
-          left: editorOffset.left + $('#editor').innerWidth() - 35
-        });
-      } else {
-        $('#voiceBtn').hide();
-      }
-    };
 
-    function showErrorAlert(reason, detail) {
-      var msg = '';
-      if (reason === 'unsupported-file-type') {
-        msg = "Unsupported format " + detail;
-      } else {
-        console.log("error uploading file", reason, detail);
-      }
-      $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
-        '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
-    };
-    initToolbarBootstrapBindings();
-    $('#editor').wysiwyg({
-      fileUploadError: showErrorAlert
-    });
-    window.prettyPrint && prettyPrint();
-  });
 </script>
