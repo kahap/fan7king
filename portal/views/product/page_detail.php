@@ -226,7 +226,7 @@ $_SESSION['pro'] = $proNo;
                                         if($value > 1000){
 //                                            echo "<li style='background:rgba(144, 12, 72, 0.09);width: 126px;'  class='select_price' id='price_".$key."'><a href='javascript:'>NT $".number_format($value)."X".$key."期</a></li>";
                                             ?>
-                                            <a class="btn select_price price_" id='price_<?php echo $key;?>' style="display: none;">
+                                            <a class="btn select_price price_" id='price_<?php echo $key;?>' style="">
                                                 <?php echo number_format($value);?>*<?php echo $key;?>期
                                             </a>
                                             <?php
@@ -361,7 +361,9 @@ $_SESSION['pro'] = $proNo;
 
     //立即分期
     $('.period').click(function(){
+
         if($('input[name=period]').val() != ""){
+
             if($('input[name=user]').val() != ""){
                 $.ajax({
                     url: 'portal/Controllers/php/order_period.php',
@@ -374,6 +376,11 @@ $_SESSION['pro'] = $proNo;
                         }else{
                             alert(msg);
                         }
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                        return false;
                     }
                 });
             }else{
@@ -382,6 +389,8 @@ $_SESSION['pro'] = $proNo;
             }
         }else{
             alert('請選擇期數');
+            return false;
+
         }
     });
 

@@ -195,8 +195,8 @@ if(!isset($_POST["pmPeriodAmnt2"]) || !is_numeric($pmPeriodAmnt2)){
         $pmUpDate =$dt->format('Y-m-d H:i:s');
 
         $dataS = array();
-        $dataS["proName"] = $proNo;
-        $dataS["bySup"] = 1;
+        $proData = $prod->getOneProByNo($proNo);
+        $dataS["proName"] = $proData[0]["proName"];
         $dataS["catNo"] = $catNo;
         $dataS["braNo"] = $braNo;
         //

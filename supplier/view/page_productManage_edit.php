@@ -199,22 +199,17 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       	商品名稱 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                      	<?php if($_GET["action"]=="edit"){
+                    <?php if($_GET["action"]=="edit"){
                               if(trim($proData[0]["proName"])==""){ ?>
-                                 <input name="proNo" id="proNo" class="form-control">
-                            <?php }
-                            else { ?>
+                                    <input name="proNo" id="proNo" class="form-control">
+                             <?php } else { ?>
                          	    <select disabled class="form-control">
                                   <option selected><?php echo $proData[0]["proName"]; ?></option>
                          	    </select>
                       	<?php }
-                        }
-                        else{ ?>
-
+                        } else { ?>
                           <input name="proNo" id="proNo" class="form-control">
-                      
-						 <?php } ?>
-						
+                     <?php } ?>
 						 <ul class="parsley-errors-list"><li id="proNoErr"></li></ul>
                       </div>
                     </div>

@@ -51,7 +51,7 @@
 <!--	<title>樂分期-HappyFan7</title>-->
 	<meta property="og:url"           content="<?php echo $src; ?>" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="<?php echo ($pm_detail && $pm_detail[0]['proName'] != '')? $pm_detail[0]['proName'] : '樂分期-HappyFan7'; ?>" />
+	<meta property="og:title"         content="<?php echo ($pm_detail && $pm_detail[0]['proName'] != '')? $pm_detail[0]['proName'] : 'HappyFan7'; ?>" />
 	<meta property="og:description"   content="<?php echo $str_price; ?>" />
 	<meta property="og:image"         content="https://<?php echo DOMAIN; ?>/<?php echo ($img[0]!="")? "admin/".$img[0] : "admin/images/indexImg/20160607062650.jpg"; ?>" />
 
@@ -79,7 +79,9 @@
         /*.card_1 {border:none;box-shadow:0 5px 6px 0 rgba(0,0,0,.16);border-radius:0;height:97%;margin:0 .5rem;padding-bottom:18px}*/
         .card_1{border:none;height:200px;text-align:center;background-image:linear-gradient(to left,transparent,transparent 50%,#f8f8f8 50%,#f8f8f8);background-position:100% 0;background-size:200% 100%;transition:all .25s ease-in}
         .card_1:hover{background-position:0 0}
-        .btn-group-toggle label.btn
+        .btn-group-toggle label.btn {
+            margin-top: 10px;
+        }
     </style>
 
 

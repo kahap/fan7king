@@ -184,7 +184,7 @@
                     foreach ($value as $v){
                         $v = mysqli_real_escape_string($this->db->oDbLink, $v);
                     }
-                    $$key = $value[0];
+                    $$key = $value;
                 }else {
                     $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
                 }
@@ -213,19 +213,35 @@
 			foreach($array as $key =>$value){
 				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
-			$sql = "update
+            $sql = "update
 						`product`
 					set
 						`proCaseNo`='".$newProNo."',
 						`catNo`='".$catNo."',
 						`braNo`='".$braNo."',
+						`biNo`='".$biNo."',
 						`proName`='".$proName."',
+						`proOffer`='".$proOffer."',
+						`proGift`='".$proGift."',
 						`proModelID`='".$proModelID."',
 						`proSpec`='".$proSpec."',
 						`proDetail`='".$proDetail."',
 						`proImage`='".$proImage."'
 					where
 						`proNo`='".$proNo."'";
+//			$sql = "update
+//						`product`
+//					set
+//						`proCaseNo`='".$newProNo."',
+//						`catNo`='".$catNo."',
+//						`braNo`='".$braNo."',
+//						`proName`='".$proName."',
+//						`proModelID`='".$proModelID."',
+//						`proSpec`='".$proSpec."',
+//						`proDetail`='".$proDetail."',
+//						`proImage`='".$proImage."'
+//					where
+//						`proNo`='".$proNo."'";
 			
 			$update = $this->db->updateRecords($sql);
 			return $update;
