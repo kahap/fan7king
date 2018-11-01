@@ -2,7 +2,7 @@
 //一般註冊
 $mem = new Member();
 
-$mustFill = array("memAccount","memPwd","memDeviceToken","gpsLong","gpsLat");
+$mustFill = array("memCell","memPwd","memDeviceToken","gpsLong","gpsLat");
 
 foreach($mustFill as $key=>$value){
 	if(!isset($_POST[$value])){
@@ -12,7 +12,7 @@ foreach($mustFill as $key=>$value){
 
 if(!isset($errMsg)){
 	
-	if($_POST["memAccount"] != ""){
+	if($_POST["memCell"] != ""){
 		//$memData = $mem->getMemberinformation($_POST);
 		$memData = $mem->getMemberinformationNewApp($_POST);
 	}else{

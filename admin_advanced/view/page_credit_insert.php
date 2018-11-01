@@ -1092,19 +1092,22 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 			<form id="applyFile" action="ajax/credit/insert_contact.php" method="POST">
 			<input type="hidden" name="rcNo" value="<?php echo $rcData[0]['rcNo']; ?>">
 			<input type="hidden" name="finalKey" value="<?php echo $finalKey; ?>">
-			<div class='input-field col s3'><input type='text' name='rcContactName[]'>
+			<div class='input-field col s3'>
+				<input type='text' name='rcContactName[]'>
 				<label class=''>聯絡人姓名</label>
 			</div>
 			<div class='input-field col s3'>
 				<select name='rcContactRelation[]'>
-				<?php foreach($api->relationArr as $keyRelation=>$valRelation){ ?>
-					<option value='<?php echo $valRelation; ?>'>
-					<?php echo $valRelation; ?></option><?php } ?></select>
-				<label class=''>聯絡人關係</label>
+					<?php foreach($api->relationArr as $keyRelation=>$valRelation){ ?>
+						<option value="<?php echo $valRelation; ?>"><?php echo $valRelation; ?></option>
+					<?php } ?>
+					
+				</select>
+				<label class="">聯絡人關係</label>
 			</div>
 			<div class='input-field col s3'>
 				<input type='text' name='rcContactPhone[]' value=''>
-				<label class=''>聯絡人市話</label>
+				<label class="">聯絡人市話</label>
 			</div>
 			<div class='input-field col s3'>
 				<input type='text' name='rcContactCell[]' value=''>
