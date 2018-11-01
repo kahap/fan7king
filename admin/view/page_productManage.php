@@ -3,13 +3,14 @@ require_once('model/require_general.php');
 
 
 $page = isset($_GET["paginate"])? $_GET["paginate"] : 1;
+$search = isset($_GET["search"])? $_GET["search"] : null;
 
 
 $pp = new Product_Period();
 $pm = new Product_Manage();
 
-$allData = $pm->getAllPMGroupByProName(($page-1)*30 , 30);
-$totalProData = $pm->getAllPMGroupByProNameCount();
+$allData = $pm->getAllPMGroupByProName(($page-1)*30 , 30 ,$search);
+$totalProData = $pm->getAllPMGroupByProNameCount($search);
 $lastPage = ceil($totalProData/30);
 
 $pro = new Product();
@@ -37,17 +38,17 @@ $sup = new Supplier();
 
                     <div class="top">
                         <div class="dataTables_paginate paging_full_numbers" id="example_paginate">
-                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=1" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">
+                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=1&search=<?php echo $search;?>" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">
                                 第一頁
                             </a>
                             <?php if ($page>1){ ?>
-                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page-1;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
+                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page-1;?>&search=<?php echo $search;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
                                 前一頁
                             </a>
                             <?php } ?>
                             <span>
-                                <select class="paginate_button choosePage" data-href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>">
-                                <?php for ($i=1;$i<$lastPage;$i++){ ?>
+                                <select class="paginate_button choosePage" data-href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&search=<?php echo $search;?>">
+                                <?php for ($i=1;$i<=$lastPage;$i++){ ?>
                                     <option value="<?php echo $i;?>" <?php if($page==$i)echo 'selected';?> >
                                         <?php echo $i;?>
                                     </option>
@@ -56,10 +57,12 @@ $sup = new Supplier();
                                 <!--                                <a  href="&paginate=2" class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">2</a>-->
                                 <!--                                <a  href="&paginate=3" class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">3</a>-->
                             </span>
-                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page+1;?>" class="paginate_button next" aria-controls="example" data-dt-idx="5" tabindex="0" id="example_next">
+                            <?php if ($page<$lastPage){ ?>
+                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page+1;?>&search=<?php echo $search;?>" class="paginate_button next" aria-controls="example" data-dt-idx="5" tabindex="0" id="example_next">
                                 下一頁
                             </a>
-                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $lastPage;?>" class="paginate_button last" aria-controls="example" data-dt-idx="6" tabindex="0" id="example_last">
+                            <?php } ?>
+                            <a href="admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $lastPage;?>&search=<?php echo $search;?>" class="paginate_button last" aria-controls="example" data-dt-idx="6" tabindex="0" id="example_last">
                                 最後一頁
                             </a>
                         </div>
@@ -91,7 +94,7 @@ $sup = new Supplier();
                     <?php 
 	                    if($allData != null){
 	                    	foreach($allData as $key=>$value){
-	                    		$proData = $pro->getOneProByNo($value["proNo"]);
+                                $proData = $pro->getOneProByNo($value["proNo"]);
 	                    		$ppData = $pp->getPPByProduct($value["proNo"]);
 								$emptyPp = true;
 								if($ppData != null){
@@ -277,6 +280,14 @@ $sup = new Supplier();
 
         $('.choosePage').change(function () {
             location.href = $(this).data('href') + '&paginate=' + $(this).val();
+        });
+
+        // search
+        $('#example_filter').find('input[type=search]').val('<?php echo $search;?>');
+        $('#example_filter').find('input[type=search]').change(function() {
+            var keyword = $(this).val();
+            var url = 'admin.php?page=product&type=productManage<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page;?>&search=';
+            location.href = url + keyword;
         });
 
 

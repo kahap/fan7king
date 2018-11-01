@@ -214,7 +214,7 @@
                                     <div class="item col-lg-4 col-6">
                                         <div class="card">
                                             <a href="?item=product&pro=<?php echo $value['proNo'];?>" title="<?php echo $value['proName'];?>">
-                                                <img src="../<?php echo $img[0];?>" class="img-fluid" alt="<?php echo $value['proName'];?>">
+                                                <img src="<?php echo $img[0];?>" class="img-fluid" alt="<?php echo $value['proName'];?>">
                                                 <div class="card-body">
                                                     <p class="card-title">
                                                         <a href="?item=product&pro=<?php echo $value['proNo'];  ?>"><?php echo $value['proName'];?></a>
@@ -270,7 +270,7 @@
                                     <div class="item col-lg-4 col-6">
                                         <div class="card">
                                             <a href="?item=product&pro=<?php echo $value['proNo'];?>" >
-                                                <img src="../<?php echo $img[0];?>" class="img-fluid" alt="product">
+                                                <img src="<?php echo $img[0];?>" class="img-fluid" alt="product">
                                                 <div class="card-body">
                                                     <p class="card-title"><?php echo $value['proName'];?></p>
                                                     <p class="nowait-badge text-left">
@@ -318,7 +318,7 @@
     </section>
 
 <?php
-include_once ('views/_page_service.php');
+include_once ('portal/views/_page_service.php');
 ?>
 
 </main>

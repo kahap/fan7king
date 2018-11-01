@@ -88,7 +88,7 @@ $_SESSION['pro'] = $proNo;
                                 if($value != ""){
                                     ?>
                                     <div>
-                                        <img src="<?php echo "../admin/".$value ?>" alt="*" class="img-fluid"/>
+                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid"/>
                                     </div>
                                     <?php
                                 }
@@ -101,7 +101,7 @@ $_SESSION['pro'] = $proNo;
                                 if($value != ""){
                                     ?>
                                     <div>
-                                        <img src="<?php echo "../admin/".$value ?>" alt="*" class="img-fluid" style="width: 71px; height: 71px;"/>
+                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" style="width: 71px; height: 71px;"/>
                                     </div>
                                     <?php
                                 }
@@ -226,7 +226,7 @@ $_SESSION['pro'] = $proNo;
                                         if($value > 1000){
 //                                            echo "<li style='background:rgba(144, 12, 72, 0.09);width: 126px;'  class='select_price' id='price_".$key."'><a href='javascript:'>NT $".number_format($value)."X".$key."期</a></li>";
                                             ?>
-                                            <a class="btn select_price price_" id='price_<?php echo $key;?>' style="display: none;">
+                                            <a class="btn select_price price_" id='price_<?php echo $key;?>' style="">
                                                 <?php echo number_format($value);?>*<?php echo $key;?>期
                                             </a>
                                             <?php
@@ -282,7 +282,7 @@ $_SESSION['pro'] = $proNo;
                 <div class="item col-lg-3 col-6">
                     <div class="card">
                         <a href="#" title="#">
-                            <img src="images/Tmp/demo.jpg" class="img-fluid" alt="#">
+                            <img src="portal/images/Tmp/demo.jpg" class="img-fluid" alt="#">
                             <div class="card-body">
                                 <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
                                 <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
@@ -294,7 +294,7 @@ $_SESSION['pro'] = $proNo;
                 <div class="item col-lg-3 col-6">
                     <div class="card">
                         <a href="#" title="#">
-                            <img src="images/Tmp/demo.jpg" class="img-fluid" alt="#">
+                            <img src="portal/images/Tmp/demo.jpg" class="img-fluid" alt="#">
                             <div class="card-body">
                                 <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
                                 <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
@@ -306,7 +306,7 @@ $_SESSION['pro'] = $proNo;
                 <div class="item col-lg-3 col-6">
                     <div class="card">
                         <a href="#" title="#">
-                            <img src="images/Tmp/demo.jpg" class="img-fluid" alt="#">
+                            <img src="portal/images/Tmp/demo.jpg" class="img-fluid" alt="#">
                             <div class="card-body">
                                 <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
                                 <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
@@ -318,7 +318,7 @@ $_SESSION['pro'] = $proNo;
                 <div class="item col-lg-3 col-6">
                     <div class="card">
                         <a href="#" title="#">
-                            <img src="images/Tmp/demo.jpg" class="img-fluid" alt="#">
+                            <img src="portal/images/Tmp/demo.jpg" class="img-fluid" alt="#">
                             <div class="card-body">
                                 <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
                                 <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
@@ -332,7 +332,7 @@ $_SESSION['pro'] = $proNo;
     </section>
 
 <?php
-    include_once ('views/_page_service.php');
+    include_once ('portal/views/_page_service.php');
 ?>
 </main>
 
@@ -361,10 +361,12 @@ $_SESSION['pro'] = $proNo;
 
     //立即分期
     $('.period').click(function(){
+
         if($('input[name=period]').val() != ""){
+
             if($('input[name=user]').val() != ""){
                 $.ajax({
-                    url: 'Controllers/php/order_period.php',
+                    url: 'portal/Controllers/php/order_period.php',
                     data: $('#shopping').serialize(),
                     type:"POST",
                     dataType:'text',
@@ -374,6 +376,11 @@ $_SESSION['pro'] = $proNo;
                         }else{
                             alert(msg);
                         }
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                        return false;
                     }
                 });
             }else{
@@ -382,6 +389,8 @@ $_SESSION['pro'] = $proNo;
             }
         }else{
             alert('請選擇期數');
+            return false;
+
         }
     });
 
@@ -391,7 +400,7 @@ $_SESSION['pro'] = $proNo;
     $('.direct').click(function(){
         if($('input[name=user]').val() != ""){
             $.ajax({
-                url: 'php/order_direct.php',
+                url: 'portal/php/order_direct.php',
                 data: $('#shopping').serialize(),
                 type:"POST",
                 dataType:'text',

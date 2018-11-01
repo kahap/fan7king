@@ -1,28 +1,33 @@
 <?php
 
-    include_once('cfg/cfg.inc.php');
-
-
+    //
     session_start();
+    // 关闭错误报告
     error_reporting(0);
-	//允許看到我要抽獎的會員清單
+	// 允許看到我要抽獎的會員清單
 	$memArray = array('1000001','1140333','1145319','1145356','1149599','1149600','1002870');
-    include_once('lib/lib.php');
+	// 預設定
+    include_once('portal/cfg/cfg.inc.php');
+    include_once('portal/Controllers/lib/lib.php');
 
-
-
+    //
     function __autoload($ClassName){
-        require_once('cls/'.$ClassName.".cls.php");
+        require_once('portal/model/cls/'.$ClassName.".cls.php");
     }
+
+    //系統其他設定
     $fb = new Other_Setting();
 
+    //計算瀏覽網站人數
     if(!isset($_COOKIE["viewed"])){
         setcookie("viewed","viewed",time()+86400);
         $os = new Other_Setting();
         $osData = $os->getAll();
+        //總瀏覽數+1
         $os->updateViewCount($osData[0]["viewCount"]+1);
     }
 
+    // 會員還存在登入
 	if (isset($_GET['key'])) { // jimmy new add for password change
         $mem = new Member(); 
         $str = base64_decode($_GET['key']);
@@ -40,89 +45,118 @@
         }
     }
 
-    $itemVal = $_GET['item'] ;
-    $actionVal = $_GET['action'] ;
-    if( ($_SESSION['user']['memClass'] == "" || $_SESSION['user']['memClass']==null) && $_SESSION['user']['memNo'] != "" )
-        $itemVal = "information_edit" ;
+    // Router of Url
+    $itemVal = isset($_GET['item'])? $_GET['item'] : '' ;
+    $actionVal = isset($_GET['action'])? $_GET['action'] : '' ;
 
-    include_once('view/header.html');
+    //會員資訊編輯頁面
+    if( ($_SESSION['user']['memClass']=="" || $_SESSION['user']['memClass']==null) && $_SESSION['user']['memNo'] != "" ) {
+        $itemVal = "information_edit";
+    }
 
-    if($_SESSION['user']['sharcode'] == ""){
-        if($_GET['share'] != '')  { $_SESSION['user']['sharcode'] = $_GET['share']; }else{ $_SESSION['user']['sharcode'] == '111';}
-    }elseif($_GET['share'] != ''){
+
+    /************************* layout *******************************/
+    $_SESSION['vTitle'] = 'Nowait';
+    include_once('portal/views/_header.php');
+
+
+    // share code
+    if( $_SESSION['user']['sharcode'] == "" )
+    {
+        if(isset($_GET['share']) && $_GET['share'] != ''){
+            $_SESSION['user']['sharcode'] = $_GET['share'];
+        }else{
+            $_SESSION['user']['sharcode'] = '111';
+        }
+    }
+    elseif (isset($_GET['share']) && $_GET['share'] != '')
+    {
         $_SESSION['user']['sharcode'] = $_GET['share'];
     }
 
 
-if($_SESSION['user']['memName'] != ""){
-    if($_SESSION['user']['memIdNum'] == "" || $_SESSION['user']['memIdNum']==null)
+    //會員已登入
+    if($_SESSION['user']['memName'] != "")
     {
-        $itemVal = "member_center" ;
-        $actionVal = "member_idnum" ;
-    }
+        if($_SESSION['user']['memIdNum'] == "" || $_SESSION['user']['memIdNum']==null)
+        {
+            $itemVal = "member_center" ;
+            $actionVal = "member_idnum" ;
+        }
 
         if($itemVal != ""  ){
             switch($itemVal){
 				case "loading":
-					include('view/page_loading.html');
+					include('portal/views/page_loading.html');
 				break;
 				case "award":
-					include('view/page_award.html');
+					include('portal/views/page_award.html');
 				break;
+
+				//會員中心
                 case "member_center":
                     switch($actionVal){
 										
                         case "whcode":
-                            include('view/page_member_whcode.html');
+                            include('portal/views/page_member_whcode.html');
     						break;
 
                         case "recomm_list":
-                            include('view/page_member_recomm_list.html');
+                            include('portal/views/page_member_recomm_list.html');
     						break;
 
                         case "member_edit":
-                            include('view/page_member_edit.html');
+                            include('portal/views/page_member_edit.html');
     						break;
 
                         case "member_idnum":
-                            include('view/page_member_idnum_edit.html');
+                            include('portal/views/page_member_idnum_edit.html');
                             break;
 
                         case "fb_edit":
-                            include_once('view/page_member_fbedit.html');
+                            include_once('portal/views/page_member_fbedit.html');
     						break;
 
+                        // 變更密碼
                         case "password_edit":
-                            include_once('view/page_member_password_edit.html');
+                            include_once('portal/views/member/member-change.php');
     						break;
 
                         case "purchase":
                             if($_GET['orno'] != ""){
                                 if($_GET['query'] != ""){
-                                    include('view/page_member_order_detail_query.html');
+                                    include('portal/views/page_member_order_detail_query.html');
                                 }else{
-                                    include('view/page_member_order_detail.html');
+                                    include('portal/views/page_member_order_detail.html');
                                 }
                             }else{
-                                include('view/page_member_order.html');
+                                include('portal/views/page_member_order.html');
                             }
     						break;
                         case "mco_purchase": // jimmy
                             if ($_GET['mcono'] != "") {
-                                    include('view/page_member_loan_detail.html');
+                                    include('portal/views/page_member_loan_detail.html');
                             } else {
-                                include('view/page_member_loan_order.html');
+                                include('portal/views/page_member_loan_order.html');
                             }
                             break;
+
+                        // 我要繳款
                         case "pay":
-                            include('view/page_member_pay.html');
+                            if($_GET['orno'] != ""){
+                                include('portal/views/member/member-pay-detail.php');
+                            }else{
+                                include('portal/views/member/member-pay.php');
+                            }
+                            break;
     						break;
 
+                        // 訂單查詢
                         case "order":
                             if($_GET['orno'] != ""){
-                                include('view/page_member_order_d_detail.html');
+                                include('portal/views/member/member-order-detail.php');
                             }else{
-                                include('view/page_member_order_d.html');
+                                include('portal/views/member/member-order.php');
                             }
     						break;
 
@@ -157,19 +191,19 @@ if($_SESSION['user']['memName'] != ""){
                                     $allRbsData = $rba->getRBAByMemNo($_SESSION['user']['memNo']);
                                     $rbs_id = $rbs->insert($array,$allRbsData,$_SESSION['user']['memNo']);
                                     $_SESSION['rbs_id'] = $rbs_id;
-                                    include('view/page_member_rba_apply.html');
+                                    include('portal/views/page_member_rba_apply.html');
                                 }
                             }else{
-                                include('view/page_member_query_code.html');
+                                include('portal/views/page_member_query_code.html');
                             }
 
     						break;
 
                         case "history":
                             if($_GET['d'] != ""){
-                                include('view/page_member_query_code_success_detail.html');
+                                include('portal/views/page_member_query_code_success_detail.html');
                             }else{
-                                include('view/page_member_query_code_apply.html');
+                                include('portal/views/page_member_query_code_apply.html');
                             }
 
     						break;
@@ -179,7 +213,7 @@ if($_SESSION['user']['memName'] != ""){
                             $or_data = $or->getOneOrderByNo($_GET['orno']);
                             $or->changeToReadable($or_data[0],1);
                             if(in_array($or_data[0]["orStatus"],$CanselstatusArr)){
-                                include('php/cancel_order.php');
+                                include('portal/php/cancel_order.php');
                             }else{
                                 echo "<script>alert('拒絕存取'); history.go(-1);</script>";
                             }
@@ -191,16 +225,16 @@ if($_SESSION['user']['memName'] != ""){
                                     $or = new Orders();
                                     $or_data = $or->getTwinOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
                                     if($or_data[1]['orNo'] != ''){
-                                        include('view/page_default_order_period_2.html');
+                                        include('portal/views/page_default_order_period_2.html');
                                     }else{
-                                        include('view/page_order_period_2.html');
+                                        include('portal/views/page_order_period_2.html');
                                     }
     								break;
                                 case "3":
-                                    include('view/page_order_period_3.html');
+                                    include('portal/views/page_order_period_3.html');
     								break;
                                 case "4":
-                                    include('view/page_order_period_4.html');
+                                    include('portal/views/page_order_period_4.html');
     								break;
 
                                 default:
@@ -210,9 +244,9 @@ if($_SESSION['user']['memName'] != ""){
                                         echo "<script>location.href='index.php?item=member_center&action=order_edit&orno=".$_SESSION['ord_code']."'</script>";
                                     }else{
                                         if($or_data[0]['orNo'] != ''){
-                                            include('view/page_default_order_period.html');
+                                            include('portal/views/page_default_order_period.html');
                                         }else{
-                                            include('view/page_order_period.html');
+                                            include('portal/views/page_order_period.html');
                                         }
                                     }
     								break;
@@ -225,20 +259,20 @@ if($_SESSION['user']['memName'] != ""){
                             if($or_data[0]['orIfEditable'] == 0){
                                 switch($_GET['method']){
                                     case "2":
-                                        include('view/page_edit_order_period_2.html');
+                                        include('portal/views/page_edit_order_period_2.html');
     									break;
                                     case "3":
-                                        include('view/page_edit_order_period_3.html');
+                                        include('portal/views/page_edit_order_period_3.html');
     									break;
                                     case "4":
-                                        include('view/page_edit_order_period_4.html');
+                                        include('portal/views/page_edit_order_period_4.html');
     									break;
 
                                     default:
                                         if($_GET['front_mange'] != ''){
                                             $or->updateorIfProcessInCurrentStatus('1',$_GET['orno']);
                                         }
-                                        include('view/page_edit_order_period.html');
+                                        include('portal/views/page_edit_order_period.html');
     									break;
                                 }
                             }
@@ -251,17 +285,17 @@ if($_SESSION['user']['memName'] != ""){
                                 case "2":
                                     $mco = new Motorbike_Cellphone_Orders();
                                     $mco_data = $mco->getTwinOrByMemberAndMethod($_SESSION['user']['memNo']);
-                                    include('view/page_loan_order_period_2.html');
+                                    include('portal/views/page_loan_order_period_2.html');
                                     break;
                                 case "3":
-                                    include('view/page_loan_order_period_3.html');
+                                    include('portal/views/page_loan_order_period_3.html');
                                     break;
                                 case "4":
-                                    include('view/page_loan_order_period_4.html');
+                                    include('portal/views/page_loan_order_period_4.html');
                                     break;
 
                                 default:
-                                    include('view/page_loan_order_period.html');
+                                    include('portal/views/page_loan_order_period.html');
                                     break;
                             }
                             break;
@@ -272,20 +306,20 @@ if($_SESSION['user']['memName'] != ""){
                             if ($mco_data[0]['mcoIfEditable'] == 0) {
                                 switch ($_GET['method']) {
                                     case "2":
-                                        include('view/page_edit_loan_period_2.html');
+                                        include('portal/views/page_edit_loan_period_2.html');
                                         break;
                                     case "3":
-                                        include('view/page_loan_order_period_3.html');
+                                        include('portal/views/page_loan_order_period_3.html');
                                         break;
                                     case "4":
-                                        include('view/page_loan_order_period_4.html');
+                                        include('portal/views/page_loan_order_period_4.html');
                                         break;
 
                                     default:
                                         if ($_GET['front_mange'] != '') {
                                             $mco->updateorMcoIfProcessInCurrentStatus('1', $_GET['mcoNo']);
                                         }
-                                        include('view/page_edit_loan_period.html');
+                                        include('portal/views/page_edit_loan_period.html');
                                         break;
                                 }
                             }
@@ -295,82 +329,86 @@ if($_SESSION['user']['memName'] != ""){
                         case "order_direct":
                             switch($_GET['method']){
                                 case "2":
-                                    include('view/page_order_direct_2.html');
+                                    include('portal/views/page_order_direct_2.html');
     								break;
                                 case "3":
-                                    include('view/page_order_direct_3.html');
+                                    include('portal/views/page_order_direct_3.html');
     								break;
 
                                 default:
                                     if($_SESSION['ord_code'] == ""){
-                                        include('view/page_order_direct.html');
+                                        include('portal/views/page_order_direct.html');
                                     }else{
-                                        include('view/page_order_direct_edit.html');
+                                        include('portal/views/page_order_direct_edit.html');
                                     }
     								break;
                             }
 
     						break;
 
+                        //會員資料
                         default:
-                            include('view/page_member.html');
+                            include('portal/views/member/member-info.php');
     						break;
                     }
     				break;
 
+                case "logout":
                 case "login":
                 case "login_register":
-                    include_once('view/page_login.html');
+                    include_once('portal/views/login/login.php');
     				break;
 
                 case "contact":
-                    include_once('view/page_contact_service.html');
+                    include_once('portal/views/page_contact_service.html');
     				break;
                  case "sup_center":
-                    //include_once('view/page_sup_center.html');
-                    include_once('view/page_sup_center_new.html'); //encore
-    				break;
-                case "category":
-                    include_once('view/page_category.html');
+                    //include_once('portal/views/page_sup_center.html');
+                    include_once('portal/views/page_sup_center_new.html'); //encore
     				break;
 
-                case "search":
-                    include_once('view/page_search.html');
+
+                case "category":
+                    include_once('portal/views/product/page_category.php');
     				break;
+                case "product":
+                    include_once('portal/views/product/page_detail.php');
+                    break;
+                case "product_sup":
+                    include_once('portal/views/product/page_detail_sup.php');
+                    break;
+                case "search":
+                    include_once('portal/views/product/page_search.php');
+    				break;
+
 
                 case "faq":
-                    include_once('view/page_faq.html');
+                    include_once('portal/views/page_faq.html');
     				break;
 
                 case "co_company":
-                    include_once('view/page_contact.html');
+                    include_once('portal/views/page_contact.html');
     				break;
                 case "loan_menu":
-                    include_once('view/page_loan_menu.html');
+                    include_once('portal/views/page_loan_menu.html');
     				break;
                 case "loan_vip":
-                    include_once('view/page_loanVIP.html');
+                    include_once('portal/views/page_loanVIP.html');
     				break;
                 case "loan_Moto":
-                    include_once('view/page_loanMoto.html');
+                    include_once('portal/views/page_loanMoto.html');
     				break;
                 case "loan_Cell":
-                    include_once('view/page_loanCell.html');
+                    include_once('portal/views/page_loanCell.html');
     				break;
                 case "loan_moto":
-                    include_once('view/page_loan_moto.html'); // add jimmy
+                    include_once('portal/views/page_loan_moto.html'); // add jimmy
                     break;
                 case "loan_cell":
-                    include_once('view/page_loan_cell.html'); // add jimmy
+                    include_once('portal/views/page_loan_cell.html'); // add jimmy
                     break;
-                case "product":
-                    include_once('view/page_detail.html');
-    				break;
-                case "product_sup":
-                    include_once('view/page_detail_sup.html');
-    				break;
                 case "information_edit":
-                    include_once('view/page_member_information.html');
+                    include_once('portal/views/page_member_information.html');
     				break;
 
 
@@ -382,15 +420,20 @@ if($_SESSION['user']['memName'] != ""){
                     }else if(array_key_exists($itemVal,$page_other2 )){
                         $page_data2 = $Front_Manage2->getAllFM($itemVal);
                     }
-                    include_once('view/page_other.html');
+                    include_once('portal/views/page_other.html');
     				break;
             }
         }else{
-            include_once('view/slider.php');
-            include_once('view/page_top.html');
-            include_once('view/page_content.html');
+            //首頁(沒有目標頁面itemVal)
+//            include_once('portal/views/slider.php');
+//            include_once('portal/views/page_top.html');
+//            include_once('portal/views/page_content.html');
+            include_once('portal/views/_index.php');
         }
-    }elseif($itemVal != ""){
+    }
+
+    //目標頁面(未登入)
+    elseif($itemVal != ""){
         if(array_key_exists($itemVal,$page_other ) || array_key_exists($itemVal,$page_other2 )){
             switch($itemVal){
                 case $itemVal:
@@ -405,66 +448,120 @@ if($_SESSION['user']['memName'] != ""){
                             }else if(array_key_exists($itemVal,$page_other2 )){
                                 $page_data2 = $Front_Manage2->getAllFM($itemVal);
                             }
-                            include_once('view/page_other.html');
+                            include_once('portal/views/page_other.html');
     						break;
                     }
     				break;
 
                 default:
-                    include_once('view/slider.php');
-                    include_once('view/page_top.html');
-                    include_once('view/page_content.html');
+                    //首頁(沒有目標頁面itemVal)
+//            include_once('portal/views/slider.php');
+//            include_once('portal/views/page_top.html');
+//            include_once('portal/views/page_content.html');
+                    include_once('portal/views/_index.php');
     				break;
             }
-        }elseif($itemVal == 'product'){
-            include_once('view/page_detail.html');
-        }elseif($itemVal == 'product_sup'){
-            include_once('view/page_detail_sup.html');
-        }elseif($itemVal=="member_center"){
-            include_once('view/page_login.html');
-        }elseif($itemVal=="forget"){
-            include_once('view/page_member_forget.html');
-        }elseif($itemVal=="register1"){
-            include_once('view/page_register1.html');
-        }elseif($itemVal=="search"){
-            include_once('view/page_search.html');
-        }elseif($itemVal=="login" or $itemVal=="login_register"){
-            include_once('view/page_login.html');
-        }elseif($itemVal=="category"){
-            include_once('view/page_category.html');
-       }elseif($itemVal=="sup_center"){
-            include_once('view/page_sup_center_new.html'); //encore
-            //include_once('view/page_sup_center.html');
-        }elseif($itemVal=="faq"){
-            include_once('view/page_faq.html');
-        }elseif($itemVal=="co_company"){
-            include_once('view/page_contact.html');
-        }elseif($itemVal=="loan_vip"){
-            include_once('view/page_loanVIP.html');
-        }elseif($itemVal=="loan_menu"){
-            include_once('view/page_loan_menu.html');
-        }elseif($itemVal=="information_edit"){
-            include_once('view/page_member_information.html');
-        }elseif($itemVal=="loan_Cell"){
-            include_once('view/page_loanCell.html');
-        }elseif($itemVal=="loan_Moto"){
-            include_once('view/page_loanMoto.html');
-        }elseif($itemVal=="loan_cell"){
-            include_once('view/page_loan_cell.html'); // add jimmy
-            echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
-        }elseif($itemVal=="loan_moto"){
-            include_once('view/page_loan_moto.html'); // add jimmy
-            echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
-        }else{
-            include_once('view/slider.php');
-            include_once('view/page_top.html');
-            include_once('view/page_content.html');
         }
-    }else{
-        include_once('view/slider.php');
-        include_once('view/page_top.html');
-        include_once('view/page_content.html');
+
+        elseif($itemVal=="member_center"){
+            include_once('portal/views/login/login.php');
+        }
+
+        // ---------------- register ------------------
+        elseif($itemVal=="register"){
+            include_once('portal/views/register/register-1.php');
+        }
+        elseif($itemVal=="register2"){
+            include_once('portal/views/register/register-2.php');
+        }
+        elseif($itemVal=="register3"){
+            include_once('portal/views/register/register-3.php');
+        }
+        elseif($itemVal=="register4"){
+            include_once('portal/views/register/register-4.php');
+        }
+
+        // ---------------- login ------------------
+        elseif($itemVal=="login" /*or $itemVal=="login_register"*/){
+            include_once('portal/views/login/login.php');
+        }
+        elseif($itemVal=="forgetpwd1"){
+            include_once('portal/views/login/forgetpwd-1.php');
+        }
+        elseif($itemVal=="forgetpwd2"){
+            include_once('portal/views/login/forgetpwd-2.php');
+        }
+        elseif($itemVal=="forgetpwd3"){
+            include_once('portal/views/login/forgetpwd-3.php');
+        }
+
+
+        // ---------------- other ------------------
+        elseif($itemVal == "category"){
+            include_once('portal/views/product/page_category.php');
+        }
+        elseif($itemVal == 'product'){
+            include_once('portal/views/product/page_detail.php');
+        }
+        elseif($itemVal == 'product_sup'){
+            include_once('portal/views/product/page_detail_sup.php');
+        }
+        elseif($itemVal == "search"){
+            include_once('portal/views/product/page_search.php');
+        }
+
+
+        elseif($itemVal=="sup_center"){
+            include_once('portal/views/page_sup_center_new.html'); //encore
+            //include_once('portal/views/page_sup_center.html');
+        }
+        elseif($itemVal=="faq"){
+            include_once('portal/views/page_faq.html');
+        }
+        elseif($itemVal=="co_company"){
+            include_once('portal/views/page_contact.html');
+        }
+        elseif($itemVal=="loan_vip"){
+            include_once('portal/views/page_loanVIP.html');
+        }
+        elseif($itemVal=="loan_menu"){
+            include_once('portal/views/page_loan_menu.html');
+        }
+        elseif($itemVal=="information_edit"){
+            include_once('portal/views/page_member_information.html');
+        }
+        elseif($itemVal=="loan_Cell"){
+            include_once('portal/views/page_loanCell.html');
+        }
+        elseif($itemVal=="loan_Moto"){
+            include_once('portal/views/page_loanMoto.html');
+        }
+        elseif($itemVal=="loan_cell"){
+            include_once('portal/views/page_loan_cell.html'); // add jimmy
+            echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
+        }
+        elseif($itemVal=="loan_moto"){
+            include_once('portal/views/page_loan_moto.html'); // add jimmy
+            echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
+        }
+        else{
+            //首頁(沒有目標頁面itemVal)
+//            include_once('portal/views/slider.php');
+//            include_once('portal/views/page_top.html');
+//            include_once('portal/views/page_content.html');
+            include_once('portal/views/_index.php');
+        }
     }
-    include_once('view/page_service.html');
-    include_once('view/page_footer.html');
-    ?>
+
+    //首頁(沒有目標頁面itemVal)
+    else{
+        include_once('portal/views/_index.php');
+//        include_once('portal/views/page_top.html');
+//        include_once('portal/views/page_content.html');
+    }
+
+
+    /************************* layout *******************************/
+    include_once('portal/views/_footer.php');
+
+?>

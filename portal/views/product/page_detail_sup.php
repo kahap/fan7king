@@ -337,7 +337,7 @@
 			if($('input[name=user]').val() != ""){
             
 				$.ajax({
-					url: 'php/order_period_sup.php',
+					url: 'portal/php/order_period_sup.php',
 					data: $('#shopping').serialize(),
 					type:"POST",
 					dataType:'text',
@@ -363,7 +363,7 @@
 			if($('input[name=user]').val() != ""){
        
 				$.ajax({
-					url: 'php/order_direct.php',
+					url: 'portal/php/order_direct.php',
 					data: $('#shopping').serialize(),
 					type:"POST",
 					dataType:'text',

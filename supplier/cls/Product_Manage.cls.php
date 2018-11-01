@@ -270,32 +270,48 @@
 		
 		//新增
 		function insert($array){
-			foreach($array as $key =>$value){
-				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
-			}
-			$sql = "insert into `product_manage`(`proNo`, `supNo` ,`pmSupPrice`,`pmMainSup`,
-					`pmPeriodAmnt`,`pmPeriodAmnt2`,`pmUpDate`,`pmIfDirect`,`pmDirectAmnt`,`pmStatus`,`pmNewest`,
-					`pmHot`,`pmSpecial`,`pmPopular`,`pmNewestOrder`,`pmHotOrder`,`pmSpecialOrder`,
-					`pmBuyAmnt`,`pmClickNum`,`pmBySup`)
+            foreach($array as $key =>$value){
+                if (is_array($value)){
+                    foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value[0];
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
+            }
+			$sql = "insert into `product_manage`(`proNo`, `supNo`, `pmPeriodAmnt`, `pmPeriodAmnt2`, `pmStatus`, `pmBuyAmnt`,`pmClickNum`,`pmBySup`)
 					values('".$proNo."',
 							'".$supNo."',
-							'".$pmSupPrice."',
-							'".$pmMainSup."',
 							'".$pmPeriodAmnt."',
                             '".$pmPeriodAmnt2."',
-							'".$pmUpDate."',
-							'".$pmIfDirect."',
-							'".$pmDirectAmnt."',
 							'".$pmStatus."',
-							'".$pmNewest."',
-							'".$pmHot."',
-							'".$pmSpecial."',
-							'".$pmPopular."',
-							'".$pmNewestOrder."',
-							'".$pmHotOrder."',
-							'".$pmSpecialOrder."',
 							'0',
-							'0','1')";
+							'0',
+							'1')";
+//            $sql = "insert into `product_manage`(`proNo`, `supNo` ,`pmSupPrice`,`pmMainSup`,
+//					`pmPeriodAmnt`,`pmPeriodAmnt2`,`pmUpDate`,`pmIfDirect`,`pmDirectAmnt`,`pmStatus`,`pmNewest`,
+//					`pmHot`,`pmSpecial`,`pmPopular`,`pmNewestOrder`,`pmHotOrder`,`pmSpecialOrder`,
+//					`pmBuyAmnt`,`pmClickNum`,`pmBySup`)
+//					values('".$proNo."',
+//							'".$supNo."',
+//							'".$pmSupPrice."',
+//							'".$pmMainSup."',
+//							'".$pmPeriodAmnt."',
+//                            '".$pmPeriodAmnt2."',
+//							'".$pmUpDate."',
+//							'".$pmIfDirect."',
+//							'".$pmDirectAmnt."',
+//							'".$pmStatus."',
+//							'".$pmNewest."',
+//							'".$pmHot."',
+//							'".$pmSpecial."',
+//							'".$pmPopular."',
+//							'".$pmNewestOrder."',
+//							'".$pmHotOrder."',
+//							'".$pmSpecialOrder."',
+//							'0',
+//							'0','1')";
 			$insert = $this->db->insertRecords($sql);
 			return $insert;
 		}
@@ -427,28 +443,47 @@
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d H:i:s', time());
 			foreach($array as $key =>$value){
-				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                if (is_array($value)){
+                    foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value;
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
 			}
 			//若要統一更改上架狀態
-			$sql = "update
+            $sql = "update
 						`product_manage`
 					set
-						`proNo`='".$proNo."',
+						`supNo`='".$supNo."',
 						`pmPeriodAmnt`='".$pmPeriodAmnt."',
                       	`pmPeriodAmnt2`='".$pmPeriodAmnt2."',
-						`pmUpDate`='".$date."',
-						`pmIfDirect`='".$pmIfDirect."',
-						`pmDirectAmnt`='".$pmDirectAmnt."',
-						`pmNewest`='".$pmNewest."',
-						`pmHot`='".$pmHot."',";
+						`pmStatus`='".$pmStatus."',
+						`pmBuyAmnt`='".$pmBuyAmnt."',
+						`pmClickNum`='".$pmClickNum."',
+						`pmBySup`='".$pmBySup."'";
+//			$sql = "update
+//						`product_manage`
+//					set
+//						`proNo`='".$proNo."',
+//						`pmPeriodAmnt`='".$pmPeriodAmnt."',
+//                      	`pmPeriodAmnt2`='".$pmPeriodAmnt2."',
+//						`pmUpDate`='".$date."',
+//						`pmIfDirect`='".$pmIfDirect."',
+//						`pmDirectAmnt`='".$pmDirectAmnt."',
+//						`pmNewest`='".$pmNewest."',
+//						`pmHot`='".$pmHot."',";
 			if(isset($newDate)){
-				$sql .= "`pmUpDate`='".$pmUpDate."',";
+				$sql .= "`pmUpDate`='".$newDate."',";
 			}
-			$sql .= "`pmSpecial`='".$pmSpecial."',
-						`pmPopular`='".$pmPopular."',
-						`pmStatus` = '".$pmStatus."'
-					where
+            $sql .= "where
 						`proNo`='".$proNo."'";
+//            $sql .= "`pmSpecial`='".$pmSpecial."',
+//						`pmPopular`='".$pmPopular."',
+//						`pmStatus` = '".$pmStatus."'
+//					where
+//						`proNo`='".$proNo."'";
 			// $sql = "update
 						// `product_manage`
 					// set

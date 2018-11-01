@@ -30,7 +30,7 @@
                     <div class="col-lg-3">
                         <?php
                         $active = 2;
-                        require_once 'views/member/_left.php';
+                        require_once 'portal/views/member/_left.php';
                         ?>
                     </div>
                     <div class="col-lg-9">
@@ -86,7 +86,7 @@
         var reNewmemPwd = $(".reNewmemPwd").val();
         if( NewmemPwd == reNewmemPwd){
             $.ajax({
-                url: 'Controllers/php/member_password_edit.php',
+                url: 'portal/Controllers/php/member_password_edit.php',
                 data: $('#member_edit').serialize(),
                 type:"POST",
                 dataType:'text',

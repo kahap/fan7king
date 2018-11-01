@@ -24,7 +24,7 @@
                     <div class="col-lg-3">
                         <?php
                         $active = 1;
-                        require_once 'views/member/_left.php';
+                        require_once 'portal/views/member/_left.php';
                         ?>
                     </div>
                     <div class="col-lg-9">
@@ -115,7 +115,7 @@
         var memno = "<?php echo $_SESSION['user']['memNo']; ?>";
         var pass_number = "<?php echo $memberData[0]["pass_number"]; ?>";
         $.ajax({
-            url: 'Controllers/php/member_resetmail.php',
+            url: 'portal/Controllers/php/member_resetmail.php',
             data: 'memAccount='+memAccount+"&memName="+memName+"&memno="+memno+"&pass_number="+pass_number,
             type: "POST",
             dataType: 'text',

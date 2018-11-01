@@ -1,7 +1,8 @@
 <?php
 	header ("content-type: text/HTML; charset=utf-8");
 	require_once('../../model/require_login.php');
-	
+
+
 	$pm = new Product_Manage();
 	$prod = new Product();
 
@@ -15,7 +16,11 @@
 ///////////////////////////////////// //////////////////////////////////////////////////////
 
 	foreach($_POST as $key=>$value){
-		$$key = trim($value);
+		if (!is_array($value)){
+            $$key = trim($value);
+		}else{
+            $$key = $value;
+		}
 	}
 	
 	//錯誤訊息
@@ -41,12 +46,12 @@
 
 
 	//上架金額
-	if($pmPeriodAmnt == ""){
+	if(!isset($pmPeriodAmnt) || $pmPeriodAmnt == ""){
 		$_POST["pmPeriodAmnt"] = 0;
         $pmPeriodAmnt =0;
 	}
 	//撥款金額
-    if($pmPeriodAmnt2 == ""){
+    if(!isset($pmPeriodAmnt2) || $pmPeriodAmnt2 == ""){
 		$_POST["pmPeriodAmnt2"] = 0;
         $pmPeriodAmnt2=0;
 	}
@@ -63,9 +68,10 @@
 
 ///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
 	//取得商品編號
+
 	if(trim($_POST["catNo"]) != "" && trim($_POST["braNo"]) != "" && trim($_POST["biNo"]) != ""){
 		//最後一筆
-		$lastData = $pro->getAllProDescWithCatAndBraAndItem($braNo, $catNo, $biNo);
+		$lastData = $prod->getAllProDescWithCatAndBraAndItem($braNo, $catNo, $biNo);
 		if($lastData != null){
 			if(substr($lastData[0]["proCaseNo"], -3)<9){
 				$old3Num = substr($lastData[0]["proCaseNo"], -3);
@@ -134,8 +140,10 @@ if(empty(array_filter($errMsg))){
 		$dataS["proGift"] = $proGift;
 		$dataS["proModelID"] = $proModelID;
 		$dataS["proSpec"] = $proSpec;
+		$dataS["proDetail"] = $proDetail;
+		$dataS["proImage"] = $_POST["proImage"];
 		//
-    $prod->insert($dataS);
+		$prod->insert($dataS,$newProNo);
 
 
         $checkData  = $prod->getProNo_Sup($catNo,$braNo,$biNo,$proNo) ;
@@ -165,6 +173,7 @@ if(empty(array_filter($errMsg))){
 			    $dataInsert["proNo"] = $proNo;
 			    $dataInsert["ppPeriodAmount"] = $value;
 			    $dataInsert["ppPercent"] = $ppPercentArr[$key];
+                $dataInsert["ppIntroText"] = '';
 			    $pp->insert($dataInsert);
 		    }
 	    }	

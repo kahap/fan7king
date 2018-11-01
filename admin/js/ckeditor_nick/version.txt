@@ -1,0 +1,2 @@
+ckeditor 4.4.6
+ckfinder 2.4.2
