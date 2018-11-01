@@ -21,6 +21,8 @@ require_once("../admin/cls/Product_Period.cls.php");
 		private $groupArr = array();
 		//order by
 		private $orderArr = "";
+		//limit
+		private $limitArr = "";
 		//想要抓取的資料
 		private $retrieveArr = array();
 		//webView page
@@ -56,7 +58,8 @@ require_once("../admin/cls/Product_Period.cls.php");
 			"mcoCarIdImgTop"=>true,
 			"mcoBankBookImgTop"=>true,
 			"mcoRecentTransactionImgTop"=>true,
-			"mcoExtraInfoUpload"=>true
+			"mcoExtraInfoUpload"=>true,
+			"imagePath"=>true
 		);
 
 		//建構函式
@@ -474,6 +477,9 @@ require_once("../admin/cls/Product_Period.cls.php");
 					$sql .= " order by ".$this->idColumn." desc";
 				}
 			}
+			if (!empty($this->limitArr)) {
+				$sql .= " limit ".$this->limitArr;
+			}
 			$data = $this->db->selectRecords($sql);
 
 			if($data != null){
@@ -481,6 +487,16 @@ require_once("../admin/cls/Product_Period.cls.php");
 			}else{
 				$this->setInformation($data, 0, 0, "No matches found.");
 			}
+			$this->setResult();
+		}
+		public function customSql($sql){
+			$update = $this->db->updateRecords($sql);			
+			if($update){
+				$this->setInformation(true, 1, 1, "成功修改！");
+			}else{
+				$this->setInformation(false, 0, 0, "修改失敗！");
+			}
+
 			$this->setResult();
 		}
 
@@ -506,6 +522,10 @@ require_once("../admin/cls/Product_Period.cls.php");
 
 		public function setOrderArray($string){
 			$this->orderArr = $string;
+		}
+
+		public function setLimitArray($String){
+			$this->limitArr = $String;
 		}
 
 		public function setInformation($data,$status,$records,$msg){

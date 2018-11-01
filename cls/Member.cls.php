@@ -395,7 +395,7 @@
 					from
 						`member`
 					where
-						`memIdNum` = '" . $memAccount . "'&&
+						`memCell` = '" . $memCell . "'&&
 						`memPwd` = '" . $memPwd . "'";
 
 			$data = $this->db->selectRecords($sql);

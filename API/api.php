@@ -109,6 +109,19 @@ foreach($request as $key=>$value){
 	} else if($value == "loginAuthorizeCont") { // jimmy
 		$table = "sys_parm";
 		$action = $value;
+	//手機驗證碼	
+	} else if ($value == "regist_phone" || $value == "regist_phone_keyCheck"){
+		$table = "regist_phone";
+		$action = $value;
+	} else if ($value == "set_password"){
+		$table = "member";
+		$action = $value;
+	} else if($value == "get_homeProduct"){
+		$table = "product";
+		$action = $value;
+	} else if ($value == "get_homeSlogan"){
+		$table = "slogan_ad";
+		$action = $value;
 	}
 }
 
@@ -272,11 +285,29 @@ if(isset($table) && isset($action)){
 				break;
 			case "loginAuthorizeCont": //jimmy
 				include "include/loginAuthorizeCont.php";
+				break;
+			case "regist_phone_keyCheck":
+				include "include/regist_phone_keyCheck.php";
+				break;
+			case "regist_phone":
+				include "include/regist_phone.php";			
+				break;
+			case "set_password":
+				include "include/set_password.php";
+				break;
+			case "get_homeProduct":
+				include "include/get_homeProduct.php";
+				break;
+			case "get_homeSlogan":
+				include "include/get_homeSlogan.php";
+				break;
 		}
 		//印出結果
 		if($table == "que_and_ans" && isset($no)){
 
-		}else if($table == "product" && $type == "product_detail"){
+		}else if($action =="get_homeProduct" ){
+			
+		}else if($table == "product" && $type == "product_detail" ){
 
 		}else{
 			echo $api->getResult();
@@ -303,7 +334,7 @@ function getIdNUmUsed(){
 	$apData = $forSave->getData();
 	if($apData != null){
         $getDeviceId = new API("app_data");
-        $getDeviceId->setWhereArray(array("adTokenId"=>$_POST["adTokenId"]));
+        $getDeviceId->setWhereArray(array("adTokenId"=>$_POST["adTokenjId"]));
         $getDeviceId->getWithWhereAndJoinClause();
         $devData = $getDeviceId->getData();
         if( $apData[0]["memDeviceToken"] ==$devData[0]["adDeviceId"])
