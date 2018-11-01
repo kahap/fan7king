@@ -46,11 +46,11 @@ body.nav-sm .nav.side-menu li a {
 }
 
 body.nav-sm .nav.side-menu li.active-sm {
-    border-right: 5px solid #1ABB9C;
+    border-right: 5px solid rgb(26, 155, 187);
 }
 
 body.nav-sm > .nav.side-menu > li.active-sm > a {
-    color: #1ABB9C !important;
+    color: #ff7f00 !important;
 }
 
 body.nav-sm .nav.side-menu li a i.toggle-up {
@@ -215,7 +215,7 @@ body.nav-md .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #2A3F54;
+    background: #3d352d;
     border-radius: 0;
     height: 57px;
 }
@@ -269,7 +269,7 @@ purple,
 
 green,
 .green {
-    color: #1ABB9C;
+    color: #ff7f00;
 }
 
 .aero {
@@ -295,7 +295,7 @@ dark,
 }
 
 .border-green {
-    border-color: #1ABB9C !important;
+    border-color: #ff7f00 !important;
 }
 
 .border-aero {
@@ -317,8 +317,8 @@ dark,
 }
 
 .bg-green {
-    background: #1ABB9C !important;
-    border: 1px solid #1ABB9C !important;
+    background: #ff7f00 !important;
+    border: 1px solid #ff7f00 !important;
     color: #fff;
 }
 
@@ -370,7 +370,7 @@ dark,
 
 body {
     color: #73879C;
-    background: #2A3F54;
+    background: #3d352d;
     /*#ECF0F1; #FCFCFC*/
 
     font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
@@ -733,7 +733,7 @@ body.nav-md ul.nav.child_menu li:after {
 
 .nav.side-menu> li.current-page,
 .nav.side-menu> li.active {
-    border-right: 5px solid #1ABB9C;
+    border-right: 5px solid #ff7f00;
 }
 
 li.current-page {
@@ -744,17 +744,17 @@ li.current-page {
     color: #ff0000;
     text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
     background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b6479), color-stop(100%, #4c5566)), #686e78;
-    background: -webkit-linear-gradient(#334556, #2C4257), #2A3F54;
-    background: -moz-linear-gradient(#334556, #2C4257), #2A3F54;
-    background: -o-linear-gradient(#334556, #2C4257), #2A3F54;
-    background: linear-gradient(#334556, #2C4257), #2A3F54;
+    background: -webkit-linear-gradient(#3d352d, #3d352d), #3d352d;
+    background: -moz-linear-gradient(#3d352d, #3d352d), #3d352d;
+    background: -o-linear-gradient(#3d352d, #3d352d), #3d352d;
+    background: linear-gradient(#3d352d, #3d352d), #3d352d;
     -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
     -moz-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
     box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
 }
 
 li.current-page a {
-    color: #1ABB9C !important
+    color: #ff7f00 !important
 }
 
 .navbar-brand,
@@ -1374,7 +1374,7 @@ table.jambo_table {
 }
 
 table.jambo_table thead {
-    background: rgba(52, 73, 94, 0.94);
+    background: #3d352d;
     color: #ECF0F1;
 }
 
@@ -1914,7 +1914,7 @@ span.right {
     position: fixed;
     width: 230px;
     z-index: 1000;
-    background: #2A3F54;
+    background: #3d352d;
 }
 
 .sidebar-footer a {
@@ -1924,7 +1924,7 @@ span.right {
     font-size: 17px;
     display: block;
     float: left;
-    background: #172D44;
+    background: #3d352d;
 }
 
 .sidebar-footer a:hover {
@@ -3012,7 +3012,7 @@ select.parsley-error {
 }
 
 .daterangepicker.picker_1 table.table-condensed thead tr:first-child {
-    background: #1ABB9C;
+    background: #ff7f00;
 }
 
 .daterangepicker table.table-condensed thead tr:first-child th {
@@ -3061,11 +3061,11 @@ select.parsley-error {
 }
 
 .daterangepicker.picker_2 table.table-condensed thead tr {
-    color: #1ABB9C;
+    color: #ff7f00;
 }
 
 .daterangepicker.picker_3 table.table-condensed thead tr:first-child {
-    background: #1ABB9C;
+    background: #ff7f00;
     color: #ECF0F1;
 }
 
@@ -3403,7 +3403,7 @@ textarea:focus {
 
 .bs-glyphicons li:hover {
     color: #fff;
-    background-color: #1ABB9C
+    background-color: #ff7f00
 }
 
 @media (min-width: 768px) {
@@ -3434,7 +3434,7 @@ span.tag {
     float: left;
     padding: 5px 9px;
     text-decoration: none;
-    background: #1ABB9C;
+    background: #ff7f00;
     color: #F1F6F7;
     margin-right: 5px;
     font-weight: 500;
@@ -3586,7 +3586,7 @@ ul.timeline li {
 
 .tag {
     line-height: 1;
-    background: #1ABB9C;
+    background: #ff7f00;
     color: #fff !important;
 }
 
@@ -3601,7 +3601,7 @@ ul.timeline li {
     pointer-events: none;
     border-top: 14px solid transparent;
     border-bottom: 14px solid transparent;
-    border-left: 11px solid #1ABB9C;
+    border-left: 11px solid #ff7f00;
 }
 
 .timeline h2.title {
@@ -3711,7 +3711,7 @@ ul.social li {
 
 .wizard_horizontal ul.wizard_steps li a.done:before,
 .wizard_horizontal ul.wizard_steps li a.done .step_no {
-    background: #1ABB9C;
+    background: #ff7f00;
     color: #fff;
 }
 
@@ -3844,7 +3844,7 @@ ul.social li {
 
 .wizard_verticle ul.wizard_steps li a.done:before,
 .wizard_verticle ul.wizard_steps li a.done .step_no {
-    background: #1ABB9C;
+    background: #ff7f00;
     color: #fff;
 }
 
@@ -3986,7 +3986,7 @@ html > body > .ui-pnotify {
 }
 
 .btn-success.btn-outline {
-    color: #1ABB9C;
+    color: #ff7f00;
     border-width: 2px;
 }
 
@@ -4035,8 +4035,8 @@ html > body > .ui-pnotify {
 .btn-success:active,
 .btn-success.active,
 .open .dropdown-toggle.btn-success {
-    background-color: #1ABB9C;
-    border-color: #1ABB9C;
+    background-color: #ff7f00;
+    border-color: #ff7f00;
     color: #FFFFFF;
 }
 
@@ -4147,7 +4147,7 @@ social-body {
 }
 
 .chat .status.online {
-    background: #1ABB9C;
+    background: #ff7f00;
 }
 
 .chat .status.away {
@@ -4305,7 +4305,7 @@ ul.widget_profile_box li a {
 }
 
 ul.widget_profile_box li a:hover {
-    color: #1ABB9C !important;
+    color: #ff7f00 !important;
     border: 1px solid rgba(38, 185, 154, 1);
 }
 
@@ -4540,7 +4540,7 @@ ul.project_files li a i {
 }
 
 .pricing .title {
-    background: #1ABB9C;
+    background: #ff7f00;
     height: 110px;
     color: #fff;
     padding: 15px 0 0;

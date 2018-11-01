@@ -62,7 +62,7 @@ $memberClass_array = array('學生'=>'學生','1'=>'上班族','2'=>'家管','3'
 <html>
 <head>
 <meta charset="UTF-8">
-<title>樂分期管理後台</title>
+<title>Nowait管理後台</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 </head>
 <style>

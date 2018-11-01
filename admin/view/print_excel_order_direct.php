@@ -34,7 +34,7 @@ if(isset($orSupDateFrom)){
 <html>
 <head>
 <meta charset="UTF-8">
-<title>樂分期管理後台</title>
+<title>Nowait管理後台</title>
 <style>
 table{
 	border-collapse:collapse;

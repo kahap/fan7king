@@ -20,7 +20,7 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="admin.php" class="site_title"><i class="fa fa-paw"></i> <span>樂分期管理後台</span></a>
+            <a href="admin.php" class="site_title"><i class="fa fa-paw"></i> <span>Nowait管理後台</span></a>
           </div>
           <div class="clearfix"></div>
 
