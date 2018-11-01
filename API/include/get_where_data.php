@@ -145,37 +145,42 @@
 		$api->getWithWhereAndJoinClause();
 		break;
 		case "search":
-		$array = array();
-		if(!isset($_POST['catNo']) || $_POST['catNo'] == ""){
-			$array['catNo'] = '0';
-		}else{
-			$array['catNo'] = $_POST['catNo'];
-		}
-		if(!isset($_POST["search"])){
-			$array['search'] = '';
-		}else{
-			$array['search'] = $_POST['search'];
-		}
-		$product_data = $api->getSearchPM($array);
-		if($product_data != null){
-			$resultArr = array();
-			$neededData = array(
-				"proNo","pmNo","pmStatus","pmBuyAmnt","proName",
-				"pmIfDirect","proImage","pmDirectAmnt","pmPeriodAmnt","proSpec"
-			);
-			foreach($product_data as $key=>$value){
-				foreach($value as $keyIn=>$valueIn){
-					if(in_array($keyIn,$neededData)){
-						$resultArr[$key][$keyIn] = $valueIn;
+			$array = array();
+			if(!isset($_POST['catNo']) || $_POST['catNo'] == ""){
+				$array['catNo'] = '0';
+			}else{
+				$array['catNo'] = $_POST['catNo'];
+			}
+			if(!isset($_POST["search"])){
+				$array['search'] = '';
+			}else{
+				$array['search'] = $_POST['search'];
+			}
+			if(!isset($_POST["limit"])){
+				$array['limit'] = '';
+			}else{
+				$array['limit'] = $_POST['limit'];
+			}
+			$product_data = $api->getSearchPM($array);
+			if($product_data != null){
+				$resultArr = array();
+				$neededData = array(
+					"proNo","pmNo","catNo","pmStatus","pmBuyAmnt","proName",
+					"pmIfDirect","proImage","pmDirectAmnt","pmPeriodAmnt","proSpec"
+				);
+				foreach($product_data as $key=>$value){
+					foreach($value as $keyIn=>$valueIn){
+						if(in_array($keyIn,$neededData)){
+							$resultArr[$key][$keyIn] = $valueIn;
+						}
 					}
 				}
+				$api->setInformation($resultArr, 1, count($resultArr), "OK");
+			}else{
+				$api->setInformation($product_data, 0, 0, "No matches found.");
 			}
-			$api->setInformation($resultArr, 1, count($resultArr), "OK");
-		}else{
-			$api->setInformation($product_data, 0, 0, "No matches found.");
-		}
-		$api->setResult();
-		break;
+			$api->setResult();
+			break;
 		case "member_latest_order":
 		$memNo = getMemberNo();
 		$api->setJoinArray(array("member"=>"memNo"));

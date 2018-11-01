@@ -606,7 +606,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 			$str = ($catNo != "0") ? "`product`.catNo = '".$catNo."' &&":'';
 			$str .= "`product`.proName like '%".$search."%'";
 			$sql = "select
-						`product_manage`.`proNo`,`product_manage`.`pmNo`,
+						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,
 						`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
 					from
 						`product_manage`
@@ -623,7 +623,10 @@ require_once("../admin/cls/Product_Period.cls.php");
 						`product_manage`.`pmMainSup` = '1' &&
 					".$str."
 					order by
-						`product_manage`.`pmUpDate` desc";
+						`product_manage`.`pmUpDate` desc ";
+			if ($limit !="") {
+				$sql .= "limit ".$limit;
+			}
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}

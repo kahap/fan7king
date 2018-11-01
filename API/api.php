@@ -122,6 +122,9 @@ foreach($request as $key=>$value){
 	} else if ($value == "get_homeSlogan"){
 		$table = "slogan_ad";
 		$action = $value;
+	} else if ($value == "get_mallData"){
+		$table = "category";
+		$action = $value;
 	}
 }
 
@@ -300,6 +303,9 @@ if(isset($table) && isset($action)){
 				break;
 			case "get_homeSlogan":
 				include "include/get_homeSlogan.php";
+				break;
+			case "get_mallData":
+				include "include/get_mallData.php";
 				break;
 		}
 		//印出結果

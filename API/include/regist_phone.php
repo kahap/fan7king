@@ -12,7 +12,7 @@
     $updata = array(
         "phoneNumber"=>$phoneNumber,
         "passNumber"=>$passNumber,
-        "dateTime"=>date('Y-m-d H:i:s',time())
+        "dateTime"=>$regtime
     );
     if (count($data)!=0) {        
         $api->update($updata,$phoneNumber);
