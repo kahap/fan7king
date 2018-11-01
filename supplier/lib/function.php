@@ -170,7 +170,7 @@
 							mkdir(iconv('UTF-8', 'UTF-8',$imagePath),0777,true);
 						}
 						if(move_uploaded_file($imagetemp, iconv('UTF-8', 'UTF-8',$imagePath.$imagename.".".$extension))) {
-							array_push($finalData,"../../../admin/images/".$folderName."/".$imagename.".".$extension);
+							array_push($finalData,"../admin/images/".$folderName."/".$imagename.".".$extension);
 						}else{
 							$errMsg = "上傳失敗->".$imagePath.$imagename.".".$extension;
 						}
