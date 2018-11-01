@@ -73,18 +73,43 @@
 		}
 		
 		//取得所有商品上架(主要供應商)
-		public function getAllPMMainSup(){
+		public function getAllPMMainSup($p=0,$a=30 , $search=0){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
 			$sql = "select
 						*
 					from
-						`product_manage`
-					where
+						`product_manage`".
+                    ($search?" join `product` on `product`.`proNo` = `product_manage`.`proNo` ":"")
+					."where
 						`pmMainSup` = '1'
+                    ".$key." 
 					order by
-						`pmNo`";
+						`pmNo` 
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        public function getAllPMMainSupCount($search=0){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
+            $sql = "select
+						*
+					from
+						`product_manage`".
+                    ($search?" join `product` on `product`.`proNo` = `product_manage`.`proNo` ":"")
+                    ."where
+						`pmMainSup` = '1'
+                    ".$key." 
+					order by
+						`pmNo`";
+            $data = $this->db->selectRecords($sql);
+            return  $this->db->iNoOfRecords;
+        }
 		
 		//取得所有商品上架(依照商品名稱)
 		public function getAllPMGroupByProName($p,$a, $search=0){
@@ -133,16 +158,42 @@
         }
 		
 		//取得該供應商所有商品上架
-		public function getAllPMBySupNo($supNo){
+		public function getAllPMBySupNo($supNo ,$p,$a, $search=0){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
 			$sql = "select
 						*
 					from
-						`product_manage`
+						`product_manage`".
+                    ($search?" join `product` on `product`.`proNo` = `product_manage`.`proNo` ":"")
+                    ."
 					where
-						`supNo` = '".$supNo."'";
+						`supNo` = '".$supNo."' 
+					    ".$key." 
+					limit " .$p. " , " .$a ;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        //取得該供應商所有商品上架
+        public function getAllPMBySupNoCount($supNo ,$search=0){
+            $key = '';
+            if ($search){
+                $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
+            }
+            $sql = "select
+						*
+					from
+						`product_manage`".
+                ($search?" join `product` on `product`.`proNo` = `product_manage`.`proNo` ":"")
+                ."
+					where
+						`supNo` = '".$supNo."' 
+					".$key." ";
+            $data = $this->db->selectRecords($sql);
+            return $this->db->iNoOfRecords;
+        }
 		
 		//編號取得單一商品上架
 		public function getOnePMByNo($pmNo){

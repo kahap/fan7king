@@ -1,6 +1,10 @@
 <?php 
 require_once('model/require_general.php');
 
+date_default_timezone_set('Asia/Taipei');
+$date = date('Y-m-d H:i:s', time());
+
+
 if($_GET["action"] == "edit"){
 	$pro = new Product();
 	$proNo = $_GET["prono"];
@@ -22,7 +26,7 @@ $allItems = $items->getAllItemsOrder();
 
 //相簿圖片
 $imgArr = getAllImgs();
-$imgArr = isset($imgArr) ?: [];
+$imgArr = isset($imgArr) ?$imgArr: [];
 
 
 $tabIndex = 0;

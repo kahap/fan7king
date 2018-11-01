@@ -7,16 +7,25 @@ $sup = new Supplier();
 $cat = new Category();
 $bra = new Brand();
 
+
+$page2 = isset($_GET["paginate"])? $_GET["paginate"] : 1;
+$search = isset($_GET["search"])? $_GET["search"] : null;
+
+
 foreach($_GET as $key=>$value){
 	$$key = $value;
 }
 
 $allSupData = $sup->getAllSupplier();
 
-$allPMData = $pm->getAllPMMainSup();
+$allPMData = $pm->getAllPMMainSup( ($page2-1)*30 , 30 , $search);
+$totalProData = $pm->getAllPMMainSupCount($search);
+$lastPage = ceil($totalProData/30);
 
 if(isset($supno) && is_numeric($supno)){
-	$allPMData = $pm->getAllPMBySupNo($supno);
+	$allPMData = $pm->getAllPMBySupNo($supno , ($page2-1)*30 , 30 , $search);
+    $totalProData = $pm->getAllPMBySupNoCount($supno, $search);
+    $lastPage = ceil($totalProData/30);
 }
 
 ?>
@@ -47,6 +56,45 @@ if(isset($supno) && is_numeric($supno)){
 					<span style="color:red;">*點選「匯出Excel」前請先按查詢按鈕，才能確認資料正確性</span>
                   </div>
                   <button id="export-excel" class="btn btn-success">匯出Excel</button>
+
+
+                    <div class="top">
+                        <div class="dataTables_paginate paging_full_numbers" id="example_paginate">
+                            <a href="admin.php?page=supplier&action=productList<?php if(isset($_GET["supno"]))echo '&supno='.$_GET["supno"];?>&paginate=1&search=<?php echo $search;?>" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">
+                                第一頁
+                            </a>
+                            <?php if ($page2>1){ ?>
+                                <a href="admin.php?page=supplier&action=productList<?php if(isset($_GET["supno"]))echo '&supno='.$_GET["supno"];?>&paginate=<?php echo $page2-1;?>&search=<?php echo $search;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
+                                    前一頁
+                                </a>
+                            <?php } ?>
+                            <span>
+                                <select class="paginate_button choosePage" data-href="admin.php?page=supplier&action=productList<?php if(isset($_GET["supno"]))echo '&supno='.$_GET["supno"];?>&search=<?php echo $search;?>">
+                                <?php for ($i=1;$i<=$lastPage;$i++){ ?>
+                                    <option value="<?php echo $i;?>" <?php if($page2==$i)echo 'selected';?> >
+                                        <?php echo $i;?>
+                                    </option>
+                                <?php } ?>
+                                </select>
+                                <!--                                <a  href="&paginate=2" class="paginate_button " aria-controls="example" data-dt-idx="3" tabindex="0">2</a>-->
+                                <!--                                <a  href="&paginate=3" class="paginate_button " aria-controls="example" data-dt-idx="4" tabindex="0">3</a>-->
+                            </span>
+                            <?php if ($page2<$lastPage){ ?>
+                                <a href="admin.php?page=supplier&action=productList<?php if(isset($_GET["supno"]))echo '&supno='.$_GET["supno"];?>&paginate=<?php echo $page2+1;?>&search=<?php echo $search;?>" class="paginate_button next" aria-controls="example" data-dt-idx="5" tabindex="0" id="example_next">
+                                    下一頁
+                                </a>
+                            <?php } ?>
+                            <a href="admin.php?page=supplier&action=productList<?php if(isset($_GET["supno"]))echo '&supno='.$_GET["supno"];?>&paginate=<?php echo $lastPage;?>&search=<?php echo $search;?>" class="paginate_button last" aria-controls="example" data-dt-idx="6" tabindex="0" id="example_last">
+                                最後一頁
+                            </a>
+                        </div>
+                    </div>
+                    <div class="top">
+                        <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($page2-1)*30+1;?> 筆 到 第 <?php echo ($page2)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
+                    </div>
+                    <br />
+
+
                   <table id="example" class="table bulk_action table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
@@ -240,12 +288,32 @@ if(isset($supno) && is_numeric($supno)){
     var asInitVals = new Array();
     $(document).ready(function() {
       var oTable = $('#example').dataTable({
+          "paging": false,
+          "processing": true,
         "oLanguage": {
           "sSearch": "搜尋: "
         },
-        'iDisplayLength': 100,
+        // 'iDisplayLength': 100,
         "sPaginationType": "full_numbers"
       })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
+        $('#example_info').hide();
+
+        $('.bottom').next('.dataTables_info').hide();
+
+        $('.choosePage').change(function () {
+            location.href = $(this).data('href') + '&paginate=' + $(this).val();
+        });
+
+        // search
+        $('#example_filter').find('input[type=search]').val('<?php echo $search;?>');
+        $('#example_filter').find('input[type=search]').change(function() {
+            var keyword = $(this).val();
+            var url = 'admin.php?page=supplier&action=productList<?php if(isset($_GET["supno"]))echo '&supno='.$_GET["supno"];?>&paginate=<?php echo $page2;?>&search=';
+            location.href = url + keyword;
+        });
+
+
+
       $("tfoot input").keyup(function() {
         /* Filter on the column based on the index of this element's parent <th> */
         oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));

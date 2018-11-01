@@ -44,7 +44,11 @@ $pro = new Product();
 	                    	foreach($allData as $key=>$value){
                             if($value["pmBySup"]==1)
                             {
+                                if ($value["proNo"]=='')continue;
+
 	                    		$proData = $pro->getOneProByNo($value["proNo"]);
+	                    		if ($proData[0]["proNo"]=='')continue;
+
 	                    		$ppData = $pp->getPPByProduct($value["proNo"]);
 								$emptyPp = true;
 								if($ppData != null){

@@ -26,7 +26,7 @@ $allItems = $items->getAllItemsOrder();
 
 //相簿圖片
 $imgArr = getAllImgs();
-$imgArr = isset($imgArr) ?: [];
+$imgArr = isset($imgArr) ?$imgArr: [];
 
 
 $tabIndex = 0;
@@ -86,6 +86,8 @@ if($_GET["action"] == "edit"){
 	
 	$pro = new Product();
 	$proData = $pro->getOneProByNo($proNo);
+    $proImageArray = json_decode($proData[0]["proImage"]);
+
 }else{
 	$pm = new Product_Manage();
 
@@ -107,6 +109,10 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 }
 
 ?>
+
+<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+<!--	<link href="css/editor/external/google-code-prettify/prettify.css" rel="stylesheet">-->
+<!--	<link href="css/editor/index.css" rel="stylesheet">-->
 <!-- page content -->
       <div class="right_col" role="main" style="min-height: 949px;">
         <div class="">
@@ -129,9 +135,12 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                   <?php if($_GET["action"]=="edit"){ ?>
                   	  商品編號: <?php echo $proData[0]["proCaseNo"]; ?> &nbsp&nbsp&nbsp&nbsp
                   	<?php if(isset($_SERVER['HTTP_REFERER'])){ ?>
-                  	<a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
-	                  <button class="btn btn-success">回上頁</button>
-	                </a>
+                          <a style="color:#FFF;" onclick="window.history.back();">
+                              <button class="btn btn-primary">回上頁</button>
+                          </a>
+<!--                  	<a style="color:#FFF;" href="--><?php //echo $_SERVER['HTTP_REFERER']; ?><!--">-->
+<!--	                  <button class="btn btn-success">回上頁</button>-->
+<!--	                </a>-->
 	                <?php } ?>
                   <?php }else{ ?>
                   	<a style="color:#FFF;" href="?page=product&type=productManage">
@@ -143,7 +152,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                 </div>
                 <div class="x_content">
                   <br>
-                  <form action="ajax/product/edit.php" method="POST" class="form-horizontal form-label-left" id="form1" name="form1">
+                  <form action="ajax/product/edit.php" method="POST" enctype="multipart/form-data" class="form-horizontal form-label-left" id="form1" name="form1">
                    <input type="hidden" id="supNo" name="supNo" value="<?php echo $_SESSION['supplieruserdata']['supNo']; ?>">
                    <input type="hidden" id="pmBySup" name="pmBySup" value="1">
 
@@ -421,8 +430,8 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                                           <ul id="upload-method" class="nav nav-tabs bar_tabs" role="tablist">
                                               <li role="presentation" class="active"><a href="#tab_content-multiple" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">快速上傳(一次上傳多張)</a>
                                               </li>
-                                              <li role="presentation" class=""><a href="#tab_content-single" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">單張上傳/從歷史相簿選擇</a>
-                                              </li>
+<!--                                              <li role="presentation" class=""><a href="#tab_content-single" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">單張上傳/從歷史相簿選擇</a>-->
+<!--                                              </li>-->
                                           </ul>
                                           <div id="preview" class="tab-content">
                                               <div role="tabpanel" class="tab-pane fade active in" id="tab_content-multiple" aria-labelledby="home-tab">
@@ -482,7 +491,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                     <div style="margin:30px;"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                         <button type="submit" class="btn btn-primary">
+                         <button id="confirm-form" type="submit" class="btn btn-primary">
                          	<?php if($_GET["action"]=="edit") echo "確認修改"; else echo "確認新增" ?>
                          </button>
                       </div>
@@ -495,8 +504,105 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
         </div>
         <!-- /page content -->
 
+          <!-- 相簿區 -->
+          <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div style="max-height:500px;" class="modal-content">
 
-  <!-- richtext editor -->
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                          <h4 style="display:inline-block;" class="modal-title" id="myModalLabel">歷史相簿</h4>
+                          <div style="float:right;margin-right:20px;display:none;" id="history-search-area">
+                              搜尋：
+                              <input type="text" id="history-search">
+                          </div>
+                      </div>
+                      <div style="max-height:374px;overflow-y:scroll;" class="modal-body">
+                          <form>
+                              <input type="hidden" name="proNo" value="">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <div class="x_panel">
+                                          <div class="x_content">
+                                              <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                                  <?php
+                                                  if(!is_null(array_filter($imgArr))){
+                                                      ?>
+                                                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                                          <?php
+                                                          $folderIndex = 0;
+                                                          /*foreach($imgArr as $key=>$value){
+                                                      ?>
+                                                          <li role="presentation" class="<?php if($folderIndex == 0) echo "active"; ?>">
+                                                              <a href="#tab_content<?php echo $folderIndex; ?>" id="" role="tab" data-toggle="tab" aria-expanded="<?php if($folderIndex == 0) echo "true"; else echo "false";?>"><?php echo $key; ?></a>
+                                                          </li>
+                                                      <?php
+                                                              $folderIndex++;
+                                                          }*/
+                                                          ?>
+                                                          <li role="presentation" class="">
+                                                              <a href="#tab_content<?php echo $folderIndex; ?>" id="" role="tab" data-toggle="tab" aria-expanded="false">搜尋區</a>
+                                                          </li>
+                                                      </ul>
+                                                      <div id="myTabContent" class="tab-content">
+                                                          <?php
+                                                          $tabIndex = 0;
+                                                          /*foreach($imgArr as $key=>$value){
+                                                          ?>
+                                                          <div role="tabpanel" class="tab-pane fade <?php if($tabIndex == 0) echo "active in";?>" id="tab_content<?php echo $tabIndex; ?>">
+                                                            <?php foreach($imgArr[$key] as $img){?>
+                                                            <div class="col-md-55">
+                                                              <div class="thumbnail">
+                                                                <div class="image view view-first">
+                                                                  <img style="width: 100%; display: block;" src="images/product/<?php echo $key."/".$img ?>" alt="image" />
+                                                                  <div class="mask">
+                                                                    <p> </p>
+                                                                    <div class="tools tools-bottom">
+                                                                      <a class="select-img" href="#">選取</a>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="caption">
+                                                                  <p style="text-align:center;"></p>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <?php } ?>
+                                                          </div>
+                                                          <?php
+                                                                 $tabIndex++;
+                                                               }*/
+                                                          ?>
+                                                          <div role="tabpanel" class="tab-pane fade" id="tab_content<?php echo $tabIndex; ?>">
+                                                              請輸入商品名稱關鍵字
+                                                          </div>
+                                                      </div>
+                                                      <?php
+                                                  }else{
+                                                      ?>
+                                                      <div class="row">尚無任何圖片</div>
+                                                      <?php
+                                                  }
+                                                  ?>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+                          <button id="confirm-insert" data-dismiss="modal" type="button" class="btn btn-primary">確認</button>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+
+
+          <!-- richtext editor -->
   <script src="js/editor/bootstrap-wysiwyg.js"></script>
   <!--  <script src="js/editor/external/jquery.hotkeys.js"></script>-->
   <!--  <script src="js/editor/external/google-code-prettify/prettify.js"></script>-->
@@ -509,6 +615,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
               //     baseHref : 'images/product/test/',
               // } );
 
+              var text;
               function processData(){
                   // getting data
                   var data = CKEDITOR.instances.content.getData();
@@ -560,15 +667,6 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 //            getRadio(val) ;
 //     });
 // });
-$(function() {
-    $('#period-amnt2').focusout(function() {
-        var val = $("#period-amnt2").val();
-        $("#period-amnt").val(val*0.95);
-        getRadio(val) ;
-    });
-
-    getRadio() ;
-});
 
 function getRadio()
 {
@@ -585,6 +683,19 @@ function getRadio()
 }
 
 $(function(){
+
+    $('#period-amnt2').focusout(function() {
+        var val = $("#period-amnt2").val();
+        $("#period-amnt").val(val*0.95);
+        getRadio(val) ;
+    });
+    getRadio() ;
+
+    <?php if($_GET["action"]=="edit"){?>
+    // getRadio() ;
+    <?php } ?>
+
+
     ///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
     //歷史相簿搜尋
     $(document).on("click","li[role='presentation']",function(){
@@ -691,64 +802,9 @@ $(function(){
             theImg.parent("div").remove();
         }
     });
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-    $("button[type='submit']").click(function(e){
-        // var val = $("#period-amnt").val();
-        var val = $("#period-amnt2").val();
-        if(val=='')
-        {
-            alert("請輸入上架金額");
-            return;
-        }
-	    $("#period-amnt2").val(val);
-        getRadio(val) ;
-
-		$("#stampImgErr").text("");
-		$(".parsley-errors-list li").text("");
-		e.preventDefault();
-
-        $("#editor2").val(CKEDITOR.instances.editor2.getData());
-		
-		var form = new FormData($("form")[0]);
-		var url = "ajax/productManage/<?php echo $_GET["action"]; ?>.php";
-		var redirect = "?page=product&type=productManage";
-			
-		$.ajax({
-			url:url,
-			type:"post",
-			data:form,
-			datatype:"json",
-			contentType:false,
-			processData: false,
-			success:function(result){
-				var results = JSON.parse(result);
-				if(results.errMsg != ""){				
-				    addError($("#catErr"),results.errMsg.catErr);
-                    addError($("#braErr"),results.errMsg.braErr);
-                    addError($("#proNoErr"),results.errMsg.proNoErr);
-					addError($("#pmPeriodAmntErr"),results.errMsg.pmPeriodAmntErr);
-                    addError($("#pmPeriodAmntErr2"),results.errMsg.pmPeriodAmntErr2);				
-				}else if(results.errMsg == ""){
-					alert(results.success);
-					location.href= redirect;
-				}
-			}
-		});
-	});
-
-// 	//圖片上傳預覽
-// 	var inputLocalFont = document.getElementById("stamp-upload");
-// 	inputLocalFont.addEventListener("change",readMultipleURL,false);
-
-// 	$("#stamp-upload").change(function(){
-// 	    readURL(this);
-// 	});
-
-
-    ///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
     //登錄新產品
     <?php if($_GET["action"] == "edit"){?>
     $("#insert-btn").click(function(e){
@@ -785,13 +841,69 @@ $(function(){
         }
     });
     <?php } ?>
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-    $("#descr").val("");
-    $("#confirm-form").click(function(e){
-        Get_eWebEditor_Img();
-        return ;
-    });
+
+    $("button[type='submit']").click(function(e){
+        // var val = $("#period-amnt").val();
+        var val = $("#period-amnt2").val();
+        if(val=='')
+        {
+            alert("請輸入上架金額");
+            return false;
+        }
+	    $("#period-amnt2").val(val);
+        getRadio(val) ;
+
+
+		$("#stampImgErr").text("");
+		$(".parsley-errors-list li").text("");
+		e.preventDefault();
+
+        $("#editor2").val(CKEDITOR.instances.editor2.getData());
+
+        //清空空白input
+        for(var i=0; i<$(".single-file").length; i++){
+            if($(".single-file").eq(i).get(0).files.length == 0){
+                $(".single-file").eq(i).remove();
+            }
+        }
+
+        if($("#upload-method li").eq(1).hasClass("active")){
+            $("#imgMethod").val("album");
+            $("#album").val(imgList);
+        }else {
+            $("#imgMethod").val("upload");
+        }
+
+
+		var form = new FormData($("form")[0]);
+		var url = "ajax/productManage/<?php echo $_GET["action"]; ?>.php";
+		var redirect = "?page=product&type=productManage";
+			
+		$.ajax({
+			url:url,
+			type:"post",
+			data:form,
+			datatype:"json",
+			contentType:false,
+			processData: false,
+			success:function(result){
+				var results = JSON.parse(result);
+				if(results.errMsg != ""){				
+				    addError($("#catErr"),results.errMsg.catErr);
+                    addError($("#braErr"),results.errMsg.braErr);
+                    addError($("#proNoErr"),results.errMsg.proNoErr);
+					addError($("#pmPeriodAmntErr"),results.errMsg.pmPeriodAmntErr);
+                    addError($("#pmPeriodAmntErr2"),results.errMsg.pmPeriodAmntErr2);				
+				}else if(results.errMsg == ""){
+					alert(results.success);
+					location.href= redirect;
+				}
+			}
+		});
+	});
 
     //多張圖片上傳預覽
     $("#stamp-upload").change(function(){
@@ -803,8 +915,14 @@ $(function(){
         readURL(this,curOrder);
         curOrder++;
     });
-    ///////////////////////////////////// ///////////////////////////////////////////////////////////////////
 
+// 	//圖片上傳預覽
+// 	var inputLocalFont = document.getElementById("stamp-upload");
+	// inputLocalFont.addEventListener("change",readMultipleURL,false);
+
+	// $("#stamp-upload").change(function(){
+	//     readURL(this);
+	// });
 });
 //讀單張
 function readURL(input) {
@@ -828,41 +946,35 @@ function readURL(input) {
     }
 }
 //讀多張
-function readMultipleURL(){
-	$('#preview-area img').remove();
-	var fileList = this.files;
+function readMultipleURL(imgList,input){
+	$('#preview-area-multiple img').remove();
+	// var fileList = $(this).files;
 
-    var anyWindow = window.URL || window.webkitURL;
+    if (input.files && input.files[0]) {
+        var fileList = input.files;
 
-        for(var i = 0; i < fileList.length; i++){
-          //get a blob to play with
-          var objectUrl = anyWindow.createObjectURL(fileList[i]);
-          // for the next line to work, you need something class="preview-area" in your html
-          // $('#preview-area').append('<img style="border:2px solid #AAA;padding:5px;margin:20px;max-width:300px;" src="' + objectUrl + '" />');
+        var anyWindow = window.URL || window.webkitURL;
 
-    ///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
-            $('#preview-area-multiple').append('<div style="display:inline-block;border:2px solid #AAA;padding:5px;margin:20px;position:relative;">'+
-                '<img style="max-width:300px;" src="' + objectUrl + '" />'+
-                '</div>');
-    ///////////////////////////////////// ///////////////////////////////////////////////////////////////////
+            for(var i = 0; i < fileList.length; i++){
+              //get a blob to play with
+              var objectUrl = anyWindow.createObjectURL(fileList[i]);
+              // for the next line to work, you need something class="preview-area" in your html
+              // $('#preview-area').append('<img style="border:2px solid #AAA;padding:5px;margin:20px;max-width:300px;" src="' + objectUrl + '" />');
 
-          // get rid of the blob
-          window.URL.revokeObjectURL(fileList[i]);
-        }
+        ///////////////////////////////////// 舊後台新增商品 //////////////////////////////////////////////////////
+                $('#preview-area-multiple').append('<div style="display:inline-block;border:2px solid #AAA;padding:5px;margin:20px;position:relative;">'+
+                    '<img style="max-width:300px;" src="' + objectUrl + '" />'+
+                    '</div>');
+        ///////////////////////////////////// ///////////////////////////////////////////////////////////////////
+
+              // get rid of the blob
+              window.URL.revokeObjectURL(fileList[i]);
+            }
+    }
 }
 function addError(selector, errMsg){
 	selector.text(errMsg);
 }
- <?php if($_GET["action"]=="edit"){?>
-			
-$(document).ready(function()
-{
-			getRadio() ;
-         
-});
-   <?php } ?>
-
-
 
 
 $(function() {

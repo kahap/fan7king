@@ -100,22 +100,31 @@ $braData = $bra->getOneBrandByNo($proData[0]["braNo"]);
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                       	採取動作 : 
                       </label>
-                      <a style="text-decoration:none;" href="?page=product&type=product&action=edit&prono=<?php echo $proNo; ?>">
+                        <?php if ($proData[0]["bySup"]==1){ ?>
+                      <a style="text-decoration:none;" href="?page=product&type=productManage&action=edit&prono=<?php echo $proNo; ?>">
                       	<button class="btn btn-success">編輯</button>
                       </a>
+                        <?php } else { ?>
+                        <a style="text-decoration:none;" href="?page=product&type=product&action=edit&prono=<?php echo $proNo; ?>">
+                            <button class="btn btn-success">編輯</button>
+                        </a>
+                        <?php } ?>
 <!--                       <button id="content-remove" class="btn btn-danger">刪除</button> -->
                     </div>
                     <div style="margin:30px;"></div>
                     <div class="form-group not-print">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <a style="color:#FFF;" href="?page=product&type=product">
-                          <button class="btn btn-primary">回商品列表</button>
-                        </a>
-                        <?php if(isset($_SERVER['HTTP_REFERER'])){?>
-                        <a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
-                          <button class="btn btn-primary">回上頁</button>
-                        </a>
-                        <?php }?>
+<!--                        <a style="color:#FFF;" href="?page=product&type=product">-->
+<!--                          <button class="btn btn-primary">回商品列表</button>-->
+<!--                        </a>-->
+                          <a style="color:#FFF;" onclick="window.history.back();">
+                              <button class="btn btn-primary">回上頁</button>
+                          </a>
+<!--                        --><?php //if(isset($_SERVER['HTTP_REFERER'])){?>
+<!--                        <a style="color:#FFF;" href="--><?php //echo $_SERVER['HTTP_REFERER']; ?><!--">-->
+<!--                          <button class="btn btn-primary">回上頁</button>-->
+<!--                        </a>-->
+<!--                        --><?php //}?>
                       </div>
                     </div>
                   </div>

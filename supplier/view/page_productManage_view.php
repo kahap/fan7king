@@ -100,11 +100,14 @@ $supNoArr = array();
 	                        <a style="color:#FFF;" href="?page=product&type=productManage">
 	                          <button class="btn btn-primary">回上架列表</button>
 	                        </a>
-	                        <?php if(isset($_SERVER['HTTP_REFERER'])){?>
-	                        <a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
-	                          <button class="btn btn-primary">回上頁</button>
-	                        </a>
-	                        <?php }?>
+                              <a style="color:#FFF;" onclick="window.history.back();">
+                                  <button class="btn btn-primary">回上頁</button>
+                              </a>
+<!--	                        --><?php //if(isset($_SERVER['HTTP_REFERER'])){?>
+<!--	                        <a style="color:#FFF;" href="--><?php //echo $_SERVER['HTTP_REFERER']; ?><!--">-->
+<!--	                          <button class="btn btn-primary">回上頁</button>-->
+<!--	                        </a>-->
+<!--	                        --><?php //}?>
 	                      </div>
 	                    </div>
 	                </div>
