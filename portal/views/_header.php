@@ -84,6 +84,8 @@
         }
     </style>
 
+    <link type="text/css" rel="stylesheet" href="portal/assets/css/waitMe.css">
+    <script src="portal/assets/js/waitMe.js"></script>
 
 </head>
 <body class="home">

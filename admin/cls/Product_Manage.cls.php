@@ -71,6 +71,19 @@
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+		//取得所有商品上架(未上架)
+        public function getAllPMByStatus0(){
+            $sql = "select
+						*
+					from
+						`product_manage` join `product` on `product`.`proNo` = `product_manage`.`proNo` 
+                    where
+                        `product_manage`.`pmStatus`=0 
+					order by
+						`pmNo`";
+            $data = $this->db->selectRecords($sql);
+            return $data;
+        }
 		
 		//取得所有商品上架(主要供應商)
 		public function getAllPMMainSup($p=0,$a=30 , $search=0){
@@ -112,7 +125,7 @@
         }
 		
 		//取得所有商品上架(依照商品名稱)
-		public function getAllPMGroupByProName($p,$a, $search=0){
+		public function getAllPMGroupByProName($p=0,$a=30, $search=0){
             $key = '';
             if ($search){
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
@@ -262,7 +275,7 @@
         }
 		
 		//依據商品取得該商品並且group
-		public function getAllByProNameAndGroup($proNo,$p,$a){
+		public function getAllByProNameAndGroup($proNo,$p=0,$a=30){
 			$sql = "select
 						*
 					from

@@ -12,7 +12,7 @@ session_start();
         text-overflow: ellipsis;
     }
 </style>
-<main role="main">
+<main role="main" class="main">
     <section>
         <div class="container">
             <ol class="breadcrumb clearfix">
@@ -108,10 +108,11 @@ session_start();
                                 $page_url = '?item=search&search='. $_GET['search'];
 
                                 $totalProData = $pm->getSearchPMCount($_GET);
-                                //$amount = ($totalProData<1000) ? 999 : 100;   //若總數大於999，做分頁(100 amount/page)
-                                $amount = 30;   //若總數大於999，做分頁(100 amount/page)
+                                $amount = ($totalProData<1000) ? 999 : 100;   //若總數大於999，做分頁(100 amount/page)
+//                                $amount = 30;   //
                                 $product_data = $pm->getSearchPM( $_GET, ($page-1)*$amount, $amount );
                                 $lastPage = ceil($totalProData/$amount);
+
 
 
                                 If($product_data != ""){

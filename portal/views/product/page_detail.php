@@ -375,6 +375,7 @@ $_SESSION['pro'] = $proNo;
                             location.href='index.php?item=member_center&action=order_period';
                         }else{
                             alert(msg);
+                            return false;
                         }
                     },
                     error:function(xhr, ajaxOptions, thrownError){

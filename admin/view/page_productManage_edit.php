@@ -9,6 +9,9 @@ $psData = $ps->getAllPS();
 $ps2 = new Period_Setting2();
 $ps2Data = $ps2->getAllPS();
 
+
+
+
 if($_GET["action"] == "edit"){
 	$pm = new Product_Manage();
 	$proNo = $_GET["prono"];
@@ -64,7 +67,9 @@ if($_GET["action"] == "edit"){
 	$proData = $pro->getOneProByNo($proNo);
 }else{
 
-	
+    $pro = new Product();
+    $selectableProData = $pro->getAllPMByStatus0();
+
 	if(isset($_GET['procaseno']) && $_GET['procaseno'] != ""){
 		$pm = new Product_Manage();
 		/*$allPmGroup = $pm->getAllPMGroupByProName();
@@ -75,10 +80,12 @@ if($_GET["action"] == "edit"){
 		
 		$pro = new Product();
 		$selectableProData = $pro->getOneByCaseNo($_GET['procaseno']);
-		$sup = new Supplier();
-		$allSupData = $sup->getAllSupplier();
 	}
 }
+
+$sup = new Supplier();
+$allSupData = $sup->getAllSupplier();
+
 
 
 if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
