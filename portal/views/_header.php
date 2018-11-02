@@ -173,7 +173,7 @@
                                 <a href="?item=sup_center" title="廠商專區">廠商專區</a>
                             </li>
                             <li class="list-inline-item <?php echo ($_GET['item'] == 'faq') ? 'active':''; ?>">
-                                <a href="?item=faq" title="幫助中心">幫助中心</a>
+                                <a href="?item=help" title="幫助中心">幫助中心</a>
                             </li>
                             <li class="list-inline-item <?php echo ($_GET['item'] == 'member_center') ? 'active':''; ?>">
                                 <a href="?item=member_center" title="會員中心">會員中心</a>

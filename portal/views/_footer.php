@@ -17,10 +17,10 @@
                             <dt>關於NoWait</dt>
                             <dd>
                                 <ul class="list-unstyled" >
-                                    <li><a href="?item=fmAboutUs" title="關於我們">關於我們</a></li>
+                                    <li><a href="?item=aboutme" title="關於我們">關於我們</a></li>
                                     <li><a href="#" title="會員相關">會員相關</a></li>
                                     <li><a href="?item=member_center" title="會員中心">會員中心</a></li>
-                                    <li><a href="?item=fmBuyStep" title="購物流程">購物流程</a></li>
+                                    <li><a href="?item=help_process" title="購物流程">購物流程</a></li>
                                     <li><a href="https://www.facebook.com/21happyfan7/" title="FB 粉絲團" target="_blank">FB 粉絲團</a></li>
                                 </ul>
                             </dd>
@@ -32,7 +32,7 @@
                             <dd>
                                 <ul class="list-unstyled">
                                     <li><a href="?item=faq" title="常見問題">常見問題</a></li>
-                                    <li><a href="?item=fmContactService" title="聯絡客服">聯絡客服</a></li>
+                                    <li><a href="?item=co_company" title="聯絡客服">聯絡客服</a></li>
                                     <li><a href="?item=co_company" title="合作提案">合作提案</a></li>
                                 </ul>
                             </dd>
