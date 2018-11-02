@@ -95,7 +95,7 @@
 						`product_manage` a, product c
 					where
 						a.`pmStatus` = '1' &&
-						a.pmMainSup = '1' &&
+						/*a.pmMainSup = '1' && */
 						a.proNo = c.proNo 
 					group by 
 						c.proNo
@@ -114,7 +114,7 @@
 						`product_manage` a, product c
 					where
 						a.`pmStatus` = '1' &&
-						a.pmMainSup = '1' &&
+					/*	a.pmMainSup = '1' &&*/
 						a.proNo = c.proNo 
 					group by 
 						c.proNo
@@ -182,7 +182,7 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product_manage`.`pmStatus` != '0' && 
-						`product_manage`.`pmMainSup` = '1' && 
+						/*`product_manage`.`pmMainSup` = '1' && */
 					".$str." 
 					order by 
 						`product`.`proNo` asc 
@@ -226,7 +226,7 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product_manage`.`pmStatus` != '0'  &&
-						`product_manage`.`pmMainSup` = '1' &&
+						/* `product_manage`.`pmMainSup` = '1'  && */
 					".$str."
 					order by
 						`product`.`proName` asc";
@@ -279,8 +279,8 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product`.`catNo` = '".$cat."' &&
-						`product_manage`.`pmStatus` != '0' &&
-						`product_manage`.`pmMainSup` = '1'
+						`product_manage`.`pmStatus` != '0' /*&&
+						`product_manage`.`pmMainSup` = '1' */
 					group by
 						`product`.`proNo`
 					order by
@@ -368,7 +368,7 @@
 					where
 						`product`.`proNo`='".$proNo."'
 					and
-						`product_manage`.`pmMainSup` = 1 &&
+						/*`product_manage`.`pmMainSup` = 1 && */
 						`product_manage`.`pmStatus` = 1";
 			$data = $this->db->selectRecords($sql);
 			return $data;

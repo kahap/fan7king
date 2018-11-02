@@ -200,10 +200,12 @@ switch (@$_GET["special"]){
 
         // search
         $('#example_filter').find('input[type=search]').val('<?php echo $search;?>');
-        $('.key_search').click(function() {
+        $('.key_search').click(function(e) {
             var keyword = $('#example_filter').find('input[type=search]').val();
             var url = 'admin.php?page=product&type=productManage<?php if(isset($_GET["special"]))echo '&special='.$_GET["special"];?>&paginate=<?php echo $page;?>&search=';
-            location.href = url + keyword;
+            location.href = url+keyword;
+            e.preventDefault();
+            return false;
         });
 
 

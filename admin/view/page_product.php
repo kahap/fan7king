@@ -266,10 +266,12 @@ $allBraData = $bra->getAllBrand();
 
         // search
         $('#example_filter').find('input[type=search]').val('<?php echo $search;?>');
-        $('.key_search').click(function() {
+        $('.key_search').click(function(e) {
             var keyword = $('#example_filter').find('input[type=search]').val();
             var url = 'admin.php?page=product&type=product<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page;?>&search=';
             location.href = url + keyword;
+            e.preventDefault();
+            return false;
         });
 
 
