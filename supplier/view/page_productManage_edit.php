@@ -217,7 +217,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                          	    </select>
                       	<?php }
                         } else { ?>
-                          <input name="proNo" id="proNo" class="form-control">
+                          <input name="proNo" id="proNo" class="form-control" required>
                      <?php } ?>
 						 <ul class="parsley-errors-list"><li id="proNoErr"></li></ul>
                       </div>

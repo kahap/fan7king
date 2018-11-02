@@ -250,7 +250,7 @@
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
             }
             $sql = "select
-						*
+						count(`product`.`proNo`) as `count` 
 					from
 						`product`
 					inner join 
@@ -260,8 +260,9 @@
 					where
 						`catName`='".$catName."' 
 					".$key." ";
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+			$q=mysqli_query($this->db->oDbLink,$sql);
+			$a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 		
 		//根據品牌取得商品
@@ -294,7 +295,7 @@
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
             }
             $sql = "select
-						*
+						count(`product`.`proNo`) as `count` 
 					from
 						`product`
 					inner join 
@@ -304,8 +305,9 @@
 					where
 						`braName`='".$braName."' 
 					".$key." ";
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+			$q=mysqli_query($this->db->oDbLink,$sql);
+			$a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 
 

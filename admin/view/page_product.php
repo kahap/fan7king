@@ -22,9 +22,9 @@ if(isset($_GET["catname"]) && $_GET["catname"] != "all"){
     $lastPage = ceil($totalProData/30);
 }
 if(isset($_GET["braname"]) && $_GET["braname"] != "all"){
+    
 	$allProData = $pro->getAllProByBraName($_GET["braname"], ($page-1)*30 , 30 , $search);
-    $pro->getAllProByBraNameCount($_GET["braname"] , $search);
-    $totalProData = $pro->db->iNoOfRecords;
+    $totalProData = $pro->getAllProByBraNameCount($_GET["braname"] , $search);
     $lastPage = ceil($totalProData/30);
 }
 
