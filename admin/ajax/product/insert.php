@@ -1,4 +1,5 @@
 <?php
+	error_reporting(0);
 	header ("content-type: text/HTML; charset=utf-8 ");
 	require_once('../../model/require_login.php');
 	$pro = new Product();
