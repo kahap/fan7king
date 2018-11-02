@@ -83,7 +83,7 @@ $tabIndex = 0;
                       	所屬分類 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-	                      <select name="catNo" class="form-control">
+	                      <select name="catNo" class="form-control" required>
 	                      	<option selected value="">請選擇</option>
 	                      	<?php foreach($allCat as $key=>$value){ ?>
 	                        	<option <?php if($_GET["action"]=="edit") if($proData[0]["catNo"]==$value["catNo"]) echo "selected"; ?> value="<?php echo $value["catNo"]; ?>"><?php echo $value["catName"]; ?></option>
@@ -97,7 +97,7 @@ $tabIndex = 0;
                       	所屬品牌 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-	                      <select name="braNo" class="form-control">
+	                      <select name="braNo" class="form-control" required>
 	                      	<option selected value="">請選擇</option>
 	                      	<?php foreach($allBra as $key=>$value){ ?>
 	                        	<option <?php if($_GET["action"]=="edit") if($proData[0]["braNo"]==$value["braNo"]) echo "selected"; ?> value="<?php echo $value["braNo"]; ?>"><?php echo $value["braName"]; ?></option>
@@ -111,7 +111,7 @@ $tabIndex = 0;
                               所屬品項 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select name="biNo" class="form-control">
+                              <select name="biNo" class="form-control" required>
                                   <option selected value="">請選擇</option>
                                   <?php foreach($allItems as $key=>$value){ ?>
                                       <option <?php if($_GET["action"]=="edit") if($proData[0]["biNo"]==$value["biNo"]) echo "selected"; ?> value="<?php echo $value["biNo"]; ?>"><?php echo $value["biName"]; ?></option>
@@ -125,7 +125,7 @@ $tabIndex = 0;
                       	商品名稱 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                      	<input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proName"]; ?>' type="text" class="form-control" name="proName" />
+                      	<input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proName"]; ?>' type="text" class="form-control" name="proName" required />
                       	<ul class="parsley-errors-list"><li id="nameErr"></li></ul>
                       </div>
                     </div>
@@ -322,10 +322,10 @@ $tabIndex = 0;
                     <div style="margin:30px;"></div>
                     <div class="form-group">
                       <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                         <button id="confirm-form" type="button" class="btn btn-primary">
+                         <button id="confirm-form" type="submit" class="btn btn-primary">
                          	<?php if($_GET["action"]=="edit") echo "確認修改"; else echo "確認新增" ?>
                          </button>
-                     
+
                       </div>
                     </div>
                   </form>
@@ -636,8 +636,8 @@ $(function(){
 	<?php } ?>
 
 	$("#descr").val("");
-	$("#confirm-form").click(function(e){
-
+	$("#confirm-form").parents("form").on("submit",function(e){
+        e.preventDefault();
 
         // Get_eWebEditor_Img();
         // return ;
