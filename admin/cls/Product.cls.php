@@ -61,13 +61,14 @@
 			return $data;
 		}
         //取得所有商品的總數
-        public function getAllProCount($search){
+        public function getAllProCount($search)
+        {
             $key = '';
             if ($search){
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
             }
             $sql = "select
-						proNo,proCaseNo,proName,catNo,braNo,biNo
+						count(`product`.`proNo`) as `count` 
 					from
 						`product` 
                     where 
@@ -76,8 +77,9 @@
 					order by
 						`proNo` desc ";
 					//limit " .$p. " , " .$a ;
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 
 

@@ -128,7 +128,7 @@
                 <li><a><i class="fa fa-file-text-o"></i> 分期進件 <span class="fa fa-chevron-down"></span></a>
                   <ul id="order-submenu" class="nav child_menu" style="display: none">
                   	<li><a href="?page=order&action=query&method=1"> 分期案件查詢</a></li>
-                    <?php 
+                    <?php /*
                     foreach($or->statusArr as $key=>$value){
 						if(in_array(61, $curRrightArr) && !in_array(60, $curRrightArr)){
 							if($key == 1 || $key == 110 || $key == 2 || $key == 5 || $key == 6 || $key == 0 || $key == 3 || $key == 4 || $key == 7){
@@ -138,95 +138,7 @@
 	                    		<?php echo $value; ?>
 	                    		<?php 
 	                    		switch($key){
-	                    			/*case 0:
-	                    		?>
-	                    			<br>(待客戶驗證：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(0,1)); ?>)
-								<?php
-	                    			break;*/
-									/*case 110:
-	                    		?>
-	                    			<br>(待完成：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(110,1)); ?>)
-	                    		<?php
-	                    			break;*/
-									/*case 1:
-	                    		?>
-	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(1,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(1,1,0)); ?>)
-	                    		<?php
-	                    			break;
-									case 2:
-	                    		?>
-	                    			<br>(待審核：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(2,1)); ?>)
-	                    		<?php
-	                    			break;*/
-									case 3:
-	                    		?>
-	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(3,1)); ?>)
-	                    		<?php
-	                    			break;
-									/*case 4:
-	                    		?>
-	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(4,1)); ?>)
-	                    		<?php
-	                    			break;
-									case 5:
-	                    		?>
-	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(5,1)); ?> / 顧客尚未查看：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(5,1,0)); ?>)
-	                    		<?php
-	                    			break;
-									case 6:
-	                    		?>
-	                    			<br>(待審核：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(6,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(6,1,0)); ?>)
-	                    		<?php
-	                    			break;
-									case 7:
-	                    		?>
-	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(7,1)); ?>)
-	                    		<?php
-	                    			break;*/
-									case 8:
-	                    		?>
-	                    			<br>(等待中：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(8,1)); ?>)
-	                    		<?php
-	                    			break;
-									case 9:
-	                    		?>
-	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(9,1)); ?>)
-	                    		<?php
-	                    			break;
-									/*case 10:
-	                    		?>
-	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(10,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(10,1,0)); ?>)
-	                    		<?php
-	                    			break;
-									case 11:
-	                    		?>
-	                    			<br>(等待中：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(11,1)); ?>)
-	                    		<?php
-	                    			break;
-									case 12:
-	                    		?>
-	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(12,1)); ?>)
-	                    		<?php
-	                    			break;
-									case 13:
-	                    		?>
-	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(13,1)); ?> / 未處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(13,1,0)); ?>)
-	                    		<?php 
-	                    			break;*/
-	                    		}
-	                    		?>
-	                    	</a>
-                    	</li>
-                            <?php
-							}
-						}else if(in_array(60, $curRrightArr)){
-					        ?>
-						<li>
-	                    	<a href="?page=order&method=1&status=<?php echo $key; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date;?>">
-	                    		<?php echo $value; ?>
-	                    		<?php 
-	                    		switch($key){
-	                    			/*case 0:
+	                    			case 0:
 	                    		?>
 	                    			<br>(待客戶驗證：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(0,1)); ?>)
 								<?php
@@ -245,13 +157,13 @@
 	                    		?>
 	                    			<br>(待審核：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(2,1)); ?>)
 	                    		<?php
-	                    			break;*/
+	                    			break;
 									case 3:
 	                    		?>
 	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(3,1)); ?>)
 	                    		<?php
 	                    			break;
-									/*case 4:
+									case 4:
 	                    		?>
 	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(4,1)); ?>)
 	                    		<?php
@@ -270,7 +182,7 @@
 	                    		?>
 	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(7,1)); ?>)
 	                    		<?php
-	                    			break;*/
+	                    			break;
 									case 8:
 	                    		?>
 	                    			<br>(等待中：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(8,1)); ?>)
@@ -281,7 +193,7 @@
 	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(9,1)); ?>)
 	                    		<?php
 	                    			break;
-									/*case 10:
+									case 10:
 	                    		?>
 	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(10,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(10,1,0)); ?>)
 	                    		<?php
@@ -300,15 +212,103 @@
 	                    		?>
 	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(13,1)); ?> / 未處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(13,1,0)); ?>)
 	                    		<?php 
-	                    			break;*/
+	                    			break;
+	                    		}
+	                    		 ?>
+	                    	</a>
+                    	</li>
+                            <?php
+							}
+						}else if(in_array(60, $curRrightArr)){
+					        ?>
+						<li>
+	                    	<a href="?page=order&method=1&status=<?php echo $key; ?>&orDateFrom=2016-04-01&orDateTo=<?php echo $date;?>">
+	                    		<?php echo $value; ?>
+	                    		<?php 
+	                    		switch($key){
+	                    			case 0:
+	                    		?>
+	                    			<br>(待客戶驗證：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(0,1)); ?>)
+								<?php
+	                    			break;
+									case 110:
+	                    		?>
+	                    			<br>(待完成：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(110,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 1:
+	                    		?>
+	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(1,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(1,1,0)); ?>)
+	                    		<?php
+	                    			break;
+									case 2:
+	                    		?>
+	                    			<br>(待審核：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(2,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 3:
+	                    		?>
+	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(3,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 4:
+	                    		?>
+	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(4,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 5:
+	                    		?>
+	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(5,1)); ?> / 顧客尚未查看：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(5,1,0)); ?>)
+	                    		<?php
+	                    			break;
+									case 6:
+	                    		?>
+	                    			<br>(待審核：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(6,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(6,1,0)); ?>)
+	                    		<?php
+	                    			break;
+									case 7:
+	                    		?>
+	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(7,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 8:
+	                    		?>
+	                    			<br>(等待中：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(8,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 9:
+	                    		?>
+	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(9,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 10:
+	                    		?>
+	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(10,1)); ?> / 未列印：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(10,1,0)); ?>)
+	                    		<?php
+	                    			break;
+									case 11:
+	                    		?>
+	                    			<br>(等待中：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(11,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 12:
+	                    		?>
+	                    			<br>(待處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(12,1)); ?>)
+	                    		<?php
+	                    			break;
+									case 13:
+	                    		?>
+	                    			<br>(總共：<?php echo sizeof($or->getOneOrderByOrStatusAndMethod(13,1)); ?> / 未處理：<?php echo sizeof($or->getOneOrderByOrStatusAndMethodAndIfProcess(13,1,0)); ?>)
+	                    		<?php 
+	                    			break;
 	                    		}
 	                    		?>
 	                    	</a>
                     	</li>
 					        <?php
 						}
-                    } 
-                    ?>
+                    }
+                    */ ?>
                   </ul>
                 </li>
                 <?php } ?>

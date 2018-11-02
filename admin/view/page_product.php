@@ -17,12 +17,10 @@ $lastPage = ceil($totalProData/30);
 
 if(isset($_GET["catname"]) && $_GET["catname"] != "all"){
 	$allProData = $pro->getAllProByCatName($_GET["catname"], ($page-1)*30 , 30 , $search);
-    $pro->getAllProByCatNameCount($_GET["catname"] , $search);
-    $totalProData = $pro->db->iNoOfRecords;
+    $totalProData = $pro->getAllProByCatNameCount($_GET["catname"] , $search);
     $lastPage = ceil($totalProData/30);
 }
 if(isset($_GET["braname"]) && $_GET["braname"] != "all"){
-    
 	$allProData = $pro->getAllProByBraName($_GET["braname"], ($page-1)*30 , 30 , $search);
     $totalProData = $pro->getAllProByBraNameCount($_GET["braname"] , $search);
     $lastPage = ceil($totalProData/30);
