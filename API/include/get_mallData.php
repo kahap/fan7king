@@ -28,6 +28,5 @@ foreach ($data as $number => $data1) {
 
 $api->setInformation($shop, 1, count($data), "商城品項");
 $api->setResult(false);
-// print_r($shop);
-
+// print_r($shop); 
 ?>

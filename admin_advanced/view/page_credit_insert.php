@@ -1447,6 +1447,7 @@ $(function(){
 			success:function(result){
 				if(result.indexOf("OK") != -1){
 					alert("儲存成功！");
+					isChange = true;
 					$('#applyFile').submit();
 				}else{
 					alert(result);

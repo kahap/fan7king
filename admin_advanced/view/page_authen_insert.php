@@ -223,7 +223,7 @@ table tr td,table tr th{
 					<a type="button" href="#photos" class="modal-trigger waves-effect waves-light btn green m-b-xs">查看證件上傳</a>
 				</li>
 				<li>
-					<a type="button" href="http://test.happyfan7.com/admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>" class="btn green m-b-xs" target="_blank">列印回覆書</a>
+					<a type="button" href="../admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>" class="btn green m-b-xs" target="_blank">列印回覆書</a>
 				</li>
 				<li>
 					<?php 
@@ -1201,7 +1201,7 @@ $(function(){
 					datatype:"json",
 					success:function(result){
 						if(result.indexOf("OK") != -1){							
-							window.open('view/print_report_export.php?no=<?php echo $no; ?>', '_blank');
+							// window.open('view/print_report_export.php?no=<?php echo $no; ?>', '_blank');
 							alert("儲存成功！");
 							location.reload();
 						}else{
@@ -1231,7 +1231,7 @@ $(function(){
 					success:function(result){
 						if(result.indexOf("OK") != -1){
 							alert("儲存成功！");
-							window.open('http://test.happyfan7.com/admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>', '_blank');
+							// window.open('../admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>', '_blank');
 							location.href = "?page=authen&type=view";
 						}else{
 							alert(result);

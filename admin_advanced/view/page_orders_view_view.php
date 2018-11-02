@@ -1492,7 +1492,7 @@ $(document).ready(function() {
 });
 
 function print_report(){
-	var win = window.open('http://happyfan7.com/admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>');
+	var win = window.open('../admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>');
 	win.focus();
 }
 

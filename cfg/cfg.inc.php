@@ -31,9 +31,9 @@ if($AppMode !="Dev")
 else
 {
 //    define ('DOMAIN','127.0.0.1/happyfan7');
-    define ('DOMAIN','127.0.0.1/fan7king_dev2');
-    define('AutoloadAPPId','358306487860510');
-    define('AutoloadAPPSecret','bbff3360de628c59397f27261daceb02');
+    define ('DOMAIN',$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+    define('AutoloadAPPId','1863095207092475');
+    define('AutoloadAPPSecret','2282176ea918f66b59307881d74014a');
     define('FbADVersion','v2.9');
 }
 

@@ -28,6 +28,7 @@ for ($caseNumber=0; $caseNumber < 3; $caseNumber++) {
     $data = $api->getData();
     $result[$which] = $data;
 }
-print_r($result);
+    
+    echo json_encode($result);
 
 ?>
