@@ -1,0 +1,90 @@
+<style>
+	label{
+		    font-size: 16px;
+			color:blue;
+	}
+</style>
+
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期購買流程</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+		<?php
+			$member = new Member();
+			$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+		?>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/B-B-1.png"/></li>
+                <li class=""><img src="assets/images/B-B-3.png"/></li>
+                <li class=""><img src="assets/images/B-B-4.png"/></li>
+				<?php
+					if(in_array($memberData['0']['memFBtoken'],$fb_token)){
+				?>
+					<li class=""><img src="assets/images/B-B-6.png"/></li>
+				<?php
+					}
+				?>
+				<li class="current-step"><img src="assets/images/B-C-5.png"/></li>
+            </ul>
+            <div class="heading-counter warning">訂單建立完成，請等候照會
+            </div>
+			<div class="box-border">
+				<div class="row">
+					<div class="col-sm-12" style="text-align:center">
+						
+						<?php
+							if(in_array($memberData['0']['memFBtoken'],$fb_token)){
+						?>
+							<div class="thumbnail">
+							  <a href="assets/images/fanscore.png">
+								<img src="assets/images/fanscore.png" alt="Lights" style="width:100%">
+							  </a>
+							</div>
+							<h3 style="width:50%;background-color:#c5eac2;;text-align:center;border:#f7da21 2px solid;    margin-left: auto;
+    margin-right: auto;">申請完成</h3>
+					<p style="width:50%;background-color:#fff;text-align:left;border:#f7da21 2px solid; font-size:18px;  margin-left: auto;
+    margin-right: auto;">
+						謝謝您的耐心等候，享樂分達 723 點，線上自動審核通過，訂單建立完成，可立即取貨。 我們的服務時間為週一至周五 9:30~12:30 & 13:30~18:00，國定例假日為公休日。 
+<br>
+
+						若您於非服務時間購買，將會於次一營業日與您聯絡。 如需查看確認填寫資訊請至會員中心訂單查詢<a href='?item=member_center&action=purchase'><span style="color:blue">訂單查詢</span></a><br>
+						
+						<?php						
+							}elseif($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0'){
+						?>
+						<p style="width:50%;background-color:#fff;text-align:center;border:#f7da21 2px solid; font-size:18px;  margin-left: auto;
+    margin-right: auto;">
+						離申請完成還差一小步喔！請您立即至您所提供的學校Email信箱完成認證，之後才算是真正訂購成功喔!!!<br>
+
+						如需查看確認填寫資訊請至會員中心<a href='?item=member_center&action=purchase'><span style="color:blue">訂單查詢</span></a><br>
+						<?php
+							}else{
+						?>
+							<h3 style="width:50%;background-color:#c5eac2;;text-align:center;border:#f7da21 2px solid;    margin-left: auto;
+    margin-right: auto;">申請完成</h3>
+					<p style="width:50%;background-color:#fff;text-align:left;border:#f7da21 2px solid; font-size:18px;  margin-left: auto;
+    margin-right: auto;">
+						您已完成分期申請並等候照會，我們將於24小時內與您聯絡。我們的服務時間為週一至周五 9:30~12:30 & 13:30~18:00，國定例假日為公休日。 
+<br>
+
+						若您於非服務時間購買，將會於次一營業日與您聯絡。 如需查看確認填寫資訊請至會員中心訂單查詢<a href='?item=member_center&action=purchase'><span style="color:blue">訂單查詢</span></a><br>
+						<?php
+							}
+						?>
+					</p>
+					<?php unset($_SESSION['shopping_user']);?>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

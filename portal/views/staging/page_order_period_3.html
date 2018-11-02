@@ -1,0 +1,344 @@
+<style>
+	h3{
+		    font-size: 16px;
+			
+			margin-top:3px;
+			margin-bottom:3px;
+	}
+</style>
+
+<!-- page wapper-->
+<div class="columns-container">
+    <div class="container" id="columns">
+        <!-- breadcrumb -->
+        <div class="breadcrumb clearfix">
+            <a class="home" href="#" title="Return to Home">Home</a>
+            <span class="navigation-pipe">&nbsp;</span>
+            <span class="navigation_page">分期購買流程</span>
+        </div>
+        <!-- ./breadcrumb -->
+        <!-- page heading-->
+		<?php
+			//print_r($_SESSION);
+			
+			//欄位名稱
+			$or = new Orders();
+			$columnName = $or->getAllColumnNames("orders");
+			$or_data = $or->getOneOrderByNo($_SESSION['ord_code']);
+			$member = new Member();
+			$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+			//print_r($columnName);
+		?>
+        <!-- ../page heading-->
+        <div class="page-content page-order">
+            <ul class="step">
+                <li class=""><img src="assets/images/B-B-1.png"/></li>
+                <li class=""><img src="assets/images/B-B-3.png"/></li>
+                <li class="current-step"><img src="assets/images/B-C-4.png"/></li>
+				<?php
+					if(in_array($memberData['0']['memFBtoken'],$fb_token)){
+				?>
+					<li class=""><img src="assets/images/B-B-6.png"/></li>
+				<?php
+					}
+				?>
+				
+				<li class=""><img src="assets/images/B-B-5.png"/></li>
+            </ul>
+            <div class="heading-counter warning">確認訂單資訊
+                <span style="">*為必填欄位，請務必詳實填寫，如未滿20歲,需父母同意分期購買</span>
+            </div>
+			<div class="box-border">
+				<ul>
+					<div class="row">
+						<div class="col-sm-6">
+						<h3>一、購買商品</h3>
+						<label for="first_name" class="required">商品名稱：</label>
+						<label for="first_name" class="required"><?php echo $_SESSION['shopping_product'][0]['proName']?></label><BR>
+						<label for="first_name" class="required">商品規格：</label>
+						<label for="first_name" class="required"><?php echo $or_data[0]['orProSpec']?></label><BR>
+						<label for="first_name" class="required">月付：</label>
+						<label for="first_name" class="required"><?php echo number_format(ceil($or_data[0]['orPeriodTotal']/$or_data[0]['orPeriodAmnt']))?> 元</label><BR>
+						<label for="first_name" class="required">期數：</label>
+						<label for="first_name" class="required"><?php echo $or_data[0]['orPeriodAmnt']?> 期</label><BR><br>
+						
+						<h3>二、申請人資料</h3>
+							<label style=""><input name="agree" type="checkbox" value='1' <?php echo ($or_data['0']["orIfSecret"] == '1') ? 'checked disabled':'disabled'; ?>>申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）</label><br>
+							<label for="first_name" class="required">申請人中文姓名 :</label>
+							<label for="first_name" class="required"><?php echo $memberData['0']["memName"]; ?></label><br>
+							
+							<label for="first_name" class="required">身份證字號 : </label>
+							<label for="first_name" class="required"><?php echo $memberData['0']["memIdNum"]; ?></label><br>
+							
+							<?php 
+								$year = explode('-',$memberData['0']['memBday']);
+							?>
+							<label for="first_name" class="required">出生年月日 : </label>
+							<label for="first_name" class="required">民國 <?php echo $year[0];?> 年 <?php echo $year[1];?> 月 <?php echo $year[2];?> 日</label>	<br>
+							
+							
+							<label for="first_name" class="required">身分別 : <?php echo $memclass[$memberData[0]['memClass']]; ?></label><br>
+							<?php 
+									if($memberData[0]['memClass'] == '0'){
+								?>
+							<label for="first_name" class="required">學校系級 : <?php echo $memberData[0]['memSchool']; ?></label><br>
+							<?php 
+								}
+							?>
+							
+							<?php 
+									if($memberData[0]['memFBtoken'] != "" && $memberData[0]['memClass'] == '0'){
+								?>
+								<label for="first_name" class="required">學生Email： <?php echo $memberData[0]["memAccount"]; ?></label><br>
+								<?php 
+									}
+								?>
+								
+							<label for="first_name" class="required">常用聯絡Email：<?php echo $memberData[0]["memSubEmail"]; ?></label><br>
+							<label for="first_name" class="required">戶籍地址 :<?php echo $or_data[0]["orAppApplierBirthAddr"]; ?></label><br>
+							<label for="first_name" class="required">戶籍市話 :<?php echo $or_data[0]["orAppApplierBirthPhone"]; ?></label><br>
+							<label for="first_name" class="required">現住地址 :<?php echo $memberData[0]["memAddr"]; ?></label><br>
+							<label for="first_name" class="required">現住市話 :<?php echo $memberData[0]["memPhone"]; ?></label><br>
+							<label for="first_name" class="required">行動市話 :<?php echo $memberData[0]["memCell"]; ?></label><br>
+							<label for="first_name" class="required">住房所有權 :<?php echo $or_data[0]["orAppApplierLivingOwnership"]; ?></label><br>
+							<label for="first_name" class="required">公司名稱 :<?php echo $or_data[0]["orAppApplierCompanyName"]; ?></label><br>
+							<label for="first_name" class="required">年資 :<?php echo ($or_data[0]["orAppApplierYearExperience"] == '0') ? '':$or_data[0]["orAppApplierYearExperience"]; ?></label><br>
+							<label for="first_name" class="required">月薪 :<?php echo ($or_data[0]["orAppApplierMonthSalary"] == '0') ? '':$or_data[0]["orAppApplierMonthSalary"]; ?></label><br>
+							<label for="first_name" class="required">公司市話 :<?php echo $or_data[0]["orAppApplierCompanyPhone"]; ?></label><br>
+							<label for="first_name" class="required">信用卡號(僅供參考) :<?php echo ($or_data[0]["orAppApplierCreditNum"] == '---') ? '':$or_data[0]["orAppApplierCreditNum"]; ?></label><br>
+							<label for="first_name" class="required">發卡銀行 :<?php echo $or_data[0]["orAppApplierCreditIssueBank"]; ?></label><br>
+							<label for="first_name" class="required">信用卡有效期限 :<?php echo $or_data[0]["orAppApplierCreditDueDate"]; ?></label><br>
+						
+							<br>	
+							
+
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<h3>三、收貨人資料</h3>
+							<?php 
+							foreach($columnName as $key=>$value){ 
+								if(strrpos($value["COLUMN_NAME"], "orReceive") !== false){
+							?>
+								<label for="first_name" class="required"><?php echo $value["COLUMN_COMMENT"]; ?> :</label>
+								<label for="first_name" class="required"><?php echo $or_data[0][$value['COLUMN_NAME']]; ?></label><br>
+							<?php							
+								
+								}
+							} 
+							?>
+							
+							<br><br>
+							<h3>四、統一編號</h3>
+							<?php 
+							foreach($columnName as $key=>$value){ 
+								if(strrpos($value["COLUMN_NAME"], "orBusinessNum") !== false){
+							?>
+								<label for="first_name" class="required"><?php echo $value["COLUMN_COMMENT"]; ?> :</label>
+								<label for="first_name" class="required">
+									<?php 
+										if($value['COLUMN_NAME'] == 'orBusinessNumIfNeed'){
+											echo ($or_data[0][$value['COLUMN_NAME']] == 0) ? '否':'是';
+										}else{
+											echo $or_data[0][$value['COLUMN_NAME']]; 
+										}
+									?>
+								</label><br>
+							<?php 
+								}
+							} 
+							?>
+							<br><br>
+							<h3>五、聯絡人資料</h3>
+							<?php 
+							foreach($columnName as $key=>$value){ 
+								if(strrpos($value["COLUMN_NAME"], "orAppContact") !== false){
+							?>
+								<label for="first_name" class="required"><?php echo $value["COLUMN_COMMENT"]; ?> :</label>
+								<label for="first_name" class="required">
+									<?php
+										$data_contact = json_decode($or_data[0][$value['COLUMN_NAME']]);
+										echo $data_contact['0']; 
+									?>
+								</label><br>
+							<?php 
+								}
+							} 
+							?>
+							<br></br>
+							<h3>六、備註：</h3>
+							<?php 
+							foreach($columnName as $key=>$value){ 
+								if(strrpos($value["COLUMN_NAME"], "orAppExtra") !== false){
+							?>
+								<label for="first_name" class="required"><?php echo $value["COLUMN_COMMENT"]; ?> :</label>
+								<label for="first_name" class="required"><?php echo $or_data[0][$value['COLUMN_NAME']]; ?></label><br>
+							<?php 
+								}
+							} 
+							?>
+						</div>
+					</div>
+				</ul>
+				<ul>
+			</div><br>
+			<div class="box-border">
+					<div class="row">
+						<div class="col-sm-12">
+							<?php 
+								//$_SESSION['ord_code'],$_SESSION['shopping_user'][0]['memNo']
+							?>
+							<h3>證件資料上傳</h3>
+								<label>申請人身份證發證日期：<?php echo $or_data[0]['orIdIssueYear']."-".$or_data[0]['orIdIssueMonth']."-".$or_data[0]['orIdIssueDay']; ?></label><br>
+								<label>申請人身份證發證地點：<?php echo $or_data[0]['orIdIssuePlace'];?></label><br>
+								<label>申請人身份證發證類別：<?php echo $or_data[0]['orIdIssueType']; ?></label><br>
+								<label>申請人身份證正面：</label>
+								<div id="showimg"><img src="<?php echo $or_data[0]['orAppAuthenIdImgTop']; ?>"/></div>
+								<label>申請人身份證反面：</label>
+								<div id="showimg"><img src="<?php echo $or_data[0]['orAppAuthenIdImgBot']; ?>"/></div>
+								
+								<?php 
+									if($memberData[0]['memClass'] == '0'){
+								?>
+								<label>申請人學生證正面：</label>
+								<div id="showimg"><img src="<?php echo $or_data[0]['orAppAuthenStudentIdImgTop']; ?>"/></div>
+								<label>申請人學生證反面：</label>
+								<div id="showimg"><img src="<?php echo $or_data[0]['orAppAuthenStudentIdImgBot']; ?>"/></div>
+								<?php
+									}
+								?>
+								<label>補件資料：</label>
+								<div id="showimg"><img src="<?php echo $or_data[0]['orAppAuthenExtraInfo']; ?>"/></div>
+								<br>
+						   <h3>請於下面兩個簽名處，以滑鼠或手寫功能簽上正楷簽名</h3>
+						   <div class="table-responsive" style="border:2px solid #000;padding: 15px;">
+								<span>本票：</span>
+								<span>憑票於中華民國  年  月  日無條件支付</span>
+								<span style="">廿一世紀數位科技有限公司</span>或指定人<br>
+										新台幣　
+										<span style=""><?php  
+											$ex = preg_split("//", $or_data[0]['orPeriodTotal']);
+											$ln = strlen($or_data[0]['orPeriodTotal']);
+											$count = count($ex);
+											echo ($ln > 5) ? $coin[$ex[1]]:'零';
+										?></span>
+										<span>
+										&nbsp;拾&nbsp;
+										<span style=""><?php echo ($ln = 5) ? $coin[$ex[1]]:'零'; ?></span>
+										&nbsp;萬&nbsp;
+										<span style=""><?php echo $coin[$ex[2]]; ?></span>
+										&nbsp;仟&nbsp;
+										<span style=""><?php echo $coin[$ex[3]]; ?></span>
+										&nbsp;佰&nbsp;
+										<span style=""><?php echo $coin[$ex[4]]; ?></span>
+										&nbsp;拾&nbsp;
+										<span style=""><?php echo $coin[$ex[5]]; ?></span>
+										&nbsp;&nbsp;　元整<br>
+										此總額為您選擇之月付金X期數<br>
+										此本票免除作成拒絕證書及票據法第八十九條之通知義務，<br>
+										利息自到期日迄清償日止按年利率百分之二十計付，<br>
+										發票人授權持票人得填載到期日。<br>
+										付款地：台北市信義區基隆路一段163號2樓之2<br>
+										此據<br>
+										中華民國 <?php echo date('Y',strtotime($or_data[0]['orDate']))-1911; ?> 年 <?php echo date('m',strtotime($or_data[0]['orDate'])); ?> 月 <?php echo date('d',strtotime($or_data[0]['orDate'])); ?> 日
+										</span><br>
+								<span>約定說明：<span style=";">「此本票係供為分期付款買賣之分期款項總額憑證，俟分期付款完全清償完畢時，此本票自動失效，但如有一期未付，發票人願意就全部本票債務負責清償。」本人同意依法令規定應以書面為之者,得以電子文件為之.依法令規定應簽名或蓋章者，得以電子簽章為之。</span>
+								</span><br>
+									<h3>發票人中文正楷簽名：</h3>
+									<?php 
+									if ($or_data[0]['orAppAuthenProvement'] != "") echo "<img src='".$or_data[0]['orAppAuthenProvement']."' id='orAppAuthenProvement' />";
+									?>
+						   </div>
+						   <br><br>
+						   
+						   
+							<div class="table-responsive" style="border:2px solid #000;padding:10px;padding: 15px;">
+						   <span style=";">★分期付款期間未繳清以前禁止出售或典當，以免觸法</span><br>
+								<span>分期付款約定事項：</span>
+								<span>一、	申請人(即買方)及其連帶保證人向商品經銷商(即賣方)以分期付款方式購買消費性商品，並簽約本「分期付款申請書暨約定書」，業經申請人及其連帶保證人對本條約所有條款均已經合理天數詳細審閱，且已充份理解契約內容，同意與商品經銷商共同遵守<span style="">「<a href="?item=fmPeriodDeclare" target="_blank" style="text-decoration:underline;">分期付款約定書(點文字可連結閱讀詳文)</a>」之各項約定條款。</span><br>二、申請人及其連帶保證人於簽約時同意商品經銷商不另書面通知得將支付分期金額之權利及依本約定書約定所有之其他一切權利及利益轉讓與<span style="">廿一世紀數位科技有限公司</span>及其帳款收買人，受讓人對於分期付款買賣案件擁有核准與否同意權，並茲授權帳款收買人將分期付款總額或核准金額，逕行扣除手續費及相關費用，撥付與商品經銷商指定銀行帳戶，相關手續費金額之約定則按商品經銷商與<span style="">廿一世紀數位科技有限公司</span>所簽訂相關之合約約定之，申請人及其連帶保證人絕無異議。<br>三、申請人（即買方）及其連帶保證人聲明確實填寫及簽訂本「分期付款申請書暨約定書」內容，且交付商品經銷商之任何文件中並無不實之陳述或說明之情事。
+								</span><br>
+									<form id="order_add">
+											<input id="check2" type="checkbox" name="check" value="" checked disabled>
+							<label for="check2" class="agree">我已詳細閱讀並同意以上條款及<span style="">「<a href="?item=fmPeriodDeclare" target="_blank" style="">分期付款約定書</a>」</span>之內容及所有條款</label><br>
+							
+							<?php
+								$year = explode('-',$memberData[0]['memBday']);
+								$dault = $year['0']+1911;
+								$didf = (time()-strtotime($dault."-".$year[1]."-".$year[2]))/(86400*365);
+									if($didf < 20){
+ 								?>
+
+											<input id="check3" disabled checked type="checkbox" name="check3">
+											<label for="check3" class="agree">我已徵求父母或法定代理人同意分期購買此商品</label><br>
+ 								<?php
+									}
+ 								?>
+											<input id="check4" type="checkbox" name="check4" value="" disabled checked style="">
+											<label for="check4" class="agree">我已詳細閱讀並同意<a href="?item=fmFreeRespons" style="">免責聲明</a>、<a href="?item=fmServiceRules" style="">服務條款</a>、<a href="?item=fmPrivacy" style="">隱私權</a>聲明等條款</label><br>
+									</form>
+										<h3>申請人中文正楷簽名：</h3>
+										<?php 
+											if ($or_data[0]['orAppAuthenPromiseLetter'] != "") echo "<img src='".$or_data[0]['orAppAuthenPromiseLetter']."' id='orAppAuthenPromiseLetter' />";
+										?>
+							</div>
+								
+							
+							<br>	
+					</div>
+				</ul>
+			</div>
+                <div class="cart_navigation">
+                    <a class="prev-btn" href="index.php?item=member_center&action=order_period&method=2">上一步</a>
+                    <?php
+						if(in_array($memberData['0']['memFBtoken'],$fb_token)){
+							echo "<a class='next' style='float:right;background:#ff3366;color: #fff; border: 1px solid #ff3366;'><button>下一步</button></a>";
+						}elseif(is_file($or_data[0]['orAppAuthenIdImgTop'])){
+					?>
+						<a class="next-btn"><button >完成
+						<?php if($_GET['pro'] == '10190'){ ?>
+						<img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:31" style="width:1px;height:1px;" alt="" />
+						<?PHP } ?>
+						</button></a>
+					<?php
+					}else{
+					?>
+						<a style="float: right;border: 1px solid #ff3366;" href="http://happyfan7.com/?item=fmContactService" target="_blank"><button >證件未上傳成功，請洽詢客服人員!!</button></a>
+					<?php
+					}
+					?>
+                </div>
+
+        </div>
+    </div>
+</div>
+<script>
+	$(".next-btn").click(function(){
+		$(".next-btn").hide();
+		$.ajax({
+                url: 'php/order_finish.php',
+                data: "member_data=11",
+                type:"POST",
+                dataType:'text',
+                success: function(msg){
+                    if(msg){
+						alert('購買完成，請等候電話照會');
+						location.href='index.php?item=member_center&action=order_period&method=4';
+						thankButton();
+					}else{
+						alert('系統操作錯誤');
+						$(".next-btn").show();
+					}
+                },
+
+            error:function(xhr, ajaxOptions, thrownError){ 
+                alert(xhr.status); 
+                alert(thrownError);
+				$(".next-btn").show();
+            }
+		});
+	})
+	
+	$(".next").click(function(){
+		location.href='index.php?item=member_center&action=order_period&method=auto';
+	})
+</script>

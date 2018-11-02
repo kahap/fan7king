@@ -104,6 +104,7 @@
 	if($_POST["imgMethod"] == "album"){
 		$imgArr = explode(",", $_POST["album"]);
 		if(isset($_FILES["single"])){
+
 			$err = uploadMultipleImg("insert", "", true, "product/".$catName, 'single');
 			if($err != ""){
 				$errMsg["supStampImgErr"] = $err;

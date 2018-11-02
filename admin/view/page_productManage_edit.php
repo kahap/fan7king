@@ -1,5 +1,6 @@
 <?php 
 require_once('model/require_general.php');
+error_reporting(0);
 
 date_default_timezone_set('Asia/Taipei');
 $date = date('Y-m-d H:i:s', time());
@@ -8,6 +9,9 @@ $ps = new Period_Setting();
 $psData = $ps->getAllPS();
 $ps2 = new Period_Setting2();
 $ps2Data = $ps2->getAllPS();
+
+
+
 
 if($_GET["action"] == "edit"){
 	$pm = new Product_Manage();
@@ -64,7 +68,19 @@ if($_GET["action"] == "edit"){
 	$proData = $pro->getOneProByNo($proNo);
 }else{
 
-	
+    $pm = new Product_Manage();
+
+    $pro = new Product();
+    /*$DaoProduct = $pro->getAllPMByStatus0();
+    $selectableProData = array();
+    foreach ($DaoProduct as $item){
+        $DaoPM = $pm->getOnePMByPro($item[0]['proNo']);
+        if ($DaoPM[0]['pmStatus']){
+            $selectableProData[] = $item;
+        }
+    }*/
+    $selectableProData = $pro->getAllPMByStatus0();
+
 	if(isset($_GET['procaseno']) && $_GET['procaseno'] != ""){
 		$pm = new Product_Manage();
 		/*$allPmGroup = $pm->getAllPMGroupByProName();
@@ -75,10 +91,12 @@ if($_GET["action"] == "edit"){
 		
 		$pro = new Product();
 		$selectableProData = $pro->getOneByCaseNo($_GET['procaseno']);
-		$sup = new Supplier();
-		$allSupData = $sup->getAllSupplier();
 	}
 }
+
+$sup = new Supplier();
+$allSupData = $sup->getAllSupplier();
+
 
 
 if($_GET["action"] == "insert" && isset($_GET["procaseno"])){

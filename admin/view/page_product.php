@@ -317,7 +317,7 @@ $allBraData = $bra->getAllBrand();
             "paging": false,
             "processing": true,
           "oLanguage": {
-            "sSearch": "搜尋: "
+            "sSearch": "<button class='key_search'>搜尋</button>"
           },
           "sPaginationType": "full_numbers"
         })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
@@ -331,8 +331,8 @@ $allBraData = $bra->getAllBrand();
 
         // search
         $('#example_filter').find('input[type=search]').val('<?php echo $search;?>');
-        $('#example_filter').find('input[type=search]').change(function() {
-            var keyword = $(this).val();
+        $('.key_search').click(function() {
+            var keyword = $('#example_filter').find('input[type=search]').val();
             var url = 'admin.php?page=product&type=product<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page;?>&search=';
             location.href = url + keyword;
         });

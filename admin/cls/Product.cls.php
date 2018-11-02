@@ -22,6 +22,24 @@
 			return $str;
 		}
 
+
+        //取得所有商品
+        public function getAllPMByStatus0(){
+                $key = ' and `product_manage`.`pmStatus` = 0 ';
+            $sql = "select
+						`product`.* 
+					from
+						`product` join `product_manage` on `product`.`proNo` = `product_manage`.`proNo` 
+                    where 
+                        1 
+					".$key." 
+					order by
+						`product`.`proNo` desc
+                    limit 0,100 ";
+            $data = $this->db->selectRecords($sql);
+            return $data;
+        }
+
 		
 		//取得所有商品
 		public function getAllPro($p,$a , $search){
@@ -103,13 +121,14 @@
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
-		
+
 		//取得根據內部訂單編號
 		public function getOneByCaseNo($proCaseNo){
 			$sql = "select
 						*
 					from
 						`product`
+                    join `product_manage`.`proNo` on `product_manage`.`proNo`=`product`.`proNo` 
 					where
 						`proCaseNo` = '".$proCaseNo."'";
 			$data = $this->db->selectRecords($sql);

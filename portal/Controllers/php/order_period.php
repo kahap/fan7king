@@ -45,8 +45,8 @@
 			}else{
 				$_SESSION['shopping_user'] = $memberData;
 				$_SESSION['shopping_product'] = $pm_detail;
-				$_SESSION['shopping_spec'] = $_POST['spec'];
-				$_SESSION['shopping_period'] = $_POST['period'];
+				$_SESSION['shopping_spec'] = isset($_POST['spec'])?$_POST['spec']:'';
+				$_SESSION['shopping_period'] = isset($_POST['period'])?$_POST['period']:'';
 				$_SESSION['shopping_price'] = $price[$_POST['period']];
 				echo "1";
 			}
