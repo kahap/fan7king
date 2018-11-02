@@ -219,7 +219,19 @@
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
-		
+
+        //取得商品在該供應商的上架資訊
+        public function getOnePMByPro($proNo){
+            $sql = "select
+						*
+					from
+						`product_manage`
+					where
+						`proNo`='".$proNo."'";
+            $data = $this->db->selectRecords($sql);
+            return $data;
+        }
+
 		//取得商品在該供應商的上架資訊
 		public function getOnePMBySupAndPro($proNo,$supNo){
 			$sql = "select

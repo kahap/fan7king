@@ -1,5 +1,6 @@
 <?php 
 require_once('model/require_general.php');
+error_reporting(0);
 
 date_default_timezone_set('Asia/Taipei');
 $date = date('Y-m-d H:i:s', time());
@@ -67,7 +68,17 @@ if($_GET["action"] == "edit"){
 	$proData = $pro->getOneProByNo($proNo);
 }else{
 
+    $pm = new Product_Manage();
+
     $pro = new Product();
+    /*$DaoProduct = $pro->getAllPMByStatus0();
+    $selectableProData = array();
+    foreach ($DaoProduct as $item){
+        $DaoPM = $pm->getOnePMByPro($item[0]['proNo']);
+        if ($DaoPM[0]['pmStatus']){
+            $selectableProData[] = $item;
+        }
+    }*/
     $selectableProData = $pro->getAllPMByStatus0();
 
 	if(isset($_GET['procaseno']) && $_GET['procaseno'] != ""){

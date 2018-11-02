@@ -25,16 +25,17 @@
 
         //取得所有商品
         public function getAllPMByStatus0(){
-                $key = ' and `product_manage`.`proName` LIKE "%'.$search.'%" ';
+                $key = ' and `product_manage`.`pmStatus` = 0 ';
             $sql = "select
-						* 
+						`product`.* 
 					from
-						`product` 
+						`product` join `product_manage` on `product`.`proNo` = `product_manage`.`proNo` 
                     where 
                         1 
 					".$key." 
 					order by
-						`proNo` desc";
+						`product`.`proNo` desc
+                    limit 0,100 ";
             $data = $this->db->selectRecords($sql);
             return $data;
         }
