@@ -166,7 +166,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       	所屬分類 : 
                       </label>
                        <div class="col-md-6 col-sm-6 col-xs-12">
-	                      <select name="catNo" class="form-control">
+	                      <select name="catNo" class="form-control" required>
 	                      	<option selected value="">請選擇</option>
 	                      	<?php foreach($allCat as $key=>$value){ ?>
 	                        	<option <?php if($_GET["action"]=="edit") if($proData[0]["catNo"]==$value["catNo"]) echo "selected"; ?> value="<?php echo $value["catNo"]; ?>"><?php echo $value["catName"]; ?></option>
@@ -180,7 +180,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       所屬品牌 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">                      	
-	                      <select name="braNo" class="form-control">
+	                      <select name="braNo" class="form-control" required>
 	                      	<option selected value="">請選擇</option>
 	                      	<?php foreach($allBra as $key=>$value){ ?>
 	                        	<option <?php if($_GET["action"]=="edit") if($proData[0]["braNo"]==$value["braNo"]) echo "selected"; ?> value="<?php echo $value["braNo"]; ?>"><?php echo $value["braName"]; ?></option>
@@ -194,7 +194,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               所屬品項 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <select name="biNo" class="form-control">
+                              <select name="biNo" class="form-control" required>
                                   <option selected value="">請選擇</option>
                                   <?php foreach($allItems as $key=>$value){ ?>
                                       <option <?php if($_GET["action"]=="edit") if($proData[0]["biNo"]==$value["biNo"]) echo "selected"; ?> value="<?php echo $value["biNo"]; ?>"><?php echo $value["biName"]; ?></option>
@@ -210,14 +210,14 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       <div class="col-md-6 col-sm-6 col-xs-12">
                     <?php if($_GET["action"]=="edit"){
                               if(trim($proData[0]["proName"])==""){ ?>
-                                    <input name="proNo" id="proNo" class="form-control">
+                                    <input name="proNo" id="proNo" class="form-control" required>
                              <?php } else { ?>
-                         	    <select disabled class="form-control">
+                         	    <select disabled class="form-control" required>
                                   <option selected><?php echo $proData[0]["proName"]; ?></option>
                          	    </select>
                       	<?php }
                         } else { ?>
-                          <input name="proNo" id="proNo" class="form-control">
+                          <input name="proNo" id="proNo" class="form-control" required>
                      <?php } ?>
 						 <ul class="parsley-errors-list"><li id="proNoErr"></li></ul>
                       </div>
@@ -275,7 +275,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               撥款金額 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="period-amnt2" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt2"]; ?>" type="text" class="form-control" name="pmPeriodAmnt2" /><!--readonly=true-->
+                              <input id="period-amnt2" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt2"]; ?>" required type="text" class="form-control" name="pmPeriodAmnt2" /><!--readonly=true-->
                               <ul class="parsley-errors-list"><li id="pmPeriodAmntErr2"></li></ul>
                           </div>
                       </div>
@@ -845,7 +845,8 @@ $(function(){
 
 
 
-    $("button[type='submit']").click(function(e){
+    $("button[type='submit']").parents("form").on("submit",function(e){
+        e.preventDefault();
         // var val = $("#period-amnt").val();
         var val = $("#period-amnt2").val();
         if(val=='')

@@ -17,14 +17,12 @@ $lastPage = ceil($totalProData/30);
 
 if(isset($_GET["catname"]) && $_GET["catname"] != "all"){
 	$allProData = $pro->getAllProByCatName($_GET["catname"], ($page-1)*30 , 30 , $search);
-    $pro->getAllProByCatNameCount($_GET["catname"] , $search);
-    $totalProData = $pro->db->iNoOfRecords;
+    $totalProData = $pro->getAllProByCatNameCount($_GET["catname"] , $search);
     $lastPage = ceil($totalProData/30);
 }
 if(isset($_GET["braname"]) && $_GET["braname"] != "all"){
 	$allProData = $pro->getAllProByBraName($_GET["braname"], ($page-1)*30 , 30 , $search);
-    $pro->getAllProByBraNameCount($_GET["braname"] , $search);
-    $totalProData = $pro->db->iNoOfRecords;
+    $totalProData = $pro->getAllProByBraNameCount($_GET["braname"] , $search);
     $lastPage = ceil($totalProData/30);
 }
 
@@ -250,76 +248,13 @@ $allBraData = $bra->getAllBrand();
 
     var asInitVals = new Array();
     $(document).ready(function() {
-
-        /* BASIC ;*/
-        // var oTable = $('#dt_basic').dataTable({
-        //     "serverSide": true,
-        //     "stateSave": true,
-        //     "scrollX": true,
-        //     "scrollY": '60vh',
-        //     'bProcessing': true,
-        //     'sServerMethod': 'GET',
-        //     "aoColumns": [
-        //         {
-        //             "sTitle": "商品編號",
-        //             "mData": "proCaseNo",
-        //             "width": "40px",
-        //             "sName": "proCaseNo",
-        //             "bSearchable": false,
-        //             "mRender": function (data, type, row) {
-        //                 return data;
-        //             }
-        //         },
-        //         // {
-        //         //     "sTitle": "分類",
-        //         //     "mData": "catName",
-        //         //     "width": "40px",
-        //         //     "sName": "catName",
-        //         //     "bSearchable": false,
-        //         //     "mRender": function (data, type, row) {
-        //         //         if ( type === 'display' ) {
-        //         //             return row.catName;
-        //         //         }
-        //         //     }
-        //         // },
-        //         // {"sTitle": "品牌", "mData": "braName", "width": "80px", "sName": "braName"},
-        //         {"sTitle": "名稱", "mData": "proName", "width": "40px", "sName": "proName"},
-        //         // {"sTitle": "規格", "mData": "proSpec", "width": "120px", "sName": "proSpec"},
-        //         {
-        //             "sTitle": "詳細資訊",
-        //             "bSortable": false,
-        //             "bSearchable": false,
-        //             "width": '140px',
-        //             "mRender": function (data, type, row) {
-        //                 var btn = "無功能";
-        //                 btn = '<a href="?page=product&type=product&action=view&prono='+ row.proNo + '">' +
-        //                     '<button style="background-color:#FFF;border:1px solid #CCC;" class="btn btn-defult view-details">' +
-        //                     '詳細資訊/編輯' +
-        //                     '</button>' +
-        //                     '</a>';
-        //                 return btn;
-        //             }
-        //         },
-        //     ],
-        //     "sAjaxSource": 'ajax/product/server_processing.php',
-        //     "ajax": 'ajax/product/server_processing.php',
-        //     // "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-        //     //     "t" +
-        //     //     "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-        //     "autoWidth": true,
-        //     "oLanguage": {
-        //         "sSearch": "搜尋: "
-        //     },
-        // });
-        /* END BASIC */
-
         var oTable = $('#example').dataTable({
             "paging": false,
             "processing": true,
-          "oLanguage": {
-            "sSearch": "<button class='key_search'>搜尋</button>"
-          },
-          "sPaginationType": "full_numbers"
+            "oLanguage": {
+                "sSearch": "<button class='key_search'>搜尋</button>"
+            },
+            "sPaginationType": "full_numbers"
         })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
 
         $('#example_info').hide();
@@ -331,10 +266,12 @@ $allBraData = $bra->getAllBrand();
 
         // search
         $('#example_filter').find('input[type=search]').val('<?php echo $search;?>');
-        $('.key_search').click(function() {
+        $('.key_search').click(function(e) {
             var keyword = $('#example_filter').find('input[type=search]').val();
             var url = 'admin.php?page=product&type=product<?php if(isset($_GET["catname"]))echo '&catname='.$_GET["catname"];?><?php if(isset($_GET["braname"]))echo '&braname='.$_GET["braname"];?>&paginate=<?php echo $page;?>&search=';
             location.href = url + keyword;
+            e.preventDefault();
+            return false;
         });
 
 

@@ -111,7 +111,7 @@
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
             }
             $sql = "select
-						*
+						count(`product_manage`.`proNo`) as `count` 
 					from
 						`product_manage`".
                     ($search?" join `product` on `product`.`proNo` = `product_manage`.`proNo` ":"")
@@ -120,8 +120,9 @@
                     ".$key." 
 					order by
 						`pmNo`";
-            $data = $this->db->selectRecords($sql);
-            return  $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 		
 		//取得所有商品上架(依照商品名稱)
@@ -137,7 +138,7 @@
                     join
                         `product` on `product_manage`.`proNo`=`product`.`proNo`
 					where 
-					`pmMainSup` = '1' 
+					/*`pmMainSup` = '1' */ 1
 					".$key." 
 					group by
 						`product_manage`.`proNo`
@@ -154,20 +155,19 @@
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
             }
             $sql = "select
-						`product_manage`.proNo,pmMainSup,pmIfDirect,pmNewest,pmHot,pmSpecial,pmStatus,pmUpDate,pmPopular,pmBuyAmnt,pmClickNum
+						count(`product_manage`.`proNo`) as `count` 
 					from
 						`product_manage`
                     join
                         `product` on `product_manage`.`proNo`=`product`.`proNo`
 					where 
-					`pmMainSup` = '1' 
+					/*`pmMainSup` = '1' */  1 
 					".$key." 
-					group by
-						`product_manage`.`proNo`
 					order by
 						`product_manage`.`pmUpDate` desc " ;
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 		
 		//取得該供應商所有商品上架
@@ -195,8 +195,8 @@
             if ($search){
                 $key = ' and `product`.`proName` LIKE "%'.$search.'%" ';
             }
-            $sql = "select
-						*
+            $sql = "select						
+						count(`product_manage`.`proNo`) as `count` 
 					from
 						`product_manage`".
                 ($search?" join `product` on `product`.`proNo` = `product_manage`.`proNo` ":"")
@@ -204,8 +204,9 @@
 					where
 						`supNo` = '".$supNo."' 
 					".$key." ";
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 		
 		//編號取得單一商品上架
@@ -247,7 +248,7 @@
 		}
 		
 		//依據商品取得該商品
-		public function getAllByProName($proNo,$p=1,$a=30){
+		public function getAllByProName($proNo,$p=0,$a=30){
 			$sql = "select
 						*
 					from
@@ -269,7 +270,7 @@
         //依據商品取得該商品總數
         public function getAllByProNameCount($proNo){
             $sql = "select
-						*
+						count(`product_manage`.`proNo`) as `count` 
 					from
 						`product_manage`
 					inner join
@@ -282,8 +283,9 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product`.`proNo`='".$proNo."'";
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 		
 		//依據商品取得該商品並且group
@@ -397,7 +399,7 @@
                     foreach ($value as $v){
                         $v = mysqli_real_escape_string($this->db->oDbLink, $v);
                     }
-                    $$key = $value[0];
+                    $$key = $value;
                 }else {
                     $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
                 }

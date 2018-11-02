@@ -275,7 +275,7 @@
                     foreach ($value as $v){
                         $v = mysqli_real_escape_string($this->db->oDbLink, $v);
                     }
-                    $$key = $value[0];
+                    $$key = $value;
                 }else {
                     $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
                 }

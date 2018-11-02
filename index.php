@@ -225,16 +225,16 @@
                                     $or = new Orders();
                                     $or_data = $or->getTwinOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
                                     if($or_data[1]['orNo'] != ''){
-                                        include('portal/views/page_default_order_period_2.html');
+                                        include('portal/views/staging/page_default_order_period_2.php');
                                     }else{
-                                        include('portal/views/page_order_period_2.html');
+                                        include('portal/views/staging/page_order_period_2.php');
                                     }
     								break;
                                 case "3":
-                                    include('portal/views/page_order_period_3.html');
+                                    include('portal/views/staging/page_order_period_3.php');
     								break;
                                 case "4":
-                                    include('portal/views/page_order_period_4.html');
+                                    include('portal/views/staging/page_order_period_4.php');
     								break;
 
                                 default:
@@ -243,11 +243,11 @@
                                     if($_SESSION['ord_code'] != ''){
                                         echo "<script>location.href='index.php?item=member_center&action=order_edit&orno=".$_SESSION['ord_code']."'</script>";
                                     }else{
-                                        if($or_data[0]['orNo'] != ''){
-                                            include('portal/views/page_default_order_period.html');
-                                        }else{
-                                            include('portal/views/page_order_period.html');
-                                        }
+                                        /*if($or_data[0]['orNo'] != ''){
+                                            include('portal/views/staging/page_default_order_period.php');
+                                        }else{*/
+                                            include('portal/views/staging/page_order_period.php');
+                                        //}
                                     }
     								break;
                             }
@@ -382,13 +382,28 @@
     				break;
 
 
+                //幫助中心
+                case "help":
+                    include_once('portal/views/help/helping.php');
+                    break;
+                //常見問題
                 case "faq":
-                    include_once('portal/views/page_faq.html');
+                    include_once('portal/views/help/helping-faq.php');
     				break;
-
+                //聯絡我們
                 case "co_company":
-                    include_once('portal/views/page_contact.html');
+                    include_once('portal/views/help/helping-contact.php');
     				break;
+                //關於我們
+                case "aboutme":
+                    include_once('portal/views/help/helping-about.php');
+                    break;
+                //購物流程
+                case "help_process":
+                    include_once('portal/views/help/helping-process.php');
+                    break;
+
+
                 case "loan_menu":
                     include_once('portal/views/page_loan_menu.html');
     				break;
@@ -515,12 +530,21 @@
             include_once('portal/views/page_sup_center_new.html'); //encore
             //include_once('portal/views/page_sup_center.html');
         }
+
+
+        //幫助中心
         elseif($itemVal=="faq"){
-            include_once('portal/views/page_faq.html');
+            include_once('portal/views/help/helping-faq.php');
         }
+        //聯絡客服
         elseif($itemVal=="co_company"){
-            include_once('portal/views/page_contact.html');
+            include_once('portal/views/help/helping-contact.php');
         }
+        //關於我們
+        elseif($itemVal=="aboutme"){
+            include_once('portal/views/help/helping-about.php');
+        }
+
         elseif($itemVal=="loan_vip"){
             include_once('portal/views/page_loanVIP.html');
         }

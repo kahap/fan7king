@@ -12,7 +12,7 @@
 	}
 	
 	foreach($proNo as $key=>$value){
-		$pmData = $pm->getAllByProName($value);
+		$pmData = $pm->getAllByProName($value,0,9999999);
 		foreach($pmData as $keyIn=>$valueIn){
 			if(isset($pmNewestOrder)){
 				$pm->updateOrder("pmNewestOrder", $pmNewestOrder[$key], $valueIn["pmNo"]);
