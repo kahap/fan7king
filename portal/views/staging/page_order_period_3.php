@@ -1,3 +1,11 @@
+<style>
+    h3{
+        font-size: 16px;
+
+        margin-top:3px;
+        margin-bottom:3px;
+    }
+</style>
 
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
@@ -336,3 +344,35 @@
         </div>
     </section>
 </main>
+
+<script>
+    $(".next-btn").click(function(){
+        $(".next-btn").hide();
+        $.ajax({
+            url: 'php/order_finish.php',
+            data: "member_data=11",
+            type:"POST",
+            dataType:'text',
+            success: function(msg){
+                if(msg){
+                    alert('購買完成，請等候電話照會');
+                    location.href='index.php?item=member_center&action=order_period&method=4';
+                    thankButton();
+                }else{
+                    alert('系統操作錯誤');
+                    $(".next-btn").show();
+                }
+            },
+
+            error:function(xhr, ajaxOptions, thrownError){
+                alert(xhr.status);
+                alert(thrownError);
+                $(".next-btn").show();
+            }
+        });
+    })
+
+    $(".next").click(function(){
+        location.href='index.php?item=member_center&action=order_period&method=auto';
+    })
+</script>

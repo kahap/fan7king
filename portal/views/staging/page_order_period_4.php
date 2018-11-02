@@ -1,4 +1,11 @@
+<style>
+    label{
+        font-size: 16px;
+        color:blue;
+    }
+</style>
 
+<!-- page wapper-->
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
     <section id="staging-zone">

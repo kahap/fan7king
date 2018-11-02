@@ -248,76 +248,13 @@ $allBraData = $bra->getAllBrand();
 
     var asInitVals = new Array();
     $(document).ready(function() {
-
-        /* BASIC ;*/
-        // var oTable = $('#dt_basic').dataTable({
-        //     "serverSide": true,
-        //     "stateSave": true,
-        //     "scrollX": true,
-        //     "scrollY": '60vh',
-        //     'bProcessing': true,
-        //     'sServerMethod': 'GET',
-        //     "aoColumns": [
-        //         {
-        //             "sTitle": "商品編號",
-        //             "mData": "proCaseNo",
-        //             "width": "40px",
-        //             "sName": "proCaseNo",
-        //             "bSearchable": false,
-        //             "mRender": function (data, type, row) {
-        //                 return data;
-        //             }
-        //         },
-        //         // {
-        //         //     "sTitle": "分類",
-        //         //     "mData": "catName",
-        //         //     "width": "40px",
-        //         //     "sName": "catName",
-        //         //     "bSearchable": false,
-        //         //     "mRender": function (data, type, row) {
-        //         //         if ( type === 'display' ) {
-        //         //             return row.catName;
-        //         //         }
-        //         //     }
-        //         // },
-        //         // {"sTitle": "品牌", "mData": "braName", "width": "80px", "sName": "braName"},
-        //         {"sTitle": "名稱", "mData": "proName", "width": "40px", "sName": "proName"},
-        //         // {"sTitle": "規格", "mData": "proSpec", "width": "120px", "sName": "proSpec"},
-        //         {
-        //             "sTitle": "詳細資訊",
-        //             "bSortable": false,
-        //             "bSearchable": false,
-        //             "width": '140px',
-        //             "mRender": function (data, type, row) {
-        //                 var btn = "無功能";
-        //                 btn = '<a href="?page=product&type=product&action=view&prono='+ row.proNo + '">' +
-        //                     '<button style="background-color:#FFF;border:1px solid #CCC;" class="btn btn-defult view-details">' +
-        //                     '詳細資訊/編輯' +
-        //                     '</button>' +
-        //                     '</a>';
-        //                 return btn;
-        //             }
-        //         },
-        //     ],
-        //     "sAjaxSource": 'ajax/product/server_processing.php',
-        //     "ajax": 'ajax/product/server_processing.php',
-        //     // "sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>" +
-        //     //     "t" +
-        //     //     "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-        //     "autoWidth": true,
-        //     "oLanguage": {
-        //         "sSearch": "搜尋: "
-        //     },
-        // });
-        /* END BASIC */
-
         var oTable = $('#example').dataTable({
             "paging": false,
             "processing": true,
-          "oLanguage": {
-            "sSearch": "<button class='key_search'>搜尋</button>"
-          },
-          "sPaginationType": "full_numbers"
+            "oLanguage": {
+                "sSearch": "<button class='key_search'>搜尋</button>"
+            },
+            "sPaginationType": "full_numbers"
         })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
 
         $('#example_info').hide();

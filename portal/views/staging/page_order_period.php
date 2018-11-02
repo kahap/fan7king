@@ -1,3 +1,33 @@
+<!-- page wapper-->
+<style>
+    h3{
+        font-size: 16px;
+        color:blue;
+        margin-top:3px;
+        margin-bottom:3px;
+    }
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="portal/assets/js/select/chosen.css">
+<script src="portal/assets/js/aj-address.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.address-zone').ajaddress({ city: "請選擇", county: "請選擇" });
+        if($(".memclass").val() == '0'){
+            $(".memSchool").show();
+            $(".chosen-container").show();
+            $(".memAccount").show();
+        }else{
+            $(".memSchool").hide();
+            $(".department").hide();
+            $(".chosen-container").hide();
+            $(".memAccount").hide();
+        }
+        if($("input[name=orBusinessNumIfNeed]").val() == '0'){
+            $("#orBusinessNumNumber").hide();
+        }
+    });
+</script>
 
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
@@ -30,6 +60,29 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- page heading-->
+                <?php
+                $member = new Member();
+                $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+                $columnName = $or->getAllColumnNames("orders");
+                $iforder = $or->getOrderhistory($_SESSION['user']['memNo']);
+                $disabled = ($iforder != '') ? "disabled":"";
+                //欄位名稱
+                //print_r($columnName);
+
+                $school = new School();
+                $school_data = $school->getAll();
+
+                $major = new Major();
+                $major_data = $major->getAll();
+
+                foreach($major_data as $k => $v){
+                    $major_combine[$v['schNo']][] = $v['majName'];
+                }
+                ?>
+                <!-- ../page heading-->
+
                 <p>申請人基本資料<span class="text-orange">*為必填欄位，請務必詳實填寫，如未滿20歲,需父母同意分期購買。</span></p>
                 <div class="section-staging bg-white">
                     <div class="section-order-title">基本資料<span class="text-orange"> *基本資料請填寫完整，以增加審核速度與過案機會。</span></div>
@@ -38,27 +91,35 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CName" name="CName" value="大中天" disabled>
+                                    <input type="text" class="form-control memName" id="CName" name="memName" value="<?php echo $memberData[0]["memName"]; ?>" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="IdentKind" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身分別</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="IdentKind" name="IdentKind">
-                                        <option selected>學生</option>
+                                    <select class="form-control memclass" id="IdentKind" name="memclass">
+                                        <option value="0" <?php echo ($memberData[0]['memClass'] == 0) ? "selected":""; ?> >學生</option>
+                                        <option value="4" <?php echo ($memberData[0]['memClass'] == 4) ? "selected":""; ?> >非學生</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="SchoolEmail" name="SchoolEmail">
+                                    <input type="text" class="form-control memAccount" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="EmailAddress" name="EmailAddress">
+                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value=
+                                    "<?php
+                                        if($memberData[0]['memclass'] != '0' && $memberData[0]['memFBtoken'] == ""){
+                                            echo $memberData[0]["memAccount"];
+                                        }else{
+                                            echo $memberData[0]["memSubEmail"];
+                                        }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
@@ -72,7 +133,7 @@
                             <div class="form-group row">
                                 <label for="HomeTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>戶籍電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="HomeTelephone" name="HomeTelephone">
+                                    <input type="text" class="form-control orAppApplierBirthPhone" id="HomeTelephone" name="orAppApplierBirthPhone">
                                     <div class="float-right m-1">
                                         <input class="form-check-input" type="checkbox" id="SameForNowTelephone">
                                         <label class="form-check-label" for="SameForNowTelephone">同現住電話</label>
@@ -552,3 +613,315 @@
         </form>
     </section>
 </main>
+
+
+<script src="assets/js/select/chosen.jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var config = {
+        '.chosen-select'           : {},
+        '.chosen-select-deselect'  : {allow_single_deselect:true},
+        '.chosen-select-no-single' : {disable_search_threshold:10},
+        '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
+        '.chosen-select-width'     : {width:"95%"}
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+    $(".secure").click(function(){
+        alert("若你不希望親友知道可以勾選第一步驟申請書姓名前面的保密，勾選之後還是會打電話但不會告知有購物，她們只會接到類似行銷電話確認身份而已。");
+    })
+</script>
+
+<script>
+    $(".department").hide();
+    $(".school").change(function(){
+        var school = $(this).val();
+        $(".department").hide();
+        $("#default").hide();
+        $("#shool_"+school).show();
+    });
+
+    $("#orAppApplierCompanystatus").hide();
+    $("#orAppApplierCreditstatus").hide();
+    $("#orBusinessNumNumber").hide();
+    $(".memother").hide();
+    $(".memclass").change(function(){
+        var memclass_val = $(this).val();
+        if(memclass_val == '3'){
+            $(".memother").show();
+        }else{
+            $(".memother").hide();
+        }
+        if(memclass_val == '0'){
+            $(".memSchool").show();
+            $(".chosen-container").show();
+            $(".memAccount").show();
+        }else{
+            $(".memSchool").hide();
+            $(".chosen-container").hide();
+            $("#default").hide();
+            $(".memAccount").hide();
+        }
+    })
+    $(".next-btn").click(function(){
+        if(checkname($("input[name=memName]").val()) && checkTwID($("input[name=memIdNum]").val()) && checkPhone2($("input[name=memCell]").val()) && checkDate($("select[name=year]").val(),$("select[name=month]").val(),$("select[name=date]").val()) && checkAllContact()){
+            $.ajax({
+                url: 'php/order_check.php',
+                data: $('#order_add').serialize(),
+                type:"POST",
+                dataType:'text',
+                success: function(msg){
+                    if(msg){
+                        if(msg == "1"){
+                            alert("請記得到會員中心->會員基本資料做認證信");
+                            location.href = "index.php?item=member_center&action=order_period&method=2";
+                        }else if(msg == "2"){
+                            location.href = "index.php?item=member_center&action=order_period&method=2";
+                        }else{
+                            alert(msg);
+                        }
+                    }else{
+                        alert(msg);
+                    }
+                },
+
+                error:function(xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        }
+    })
+    $("input[name=orAppApplierCompanystatus]").change(function(){
+        if($('input[name=orAppApplierCompanystatus]:checked').val() == 1){
+            $("#orAppApplierCompanystatus").show();
+        }else{
+            $("#orAppApplierCompanystatus").hide();
+        }
+    })
+    $("input[name=orAppApplierCreditstatus]").change(function(){
+        if($('input[name=orAppApplierCreditstatus]:checked').val() == 1){
+            $("#orAppApplierCreditstatus").show();
+        }else{
+            $("#orAppApplierCreditstatus").hide();
+        }
+    })
+    $("input[name=orBusinessNumIfNeed]").change(function(){
+        if($('input[name=orBusinessNumIfNeed]:checked').val() == 1){
+            $("#orBusinessNumNumber").show();
+        }else{
+            $("#orBusinessNumNumber").hide();
+        }
+    })
+
+
+    $("input[name=sameofapplier]").change(function(){
+        if($('input[name=sameofapplier]:checked').val() == "on"){
+            $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
+            $("input[name=memPhone]").val($("input[name=orAppApplierBirthPhone]").val());
+            $(".memPostCode").val($(".orAppApplierBirthAddrPostCode").val());
+        }else{
+            $("input[name=memAddr]").val('');
+            $("input[name=memPhone]").val('');
+        }
+    })
+    $("input[name=sameofapplier_3]").change(function(){
+        if($('input[name=sameofapplier_3]:checked').val() == "on"){
+            $("input[name=orAppApplierBirthAddr]").val($("input[name=memAddr]").val());
+            $("input[name=orAppApplierBirthPhone]").val($("input[name=memPhone]").val());
+            $(".orAppApplierBirthAddrPostCode").val($(".memPostCode").val());
+        }else{
+            $("input[name=orAppApplierBirthAddr]").val('');
+            $("input[name=orAppApplierBirthPhone]").val('');
+        }
+    })
+
+    $("input[name=sameofapplier_1]").change(function(){
+        if($('input[name=sameofapplier_1]:checked').val() == "on"){
+            $("input[name=orReceiveName]").val($("input[name=memName]").val());
+            $("input[name=orReceiveAddr]").val($("input[name=memAddr]").val());
+            $("input[name=orReceivePhone]").val($("input[name=memPhone]").val());
+            $("input[name=orReceiveCell]").val($("input[name=memCell]").val());
+        }else{
+            $("input[name=orReceiveName]").val('');
+            $("input[name=orReceiveAddr]").val('');
+            $("input[name=orReceivePhone]").val('');
+            $("input[name=orReceiveCell]").val('');
+        }
+    })
+    $("input[name=sameofapplier_2]").change(function(){
+        if($('input[name=sameofapplier_2]:checked').val() == "on"){
+            $("input[name=orReceiveName]").val($("input[name=memName]").val());
+            $("input[name=orReceiveAddr]").val($("input[name=orAppApplierBirthAddr]").val());
+            $("input[name=orReceivePhone]").val($("input[name=orAppApplierBirthPhone]").val());
+            $("input[name=orReceiveCell]").val($("input[name=memCell]").val());
+        }else{
+            $("input[name=orReceiveName]").val('');
+            $("input[name=orReceiveAddr]").val('');
+            $("input[name=orReceivePhone]").val('');
+            $("input[name=orReceiveCell]").val('');
+        }
+    })
+
+
+    $(".city").change(function(){
+        if($(".city").val() != ""){
+            $("input[name=orAppApplierBirthAddr]").val($(".city").val());
+        }
+    })
+    $(".county").change(function(){
+        if($(".county").val() != ""){
+            var NewArray = new Array();
+            var NewArray = $(".county").val().split(" ");
+            $("input[name=orAppApplierBirthAddr]").val($(".city").val()+NewArray[0]);
+            $(".orAppApplierBirthAddrPostCode").val(NewArray[1]);
+        }
+    })
+    $("#city").change(function(){
+        if($("#city").val() != ""){
+            $("input[name=memAddr]").val($("#city").val());
+        }
+    })
+    $("#county").change(function(){
+        if($("#county").val() != ""){
+            var NewArray = new Array();
+            var NewArray = $("#county").val().split(" ");
+            $("input[name=memAddr]").val($("#city").val()+NewArray[0]);
+            $(".memPostCode").val(NewArray[1]);
+        }
+    })
+    function checkAllContact(){
+        var errg = 0;
+        if(checkname($("input[name=orAppContactRelaName]").val()) && checkname($("input[name=orAppContactFrdName]").val())){
+            errg +=0;
+        }else{
+            alert('您輸入的親屬或朋友中文姓名不正確');
+            errg +=1;
+        }
+
+        if(checkPhone4($("input[name=orAppContactRelaCell]").val())  && checkPhone4($("input[name=orAppContactFrdCell]").val())){
+            errg +=0;
+        }else{
+            errg +=1;
+        }
+
+        if($("input[name=orAppContactRelaCell]").val() != $("input[name=orAppContactFrdCell]").val() && $("input[name=memCell]").val() != $("input[name=orAppContactFrdCell]").val() && $("input[name=memCell]").val() != $("input[name=orAppContactRelaCell]").val() ){
+            errg +=0;
+        }else{
+            alert('申請人、親屬、朋友不可為同一手機號碼');
+            errg +=1;
+        }
+
+        if(errg >=1){
+            return false
+        }else{
+            return true;
+        }
+    }
+    function checkTwID(id){
+        //建立字母分數陣列(A~Z)
+        var city = new Array(
+            1,10,19,28,37,46,55,64,39,73,82, 2,11,
+            20,48,29,38,47,56,65,74,83,21, 3,12,30
+        )
+        id = id.toUpperCase();
+        // 使用「正規表達式」檢驗格式
+        if (id.search(/^[A-Z](1|2)\d{8}$/i) == -1) {
+            alert('身分證字號錯誤錯誤');
+            return false;
+        } else {
+            //將字串分割為陣列(IE必需這麼做才不會出錯)
+            id = id.split('');
+            //計算總分
+            var total = city[id[0].charCodeAt(0)-65];
+            for(var i=1; i<=8; i++){
+                total += eval(id[i]) * (9 - i);
+            }
+            //補上檢查碼(最後一碼)
+            total += eval(id[9]);
+            //檢查比對碼(餘數應為0);
+            if(total%10 == 0 ){
+                return true;
+            }else{
+                alert('身分證字號錯誤');
+            }
+        }
+    }
+    function checkPhone(strPhone) {
+        var phoneRegNoArea = /^(0\d{1,2})-(\d{6,8})$/;
+        var prompt = "您輸入的戶籍市話號碼不正確!"
+        if(phoneRegNoArea.test(strPhone) ){
+            return true;
+        }else{
+            alert( prompt );
+            return false;
+        }
+    }
+    function checkPhone1(strPhone) {
+        var phoneRegNoArea = /^(0\d{1,2})-(\d{6,8})$/;
+        var prompt = "您輸入的現住市話號碼不正確!"
+        if(phoneRegNoArea.test(strPhone) ){
+            return true;
+        }else{
+            alert( prompt );
+            return false;
+        }
+    }
+    function checkPhone2(strPhone) {
+        var phoneRegWithArea = /^09[0-9]{8}$/;
+        var phoneRegNoArea = /^(0\d+)-(\d{8})$/;
+        var prompt = "您輸入的手機號碼不正確!";
+        if( strPhone.length > 9  && strPhone.length <= 10) {
+            if( phoneRegWithArea.test(strPhone) ){
+                return true;
+            }else{
+                alert( prompt );
+                return false;
+            }
+        }else{
+            alert( prompt );
+            return false;
+
+        }
+    }
+    function checkPhone4(strPhone) {
+        var phoneRegWithArea = /^09[0-9]{8}$/;
+        var prompt = "您輸入的親屬或朋友手機號碼不正確";
+        if( strPhone.length > 9  && strPhone.length <= 10) {
+            if( phoneRegWithArea.test(strPhone) ){
+                return true;
+            }else{
+                alert( prompt );
+                return false;
+            }
+        }else{
+            alert( prompt );
+            return false;
+
+        }
+
+    }
+    function checkname(strname) {
+        var check_name = /[^\u3447-\uFA29]/ig;
+        if(strname.match(/[^\u3447-\uFA29]/ig)){
+            alert('請輸入中文姓名');
+            return false;
+        }else{
+            return true;
+        }
+    }
+    function checkDate(year,month,day){
+        y = parseInt(year) + 1911;
+        var dt1 = new Date(y, month, day);
+        var dt2 = new Date();
+        diff = (((dt2-dt1)/(1000*60*60*24))/365);
+        if(diff >= 17.931){
+            return true;
+        }else{
+            alert('未滿18歲不能申請');
+            return false;
+        }
+    }
+
+</script>

@@ -1,3 +1,75 @@
+<!--<script type="text/javascript" src="assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="assets/js/sketch.js"></script>-->
+<script type="text/javascript" src="assets/js/jquery.form.js"></script>
+<script src="assets/draw/jquery.jqscribble.js" type="text/javascript"></script>
+<script src="assets/draw/jqscribble.extrabrushes.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function()
+    {
+        $("#colors_sketch").jqScribble();
+        $("#colors_sketch_1").jqScribble();
+    });
+</script>
+<style>
+    .btn, .btn_1, .btn_2, .btn_3, .btn_4{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;
+        *display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px;
+        *line-height:20px;color:#fff;
+        text-align:center;vertical-align:middle;cursor:pointer;background:#5bb75b;
+        border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf;
+        border-bottom-color:#b3b3b3;-webkit-border-radius:4px;
+        -moz-border-radius:4px;border-radius:4px;
+    }
+    .btn input, .btn_1 input, .btn_2 input, .btn_3 input, .btn_4 input{position: absolute;top: 0; right: 0;margin: 0;border:solid transparent;
+        opacity: 0;filter:alpha(opacity=0); cursor: pointer;
+    }
+    .progress, .progress_1, .progress_2, .progress_3, .progress_4{position:relative; margin-left:100px; margin-top:-24px;
+        width:200px;padding: 1px; border-radius:3px; display:none
+    }
+    .bar, .bar_1, .bar_2, .bar_3, .bar_4{background-color: green; display:block; width:0%; height:20px;
+        border-radius:3px;
+    }
+    .percent, .percent_1, .percent_2, .percent_3, .percent_4{position:absolute; height:20px; display:inline-block;
+        top:3px; left:2%; color:#fff }
+    .files, .files_1, .files_2, .files_3, .files_4{height:22px; line-height:22px; margin:10px 0}
+    .delimg, .delimg_1, .delimg_2, .delimg_3, .delimg_4{margin-left:20px; color:#090; cursor:pointer}
+    label {
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px;
+        margin-right: 15px;
+        font-size: 14px;
+    }
+    label:before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        bottom: 1px;
+        background-color: #aaa;
+        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    }
+    input[type=checkbox] {
+        display: none;
+    }
+    .checkbox label {
+        margin-bottom: 10px;
+    }
+    .checkbox label:before {
+        border-radius: 3px;
+    }
+    input[type=checkbox]:checked + label:before {
+        content: "\2713";
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+        font-size: 15px;
+        color: #f3f3f3;
+        text-align: center;
+        line-height: 15px;
+    }
+</style>
 
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
@@ -102,3 +174,296 @@
         </div>
     </section>
 </main>
+
+
+<!-- ./page wapper-->
+<script>
+    $("#next").click(function(){
+        if($("#check2").prop("checked")){
+            if($("#check4").is(":checked")){
+                $.ajax({
+                    url: 'php/order_check_file.php',
+                    data: $('#order_add').serialize(),
+                    type:"POST",
+                    dataType:'text',
+                    success: function(msg){
+                        if(msg == 1){
+                            location.href='index.php?item=member_center&action=order_period&method=3';
+                        }else{
+                            alert(msg);
+                        }
+                    },
+
+                    error:function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+            }else{
+                alert("請勾選同意條款");
+            }
+        }else{
+            alert("請勾選同意條款");
+        }
+    });
+    $("#next_1").click(function(){
+        if($("input[name='check']:checked").length == 1 && $("input[name='check3']:checked").length == 1 && $("input[name='check4']:checked").length == 1){
+            $.ajax({
+                url: 'php/order_check_file.php',
+                data: $('#order_add').serialize(),
+                type:"POST",
+                dataType:'text',
+                success: function(msg){
+                    if(msg == 1){
+                        location.href='index.php?item=member_center&action=order_period&method=3';
+                    }else{
+                        alert(msg);
+                    }
+                },
+
+                error:function(xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        }else{
+            alert("請勾選同意條款及父母同意確認購買此商品");
+        }
+    });
+    $(function () {
+        var bar = $('.bar');
+        var percent = $('.percent');
+        var showimg = $('#showimg');
+        var progress = $(".progress");
+        var files = $(".files");
+        var btn = $(".btn span");
+        $("#fileupload").wrap("<form id='myupload' action='php/file.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload").change(function(){
+            $("#myupload").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg.empty();
+                    progress.show();
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                    btn.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg.html("<img src='"+img+"'>");
+                        btn.html("上傳檔案");
+                    }else{
+                        btn.html("上傳失敗");
+                        bar.width('0')
+                        files.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn.html("上傳失敗");
+                    bar.width('0')
+                    files.html(xhr.responseText);
+                }
+            });
+        });
+
+        var bar_1 = $('.bar_1');
+        var percent_1 = $('.percent_1');
+        var showimg_1 = $('#showimg_1');
+        var progress_1 = $(".progress_1");
+        var files_1 = $(".files_1");
+        var btn_1 = $(".btn_1 span");
+        $("#fileupload_1").wrap("<form id='myupload_1' action='php/file_1.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_1").change(function(){
+            $("#myupload_1").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_1.empty();
+                    progress_1.show();
+                    var percentVal = '0%';
+                    bar_1.width(percentVal);
+                    percent_1.html(percentVal);
+                    btn_1.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_1.width(percentVal);
+                    percent_1.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg_1.html("<img src='"+img+"'>");
+                        btn_1.html("上傳檔案");
+                    }else{
+                        btn_1.html("上傳失敗");
+                        bar_1.width('0')
+                        files_1.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn_1.html("上傳失敗");
+                    bar_1.width('0')
+                    files_1.html(xhr.responseText);
+                }
+            });
+        });
+        var bar_2 = $('.bar_2');
+        var percent_2 = $('.percent_2');
+        var showimg_2 = $('#showimg_2');
+        var progress_2 = $(".progress_2");
+        var files_2 = $(".files_2");
+        var btn_2 = $(".btn_2 span");
+        $("#fileupload_2").wrap("<form id='myupload_2' action='php/file_2.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_2").change(function(){
+            $("#myupload_2").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_2.empty();
+                    progress_2.show();
+                    var percentVal = '0%';
+                    bar_2.width(percentVal);
+                    percent_2.html(percentVal);
+                    btn_2.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_2.width(percentVal);
+                    percent_2.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg_2.html("<img src='"+img+"'>");
+                        btn_2.html("上傳檔案");
+                    }else{
+                        btn_2.html("上傳失敗");
+                        bar_2.width('0')
+                        files_2.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn_2.html("上傳失敗");
+                    bar_2.width('0')
+                    files_2.html(xhr.responseText);
+                }
+            });
+        });
+        var bar_3 = $('.bar_3');
+        var percent_3 = $('.percent_3');
+        var showimg_3 = $('#showimg_3');
+        var progress_3 = $(".progress_3");
+        var files_3 = $(".files_3");
+        var btn_3 = $(".btn_3 span");
+        $("#fileupload_3").wrap("<form id='myupload_3' action='php/file_3.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_3").change(function(){
+            $("#myupload_3").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_3.empty();
+                    progress_3.show();
+                    var percentVal = '0%';
+                    bar_3.width(percentVal);
+                    percent_3.html(percentVal);
+                    btn_3.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_3.width(percentVal);
+                    percent_3.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg_3.html("<img src='"+img+"'>");
+                        btn_3.html("上傳檔案");
+                    }else{
+                        btn_3.html("上傳失敗");
+                        bar_3.width('0')
+                        files_3.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn_3.html("上傳失敗");
+                    bar_3.width('0')
+                    files_3.html(xhr.responseText);
+                }
+            });
+        });
+        var bar_4 = $('.bar_4');
+        var percent_4 = $('.percent_4');
+        var showimg_4 = $('#showimg_4');
+        var progress_4 = $(".progress_4");
+        var files_4 = $(".files_4");
+        var btn_4 = $(".btn_4 span");
+        $("#fileupload_4").wrap("<form id='myupload_4' action='php/file_4.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_4").change(function(){
+            $("#myupload_4").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_4.empty();
+                    progress_4.show();
+                    var percentVal = '0%';
+                    bar_4.width(percentVal);
+                    percent_4.html(percentVal);
+                    btn_4.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_4.width(percentVal);
+                    percent_4.html(percentVal);
+                },
+                success: function(data) {
+                    var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                    showimg_4.html("<img src='"+img+"'>");
+                    btn_4.html("上傳檔案");
+                },
+                error:function(xhr){
+                    btn_4.html("上傳失敗");
+                    bar_4.width('0')
+                    files_4.html(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('#upload').click(function(){
+            $("#colors_sketch").data("jqScribble").save(function(imageData){
+
+                $.post('php/file_5.php', {imagedata: imageData}, function(response){
+                    $('#upload button').html('簽名完成');
+                    $('#upload button').prop("disabled", true);
+                    $('#orAppAuthenProvement').hide();
+                });
+            });
+        });
+
+        $('#upload_1').click(function(){
+            $("#colors_sketch_1").data("jqScribble").save(function(imageData){
+
+                $.post('php/file_6.php', {imagedata: imageData}, function(response){
+                    $('#upload_1 button').html('簽名完成');
+                    $('#upload_1 button').prop("disabled", true);
+                    $('#orAppAuthenPromiseLetter').hide();
+
+                });
+            });
+        });
+        $('#upload_2').click(function(){
+            var canvasData_2 = colors_sketch_2.toDataURL("image/png");
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST",'php/file_7.php',false);
+            ajax.setRequestHeader('Content-Type', 'application/upload');
+            ajax.send(canvasData_2);
+            $('#upload_2 button').html('上傳成功');
+        });
+    });
+</script>

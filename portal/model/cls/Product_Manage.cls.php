@@ -430,8 +430,8 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product_manage`.`pmNewest`= '1' &&
-						`product_manage`.`pmStatus`!= '0' && 
-						`product_manage`.`pmMainSup`= '1'
+						`product_manage`.`pmStatus`!= '0' /*&& 
+						`product_manage`.`pmMainSup`= '1' */
 					group by
 						`product`.`proNo`
 					order by
@@ -457,8 +457,8 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product_manage`.`pmSpecial`= '1' &&
-						`product_manage`.`pmStatus`!= '0' && 
-						`product_manage`.`pmMainSup`= '1'
+						`product_manage`.`pmStatus`!= '0' /*&& 
+						`product_manage`.`pmMainSup`= '1' */
 					group by
 						`product`.`proNo`
 					order by
@@ -484,8 +484,8 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product_manage`.`pmHot`= '1' &&
-						`product_manage`.`pmStatus`!= '0' && 
-						`product_manage`.`pmMainSup`= '1'
+						`product_manage`.`pmStatus`!= '0' /*&& 
+						`product_manage`.`pmMainSup`= '1' */
 					group by
 						`product`.`proNo`
 					order by

@@ -151,9 +151,9 @@ $sup = new Supplier();
                                     </td>
                                     <td class=" ">
                                         <span><?php echo $value["pmPopular"]; ?></span>
-                                        <button style="float:right;" class="btn btn-info change-popular">
-                                            編輯
-                                        </button>
+<!--                                        <button style="float:right;" class="btn btn-info change-popular">-->
+<!--                                            編輯-->
+<!--                                        </button>-->
                                     </td>
                                     <td class=" "><span><?php echo number_format($value["pmBuyAmnt"]); ?></span></td>
                                     <td class=" "><?php echo number_format($value["pmClickNum"]); ?></td>

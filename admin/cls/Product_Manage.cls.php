@@ -138,7 +138,7 @@
                     join
                         `product` on `product_manage`.`proNo`=`product`.`proNo`
 					where 
-					`pmMainSup` = '1' 
+					/*`pmMainSup` = '1' */ 1
 					".$key." 
 					group by
 						`product_manage`.`proNo`
@@ -161,10 +161,8 @@
                     join
                         `product` on `product_manage`.`proNo`=`product`.`proNo`
 					where 
-					`pmMainSup` = '1' 
+					/*`pmMainSup` = '1' */  1 
 					".$key." 
-					group by
-						`product_manage`.`proNo`
 					order by
 						`product_manage`.`pmUpDate` desc " ;
             $q=mysqli_query($this->db->oDbLink,$sql);
@@ -250,7 +248,7 @@
 		}
 		
 		//依據商品取得該商品
-		public function getAllByProName($proNo,$p=1,$a=30){
+		public function getAllByProName($proNo,$p=0,$a=30){
 			$sql = "select
 						*
 					from
