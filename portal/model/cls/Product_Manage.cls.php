@@ -108,7 +108,8 @@
 		}
 		//取得所有商品上架 total
         public function getAllPM_forCategoryCount(){
-            $sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.proName, c.proImage
+            $sql = "select 
+						count(`product_manage`.`proNo`) as `count` 
 					from 
 						`product_manage` a, product c
 					where
@@ -119,8 +120,9 @@
 						c.proNo
 					order by
 						a.pmUpDate desc";
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 
 		
@@ -211,7 +213,7 @@
                 $str = ($category) ? " `product`.catNo = '".$category."' ":' 1 ';
             }
             $sql = "select
-						*
+						count(`product_manage`.`proNo`) as `count`
 					from
 						`product_manage`
 					inner join
@@ -228,8 +230,9 @@
 					".$str."
 					order by
 						`product`.`proName` asc";
-            $data = $this->db->selectRecords($sql);
-            return $this->db->iNoOfRecords;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
         }
 		
 		//取得所有商品上架
