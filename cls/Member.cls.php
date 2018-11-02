@@ -576,7 +576,7 @@
 			if($data[0]['count'] > 0) return "1";
 		}
 		public function check_FBtoken($memFBtoken){
-			$memAccount = mysqli_real_escape_string($this->db->oDbLink, $memAccount);
+			$memFBtoken = mysqli_real_escape_string($this->db->oDbLink, $memFBtoken);
 			$sql = "select
 						*
 					from
