@@ -105,7 +105,7 @@ switch (@$_GET["special"]){
                       <tr class="headings">
                         <th>商品名稱</th>
                         <th>是否為<?php echo $key; ?></th>
-<!--                        <th>排序 </th>-->
+                        <th style="display:none;">排序 </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -121,7 +121,7 @@ switch (@$_GET["special"]){
                                         <input type="checkbox" class="checked-one" name="<?php echo $ifIsCol."[]"; ?>" <?php if($value[$ifIsCol] == 1) echo "checked=true"; ?> value="1">
                                         <input style="display:none;" type="checkbox" class="unchecked-one" name="<?php echo $ifIsCol."[]"; ?>" <?php if($value[$ifIsCol] == 0) echo "checked=true"; ?> value="0">
                                     </td>
-<!--                                    <td class=" "><span style="display:none;">--><?php //echo $value[$col]; ?><!--</span><input type="text" name="--><?php //echo $col."[]"; ?><!--" value="--><?php //echo $value[$col]; ?><!--"></td>-->
+                                    <td class=" " style="display:none;"><span style="display:none;"><?php echo $value[$col]; ?></span><input type="text" name="<?php echo $col."[]"; ?>" value="<?php echo $value[$col]; ?>"></td>
                                   </tr>
                                  <?php
                     		}
