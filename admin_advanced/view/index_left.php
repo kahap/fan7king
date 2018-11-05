@@ -30,14 +30,14 @@
 							<ul>
 							<?php if(in_array(1001,$rightsOwned)){ ?><li><a href="?page=member&type=dataedit" <?php echo isset($page,$type) && $page == "member" && $type == "dataedit" ? 'class="active-page"' : ""; ?>>會員資料編輯</a></li><?php } ?>
 							<?php if(in_array(1001,$rightsOwned)){ ?><li><a href="?page=member&type=fbchange" <?php echo isset($page,$type) && $page == "member" && $type == "fbchange" ? 'class="active-page"' : ""; ?>>會員FB交換</a></li><?php } ?>
-							</ur>
+							</ul>
 						</div>
                     </li>
                     <?php } ?>
                     <?php if(in_array(11,$rightsOwned)){ ?>
                     <li class="no-padding <?php echo isset($page) && $page == "orders_view" ? "active" : ""; ?>">
 	                    <a class="waves-effect waves-grey active" href="?page=orders_view">
-	                    	<i class="material-icons">library_books</i>總案件查詢-Allan專用
+	                    	<i class="material-icons">library_books</i>總案件查詢-主管專用
 	                    </a>
                     </li>
                     <?php } ?>
@@ -181,7 +181,7 @@
                     <?php } ?>
 					<?php if(in_array(900,$rightsOwned)){ ?>
                     <li class="no-padding <?php echo isset($page) && $page == "param" ? "active" : ""; ?>">
-                        <a class="collapsible-header waves-effect waves-grey <?php echo isset($page) && $page == "param" ? "active" : ""; ?>"><i class="material-icons">apps</i>Allan專用<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
+                        <a class="collapsible-header waves-effect waves-grey <?php echo isset($page) && $page == "param" ? "active" : ""; ?>"><i class="material-icons">apps</i>主管專用<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
                         <div class="collapsible-body">
                             <ul>
 <?php if(in_array(901,$rightsOwned)){ ?><li><a href="?page=statistics&type=regist" <?php echo isset($page,$type) && $page == "statistics" && $type == "regist" ? 'class="active-page"' : ""; ?>>本月每日註冊人數</a></li><?php } ?>

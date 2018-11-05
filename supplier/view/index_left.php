@@ -59,7 +59,7 @@
                   <ul id="order-submenu" class="nav child_menu" >
                   	<li><a href="?page=order&action=query&method=1"> 分期案件查詢</a></li>
                     <?php 
-                   
+                   /*
                     foreach($or->statusArr as $key=>$value){	
 			
 					?>
@@ -150,7 +150,8 @@
                     	</li>
 					<?php		
 						}                   
-                    ?>
+                    */
+						?>
                   </ul>
                 </li>
               
