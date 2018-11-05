@@ -104,20 +104,26 @@
                                     帳號或密碼錯誤
                                 </p>
                                 <?php
+                            }else{
+                                ?>
+                                <p class="text-center text-orange text-errmsg">
+                                    &nbsp;
+                                </p>
+                                <?php
                             }
                             ?>
                             <form action="#" class="form">
                                 <div class="form-group row">
                                     <label for="form-phone" class="col-2 col-form-label text-hide label-phone">手機號碼</label>
                                     <div class="col-10">
-                                        <input type="text" class="form-control input-orange" id="form-phone" placeholder="手機號碼">
+                                        <input type="text" class="form-control input-black" id="form-phone" placeholder="手機號碼">
 <!--                                        <input id="emmail_login" type="text" class="input form-control">-->
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="form-password" class="col-2 col-form-label text-hide label-password">密碼</label>
                                     <div class="col-10">
-                                        <input type="password" class="form-control input-orange password_login" id="form-password" placeholder="密碼">
+                                        <input type="password" class="form-control input-black password_login" id="form-password" placeholder="密碼">
                                         <p class="form-text text-right text-orange"><a href="?item=forgetpwd1" title="忘記密碼？">忘記密碼？</a></p>
                                     </div>
                                 </div>

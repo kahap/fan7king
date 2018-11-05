@@ -37,7 +37,7 @@
                                         <th nowrap="nowrap">商品名稱</th>
                                         <th nowrap="nowrap">商品規格</th>
                                         <th nowrap="nowrap">商品型號</th>
-                                        <th nowrap="nowrap">狀態</th>
+                                        <th nowrap="nowrap">訂單狀態</th>
                                     </tr>
                                 </thead>
                                 <tbody>

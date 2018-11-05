@@ -35,11 +35,13 @@
                     </div>
                     <div class="col-lg-9">
                         <div class="section-inner bg-white">
+
+
                             <form action="" id="member_edit">
                                 <div class="form-group row">
                                     <label for="staticSource" class="col-sm-3 col-form-label"><span class="text-orange">*</span> 原始密碼</label>
                                     <div class="col-sm-9">
-                                        <input type="password" class="form-control input-black-all" name="memPwd" id="staticSource" value="<?php echo $memPwd;?>">
+                                        <input type="password" class="form-control input-black-all memPwd" name="memPwd" id="staticSource" value="<?php echo $memPwd;?>">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -54,9 +56,6 @@
                                         <input type="password" class="form-control input-black-all reNewmemPwd" name="reNewmemPwd" id="staticCheckpw" value="">
                                     </div>
                                 </div>
-
-                                <input type="hidden" name="memNo" value="<?php echo $_SESSION['user']['memNo']; ?>" />
-
                                 <div class="form-group text-right mt-50">
                                     <button class="btn bg-yellow" id="update">確認送出</button>
                                 </div>

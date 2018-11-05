@@ -286,7 +286,7 @@ $_SESSION['pro'] = $proNo;
                             <div class="card-body">
                                 <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
                                 <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
-                                <p class="card-text text-orange">月付：NT$600<small>*24期</small></p>
+                                <p class="card-text text-orange text-center">月付：NT$600<small>*24期</small></p>
                             </div>
                         </a>
                     </div>
@@ -298,31 +298,7 @@ $_SESSION['pro'] = $proNo;
                             <div class="card-body">
                                 <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
                                 <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
-                                <p class="card-text text-orange">月付：NT$600<small>*24期</small></p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="item col-lg-3 col-6">
-                    <div class="card">
-                        <a href="#" title="#">
-                            <img src="portal/images/Tmp/demo.jpg" class="img-fluid" alt="#">
-                            <div class="card-body">
-                                <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
-                                <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
-                                <p class="card-text text-orange">月付：NT$600<small>*24期</small></p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="item col-lg-3 col-6">
-                    <div class="card">
-                        <a href="#" title="#">
-                            <img src="portal/images/Tmp/demo.jpg" class="img-fluid" alt="#">
-                            <div class="card-body">
-                                <p class="card-title">Panasonic lumix gf7 微單眼 類單眼 二手 機身+鏡頭 12-32mm</p>
-                                <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
-                                <p class="card-text text-orange">月付：NT$600<small>*24期</small></p>
+                                <p class="card-text text-orange text-center">月付：NT$600<small>*24期</small></p>
                             </div>
                         </a>
                     </div>
