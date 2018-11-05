@@ -83,8 +83,8 @@
 
 
                 //相簿圖片
-                $imgArr = getAllImgs();
-                $imgArr = isset($imgArr) ?$imgArr: [];
+//                $imgArr = getAllImgs();
+//                $imgArr = isset($imgArr) ?$imgArr: [];
 
                 ?>
                 <!-- ../page heading-->
