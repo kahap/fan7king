@@ -80,6 +80,12 @@
                 foreach($major_data as $k => $v){
                     $major_combine[$v['schNo']][] = $v['majName'];
                 }
+
+
+                //相簿圖片
+                $imgArr = getAllImgs();
+                $imgArr = isset($imgArr) ?$imgArr: [];
+
                 ?>
                 <!-- ../page heading-->
 
@@ -127,7 +133,7 @@
                             <div class="form-group row">
                                 <label for="NowTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>現住電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="NowTelephone" name="NowTelephone">
+                                    <input type="text" class="form-control memPhone" id="NowTelephone" name="memPhone" value="<?php echo $memberData[0]['memPhone'] ?>" placeholder="ex: 02-22898878">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -143,34 +149,34 @@
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-3 col-form-label"><span class="text-orange">*</span>行動電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="Mobile" name="Mobile">
+                                    <input type="text" class="form-control memCell" id="Mobile" name="memCell" value="<?php echo $memberData[0]['memCell'] ?>" placeholder="ex: 0911222333">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="" class="col-sm-3 col-form-label"><span class="text-orange"></span>住房所有權</label>
                                 <div class="col-sm-9">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HouseOwner" id="HouseOwner1" value="1">
+                                        <input class="form-check-input input" type="radio" name="orAppApplierLivingOwnership" id="HouseOwner1" value="自有/配偶">
                                         <label class="form-check-label" for="HouseOwner1">自有/配偶</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HouseOwner" id="HouseOwner2" value="2">
+                                        <input class="form-check-input input" type="radio" name="orAppApplierLivingOwnership" id="HouseOwner2" value="父母/子女">
                                         <label class="form-check-label" for="HouseOwner2">父母/子女</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HouseOwner" id="HouseOwner3" value="3">
+                                        <input class="form-check-input input" type="radio" name="orAppApplierLivingOwnership" id="HouseOwner3" value="親友">
                                         <label class="form-check-label" for="HouseOwner3">親友</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HouseOwner" id="HouseOwner4" value="4">
+                                        <input class="form-check-input input" type="radio" name="orAppApplierLivingOwnership" id="HouseOwner4" value="租賃">
                                         <label class="form-check-label" for="HouseOwner4">租賃</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HouseOwner" id="HouseOwner5" value="5">
+                                        <input class="form-check-input input" type="radio" name="orAppApplierLivingOwnership" id="HouseOwner5" value="宿舍">
                                         <label class="form-check-label" for="HouseOwner5">宿舍</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HouseOwner" id="HouseOwner6" value="6">
+                                        <input class="form-check-input input" type="radio" name="orAppApplierLivingOwnership" id="HouseOwner6" value="其他">
                                         <label class="form-check-label" for="HouseOwner6">其他</label>
                                     </div>
                                 </div>
@@ -185,19 +191,57 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" id="customFile">
+                                    <input type="file" class="form-control memImage" id="customFile" name="memImage[]" >
+<!--                                    <span id="stampImgErr" style="color:red;"></span><br>-->
+<!--                                    <div id="preview-area-multiple" class="col-md-6 col-sm-6 col-xs-12">-->
+<!--                                        --><?php
+//                                        if($_GET["action"] == "edit" && !empty($proImageArray)){
+//                                            foreach($proImageArray as $value){
+//                                                if($value != ""){
+//                                                    ?>
+<!---->
+<!--                                                    <div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">-->
+<!--                                                        <img style="max-width:300px;margin-bottom:10px;" src="--><?php //echo $value; ?><!--">-->
+<!--                                                        <br>-->
+<!--                                                        <button data-index="--><?php //echo $value; ?><!--" class="remove-img btn btn-danger">刪除</button>-->
+<!--                                                    </div>-->
+<!--                                                    --><?php
+//                                                }
+//                                            }
+//                                        }
+//                                        ?>
+<!--                                    </div>-->
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" id="customFile">
+                                    <input type="file" class="form-control memImage" id="customFile" name="memImage[]" >
+                                    <!--                                    <span id="stampImgErr" style="color:red;"></span><br>-->
+                                    <!--                                    <div id="preview-area-multiple" class="col-md-6 col-sm-6 col-xs-12">-->
+                                    <!--                                        --><?php
+                                    //                                        if($_GET["action"] == "edit" && !empty($proImageArray)){
+                                    //                                            foreach($proImageArray as $value){
+                                    //                                                if($value != ""){
+                                    //                                                    ?>
+                                    <!---->
+                                    <!--                                                    <div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">-->
+                                    <!--                                                        <img style="max-width:300px;margin-bottom:10px;" src="--><?php //echo $value; ?><!--">-->
+                                    <!--                                                        <br>-->
+                                    <!--                                                        <button data-index="--><?php //echo $value; ?><!--" class="remove-img btn btn-danger">刪除</button>-->
+                                    <!--                                                    </div>-->
+                                    <!--                                                    --><?php
+                                    //                                                }
+                                    //                                            }
+                                    //                                        }
+                                    //                                        ?>
+                                    <!--                                    </div>-->
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="IdentNumber" name="IdentNumber" value="F123456789" disabled>
+                                    <input type="text" class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -205,22 +249,35 @@
                                 <div class="col-sm-9">
                                     <div class="form-inline">
                                         民國
-                                        <select class="custom-select mb-3">
-                                            <option selected>100</option>
-                                            <option value="">20</option>
-                                            <option value="">21</option>
+                                        <select class="custom-select mb-3" name="year">
+                                            <?php
+                                            $year =  explode('-',$memberData[0]["memBday"]);
+                                            for($i=50;$i<=105;$i++){ ?>
+                                                <option value="<?=$i ?>" <?php echo ($year[0] == $i) ? 'selected':''; ?>><?=$i?></option>
+                                            <?php } ?>
+<!--                                            <option selected>100</option>-->
+<!--                                            <option value="">20</option>-->
+<!--                                            <option value="">21</option>-->
                                         </select>
                                         年
-                                        <select class="custom-select mb-3">
-                                            <option selected>01</option>
-                                            <option value="">02</option>
-                                            <option value=2">03</option>
+                                        <select class="custom-select mb-3" name="month">
+                                            <?php
+                                            for($i=1;$i<=12;$i++){ ?>
+                                                <option value="<?=$i ?>" <?php echo ($year[1] == $i) ? 'selected':''; ?>><?=$i?></option>
+                                            <?php } ?>
+<!--                                            <option selected>01</option>-->
+<!--                                            <option value="">02</option>-->
+<!--                                            <option value=2">03</option>-->
                                         </select>
                                         月
-                                        <select class="custom-select mb-3">
-                                            <option selected>01</option>
-                                            <option value="">02</option>
-                                            <option value=2">03</option>
+                                        <select class="custom-select mb-3" name="date">
+                                            <?php
+                                            for($i=1;$i<=31;$i++){ ?>
+                                                <option value="<?=$i ?>" <?php echo ($year[2] == $i) ? 'selected':''; ?>><?=$i?></option>
+                                            <?php } ?>
+<!--                                            <option selected>01</option>-->
+<!--                                            <option value="">02</option>-->
+<!--                                            <option value=2">03</option>-->
                                         </select>
                                         日
                                     </div>
@@ -231,22 +288,35 @@
                                 <div class="col-sm-9">
                                     <div class="form-inline">
                                         民國
-                                        <select class="custom-select mb-3">
-                                            <option selected>100</option>
-                                            <option value="">20</option>
-                                            <option value="">21</option>
+                                        <select class="custom-select mb-3" name="orIdIssueYear">
+                                            <?php
+                                            $year = date('Y',time())-1911;
+                                            for($i=50;$i<=$year;$i++){ ?>
+                                                <option value="<?=$i ?>"><?=$i?></option>
+                                            <?php } ?>
+<!--                                            <option selected>100</option>-->
+<!--                                            <option value="">20</option>-->
+<!--                                            <option value="">21</option>-->
                                         </select>
                                         年
-                                        <select class="custom-select mb-3">
-                                            <option selected>01</option>
-                                            <option value="">02</option>
-                                            <option value=2">03</option>
+                                        <select class="custom-select mb-3" name="orIdIssueMonth">
+                                            <?php
+                                            for($i=1;$i<=12;$i++){ ?>
+                                                <option value="<?=$i ?>"><?=$i?></option>
+                                            <?php } ?>
+<!--                                            <option selected>01</option>-->
+<!--                                            <option value="">02</option>-->
+<!--                                            <option value=2">03</option>-->
                                         </select>
                                         月
-                                        <select class="custom-select mb-3">
-                                            <option selected>01</option>
-                                            <option value="">02</option>
-                                            <option value=2">03</option>
+                                        <select class="custom-select mb-3" name="orIdIssueDay">
+                                            <?php
+                                            for($i=1;$i<=31;$i++){ ?>
+                                                <option value="<?=$i ?>"><?=$i?></option>
+                                            <?php } ?>
+<!--                                            <option selected>01</option>-->
+<!--                                            <option value="">02</option>-->
+<!--                                            <option value=2">03</option>-->
                                         </select>
                                         日
                                     </div>
@@ -257,15 +327,15 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange"></span>發證類別</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="IdentKind" name="IdentKind">
-                                        <option selected>發證類別</option>
+                                    <select class="form-control" id="IdentKind" name="orIdIssueType">
+                                        <option selected value="<?php echo $or_data[0]['orIdIssueType']; ?>"><?php echo $or_data[0]['orIdIssueType']; ?></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange"></span>換補發類別</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="IdentKind" name="IdentKind">
+                                    <select class="form-control" id="IdentKind" name="">
                                         <option selected>換補發類別</option>
                                     </select>
                                 </div>
@@ -275,20 +345,20 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                            <input type="text" class="form-control" id="CreditBank" name="orAppApplierBirthAddrPostCode" value="<?php echo $or_data['0']['orAppApplierBirthAddrPostCode'];?>" readonly >
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control">
-                                                <option selected>xxxx</option>
+                                            <select class="form-control city">
+                                                <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control">
-                                                <option selected>xxxx</option>
+                                            <select class="form-control county">
+                                                <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control orAppApplierBirthAddr" id="CreditBank" name="orAppApplierBirthAddr" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -296,23 +366,23 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                            <input type="text" class="form-control" id="CreditBank" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>" readonly >
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control">
-                                                <option selected>xxxx</option>
+                                            <select class="form-control city" id="city">
+                                                <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control">
-                                                <option selected>xxxx</option>
+                                            <select class="form-control county" id="county">
+                                                <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control memAddr" id="CreditBank" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>">
                                     <div class="float-right m-1">
-                                        <input class="form-check-input" type="checkbox" id="SameForNowTelephone">
-                                        <label class="form-check-label" for="SameForNowTelephone">同戶籍地址</label>
+                                        <input class="form-check-input" type="checkbox" id="SameForNowTelephone" name="sameofapplier">
+                                        <label class="form-check-label" for="SameForNowTelephone" >同戶籍地址</label>
                                     </div>
                                 </div>
                             </div>
@@ -321,17 +391,17 @@
                 </div>
                 <div class="section-staging bg-white">
                     <div class="section-order-title">工作</div>
-                    <div class="row">
+                    <div class="row" id="orAppApplierCompanystatus">
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label for="JobStatus" class="col-sm-3 col-form-label"><span class="text-orange"></span>工作狀態</label>
                                 <div class="col-sm-9">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="JobStatus" id="JobStatus1" value="1">
+                                        <input class="form-check-input" type="radio" name="orAppApplierCompanystatus" id="JobStatus1" value="1">
                                         <label class="form-check-label" for="JobStatus1">有</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="JobStatus" id="JobStatus2" value="2">
+                                        <input class="form-check-input" type="radio" name="orAppApplierCompanystatus" id="JobStatus2" value="0" checked>
                                         <label class="form-check-label" for="JobStatus2">無</label>
                                     </div>
                                 </div>
@@ -339,13 +409,13 @@
                             <div class="form-group row">
                                 <label for="CompanyName" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司名稱</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CompanyName" name="CompanyName">
+                                    <input type="text" class="form-control" id="CompanyName" name="orAppApplierCompanyName" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="JobYear" class="col-sm-3 col-form-label"><span class="text-orange"></span>年資</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="JobYear" name="JobYear" placeholder="一年">
+                                    <input type="text" class="form-control" id="JobYear" name="orAppApplierYearExperience" placeholder="一年">
                                 </div>
                             </div>
                         </div>
@@ -353,19 +423,19 @@
                             <div class="form-group row">
                                 <label for="Salary" class="col-sm-3 col-form-label"><span class="text-orange"></span>月薪</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="Salary" name="Salary" placeholder="100000">
+                                    <input type="text" class="form-control" id="Salary" name="orAppApplierMonthSalary" placeholder="100000">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="ComPhone" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="ComPhone" name="ComPhone">
+                                    <input type="text" class="form-control" id="ComPhone" name="orAppApplierCompanyPhone">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="ComExtension" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司市話分機</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="ComExtension" name="ComExtension">
+                                    <input type="text" class="form-control" id="ComExtension" name="orAppApplierCompanyPhoneExt">
                                 </div>
                             </div>
                         </div>
@@ -377,13 +447,13 @@
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label for="HaveCredit" class="col-sm-3 col-form-label"><span class="text-orange"></span>持有信用卡</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9" id="HaveCredit">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HaveCredit" id="HaveCredit1" value="1">
+                                        <input class="form-check-input" type="radio" name="orAppApplierCreditstatus" id="HaveCredit1" value="1">
                                         <label class="form-check-label" for="HaveCredit1">有</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HaveCredit" id="HaveCredit2" value="2">
+                                        <input class="form-check-input" type="radio" name="orAppApplierCreditstatus" id="HaveCredit2" value="0" checked>
                                         <label class="form-check-label" for="HaveCredit2">無</label>
                                     </div>
                                 </div>
@@ -392,10 +462,10 @@
                                 <label for="CreditNo" class="col-sm-3 col-form-label"><span class="text-orange"></span>信用卡號</label>
                                 <div class="col-sm-9">
                                     <div class="row">
-                                        <div class="col-3"><input type="text" class="form-control"></div>
-                                        <div class="col-3"><input type="text" class="form-control"></div>
-                                        <div class="col-3"><input type="text" class="form-control"></div>
-                                        <div class="col-3"><input type="text" class="form-control"></div>
+                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_1" value=""></div>
+                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_2" value=""></div>
+                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_3" value=""></div>
+                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_4" value=""></div>
                                     </div>
                                 </div>
                             </div>
@@ -404,29 +474,35 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>發卡銀行</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppApplierCreditIssueBank" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="ComPhone" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="ComPhone" name="ComPhone">
+                                    <input type="text" class="form-control" id="ComPhone" name="orAppApplierCompanyPhone" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="ComExtension" class="col-sm-3 col-form-label"><span class="text-orange"></span>信用卡有效期限</label>
                                 <div class="col-sm-9">
                                     <div class="form-inline">
-                                        <select class="custom-select mb-3">
-                                            <option selected>01</option>
-                                            <option value="">02</option>
-                                            <option value=2">03</option>
+                                        <select class="custom-select mb-3" name="orAppApplierCreditDueDate_1">
+                                            <?php for($i=1;$i<=12;$i++){ ?>
+                                                <option value="<?=$i?>"><?=$i; ?></option>
+                                            <?php } ?>
+<!--                                            <option selected>01</option>-->
+<!--                                            <option value="">02</option>-->
+<!--                                            <option value=2">03</option>-->
                                         </select>
                                         月
-                                        <select class="custom-select mb-3">
-                                            <option selected>19</option>
-                                            <option value="">20</option>
-                                            <option value="">21</option>
+                                        <select class="custom-select mb-3" name="orAppApplierCreditDueDate_2">
+                                            <?php for($i=2016;$i<=2030;$i++){ ?>
+                                                <option value="<?=$i?>"><?=$i; ?></option>
+                                            <?php } ?>
+<!--                                            <option selected>19</option>-->
+<!--                                            <option value="">20</option>-->
+<!--                                            <option value="">21</option>-->
                                         </select>
                                         年
                                     </div>
@@ -442,13 +518,21 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orReceiveName" value="
+                                        <?php
+                                        foreach($columnName as $key=>$value){
+                                            //只顯示
+                                            if($value["COLUMN_NAME"] == "orReceiveName") {
+                                                echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                            }
+                                        }
+                                        ?>">
                                     <div class="float-left m-1 mr-2">
-                                        <input class="form-check-input" type="checkbox" id="SameForLive">
+                                        <input class="form-check-input" type="checkbox" id="SameForLive" name="sameofapplier_1">
                                         <label class="form-check-label" for="SameForLive">同申請人現住資料</label>
                                     </div>
                                     <div class="float-left m-1 ml-3">
-                                        <input class="form-check-input" type="checkbox" id="SameForRegistration">
+                                        <input class="form-check-input" type="checkbox" id="SameForRegistration" name="sameofapplier_2">
                                         <label class="form-check-label" for="SameForRegistration">同申請人戶籍資料</label>
                                     </div>
                                 </div>
@@ -458,32 +542,58 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                            <input type="text" class="form-control" id="CreditBank" name="">
                                         </div>
                                         <div class="col-4 mb-3">
                                             <select class="form-control">
-                                                <option selected>xxxx</option>
+                                                <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
                                             <select class="form-control">
-                                                <option selected>xxxx</option>
+                                                <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orReceiveAddr" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orReceiveAddr") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orReceivePhone" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orReceivePhone") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
+
+
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人手機</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orReceiveCell" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orReceiveCell") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
@@ -491,18 +601,27 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>收貨備註</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="orReceiveComment">
+                                        <?php
+                                        foreach($columnName as $key=>$value){
+                                            //只顯示
+                                            if($value["COLUMN_NAME"] == "orReceiveComment") {
+                                                echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                            }
+                                        }
+                                        ?>
+                                    </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>是否需要統一編號</label>
                                 <div class="col-sm-9">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HaveCredit" id="HaveCredit1" value="1">
+                                        <input class="form-check-input" type="radio" name="orBusinessNumIfNeed" id="HaveCredit1" value="1">
                                         <label class="form-check-label" for="HaveCredit1">是</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="HaveCredit" id="HaveCredit2" value="2">
+                                        <input class="form-check-input" type="radio" name="orBusinessNumIfNeed" id="HaveCredit2" value="0" checked>
                                         <label class="form-check-label" for="HaveCredit2">否</label>
                                     </div>
                                 </div>
@@ -510,13 +629,29 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>統一編號</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orBusinessNumNumber" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orBusinessNumNumber") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司抬頭</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orBusinessNumTitle" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orBusinessNumTitle") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
@@ -529,25 +664,43 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactRelaName" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactRelaName") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬關係</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactRelaRelation" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactRelaRelation") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>親屬市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>親屬關係</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactRelaPhone" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactRelaPhone") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
@@ -555,25 +708,57 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactFrdName" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactFrdName") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友關係</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactFrdRelation" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactFrdRelation") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactFrdPhone" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactFrdPhone") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友手機</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppContactFrdCell" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactFrdCell") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
@@ -586,7 +771,15 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>可照會時間</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppExtraAvailTime" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppExtraAvailTime") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
@@ -594,19 +787,27 @@
                             <div class="form-group row">
                                 <label for="CreditBank" class="col-sm-3 col-form-label"><span class="text-orange"></span>注意事項</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CreditBank" name="CreditBank">
+                                    <input type="text" class="form-control" id="CreditBank" name="orAppExtraInfo" value="
+                                    <?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppExtraInfo") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="form-check form-check-inline mt-4">
-                    <input class="form-check-input" type="checkbox" name="HaveCredit" id="HaveCredit2" value="2">
-                    <label class="form-check-label" for="HaveCredit2">申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）<a class="text-orange" href="#" title="甚麼是保密照會？">甚麼是保密照會？</a></label>
+                    <input class="form-check-input" type="checkbox" name="agree" id="HaveCredit2" value="1">
+                    <label class="form-check-label" for="HaveCredit2">申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）<a class="text-orange secure" title="甚麼是保密照會？">甚麼是保密照會？</a></label>
                 </div>
                 <div class="section-staging">
                     <div class="form-group form-btn text-center">
-                        <a href="staging-2.htm" class="btn btn-next bg-yellow">下一步</a>
+                        <a class="btn btn-next bg-yellow">下一步</a>
                     </div>
                 </div>
             </div>
@@ -617,6 +818,50 @@
 
 <script src="assets/js/select/chosen.jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
+    $(function(){
+
+        //
+        $('.btn-next').click(function(e){
+            // if($('input[name=period]').val() != ""){
+            location.href='index.php?item=member_center&action=order_period&method=2';
+            e.preventDefault();
+            return false;
+
+                if($('input[name=user]').val() != ""){
+                    $.ajax({
+                        url: 'portal/Controllers/php/order_period.php',
+                        data: $('#shopping').serialize(),
+                        type:"POST",
+                        dataType:'text',
+                        success: function(msg){
+                            if(msg == "1"){
+                                location.href='index.php?item=member_center&action=order_period';
+                            }else{
+                                alert(msg);
+                                return false;
+                            }
+                        },
+                        error:function(xhr, ajaxOptions, thrownError){
+                            alert(xhr.status);
+                            alert(thrownError);
+                            return false;
+                        }
+                    });
+                }else{
+                    alert('請先登入帳號');
+                    // location.href="index.php?item=login";
+                    location.href="index.php?item=login&pro=<?=$proNo; ?>&share=<?php echo $_GET['share']? $_GET['share'] : ''; ?>";
+                    e.preventDefault();
+                    return false;
+                }
+            // }else{
+            //     alert('請選擇期數');
+            //     return false;
+            //
+            // }
+        });
+    });
+
     var config = {
         '.chosen-select'           : {},
         '.chosen-select-deselect'  : {allow_single_deselect:true},
@@ -631,9 +876,7 @@
     $(".secure").click(function(){
         alert("若你不希望親友知道可以勾選第一步驟申請書姓名前面的保密，勾選之後還是會打電話但不會告知有購物，她們只會接到類似行銷電話確認身份而已。");
     })
-</script>
 
-<script>
     $(".department").hide();
     $(".school").change(function(){
         var school = $(this).val();
@@ -924,4 +1167,329 @@
         }
     }
 
+</script>
+
+<!-- 2 -->
+<script>
+    $("#next").click(function(){
+        if($("#check2").prop("checked")){
+            if($("#check4").is(":checked")){
+                $.ajax({
+                    url: 'php/order_check_file.php',
+                    data: $('#order_add').serialize(),
+                    type:"POST",
+                    dataType:'text',
+                    success: function(msg){
+                        if(msg == 1){
+                            location.href='index.php?item=member_center&action=order_period&method=3';
+                        }else{
+                            alert(msg);
+                        }
+                    },
+
+                    error:function(xhr, ajaxOptions, thrownError){
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+            }else{
+                alert("請勾選同意條款");
+            }
+        }else{
+            alert("請勾選同意條款");
+        }
+    });
+    $("#next_1").click(function(){
+        if($("input[name='check']:checked").length == 1 && $("input[name='check3']:checked").length == 1 && $("input[name='check4']:checked").length == 1){
+            $.ajax({
+                url: 'php/order_check_file.php',
+                data: $('#order_add').serialize(),
+                type:"POST",
+                dataType:'text',
+                success: function(msg){
+                    if(msg == 1){
+                        location.href='index.php?item=member_center&action=order_period&method=3';
+                    }else{
+                        alert(msg);
+                    }
+                },
+
+                error:function(xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                    alert(thrownError);
+                }
+            });
+        }else{
+            alert("請勾選同意條款及父母同意確認購買此商品");
+        }
+    });
+    $(function () {
+        var bar = $('.bar');
+        var percent = $('.percent');
+        var showimg = $('#showimg');
+        var progress = $(".progress");
+        var files = $(".files");
+        var btn = $(".btn span");
+        $("#fileupload").wrap("<form id='myupload' action='php/file.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload").change(function(){
+            $("#myupload").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg.empty();
+                    progress.show();
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                    btn.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg.html("<img src='"+img+"'>");
+                        btn.html("上傳檔案");
+                    }else{
+                        btn.html("上傳失敗");
+                        bar.width('0')
+                        files.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn.html("上傳失敗");
+                    bar.width('0')
+                    files.html(xhr.responseText);
+                }
+            });
+        });
+
+        var bar_1 = $('.bar_1');
+        var percent_1 = $('.percent_1');
+        var showimg_1 = $('#showimg_1');
+        var progress_1 = $(".progress_1");
+        var files_1 = $(".files_1");
+        var btn_1 = $(".btn_1 span");
+        $("#fileupload_1").wrap("<form id='myupload_1' action='php/file_1.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_1").change(function(){
+            $("#myupload_1").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_1.empty();
+                    progress_1.show();
+                    var percentVal = '0%';
+                    bar_1.width(percentVal);
+                    percent_1.html(percentVal);
+                    btn_1.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_1.width(percentVal);
+                    percent_1.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg_1.html("<img src='"+img+"'>");
+                        btn_1.html("上傳檔案");
+                    }else{
+                        btn_1.html("上傳失敗");
+                        bar_1.width('0')
+                        files_1.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn_1.html("上傳失敗");
+                    bar_1.width('0')
+                    files_1.html(xhr.responseText);
+                }
+            });
+        });
+        var bar_2 = $('.bar_2');
+        var percent_2 = $('.percent_2');
+        var showimg_2 = $('#showimg_2');
+        var progress_2 = $(".progress_2");
+        var files_2 = $(".files_2");
+        var btn_2 = $(".btn_2 span");
+        $("#fileupload_2").wrap("<form id='myupload_2' action='php/file_2.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_2").change(function(){
+            $("#myupload_2").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_2.empty();
+                    progress_2.show();
+                    var percentVal = '0%';
+                    bar_2.width(percentVal);
+                    percent_2.html(percentVal);
+                    btn_2.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_2.width(percentVal);
+                    percent_2.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg_2.html("<img src='"+img+"'>");
+                        btn_2.html("上傳檔案");
+                    }else{
+                        btn_2.html("上傳失敗");
+                        bar_2.width('0')
+                        files_2.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn_2.html("上傳失敗");
+                    bar_2.width('0')
+                    files_2.html(xhr.responseText);
+                }
+            });
+        });
+        var bar_3 = $('.bar_3');
+        var percent_3 = $('.percent_3');
+        var showimg_3 = $('#showimg_3');
+        var progress_3 = $(".progress_3");
+        var files_3 = $(".files_3");
+        var btn_3 = $(".btn_3 span");
+        $("#fileupload_3").wrap("<form id='myupload_3' action='php/file_3.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_3").change(function(){
+            $("#myupload_3").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_3.empty();
+                    progress_3.show();
+                    var percentVal = '0%';
+                    bar_3.width(percentVal);
+                    percent_3.html(percentVal);
+                    btn_3.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_3.width(percentVal);
+                    percent_3.html(percentVal);
+                },
+                success: function(data) {
+                    if(data.pic != ''){
+                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        showimg_3.html("<img src='"+img+"'>");
+                        btn_3.html("上傳檔案");
+                    }else{
+                        btn_3.html("上傳失敗");
+                        bar_3.width('0')
+                        files_3.html(xhr.responseText);
+                    }
+                },
+                error:function(xhr){
+                    btn_3.html("上傳失敗");
+                    bar_3.width('0')
+                    files_3.html(xhr.responseText);
+                }
+            });
+        });
+        var bar_4 = $('.bar_4');
+        var percent_4 = $('.percent_4');
+        var showimg_4 = $('#showimg_4');
+        var progress_4 = $(".progress_4");
+        var files_4 = $(".files_4");
+        var btn_4 = $(".btn_4 span");
+        $("#fileupload_4").wrap("<form id='myupload_4' action='php/file_4.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_4").change(function(){
+            $("#myupload_4").ajaxSubmit({
+                dataType:  'json',
+                beforeSend: function() {
+                    showimg_4.empty();
+                    progress_4.show();
+                    var percentVal = '0%';
+                    bar_4.width(percentVal);
+                    percent_4.html(percentVal);
+                    btn_4.html("上傳中...");
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar_4.width(percentVal);
+                    percent_4.html(percentVal);
+                },
+                success: function(data) {
+                    var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                    showimg_4.html("<img src='"+img+"'>");
+                    btn_4.html("上傳檔案");
+                },
+                error:function(xhr){
+                    btn_4.html("上傳失敗");
+                    bar_4.width('0')
+                    files_4.html(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('#upload').click(function(){
+            $("#colors_sketch").data("jqScribble").save(function(imageData){
+
+                $.post('php/file_5.php', {imagedata: imageData}, function(response){
+                    $('#upload button').html('簽名完成');
+                    $('#upload button').prop("disabled", true);
+                    $('#orAppAuthenProvement').hide();
+                });
+            });
+        });
+
+        $('#upload_1').click(function(){
+            $("#colors_sketch_1").data("jqScribble").save(function(imageData){
+
+                $.post('php/file_6.php', {imagedata: imageData}, function(response){
+                    $('#upload_1 button').html('簽名完成');
+                    $('#upload_1 button').prop("disabled", true);
+                    $('#orAppAuthenPromiseLetter').hide();
+
+                });
+            });
+        });
+        $('#upload_2').click(function(){
+            var canvasData_2 = colors_sketch_2.toDataURL("image/png");
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST",'php/file_7.php',false);
+            ajax.setRequestHeader('Content-Type', 'application/upload');
+            ajax.send(canvasData_2);
+            $('#upload_2 button').html('上傳成功');
+        });
+    });
+</script>
+
+<!--3-->
+<script>
+    $(".next-btn").click(function(){
+        $(".next-btn").hide();
+        $.ajax({
+            url: 'php/order_finish.php',
+            data: "member_data=11",
+            type:"POST",
+            dataType:'text',
+            success: function(msg){
+                if(msg){
+                    alert('購買完成，請等候電話照會');
+                    location.href='index.php?item=member_center&action=order_period&method=4';
+                    thankButton();
+                }else{
+                    alert('系統操作錯誤');
+                    $(".next-btn").show();
+                }
+            },
+
+            error:function(xhr, ajaxOptions, thrownError){
+                alert(xhr.status);
+                alert(thrownError);
+                $(".next-btn").show();
+            }
+        });
+    })
+
+    $(".next").click(function(){
+        location.href='index.php?item=member_center&action=order_period&method=auto';
+    })
 </script>

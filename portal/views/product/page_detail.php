@@ -336,7 +336,7 @@ $_SESSION['pro'] = $proNo;
     });
 
     //立即分期
-    $('.period').click(function(){
+    $('.period').click(function(e){
 
         if($('input[name=period]').val() != ""){
 
@@ -362,7 +362,10 @@ $_SESSION['pro'] = $proNo;
                 });
             }else{
                 alert('請先登入帳號');
+                // location.href="index.php?item=login";
                 location.href="index.php?item=login&pro=<?=$proNo; ?>&share=<?php echo $_GET['share']? $_GET['share'] : ''; ?>";
+                e.preventDefault();
+                return false;
             }
         }else{
             alert('請選擇期數');

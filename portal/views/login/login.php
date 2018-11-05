@@ -175,8 +175,8 @@
                     }
                     else if(msg == 1){
                         alert('登入成功');
-                        location.href='index.php?item=member_center&action=member_center';
-                        //location.href='index.php<?php //echo (isset($_GET['pro'])&& $_GET['pro'] != "") ? '?item=product&pro='.$_GET['pro']:''; ?>//';
+                        // location.href='index.php?item=member_center&action=member_center';
+                        location.href='index.php<?php echo (isset($_GET['pro'])&& $_GET['pro'] != "") ? '?item=product&pro='.$_GET['pro']:''; ?>';
                     }else if(msg == 2){
                         alert('您的帳號已經設定停權，如有任何問題請洽客服人員，謝謝');
                     }else{
