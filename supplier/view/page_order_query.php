@@ -52,16 +52,16 @@ if(isset($orDateFrom) && isset($orDateTo)){
                       <tr class="headings">
                       	<th>訂單狀態 </th>
                       	<th>訂單編號 </th>
-                        <th>內部訂單編號 </th>
+<!--                        <th>內部訂單編號 </th>-->
                         <th>訂購日期</th>
                         <th>訂購人 </th>
-                        <th>身分證字號</th>
+<!--                        <th>身分證字號</th>-->
                         <th>商品名稱 </th>
                         <th>商品規格 </th>
                         <th>月付 </th>
                         <th>期數 </th>
                         <th>分期總價 </th>
-                        <th>供應商</th>
+<!--                        <th>供應商</th>-->
                       </tr>
                     </thead>
                     <tbody>
@@ -78,16 +78,16 @@ if(isset($orDateFrom) && isset($orDateTo)){
                       <tr class="pointer">
                       	<td class=" "><?php echo $value["orStatus"]; ?></td>
                       	<td class=" "><?php echo $value["orCaseNo"]; ?></td>
-                        <td class=" "><?php echo $value["orInternalCaseNo"]; ?></td>
+<!--                        <td class=" ">--><?php //echo $value["orInternalCaseNo"]; ?><!--</td>-->
                         <td class=" "><?php echo $value["orDate"]; ?></td>
                         <td class=" "><?php echo $memData[0]["memName"]; ?></td>
-                        <td class=" "><?php echo $memData[0]["memIdNum"]; ?></td>
+<!--                        <td class=" ">--><?php //echo $memData[0]["memIdNum"]; ?><!--</td>-->
                         <td class=" "><?php echo $proData[0]["proName"]; ?></td>
                         <td class=" "><?php echo $value["orProSpec"]; ?></td>
                         <td class=" "><?php echo number_format($value["orPeriodTotal"]/$value["orPeriodAmnt"]); ?></td>
                         <td class=" "><?php echo $value["orPeriodAmnt"]; ?></td>
                         <td class=" "><?php echo number_format($value["orPeriodTotal"]); ?></td>
-                        <td class=" "><?php echo $supData[0]["supName"]; ?></td>
+<!--                        <td class=" ">--><?php //echo $supData[0]["supName"]; ?><!--</td>-->
                       </tr>
                      <?php 
                     		}
