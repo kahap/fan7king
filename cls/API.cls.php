@@ -603,10 +603,24 @@ require_once("../admin/cls/Product_Period.cls.php");
 			foreach($array as $key => $value){
 				$$key= mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
-			$str = ($catNo != "0") ? "`product`.catNo = '".$catNo."' &&":'';
+			$str = "";
+			$str .= ($catNo != "0") ? "`product`.catNo = '".$catNo."' &&":'';
+			$str .= ($braNo != "0") ? "`product`.braNo = '".$braNo."' &&":'';
+			$str .= ($biNo != "0") ? "`product`.biNo = '".$biNo."' &&":'';			
 			$str .= "`product`.proName like '%".$search."%'";
+			switch ($orderby) {
+				case 'hot':
+					$str .= " order by `product_manage`.`pmHotOrder` desc ";
+					break;
+				case 'money':
+					$str .= " order by `product_manage`.`pmDirectAmnt`  ";
+					break;
+				default:
+					$str .= " order by `product_manage`.`pmUpDate` desc ";
+					break;
+			}
 			$sql = "select
-						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,
+						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,`product`.braNo,`product`.biNo,
 						`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
 					from
 						`product_manage`
@@ -621,9 +635,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 					where
 						`product_manage`.`pmStatus` != '0'  &&
 						`product_manage`.`pmMainSup` = '1' &&
-					".$str."
-					order by
-						`product_manage`.`pmUpDate` desc ";
+					".$str;
 			if ($limit !="") {
 				$sql .= "limit ".$limit;
 			}

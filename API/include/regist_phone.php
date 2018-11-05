@@ -5,6 +5,7 @@
     $passNumber = rand(1000,9999);
     $phoneNumber = $_POST['phoneNumber'];
     $regtime = $_POST['time'];
+    $token = $_POST['token'];
     
     //存到驗證資料表
     $api->getOne($phoneNumber);

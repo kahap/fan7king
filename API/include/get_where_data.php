@@ -151,6 +151,21 @@
 			}else{
 				$array['catNo'] = $_POST['catNo'];
 			}
+			if(!isset($_POST['braNo']) || $_POST['braNo'] == ""){
+				$array['braNo'] = '0';
+			}else{
+				$array['braNo'] = $_POST['braNo'];
+			}
+			if(!isset($_POST['biNo']) || $_POST['biNo'] == ""){
+				$array['biNo'] = '0';
+			}else{
+				$array['biNo'] = $_POST['biNo'];
+			}
+			if(!isset($_POST['orderby']) || $_POST['orderby'] == ""){
+				$array['orderby'] = '0';
+			}else{
+				$array['orderby'] = $_POST['orderby'];
+			}
 			if(!isset($_POST["search"])){
 				$array['search'] = '';
 			}else{
@@ -165,7 +180,7 @@
 			if($product_data != null){
 				$resultArr = array();
 				$neededData = array(
-					"proNo","pmNo","catNo","pmStatus","pmBuyAmnt","proName",
+					"proNo","pmNo","catNo","braNo","biNo","pmStatus","pmBuyAmnt","proName",
 					"pmIfDirect","proImage","pmDirectAmnt","pmPeriodAmnt","proSpec"
 				);
 				foreach($product_data as $key=>$value){
