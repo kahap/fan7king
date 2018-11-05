@@ -1,9 +1,9 @@
 <?php
 session_start();
-	include('../model/php_model.php');
+	include('../../model/php_model.php');
 	$or = new Orders();
-$action = $_GET['act'];
-if($_SESSION['ord_code'] !=""){ 
+$action = isset($_GET['act'])? $_GET['act'] : '';
+if(isset($_SESSION['ord_code']) && $_SESSION['ord_code'] !=""){
 	if($action=='delimg'){ //删除图片 
 		$filename = $_POST['imagename']; 
 		if(!empty($filename)){ 

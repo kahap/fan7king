@@ -29,6 +29,21 @@
     });
 </script>
 
+<!--2-->
+<!--<script type="text/javascript" src="assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="assets/js/sketch.js"></script>-->
+<script type="text/javascript" src="assets/js/jquery.form.js"></script>
+<script src="assets/draw/jquery.jqscribble.js" type="text/javascript"></script>
+<script src="assets/draw/jqscribble.extrabrushes.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function()
+    {
+        $("#colors_sketch").jqScribble();
+        $("#colors_sketch_1").jqScribble();
+    });
+</script>
+
+
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
     <section id="staging-zone">
@@ -112,14 +127,13 @@
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memAccount" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>">
+                                    <input type="text" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value=
-                                    "<?php
+                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
                                         if($memberData[0]['memclass'] != '0' && $memberData[0]['memFBtoken'] == ""){
                                             echo $memberData[0]["memAccount"];
                                         }else{
@@ -141,7 +155,7 @@
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control orAppApplierBirthPhone" id="HomeTelephone" name="orAppApplierBirthPhone">
                                     <div class="float-right m-1">
-                                        <input class="form-check-input" type="checkbox" id="SameForNowTelephone">
+                                        <input class="form-check-input" type="checkbox" id="SameForNowTelephone" name="SameForNowTelephone">
                                         <label class="form-check-label" for="SameForNowTelephone">同現住電話</label>
                                     </div>
                                 </div>
@@ -191,51 +205,31 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control memImage" id="customFile" name="memImage[]" >
-<!--                                    <span id="stampImgErr" style="color:red;"></span><br>-->
-<!--                                    <div id="preview-area-multiple" class="col-md-6 col-sm-6 col-xs-12">-->
-<!--                                        --><?php
-//                                        if($_GET["action"] == "edit" && !empty($proImageArray)){
-//                                            foreach($proImageArray as $value){
-//                                                if($value != ""){
-//                                                    ?>
-<!---->
-<!--                                                    <div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">-->
-<!--                                                        <img style="max-width:300px;margin-bottom:10px;" src="--><?php //echo $value; ?><!--">-->
-<!--                                                        <br>-->
-<!--                                                        <button data-index="--><?php //echo $value; ?><!--" class="remove-img btn btn-danger">刪除</button>-->
-<!--                                                    </div>-->
-<!--                                                    --><?php
-//                                                }
-//                                            }
-//                                        }
-//                                        ?>
-<!--                                    </div>-->
+                                    <input id="fileupload" type="file" name="mypic">
+                                </div>
+                                <div class="progress">
+                                    <span class="bar"></span><span class="percent">0%</span >
+                                </div>
+                                <div class="files"></div>
+                                <div id="showimg">
+                                    <?php
+                                    if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgTop']."' />";
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control memImage" id="customFile" name="memImage[]" >
-                                    <!--                                    <span id="stampImgErr" style="color:red;"></span><br>-->
-                                    <!--                                    <div id="preview-area-multiple" class="col-md-6 col-sm-6 col-xs-12">-->
-                                    <!--                                        --><?php
-                                    //                                        if($_GET["action"] == "edit" && !empty($proImageArray)){
-                                    //                                            foreach($proImageArray as $value){
-                                    //                                                if($value != ""){
-                                    //                                                    ?>
-                                    <!---->
-                                    <!--                                                    <div class="old" style="border:2px solid #AAA;padding:5px;margin:20px;display:inline-block;text-align:center;">-->
-                                    <!--                                                        <img style="max-width:300px;margin-bottom:10px;" src="--><?php //echo $value; ?><!--">-->
-                                    <!--                                                        <br>-->
-                                    <!--                                                        <button data-index="--><?php //echo $value; ?><!--" class="remove-img btn btn-danger">刪除</button>-->
-                                    <!--                                                    </div>-->
-                                    <!--                                                    --><?php
-                                    //                                                }
-                                    //                                            }
-                                    //                                        }
-                                    //                                        ?>
-                                    <!--                                    </div>-->
+                                    <input id="fileupload_1" type="file" name="mypic_1">
+                                </div>
+                                <div class="progress_1">
+                                    <span class="bar_1"></span><span class="percent_1">0%</span >
+                                </div>
+                                <div class="files_1"></div>
+                                <div id="showimg_1">
+                                    <?php
+                                    if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgBot']."' />";
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -345,7 +339,7 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="CreditBank" name="orAppApplierBirthAddrPostCode" value="<?php echo $or_data['0']['orAppApplierBirthAddrPostCode'];?>" readonly >
+                                            <input type="text" class="form-control" id="CreditBank" name="orAppApplierBirthAddrPostCode" value="<?php echo $or_data['0']['orAppApplierBirthAddrPostCode'];?>"  >
                                         </div>
                                         <div class="col-4 mb-3">
                                             <select class="form-control city">
@@ -366,7 +360,7 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="CreditBank" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>" readonly >
+                                            <input type="text" class="form-control" id="CreditBank" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>"  >
                                         </div>
                                         <div class="col-4 mb-3">
                                             <select class="form-control city" id="city">
@@ -381,8 +375,8 @@
                                     </div>
                                     <input type="text" class="form-control memAddr" id="CreditBank" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>">
                                     <div class="float-right m-1">
-                                        <input class="form-check-input" type="checkbox" id="SameForNowTelephone" name="sameofapplier">
-                                        <label class="form-check-label" for="SameForNowTelephone" >同戶籍地址</label>
+                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="memAddr">
+                                        <label class="form-check-label" for="SameForNowAddr" >同戶籍地址</label>
                                     </div>
                                 </div>
                             </div>
@@ -803,7 +797,7 @@
                 </div>
                 <div class="form-check form-check-inline mt-4">
                     <input class="form-check-input" type="checkbox" name="agree" id="HaveCredit2" value="1">
-                    <label class="form-check-label" for="HaveCredit2">申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）<a class="text-orange secure" title="甚麼是保密照會？">甚麼是保密照會？</a></label>
+                    <label class="form-check-label" for="HaveCredit2">申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）<a class="text-orange secure" href="#" title="甚麼是保密照會？">甚麼是保密照會？</a></label>
                 </div>
                 <div class="section-staging">
                     <div class="form-group form-btn text-center">
@@ -885,7 +879,7 @@
         $("#shool_"+school).show();
     });
 
-    $("#orAppApplierCompanystatus").hide();
+    // $("#orAppApplierCompanystatus").hide();
     $("#orAppApplierCreditstatus").hide();
     $("#orBusinessNumNumber").hide();
     $(".memother").hide();
@@ -910,7 +904,7 @@
     $(".next-btn").click(function(){
         if(checkname($("input[name=memName]").val()) && checkTwID($("input[name=memIdNum]").val()) && checkPhone2($("input[name=memCell]").val()) && checkDate($("select[name=year]").val(),$("select[name=month]").val(),$("select[name=date]").val()) && checkAllContact()){
             $.ajax({
-                url: 'php/order_check.php',
+                url: 'portal/Controllers/php/order_check.php',
                 data: $('#order_add').serialize(),
                 type:"POST",
                 dataType:'text',
@@ -936,13 +930,13 @@
             });
         }
     })
-    $("input[name=orAppApplierCompanystatus]").change(function(){
-        if($('input[name=orAppApplierCompanystatus]:checked').val() == 1){
-            $("#orAppApplierCompanystatus").show();
-        }else{
-            $("#orAppApplierCompanystatus").hide();
-        }
-    })
+    // $("input[name=orAppApplierCompanystatus]").change(function(){
+    //     if($('input[name=orAppApplierCompanystatus]:checked').val() == 1){
+    //         $("#orAppApplierCompanystatus").show();
+    //     }else{
+    //         $("#orAppApplierCompanystatus").hide();
+    //     }
+    // })
     $("input[name=orAppApplierCreditstatus]").change(function(){
         if($('input[name=orAppApplierCreditstatus]:checked').val() == 1){
             $("#orAppApplierCreditstatus").show();
@@ -959,6 +953,26 @@
     })
 
 
+    $("input[name=SameForNowTelephone]").change(function(){
+        if($('input[name=SameForNowTelephone]:checked').val() == "on"){
+            $("input[name=orAppApplierBirthPhone]").val($("input[name=memPhone]").val());
+            // $("input[name=memPhone]").val($("input[name=orAppApplierBirthPhone]").val());
+            // $(".memPostCode").val($(".orAppApplierBirthAddrPostCode").val());
+        }else{
+            $("input[name=orAppApplierBirthPhone]").val('');
+            // $("input[name=memPhone]").val('');
+        }
+    })
+    $("input[name=SameForNowAddr]").change(function(){
+        if($('input[name=SameForNowAddr]:checked').val() == "on"){
+            $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
+            // $("input[name=memPhone]").val($("input[name=orAppApplierBirthPhone]").val());
+            // $(".memPostCode").val($(".orAppApplierBirthAddrPostCode").val());
+        }else{
+            $("input[name=memAddr]").val('');
+            // $("input[name=memPhone]").val('');
+        }
+    })
     $("input[name=sameofapplier]").change(function(){
         if($('input[name=sameofapplier]:checked').val() == "on"){
             $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
@@ -1175,7 +1189,7 @@
         if($("#check2").prop("checked")){
             if($("#check4").is(":checked")){
                 $.ajax({
-                    url: 'php/order_check_file.php',
+                    url: 'portal/Controllers/php/order_check_file.php',
                     data: $('#order_add').serialize(),
                     type:"POST",
                     dataType:'text',
@@ -1230,7 +1244,7 @@
         var progress = $(".progress");
         var files = $(".files");
         var btn = $(".btn span");
-        $("#fileupload").wrap("<form id='myupload' action='php/file.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload").wrap("<form id='myupload' action='portal/Controllers/php/file.php' method='post' enctype='multipart/form-data'></form>");
         $("#fileupload").change(function(){
             $("#myupload").ajaxSubmit({
                 dataType:  'json',
@@ -1272,7 +1286,7 @@
         var progress_1 = $(".progress_1");
         var files_1 = $(".files_1");
         var btn_1 = $(".btn_1 span");
-        $("#fileupload_1").wrap("<form id='myupload_1' action='php/file_1.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_1").wrap("<form id='myupload_1' action='portal/Controllers/php/file_1.php' method='post' enctype='multipart/form-data'></form>");
         $("#fileupload_1").change(function(){
             $("#myupload_1").ajaxSubmit({
                 dataType:  'json',
@@ -1313,7 +1327,7 @@
         var progress_2 = $(".progress_2");
         var files_2 = $(".files_2");
         var btn_2 = $(".btn_2 span");
-        $("#fileupload_2").wrap("<form id='myupload_2' action='php/file_2.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_2").wrap("<form id='myupload_2' action='portal/Controllers/php/file_2.php' method='post' enctype='multipart/form-data'></form>");
         $("#fileupload_2").change(function(){
             $("#myupload_2").ajaxSubmit({
                 dataType:  'json',
@@ -1354,7 +1368,7 @@
         var progress_3 = $(".progress_3");
         var files_3 = $(".files_3");
         var btn_3 = $(".btn_3 span");
-        $("#fileupload_3").wrap("<form id='myupload_3' action='php/file_3.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_3").wrap("<form id='myupload_3' action='portal/Controllers/php/file_3.php' method='post' enctype='multipart/form-data'></form>");
         $("#fileupload_3").change(function(){
             $("#myupload_3").ajaxSubmit({
                 dataType:  'json',
@@ -1395,7 +1409,7 @@
         var progress_4 = $(".progress_4");
         var files_4 = $(".files_4");
         var btn_4 = $(".btn_4 span");
-        $("#fileupload_4").wrap("<form id='myupload_4' action='php/file_4.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_4").wrap("<form id='myupload_4' action='portal/Controllers/php/file_4.php' method='post' enctype='multipart/form-data'></form>");
         $("#fileupload_4").change(function(){
             $("#myupload_4").ajaxSubmit({
                 dataType:  'json',
