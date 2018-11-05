@@ -32,7 +32,7 @@
                                         <th nowrap="nowrap">商品名稱</th>
                                         <th nowrap="nowrap">商品規格</th>
                                         <th nowrap="nowrap">商品型號</th>
-                                        <th nowrap="nowrap">狀態</th>
+                                        <th nowrap="nowrap">訂單狀態</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,7 +51,6 @@
                                             <td data-th="商品型號" nowrap="nowrap"></td>
                                             <td data-th="狀態" nowrap="nowrap">
                                                 <?php echo $value["orPaySuccess"] ?>
-                                                <br>
                                                 <a class="text-orange" href="member-pay-detail.php">
                                                 <?php
                                                     $allpay = new Allpay(MerchantID,HashKey,HashIV);

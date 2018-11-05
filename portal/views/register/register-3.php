@@ -32,22 +32,25 @@
                                 </div>
                             </div>
                             <p class="text-black">手機號碼：<?php echo $cell;?></p>
-
-                            <form action="#" class="form">
-                                <div class="form-group row">
-                                    <label for="form-phone" class="col-2 col-form-label text-hide label-phone">數字驗證碼</label>
-                                    <div class="col-10">
-                                        <input type="text" class="form-control input-orange" id="form-phone" placeholder="請輸入4位數字驗證碼">
-                                    </div>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <form action="#" class="form">
+                                        <div class="form-group row">
+                                            <label for="form-phone" class="col-1 col-form-label text-hide label-phone">數字驗證碼</label>
+                                            <div class="col-11">
+                                                <input type="text" class="form-control input-black" id="form-phone" placeholder="請輸入4位數字驗證碼">
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center">
+                                            <button type="button" class="btn btn-resend text-yellow">重新發送驗證碼</button>
+                                        </div>
+                                        <div class="form-group form-btn text-center">
+                                            <a href="?item=register2" class="btn btn-next bg-yellow">重新輸入手機號碼</a>
+                                            <a href="?item=register4" class="btn btn-next bg-yellow">下一步</a>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-group text-center">
-                                    <button type="button" class="btn btn-resend text-yellow">重新發送驗證碼</button>
-                                </div>
-                                <div class="form-group form-btn text-center">
-                                    <a href="?item=register2" class="btn btn-next bg-yellow">重新輸入手機號碼</a>
-                                    <a href="?item=register4" class="btn btn-next bg-yellow">下一步</a>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -39,10 +39,16 @@
             <div class="section-staging bg-white">
                 <h2><span>申請完成</span></h2>
                 <div class="text-center text-box">
-                    <p>您已完成分期申請並等候照會，我們將於24小時內與您聯絡。<br>
-                        我們的服務時間為週一至周五 9:30~12:30 & 13:30~18:00，國定例假日為公休日。 </p>
-                    <p>若您於非服務時間購買，將會於次一營業日與您聯絡。 <br>
-                        繳款或查看填寫資訊請至會員中心 > 訂單查詢</p>
+                    <p>
+                        您已完成分期申請並等候照會，我們將於24小時內與您聯絡。<br>
+                        我們的服務時間為週一至周五 9:30~12:30 & 13:30~18:00，國定例假日為公休日。
+                    </p>
+                    <p>
+                        若您於非服務時間購買，將會於次一營業日與您聯絡。 <br>
+                        繳款或查看填寫資訊請至
+                        <a href="?item=member_center" class="text-orange">會員中心</a> >
+                        <a href="?item=member_center&action=order" class="text-orange">訂單查詢</a>
+                    </p>
                 </div>
                 <div class="form-group form-btn text-center">
                     <a href="member-order.htm" class="btn btn-next bg-yellow">訂單查詢</a>

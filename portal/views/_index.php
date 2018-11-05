@@ -94,6 +94,7 @@
                                         <img src="<?php echo $img[0];?>" class="img-fluid img-responsive" alt="product">
                                         <div class="card-body">
                                             <p class="card-title"><?php echo $value['proName'] ?></p>
+                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
                                             <p class="card-text text-orange">
                                                 <?php echo "月付NT $".number_format(min($price)); ?>
                                                 <small><?php echo "*".array_search(min($price),$price)."期"; ?></small>
@@ -154,6 +155,7 @@
                                              alt="product">
                                         <div class="card-body">
                                             <p class="card-title"><?php echo $value['proName'] ?></p>
+                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
                                             <p class="card-text text-orange">
                                                 <?php echo "月付NT $" . number_format(min($price)); ?>
                                                 <small><?php echo "*" . array_search(min($price), $price) . "期"; ?></small>
@@ -214,6 +216,7 @@
                                              alt="product">
                                         <div class="card-body">
                                             <p class="card-title"><?php echo $value['proName'] ?></p>
+                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
                                             <p class="card-text text-orange">
                                                 <?php echo "月付NT $" . number_format(min($price)); ?>
                                                 <small><?php echo "*" . array_search(min($price), $price) . "期"; ?></small>
