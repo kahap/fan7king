@@ -8,6 +8,10 @@ define ('SYSTEM_DBHOST','35.201.175.22:3306');
 define ('SYSTEM_DBNAME','happyfan_system');
 define ('SYSTEM_DBUSER','root');
 define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
+// define ('SYSTEM_DBHOST','cloud_sql_proxy');
+// define ('SYSTEM_DBNAME','happyfan_system');
+// define ('SYSTEM_DBUSER','nowait-web');
+// define ('SYSTEM_DBPWD','');
 
 // define ('SYSTEM_DBUSER','root');
 // define ('SYSTEM_DBPWD','Cc120911810');
@@ -33,7 +37,7 @@ else
     define ('DOMAIN','127.0.0.1/fan7king_dev2');
     define('FbADVersion','v2.9');
 }
-    $allowed_hosts = array("localhost","127.0.0.1","nowait.kahap.com","happyfan7.com","test.happyfan7.com");    
+    $allowed_hosts = array("localhost","127.0.0.1","nowait.kahap.com","happyfan7.com","test.happyfan7.com","inner.nowait.shop","test.nowait.shop");
     define("ALLOWED_HOSTS",json_encode($allowed_hosts));
 // define ('IMG_ROOT','../admin/');
     define ('IMG_ROOT','../');
