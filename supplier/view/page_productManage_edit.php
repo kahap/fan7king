@@ -100,7 +100,8 @@ if($_GET["action"] == "edit"){
   
 	 
 	$sup = new Supplier();
-	$allSupData = $sup->getAllSupplier();
+    $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
+    $supPeriod = $allSupData[0]["supPeriod"];
 
 }
 
@@ -261,21 +262,21 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       </div>
 
-<!--                      <div class="form-group">-->
-<!--                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">-->
-<!--                              上架金額-->
-<!--                          </label>-->
-<!--                          <div class="col-md-6 col-sm-6 col-xs-12">-->
-<!--                              <input id="period-amnt" value="--><?php //if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt"]; ?><!--" type="text" class="form-control" name="pmPeriodAmnt" />-->
-<!--                              <ul class="parsley-errors-list"><li id="pmPeriodAmntErr"></li></ul>-->
-<!--                          </div>-->
-<!--                      </div>-->
+                     <div class="form-group">
+                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                             上架金額
+                         </label>
+                         <div class="col-md-6 col-sm-6 col-xs-12">
+                             <input id="period-amnt" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt"]; ?>" type="text" class="form-control" name="pmPeriodAmnt" />
+                             <ul class="parsley-errors-list"><li id="pmPeriodAmntErr"></li></ul>
+                         </div>
+                     </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                               撥款金額 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <input id="period-amnt2" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt2"]; ?>" required type="text" class="form-control" name="pmPeriodAmnt2" /><!--readonly=true-->
+                              <input id="period-amnt2" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt2"]; ?>" readonly required type="text" class="form-control" name="pmPeriodAmnt2" /><!--readonly=true-->
                               <ul class="parsley-errors-list"><li id="pmPeriodAmntErr2"></li></ul>
                           </div>
                       </div>
@@ -660,19 +661,19 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 
 
 <script>
-// $(function() {
-//     $('#period-amnt').focusout(function() {
-//         var val = $("#period-amnt").val();
-// 		   $("#period-amnt2").val(val*0.95);
-//            getRadio(val) ;
-//     });
-// });
+$(function() {
+    $('#period-amnt').focusout(function() {
+        var val = $("#period-amnt").val();
+        var period = <?php echo $supPeriod ?>;
+        $("#period-amnt2").val(val*(1-period));
+        getRadio() ;
+    });
+});
 
 function getRadio()
 {
     var which = $(this).data("follow");
-    // var val = $("#period-amnt").val();
-    var val = $("#period-amnt2").val();
+    var val = $("#period-amnt").val();
 	if(val !="")
     {
 	<?php foreach($psData as $key=>$value){ ?>
@@ -684,11 +685,7 @@ function getRadio()
 
 $(function(){
 
-    $('#period-amnt2').focusout(function() {
-        var val = $("#period-amnt2").val();
-        $("#period-amnt").val(val*0.95);
-        getRadio(val) ;
-    });
+    
     getRadio() ;
 
     <?php if($_GET["action"]=="edit"){?>
@@ -847,15 +844,16 @@ $(function(){
 
     $("button[type='submit']").parents("form").on("submit",function(e){
         e.preventDefault();
-        // var val = $("#period-amnt").val();
-        var val = $("#period-amnt2").val();
+        var val = $("#period-amnt").val();
+        var period = <?php echo $supPeriod ?>;
+        // var val = $("#period-amnt2").val();
         if(val=='')
         {
             alert("請輸入上架金額");
             return false;
         }
-	    $("#period-amnt2").val(val);
-        getRadio(val) ;
+	    $("#period-amnt2").val(val*(1-period));
+        getRadio() ;
 
 
 		$("#stampImgErr").text("");
