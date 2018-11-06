@@ -100,7 +100,7 @@
 		//
 		//多加的
 		//
-        $pp = new Product_Period();
+        /*$pp = new Product_Period();
         $dataInsert = array();
         $dataInsert["proNo"] = $proNo;
         $dataInsert["ppPeriodAmount"] = $value;
@@ -114,9 +114,9 @@
         $dataInsert["proNo"] = $newProNo;
         $dataInsert["pmStatus"] = 0;
 //            $dataInsert["ppIntroText"] = $ppIntroTextArr;
-        $pm->insert($dataInsert);
+        $pm->insert2($dataInsert);
 		//
-
+*/
 
 		$success="新增成功";
         $errMsg='';
