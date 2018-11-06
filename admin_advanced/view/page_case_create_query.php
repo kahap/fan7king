@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<?php } ?>-->
-			<iframe src="http://104.199.229.39" width="100%" height="765px"></iframe> 
+			<!-- <iframe src="http://104.199.229.39" width="100%" height="765px"></iframe>  -->
 		</div>
 	</div>
 </main>
