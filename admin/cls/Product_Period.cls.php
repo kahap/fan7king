@@ -81,6 +81,7 @@
 							'".$ppPercent."',
 							'".$ppIntroText."')";
 			$insert = $this->db->insertRecords($sql);
+
 			return $insert;
 		}
 		
