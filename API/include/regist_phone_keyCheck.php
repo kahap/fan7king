@@ -4,7 +4,7 @@
     //接收驗證碼
     $phoneNumber = $_POST['phoneNumber'];
     $passNumber = $_POST['passNumber'];
-    
+    $token = $_POST['token'];
 
     //比對資料庫
     $api->getOne($phoneNumber);

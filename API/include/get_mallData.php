@@ -17,7 +17,7 @@ foreach ($data as $number => $data1) {
     $product->setJoinArray(array("product_manage"=>"proNo"));
     $product->setGroupArray(array("product`.`proNo"));
     $product->setLimitArray("3");
-    $product->setRetrieveArray(array("product.proNo","product_manage.pmNo","product.catNo","proName","pmIfDirect","proImage","proSpec","pmDirectAmnt","pmPeriodAmnt","pmBuyAmnt","pmStatus"));
+    $product->setRetrieveArray(array("product.proNo","product_manage.pmNo","product.catNo","product.braNo","product.biNo","proName","pmIfDirect","proImage","proSpec","pmDirectAmnt","pmPeriodAmnt","pmBuyAmnt","pmStatus"));
     $product->setWhereArray(array("product_manage`.`pmStatus"=>1,"catNo"=>$data1['catNo']));
     $product->setOrderArray($which."Order");
     $product->getWithWhereAndJoinClause();
