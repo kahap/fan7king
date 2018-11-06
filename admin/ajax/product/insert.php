@@ -96,7 +96,6 @@
 	//如果沒有錯誤訊息
 	if(empty(array_filter($errMsg))){
 		$insert = $pro->insert($_POST,$newProNo);
-
 		//
 		//多加的
 		//
@@ -104,15 +103,16 @@
         $dataInsert = array();
         $dataInsert["proNo"] = $insert;
         $dataInsert["ppPeriodAmount"] = $value;
-        $dataInsert["ppPercent"] = $ppPercentArr[$key];
-//            $dataInsert["ppIntroText"] = $ppIntroTextArr;
+        $dataInsert["ppPercent"] = "";
+        $dataInsert["ppIntroText"] = "";
         $pp->insert($dataInsert);
 
 
         $pm = new Product_Manage();
         $dataInsert = array();
         $dataInsert["proNo"] = $insert;
-        $dataInsert["pmStatus"] = 0;
+		$dataInsert["supNo"] = "99999";
+		$dataInsert["pmStatus"] = "0";
 //            $dataInsert["ppIntroText"] = $ppIntroTextArr;
         $pm->insert2($dataInsert);
 		//
