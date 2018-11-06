@@ -10,66 +10,6 @@
         $("#colors_sketch_1").jqScribble();
     });
 </script>
-<style>
-    .btn, .btn_1, .btn_2, .btn_3, .btn_4{position: relative;overflow: hidden;margin-right: 4px;display:inline-block;
-        *display:inline;padding:4px 10px 4px;font-size:14px;line-height:18px;
-        *line-height:20px;color:#fff;
-        text-align:center;vertical-align:middle;cursor:pointer;background:#5bb75b;
-        border:1px solid #cccccc;border-color:#e6e6e6 #e6e6e6 #bfbfbf;
-        border-bottom-color:#b3b3b3;-webkit-border-radius:4px;
-        -moz-border-radius:4px;border-radius:4px;
-    }
-    .btn input, .btn_1 input, .btn_2 input, .btn_3 input, .btn_4 input{position: absolute;top: 0; right: 0;margin: 0;border:solid transparent;
-        opacity: 0;filter:alpha(opacity=0); cursor: pointer;
-    }
-    .progress, .progress_1, .progress_2, .progress_3, .progress_4{position:relative; margin-left:100px; margin-top:-24px;
-        width:200px;padding: 1px; border-radius:3px; display:none
-    }
-    .bar, .bar_1, .bar_2, .bar_3, .bar_4{background-color: green; display:block; width:0%; height:20px;
-        border-radius:3px;
-    }
-    .percent, .percent_1, .percent_2, .percent_3, .percent_4{position:absolute; height:20px; display:inline-block;
-        top:3px; left:2%; color:#fff }
-    .files, .files_1, .files_2, .files_3, .files_4{height:22px; line-height:22px; margin:10px 0}
-    .delimg, .delimg_1, .delimg_2, .delimg_3, .delimg_4{margin-left:20px; color:#090; cursor:pointer}
-    label {
-        display: inline-block;
-        cursor: pointer;
-        position: relative;
-        padding-left: 25px;
-        margin-right: 15px;
-        font-size: 14px;
-    }
-    label:before {
-        content: "";
-        display: inline-block;
-        width: 16px;
-        height: 16px;
-        margin-right: 10px;
-        position: absolute;
-        left: 0;
-        bottom: 1px;
-        background-color: #aaa;
-        box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
-    }
-    input[type=checkbox] {
-        display: none;
-    }
-    .checkbox label {
-        margin-bottom: 10px;
-    }
-    .checkbox label:before {
-        border-radius: 3px;
-    }
-    input[type=checkbox]:checked + label:before {
-        content: "\2713";
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-        font-size: 15px;
-        color: #f3f3f3;
-        text-align: center;
-        line-height: 15px;
-    }
-</style>
 
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
@@ -101,6 +41,24 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+            <?php
+            //print_r($_SESSION['shopping_user']);
+
+            //欄位名稱
+            $or = new Orders();
+            $or_data = $or->getOneOrderByNo($_SESSION['ord_code']);
+            $member = new Member();
+            $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
+            $year = explode('-',$memberData[0]['memBday']);
+            //print_r($columnName);
+            ?>
+
+
+
             <p>申請人基本資料<span class="text-orange">*為必填欄位，請務必詳實填寫，如未滿20歲,需父母同意分期購買。</span></p>
             <div class="section-staging bg-white">
                 <p class="text-orange">*上傳證件時請確認圖檔不反光且對焦清楚，要近拍，以利案件申請</p>

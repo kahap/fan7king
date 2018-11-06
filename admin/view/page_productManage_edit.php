@@ -69,17 +69,7 @@ if($_GET["action"] == "edit"){
 }else{
 
     $pm = new Product_Manage();
-
     $pro = new Product();
-    /*$DaoProduct = $pro->getAllPMByStatus0();
-    $selectableProData = array();
-    foreach ($DaoProduct as $item){
-        $DaoPM = $pm->getOnePMByPro($item[0]['proNo']);
-        if ($DaoPM[0]['pmStatus']){
-            $selectableProData[] = $item;
-        }
-    }*/
-    $selectableProData = $pro->getAllPMByStatus0();
 
 	if(isset($_GET['procaseno']) && $_GET['procaseno'] != ""){
 		$pm = new Product_Manage();
@@ -89,9 +79,11 @@ if($_GET["action"] == "edit"){
 			array_push($proNoArr, $value["proNo"]);
 		}*/
 		
-		$pro = new Product();
+//		$pro = new Product();
 		$selectableProData = $pro->getOneByCaseNo($_GET['procaseno']);
-	}
+	}else{
+        $selectableProData = $pro->getAllPMByStatus0();
+    }
 }
 
 $sup = new Supplier();

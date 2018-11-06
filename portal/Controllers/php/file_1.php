@@ -1,13 +1,13 @@
 <?php
 session_start();
-	include('../model/php_model.php');
+	include('../../model/php_model.php');
 	$or = new Orders();
-$action = $_GET['act'];
-if($_SESSION['ord_code'] !=""){ 
+$action = isset($_GET['act'])? $_GET['act'] : '';
+if(isset($_SESSION['ord_code']) && $_SESSION['ord_code'] !=""){
 	if($action=='delimg'){ //删除图片 
 		$filename = $_POST['imagename']; 
 		if(!empty($filename)){ 
-			unlink('../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/".$filename);
+			unlink('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/".$filename);
 			$or->updateorAppAuthenIdImgBot('',$_SESSION['ord_code']);
 			echo '1'; 
 		}else{ 
@@ -16,13 +16,13 @@ if($_SESSION['ord_code'] !=""){
 	}else{ //
 		$picname = $_FILES['mypic_1']['name']; 
 		$picsize = $_FILES['mypic_1']['size']; 
-		if(!is_dir('../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){ 
-			mkdir('../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
-			chmod('../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
+		if(!is_dir('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){
+			mkdir('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
+			chmod('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
 		} 
 		
 		$File = new File();
-		$SystemDirPath = '../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
+		$SystemDirPath = '../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
 		$rand = rand(100, 999); 
 		$Default_file_name = date("YmdHis");
 		if ($File->FileCheck($_FILES['mypic_1']['tmp_name'],

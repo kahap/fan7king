@@ -130,7 +130,7 @@
 						*
 					from
 						`product`
-                    join `product_manage`.`proNo` on `product_manage`.`proNo`=`product`.`proNo` 
+                   /* join `product_manage`.`proNo` on `product_manage`.`proNo`=`product`.`proNo` */
 					where
 						`proCaseNo` = '".$proCaseNo."'";
 			$data = $this->db->selectRecords($sql);
