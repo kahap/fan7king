@@ -667,7 +667,7 @@ $(function(){
 		var url = "ajax/product/<?php echo $_GET["action"]; ?>.php";
 		var redirect = "?page=product&type=product<?php if($_GET["action"]=="edit") echo "&action=view&prono=".$proNo; ?>";
 		var insertUrl = "?page=product&type=product&action=insert";
-		var manageUrl = "?page=product&type=productManage&action=insert&procaseno="
+		var manageUrl = "?page=product&type=productManage&action=insert&procaseno=";
 		
 		$.ajax({
 			url:url,
@@ -691,11 +691,12 @@ $(function(){
 					<?php if($_GET["action"]=="edit"){ ?>
 						location.href= redirect;
 					<?php }else{ ?>
-					if(window.confirm("是否繼續新增？")){
-						location.href= insertUrl;
-					}else{
-						location.href= manageUrl + results.procaseno;
-					}
+                        if(window.confirm("是否繼續新增？")){
+                            location.href= insertUrl;
+                        }else{
+                            // location.href= manageUrl + results.procaseno;
+                            location.href = '?page=product&type=product';
+                        }
 					<?php } ?>
 				}
 			}

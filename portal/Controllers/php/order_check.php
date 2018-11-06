@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include('../model/php_model.php');
+	include('../../model/php_model.php');
 	$or = new Orders();
 	$member = new Member();
 	$lg = new Loyal_Guest();

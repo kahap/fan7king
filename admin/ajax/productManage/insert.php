@@ -70,7 +70,7 @@ $ppIntroTextArr = isset($_POST["ppIntroText"])? $_POST["ppIntroText"]:'';
 			$dataInsert["ppNo"] = $ppDataEach[0]["ppNo"];
 			$dataInsert["ppPeriodAmount"] = $value;
 			$dataInsert["ppPercent"] = $ppPercentArr[$key];
-            $dataInsert["ppIntroText"] = $ppIntroTextArr;
+//            $dataInsert["ppIntroText"] = $ppIntroTextArr;
 			$pp->update($dataInsert);
 		}
 	}else{
@@ -79,7 +79,7 @@ $ppIntroTextArr = isset($_POST["ppIntroText"])? $_POST["ppIntroText"]:'';
 			$dataInsert["proNo"] = $proNo;
 			$dataInsert["ppPeriodAmount"] = $value;
 			$dataInsert["ppPercent"] = $ppPercentArr[$key];
-            $dataInsert["ppIntroText"] = $ppIntroTextArr;
+//            $dataInsert["ppIntroText"] = $ppIntroTextArr;
 			$pp->insert($dataInsert);
 		}
 	}

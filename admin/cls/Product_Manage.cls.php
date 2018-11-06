@@ -429,6 +429,24 @@
 			$insert = $this->db->insertRecords($sql);
 			return $insert;
 		}
+        //新增2
+        function insert2($array){
+            foreach($array as $key =>$value){
+                if (is_array($value)){
+                    foreach ($value as $v){
+                        $v = mysqli_real_escape_string($this->db->oDbLink, $v);
+                    }
+                    $$key = $value;
+                }else {
+                    $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+                }
+            }
+            $sql = "insert into `product_manage`(`proNo`,`pmStatus`)
+					values('".$proNo."',
+							'".$pmStatus."')";
+            $insert = $this->db->insertRecords($sql);
+            return $insert;
+        }
 		
 		//編輯主要供應商
 		public function updateMainSup($pmMainSup,$pmNo,$supNo){
