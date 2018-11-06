@@ -100,9 +100,9 @@
 		//
 		//多加的
 		//
-        /*$pp = new Product_Period();
+        $pp = new Product_Period();
         $dataInsert = array();
-        $dataInsert["proNo"] = $proNo;
+        $dataInsert["proNo"] = $insert;
         $dataInsert["ppPeriodAmount"] = $value;
         $dataInsert["ppPercent"] = $ppPercentArr[$key];
 //            $dataInsert["ppIntroText"] = $ppIntroTextArr;
@@ -111,12 +111,12 @@
 
         $pm = new Product_Manage();
         $dataInsert = array();
-        $dataInsert["proNo"] = $newProNo;
+        $dataInsert["proNo"] = $insert;
         $dataInsert["pmStatus"] = 0;
 //            $dataInsert["ppIntroText"] = $ppIntroTextArr;
         $pm->insert2($dataInsert);
 		//
-*/
+
 
 		$success="新增成功";
         $errMsg='';
