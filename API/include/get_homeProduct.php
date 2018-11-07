@@ -29,6 +29,6 @@ for ($caseNumber=0; $caseNumber < 3; $caseNumber++) {
     $result[$which] = $data;
 }
     
-    echo json_encode($result);
-
+    $api->setInformation($result, 1, count($result), "首頁商品");
+    $api->setResult(false);
 ?>

@@ -311,9 +311,7 @@ if(isset($table) && isset($action)){
 		//印出結果
 		if($table == "que_and_ans" && isset($no)){
 
-		}else if($action =="get_homeProduct" ){
-			
-		}else if($table == "product" && $type == "product_detail" ){
+		}else if($action !="get_homeProduct" && $table == "product" && $type == "product_detail" ){
 
 		}else{
 			echo $api->getResult();

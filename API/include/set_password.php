@@ -16,7 +16,7 @@
             $api->setInformation(FALSE, 0, 0, "搜尋失敗");
         }else{
             $addsql="";
-            if (isset($memClass)) {
+            if (isset($memClass) && $memClass!="") {
                 $addsql=", memClass='".$memClass."' ";
             }
             $sql = "UPDATE member SET memPwd='".$password."' ".$addsql." WHERE memNo='".$memNo."' ";

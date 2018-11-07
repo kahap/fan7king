@@ -14,7 +14,7 @@
     if ($data[0]['passNumber'] == $passNumber) {
         $api->setInformation(TRUE, 1, 1, "驗證成功");        
     }else{
-        $api->setInformation(FALSE, 1, 1, "驗證失敗");        
+        $api->setInformation(FALSE, 0, 0, "驗證失敗");        
     }
     $api->setResult();
 ?>

@@ -86,7 +86,7 @@
 			
 			
 		}
-		$push = push("happy.pem",'happy',$deviceTokenArr,$msgArr,$otherInfoArr);
+		// $push = push("happy.pem",'happy',$deviceTokenArr,$msgArr,$otherInfoArr);
 		
 		echo "更新成功";
 	}else{

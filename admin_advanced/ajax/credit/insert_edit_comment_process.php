@@ -52,7 +52,7 @@ if($_POST['ass_No'] != ""){
 }
 
 //更新聯絡人資訊
-$nameArr = $_POST["rcContactName"];
+$nameArr = is_null($_POST["rcContactName"]) ? []: $_POST["rcContactName"];
 $relationArr = $_POST["rcContactRelation"];
 $phoneArr = $_POST["rcContactPhone"];
 $cellArr = $_POST["rcContactCell"];
