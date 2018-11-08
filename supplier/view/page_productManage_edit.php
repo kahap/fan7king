@@ -226,7 +226,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              主題優惠 :
+                              主題優惠(#號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proOffer"]; ?>' type="text" class="form-control" name="proOffer" />
@@ -235,7 +235,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品加贈 :
+                              商品加贈(#號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proGift"]; ?>' type="text" class="form-control" name="proGift" />
