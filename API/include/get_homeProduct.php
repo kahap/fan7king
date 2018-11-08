@@ -1,11 +1,11 @@
 <?php
 
 
-$api->setJoinArray(array("product_manage"=>"proNo"));
+$api->setJoinArray(array("product_manage"=>"proNo","brand"=>"braNo","b_items"=>"biNo"));
 $api->setOrArray(array("product_manage`.`pmStatus"=>2));
 $api->setGroupArray(array("product`.`proNo"));
 $api->setLimitArray("3");
-$api->setRetrieveArray(array("product.proNo","product_manage.pmNo","product.catNo","product.braNo","product.biNo","proName","pmIfDirect","proImage","proSpec","pmDirectAmnt","pmPeriodAmnt","pmBuyAmnt","pmStatus"));
+$api->setRetrieveArray(array("product.proNo","product_manage.pmNo","product.catNo","product.braNo","brand.braName","product.biNo","b_items.biName","proName","pmIfDirect","proImage","proSpec","pmDirectAmnt","pmPeriodAmnt","pmBuyAmnt","pmStatus"));
 
 for ($caseNumber=0; $caseNumber < 3; $caseNumber++) { 
     switch ($caseNumber) {

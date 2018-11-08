@@ -620,7 +620,7 @@ require_once("../admin/cls/Product_Period.cls.php");
 					break;
 			}
 			$sql = "select
-						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,`product`.braNo,`product`.biNo,
+						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,`product`.braNo,`brand`.braName,`product`.biNo,`b_items`.biName,
 						`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
 					from
 						`product_manage`
@@ -632,6 +632,14 @@ require_once("../admin/cls/Product_Period.cls.php");
 						`product`
 					on
 						`product`.`proNo` = `product_manage`.`proNo`
+					inner join
+						`brand`
+					on
+						`brand`.`braNo` = `product`.`braNo`
+					inner join
+						`b_items`
+					on
+						`b_items`.`biNo` = `product`.`biNo`
 					where
 						`product_manage`.`pmStatus` != '0'  &&
 						`product_manage`.`pmMainSup` = '1' &&

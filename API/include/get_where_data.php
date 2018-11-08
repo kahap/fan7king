@@ -180,7 +180,7 @@
 			if($product_data != null){
 				$resultArr = array();
 				$neededData = array(
-					"proNo","pmNo","catNo","braNo","biNo","pmStatus","pmBuyAmnt","proName",
+					"proNo","pmNo","catNo","braNo","braName","biNo","biName","pmStatus","pmBuyAmnt","proName",
 					"pmIfDirect","proImage","pmDirectAmnt","pmPeriodAmnt","proSpec"
 				);
 				foreach($product_data as $key=>$value){
