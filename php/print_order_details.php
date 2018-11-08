@@ -32,6 +32,7 @@ $mem->changeToReadable($memData[0]);
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="../assets/data/page_icon.png">
 <title>Nowait管理後台</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
 </head>

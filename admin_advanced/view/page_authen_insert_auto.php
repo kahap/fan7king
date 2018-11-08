@@ -130,7 +130,7 @@ table tr td,table tr th{
 					<a type="button" href="#photos" class="modal-trigger waves-effect waves-light btn green m-b-xs look">查看證件上傳</a>
 				</li>
 				<li>
-					<a type="button" href="http://happyfan7.com/admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>" class="btn green m-b-xs" target="_blank">列印回覆書</a>
+					<a type="button" href="../admin_advanced/view/print_report_export.php?no=<?php echo $no; ?>" class="btn green m-b-xs" target="_blank">列印回覆書</a>
 				</li>
 				<li>
 					<?php 
