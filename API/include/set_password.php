@@ -14,7 +14,7 @@
 
     if ($type="regist") {    
         
-        $sql = "UPDATE member SET memClass='".$memClass"', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
+        $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "密碼設定成功");
     }else if($type=="forget"){
