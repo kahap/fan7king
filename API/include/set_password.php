@@ -14,13 +14,13 @@
 
     if ($type="regist") {    
         
-        $sql = "UPDATE member SET memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
+        $sql = "UPDATE member SET memClass='".$memClass"', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
         $api->customSql($sql);
-        $api->setInformation(TRUE, 1, 1, "成功修改！");
+        $api->setInformation(TRUE, 1, 1, "密碼設定成功");
     }else if($type=="forget"){
         $sql = "UPDATE member SET memPwd='".$password."' WHERE memCell='".$memCell."' ";
         $api->customSql($sql);
-        $api->setInformation(TRUE, 1, 1, "成功修改！");
+        $api->setInformation(TRUE, 1, 1, "密碼設定成功");
     }else if($type=="change"){
         $api->setWhereArray(array("memNo"=>$memNo,"memPwd"=>$passwordOld));    
         $api->getWithWhereAndJoinClause();
@@ -30,7 +30,7 @@
         }else{
             $sql = "UPDATE member SET memPwd='".$password."' WHERE memNo='".$memNo."' and  memPwd='".$passwordOld."' ";
             $api->customSql($sql);
-            $api->setInformation(TRUE, 1, 1, "成功修改！");
+            $api->setInformation(TRUE, 1, 1, "密碼修改成功");
         }        
     }
     //返回修改狀態
