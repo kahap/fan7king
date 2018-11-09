@@ -366,20 +366,20 @@
 		$api->getWithWhereAndJoinClause();
 		break;
 		case "check_if_registered":
-		$api->setWhereArray(array("memFBtoken"=>$which));
-		$api->getWithWhereAndJoinClause();
-		$data = $api->getData();
-		if($data != null){
-			if(empty($data[0]["memClass"])){
-				$api->setInformation(1, 1, 1, "OK");
+			$api->setWhereArray(array("memFBtoken"=>$which));
+			$api->getWithWhereAndJoinClause();
+			$data = $api->getData();
+			if($data != null){
+				if(empty($data[0]["memPwd"])){
+					$api->setInformation(0, 1, 1, "OK");
+				}else{
+					$api->setInformation(2, 1, 1, "OK");
+				}
 			}else{
-				$api->setInformation(2, 1, 1, "OK");
+				$api->setInformation(0, 1, 0, "OK");
 			}
-		}else{
-			$api->setInformation(0, 1, 0, "OK");
-		}
-		$api->setResult(false);
-		break;
+			$api->setResult(false);
+			break;
 		case "all_activate_images":
 		$api->setWhereArray(array("adIfShow"=>1,"adArea"=>0));
 		$api->setOrderArray("adOrder");
