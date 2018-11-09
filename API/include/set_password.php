@@ -10,9 +10,8 @@
     $app_data->getWithWhereAndJoinClause();
     $apData = $app_data->getData();
     $memNo = $apData[0]["memNo"];    
-    
 
-    if ($type="regist") {    
+    if ($type=="regist") {    
         
         $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
         $api->customSql($sql);
