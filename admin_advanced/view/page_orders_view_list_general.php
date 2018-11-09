@@ -2,13 +2,13 @@
 
 require_once('model/require_general.php');
 
-$page = isset($_GET['paginate'])? $_GET['paginate'] : '1';
-$_POS = isset($_POS)? $_POS : '';
+$pageNumber = isset($_GET['paginate'])? $_GET['paginate'] : '1';
+$_POST = isset($_POST)? $_POST : '';
 
 
 $search = new Search();
-$rcData = $search->searchData($_POS, ($page-1)*30 , 30);
-$totalProData = $search->getSearchDataCount($_POS);
+$rcData = $search->searchData($_POST, ($pageNumber-1)*30 , 30);
+$totalProData = $search->getSearchDataCount($_POST);
 $lastPage = ceil($totalProData/30);
 
 
@@ -39,29 +39,29 @@ $key_word = isset($key_word)? $key_word : '';
 
 
                     <div class="top dataTables_wrapper no-footer">
-                        <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($page-1)*30+1;?> 筆 到 第 <?php echo ($page)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
+                        <div class="dataTables_info" id="example_info2" role="status" aria-live="polite">顯示 第 <?php echo ($pageNumber-1)*30+1;?> 筆 到 第 <?php echo ($pageNumber)*30;?> 筆，總共 <?php echo $totalProData;?> 筆</div>
 
                         <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
 <!--                            <a href="?page=orders_view_general&type=list&paginate=1" class="paginate_button first disabled" aria-controls="example" data-dt-idx="0" tabindex="0" id="example_first">-->
 <!--                                第一頁-->
 <!--                            </a>-->
-                            <?php if ($page>1){ ?>
-                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $page-1;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
+                            <?php if ($pageNumber>1){ ?>
+                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $pageNumber-1;?>" class="paginate_button previous disabled" aria-controls="example" data-dt-idx="1" tabindex="0" id="example_previous">
                                     <i class="material-icons">chevron_left</i>
                                 </a>
                             <?php } ?>
 
                             <?php for ($i=1;$i<=$lastPage;$i++){ ?>
                             <span>
-                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $i;?>" class="paginate_button <?php if ($page==$i)echo 'current';?>" aria-controls="example" data-dt-idx="2" tabindex="0">
+                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $i;?>" class="paginate_button <?php if ($pageNumber==$i)echo 'current';?>" aria-controls="example" data-dt-idx="2" tabindex="0">
                                 <?php echo $i; ?>
                                 </a>
                             </span>
                             <?php } ?>
-<!--                            <input class="paginate_button choosePage" value="--><?php //echo $page;?><!--" data-href="?page=orders_view_general&type=list">-->
+<!--                            <input class="paginate_button choosePage" value="--><?php //echo $pageNumber;?><!--" data-href="?page=orders_view_general&type=list">-->
 
-                            <?php if ($page<$lastPage){ ?>
-                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $page+1;?>" class="paginate_button next disabled" aria-controls="example" data-dt-idx="3" tabindex="0" id="example_next">
+                            <?php if ($pageNumber<$lastPage){ ?>
+                                <a href="?page=orders_view_general&type=list&paginate=<?php echo $pageNumber+1;?>" class="paginate_button next disabled" aria-controls="example" data-dt-idx="3" tabindex="0" id="example_next">
                                     <i class="material-icons">chevron_right</i>
                                 </a>
                             <?php } ?>
@@ -92,8 +92,6 @@ $key_word = isset($key_word)? $key_word : '';
      					<tbody>
                              <?php
      					if($rcData != null){
-
-
      						foreach($rcData as $key=>$value){
      						    // =__=
                                 $value['rcStatus6Time'] = isset($value['rcStatus6Time'])? $value['rcStatus6Time'] : '';

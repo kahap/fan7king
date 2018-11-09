@@ -398,7 +398,7 @@
 		public function setResult($reCal=true){
 			if($reCal){
 				$curData = $this->changeToReadable($this->data);
-				if($curData != null){
+				if($curData != null & is_array($curData)){
 					foreach($curData as $key=>&$value){
 						if($value != null){
 							foreach($value as $keyIn=>&$valueIn){

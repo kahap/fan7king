@@ -44,10 +44,6 @@
 </script>
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ronghong
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
     <section id="staging-zone">
@@ -205,38 +201,6 @@
                     <div class="section-order-title">身分資料</div>
                     <div class="row">
                         <div class="col-lg-6">
-<<<<<<< HEAD
-                            <div class="form-group row">
-                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
-                                <div class="col-sm-9">
-                                    <input id="fileupload" type="file" name="mypic">
-                                </div>
-                                <div class="progress">
-                                    <span class="bar"></span><span class="percent">0%</span >
-                                </div>
-                                <div class="files"></div>
-                                <div id="showimg">
-                                    <?php
-                                    if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgTop']."' />";
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
-                                <div class="col-sm-9">
-                                    <input id="fileupload_1" type="file" name="mypic_1">
-                                </div>
-                                <div class="progress_1">
-                                    <span class="bar_1"></span><span class="percent_1">0%</span >
-                                </div>
-                                <div class="files_1"></div>
-                                <div id="showimg_1">
-                                    <?php
-                                    if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgBot']."' />";
-                                    ?>
-                                </div>
-                            </div>
-=======
 <!--                            <div class="form-group row">-->
 <!--                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>-->
 <!--                                <div class="col-sm-9">-->
@@ -278,7 +242,6 @@
 <!--                                    </div>-->
 <!--                                </div>-->
 <!--                            </div>-->
->>>>>>> ronghong
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
@@ -386,11 +349,7 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-<<<<<<< HEAD
-                                            <input type="text" class="form-control" id="CreditBank" name="orAppApplierBirthAddrPostCode" value="<?php echo $or_data['0']['orAppApplierBirthAddrPostCode'];?>"  >
-=======
                                             <input type="text" class="form-control" id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
->>>>>>> ronghong
                                         </div>
                                         <div class="col-4 mb-3">
                                             <select class="form-control city">
@@ -411,11 +370,7 @@
                                 <div class="col-sm-9">
                                     <div class="row">
                                         <div class="col-4 mb-3">
-<<<<<<< HEAD
-                                            <input type="text" class="form-control" id="CreditBank" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>"  >
-=======
                                             <input type="text" class="form-control" id="memPostCode" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>" >
->>>>>>> ronghong
                                         </div>
                                         <div class="col-4 mb-3">
                                             <select class="form-control city" id="city">
@@ -852,14 +807,10 @@
                 </div>
                 <div class="form-check form-check-inline mt-4">
                     <input class="form-check-input" type="checkbox" name="agree" id="HaveCredit2" value="1">
-<<<<<<< HEAD
-                    <label class="form-check-label" for="HaveCredit2">申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）<a class="text-orange secure" href="#" title="甚麼是保密照會？">甚麼是保密照會？</a></label>
-=======
                     <label class="form-check-label" for="HaveCredit2">
                         申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）
                         <a class="text-orange secure" title="甚麼是保密照會？">甚麼是保密照會？</a>
                     </label>
->>>>>>> ronghong
                 </div>
                 <div class="section-staging">
                     <div class="form-group form-btn text-center">

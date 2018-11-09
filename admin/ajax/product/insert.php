@@ -99,13 +99,17 @@
 		//
 		//多加的
 		//
-        $pp = new Product_Period();
-        $dataInsert = array();
-        $dataInsert["proNo"] = $insert;
-        $dataInsert["ppPeriodAmount"] = $value;
-        $dataInsert["ppPercent"] = "";
-        $dataInsert["ppIntroText"] = "";
-        $pp->insert($dataInsert);
+		$pp = new Product_Period();
+		$ppArray = $pp->periodArray;
+		$dataInsert = array();
+		foreach ($ppArray as $key => $value) {
+			$dataInsert["proNo"] = $insert;
+			$dataInsert["ppPeriodAmount"] = $value;
+			$dataInsert["ppPercent"] = "";
+			$dataInsert["ppIntroText"] = "";
+			$pp->insert($dataInsert);
+		}
+
 
 
         $pm = new Product_Manage();
