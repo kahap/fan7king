@@ -7,6 +7,7 @@
     $regtime = $_POST['time'];
     $token = $_POST['token'];
     $type = $_POST['type'];
+    
     $cangodome = TRUE;
     $app_data = new API("app_data");
     $member = new API("member");
@@ -48,18 +49,18 @@
         $sendTime= "";		//簡訊預定發送時間。-立即發送：請傳入空字串。-預約發送：請傳入預計發送時間，若傳送時間小於系統接單時間，將不予傳送。格式為YYYYMMDDhhmnss；例如:預約2009/01/31 15:30:00發送，則傳入20090131153000。若傳遞時間已逾現在之時間，將立即發送。
         
         //取餘額
-        if($sms->getCredit()){
-            echo "取得餘額成功，餘額為：" . $sms->credit ;
-        } else {
-            echo "取得餘額失敗，" . $sms->processMsg ;
-        }
-        
-        //傳送簡訊
-        // if($sms->sendSMS($subject,$content,$mobile,$sendTime)){
-        //     $api->setInformation(TRUE, 1, 1, "驗證碼簡訊發送成功");
+        // if($sms->getCredit()){
+        //     echo "取得餘額成功，餘額為：" . $sms->credit ;
         // } else {
-        //     $api->setInformation(FALSE, 1, 1, "驗證碼簡訊發送失敗");
+        //     echo "取得餘額失敗，" . $sms->processMsg ;
         // }
+        
+        傳送簡訊
+        if($sms->sendSMS($subject,$content,$mobile,$sendTime)){
+            $api->setInformation(TRUE, 1, 1, "驗證碼簡訊發送成功");
+        } else {
+            $api->setInformation(FALSE, 1, 1, "驗證碼簡訊發送失敗");
+        }
     }
     
     $api->setResult();
