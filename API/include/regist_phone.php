@@ -55,7 +55,7 @@
         //     echo "取得餘額失敗，" . $sms->processMsg ;
         // }
         
-        傳送簡訊
+        //傳送簡訊
         if($sms->sendSMS($subject,$content,$mobile,$sendTime)){
             $api->setInformation(TRUE, 1, 1, "驗證碼簡訊發送成功");
         } else {
