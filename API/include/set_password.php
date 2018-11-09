@@ -5,13 +5,14 @@
     foreach ($_POST as $key => $value) {
         $$key = $value;
     }
-    $app_data = new API("app_data");
-    $app_data->setWhereArray(array("adTokenId"=>$token));    
-    $app_data->getWithWhereAndJoinClause();
-    $apData = $app_data->getData();
-    $memNo = $apData[0]["memNo"];
+    
 
-    if ($type="regist") {        
+    if ($type="regist") {    
+        $app_data = new API("app_data");
+        $app_data->setWhereArray(array("adTokenId"=>$token));    
+        $app_data->getWithWhereAndJoinClause();
+        $apData = $app_data->getData();
+        $memNo = $apData[0]["memNo"];    
         $sql = "UPDATE member SET memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "成功修改！");
@@ -19,7 +20,7 @@
         $sql = "UPDATE member SET memPwd='".$password."' WHERE memCell='".$memCell."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "成功修改！");
-    }else if($type=="change"){        
+    }else if($type=="change"){
         $api->setWhereArray(array("memNo"=>$memNo,"memPwd"=>$passwordOld));    
         $api->getWithWhereAndJoinClause();
         $result = $api->getData();

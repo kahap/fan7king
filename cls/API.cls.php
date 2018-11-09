@@ -601,6 +601,16 @@ require_once("../admin/cls/Product_Period.cls.php");
 										}
 									}
 								}
+								//加贈、優惠轉陣列
+								if($keyIn == "proOffer" || $keyIn == "proGift"){
+									$valueIn = explode("#",$valueIn);
+									foreach($valueIn as &$eachSpec){
+										if($eachSpec == "無"){
+											$eachSpec = "";
+										}
+									}
+								}								
+
 							}
 						}
 					}
