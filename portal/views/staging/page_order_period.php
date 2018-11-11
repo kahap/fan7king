@@ -13,7 +13,7 @@
 <script type="text/javascript">
     $(function () {
         $('.address-zone').ajaddress({ city: "請選擇", county: "請選擇" });
-        if($(".memclass").val() == '0'){
+        if($(".memClass").val() == '0'){
             // $(".memSchool").show();
             // $(".chosen-container").show();
             $(".memAccount").show();
@@ -47,7 +47,7 @@
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
     <section id="staging-zone">
-        <form action="#">
+        <form action="portal/Controllers/php/order_check.php" method="POST" id="order_add">
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-lg-8">
@@ -117,8 +117,8 @@
                             <div class="form-group row">
                                 <label for="IdentKind" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身分別</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control memclass" id="IdentKind" name="memclass">
-                                        <option value="0" <?php echo ($memberData[0]['memClass'] == 0) ? "selected":""; ?> >學生</option>
+                                    <select class="form-control memClass" id="IdentKind" name="memClass" >
+                                        <option value="0" <?php echo ($memberData[0]['memClass'] == 0) ? "selected":""; ?> selected>學生</option>
                                         <option value="4" <?php echo ($memberData[0]['memClass'] == 4) ? "selected":""; ?> >非學生</option>
                                     </select>
                                 </div>
@@ -126,19 +126,19 @@
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" />
+                                    <input type="text" required="required" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" />
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
-                                        if($memberData[0]['memclass'] != '0' && $memberData[0]['memFBtoken'] == ""){
+                                        if($memberData[0]['memClass'] != '0' && $memberData[0]['memFBtoken'] == ""){
                                             echo $memberData[0]["memAccount"];
                                         }else{
                                             echo $memberData[0]["memSubEmail"];
                                         }
-                                    ?>">
+                                    ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -245,7 +245,7 @@
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" disabled>
+                                    <input type="text" required class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -363,6 +363,10 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control orAppApplierBirthAddr" id="orAppApplierBirthAddr" name="orAppApplierBirthAddr" value="">
+                                    <div class="float-right m-1">
+                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="SameForNowAddr">
+                                        <label class="form-check-label" for="SameForNowAddr" >同現住地址</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -384,10 +388,6 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control memAddr" id="memAddr" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>">
-                                    <div class="float-right m-1">
-                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="memAddr">
-                                        <label class="form-check-label" for="SameForNowAddr" >同戶籍地址</label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -668,8 +668,8 @@
                             <div class="form-group row">
                                 <label for="a9" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a9" name="orAppContactRelaName" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a9" name="orAppContactRelaName" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactRelaName") {
@@ -682,8 +682,8 @@
                             <div class="form-group row">
                                 <label for="a8" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬關係</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a8" name="orAppContactRelaRelation" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a8" name="orAppContactRelaRelation" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactRelaRelation") {
@@ -696,8 +696,8 @@
                             <div class="form-group row">
                                 <label for="a7" class="col-sm-3 col-form-label"><span class="text-orange"></span>親屬市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a7" name="orAppContactRelaPhone" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a7" name="orAppContactRelaPhone" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactRelaPhone") {
@@ -707,13 +707,27 @@
                                     ?>">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="a6-1" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬手機</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="a6-1" name="orAppContactRelaCell" value=
+                                    "<?php
+                                    foreach($columnName as $key=>$value){
+                                        //只顯示
+                                        if($value["COLUMN_NAME"] == "orAppContactRelaCell") {
+                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                        }
+                                    }
+                                    ?>" required>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group row">
                                 <label for="a6" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a6" name="orAppContactFrdName" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a6" name="orAppContactFrdName" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactFrdName") {
@@ -726,8 +740,8 @@
                             <div class="form-group row">
                                 <label for="a5" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友關係</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a5" name="orAppContactFrdRelation" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a5" name="orAppContactFrdRelation" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactFrdRelation") {
@@ -738,10 +752,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="a4" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友市話</label>
+                                <label for="a4" class="col-sm-3 col-form-label"><span class="text-orange"></span>朋友市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a4" name="orAppContactFrdPhone" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a4" name="orAppContactFrdPhone" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactFrdPhone") {
@@ -754,15 +768,15 @@
                             <div class="form-group row">
                                 <label for="a3" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友手機</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a3" name="orAppContactFrdCell" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a3" name="orAppContactFrdCell" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppContactFrdCell") {
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>">
+                                    ?>" required>
                                 </div>
                             </div>
                         </div>
@@ -775,8 +789,8 @@
                             <div class="form-group row">
                                 <label for="a2" class="col-sm-3 col-form-label"><span class="text-orange"></span>可照會時間</label>
                                 <div class="col-sm-9">
-                                    <input type="datetime-local" class="form-control" id="a2" name="orAppExtraAvailTime" value="
-                                    <?php
+                                    <input type="datetime-local" class="form-control" id="a2" name="orAppExtraAvailTime" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppExtraAvailTime") {
@@ -815,6 +829,7 @@
                 <div class="section-staging">
                     <div class="form-group form-btn text-center">
                         <a class="btn btn-next bg-yellow next-btn">下一步</a>
+<!--                        <input class="btn btn-next bg-yellow next-btn" type="submit" value="下一步" />-->
                     </div>
                 </div>
             </div>
@@ -856,17 +871,17 @@
     $("#orBusinessNumNumber").hide();     //統一編號
     // $(".memother").hide();
     //身分別
-    $(".memclass").change(function(){
-        var memclass_val = $(this).val();
+    $(".memClass").change(function(){
+        var memClass_val = $(this).val();
 
-        // if(memclass_val == '3'){
+        // if(memClass_val == '3'){
         //     $(".memother").show();
         // }else{
         //     $(".memother").hide();
         // }
 
-        // memclass=0 是學生
-        if(memclass_val == '0'){
+        // memClass=0 是學生
+        if(memClass_val == '0'){
             // $(".memSchool").show();
             // $(".chosen-container").show();
             $(".memAccount").show();
@@ -886,7 +901,6 @@
             checkDate($("select[name=year]").val(),$("select[name=month]").val(),$("select[name=date]").val()) &&
             checkAllContact())
         {
-            e.preventDefault();
             $.ajax({
                 url: 'portal/Controllers/php/order_check.php',
                 data: $('#order_add').serialize(),
@@ -894,6 +908,7 @@
                 dataType: 'text',
                 success: function(msg){
                     if(msg){
+                        e.preventDefault();
                         if(msg == "1"){
                             alert("請記得到會員中心->會員基本資料做認證信");
                             location.href = "index.php?item=member_center&action=order_period&method=2";
@@ -942,15 +957,22 @@
             $("#orBusinessNumNumber").hide();
         }
     });
-    // checkbox:同戶籍地址
-    $("input[name=sameofapplier]").change(function(){
-        if($('input[name=sameofapplier]:checked').val() == "on"){
-            $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
-            // $("input[name=memPhone]").val($("input[name=orAppApplierBirthPhone]").val());
-            // $(".memPostCode").val($(".orAppApplierBirthAddrPostCode").val());
+    // checkbox:同現住電話
+    $("input[name=SameForNowTelephone]").change(function(){
+        if($('input[name=SameForNowTelephone]:checked').val() == "on"){
+            $("input[name=orAppApplierBirthPhone]").val($("input[name=memPhone]").val());
         }else{
-            $("input[name=memAddr]").val('');
-            // $("input[name=memPhone]").val('');
+            $("input[name=orAppApplierBirthPhone]").val('');
+        }
+    });
+    // checkbox:同現住地址
+    $("input[name=SameForNowAddr]").change(function(){
+        if($('input[name=SameForNowAddr]:checked').val() == "on"){
+            $("input[name=orAppApplierBirthAddr]").val($("input[name=memAddr]").val());
+            $("input[name=orAppApplierBirthAddrPostCode]").val($("input[name=memPostCode]").val());
+        }else{
+            $("input[name=orAppApplierBirthAddr]").val('');
+            $("input[name=orAppApplierBirthAddrPostCode]").val('');
         }
     });
     //同申請人現住資料
@@ -1038,7 +1060,10 @@
             errg +=1;
         }
 
-        if($("input[name=orAppContactRelaCell]").val() != $("input[name=orAppContactFrdCell]").val() && $("input[name=memCell]").val() != $("input[name=orAppContactFrdCell]").val() && $("input[name=memCell]").val() != $("input[name=orAppContactRelaCell]").val() ){
+        if($("input[name=orAppContactRelaCell]").val() != $("input[name=orAppContactFrdCell]").val() &&
+            $("input[name=memCell]").val() != $("input[name=orAppContactFrdCell]").val() &&
+            $("input[name=memCell]").val() != $("input[name=orAppContactRelaCell]").val()
+        ){
             errg +=0;
         }else{
             alert('申請人、親屬、朋友不可為同一手機號碼');
@@ -1108,7 +1133,7 @@
         var phoneRegWithArea = /^09[0-9]{8}$/;
         var phoneRegNoArea = /^(0\d+)-(\d{8})$/;
         var prompt = "您輸入的手機號碼不正確!";
-        if( strPhone.length > 9  && strPhone.length <= 10) {
+        if( strPhone && strPhone.length > 9  && strPhone.length <= 10) {
             if( phoneRegWithArea.test(strPhone) ){
                 return true;
             }else{
@@ -1124,7 +1149,7 @@
     function checkPhone4(strPhone) {
         var phoneRegWithArea = /^09[0-9]{8}$/;
         var prompt = "您輸入的親屬或朋友手機號碼不正確";
-        if( strPhone.length > 9  && strPhone.length <= 10) {
+        if( strPhone &&  strPhone.length > 9  && strPhone.length <= 10) {
             if( phoneRegWithArea.test(strPhone) ){
                 return true;
             }else{

@@ -129,9 +129,9 @@ $_SESSION['pro'] = $proNo;
                         <form id='shopping'>
                             <br>
                             <div class="selector selector-bd row">
-                                <div class="col-lg-6">
+<!--                                <div class="col-lg-6">-->
                                 <?php
-                                if($pm_detail[0]['proModelID'] != ""){
+                                /*if($pm_detail[0]['proModelID'] != ""){
                                     $model = explode('#',$pm_detail[0]['proModelID']);
                                     ?>
                                         <label for="product-model" class="d-none">型號</label>
@@ -144,9 +144,9 @@ $_SESSION['pro'] = $proNo;
                                             ?>
                                         </select>
                                     <?php
-                                }
+                                }*/
                                 ?>
-                                </div>
+<!--                                </div>-->
                                 <div class="col-lg-6">
                                 <?php
                                 if($pm_detail[0]['proSpec'] != ""){
