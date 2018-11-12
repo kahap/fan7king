@@ -70,12 +70,12 @@
 								}
 							}
 						}
-						push_android($androidRigistIdArr[$count],$msgArr[$count],$pushTitle,$otherInfoArr[$count]);
+						// push_android($androidRigistIdArr[$count],$msgArr[$count],$pushTitle,$otherInfoArr[$count]);
 						$count++;
 					}
 					
 					$email = new Email();
-					sendEmailForStatChange($orStatusArr[$key],$orOldData,$memData,$pmData,$proData,$email);
+					// sendEmailForStatChange($orStatusArr[$key],$orOldData,$memData,$pmData,$proData,$email);
 				}
 			$sql = "select rcNo from real_cases where rcRelateDataNo = '".$value."' && rcType = '0' ";
 			$data = $or->getSql($sql);
@@ -83,7 +83,7 @@
 			$or->getSql($Record);
 			}
 		}
-		$push = push("happy.pem",'happy',$deviceTokenArr,$msgArr,$otherInfoArr);
+		// $push = push("happy.pem",'happy',$deviceTokenArr,$msgArr,$otherInfoArr);
 		echo "更新成功";
 	}else{
 		echo $errMsg;

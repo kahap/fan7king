@@ -122,7 +122,7 @@ if(isset($no)){
 									if(isset($predict)){
 // 										$first = getNextMonthDate($predict);
 										if($rcData[0]['rcType'] == "0"){
-											$first = date("Y-m-d",strtotime("+13 day"));
+											$first = date("Y-m-d",strtotime("+15 day"));
 										}else{
 											$first = date("Y-m-d",strtotime("+30 day"));
 										}
