@@ -12,48 +12,44 @@ if($_SESSION['ord_code'] != "" && isset($_SESSION['shopping_user'][0])){
 		$filename = $_POST['imagename']; 
 		if(!empty($filename)){ 
 			unlink('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/".$filename);
-			$or->updateorAppAuthenIdImgTop('',$_SESSION['ord_code']);
+			$or->updateorAppAuthenSelfImgTop('',$_SESSION['ord_code']);
 			echo '1'; 
 		}else{ 
 			echo '删除失败.'; 
-		}
+		} 
 	}else{ //
-		$picname = $_FILES['mypic']['name']; 
-		$picsize = $_FILES['mypic']['size']; 
+		$picname = $_FILES['mypic_8']['name']; 
+		$picsize = $_FILES['mypic_8']['size']; 
 		if(!is_dir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){
 			mkdir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
 			chmod('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
-		}
+		} 
+		
 		$File = new File();
 		$SystemDirPath = '../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
 		$rand = rand(100, 999); 
 		$Default_file_name = date("YmdHis");
-		if ($File->FileCheck($_FILES['mypic']['tmp_name'],
-						$_FILES['mypic']['type'],
-						$_FILES['mypic']['size'],
-						$_FILES['mypic']['error'],
+		if ($File->FileCheck($_FILES['mypic_8']['tmp_name'],
+						$_FILES['mypic_8']['type'],
+						$_FILES['mypic_8']['size'],
+						$_FILES['mypic_8']['error'],
 						$SystemDirPath,
-						$_FILES['mypic']['name'])){			
+						$_FILES['mypic_8']['name'])){			
 			$type = strstr($picname, '.');
 			$FileName = $Default_file_name.$type;
-			$aa = $File->SaveImageThumbnail($_FILES['mypic']['type'],$_FILES['mypic']['tmp_name'],$SystemDirPath,$FileName,'900','600');
+			$aa = $File->SaveImageThumbnail($_FILES['mypic_8']['type'],$_FILES['mypic_8']['tmp_name'],$SystemDirPath,$FileName,'900','600');
 			$FileName1 = $SystemDirPath.$FileName;
-			$or->updateorAppAuthenIdImgTop(substr($FileName1,3),$_SESSION['ord_code']);
+			$or->updateorAppAuthenSelfImgTop(substr($FileName1,3),$_SESSION['ord_code']);
 		}
-		
-		if(!is_file($FileName1)){
-			$FileName = '';
-		}
-		
 		$size = round($picsize/1024,2); //转换成kb 
 		$arr = array( 
 			'name'=>$picname, 
-			'pic'=>$FileName, 
-			'size'=>$size,
+			'pic'=>$FileName,
+            'size'=>$size,
             'status' => 1
-		); 
-		echo json_encode($arr); //输出json数据 
-	}
+        );
+        echo json_encode($arr); //输出json数据
+    }
 }else{
     $arr = array(
         'message'=> "no find SESSION, 編號遺失，請重新操作",

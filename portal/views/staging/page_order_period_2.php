@@ -80,7 +80,7 @@
                             <div class="files"></div>
                             <div id="showimg">
                             <?php
-                                if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgTop']."' />";
+                                if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenIdImgTop']) ."' />";
                             ?>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                             <div class="files_1"></div>
                             <div id="showimg_1">
                             <?php
-                                if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgBot']."' />";
+                                if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenIdImgBot']) ."' />";
                             ?>
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                             <div class="files_2"></div>
                             <div id="showimg_2">
                                 <?php
-                                if ($or_data[0]['orAppAuthenStudentIdImgTop'] != "") echo "<img src='".$or_data[0]['orAppAuthenStudentIdImgTop']."' />";
+                                if ($or_data[0]['orAppAuthenStudentIdImgTop'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenStudentIdImgTop']) ."' />";
                                 ?>
                             </div>
                         </div>
@@ -139,7 +139,7 @@
                             <div class="files_3"></div>
                             <div id="showimg_3">
                                 <?php
-                                if ($or_data[0]['orAppAuthenStudentIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenStudentIdImgBot']."' />";
+                                if ($or_data[0]['orAppAuthenStudentIdImgBot'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenStudentIdImgBot']) ."' />";
                                 ?>
                             </div>
                         </div>
@@ -151,16 +151,16 @@
                     <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請自拍照上傳</label>
                     <div class="col-sm-9">
                         <div class="demo">
-                            <div class="btn_7">
-                                <input id="fileupload_7" type="file" name="mypic_7" class="form-control">
+                            <div class="btn_8">
+                                <input id="fileupload_8" type="file" name="mypic_8" class="form-control">
                             </div>
-                            <div class="progress_7">
-                                <span class="bar_7"></span><span class="percent_7">0%</span >
+                            <div class="progress_8">
+                                <span class="bar_8"></span><span class="percent_8">0%</span >
                             </div>
-                            <div class="files_7"></div>
-                            <div id="showimg_7">
+                            <div class="files_8"></div>
+                            <div id="showimg_8">
                                 <?php
-                                if ($or_data[0]['orAppAuthenStudentIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenSelfImgTop']."' />";
+                                if ($or_data[0]['orAppAuthenSelfImgTop'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenSelfImgTop']) ."' />";
                                 ?>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                             <div class="files_4"></div>
                             <div id="showimg_4">
                                 <?php
-                                if ($or_data[0]['orAppAuthenExtraInfo'] != "") echo "<img src='".$or_data[0]['orAppAuthenExtraInfo']."' />";
+                                if ($or_data[0]['orAppAuthenExtraInfo'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenExtraInfo']) ."' />";
                                 ?>
                             </div>
                         </div>
@@ -228,10 +228,10 @@
 <!--                <div class="sign-zone"></div>-->
                 <canvas id="colors_sketch" style="border: 1px solid red;"></canvas>
                 <div class="form-group form-btn text-right">
-                    <button class="btn bg-gray button" onclick='$("#colors_sketch").data("jqScribble").clear();'>清除</button>
+                    <button class="btn bg-gray button" onclick='$("#colors_sketch").data("jqScribble").clear(); return false;'>清除</button>
                     <a id="upload"><button class="btn bg-yellow button">確認簽名</button></a>
                     <?php
-                    if ($or_data[0]['orAppAuthenProvement'] != "") echo "<img src='".$or_data[0]['orAppAuthenProvement']."' id='orAppAuthenProvement' />";
+                    if ($or_data[0]['orAppAuthenProvement'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenProvement']) ."' id='orAppAuthenProvement' />";
                     ?>
                 </div>
                 <div class="section-order-title"></div>
@@ -243,9 +243,6 @@
                         <a href="?item=fmPeriodDeclare" target="_blank" class="text-orange" style="text-decoration:underline;">「分期付款約定書(點文字可連結閱讀詳文)」</a>
                         之內容及所有條款
                     </label>
-                    <?php
-                    if ($or_data[0]['orAppAuthenProvement'] != "") echo "<img src='".$or_data[0]['orAppAuthenProvement']."' id='orAppAuthenProvement' />";
-                    ?>          
                 </div>
                 <div class="form-check text-left m-2">
                     <input class="form-check-input check4" type="checkbox" id="check4">
@@ -261,10 +258,10 @@
 <!--                <div class="sign-zone"></div>-->
                 <canvas id="colors_sketch_1" style="border: 1px solid red;"></canvas>
                 <div class="form-group form-btn text-right">
-                    <button class="btn bg-gray button" onclick='$("#colors_sketch_1").data("jqScribble").clear();'>清除</button>
+                    <button class="btn bg-gray button" onclick='$("#colors_sketch_1").data("jqScribble").clear(); return false;'>清除</button>
                     <a id="upload_1"><button class="btn bg-yellow button">確認簽名</button></a>
                     <?php
-                    if ($or_data[0]['orAppAuthenPromiseLetter'] != "") echo "<img src='".$or_data[0]['orAppAuthenPromiseLetter']."' id='orAppAuthenPromiseLetter' />";
+                    if ($or_data[0]['orAppAuthenPromiseLetter'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenPromiseLetter']) ."' id='orAppAuthenPromiseLetter' />";
                     ?>
                 </div>
             </div>
@@ -365,14 +362,18 @@
                     percent.html(percentVal);
                 },
                 success: function(data) {
-                    if(data.pic != ''){
-                        var img = data.url+"/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                    if(data.status && data.pic != ''){
+                        var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
                         showimg.html("<img src='"+img+"'>");
                         btn.html("上傳檔案");
                     }else{
                         btn.html("上傳失敗");
                         bar.width('0');
-                        files.html(xhr.responseText);
+                        // files.html(xhr.responseText);
+                        if (data.status==0){
+                            alert(data.message);
+                            location.href = history.back();
+                        }
                     }
                 },
                 error:function(xhr){
@@ -408,18 +409,22 @@
                 },
                 success: function(data) {
                     if(data.pic != ''){
-                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
                         showimg_1.html("<img src='"+img+"'>");
                         btn_1.html("上傳檔案");
                     }else{
                         btn_1.html("上傳失敗");
-                        bar_1.width('0')
-                        files_1.html(xhr.responseText);
+                        bar_1.width('0');
+                        // files.html(xhr.responseText);
+                        if (data.status==0){
+                            alert(data.message);
+                            location.href = history.back();
+                        }
                     }
                 },
                 error:function(xhr){
                     btn_1.html("上傳失敗");
-                    bar_1.width('0')
+                    bar_1.width('0');
                     files_1.html(xhr.responseText);
                 }
             });
@@ -449,13 +454,17 @@
                 },
                 success: function(data) {
                     if(data.pic != ''){
-                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
                         showimg_2.html("<img src='"+img+"'>");
                         btn_2.html("上傳檔案");
                     }else{
                         btn_2.html("上傳失敗");
-                        bar_2.width('0')
-                        files_2.html(xhr.responseText);
+                        bar_2.width('0');
+                        // files.html(xhr.responseText);
+                        if (data.status==0){
+                            alert(data.message);
+                            location.href = history.back();
+                        }
                     }
                 },
                 error:function(xhr){
@@ -490,7 +499,7 @@
                 },
                 success: function(data) {
                     if(data.pic != ''){
-                        var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                        var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
                         showimg_3.html("<img src='"+img+"'>");
                         btn_3.html("上傳檔案");
                     }else{
@@ -530,7 +539,7 @@
                     percent_4.html(percentVal);
                 },
                 success: function(data) {
-                    var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                    var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
                     showimg_4.html("<img src='"+img+"'>");
                     btn_4.html("上傳檔案");
                 },
@@ -542,38 +551,38 @@
             });
         });
         //申請自拍照上傳
-        var bar_7 = $('.bar_7');
-        var percent_7 = $('.percent_7');
-        var showimg_7 = $('#showimg_7');
-        var progress_7 = $(".progress_7");
-        var files_7 = $(".files_7");
-        var btn_7 = $(".btn_7 span");
-        $("#fileupload_7").wrap("<form id='myupload_7' action='portal/Controllers/php/file_7.php' method='post' enctype='multipart/form-data'></form>");
-        $("#fileupload_7").change(function(){
-            $("#myupload_7").ajaxSubmit({
+        var bar_8 = $('.bar_8');
+        var percent_8 = $('.percent_8');
+        var showimg_8 = $('#showimg_8');
+        var progress_8 = $(".progress_8");
+        var files_8 = $(".files_8");
+        var btn_8 = $(".btn_8 span");
+        $("#fileupload_8").wrap("<form id='myupload_8' action='portal/Controllers/php/file_8.php' method='post' enctype='multipart/form-data'></form>");
+        $("#fileupload_8").change(function(){
+            $("#myupload_8").ajaxSubmit({
                 dataType:  'json',
                 beforeSend: function() {
-                    showimg_7.empty();
-                    progress_7.show();
+                    showimg_8.empty();
+                    progress_8.show();
                     var percentVal = '0%';
-                    bar_7.width(percentVal);
-                    percent_7.html(percentVal);
-                    btn_7.html("上傳中...");
+                    bar_8.width(percentVal);
+                    percent_8.html(percentVal);
+                    btn_8.html("上傳中...");
                 },
                 uploadProgress: function(event, position, total, percentComplete) {
                     var percentVal = percentComplete + '%';
-                    bar_7.width(percentVal);
-                    percent_7.html(percentVal);
+                    bar_8.width(percentVal);
+                    percent_8.html(percentVal);
                 },
                 success: function(data) {
-                    var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                    showimg_7.html("<img src='"+img+"'>");
-                    btn_7.html("上傳檔案");
+                    var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+                    showimg_8.html("<img src='"+img+"'>");
+                    btn_8.html("上傳檔案");
                 },
                 error:function(xhr){
-                    btn_7.html("上傳失敗");
-                    bar_7.width('0')
-                    files_7.html(xhr.responseText);
+                    btn_8.html("上傳失敗");
+                    bar_8.width('0')
+                    files_8.html(xhr.responseText);
                 }
             });
         });
@@ -582,7 +591,8 @@
 <script type="text/javascript">
     $(function() {
         //發票人中文正楷簽名
-        $('#upload').click(function(){
+        $('#upload').click(function(e){
+            e.preventDefault();
             $("#colors_sketch").data("jqScribble").save(function(imageData){
 
                 $.post('portal/Controllers/php/file_5.php', {imagedata: imageData}, function(response){
@@ -593,9 +603,9 @@
             });
         });
         //申請人中文正楷簽名
-        $('#upload_1').click(function(){
+        $('#upload_1').click(function(e){
             $("#colors_sketch_1").data("jqScribble").save(function(imageData){
-
+                e.preventDefault();
                 $.post('portal/Controllers/php/file_6.php', {imagedata: imageData}, function(response){
                     $('#upload_1 button').html('簽名完成');
                     $('#upload_1 button').prop("disabled", true);

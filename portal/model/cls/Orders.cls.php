@@ -815,6 +815,17 @@
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
+        public function updateorAppAuthenSelfImgTop($orAppAuthenSelfImgTop,$orNo){
+            $sql = "update
+						`orders`
+					set
+						`orAppAuthenSelfImgTop`='".$orAppAuthenSelfImgTop."'
+					where
+						`orNo`='".$orNo."'";
+
+            $update = $this->db->updateRecords($sql);
+            return $update;
+        }
 		public function updateorAppAuthenProvement($orAppAuthenProvement,$orNo){
 			$sql = "update
 						`orders`

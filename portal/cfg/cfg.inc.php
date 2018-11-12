@@ -40,7 +40,7 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
 //        define('DOMAIN', '127.0.0.1/fan7king_dev2');
 //        echo  $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 //        exit();
-        define('DOMAIN', $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        define('DOMAIN', $_SERVER['HTTP_HOST'].'/fan7king_dev2');
         define('AutoloadAPPId','1863095207092475');
         define('AutoloadAPPSecret','2282176ea918f66b59307881d74014a');
         define('FbADVersion', 'v2.9');
