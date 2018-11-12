@@ -225,8 +225,8 @@
                                     $or = new Orders();
                                     $or_data = $or->getTwinOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
                                     if($or_data[1]['orNo'] != ''){
-                                        include('portal/views/staging/page_default_order_period_2.php');
-                                    }else{
+//                                        include('portal/views/staging/page_default_order_period_2.php');
+//                                    }else{
                                         include('portal/views/staging/page_order_period_2.php');
                                     }
     								break;
