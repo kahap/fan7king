@@ -51,7 +51,7 @@
 	<!-- new add -->
                 <li><a><i class="fa fa-tag"></i> 人員登錄 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
-                    <li><a href="?page=supplier">業務人員</a></li>
+                    <li><a href="?page=supplier">銷售人員</a></li>
                   </ul>
                 </li> 
     <!-- new add -->      

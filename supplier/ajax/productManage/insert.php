@@ -29,19 +29,19 @@
 	$success="";  
 
 	if(!isset($_POST["proNo"]) || $proNo == ""){
-		$errMsg["proNoErr"] = "請輸入商品名稱";
+		$errMsg["proNoErr"] = "請輸入產品名稱";
 	}		
 
     if(!isset($_POST["catNo"]) || $catNo == ""){
-		$errMsg["catErr"] = "請選擇所屬分類";
+		$errMsg["catErr"] = "請選擇產品分類";
 	}		
 
     if(!isset($_POST["braNo"]) || $braNo == ""){
-		$errMsg["braErr"] = "請選擇所屬品牌";
+		$errMsg["braErr"] = "請選擇產品品牌";
 	}
 
 	if(!isset($_POST["biNo"]) || $biNo == ""){
-		$errMsg["biNoErr"] = "請選擇所屬品項";
+		$errMsg["biNoErr"] = "請選擇產品品項";
 	}
 
 
@@ -131,7 +131,7 @@ if(empty(array_filter($errMsg))){
         $pmUpDate =$dt->format('Y-m-d H:i:s'); 	
            	    
         $dataS = array();
-		$dataS["proName"] = $proNo;
+		$dataS["proName"] = $supLogId."_".$proNo;
         $dataS["bySup"] = 1;
         $dataS["catNo"] = $catNo;
 		$dataS["braNo"] = $braNo;
@@ -147,7 +147,7 @@ if(empty(array_filter($errMsg))){
 		$prod->insert($dataS,$newProNo);
 
 
-        $checkData  = $prod->getProNo_Sup($catNo,$braNo,$biNo,$proNo) ;
+        $checkData  = $prod->getProNo_Sup($catNo,$braNo,$biNo,$supLogId."_".$proNo) ;
         $_POST["proNo"] = $checkData[0]["proNo"] ;
        
         $proNo = $_POST["proNo"]  ;
@@ -165,7 +165,8 @@ if(empty(array_filter($errMsg))){
 			    $dataInsert = array();
 			    $dataInsert["ppNo"] = $ppDataEach[0]["ppNo"];
 			    $dataInsert["ppPeriodAmount"] = $value;
-			    $dataInsert["ppPercent"] = $ppPercentArr[$key];
+				$dataInsert["ppPercent"] = $ppPercentArr[$key];
+				$dataInsert["ppIntroText"] = '';
 			    $pp->update($dataInsert);
 		    }
 	    }else{

@@ -13,9 +13,9 @@ $pro = new Product();
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>上架列表</h3>
+              <h3>產品列表</h3>
               <a style="text-decoration:none;" href="?page=product&type=productManage&action=insert">
-                <button class="btn btn-success">新增上架</button>
+                <button class="btn btn-success">新增產品</button>
               </a>
             </div>
           </div>
@@ -29,11 +29,11 @@ $pro = new Product();
                   <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
-                        <th>商品編號</th>
-                        <th>商品名稱</th>                     
-						<th>上架狀態</th>         
-                        <th>實際下單數 </th>
-                        <th>商品點擊數 </th>
+                        <th>產品編號</th>
+                        <th>產品名稱</th>                     
+						            <th>上架管理</th>         
+                        <th>訂單量 </th>
+                        <th>點擊量 </th>
                         <!-- <th>上架狀態</th>  -->
                       </tr>
                     </thead>

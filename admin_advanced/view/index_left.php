@@ -134,8 +134,8 @@
                             	<?php } ?>
 								<?php if(in_array(504,$rightsOwned)){ ?><li><a href="?page=accounting&type=export_file" <?php echo isset($page,$type) && $page == "accounting" && $type == "export_file" ? 'class="active-page"' : ""; ?>>會計匯出檔案</a></li>
 								<?php } ?>
-								<?php if(in_array(505,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=export_file_cussup" <?php echo isset($page,$type) && $page == "accounting" && $type == "export_file_cussup" ? 'class="active-page"' : ""; ?>>匯出客供應報表</a></li>
-								<?php } ?>
+								<!-- <?php// if(in_array(505,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=export_file_cussup" <?php //echo isset($page,$type) && $page == "accounting" && $type == "export_file_cussup" ? 'class="active-page"' : ""; ?>>客供應報表</a></li> -->
+								<?php //} ?>
 								<?php if(in_array(506,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=upload_file_cussup" <?php echo isset($page,$type) && $page == "accounting" && $type == "upload_file_cussup" ? 'class="active-page"' : ""; ?>>匯入文中發票檔</a></li>
 								<?php } ?>
 								<?php if(in_array(507,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=queryPay" <?php echo isset($page,$type) && $page == "accounting" && $type == "queryPay" ? 'class="active-page"' : ""; ?>>入帳日查詢</a></li>

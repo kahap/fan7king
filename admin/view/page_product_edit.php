@@ -141,7 +141,7 @@ $tabIndex = 0;
                       </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品加贈(#號分開內容) :
+                              商品加贈(,號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value='<?php if($_GET["action"]=="edit") echo isset($proData[0]["proGift"])?$proData[0]["proGift"]:''; ?>' type="text" class="form-control" name="proGift" />

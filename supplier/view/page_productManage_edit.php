@@ -88,6 +88,9 @@ if($_GET["action"] == "edit"){
 	$proData = $pro->getOneProByNo($proNo);
     $proImageArray = json_decode($proData[0]["proImage"]);
 
+    $sup = new Supplier();
+    $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
+    $supPeriod = $allSupData[0]["supPeriod"];
 }else{
 	$pm = new Product_Manage();
 
@@ -102,7 +105,6 @@ if($_GET["action"] == "edit"){
 	$sup = new Supplier();
     $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
     $supPeriod = $allSupData[0]["supPeriod"];
-
 }
 
 if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
@@ -164,7 +166,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       <input id="album" type="hidden" name="album" value="">
                    	<div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                      	所屬分類 : 
+                        產品分類 : 
                       </label>
                        <div class="col-md-6 col-sm-6 col-xs-12">
 	                      <select name="catNo" class="form-control" required>
@@ -178,7 +180,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                      </div>
                    	<div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                      所屬品牌 : 
+                        產品品牌 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">                      	
 	                      <select name="braNo" class="form-control" required>
@@ -192,7 +194,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                     </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              所屬品項 :
+                            產品品項 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <select name="biNo" class="form-control" required>
@@ -204,22 +206,36 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <ul class="parsley-errors-list"><li id="biErr"></li></ul>
                           </div>
                       </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                            購物站編號 :
+                          </label>
+                          <div class="col-md-6 col-sm-6 col-xs-12">
+                              <input value='<?php echo $allSupData[0]["supLogId"]; ?>' id="supLogId" type="text" class="form-control" name="supLogId" />
+                              <ul class="parsley-errors-list"><li id="supLogIdErr"></li></ul>
+                          </div>
+                      </div>
+
                   	<div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                      	商品名稱 : 
+                        產品名稱 : 
                       </label>
                       <div class="col-md-6 col-sm-6 col-xs-12">
-                    <?php if($_GET["action"]=="edit"){
-                              if(trim($proData[0]["proName"])==""){ ?>
-                                    <input name="proNo" id="proNo" class="form-control" required>
-                             <?php } else { ?>
-                         	    <select disabled class="form-control" required>
-                                  <option selected><?php echo $proData[0]["proName"]; ?></option>
-                         	    </select>
-                      	<?php }
-                        } else { ?>
-                          <input name="proNo" id="proNo" class="form-control" required>
-                     <?php } ?>
+                        <?php if($_GET["action"]=="edit"){
+                                if(trim($proData[0]["proName"])==""){ ?>
+                                        <input name="proNo" id="proNo" class="form-control" required>
+                                <?php } else { ?>
+                                    <select disabled class="form-control" required>
+                                    <option selected><?php 
+                                        $cnt = strlen($allSupData[0]["supLogId"])+1;
+                                        echo substr($proData[0]["proName"],$cnt); 
+                                    ?></option>
+                                    </select>
+                            <?php }
+                            } else { ?>
+                            <input name="proNo" id="proNo" class="form-control" required>
+                        <?php } ?>
 						 <ul class="parsley-errors-list"><li id="proNoErr"></li></ul>
                       </div>
                     </div>
@@ -235,7 +251,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品加贈(#號分開內容) :
+                              商品加贈(,號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proGift"]; ?>' type="text" class="form-control" name="proGift" />
@@ -243,9 +259,9 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       </div>
 
-                      <div class="form-group">
+                      <div style="display:none" class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品型號(#號分開內容):
+                              商品型號(#號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value="<?php if($_GET["action"]=="edit") echo $proData[0]["proModelID"]; ?>" type="text" class="form-control" name="proModelID" />
@@ -264,7 +280,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 
                      <div class="form-group">
                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                             上架金額
+                            產品售價 :
                          </label>
                          <div class="col-md-6 col-sm-6 col-xs-12">
                              <input id="period-amnt" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt"]; ?>" type="text" class="form-control" name="pmPeriodAmnt" />
@@ -273,7 +289,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                      </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              撥款金額 :
+                            實撥金額 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input id="period-amnt2" value="<?php if($_GET["action"]=="edit") echo $origPmData[0]["pmPeriodAmnt2"]; ?>" readonly required type="text" class="form-control" name="pmPeriodAmnt2" /><!--readonly=true-->
@@ -305,7 +321,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              上架狀態 :
+                            上架管理 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <?php
@@ -323,7 +339,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品利率 :
+                            產品分期 :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input type="hidden" name="ppPeriodAmount[]" value="6">06期：<input data-period="6" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp6Percent; ?>" readonly=true>每期 : <input data-pmoney="6" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
@@ -840,9 +856,18 @@ $(function(){
     <?php } ?>
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+    //取消ENTETR 送出表單
+    $(document).ready(function() {
+    $(window).keydown(function(event){
+        if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+        }
+    });
+    });
 
     $("button[type='submit']").parents("form").on("submit",function(e){
+       
         e.preventDefault();
         var val = $("#period-amnt").val();
         var period = <?php echo $supPeriod ?>;

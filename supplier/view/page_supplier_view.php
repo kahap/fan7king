@@ -11,7 +11,7 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>業務人員詳細資料</h3>
+                    <h3>銷售員資料</h3>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -19,7 +19,7 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2 style="text-align:center;float:none;">業務人員編號: <?php echo $supNo; ?></h2>
+                            <h2 style="text-align:center;float:none;">銷售員編號: <?php echo $supNo; ?></h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -27,31 +27,31 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
                             <div class="form-horizontal form-label-left">
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                    供應商編號 : 
+                                    購物站編號 : 
                                     </label>
                                 <h5 style="color:#999;"><?php echo $supData[0]["supNo"]; ?></h5>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                    供應商業務人員編號 : 
+                                    銷售員編號 : 
                                     </label>
                                     <h5 style="color:#999;"><?php echo $supData[0]["ssNo"]; ?></h5>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                    業務人員姓名 : 
+                                    銷售員姓名 : 
                                     </label>
                                   <h5 style="color:#999;"><?php echo $supData[0]["ssName"]; ?></h5>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                    業務人員登入帳號 : 
+                                    銷售員帳號 : 
                                     </label>
                                     <h5 style="color:#999;"><?php echo $supData[0]["ssLogId"]; ?></h5>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                    業務人員登入密碼 : 
+                                    銷售員密碼 : 
                                     </label>
                                     <h5 style="color:#999;"><?php echo $supData[0]["ssPwd"]; ?></h5>
                                 </div>                    
@@ -68,7 +68,7 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
                                 <div class="form-group not-print">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                         <a style="color:#FFF;" href="?page=supplier">
-                                            <button class="btn btn-primary">回業務人員列表</button>
+                                            <button class="btn btn-primary">回銷售人員列表</button>
                                         </a>
                                     <?php if (isset($_SERVER['HTTP_REFERER'])) {?>
                                         <a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">

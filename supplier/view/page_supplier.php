@@ -9,9 +9,9 @@ $allSupData = $sup->getOneSupplier_salesByNo($_SESSION['supplieruserdata']['supN
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>供應商業務人員列表</h3>
+                    <h3>銷售員資料列表</h3>
                     <a style="text-decoration:none;" href="?page=supplier&action=insert">
-                        <button class="btn btn-success">新增業務人員</button>
+                        <button class="btn btn-success">新增銷售人員</button>
                     </a>
                 </div>
             </div>
@@ -23,11 +23,11 @@ $allSupData = $sup->getOneSupplier_salesByNo($_SESSION['supplieruserdata']['supN
                             <table id="example" class="table table-striped responsive-utilities jambo_table">
                                 <thead>
                                     <tr class="headings">
-                                        <th>供應商編號 </th>
-                                        <th>供應商業務人員編號 </th>
-                                        <th>業務人員姓名 </th>
-                                        <th>業務人員登入帳號 </th>
-                                        <th>業務人員登入密碼 </th>
+                                        <th>購物站編號 </th>
+                                        <th>銷售員編號 </th>
+                                        <th>銷售員姓名 </th>
+                                        <th>銷售員帳號 </th>
+                                        <th>銷售員密碼 </th>
                                         <th class=" no-link last">
                                             <span class="nobr">詳細資訊</span>
                                         </th>
