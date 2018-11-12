@@ -1,4 +1,5 @@
 	<?php
+	
 	switch($type){
 		case "get_member_data":
 		$joinArr = array("app_data"=>"memNo");
@@ -180,7 +181,7 @@
 			if($product_data != null){
 				$resultArr = array();
 				$neededData = array(
-					"proNo","pmNo","catNo","braNo","braName","biNo","biName","pmStatus","pmBuyAmnt","proName",
+					"proNo","pmNo","catNo","braNo","braName","biNo","biName","pmStatus","pmBuyAmnt","proName","proOffer","proGift",
 					"pmIfDirect","proImage","pmDirectAmnt","pmPeriodAmnt","proSpec"
 				);
 				foreach($product_data as $key=>$value){
@@ -210,15 +211,28 @@
 		break;
 		case "get_hot_items":
 			//$which->最新 精選 限時
-		$api->setJoinArray(array("product_manage"=>"proNo"));
-		$api->setWhereArray(array("product_manage`.`".$which=>1,"product_manage`.`pmMainSup"=>1,"product_manage`.`pmStatus"=>1));
-		$api->setOrArray(array("product_manage`.`pmStatus"=>2));
-		$api->setGroupArray(array("product`.`proNo"));
-		$api->setOrderArray($which."Order");
-		$api->setRetrieveArray(array("product.proNo","product_manage.pmNo","proName","pmIfDirect","proImage","proSpec","pmDirectAmnt","pmPeriodAmnt","pmBuyAmnt","pmStatus"));
-		$api->getWithWhereAndJoinClause();
-		$data = $api->getData();
-		break;
+			$api->setJoinArray(array("product_manage"=>"proNo","brand"=>"braNo","b_items"=>"biNo"));
+			$api->setWhereArray(array("product_manage`.`".$which=>1,"product_manage`.`pmMainSup"=>1,"product_manage`.`pmStatus"=>1));
+			$api->setOrArray(array("product_manage`.`pmStatus"=>2));
+			$api->setGroupArray(array("product`.`proNo"));
+			$api->setLimitArray(isset($_POST['limit'])?$_POST['limit']:'');
+			$api->setRetrieveArray($api->getDataFieldName);
+			switch (isset($_POST['orderby'])?$_POST['orderby']:'') {
+				case 'hot':
+					$api->setOrderArray("`product_manage`.`pmHotOrder`");
+					$api->getWithWhereAndJoinClause(TRUE);
+					break;
+				case 'money':
+					$api->setOrderArray("`product_manage`.`pmDirectAmnt`");
+					$api->getWithWhereAndJoinClause();
+					break;
+				default:
+					$api->setOrderArray("`product_manage`.`pmNewestOrder`");
+					$api->getWithWhereAndJoinClause(TRUE);
+					break;
+			}
+			$data = $api->getData();
+			break;
 		case "get_items_periods":
 			//$which->proNo
 		$api->setWhereArray(array("proNo"=>$which));
@@ -352,20 +366,20 @@
 		$api->getWithWhereAndJoinClause();
 		break;
 		case "check_if_registered":
-		$api->setWhereArray(array("memFBtoken"=>$which));
-		$api->getWithWhereAndJoinClause();
-		$data = $api->getData();
-		if($data != null){
-			if(empty($data[0]["memClass"])){
-				$api->setInformation(1, 1, 1, "OK");
+			$api->setWhereArray(array("memFBtoken"=>$which));
+			$api->getWithWhereAndJoinClause();
+			$data = $api->getData();
+			if($data != null){
+				if(empty($data[0]["memPwd"])){
+					$api->setInformation(0, 1, 1, "OK");
+				}else{
+					$api->setInformation(2, 1, 1, "OK");
+				}
 			}else{
-				$api->setInformation(2, 1, 1, "OK");
+				$api->setInformation(0, 1, 0, "OK");
 			}
-		}else{
-			$api->setInformation(0, 1, 0, "OK");
-		}
-		$api->setResult(false);
-		break;
+			$api->setResult(false);
+			break;
 		case "all_activate_images":
 		$api->setWhereArray(array("adIfShow"=>1,"adArea"=>0));
 		$api->setOrderArray("adOrder");

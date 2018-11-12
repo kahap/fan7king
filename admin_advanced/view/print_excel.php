@@ -70,7 +70,7 @@ $html .= '<head><meta http-equiv="content-type" content="application/vnd.ms-exce
 $html .=  '<body>';
 $html .=  '<table style="font-family:標楷體;"><tbody>';
 $html .=  '<tr>
-					<td colspan="15" style="border:none;text-align:center;font-size:24px">樂分期帳款申請撥款明細表 - ' . date('Y/m/d') . '</td>
+					<td colspan="15" style="border:none;text-align:center;font-size:24px">NoWait - ' . date('Y/m/d') . '</td>
 				</tr>';
 $html .=  '	<tr>
 	    		<th>編號</th>
@@ -92,7 +92,7 @@ $html .=  '	<tr>
 			  </tr>';
 $html .=  '%s';
 $html .= '<tr><td colspan="7" style="border:none;"></td><td>撥款合計：</td><td class="text">'.number_format($transferTotal).'</td><td colspan="6" style="border:none;"></td></tr>';
-$html .= '<tr><td colspan="12" style="border:none;"></td><td colspan="3">中華資融(CMC)簽收</td></tr>';
+$html .= '<tr><td colspan="12" style="border:none;"></td><td colspan="3">簽收</td></tr>';
 $html .= '<tr>
 			<td rowspan="3" colspan="4">經辦：</td>
 			<td rowspan="3" colspan="3">覆核：</td>

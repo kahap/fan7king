@@ -463,7 +463,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
                         <td class=" "><?php echo $value["orHandleOrderFromSupDate"] ?></td>
                         	<?php if($status == 8){ ?>
 	                        <td class=" "><input size="10" type="text" name="orHandleSupOutDate[]" value="<?php echo $value["orHandleSupOutDate"] ?>">
-							<a onclick="window.open('http://104.199.229.39/happyfan/v1/logistics/orders/<?php echo $value["orCaseNo"]; ?>', '物流目前狀態查詢', config='height=650,width=650');">查詢物流狀態</a>
+							<a onclick="window.open('https://inner.nowait.shop/v1/redirect-to-other-api-kO0w9jd/logistics/orders/<?php echo $value["orCaseNo"]; ?>', '物流目前狀態查詢', config='height=650,width=650');">查詢物流狀態</a>
 							</td>
 	                        <td class=" "><input size="10" type="text" name="orHandleTransportComp[]" value="<?php echo $value["orHandleTransportComp"] ?>"></td>
 	                        <td class=" "><input size="10" type="text" name="orHandleTransportSerialNum[]" value="<?php echo $value["orHandleTransportSerialNum"] ?>"></td>

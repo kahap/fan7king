@@ -61,6 +61,25 @@ require_once("../admin/cls/Product_Period.cls.php");
 			"mcoExtraInfoUpload"=>true,
 			"imagePath"=>true
 		);
+		//API抓取欄位所需資料 四張表join product product_manage brand b_items
+		var $getDataFieldName=array(
+			"product.proNo",
+			"product_manage.pmNo",
+			"product.catNo",
+			"product.braNo",
+			"brand.braName",
+			"product.biNo",
+			"b_items.biName",
+			"proName",
+			"pmIfDirect",
+			"proImage",
+			"proSpec",
+			"proOffer",
+			"proGift",
+			"pmDirectAmnt",
+			"pmPeriodAmnt",
+			"pmBuyAmnt",
+			"pmStatus");
 
 		//建構函式
 		public function API($table){
@@ -582,6 +601,16 @@ require_once("../admin/cls/Product_Period.cls.php");
 										}
 									}
 								}
+								//商品優惠轉陣列
+								if($keyIn == "proOffer"){
+									$valueIn = explode("#",$valueIn);
+									foreach($valueIn as &$eachSpec){
+										if($eachSpec == "無"){
+											$eachSpec = "";
+										}
+									}
+								}								
+
 							}
 						}
 					}
@@ -616,12 +645,12 @@ require_once("../admin/cls/Product_Period.cls.php");
 					$str .= " order by `product_manage`.`pmDirectAmnt`  ";
 					break;
 				default:
-					$str .= " order by `product_manage`.`pmUpDate` desc ";
+					$str .= " order by `product_manage`.`pmNewestOrder` desc ";
 					break;
 			}
 			$sql = "select
 						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,`product`.braNo,`brand`.braName,`product`.biNo,`b_items`.biName,
-						`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
+						`product`.`proOffer`,`product`.`proGift`,`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
 					from
 						`product_manage`
 					inner join

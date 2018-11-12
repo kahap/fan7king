@@ -33,10 +33,20 @@
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
           <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
-
+  <style type="text/css">
+    body.login {
+      background-image: url(../assets/images/logo.png);
+      background-position: center;
+      /* background-repeat: no-repeat; */
+      /* background-size: cover; */
+    }
+    form.loginform{
+      margin-top:100%;
+    }
+    </style>
 </head>
 
-<body style="background:#F7F7F7;">
+<body class="login">
 
   <div class="">
     <a class="hiddenanchor" id="toregister"></a>
@@ -45,33 +55,33 @@
     <div id="wrapper">
       <div id="login" class="animate form">
         <section class="login_content">
-          <form>
-            <h1>Login By Supplier</h1>
+          <form class="loginform">
+            <!-- <h1>Login By Supplier</h1> -->
             <div>
-              <input type="text" class="form-control" placeholder="Username" id="username" required="" />
+              <input type="text" class="form-control" placeholder="帳號" id="username" required="" />
             </div>
             <div>
-              <input type="password" class="form-control" placeholder="Password" id="password" required="" />
+              <input type="password" class="form-control" placeholder="密碼" id="password" required="" />
             </div>
-			<div id="add_err"></div>
+			  <div id="add_err"></div>
             <div>
-              <a class="btn btn-default submit" id="loginbutton">Log in</a>
-              <a class="reset_pass" href="#">Lost your password?</a>
+              <a class="btn btn-default submit" id="loginbutton">登入</a>
+              <!-- <a class="reset_pass" href="#">Lost your password?</a> -->
             </div>
-            <div class="clearfix"></div>
-            <div class="separator">
+            <!-- <div class="clearfix"></div> -->
+            <!-- <div class="separator"> -->
 
               <!--<p class="change_link">New to site?
                 <a href="#toregister" class="to_register"> Create Account </a>
               </p>-->
-              <div class="clearfix"></div>
-              <br />
-              <div>
-                <h1><i class="fa fa-circle" style="font-size: 26px;"></i> Nowait!</h1>
+              <!-- <div class="clearfix"></div> -->
+              <!-- <br /> -->
+              <!-- <div> -->
+                <!-- <h1><i class="fa fa-circle" style="font-size: 26px;"></i> Nowait!</h1> -->
 
                 <!-- <p>©2016 All Rights Reserved. HappyFan! is a Bootstrap 3 template. Privacy and Terms</p> -->
-              </div>
-            </div>
+              <!-- </div> -->
+            <!-- </div> -->
           </form>
           <!-- form -->
         </section>

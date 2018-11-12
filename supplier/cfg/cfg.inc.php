@@ -12,6 +12,11 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
 // define ('SYSTEM_DBUSER','root');
 // define ('SYSTEM_DBPWD','1234');
 
+// define ('SYSTEM_DBHOST','cloud_sql_proxy');
+// define ('SYSTEM_DBNAME','happyfan_system');
+// define ('SYSTEM_DBUSER','nowait-web');
+// define ('SYSTEM_DBPWD','vJv9-dv=_p2ssfivlw[pf');
+
 if($AppMode !="Dev")
 {
     if($AppMode == "Prod")
