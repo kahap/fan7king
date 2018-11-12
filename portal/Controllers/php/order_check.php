@@ -64,7 +64,7 @@
 	}
 
 	if($_SESSION['shopping_user'][0]['memNo'] == ""){
-		$errg[] = "錯誤的進入方式";
+		$errg[] = "錯誤的進入方式，請回上一頁重新操作";
 	}
 	if(!empty($_SERVER['HTTP_CLIENT_IP'])){
 	   $myip = $_SERVER['HTTP_CLIENT_IP'];

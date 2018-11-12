@@ -240,15 +240,15 @@
                                 default:
                                     $or = new Orders();
                                     $or_data = $or->getOnlyOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
-                                    if($_SESSION['ord_code'] != ''){
-                                        echo "<script>location.href='index.php?item=member_center&action=order_edit&orno=".$_SESSION['ord_code']."'</script>";
-                                    }else{
+//                                    if($_SESSION['ord_code'] != ''){
+//                                        echo "<script>location.href='index.php?item=member_center&action=order_edit&orno=".$_SESSION['ord_code']."'</script>";
+//                                    }else{
                                         /*if($or_data[0]['orNo'] != ''){
                                             include('portal/views/staging/page_default_order_period.php');
                                         }else{*/
                                             include('portal/views/staging/page_order_period.php');
                                         //}
-                                    }
+//                                    }
     								break;
                             }
     						break;
