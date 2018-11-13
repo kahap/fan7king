@@ -37,7 +37,7 @@ else
     define ('DOMAIN',$_SERVER['HTTP_HOST']."/fan7king_dev2");
     define('AutoloadAPPId','1845375422218419');
     define('AutoloadAPPSecret','1184f8ce3bd0b4cb440f1dd066f3ab26');
-    define('FbADVersion','v2.9');
+    define('FbADVersion','v3.2');
 }
 
 define('MerchantID','1292961');
