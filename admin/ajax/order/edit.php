@@ -43,6 +43,9 @@
 	if($_POST["supNo"] != $origData[0]["supNo"]){
 		$or->updaterealcase($_POST["supNo"], $_POST["orNo"]);
 	}
+	//同步real_case->rcBankTransferAmount
+	$or->updaterealcaseBankTransferAmount($_POST["orSupPrice"], $_POST["orNo"]);
+
 	
 	$sql = "select rcNo from real_cases where rcRelateDataNo = '".$_POST["orNo"]."' && rcType = '0' ";
 	$data = $or->getSql($sql);

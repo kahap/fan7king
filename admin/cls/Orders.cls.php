@@ -839,6 +839,11 @@
 			$this->db->updateRecords($sql);
 		}
 		
+		function updaterealcaseBankTransferAmount($rcBankTransferAmount,$orNo){
+			$sql = "UPDATE  `happyfan_system`.`real_cases` SET  `rcBankTransferAmount` =  '".$rcBankTransferAmount."' WHERE  `real_cases`.`rcRelateDataNo` ='".$orNo."'";
+			$this->db->updateRecords($sql);
+		}
+
 		//查尋機車、手機資料
 		function getMcoData($mcoNo){
 			$sql = "SELECT * FROM `motorbike_cellphone_orders` where mcoNo = '".$mcoNo."'";

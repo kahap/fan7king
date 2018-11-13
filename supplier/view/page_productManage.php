@@ -76,7 +76,8 @@ $pro = new Product();
                             ?>
                        </a></td>
                       
-                        <td class=" "><?php echo $value["pmStatus"]; ?></td>	
+                        <td class=" "><input name="pmData" data-pmNo="<?php echo $value["pmNo"]; ?>" class="braIfDisplayBox" type="checkbox" <?php if($value["pmStatus"] == "上架中") echo "checked";?>></td>	
+                        <!-- <td class=" "><?php echo $value["pmStatus"]; ?></td>	 -->
                         <td class=" "><span><?php echo number_format($value["pmBuyAmnt"]); ?></span></td>
                         <td class=" "><?php echo number_format($value["pmClickNum"]); ?></td>
                         <!-- <td class=" "><?php //echo $value["pmStatus"]; ?></td> -->
@@ -214,4 +215,20 @@ $pro = new Product();
         }
       });
     });
+
+    $(document).on("change",".braIfDisplayBox",function(){
+			var val;
+			if($(this).is(":checked")){
+				val=1;
+			}else{
+				val=0;
+			}
+
+		var pmNo = $(this).attr("data-pmNo");
+		var data = {"pmNo":pmNo, "pmStatus":val};
+		$.post("ajax/productManage/edit_up_status.php", data, function(result){
+			alert(result);
+		});
+
+		});
   </script>

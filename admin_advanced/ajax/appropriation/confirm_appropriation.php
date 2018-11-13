@@ -44,7 +44,11 @@ if($firstPay == ""){
 
 if(!isset($errMsg)){
 	$or->update($rcDataInput,$rcNo);
+	$rcData = $or->getOne($rcNo);
 
+	//同步更新order->orSupPrice
+	$sql = "UPDATE orders SET orSupPrice='".$_POST['rcBankTransferAmount']."' WHERE orNo='".$rcData[0]['rcRelateDataNo']."' ";
+	$or->customSql($sql);
 	if($process == "true"){
 		if($tbNo != "" && $tbNo != "請選擇"){
 			$rcData = $or->getOne($rcNo);

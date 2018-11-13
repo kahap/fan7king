@@ -97,9 +97,11 @@ if($_GET["action"] == "edit"){
 	$allPmGroup = $pm->getAllPMGroupByProName();
 	$proNoArr = array();
 
-	foreach($allPmGroup as $key=>$value){
-		array_push($proNoArr, $value["proNo"]);      
-	}
+	if(!empty($allPmGroup)){
+        foreach($allPmGroup as $key=>$value){
+                array_push($proNoArr, $value["proNo"]);
+        }
+      };
   
 	 
 	$sup = new Supplier();
