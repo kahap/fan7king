@@ -23,7 +23,24 @@
     //商品
     $proData = $pro->getOneProByNo($pmData[0]["proNo"]);
 
+
+    //聯絡人
+    $rc = new API2("real_cases");
+    //
+    $rc->setWhereArray(array("rcRelateDataNo"=>$orNo));
+    $rc->getWithWhereAndJoinClause();
+    $rcData = $rc->getData();
+    $rcNo=0;
+    if($rcData != null) {
+        $rcNo = $rcData[0]["rcNo"];
+    }
+    $orderContact = new API2("orderContact");
+    $orderContact->setWhereArray(array("rcNo"=>$rcNo));
+    $orderContact->getWithWhereAndJoinClause();
+    $ocData = $orderContact->getData();
 ?>
+
+
     <main role="main">
         <h1><span>會員中心</span><small>member center</small></h1>
         <section id="member-zone">
@@ -81,7 +98,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">學校Email</div>
-                                        <div class="col"></div>
+                                        <div class="col"><?php echo $memberData[0]["memAccount"]; ?></div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">常用聯絡Email</div>
@@ -112,6 +129,7 @@
                                         <div class="col">
                                             <?php
                                             foreach($columnName as $key=>$value){
+                                                //只顯示住房所有權
                                                 if($value["COLUMN_NAME"] == "orAppApplierLivingOwnership") {
                                                     echo ($orData[0][$value["COLUMN_NAME"]]);
                                                 }
@@ -141,13 +159,13 @@
                                     <div class="form-group row">
                                         <div class="col">申請人身份證正面</div>
                                         <div class="col-12">
-                                            <img id="showimg" src="<?php echo '../'.$orData[0]['orAppAuthenIdImgTop']; ?>" alt="">
+                                            <img id="showimg" src="<?php echo  str_replace('../','',$orData[0]['orAppAuthenIdImgTop']); ?>" alt="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">申請人身份證反面</div>
                                         <div class="col-12">
-                                            <img id="showimg" src="../<?php echo '../'.$orData[0]['orAppAuthenIdImgBot']; ?>" alt="">
+                                            <img id="showimg" src="<?php echo  str_replace('../','',$orData[0]['orAppAuthenIdImgBot']); ?>" alt="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -160,15 +178,15 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">申請人身份證發證日期</div>
-                                        <div class="col"></div>
+                                        <div class="col"><?php echo $orData[0]['orIdIssueYear']."-".$or_data[0]['orIdIssueMonth']."-".$or_data[0]['orIdIssueDay']; ?></div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">申請人身份證發證地點</div>
-                                        <div class="col"></div>
+                                        <div class="col"><?php echo $orData[0]["orIdIssuePlace"]; ?></div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col">申請人身份證發證類別</div>
-                                        <div class="col"></div>
+                                        <div class="col"><?php echo $orData[0]["orIdIssueType"]; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -373,27 +391,51 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">聯絡人資料</div>
                             <div class="row">
-                                <div class="col">
                                 <?php
-                                foreach($columnName as $key=>$value){
-                                    if(strrpos($value["COLUMN_NAME"], "orAppContact") !== false){
-                                        $orContact = json_decode($orData[0][$value["COLUMN_NAME"]]);
-                                        ?>
+                                foreach ($ocData as $val) {
+                                    ?>
+                                    <div class="col">
                                         <div class="form-group row">
-                                            <div class="col"><?php echo $value["COLUMN_COMMENT"];?></div>
-                                            <div class="col"><?php echo $orContact[0];?></div>
+                                            <div class="col">聯絡人姓名</div>
+                                            <div class="col"><?php echo $val['rcContactName'];?></div>
                                         </div>
-                                        <?php
-                                        if ($key==4){
-                                        ?>
-                                </div>
-                                <div class="col">
-                                        <?php
-                                        }
-                                    }
+                                        <div class="form-group row">
+                                            <div class="col">聯絡人關係</div>
+                                            <div class="col"><?php echo $val['rcContactRelation'];?></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col">聯絡人市話</div>
+                                            <div class="col"><?php echo $val['rcContactPhone'];?></div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col">聯絡人手機</div>
+                                            <div class="col"><?php echo $val['rcContactCell'];?></div>
+                                        </div>
+                                    </div>
+                                    <?php
                                 }
                                 ?>
-                                </div>
+<!--                                <div class="col">-->
+<!--                                --><?php
+//                                foreach($columnName as $key=>$value){
+//                                    if(strrpos($value["COLUMN_NAME"], "orAppContact") !== false){
+//                                        $orContact = json_decode($orData[0][$value["COLUMN_NAME"]]);
+//                                        ?>
+<!--                                        <div class="form-group row">-->
+<!--                                            <div class="col">--><?php //echo $value["COLUMN_COMMENT"];?><!--</div>-->
+<!--                                            <div class="col">--><?php //echo $orContact[0];?><!--</div>-->
+<!--                                        </div>-->
+<!--                                        --><?php
+//                                        if ($key==4){
+//                                        ?>
+<!--                                </div>-->
+<!--                                <div class="col">-->
+<!--                                        --><?php
+//                                        }
+//                                    }
+//                                }
+//                                ?>
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="section-order bg-white">
@@ -419,15 +461,15 @@
                             <div class="section-order-title">證件資料</div>
                             <div class="form-group row">
                                 <div class="col">申請人學生證正面</div>
-                                <div class="col-12"><img id="showimg" src="<?php echo $orData[0]['orAppAuthenStudentIdImgTop']; ?>" class="img-fluid" alt=""></div>
+                                <div class="col-12"><img id="showimg" src="<?php echo str_replace('../','',$orData[0]['orAppAuthenStudentIdImgTop']); ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">申請人學生證反面</div>
-                                <div class="col-12"><img id="showimg" src="<?php echo $orData[0]['orAppAuthenStudentIdImgBot']; ?>" class="img-fluid" alt=""></div>
+                                <div class="col-12"><img id="showimg" src="<?php echo str_replace('../','',$orData[0]['orAppAuthenStudentIdImgBot']); ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
                                 <div class="col">申請人自拍照</div>
-                                <div class="col-12"><img src="https://via.placeholder.com/510x284" class="img-fluid" alt=""></div>
+                                <div class="col-12"><img src="<?php echo str_replace('../','',$orData[0]['orAppAuthenSelfImgTop']); ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="section-order-title">請在下方兩處，以滑鼠或手寫功能簽上正楷簽名</div>
                             <p>本票： 憑票於中華民國 年 月 日無條件支付 大方藝彩行銷顧問股份有限公司或指定人
@@ -441,19 +483,37 @@
                             <br>中華民國 107 年 10 月 02 日
                             <br>約定說明：「此本票係供為分期付款買賣之分期款項總額憑證，俟分期付款完全清償完畢時，此本票自動失效，但如有一期未付，發票人願意就全部本票債務負責清償。」本人同意依法令規定應以書面為之者,得以電子文件為之.依法令規定應簽名或蓋章者，得以電子簽章為之。 </p>
                             <p>發票人中文正楷簽名</p>
-                            <div class="sign-zone"></div>
+                            <div class="sign-zone" style="height: 100%;">
+                                <?php
+                                if ($orData[0]['orAppAuthenProvement'] != "") echo "<img src='". str_replace('../','',$orData[0]['orAppAuthenProvement']) ."' id='orAppAuthenProvement' />";
+                                ?>
+                            </div>
                             <div class="section-order-title"></div>
                             <p>★分期付款期間未繳清以前禁止出售或典當，以免觸法<br>分期付款約定事項： 一、 申請人(即買方)及其連帶保證人向商品經銷商(即賣方)以分期付款方式購買消費性商品，並簽約本「分期付款申請書暨約定書」，業經申請人及其連帶保證人對本條約所有條款均已經合理天數詳細審閱，且已充份理解契約內容，同意與商品經銷商共同遵守「分期付款約定書(點文字可連結閱讀詳文)」之各項約定條款。<br>二、申請人及其連帶保證人於簽約時同意商品經銷商不另書面通知得將支付分期金額之權利及依本約定書約定所有之其他一切權利及利益轉讓與廿一世紀數位科技有限公司及其帳款收買人，受讓人對於分期付款買賣案件擁有核准與否同意權，並茲授權帳款收買人將分期付款總額或核准金額，逕行扣除手續費及相關費用，撥付與商品經銷商指定銀行帳戶，相關手續費金額之約定則按商品經銷商與 大方藝彩行銷顧問股份有限公司所簽訂相關之合約約定之，申請人及其連帶保證人絕無異議。<br>三、申請人（即買方）及其連帶保證人聲明確實填寫及簽訂本「分期付款申請書暨約定書」內容，且交付商品經銷商之任何文件中並無不實之陳述或說明之情事。 </p>
                             <div class="form-check text-left m-2">
-                                <input class="form-check-input" type="checkbox" id="FieldsetCheck">
-                                <label class="form-check-label" for="FieldsetCheck">我已詳細閱讀並同意以上條款及<a href="#" class="text-orange">「分期付款約定書(點文字可連結閱讀詳文)」</a>之內容及所有條款</label>
+                                <input class="form-check-input" type="checkbox" id="check2" name="check" value="" checked disabled>
+                                <label class="form-check-label agree" for="check2">
+                                    我已詳細閱讀並同意以上條款及
+                                    <a href="?item=fmPeriodDeclare" class="text-orange" target="_blank" style="">「分期付款約定書(點文字可連結閱讀詳文)」</a>
+                                    之內容及所有條款
+                                </label>
                             </div>
                             <div class="form-check text-left m-2">
-                                <input class="form-check-input" type="checkbox" id="FieldsetCheck">
-                                <label class="form-check-label" for="FieldsetCheck">我已詳細閱讀並同意<a href="#" class="text-orange">免責聲明</a>、<a href="#" class="text-orange">服務條款</a>、<a href="#" class="text-orange">隱私權聲明</a>等條款</label>
+                                <input class="form-check-input" id="check4" type="checkbox" name="check4" value="" disabled checked style="">
+                                <label class="form-check-label agree" for="check4">
+                                    我已詳細閱讀並同意
+                                    <a href="?item=fmFreeRespons" class="text-orange">免責聲明</a>、
+                                    <a href="?item=fmServiceRules" class="text-orange">服務條款</a>、
+                                    <a href="?item=fmPrivacy" class="text-orange">隱私權聲明</a>
+                                    等條款
+                                </label>
                             </div>
                             <p>申請人中文正楷簽名</p>
-                            <div class="sign-zone"></div>
+                            <div class="sign-zone" style="height: 100%;">
+                                <?php
+                                if ($orData[0]['orAppAuthenPromiseLetter'] != "") echo "<img src='". str_replace('../','',$orData[0]['orAppAuthenPromiseLetter']) ."' id='orAppAuthenPromiseLetter' />";
+                                ?>
+                            </div>
                         </div>
                     </div>
                 </div>

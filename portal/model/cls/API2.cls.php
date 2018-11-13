@@ -2,8 +2,8 @@
 //require_once("../admin/cls/Product_Manage.cls.php");
 //require_once("../admin/cls/Period_Setting.cls.php");
 //require_once("../admin/cls/Product.cls.php");
-require_once("../../../admin/cls/Product_Period.cls.php");
-	class API{
+require_once("admin/cls/Product_Period.cls.php");
+	class API2{
 		var $db;
 		private $table;
 		private $idColumn;
@@ -79,7 +79,7 @@ require_once("../../../admin/cls/Product_Period.cls.php");
             "pmStatus");
 
 		//建構函式
-		public function API($table){
+		public function API2($table){
 			//抓取資料庫定義內容
 			$this->db = new WADB(SYSTEM_DBHOST, SYSTEM_DBNAME, SYSTEM_DBUSER, SYSTEM_DBPWD);
 
