@@ -513,7 +513,7 @@
                 if(msg){
                     alert('購買完成，請等候電話照會');
                     location.href='index.php?item=member_center&action=order_period&method=4';
-                    thankButton();
+                    //thankButton();  //<!-- 華維廣告 -->
                 }else{
                     alert('系統操作錯誤');
                     $(".next-btn").show();

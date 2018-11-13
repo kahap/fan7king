@@ -481,8 +481,8 @@
                             <div class="form-group row">
                                 <label for="orReceiveName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="orReceiveName" name="orReceiveName" value="
-                                        <?php
+                                    <input type="text" class="form-control" id="orReceiveName" name="orReceiveName" value=
+                                        "<?php
                                         foreach($columnName as $key=>$value){
                                             //只顯示
                                             if($value["COLUMN_NAME"] == "orReceiveName") {
@@ -503,23 +503,23 @@
                             <div class="form-group row">
                                 <label for="orReceiveAddr" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人地址</label>
                                 <div class="col-sm-9">
-                                    <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="orReceiveAddrCode" name="">
-                                        </div>
-                                        <div class="col-4 mb-3">
-                                            <select class="form-control">
-                                                <option value="">請選擇</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-4 mb-3">
-                                            <select class="form-control">
-                                                <option value="">請選擇</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" id="orReceiveAddr" name="orReceiveAddr" value="
-                                    <?php
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-4 mb-3">-->
+<!--                                            <input type="text" class="form-control" id="orReceiveAddrCode" name="orReceiveAddrCode">-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4 mb-3">-->
+<!--                                            <select class="form-control">-->
+<!--                                                <option value="">請選擇</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-4 mb-3">-->
+<!--                                            <select class="form-control">-->
+<!--                                                <option value="">請選擇</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <input type="text" class="form-control" id="orReceiveAddr" name="orReceiveAddr" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orReceiveAddr") {
@@ -527,13 +527,17 @@
                                         }
                                     }
                                     ?>">
+<!--                                    <div class="float-right m-1">-->
+<!--                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr2" name="SameForNowAddr2">-->
+<!--                                        <label class="form-check-label" for="SameForNowAddr2" >同現住地址</label>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="orReceivePhone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人市話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="orReceivePhone" name="orReceivePhone" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="orReceivePhone" name="orReceivePhone" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orReceivePhone") {
@@ -548,8 +552,8 @@
                             <div class="form-group row">
                                 <label for="orReceiveCell" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人手機</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="orReceiveCell" name="orReceiveCell" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="orReceiveCell" name="orReceiveCell" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orReceiveCell") {
@@ -564,16 +568,14 @@
                             <div class="form-group row">
                                 <label for="exampleFormControlTextarea1" class="col-sm-3 col-form-label"><span class="text-orange"></span>收貨備註</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="orReceiveComment">
-                                        <?php
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="orReceiveComment"><?php
                                         foreach($columnName as $key=>$value){
                                             //只顯示
                                             if($value["COLUMN_NAME"] == "orReceiveComment") {
                                                 echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                             }
                                         }
-                                        ?>
-                                    </textarea>
+                                        ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -592,8 +594,8 @@
                             <div class="form-group row">
                                 <label for="orBusinessNumNumber" class="col-sm-3 col-form-label"><span class="text-orange"></span>統一編號</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="orBusinessNumNumber" name="orBusinessNumNumber" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="orBusinessNumNumber" name="orBusinessNumNumber" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orBusinessNumNumber") {
@@ -606,8 +608,8 @@
                             <div class="form-group row">
                                 <label for="a10" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司抬頭</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a10" name="orBusinessNumTitle" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="orBusinessNumTitle" name="orBusinessNumTitle" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orBusinessNumTitle") {
@@ -764,8 +766,8 @@
                             <div class="form-group row">
                                 <label for="a1" class="col-sm-3 col-form-label"><span class="text-orange"></span>注意事項</label>
                                 <div class="col-sm-9 CreditBank" >
-                                    <input type="text" class="form-control" id="a1" name="orAppExtraInfo" value="
-                                    <?php
+                                    <input type="text" class="form-control" id="a1" name="orAppExtraInfo" value=
+                                    "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
                                         if($value["COLUMN_NAME"] == "orAppExtraInfo") {
@@ -828,6 +830,7 @@
     $("#orAppApplierCreditstatus").hide();      //持有信用卡
     $("#orAppApplierCreditIssueBank").hide();      //信用卡銀行
     $("#orBusinessNumNumber").hide();     //統一編號
+    // $("#orBusinessNumTitle").hide();     //公司抬頭
     // $(".memother").hide();
     //身分別
     $(".memClass").change(function(){
@@ -937,6 +940,7 @@
     //同申請人現住資料
     $("input[name=sameofapplier_1]").change(function(){
         if($('input[name=sameofapplier_1]:checked').val() == "on"){
+            $("input[name=sameofapplier_2]").attr("checked",false);
             $("input[name=orReceiveName]").val($("input[name=memName]").val());
             $("input[name=orReceiveAddr]").val($("input[name=memAddr]").val());
             $("input[name=orReceivePhone]").val($("input[name=memPhone]").val());
@@ -951,6 +955,7 @@
     //同申請人戶籍資料
     $("input[name=sameofapplier_2]").change(function(){
         if($('input[name=sameofapplier_2]:checked').val() == "on"){
+            $("input[name=sameofapplier_1]").attr("checked",false);
             $("input[name=orReceiveName]").val($("input[name=memName]").val());
             $("input[name=orReceiveAddr]").val($("input[name=orAppApplierBirthAddr]").val());
             $("input[name=orReceivePhone]").val($("input[name=orAppApplierBirthPhone]").val());
@@ -973,6 +978,16 @@
     //         $("input[name=orAppApplierBirthPhone]").val('');
     //     }
     // });
+    // 收貨人 - checkbox:同現住地址
+    $("input[name=SameForNowAddr2]").change(function(){
+        if($('input[name=SameForNowAddr2]:checked').val() == "on"){
+            $("input[name=orReceiveAddr]").val($("input[name=memAddr]").val());
+            $("input[name=orReceiveAddrCode]").val($("input[name=memPostCode]").val());
+        }else{
+            $("input[name=orReceiveAddr]").val('');
+            $("input[name=orReceiveAddrCode]").val('');
+        }
+    });
 
 
 
