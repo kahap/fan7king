@@ -45,7 +45,7 @@
               <ul class="nav side-menu">
                 <li><a><i class="fa fa-briefcase"></i> 商品管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" >  
-                    <li><a href="?page=product&type=productManage">商品上架</a></li>                  
+                    <li><a href="?page=product&type=productManage">產品登錄上架</a></li>                  
                   </ul>
                 </li>
 	<!-- new add -->
