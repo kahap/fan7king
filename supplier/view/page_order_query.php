@@ -30,7 +30,7 @@ if(isset($orDateFrom) && isset($orDateTo)){
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>分期案件查詢</h3>
+              <h3>訂單查詢</h3>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -50,17 +50,17 @@ if(isset($orDateFrom) && isset($orDateTo)){
                   <table id="example" class="table bulk_action table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
-                      	<th>訂單狀態 </th>
+                      	<th>訂單進度 </th>
                       	<th>訂單編號 </th>
 <!--                        <th>內部訂單編號 </th>-->
-                        <th>訂購日期</th>
-                        <th>訂購人 </th>
+                        <th>下單時間</th>
+                        <th>訂購姓名 </th>
 <!--                        <th>身分證字號</th>-->
-                        <th>商品名稱 </th>
-                        <th>商品規格 </th>
-                        <th>月付 </th>
+                        <th>產品名稱 </th>
+                        <th>規格 </th>
+                        <th>分期金 </th>
                         <th>期數 </th>
-                        <th>分期總價 </th>
+                        <th>實撥金額 </th>
 <!--                        <th>供應商</th>-->
                       </tr>
                     </thead>
@@ -86,7 +86,7 @@ if(isset($orDateFrom) && isset($orDateTo)){
                         <td class=" "><?php echo $value["orProSpec"]; ?></td>
                         <td class=" "><?php echo number_format($value["orPeriodTotal"]/$value["orPeriodAmnt"]); ?></td>
                         <td class=" "><?php echo $value["orPeriodAmnt"]; ?></td>
-                        <td class=" "><?php echo number_format($value["orPeriodTotal"]); ?></td>
+                        <td class=" "><?php echo number_format($pmData[0]["pmPeriodAmnt2"]); ?></td>
 <!--                        <td class=" ">--><?php //echo $supData[0]["supName"]; ?><!--</td>-->
                       </tr>
                      <?php 

@@ -57,7 +57,7 @@
     <!-- new add -->      
                 <li><a><i class="fa fa-file-text-o"></i> 案件進度 <span class="fa fa-chevron-down"></span></a>
                   <ul id="order-submenu" class="nav child_menu" >
-                  	<li><a href="?page=order&action=query&method=1"> 分期案件查詢</a></li>
+                  	<li><a href="?page=order&action=query&method=1"> 訂單查詢</a></li>
                     <?php 
                    /*
                     foreach($or->statusArr as $key=>$value){	
