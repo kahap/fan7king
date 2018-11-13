@@ -28,7 +28,7 @@
         }
 		
 	}else{
-		$str_price = '最受大學生歡迎的分期購物網站!';
+		$str_price = '服務體驗最佳的免卡分期電商購物網，免卡分期、0元取貨，不需信用卡也能輕鬆分期支付。';
 	}
 
 
@@ -51,7 +51,7 @@
 <!--	<title>樂分期-HappyFan7</title>-->
 	<meta property="og:url"           content="<?php echo $src; ?>" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="<?php echo ($pm_detail && $pm_detail[0]['proName'] != '')? $pm_detail[0]['proName'] : 'HappyFan7'; ?>" />
+	<meta property="og:title"         content="<?php echo ($pm_detail && $pm_detail[0]['proName'] != '')? $pm_detail[0]['proName'] : 'Nowait 商城'; ?>" />
 	<meta property="og:description"   content="<?php echo $str_price; ?>" />
 	<meta property="og:image"         content="https://<?php echo DOMAIN; ?>/<?php echo ($img[0]!="")? "admin/".$img[0] : "admin/images/indexImg/20160607062650.jpg"; ?>" />
 
