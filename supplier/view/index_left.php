@@ -18,17 +18,17 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="admin.php" class="site_title"><i class="fa fa-circle"></i> <span >NoWait 夥伴商城</span></a>
+            <a href="admin.php" class="site_title"></i> <span >NoWait 夥伴商城</span></a>
           </div>
           <div class="clearfix"></div>
 
           <!-- menu prile quick info -->
           <div class="profile">
             <div class="profile_pic">
-              <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              <img src="images/img.png" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
-              <span>你好,</span>
+              <span>　</span>
               <h2><?php echo $_SESSION['supplieruserdata']['supName']; ?></h2>
             </div>
           </div>
@@ -43,19 +43,19 @@
             <div class="menu_section">
             <h3>供應商</h3>
               <ul class="nav side-menu">
-                <li><a><i class="fa fa-briefcase"></i> 商品管理 <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa "></i> 產品管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" >  
                     <li><a href="?page=product&type=productManage">產品登錄上架</a></li>                  
                   </ul>
                 </li>
 	<!-- new add -->
-                <li><a><i class="fa fa-tag"></i> 人員登錄 <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa "></i> 人員登錄 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" style="display: none">
                     <li><a href="?page=supplier">銷售人員</a></li>
                   </ul>
                 </li> 
     <!-- new add -->      
-                <li><a><i class="fa fa-file-text-o"></i> 案件進度 <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa "></i> 案件進度 <span class="fa fa-chevron-down"></span></a>
                   <ul id="order-submenu" class="nav child_menu" >
                   	<li><a href="?page=order&action=query&method=1"> 訂單查詢</a></li>
                     <?php 
