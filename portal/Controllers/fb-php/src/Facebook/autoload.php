@@ -84,3 +84,5 @@ $fb = new Facebook\Facebook([
 		'app_secret' => AutoloadAPPSecret,
 		'default_graph_version' => FbADVersion,
 ]);
+
+?>

@@ -80,7 +80,9 @@ spl_autoload_register(function ($class) {
     }
 });
 $fb = new Facebook\Facebook([
-		'app_id' => '358306487860510',
-		'app_secret' => 'bbff3360de628c59397f27261daceb02',
-		'default_graph_version' => 'v2.7',
+    'app_id' => AutoloadAPPId,
+    'app_secret' => AutoloadAPPSecret,
+    'default_graph_version' => FbADVersion,
 ]);
+
+?>
