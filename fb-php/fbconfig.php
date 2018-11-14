@@ -15,7 +15,7 @@ $str = ($_SESSION['item'] != "") ? "?item=product_sup&pro=".$_SESSION['pro']:"";
 
 $helper = $fb->getRedirectLoginHelper();
 $permissions = ['email'];
-$loginUrl = $helper->getLoginUrl('https://'.DONAME.'/fb-php/fbconfig.php', $permissions);
+$loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/fb-php/fbconfig.php', $permissions);
 
 try {
 	$accessToken = $helper->getAccessToken();
