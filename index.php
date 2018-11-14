@@ -96,32 +96,34 @@
 				//會員中心
                 case "member_center":
                     switch($actionVal){
-										
+
+                        //什麼是推薦碼？
                         case "whcode":
                             include('portal/views/page_member_whcode.html');
     						break;
-
+                        //推薦人清單查詢, 累積推薦人數
                         case "recomm_list":
                             include('portal/views/page_member_recomm_list.html');
     						break;
 
+                        //會員基本資料修改
                         case "member_edit":
                             include('portal/views/page_member_edit.html');
     						break;
-
                         case "member_idnum":
                             include('portal/views/page_member_idnum_edit.html');
                             break;
-
                         case "fb_edit":
                             include_once('portal/views/page_member_fbedit.html');
     						break;
+
 
                         // 變更密碼
                         case "password_edit":
                             include_once('portal/views/member/member-change.php');
     						break;
 
+                        //分期訂單查詢
                         case "purchase":
                             if($_GET['orno'] != ""){
                                 if($_GET['query'] != ""){
@@ -133,6 +135,8 @@
                                 include('portal/views/page_member_order.html');
                             }
     						break;
+
+                        //手機、機車借款訂單查詢
                         case "mco_purchase": // jimmy
                             if ($_GET['mcono'] != "") {
                                     include('portal/views/page_member_loan_detail.html');
@@ -149,7 +153,6 @@
                                 include('portal/views/member/member-pay.php');
                             }
                             break;
-    						break;
 
                         // 訂單查詢
                         case "order":
@@ -160,9 +163,8 @@
                             }
     						break;
 
+                        //
                         case "query_code":
-
-
                             if($_SESSION['MackMoney'] != '' && $_GET['n'] == 'apply_ADS'){
                                 $rbs = new Recomm_Bonus_Success();
                                 $rba = new Recomm_Bonus_Apply();
@@ -196,18 +198,18 @@
                             }else{
                                 include('portal/views/page_member_query_code.html');
                             }
-
     						break;
 
+                        //已領推薦金查詢明細
                         case "history":
                             if($_GET['d'] != ""){
                                 include('portal/views/page_member_query_code_success_detail.html');
                             }else{
                                 include('portal/views/page_member_query_code_apply.html');
                             }
-
     						break;
 
+                        //
                         case "cancel":
                             $or = new Orders();
                             $or_data = $or->getOneOrderByNo($_GET['orno']);
@@ -219,6 +221,7 @@
                             }
     						break;
 
+                        //分期購買 STAGING
                         case "order_period":
                             switch($_GET['method']){
                                 case "2":
@@ -236,7 +239,6 @@
                                 case "4":
                                     include('portal/views/staging/page_order_period_4.php');
     								break;
-
                                 default:
                                     $or = new Orders();
                                     $or_data = $or->getOnlyOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
@@ -253,6 +255,7 @@
                             }
     						break;
 
+                        //修改訂單
                         case "order_edit":
                             $or = new Orders();
                             $or_data = $or->getOneOrderByNo($_GET['orno']);
@@ -267,7 +270,6 @@
                                     case "4":
                                         include('portal/views/page_edit_order_period_4.html');
     									break;
-
                                     default:
                                         if($_GET['front_mange'] != ''){
                                             $or->updateorIfProcessInCurrentStatus('1',$_GET['orno']);
@@ -276,11 +278,10 @@
     									break;
                                 }
                             }
-
     						break;
 
+                        //
                         case "loan_order_period": // jimmy
-
                             switch($_GET['method']) {
                                 case "2":
                                     $mco = new Motorbike_Cellphone_Orders();
@@ -293,13 +294,13 @@
                                 case "4":
                                     include('portal/views/page_loan_order_period_4.html');
                                     break;
-
                                 default:
                                     include('portal/views/page_loan_order_period.html');
                                     break;
                             }
                             break;
 
+                        //
                         case "loan_order_edit": // jimmy
                             $mco = new Motorbike_Cellphone_Orders();
                             $mco_data = $mco->getOneOrderByNo($_GET['mcono']);
@@ -314,7 +315,6 @@
                                     case "4":
                                         include('portal/views/page_loan_order_period_4.html');
                                         break;
-
                                     default:
                                         if ($_GET['front_mange'] != '') {
                                             $mco->updateorMcoIfProcessInCurrentStatus('1', $_GET['mcoNo']);
@@ -323,9 +323,9 @@
                                         break;
                                 }
                             }
-
                             break;
 
+                        // 直購購買流程
                         case "order_direct":
                             switch($_GET['method']){
                                 case "2":
@@ -334,7 +334,6 @@
                                 case "3":
                                     include('portal/views/page_order_direct_3.html');
     								break;
-
                                 default:
                                     if($_SESSION['ord_code'] == ""){
                                         include('portal/views/page_order_direct.html');
@@ -343,7 +342,6 @@
                                     }
     								break;
                             }
-
     						break;
 
                         //會員資料

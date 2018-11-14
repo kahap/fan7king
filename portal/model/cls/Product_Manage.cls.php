@@ -89,18 +89,19 @@
 		}
 		
 		//取得所有商品上架
-		public function getAllPM_forCategory($p=1,$a=30){
-			$sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.proName, c.proImage
+		public function getAllPM_forCategory($p=0,$a=9999999){
+			$sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.biNo,c.proName, c.proImage 
 					from 
-						`product_manage` a, product c
+						`product_manage` a inner join `product` c 
+					on 
+					    a.`proNo` = c.`proNo` 
 					where
-						a.`pmStatus` = '1' &&
-						/*a.pmMainSup = '1' && */
-						a.proNo = c.proNo 
+						a.`pmMainSup` = '1' and
+						a.`pmStatus` = '1' 
 					group by 
-						c.proNo
+						a.`proNo` 
 					order by
-						c.catNo desc 
+						a.pmUpDate desc 
 					limit " .$p. " , " .$a ;
 						
 			$data = $this->db->selectRecords($sql);
@@ -109,17 +110,18 @@
 		//取得所有商品上架 total
         public function getAllPM_forCategoryCount(){
             $sql = "select 
-						count(`product_manage`.`proNo`) as `count` 
+						count(a.`proNo`) as `count` 
 					from 
-						`product_manage` a, product c
+						`product_manage` a inner join `product` c 
+					on 
+					    a.`proNo` = c.`proNo` 
 					where
-						a.`pmStatus` = '1' &&
-					/*	a.pmMainSup = '1' &&*/
-						a.proNo = c.proNo 
-					group by 
-						c.proNo
+						a.`pmMainSup` = '1' and
+						a.`pmStatus` = '1' 
+					/*group by 
+						c.`proNo` */
 					order by
-						a.pmUpDate desc";
+						a.`pmUpDate` desc";
             $q=mysqli_query($this->db->oDbLink,$sql);
             $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
             return $a["count"];
