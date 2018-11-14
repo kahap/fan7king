@@ -135,7 +135,7 @@ class OAuth2Client
     public function getAuthorizationUrl($redirectUrl, $state, array $scope = [], array $params = [], $separator = '&')
     {
         $params += [
-            'client_id' => $this->app->getId(),
+            'client_id' => "1845375422218419",
             'state' => $state,
             'response_type' => 'code',
             'sdk' => 'php-sdk-' . Facebook::VERSION,
