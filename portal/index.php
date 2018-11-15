@@ -58,7 +58,7 @@
     /************************* layout *******************************/
     $_SESSION['vTitle'] = 'Nowait';
     include_once('views/_header.php');
-
+    include('views/member/page_member_idnum_edit.html');
 
     // share code
     if( $_SESSION['user']['sharcode'] == "" )
@@ -68,8 +68,7 @@
         }else{
             $_SESSION['user']['sharcode'] = '111';
         }
-    }
-    elseif (isset($_GET['share']) && $_GET['share'] != '')
+    }elseif (isset($_GET['share']) && $_GET['share'] != '')
     {
         $_SESSION['user']['sharcode'] = $_GET['share'];
     }
