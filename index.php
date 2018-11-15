@@ -50,15 +50,15 @@
     $actionVal = isset($_GET['action'])? $_GET['action'] : '' ;
 
     //會員資訊編輯頁面
-    if( ($_SESSION['user']['memClass']=="" || $_SESSION['user']['memClass']==null) && $_SESSION['user']['memNo'] != "" ) {
-        $itemVal = "information_edit";
-    }
+    // if( ($_SESSION['user']['memClass']=="" || $_SESSION['user']['memClass']==null) && $_SESSION['user']['memNo'] != "" ) {
+    //     $itemVal = "information_edit";
+    // }
 
 
     /************************* layout *******************************/
     $_SESSION['vTitle'] = 'Nowait';
     include_once('portal/views/_header.php');
-
+    echo $itemVal." ".$itemVal;
 
     // share code
     if( $_SESSION['user']['sharcode'] == "" )
@@ -83,7 +83,7 @@
         //     $itemVal = "member_center" ;
         //     $actionVal = "member_idnum" ;
         // }
-            echo $itemVal." ".$itemVal;
+            
         if($itemVal != ""  ){
             switch($itemVal){
                 case "register2":
