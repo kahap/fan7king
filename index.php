@@ -440,8 +440,16 @@
                     break;
                 case "information_edit":
                     include_once('portal/views/member/page_member_information.html');
-    				break;
-
+                    break;
+                case "register2"
+                    include_once('portal/views/register/register-2.php');
+                    break;
+                case "register3"
+                    include_once('portal/views/register/register-3.php');
+                    break;
+                case "register4"                
+                    include_once('portal/views/register/register-4.php');
+                    break;
 
                 default:
                     $Front_Manage = new Front_Manage();
