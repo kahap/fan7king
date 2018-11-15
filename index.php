@@ -439,7 +439,7 @@
                     include_once('portal/views/page_loan_cell.html'); // add jimmy
                     break;
                 case "information_edit":
-                    include_once('portal/views/page_member_information.html');
+                    include_once('portal/views/member/page_member_information.html');
     				break;
 
 
