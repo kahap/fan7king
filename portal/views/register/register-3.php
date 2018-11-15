@@ -97,7 +97,7 @@
             success:function(result){
                 var J = JSON.parse(result);
                 if (J.data) {
-                    location.href="?item=register4";
+                    location.href="?item=register4&cell="+cell;
                 }else{
                     alert(J.message);
                 }

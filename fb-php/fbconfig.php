@@ -37,6 +37,7 @@ if ( isset( $accessToken ) ) {
 	    $femail = $graphObject->getProperty('email');
 		$gender = $graphObject->getProperty('gender') == "male" ? 1 : 0;
 		$member_data = $member->check_FBtoken($fbid);
+		$_SESSION['user']['fb_token'] = $fbid;
 	if($member_data != ""){
 		$Iforder = $order->getOrByMember($member_data['memNo']);
 		if($member_data['memAllowLogin'] == 1){
@@ -85,7 +86,7 @@ if ( isset( $accessToken ) ) {
 	}
 	$accessToken = @$session->getToken();
 	$_SESSION['user']["fb_access_token"] = (string) $accessToken;
-	$_SESSION['user']['fb_token'] = $fbid;
+	
 } else {
 	$scope = array('email', 'user_friends','public_profile', 'user_birthday','user_location','user_link');
 	$loginUrl = $helper->getLoginUrl($scope);

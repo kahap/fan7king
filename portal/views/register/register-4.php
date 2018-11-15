@@ -1,6 +1,4 @@
-<?php 
-    session_start();
-?>
+
     <main role="main">
         <h1><span>註冊</span><small>rigester</small></h1>
         <section id="login-zone">
@@ -58,7 +56,7 @@
             </div>
         </section>
     </main>
-    
+   
     <script>
     $(".btn-login").click(function(){
         var password = $('input[id=form-pwd]').val();
@@ -67,7 +65,7 @@
         var token ='<?php echo $_SESSION['user']['fb_token'];?>';
         if (password!="" && password == checkPassword) {
             var url = "API/set_password";
-            var cell = '<?php echo $_POST['phoneNumber'];?>';
+            var cell = '<?php echo $_GET['cell'];?>';
             var form ={
                 "memCell":cell,
                 "password":password,
@@ -75,25 +73,25 @@
                 "memClass":isStudent,
                 "type":"WebRegist"
             }
-            alert(JSON.stringify(form));
-            // $.ajax({
-            //     url:url,
-            //     type:"POST",
-            //     data:form,
-            //     datatype:"json",
-            //     success:function(result){
-            //         var J = JSON.parse(result);
-            //         if (J.data) {
-            //             location.href="?item=member_center&action=member_idnum_edit";
-            //         }else{
-            //             alert(J.message);
-            //         }
+            // alert(JSON.stringify(form));
+            $.ajax({
+                url:url,
+                type:"POST",
+                data:form,
+                datatype:"json",
+                success:function(result){
+                    var J = JSON.parse(result);
+                    if (J.data) {
+                        location.href="?item=member_center&action=member_idnum_edit";
+                    }else{
+                        alert(J.message);
+                    }
                     
-            //     },
-            //     error:function(){
+                },
+                error:function(){
                     
-            //     }
-            // });
+                }
+            });
         }else{
             alert("新設密碼和再次確認密碼請設定一樣");
         }
