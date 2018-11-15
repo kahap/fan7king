@@ -78,11 +78,11 @@
     //會員已登入
     if($_SESSION['user']['memName'] != "")
     {
-        if($_SESSION['user']['memIdNum'] == "" || $_SESSION['user']['memIdNum']==null)
-        {
-            $itemVal = "member_center" ;
-            $actionVal = "member_idnum" ;
-        }
+        // if($_SESSION['user']['memIdNum'] == "" || $_SESSION['user']['memIdNum']==null)
+        // {
+        //     $itemVal = "member_center" ;
+        //     $actionVal = "member_idnum" ;
+        // }
 
         if($itemVal != ""  ){
             switch($itemVal){
