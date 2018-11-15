@@ -18,7 +18,7 @@
             $_SESSION['user']['memIdNum'] = $member_data['memIdNum'];       //身分證字號
             $_SESSION['user']['memClass'] = $member_data['memClass'];
 			$_SESSION['user']['memCell'] = $member_data['memCell'];         //手機號碼
-			$_SESSION['user']['fb_token'] = $member_data['fb_token'];         //手機號碼
+			$_SESSION['user']['fb_token'] = $member_data['memFBtoken'];    
 //            if ($member_data['memIdNum'] == null || $member_data['memIdNum'] == '' ) {
             if ($member_data['memCell'] == null || $member_data['memCell'] == '' ) {
                 echo 0;
