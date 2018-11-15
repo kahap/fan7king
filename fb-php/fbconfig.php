@@ -36,15 +36,15 @@ if ( isset( $accessToken ) ) {
  	    $fbfullname = $graphObject->getProperty('name');
 	    $femail = $graphObject->getProperty('email');
 		$gender = $graphObject->getProperty('gender') == "male" ? 1 : 0;
-	$member_data = $member->check_FBtoken($fbid);
+		$member_data = $member->check_FBtoken($fbid);
 	if($member_data != ""){
 		$Iforder = $order->getOrByMember($member_data['memNo']);
 		if($member_data['memAllowLogin'] == 1){
             $_SESSION['user']['memName'] = $member_data['memName'];
             $_SESSION['user']['memNo'] = $member_data['memNo'];
             $_SESSION['user']['memClass'] = $member_data['memClass'];
-            if($member_data['memIdNum'] == null || $member_data['memIdNum']=='' ){
-                header("Location: ../index.php?item=member_center&action=member_idnum");
+            if($member_data['memCell'] == null || $member_data['memCell']=='' ){
+                header("Location: ../index.php?item=register2");
             }
             else
             {
@@ -52,7 +52,7 @@ if ( isset( $accessToken ) ) {
                 if($member_data['edit'] == '0' && $Iforder == '' && empty($_SESSION['user']['memClass'])){
                     header("Location: ../index.php?item=information_edit");
                 }else{
-					header("Location: ../index.php$str");
+					header("Location: ../index.php".$str);
                 }
             }
 		}else{
@@ -81,7 +81,7 @@ if ( isset( $accessToken ) ) {
 		$_SESSION['user']['memNo'] = $id;
 		//print_r($array);
 		//header("Location: ../index.php$str");
-		header("Location: ../index.php?item=information_edit");
+		header("Location: ../index.php?item=register2");
 	}
 	$accessToken = @$session->getToken();
 	$_SESSION['user']["fb_access_token"] = (string) $accessToken;
