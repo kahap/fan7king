@@ -36,8 +36,9 @@
                 $b_item = new B_items();    //品項
                 $product = new Product();
                 if($_GET['type'] != ''){
-                    echo "<span class='navigation-pipe'></span>";
+                    echo '<li class="breadcrumb-item active" aria-current="page">';
                     echo $category_1[$_GET['type']];
+                    echo '</li>';
                 }
                 ?>
                 <li class="breadcrumb-item active" aria-current="page">
@@ -67,9 +68,28 @@
                                 echo $value['braName'];
                             }
                         }
+                    }elseif($_GET['bino'] != ""){
+                        $b_item_data = $b_item->getAllItems();
+                        foreach($b_item_data as $key => $value){
+                            if($_GET['bino'] == $value['biNo']){
+                                echo $value['biName'];
+                            }
+                        }
                     }
                     ?>
                 </li>
+                <?php
+                if($_GET['type'] == '' && $_GET['bino'] != ''){
+                    $b_item_data = $b_item->getAllItems();
+                    foreach($b_item_data as $key => $value){
+                        if($_GET['bino'] == $value['biNo']){
+                            echo '<li class="breadcrumb-item active" aria-current="page">';
+                            echo $value['biName'];
+                            echo '</li>';
+                        }
+                    }
+                }
+                ?>
             </ol>
             <div class="row">
                 <div class="col-lg-3">
@@ -102,7 +122,7 @@
                                             if(in_array($value['braNo'],$show_brand)){
 //                                                echo "<li class='".$active."'><span></span><a href='?item=category&b=".$value['braNo']."&type=".$_GET['c']."'>".$value['braName']."</a></li>";
                                                 ?>
-                                                <a href="?item=category&b=<?php echo $value['braNo']."&c=".$_GET['c'];?>" class="list-group-item list-group-item-action <?php echo $active;?>">
+                                                <a href="?item=category&b=<?php echo $value['braNo']."&type=".$_GET['c'];?>" class="list-group-item list-group-item-action <?php echo $active;?>">
                                                     <?php echo $value['braName'];?>
                                                 </a>
                                                 <?php
@@ -207,6 +227,21 @@
                             $pm_data = $pm->getAllPM_forCategory();
 
 
+                            //限時 最新 精選
+                            if (isset($_GET['pmSOO'])){
+                                switch ($_GET['pmSOO']){
+                                    case 'hot':
+                                        $pm_data = $pm->getAllHot();
+                                        break;
+                                    case 'news':
+                                        $pm_data = $pm->getAllNew();
+                                        break;
+                                    case 'special':
+                                        $pm_data = $pm->getAllSpecial();
+                                        break;
+                                }
+                            }
+
                             ?>
                             </span>
                         </h1>
@@ -306,6 +341,65 @@
                                 }
                                 elseif($value['braNo'] == $_GET['b'] && $_GET['b'] != "" && $value['catNo'] == $cat_number[$_GET['type']])
                                 {
+                                    $p_contetn = $p->getOneProByNoWithoutImage($value['proNo']);
+                                    $img = json_decode($p_contetn[0]['proImage']);
+                                    $img[0] = ($img[0] !="") ? "admin/".$img[0]:"admin/".$img[1];
+                                    $ppData = $pp->getPPByProduct($value["proNo"]);
+                                    $followDefault = true;
+                                    if($ppData != null){
+                                        foreach($ppData as $k=>$v){
+                                            if($v["ppPercent"] != ""){
+                                                $followDefault = false;
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if($followDefault){
+                                        foreach($month as $k => $v){
+                                            $total = ceil($v['psRatio']*$value['pmPeriodAmnt']/$v['psMonthNum']);
+                                            if($total > 1000){
+                                                $price[$v['psMonthNum']] = $total;
+                                            }
+                                        }
+                                    }else{
+                                        foreach($ppData as $k=>$v){
+                                            if(!empty($v['ppPercent'])){
+                                                $total = ceil($v['ppPercent']*$value['pmPeriodAmnt']/$v['ppPeriodAmount']);
+                                                if($total > 1000){
+                                                    $price[$v['ppPeriodAmount']] = $total;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                    <div class="item col-lg-4 col-6">
+                                        <div class="card">
+                                            <a href="?item=product&pro=<?php echo $value['proNo'];?>" >
+                                                <?php //修理圖片路徑
+                                                $image = $img[0];
+                                                $image = str_replace('../','',$image);
+                                                $image = str_replace('admin/admin/','admin/',$image);
+                                                ?>
+                                                <img src="<?php echo $image;?>" class="img-fluid" alt="product">
+                                                <div class="card-body">
+                                                    <p class="card-title"><?php echo $value['proName'];?></p>
+                                                    <p class="nowait-badge text-left">
+                                                        <span class="bg-yellow">開學季優惠</span>
+                                                        <span class="bg-yellow">滿千送百特惠方案</span>
+                                                    </p>
+                                                    <p class="card-text text-orange">
+                                                        月付：NT$<?php echo number_format(min($price));?>
+                                                        <small>*<?php echo array_search(min($price),$price);?>期</small>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <?php
+                                }
+                                elseif($_GET['b']=="" && $_GET['type']=="" && $_GET['c']==""){
+                                       //限時 最新 精選
                                     $p_contetn = $p->getOneProByNoWithoutImage($value['proNo']);
                                     $img = json_decode($p_contetn[0]['proImage']);
                                     $img[0] = ($img[0] !="") ? "admin/".$img[0]:"admin/".$img[1];
