@@ -93,6 +93,20 @@
 					include('portal/views/page_award.html');
 				break;
 
+                //免責聲明、 服務條款、 隱私權聲明等條款
+                case "fmFreeRespons":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('portal/views/other/fmFreeRespons.php');
+                break;
+                case "fmServiceRules":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('portal/views/other/fmServiceRules.php');
+                    break;
+                case "fmPrivacy":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('portal/views/other/fmPrivacy.php');
+                    break;
+
 				//會員中心
                 case "member_center":
                     switch($actionVal){
@@ -127,12 +141,12 @@
                         case "purchase":
                             if($_GET['orno'] != ""){
                                 if($_GET['query'] != ""){
-                                    include('portal/views/page_member_order_detail_query.html');
+                                    include('portal/views/member/page_member_order_detail_query.php');
                                 }else{
-                                    include('portal/views/page_member_order_detail.html');
+                                    include('portal/views/member/page_member_order_detail.php');
                                 }
                             }else{
-                                include('portal/views/page_member_order.html');
+                                include('portal/views/member/page_member_order.php');
                             }
     						break;
 
@@ -262,25 +276,25 @@
                             if($or_data[0]['orIfEditable'] == 0){
                                 switch($_GET['method']){
                                     case "2":
-                                        include('portal/views/page_edit_order_period_2.html');
+                                        include('portal/views/staging/page_edit_order_period_2.php');
     									break;
                                     case "3":
-                                        include('portal/views/page_edit_order_period_3.html');
+                                        include('portal/views/staging/page_edit_order_period_3.php');
     									break;
                                     case "4":
-                                        include('portal/views/page_edit_order_period_4.html');
+                                        include('portal/views/staging/page_edit_order_period_4.php');
     									break;
                                     default:
                                         if($_GET['front_mange'] != ''){
                                             $or->updateorIfProcessInCurrentStatus('1',$_GET['orno']);
                                         }
-                                        include('portal/views/page_edit_order_period.html');
+                                        include('portal/views/staging/page_edit_order_period.php');
     									break;
                                 }
                             }
     						break;
 
-                        //
+                        //貸款...
                         case "loan_order_period": // jimmy
                             switch($_GET['method']) {
                                 case "2":
@@ -300,7 +314,7 @@
                             }
                             break;
 
-                        //
+                        //貸款...
                         case "loan_order_edit": // jimmy
                             $mco = new Motorbike_Cellphone_Orders();
                             $mco_data = $mco->getOneOrderByNo($_GET['mcono']);
@@ -357,15 +371,18 @@
                     include_once('portal/views/login/login.php');
     				break;
 
+                //
                 case "contact":
                     include_once('portal/views/page_contact_service.html');
     				break;
-                 case "sup_center":
+
+                //廠商專區
+                case "sup_center":
                     //include_once('portal/views/page_sup_center.html');
-                    include_once('portal/views/page_sup_center_new.html'); //encore
+                    include_once('portal/views/supplier/page_sup_center_new.php'); //encore
     				break;
 
-
+                //商城
                 case "category":
                     include_once('portal/views/product/page_category.php');
     				break;
@@ -388,7 +405,7 @@
                 case "faq":
                     include_once('portal/views/help/helping-faq.php');
     				break;
-                //聯絡我們
+                //聯絡客服
                 case "co_company":
                     include_once('portal/views/help/helping-contact.php');
     				break;
@@ -402,6 +419,7 @@
                     break;
 
 
+                //貸款VIP服務
                 case "loan_menu":
                     include_once('portal/views/page_loan_menu.html');
     				break;
@@ -480,6 +498,18 @@
             include_once('portal/views/login/login.php');
         }
 
+        //免責聲明、 服務條款、 隱私權聲明等條款
+        elseif($itemVal=="fmFreeRespons"){
+            echo '<p align="center"> 此功能還未開放</p>';
+            include_once('portal/views/other/fmFreeRespons.php');
+        }elseif($itemVal=="fmServiceRules"){
+            echo '<p align="center"> 此功能還未開放</p>';
+            include_once('portal/views/other/fmServiceRules.php');
+        }elseif($itemVal=="fmPrivacy"){
+            echo '<p align="center"> 此功能還未開放</p>';
+            include_once('portal/views/other/fmPrivacy.php');
+        }
+
         // ---------------- register ------------------
         elseif($itemVal=="register"){
             include_once('portal/views/register/register-1.php');
@@ -523,9 +553,9 @@
             include_once('portal/views/product/page_search.php');
         }
 
-
+        //廠商專區
         elseif($itemVal=="sup_center"){
-            include_once('portal/views/page_sup_center_new.html'); //encore
+            include_once('portal/views/supplier/page_sup_center_new.php'); //encore
             //include_once('portal/views/page_sup_center.html');
         }
 
@@ -543,25 +573,33 @@
             include_once('portal/views/help/helping-about.php');
         }
 
+
+        //貸款VIP服務
         elseif($itemVal=="loan_vip"){
             include_once('portal/views/page_loanVIP.html');
         }
+        //我要借款
         elseif($itemVal=="loan_menu"){
             include_once('portal/views/page_loan_menu.html');
         }
+        //
         elseif($itemVal=="information_edit"){
             include_once('portal/views/page_member_information.html');
         }
+        //手機貸款服務
         elseif($itemVal=="loan_Cell"){
             include_once('portal/views/page_loanCell.html');
         }
+        //機車貸款服務
         elseif($itemVal=="loan_Moto"){
             include_once('portal/views/page_loanMoto.html');
         }
+        //
         elseif($itemVal=="loan_cell"){
             include_once('portal/views/page_loan_cell.html'); // add jimmy
             echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
         }
+        //
         elseif($itemVal=="loan_moto"){
             include_once('portal/views/page_loan_moto.html'); // add jimmy
             echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";

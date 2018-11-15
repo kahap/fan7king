@@ -45,7 +45,6 @@
 <!--                                        <th nowrap="nowrap">商品規格</th>-->
 <!--                                        <th nowrap="nowrap">商品型號</th>-->
                                         <th nowrap="nowrap">訂單狀態</th>
-<!--                                        <th nowrap="nowrap"></th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,14 +88,14 @@
                                                         }
                                                     }
                                                     ?>
+                                                    <br>
+                                                    <?php if($value["orIfEditable"] == '0' or $value["orStatus"] == '待補'){
+                                                        if($value["orStatus"] != '取消訂單' && $value["orStatus"] != '已完成' && $value["orStatus"] != '審查中'){
+                                                            echo "<a class='text-orange' href='?item=member_center&action=order_edit&method=1&orno=".$value["orNo"]."&front_mange=1'>編輯</a>";
+                                                        }
+                                                    } ?>
+                                                    <?php if($value["orStatus"] == '我要繳款'){ ?><a class='text-orange' href="?item=member_center&action=purchase&orno=<?php echo $value["orNo"]; ?>&query=p">前往</a><?Php } ?>
                                                 </td>
-<!--                                                <td>-->
-<!--                                                    --><?php //if($value["orIfEditable"] == '0' or $value["orStatus"] == '待補'){
-//                                                        if($value["orStatus"] != '取消訂單' && $value["orStatus"] != '已完成' && $value["orStatus"] != '審查中'){
-//                                                            echo "<a href='?item=member_center&action=order_edit&method=1&orno=".$value["orNo"]."&front_mange=1'>編輯</a>";
-//                                                        }
-//                                                    } ?>
-<!--                                                </td>-->
                                             </tr>
                                             <?php
                                         }
