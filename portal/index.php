@@ -58,7 +58,7 @@
     /************************* layout *******************************/
     $_SESSION['vTitle'] = 'Nowait';
     include_once('views/_header.php');
-    include('views/member/page_member_idnum_edit.html');
+
 
     // share code
     if( $_SESSION['user']['sharcode'] == "" )
@@ -109,7 +109,7 @@
     						break;
 
                         case "member_idnum":
-                            include('views/member/page_member_idnum_edit.html');
+                            include_once('views/member/page_member_idnum_edit.html');
                             break;
 
                         case "fb_edit":
