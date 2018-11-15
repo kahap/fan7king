@@ -87,57 +87,75 @@
         if($itemVal != ""  ){
             switch($itemVal){
 				case "loading":
-					include('view/page_loading.html');
+					include('views/page_loading.html');
 				break;
 				case "award":
-					include('view/page_award.html');
+					include('views/page_award.html');
 				break;
+
+                //免責聲明、 服務條款、 隱私權聲明等條款
+                case "fmFreeRespons":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('views/other/fmFreeRespons.php');
+                    break;
+                case "fmServiceRules":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('views/other/fmServiceRules.php');
+                    break;
+                case "fmPrivacy":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('views/other/fmPrivacy.php');
+                    break;
 
 				//會員中心
                 case "member_center":
                     switch($actionVal){
-										
+
+                        //什麼是推薦碼？
                         case "whcode":
-                            include('view/page_member_whcode.html');
-    						break;
-
+                            include('views/page_member_whcode.html');
+                            break;
+                        //推薦人清單查詢, 累積推薦人數
                         case "recomm_list":
-                            include('view/page_member_recomm_list.html');
-    						break;
-
-                        case "member_edit":
-                            include('view/page_member_edit.html');
-    						break;
-
-                        case "member_idnum":
-                            include('view/page_member_idnum_edit.html');
+                            include('views/page_member_recomm_list.html');
                             break;
 
+                        //會員基本資料修改
+                        case "member_edit":
+                            include('views/page_member_edit.html');
+                            break;
+                        case "member_idnum":
+                            include('views/page_member_idnum_edit.html');
+                            break;
                         case "fb_edit":
-                            include_once('view/page_member_fbedit.html');
-    						break;
+                            include_once('views/page_member_fbedit.html');
+                            break;
+
 
                         // 變更密碼
                         case "password_edit":
                             include_once('views/member/member-change.php');
-    						break;
+                            break;
 
+                        //分期訂單查詢
                         case "purchase":
                             if($_GET['orno'] != ""){
                                 if($_GET['query'] != ""){
-                                    include('view/page_member_order_detail_query.html');
+                                    include('views/member/page_member_order_detail_query.php');
                                 }else{
-                                    include('view/page_member_order_detail.html');
+                                    include('views/member/page_member_order_detail.php');
                                 }
                             }else{
-                                include('view/page_member_order.html');
+                                include('views/member/page_member_order.php');
                             }
-    						break;
+                            break;
+
+                        //手機、機車借款訂單查詢
                         case "mco_purchase": // jimmy
                             if ($_GET['mcono'] != "") {
-                                    include('view/page_member_loan_detail.html');
+                                include('views/page_member_loan_detail.html');
                             } else {
-                                include('view/page_member_loan_order.html');
+                                include('views/page_member_loan_order.html');
                             }
                             break;
 
@@ -149,7 +167,6 @@
                                 include('views/member/member-pay.php');
                             }
                             break;
-    						break;
 
                         // 訂單查詢
                         case "order":
@@ -158,11 +175,10 @@
                             }else{
                                 include('views/member/member-order.php');
                             }
-    						break;
+                            break;
 
+                        //
                         case "query_code":
-
-
                             if($_SESSION['MackMoney'] != '' && $_GET['n'] == 'apply_ADS'){
                                 $rbs = new Recomm_Bonus_Success();
                                 $rba = new Recomm_Bonus_Apply();
@@ -191,23 +207,23 @@
                                     $allRbsData = $rba->getRBAByMemNo($_SESSION['user']['memNo']);
                                     $rbs_id = $rbs->insert($array,$allRbsData,$_SESSION['user']['memNo']);
                                     $_SESSION['rbs_id'] = $rbs_id;
-                                    include('view/page_member_rba_apply.html');
+                                    include('views/page_member_rba_apply.html');
                                 }
                             }else{
-                                include('view/page_member_query_code.html');
+                                include('views/page_member_query_code.html');
                             }
+                            break;
 
-    						break;
-
+                        //已領推薦金查詢明細
                         case "history":
                             if($_GET['d'] != ""){
-                                include('view/page_member_query_code_success_detail.html');
+                                include('views/page_member_query_code_success_detail.html');
                             }else{
-                                include('view/page_member_query_code_apply.html');
+                                include('views/page_member_query_code_apply.html');
                             }
+                            break;
 
-    						break;
-
+                        //
                         case "cancel":
                             $or = new Orders();
                             $or_data = $or->getOneOrderByNo($_GET['orno']);
@@ -217,141 +233,137 @@
                             }else{
                                 echo "<script>alert('拒絕存取'); history.go(-1);</script>";
                             }
-    						break;
+                            break;
 
+                        //分期購買 STAGING
                         case "order_period":
                             switch($_GET['method']){
                                 case "2":
                                     $or = new Orders();
                                     $or_data = $or->getTwinOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
                                     if($or_data[1]['orNo'] != ''){
-                                        include('view/page_default_order_period_2.html');
-                                    }else{
-                                        include('view/page_order_period_2.html');
+//                                        include('views/staging/page_default_order_period_2.php');
+//                                    }else{
+                                        include('views/staging/page_order_period_2.php');
                                     }
-    								break;
+                                    break;
                                 case "3":
-                                    include('view/page_order_period_3.html');
-    								break;
+                                    include('views/staging/page_order_period_3.php');
+                                    break;
                                 case "4":
-                                    include('view/page_order_period_4.html');
-    								break;
-
+                                    include('views/staging/page_order_period_4.php');
+                                    break;
                                 default:
                                     $or = new Orders();
                                     $or_data = $or->getOnlyOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
-                                    if($_SESSION['ord_code'] != ''){
-                                        echo "<script>location.href='index.php?item=member_center&action=order_edit&orno=".$_SESSION['ord_code']."'</script>";
-                                    }else{
-                                        if($or_data[0]['orNo'] != ''){
-                                            include('view/page_default_order_period.html');
-                                        }else{
-                                            include('view/page_order_period.html');
-                                        }
-                                    }
-    								break;
+//                                    if($_SESSION['ord_code'] != ''){
+//                                        echo "<script>location.href='index.php?item=member_center&action=order_edit&orno=".$_SESSION['ord_code']."'</script>";
+//                                    }else{
+                                    /*if($or_data[0]['orNo'] != ''){
+                                        include('views/staging/page_default_order_period.php');
+                                    }else{*/
+                                    include('views/staging/page_order_period.php');
+                                    //}
+//                                    }
+                                    break;
                             }
-    						break;
+                            break;
 
+                        //修改訂單
                         case "order_edit":
                             $or = new Orders();
                             $or_data = $or->getOneOrderByNo($_GET['orno']);
                             if($or_data[0]['orIfEditable'] == 0){
                                 switch($_GET['method']){
                                     case "2":
-                                        include('view/page_edit_order_period_2.html');
-    									break;
+                                        include('views/staging/page_edit_order_period_2.php');
+                                        break;
                                     case "3":
-                                        include('view/page_edit_order_period_3.html');
-    									break;
+                                        include('views/staging/page_edit_order_period_3.php');
+                                        break;
                                     case "4":
-                                        include('view/page_edit_order_period_4.html');
-    									break;
-
+                                        include('views/staging/page_edit_order_period_4.php');
+                                        break;
                                     default:
                                         if($_GET['front_mange'] != ''){
                                             $or->updateorIfProcessInCurrentStatus('1',$_GET['orno']);
                                         }
-                                        include('view/page_edit_order_period.html');
-    									break;
+                                        include('views/staging/page_edit_order_period.php');
+                                        break;
                                 }
                             }
+                            break;
 
-    						break;
-
+                        //貸款...
                         case "loan_order_period": // jimmy
-
                             switch($_GET['method']) {
                                 case "2":
                                     $mco = new Motorbike_Cellphone_Orders();
                                     $mco_data = $mco->getTwinOrByMemberAndMethod($_SESSION['user']['memNo']);
-                                    include('view/page_loan_order_period_2.html');
+                                    include('views/page_loan_order_period_2.html');
                                     break;
                                 case "3":
-                                    include('view/page_loan_order_period_3.html');
+                                    include('views/page_loan_order_period_3.html');
                                     break;
                                 case "4":
-                                    include('view/page_loan_order_period_4.html');
+                                    include('views/page_loan_order_period_4.html');
                                     break;
-
                                 default:
-                                    include('view/page_loan_order_period.html');
+                                    include('views/page_loan_order_period.html');
                                     break;
                             }
                             break;
 
+                        //貸款...
                         case "loan_order_edit": // jimmy
                             $mco = new Motorbike_Cellphone_Orders();
                             $mco_data = $mco->getOneOrderByNo($_GET['mcono']);
                             if ($mco_data[0]['mcoIfEditable'] == 0) {
                                 switch ($_GET['method']) {
                                     case "2":
-                                        include('view/page_edit_loan_period_2.html');
+                                        include('views/page_edit_loan_period_2.html');
                                         break;
                                     case "3":
-                                        include('view/page_loan_order_period_3.html');
+                                        include('views/page_loan_order_period_3.html');
                                         break;
                                     case "4":
-                                        include('view/page_loan_order_period_4.html');
+                                        include('views/page_loan_order_period_4.html');
                                         break;
-
                                     default:
                                         if ($_GET['front_mange'] != '') {
                                             $mco->updateorMcoIfProcessInCurrentStatus('1', $_GET['mcoNo']);
                                         }
-                                        include('view/page_edit_loan_period.html');
+                                        include('views/page_edit_loan_period.html');
                                         break;
                                 }
                             }
-
                             break;
 
+                        // 直購購買流程
                         case "order_direct":
                             switch($_GET['method']){
                                 case "2":
-                                    include('view/page_order_direct_2.html');
-    								break;
+                                    include('views/page_order_direct_2.html');
+                                    break;
                                 case "3":
-                                    include('view/page_order_direct_3.html');
-    								break;
-
+                                    include('views/page_order_direct_3.html');
+                                    break;
                                 default:
                                     if($_SESSION['ord_code'] == ""){
-                                        include('view/page_order_direct.html');
+                                        include('views/page_order_direct.html');
                                     }else{
-                                        include('view/page_order_direct_edit.html');
+                                        include('views/page_order_direct_edit.html');
                                     }
-    								break;
+                                    break;
                             }
-
-    						break;
+                            break;
 
                         //會員資料
                         default:
                             include('views/member/member-info.php');
-    						break;
+                            break;
                     }
-    				break;
+                    break;
 
                 case "logout":
                 case "login":
@@ -359,18 +371,21 @@
                     include_once('views/login/login.php');
     				break;
 
+                //
                 case "contact":
-                    include_once('view/page_contact_service.html');
-    				break;
-                 case "sup_center":
-                    //include_once('view/page_sup_center.html');
-                    include_once('view/page_sup_center_new.html'); //encore
-    				break;
+                    include_once('views/page_contact_service.html');
+                    break;
 
+                //廠商專區
+                case "sup_center":
+                    //include_once('views/page_sup_center.html');
+                    include_once('views/supplier/page_sup_center_new.php'); //encore
+                    break;
 
+                //商城
                 case "category":
                     include_once('views/product/page_category.php');
-    				break;
+                    break;
                 case "product":
                     include_once('views/product/page_detail.php');
                     break;
@@ -379,37 +394,53 @@
                     break;
                 case "search":
                     include_once('views/product/page_search.php');
-    				break;
+                    break;
 
 
+                //幫助中心
+                case "help":
+                    include_once('views/help/helping.php');
+                    break;
+                //常見問題
                 case "faq":
-                    include_once('view/page_faq.html');
-    				break;
-
+                    include_once('views/help/helping-faq.php');
+                    break;
+                //聯絡客服
                 case "co_company":
-                    include_once('view/page_contact.html');
-    				break;
+                    include_once('views/help/helping-contact.php');
+                    break;
+                //關於我們
+                case "aboutme":
+                    include_once('views/help/helping-about.php');
+                    break;
+                //購物流程
+                case "help_process":
+                    include_once('views/help/helping-process.php');
+                    break;
+
+
+                //貸款VIP服務
                 case "loan_menu":
-                    include_once('view/page_loan_menu.html');
-    				break;
+                    include_once('views/page_loan_menu.html');
+                    break;
                 case "loan_vip":
-                    include_once('view/page_loanVIP.html');
-    				break;
+                    include_once('views/page_loanVIP.html');
+                    break;
                 case "loan_Moto":
-                    include_once('view/page_loanMoto.html');
-    				break;
+                    include_once('views/page_loanMoto.html');
+                    break;
                 case "loan_Cell":
-                    include_once('view/page_loanCell.html');
-    				break;
+                    include_once('views/page_loanCell.html');
+                    break;
                 case "loan_moto":
-                    include_once('view/page_loan_moto.html'); // add jimmy
+                    include_once('views/page_loan_moto.html'); // add jimmy
                     break;
                 case "loan_cell":
-                    include_once('view/page_loan_cell.html'); // add jimmy
+                    include_once('views/page_loan_cell.html'); // add jimmy
                     break;
                 case "information_edit":
-                    include_once('view/page_member_information.html');
-    				break;
+                    include_once('views/page_member_information.html');
+                    break;
 
 
                 default:
@@ -420,8 +451,8 @@
                     }else if(array_key_exists($itemVal,$page_other2 )){
                         $page_data2 = $Front_Manage2->getAllFM($itemVal);
                     }
-                    include_once('view/page_other.html');
-    				break;
+                    include_once('views/page_other.html');
+                    break;
             }
         }else{
             //首頁(沒有目標頁面itemVal)
@@ -467,6 +498,18 @@
             include_once('views/login/login.php');
         }
 
+        //免責聲明、 服務條款、 隱私權聲明等條款
+        elseif($itemVal=="fmFreeRespons"){
+            echo '<p align="center"> 此功能還未開放</p>';
+            include_once('views/other/fmFreeRespons.php');
+        }elseif($itemVal=="fmServiceRules"){
+            echo '<p align="center"> 此功能還未開放</p>';
+            include_once('views/other/fmServiceRules.php');
+        }elseif($itemVal=="fmPrivacy"){
+            echo '<p align="center"> 此功能還未開放</p>';
+            include_once('views/other/fmPrivacy.php');
+        }
+
         // ---------------- register ------------------
         elseif($itemVal=="register"){
             include_once('views/register/register-1.php');
@@ -510,45 +553,62 @@
             include_once('views/product/page_search.php');
         }
 
-
+        //廠商專區
         elseif($itemVal=="sup_center"){
-            include_once('view/page_sup_center_new.html'); //encore
-            //include_once('view/page_sup_center.html');
+            include_once('views/supplier/page_sup_center_new.php'); //encore
+            //include_once('views/page_sup_center.html');
         }
+
+
+        //幫助中心
         elseif($itemVal=="faq"){
-            include_once('view/page_faq.html');
+            include_once('views/help/helping-faq.php');
         }
+        //聯絡客服
         elseif($itemVal=="co_company"){
-            include_once('view/page_contact.html');
+            include_once('views/help/helping-contact.php');
         }
+        //關於我們
+        elseif($itemVal=="aboutme"){
+            include_once('views/help/helping-about.php');
+        }
+
+
+        //貸款VIP服務
         elseif($itemVal=="loan_vip"){
-            include_once('view/page_loanVIP.html');
+            include_once('views/page_loanVIP.html');
         }
+        //我要借款
         elseif($itemVal=="loan_menu"){
-            include_once('view/page_loan_menu.html');
+            include_once('views/page_loan_menu.html');
         }
+        //
         elseif($itemVal=="information_edit"){
-            include_once('view/page_member_information.html');
+            include_once('views/page_member_information.html');
         }
+        //手機貸款服務
         elseif($itemVal=="loan_Cell"){
-            include_once('view/page_loanCell.html');
+            include_once('views/page_loanCell.html');
         }
+        //機車貸款服務
         elseif($itemVal=="loan_Moto"){
-            include_once('view/page_loanMoto.html');
+            include_once('views/page_loanMoto.html');
         }
+        //
         elseif($itemVal=="loan_cell"){
-            include_once('view/page_loan_cell.html'); // add jimmy
+            include_once('views/page_loan_cell.html'); // add jimmy
             echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
         }
+        //
         elseif($itemVal=="loan_moto"){
-            include_once('view/page_loan_moto.html'); // add jimmy
+            include_once('views/page_loan_moto.html'); // add jimmy
             echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
         }
         else{
             //首頁(沒有目標頁面itemVal)
-//            include_once('view/slider.php');
-//            include_once('view/page_top.html');
-//            include_once('view/page_content.html');
+//            include_once('views/slider.php');
+//            include_once('views/page_top.html');
+//            include_once('views/page_content.html');
             include_once('views/_index.php');
         }
     }

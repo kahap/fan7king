@@ -248,9 +248,9 @@
                     <input class="form-check-input check4" type="checkbox" id="check4">
                     <label class="form-check-label agree" for="check4">
                         我已詳細閱讀並同意
-                        <a href="?item=fmFreeRespons" class="text-orange">免責聲明</a>、
-                        <a href="?item=fmServiceRules" class="text-orange">服務條款</a>、
-                        <a href="?item=fmPrivacy" class="text-orange">隱私權聲明</a>
+                        <a href="?item=fmFreeRespons" class="text-orange" target="_blank">免責聲明</a>、
+                        <a href="?item=fmServiceRules" class="text-orange" target="_blank">服務條款</a>、
+                        <a href="?item=fmPrivacy" class="text-orange" target="_blank">隱私權聲明</a>
                         等條款
                     </label>
                 </div>

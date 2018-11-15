@@ -61,9 +61,9 @@
     $p = new Product();
     $ps = new Period_Setting();
     $month = $ps->getAllPS();
-    $news = $pm->getAllNew();
-    $special = $pm->getAllSpecial();
-    $hot = $pm->getAllHot();
+    $news = $pm->getAllNew(12);
+    $special = $pm->getAllSpecial(12);
+    $hot = $pm->getAllHot(12);
 
     if($hot != "") {
         ?>
@@ -71,7 +71,7 @@
             <div class="container">
                 <div class="slick-title">
                     <h2 class="span-orange"><span>限時商品</span>TIME LIMIT</h2>
-                    <p class="text-right text-orange"><a href="#" class="" title="看更多限時商品">看更多&gt;&gt;</a></p>
+                    <p class="text-right text-orange"><a href="?item=category&pmSOO=hot" class="" title="看更多限時商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
                 <?php
@@ -131,7 +131,7 @@
             <div class="container">
                 <div class="slick-title">
                     <h2 class="span-yellow"><span>最新商品</span>NEW ARRIVE</h2>
-                    <p class="text-right text-orange"><a href="#" class="" title="看更多最新商品">看更多&gt;&gt;</a></p>
+                    <p class="text-right text-orange"><a href="?item=category&pmSOO=news" class="" title="看更多最新商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
                 <?php
@@ -192,7 +192,7 @@
             <div class="container">
                 <div class="slick-title">
                     <h2 class="span-pale"><span>精選商品</span>FEATURED</h2>
-                    <p class="text-right text-orange"><a href="#" class="" title="看更多精選商品">看更多&gt;&gt;</a></p>
+                    <p class="text-right text-orange"><a href="?item=category&pmSOO=special" class="" title="看更多精選商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
                     <?php

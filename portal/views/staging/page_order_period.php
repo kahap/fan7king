@@ -13,19 +13,33 @@
 <script type="text/javascript">
     $(function () {
         $('.address-zone').ajaddress({ city: "請選擇", county: "請選擇" });
-        if($(".memClass").val() == '0'){
-            // $(".memSchool").show();
-            // $(".chosen-container").show();
+        if($(".memclass").val() == '0'){
+            $(".memSchool").show();
+            $(".chosen-container").show();
             $(".memAccount").show();
         }else{
-            // $(".memSchool").hide();
-            // $(".department").hide();     //系別選擇
-            // $(".chosen-container").hide();
+            $(".memSchool").hide();
+            $(".chosen-container").hide();
             $(".memAccount").hide();
         }
         if($("input[name=orBusinessNumIfNeed]").val() == '0'){
             $("#orBusinessNumNumber").hide();
         }
+
+        // $('.address-zone').ajaddress({ city: "請選擇", county: "請選擇" });
+        // if($(".memClass").val() == '0'){
+        //     // $(".memSchool").show();
+        //     // $(".chosen-container").show();
+        //     $(".memAccount").show();
+        // }else{
+        //     // $(".memSchool").hide();
+        //     // $(".department").hide();     //系別選擇
+        //     // $(".chosen-container").hide();
+        //     $(".memAccount").hide();
+        // }
+        // if($("input[name=orBusinessNumIfNeed]").val() == '0'){
+        //     $("#orBusinessNumNumber").hide();
+        // }
     });
 </script>
 
@@ -118,15 +132,26 @@
                                 <label for="IdentKind" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身分別</label>
                                 <div class="col-sm-9">
                                     <select class="form-control memClass" id="IdentKind" name="memClass" >
-                                        <option value="0" <?php echo ($memberData[0]['memClass'] == 0) ? "selected":""; ?> selected>學生</option>
+                                        <option value="0" <?php echo ($memberData[0]['memClass'] == 0) ? "selected":""; ?> >學生</option>
                                         <option value="4" <?php echo ($memberData[0]['memClass'] == 4) ? "selected":""; ?> >非學生</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="memSchool" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校</label>
+                                <div class="col-sm-9">
+                                    <select id="memSchool" data-placeholder="Choose a Country..." class="form-control input chosen-select school" tabindex="2" name="school">
+                                        <option value="">請選擇</option>
+<!--                                        --><?php //foreach($school_data as $key => $value){ ?>
+<!--                                            <option value="--><?//=$value['schNo']?><!--">--><?//=$value['schName']?><!--</option>-->
+<!--                                        --><?// } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" required="required" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" />
+                                    <input type="text" required="required" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -201,6 +226,18 @@
                     <div class="section-order-title">身分資料</div>
                     <div class="row">
                         <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control" id="customFile">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
+                                <div class="col-sm-9">
+                                    <input type="file" class="form-control" id="customFile">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
@@ -287,26 +324,35 @@
                             </div>
                         </div>
                         <div class="col-lg-6">
-<!--                            <div class="form-group row">-->
-<!--                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange"></span>發證類別</label>-->
-<!--                                <div class="col-sm-9">-->
-<!--                                    <select class="form-control" id="IdentKind" name="orIdIssueType">-->
-<!--                                        <option selected value="--><?php //echo $or_data[0]['orIdIssueType']; ?><!--">--><?php //echo $or_data[0]['orIdIssueType']; ?><!--</option>-->
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
                             <div class="form-group row">
-                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange"></span>換補發類別</label>
+                                <label for="orIdIssuePlace" class="col-sm-3 col-form-label"><span class="text-orange"></span>發證地點</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="IdentKind" name="">
-                                        <option selected>換補發類別</option>
+                                    <select class="input form-control" id="orIdIssuePlace" name="orIdIssuePlace">
+                                        <option value="">請選擇</option>
+                                        <?php
+                                        foreach($IdPlace as $key => $value){
+                                            ?>
+                                            <option value="<?php echo $value; ?>"><?php echo $value; ?></option>
+                                            <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="orIdIssueType" class="col-sm-3 col-form-label"><span class="text-orange"></span>換補發類別</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" id="orIdIssueType" name="orIdIssueType">
+                                        <option value="初發" selected>初發</option>
+                                        <option value="補發">補發</option>
+                                        <option value="換發">換發</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="orAppApplierBirthAddrPostCode" class="col-sm-3 col-form-label"><span class="text-orange">*</span>戶籍地址</label>
                                 <div class="col-sm-9">
-                                    <div class="row">
+                                    <div class="row address-zone">
                                         <div class="col-4 mb-3">
                                             <input type="text" class="form-control" id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
                                         </div>
@@ -322,16 +368,12 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control orAppApplierBirthAddr" id="orAppApplierBirthAddr" name="orAppApplierBirthAddr" value="">
-                                    <div class="float-right m-1">
-                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="SameForNowAddr">
-                                        <label class="form-check-label" for="SameForNowAddr" >同現住地址</label>
-                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="memAddr" class="col-sm-3 col-form-label"><span class="text-orange">*</span>現住地址</label>
                                 <div class="col-sm-9">
-                                    <div class="row">
+                                    <div class="row address-zone">
                                         <div class="col-4 mb-3">
                                             <input type="text" class="form-control" id="memPostCode" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>" >
                                         </div>
@@ -347,6 +389,10 @@
                                         </div>
                                     </div>
                                     <input type="text" class="form-control memAddr" id="memAddr" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>">
+                                    <div class="float-right m-1">
+                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="SameForNowAddr">
+                                        <label class="form-check-label" for="SameForNowAddr" >同戶籍地址</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -440,12 +486,12 @@
                                     <input type="text" class="form-control" id="orAppApplierCreditIssueBank" name="orAppApplierCreditIssueBank" value="">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="ComPhone" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司市話</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="ComPhone" name="orAppApplierCompanyPhone" value="">
-                                </div>
-                            </div>
+<!--                            <div class="form-group row">-->
+<!--                                <label for="ComPhone" class="col-sm-3 col-form-label"><span class="text-orange"></span>公司市話</label>-->
+<!--                                <div class="col-sm-9">-->
+<!--                                    <input type="text" class="form-control" id="ComPhone" name="orAppApplierCompanyPhone" value="">-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <div class="form-group row">
                                 <label for="ComExtension" class="col-sm-3 col-form-label"><span class="text-orange"></span>信用卡有效期限</label>
                                 <div class="col-sm-9">
@@ -500,37 +546,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row address-zone">
                                 <label for="orReceiveAddr" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人地址</label>
                                 <div class="col-sm-9">
-<!--                                    <div class="row">-->
-<!--                                        <div class="col-4 mb-3">-->
-<!--                                            <input type="text" class="form-control" id="orReceiveAddrCode" name="orReceiveAddrCode">-->
-<!--                                        </div>-->
-<!--                                        <div class="col-4 mb-3">-->
-<!--                                            <select class="form-control">-->
-<!--                                                <option value="">請選擇</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-4 mb-3">-->
-<!--                                            <select class="form-control">-->
-<!--                                                <option value="">請選擇</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-                                    <input type="text" class="form-control" id="orReceiveAddr" name="orReceiveAddr" value=
-                                    "<?php
-                                    foreach($columnName as $key=>$value){
-                                        //只顯示
-                                        if($value["COLUMN_NAME"] == "orReceiveAddr") {
-                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
-                                        }
-                                    }
-                                    ?>">
-<!--                                    <div class="float-right m-1">-->
-<!--                                        <input class="form-check-input" type="checkbox" id="SameForNowAddr2" name="SameForNowAddr2">-->
-<!--                                        <label class="form-check-label" for="SameForNowAddr2" >同現住地址</label>-->
-<!--                                    </div>-->
+                                    <div class="row address-zone">
+                                        <div class="col-4 mb-3">
+                                            <input type="text" class="form-control" id="orReceiveAddrCode" name="orReceiveAddrCode">
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <select class="form-control city" id="city"">
+                                                <option value="">請選擇</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <select class="form-control county" id="county"">
+                                                <option value="">請選擇</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" id="orReceiveAddr" name="orReceiveAddr" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -829,7 +863,7 @@
     $(".orAppApplierCompany").hide();     //工作狀態
     $("#orAppApplierCreditstatus").hide();      //持有信用卡
     $("#orAppApplierCreditIssueBank").hide();      //信用卡銀行
-    $("#orBusinessNumNumber").hide();     //統一編號
+    $("#orBusinessNumNumber").attr("disabled","disabled");     //統一編號
     // $("#orBusinessNumTitle").hide();     //公司抬頭
     // $(".memother").hide();
     //身分別
@@ -844,11 +878,11 @@
 
         // memClass=0 是學生
         if(memClass_val == '0'){
-            // $(".memSchool").show();
+            $("#SchoolEmail").attr('disabled',false);
             // $(".chosen-container").show();
             $(".memAccount").show();
         }else{
-            // $(".memSchool").hide();
+            $("#SchoolEmail").attr('disabled',true);
             // $(".chosen-container").hide();
             // $("#default").hide();
             $(".memAccount").hide();
@@ -914,9 +948,9 @@
     //是否需要統一編號
     $("input[name=orBusinessNumIfNeed]").change(function(){
         if($('input[name=orBusinessNumIfNeed]:checked').val() == 1){
-            $("#orBusinessNumNumber").show();
+            $("#orBusinessNumNumber").removeAttr("disabled");
         }else{
-            $("#orBusinessNumNumber").hide();
+            $("#orBusinessNumNumber").attr("disabled","disabled");
         }
     });
     // checkbox:同現住電話
@@ -930,11 +964,11 @@
     // checkbox:同現住地址
     $("input[name=SameForNowAddr]").change(function(){
         if($('input[name=SameForNowAddr]:checked').val() == "on"){
-            $("input[name=orAppApplierBirthAddr]").val($("input[name=memAddr]").val());
-            $("input[name=orAppApplierBirthAddrPostCode]").val($("input[name=memPostCode]").val());
+            $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
+            $("input[name=memPostCode]").val($("input[name=orAppApplierBirthAddrPostCode]").val());
         }else{
-            $("input[name=orAppApplierBirthAddr]").val('');
-            $("input[name=orAppApplierBirthAddrPostCode]").val('');
+            $("input[name=memAddr]").val('');
+            $("input[name=memPostCode]").val('');
         }
     });
     //同申請人現住資料

@@ -421,7 +421,7 @@
 		}
 		
 		//依據最新取得該商品並且group
-		public function getAllNew(){
+		public function getAllNew($a=99999999){
 			$sql = "select
 						*
 					from
@@ -438,13 +438,13 @@
 						`product`.`proNo`
 					order by
 						`product_manage`.`pmUpDate` desc
-					limit 14	";
+					limit 0,".$a;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//依據精選取得該商品並且group
-		public function getAllSpecial(){
+		public function getAllSpecial($a=99999999){
 			$sql = "select
 						*
 					from
@@ -465,13 +465,13 @@
 						`product`.`proNo`
 					order by
 						`product_manage`.`pmSpecialOrder` asc
-					limit 14	";
+					limit 0,".$a;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//依據限時取得該商品並且group
-		public function getAllHot(){
+		public function getAllHot($a=99999999){
 			$sql = "select
 						*
 					from
@@ -492,7 +492,7 @@
 						`product`.`proNo`
 					order by
 						`product_manage`.`pmHotOrder` asc
-					limit 14";
+					limit 0,".$a;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}

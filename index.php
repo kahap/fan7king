@@ -95,15 +95,15 @@
 
                 //免責聲明、 服務條款、 隱私權聲明等條款
                 case "fmFreeRespons":
-                    echo '<p align="center"> 此功能還未開放</p>';
+//                    echo '<p align="center"> 此功能還未開放</p>';
                     include_once('portal/views/other/fmFreeRespons.php');
                 break;
                 case "fmServiceRules":
-                    echo '<p align="center"> 此功能還未開放</p>';
+//                    echo '<p align="center"> 此功能還未開放</p>';
                     include_once('portal/views/other/fmServiceRules.php');
                     break;
                 case "fmPrivacy":
-                    echo '<p align="center"> 此功能還未開放</p>';
+//                    echo '<p align="center"> 此功能還未開放</p>';
                     include_once('portal/views/other/fmPrivacy.php');
                     break;
 
@@ -500,13 +500,13 @@
 
         //免責聲明、 服務條款、 隱私權聲明等條款
         elseif($itemVal=="fmFreeRespons"){
-            echo '<p align="center"> 此功能還未開放</p>';
+//            echo '<p align="center"> 此功能還未開放</p>';
             include_once('portal/views/other/fmFreeRespons.php');
         }elseif($itemVal=="fmServiceRules"){
-            echo '<p align="center"> 此功能還未開放</p>';
+//            echo '<p align="center"> 此功能還未開放</p>';
             include_once('portal/views/other/fmServiceRules.php');
         }elseif($itemVal=="fmPrivacy"){
-            echo '<p align="center"> 此功能還未開放</p>';
+//            echo '<p align="center"> 此功能還未開放</p>';
             include_once('portal/views/other/fmPrivacy.php');
         }
 
