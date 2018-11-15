@@ -83,9 +83,18 @@
         //     $itemVal = "member_center" ;
         //     $actionVal = "member_idnum" ;
         // }
-
+            echo $itemVal." ".$itemVal;
         if($itemVal != ""  ){
             switch($itemVal){
+                case "register2":
+                    include_once('portal/views/register/register-2.php');
+                    break;
+                case "register3":
+                    include_once('portal/views/register/register-3.php');
+                    break;
+                case "register4":               
+                    include_once('portal/views/register/register-4.php');
+                    break;
 				case "loading":
 					include('portal/views/page_loading.html');
 				break;
@@ -359,8 +368,7 @@
     						break;
 
                         //會員資料
-                        default:
-                            echo $itemVal."  ".$actionVal;
+                        default:                            
                             include('portal/views/member/member-info.php');
     						break;
                     }
@@ -441,17 +449,9 @@
                     break;
                 case "information_edit":
                     include_once('portal/views/member/page_member_information.html');
-                    break;
-                    
-                case "register2":
-                    include_once('portal/views/register/register-2.php');
-                    break;
-                case "register3":
-                    include_once('portal/views/register/register-3.php');
-                    break;
-                case "register4":               
-                    include_once('portal/views/register/register-4.php');
-                    break;
+                    break;                    
+
+                
 
                 default:
                     $Front_Manage = new Front_Manage();
