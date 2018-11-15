@@ -40,6 +40,7 @@
             $_SESSION['user']['memNo'] = $mem_data['memNo'];
             $_SESSION['user']['memIdNum'] = $mem_data['memIdNum'];
             $_SESSION['user']['memClass'] = $mem_data['memClass'];
+            $_SESSION['user']['fb_token'] = $mem_data['fb_token'];
         } else {
             echo "<script>alert('連結已經失效'); location.href='index.php?item=login';</script>";
         }
