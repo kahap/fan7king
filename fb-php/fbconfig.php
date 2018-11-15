@@ -50,7 +50,7 @@ if ( isset( $accessToken ) ) {
             {
                 $_SESSION['user']['memIdNum'] = $member_data['memIdNum'];
                 if($member_data['edit'] == '0' && $Iforder == '' && empty($_SESSION['user']['memClass'])){
-                    header("Location: ../index.php?item=information_edit");
+                    header("Location: ../index.php?item=register2");
                 }else{
 					header("Location: ../index.php".$str);
                 }
