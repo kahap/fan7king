@@ -81,7 +81,7 @@
                 success:function(result){
                     var J = JSON.parse(result);
                     if (J.data) {
-                        location.href="?item=login";
+                        location.href="?item=member_center&action=member_idnum_edit";
                     }else{
                         alert(J.message);
                     }
