@@ -88,20 +88,20 @@ $_SESSION['pro'] = $proNo;
                                 if($value != ""){
                                     ?>
                                     <div>
-                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid"/>
+                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" />
                                     </div>
                                     <?php
                                 }
                             }
                             ?>
                         </div>
-                        <div class="img-thumbs">
+                        <div class="img-thumbs row">
                             <?php
                             foreach($img as $key => $value){
                                 if($value != ""){
                                     ?>
-                                    <div>
-                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" style="width: 71px; height: 71px;"/>
+                                    <div class="col-2">
+                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" />
                                     </div>
                                     <?php
                                 }

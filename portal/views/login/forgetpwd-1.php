@@ -7,7 +7,7 @@
                     <div class="col">
                         <div class="section-inner bg-white">
                             <h2><span>輸入手機號碼以傳送簡訊驗證碼</span></h2>
-                            <p class="text-center text-orange text-errmsg">輸入手機號碼以傳送簡訊驗證碼 / 手機號碼格式錯誤</p>
+                            <p class="text-center text-orange text-errmsg">輸入手機號碼以傳送簡訊驗證碼<div class="err"> / 手機號碼格式錯誤</div></p>
                             <form action="#" class="form">
                                 <div class="row justify-content-center">
                                     <div class="col-lg-8">
@@ -31,6 +31,7 @@
     </main>
 
     <script>
+        $('.err').hide();
         $(".reset_email").click(function(){
             var memAccount = $('.memAccount').val();
             if(memAccount != ''){

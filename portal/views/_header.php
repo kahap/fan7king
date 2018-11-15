@@ -59,7 +59,9 @@
 <!--	<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<link rel="icon" href="assets/data/page_icon.png">
     <script type='text/javascript' src='portal/assets/lib/jquery/jquery-1.11.2.min.js'></script>
-<!--    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />-->
+
+
+    <!--    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />-->
     <link rel="stylesheet" type="text/css" href="portal/assets/lib/font-awesome/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="portal/assets/lib/select2/css/select2.min.css" />
     <link rel="stylesheet" type="text/css" href="portal/assets/lib/jquery.bxslider/jquery.bxslider.css" />
@@ -67,25 +69,19 @@
     <link rel="stylesheet" type="text/css" href="portal/assets/lib/fancyBox/jquery.fancybox.css" />
     <link rel="stylesheet" type="text/css" href="portal/assets/lib/jquery-ui/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="portal/assets/css/animate.css" />
-    <link rel="stylesheet" type="text/css" href="portal/assets/css/reset.css" />
+<!--    <link rel="stylesheet" type="text/css" href="portal/assets/css/reset.css" />-->
     <link rel="stylesheet" type="text/css" href="portal/assets/css/style.css" />
     <link rel="stylesheet" type="text/css" href="portal/assets/css/responsive.css" />
+
+    <link type="text/css" rel="stylesheet" href="portal/assets/css/waitMe.css">
+    <script src="portal/assets/js/waitMe.js"></script>
+
 
 
     <link rel="stylesheet" href="portal/assets/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="portal/assets/slick/slick.css" />
     <link rel="stylesheet" href="portal/assets/theme/css/theme.css" />
-    <style>
-        /*.card_1 {border:none;box-shadow:0 5px 6px 0 rgba(0,0,0,.16);border-radius:0;height:97%;margin:0 .5rem;padding-bottom:18px}*/
-        .card_1{border:none;height:200px;text-align:center;background-image:linear-gradient(to left,transparent,transparent 50%,#f8f8f8 50%,#f8f8f8);background-position:100% 0;background-size:200% 100%;transition:all .25s ease-in}
-        .card_1:hover{background-position:0 0}
-        .btn-group-toggle label.btn {
-            margin-top: 10px;
-        }
-    </style>
 
-    <link type="text/css" rel="stylesheet" href="portal/assets/css/waitMe.css">
-    <script src="portal/assets/js/waitMe.js"></script>
 
 </head>
 <body class="home">
@@ -207,13 +203,13 @@
                                 </div>
                             </li>
                             <li class="list-inline-item xs-none">
-                                <a class="facebook" href="http://www.facebook.com/sharer.php?u=http://<?=DOMAIN?>/index.php%3Fshare%3D<?php echo $_SESSION['user']['memNo'] ?>" target="_blank">
-                                    <img src="portal/assets/images/fb_share.png"/>
-                                </a>
-<!--                                <a class="facebook" href="#" title="追蹤Nowait">追蹤Nowait</a>-->
+<!--                                <a class="facebook" href="http://www.facebook.com/sharer.php?u=http://--><?//=DOMAIN?><!--/index.php%3Fshare%3D--><?php //echo $_SESSION['user']['memNo'] ?><!--" target="_blank">-->
+<!--                                    <img src="portal/assets/images/fb_share.png"/>-->
+<!--                                </a>-->
+                                <a class="facebook" href="#" title="追蹤Nowait">追蹤Nowait</a>
                             </li>
                             <li class="list-inline-item xs-show">
-<!--                                <a class="logout" href="#" title="登　　出">登　　出</a>-->
+                                <a class="logout" href="#" title="登　　出">登　　出</a>
                             </li>
                         </ul>
                     </div>

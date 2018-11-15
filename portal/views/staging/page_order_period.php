@@ -784,7 +784,7 @@
                     <input class="form-check-input" type="checkbox" name="agree" id="HaveCredit2" value="1">
                     <label class="form-check-label" for="HaveCredit2">
                         申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）
-                        <a class="text-orange secure" title="甚麼是保密照會？">甚麼是保密照會？</a>
+                        <a class="text-orange secure" title="甚麼是保密照會？" href="#">甚麼是保密照會？</a>
                     </label>
                 </div>
                 <div class="section-staging">
