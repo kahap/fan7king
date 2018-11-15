@@ -73,7 +73,8 @@
                 var form ={
                     "phoneNumber":cell,
                     "token":"",
-                    "time":date_format_str
+                    "time":date_format_str,
+                    "type":"regist"                    
                 }
                 $.ajax({
                     url:url,
@@ -81,9 +82,15 @@
                     data:form,
                     datatype:"json",
                     success:function(result){
+                        var J = JSON.parse(result);
+                        if (J.data) {
+                            location.href="?item=register3"+str;
+                        }else{
+                            alert(J.message);
+                        }
                     }                    
                 });
-                location.href="?item=register3"+str;
+                
             }else{
                 alert("請勾選同意條款");
                 $("input[name='check']").val('');

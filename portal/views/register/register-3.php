@@ -68,14 +68,21 @@
         var form ={
             "phoneNumber":cell,
             "token":"",
-            "time":date_format_str
+            "time":date_format_str,
+            "type":"regist"
         }
         $.ajax({
             url:url,
             type:"POST",
             data:form,
             datatype:"json",
-            success:function(result){
+            success:function(result){                
+                var J = JSON.parse(result);
+                if (J.data) {
+                    
+                }else{
+                    alert(J.message);
+                }
             }                    
         });
     })
