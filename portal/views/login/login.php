@@ -69,7 +69,7 @@
 
     $helper = $fb->getRedirectLoginHelper();
     $permissions = ['email'];
-    $loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/fb-php/fbconfig.php', $permissions);
+    $loginUrl = $helper->getLoginUrl('https://nowait.kahap.com/fb-php/fbconfig.php', $permissions);
 ?>
     <main role="main">
         <h1><span>登入</span><small>login</small></h1>

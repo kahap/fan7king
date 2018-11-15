@@ -110,7 +110,7 @@
     						break;
 
                         case "member_idnum":
-                            include('portal/views/member/page_member_idnum_edit.html');
+                            include('views/member/page_member_idnum_edit.html');
                             break;
 
                         case "fb_edit":
