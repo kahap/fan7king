@@ -1,20 +1,39 @@
-<style>
-    .product-name{
-        display: inline-block;
-        vertical-align: middle;
-        width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-</style>
+
+
 <main role="main">
     <section>
         <div class="container">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">NoWait</a></li>
                 <?php
-                $brand = new Brand();
+
+                    /******************** page *******************/
+                    if($_GET['c'] != "")
+                    {
+                        $page_url = '?item=category&c='. $_GET['c'];
+                        if($_GET['bino'] != ""){
+                            $page_url = '?item=category&c='. $_GET['c'] . "&bino=" . $_GET['bino'];
+                        }
+                    }
+                    elseif($_GET['b'] != "")
+                    {
+                        $page_url = '?item=category&b='. $_GET['b'] . "&type=" . $_GET['c'];
+                        if($_GET['type'] != ""){
+                            $page_url = '?item=category&b='. $_GET['b'] . "&type=" . $_GET['type'];
+                            if($_GET['bino'] != ""){
+                                $page_url = '?item=category&b='. $_GET['b'] . "&type=" . $_GET['type'] . "&bino=" . $_GET['bino'];
+                            }
+                        }else{
+                            $page_url = '?item=category&b='. $_GET['b'] . "&type=" . $_GET['c'] . "&bino=" . $_GET['bino'];
+                        }
+                    }
+
+                    $page = isset($_GET['paginate'])? $_GET['paginate'] : 1;
+                    /******************** page *******************/
+
+
+                $brand = new Brand();   //品牌
+                $b_item = new B_items();    //品項
                 $product = new Product();
                 if($_GET['type'] != ''){
                     echo "<span class='navigation-pipe'></span>";
@@ -83,7 +102,7 @@
                                             if(in_array($value['braNo'],$show_brand)){
 //                                                echo "<li class='".$active."'><span></span><a href='?item=category&b=".$value['braNo']."&type=".$_GET['c']."'>".$value['braName']."</a></li>";
                                                 ?>
-                                                <a href="?item=category&b=<?php echo $value['braNo']."&type=".$_GET['c'];?>" class="list-group-item list-group-item-action <?php echo $active;?>">
+                                                <a href="?item=category&b=<?php echo $value['braNo']."&c=".$_GET['c'];?>" class="list-group-item list-group-item-action <?php echo $active;?>">
                                                     <?php echo $value['braName'];?>
                                                 </a>
                                                 <?php
@@ -110,20 +129,51 @@
                         <p class="product-pick br-b-gray">
                             <span class="io io-list"></span>品項
                             <span class="nowait-tag orange">
-                                <a href="#" title="手機">手機</a>
-                                <a href="#" title="平板" class="active">平板</a>
-                                <a href="#" title="10吋以上大螢幕手機">10吋以上大螢幕手機</a>
-                                <a href="#" title="大螢幕老人機">大螢幕老人機</a>
+                                <?php
+                                $b_item_data = $b_item->getAllItems();
+                                foreach($b_item_data as $key => $value){
+                                    @$active = ($value['biNo'] == $_GET['bino']) ? ' class="active"':'';
+                                    if($_GET['c'] != ""){
+//                                            if(in_array($value['braNo'],$show_brand)){
+//                                                echo "<li class='".$active."'><span></span><a href='?item=category&b=".$value['braNo']."&type=".$_GET['c']."'>".$value['braName']."</a></li>";
+                                            ?>
+                                            <a href="?item=category&bino=<?php echo $value['biNo']."&c=".$_GET['c'];?>" title="" <?php echo $active;?> >
+                                                <?php echo $value['biName'];?>
+                                            </a>
+                                            <?php
+//                                            }
+                                    }elseif($_GET['type'] != ""){
+//                                            if(in_array($value['braNo'],$show_brand)){
+//                                                echo "<li class='".$active."'><span></span><a href='?item=category&b=".$value['braNo']."&type=".$_GET['type']."'>".$value['braName']."</a></li>";
+                                            ?>
+                                            <a href="?item=category&bino=<?php echo $value['biNo']."&type=".$_GET['type'];?>" title="" <?php echo $active;?> >
+                                                <?php echo $value['biName'];?>
+                                            </a>
+                                            <?php
+//                                            }
+                                    }
+                                }
+                                ?>
+                                <?php
+//                                foreach ($b_item_data as $item){
+//                                    ?>
+<!--                                    --><?php
+//                                }
+                                ?>
+<!--                                <a href="#" title="手機">手機</a>-->
+<!--                                <a href="#" title="平板" class="active">平板</a>-->
+<!--                                <a href="#" title="10吋以上大螢幕手機">10吋以上大螢幕手機</a>-->
+<!--                                <a href="#" title="大螢幕老人機">大螢幕老人機</a>-->
                             </span>
                         </p>
-                        <p class="product-pick">
-                            <span class="io io-order"></span>排序
-                            <span class="nowait-tag">
-                                <a href="#" title="依熱銷度">依熱銷度</a>
-                                <a href="#" title="價格低者優先">價格低者優先</a>
-                                <a href="#" title="依商品上架時間">依商品上架時間</a>
-                            </span>
-                        </p>
+<!--                        <p class="product-pick">-->
+<!--                            <span class="io io-order"></span>排序-->
+<!--                            <span class="nowait-tag">-->
+<!--                                <a href="#" title="依熱銷度">依熱銷度</a>-->
+<!--                                <a href="#" title="價格低者優先">價格低者優先</a>-->
+<!--                                <a href="#" title="依商品上架時間">依商品上架時間</a>-->
+<!--                            </span>-->
+<!--                        </p>-->
 
                         <h1 class="pd-less">
                             <span>
@@ -142,43 +192,59 @@
                                 }
                             }
 
-                            /***********************/
-                            if($_GET['c'] != ""){
-                                $page_url = '?item=category&c='. $_GET['c'];
-                            }elseif($_GET['b'] != ""){
-                                $page_url = '?item=category&b='. $_GET['b'] . "&type=" . $_GET['c'];
-                                if($_GET['type'] != ""){
-                                    $page_url = '?item=category&b='. $_GET['b'] . "&type=" . $_GET['type'];
-                                }
-                            }
-                            $page = isset($_GET['paginate'])? $_GET['paginate'] : 1;
-                            /***********************/
-                            ?>
-                            </span>
-                        </h1>
-                        <div class="grid-list-view text-right">
-                            <button class="grid-view text-hide on">grid</button>
-                            <button class="list-view text-hide">list</button>
-                        </div>
-                        <div class="product-list card-deck view-grid">
-                            <div class="row">
 
-                            <?php
                             $pm = new Product_Manage();
                             $p = new Product();
                             $ps = new Period_Setting();
                             $pp = new Product_Period();
                             $month = $ps->getAllPS();
 
-                            $totalProData = $pm->getAllPM_forCategoryCount();
 
-                            $amount = ($totalProData<1000) ? 999999 : 100;   //若總數大於999，做分頁(100 amount/page)
-                            $pm_data = $pm->getAllPM_forCategory( ($page-1)*$amount, $amount );
-                            $totalProData = $pm->getAllPM_forCategoryCount();
-                            $lastPage = ceil($totalProData/$amount);
+//                            $totalData = $pm->getAllPM_forCategoryCount();
+//                            $lastPage = ceil($totalData/$amount);
+//                            $amount = ($totalData<1000) ? 999 : 30;   //若總數大於999，做分頁(100 amount/page)
+//                            $pm_data = $pm->getAllPM_forCategory( ($page-1)*$amount, $amount );
+                            $pm_data = $pm->getAllPM_forCategory();
 
-                            foreach(@$pm_data as $key => $value){
+
+                            ?>
+                            </span>
+                        </h1>
+
+<!--                        <ul class="pagination justify-content-center flex-wrap">-->
+<!--                            --><?php //if ($page>1){ ?>
+<!--                                <li class="page-item"><a class="page-link" href="--><?php //echo $page_url;?><!--&paginate=--><?php //echo 1;?><!--">&lt;</a></li>-->
+<!--                            --><?php //}
+//                            $num=3;
+//                            for ($i=1; $i<=$lastPage; $i++) {
+//                                if ($i>$page+$num || $i<$page-$num)continue;
+//                                ?>
+<!--                                <li class="page-item --><?php //if ($page==$i)echo 'active';?><!--">-->
+<!--                                    <a class="page-link" href="--><?php //echo $page_url;?><!--&paginate=--><?php //echo $i;?><!--">-->
+<!--                                        --><?php //echo $i;?>
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                --><?php
+//                            }
+//                            if ($page<$lastPage){ ?>
+<!--                                <li class="page-item"><a class="page-link" href="--><?php //echo $page_url;?><!--&paginate=--><?php //echo $lastPage;?><!--">&gt;</a></li>-->
+<!--                            --><?php //} ?>
+<!--                            <li class="page-item">總共 --><?php //echo $totalData;?><!-- 筆商品</li>-->
+<!--                        </ul>-->
+
+                        <div class="grid-list-view text-right">
+                            <button class="grid-view text-hide on">grid</button>
+                            <button class="list-view text-hide">list</button>
+                        </div>
+                        <div class="product-list card-deck view-grid">
+                            <div class="row content">
+                            <?php
+
+                            foreach($pm_data as $key => $value){
                                 if($value['catNo'] == $cat_number[$_GET['c']] && $_GET['c'] != ""){
+
+                                    if (isset($_GET['bino']) && $value['biNo'] != $_GET['bino'])continue;
+
                                     $p_contetn = $p->getOneProByNoWithoutImage($value['proNo']);
                                     $img = json_decode($p_contetn[0]['proImage']);
                                     $img[0] = ($img[0] !="") ? "admin/".$img[0]:"admin/".$img[1];
@@ -214,7 +280,12 @@
                                     <div class="item col-lg-4 col-6">
                                         <div class="card">
                                             <a href="?item=product&pro=<?php echo $value['proNo'];?>" title="<?php echo $value['proName'];?>">
-                                                <img src="<?php echo $img[0];?>" class="img-fluid" alt="<?php echo $value['proName'];?>">
+                                                <?php //修理圖片路徑
+                                                $image = $img[0];
+                                                $image = str_replace('../','',$image);
+                                                $image = str_replace('admin/admin/','admin/',$image);
+                                                ?>
+                                                <img src="<?php echo $image;?>" class="img-fluid" alt="<?php echo $value['proName'];?>">
                                                 <div class="card-body">
                                                     <p class="card-title">
                                                         <a href="?item=product&pro=<?php echo $value['proNo'];  ?>"><?php echo $value['proName'];?></a>
@@ -270,7 +341,12 @@
                                     <div class="item col-lg-4 col-6">
                                         <div class="card">
                                             <a href="?item=product&pro=<?php echo $value['proNo'];?>" >
-                                                <img src="<?php echo $img[0];?>" class="img-fluid" alt="product">
+                                                <?php //修理圖片路徑
+                                                $image = $img[0];
+                                                $image = str_replace('../','',$image);
+                                                $image = str_replace('admin/admin/','admin/',$image);
+                                                ?>
+                                                <img src="<?php echo $image;?>" class="img-fluid" alt="product">
                                                 <div class="card-body">
                                                     <p class="card-title"><?php echo $value['proName'];?></p>
                                                     <p class="nowait-badge text-left">
@@ -292,25 +368,6 @@
 
                             </div>
                         </div>
-                        <ul class="pagination justify-content-center flex-wrap">
-                            <?php if ($page>1){ ?>
-                            <li class="page-item"><a class="page-link" href="<?php echo $page_url;?>&paginate=<?php echo $page-1;?>">&lt;</a></li>
-                            <?php } ?>
-                            <?php
-                            for ($i=1; $i<=$lastPage; $i++) {
-                                ?>
-                                <li class="page-item <?php if ($page==$i)echo 'active';?>">
-                                    <a class="page-link" href="<?php echo $page_url;?>&paginate=<?php echo $i;?>">
-                                        <?php echo $i;?>
-                                    </a>
-                                </li>
-                                <?php
-                            }
-                            ?>
-                            <?php if ($page<$lastPage){ ?>
-                            <li class="page-item"><a class="page-link" href="<?php echo $page_url;?>&paginate=<?php echo $page+1;?>">&gt;</a></li>
-                            <?php } ?>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -322,3 +379,4 @@ include_once ('portal/views/_page_service.php');
 ?>
 
 </main>
+

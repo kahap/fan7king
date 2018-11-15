@@ -4,8 +4,15 @@
     $memOrigData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
     $member->changeToReadable($memberData[0]);
 
+
+    $page = isset($_GET["paginate"])? $_GET["paginate"] : 1;
+    $amount = 10;
+    $page_url = "?item=member_center&action=order";
+
     $or = new Orders();
-    $orMemData = $or->getOrByMemberAndMethod($_SESSION['user']['memNo'],1);
+    $orMemData = $or->getOrByMemberAndMethod($_SESSION['user']['memNo'],1, ($page-1)*$amount, $amount );     // p=0 , a=30
+    $totalData = $or->getOrByMemberAndMethodCount($_SESSION['user']['memNo'],1);
+    $lastPage = ceil($totalData/$amount);
 
     $pm = new Product_Manage();
     $pro = new Product();
@@ -35,17 +42,20 @@
                                         <th nowrap="nowrap">訂單編號</th>
                                         <th nowrap="nowrap">訂單日期</th>
                                         <th nowrap="nowrap">商品名稱</th>
-                                        <th nowrap="nowrap">商品規格</th>
-                                        <th nowrap="nowrap">商品型號</th>
+<!--                                        <th nowrap="nowrap">商品規格</th>-->
+<!--                                        <th nowrap="nowrap">商品型號</th>-->
                                         <th nowrap="nowrap">訂單狀態</th>
+<!--                                        <th nowrap="nowrap"></th>-->
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php
                                 $order_status = array('未完成下單','取消訂單');
                                 if($orMemData != null){
+                                    //系統其他設定
                                     $os = new Other_Setting();
                                     $osData = $os->getAll();
+
                                     foreach($orMemData as $key=>$value) {
                                         $curTIme = strtotime($value["orDate"]) + $osData[0]["orderLimitDays"] * 86400;
                                         if (($curTIme >= time() && in_array($value["orStatus"], $order_status)) || (!in_array($value["orStatus"], $order_status))) {
@@ -63,13 +73,14 @@
                                                 </td>
                                                 <td data-th="訂單日期" nowrap="nowrap"><?php echo $value["orDate"]; ?></td>
                                                 <td data-th="商品名稱"><?php echo $proData[0]["proName"]; ?></td>
-                                                <td data-th="商品規格"
-                                                    nowrap="nowrap"><?php echo $value["orProSpec"]; ?></td>
-                                                <td data-th="商品型號" nowrap="nowrap"></td>
+<!--                                                <td data-th="商品規格" nowrap="nowrap">--><?php //echo $value["orProSpec"]; ?><!--</td>-->
+<!--                                                <td data-th="商品型號" nowrap="nowrap"></td>-->
                                                 <td data-th="狀態" nowrap="nowrap">
                                                     <?php
                                                     if ($value["orStatus"] == '出貨中') {
-                                                        echo $value["orHandleTransportSerialNum"] != "" ? '<a style="text-decoration:underline;color:blue;" href="?item=member_center&action=purchase&orno=' . $value["orNo"] . '">出貨中</a>' : "備貨中";
+                                                        echo $value["orHandleTransportSerialNum"] != "" ?
+                                                            '<a style="text-decoration:underline;color:blue;" href="?item=member_center&action=purchase&orno=' . $value["orNo"] . '">出貨中</a>' :
+                                                            "備貨中";
                                                     } else {
                                                         if ($value["orStatus"] == '資料不全需補件') {
                                                             echo "<a style='text-decoration:underline;color:blue;' href='?item=member_center&action=order_edit&method=1&orno=" . $value["orNo"] . "&front_mange=1'>" . $value["orStatus"] . "</a>";
@@ -79,6 +90,13 @@
                                                     }
                                                     ?>
                                                 </td>
+<!--                                                <td>-->
+<!--                                                    --><?php //if($value["orIfEditable"] == '0' or $value["orStatus"] == '待補'){
+//                                                        if($value["orStatus"] != '取消訂單' && $value["orStatus"] != '已完成' && $value["orStatus"] != '審查中'){
+//                                                            echo "<a href='?item=member_center&action=order_edit&method=1&orno=".$value["orNo"]."&front_mange=1'>編輯</a>";
+//                                                        }
+//                                                    } ?>
+<!--                                                </td>-->
                                             </tr>
                                             <?php
                                         }
@@ -94,6 +112,25 @@
                                 </tbody>
                             </table>
                         </div>
+                        <ul class="pagination justify-content-center flex-wrap">
+                            <?php if ($page>1){ ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo $page_url;?>&paginate=<?php echo 1;?>">&lt;</a></li>
+                            <?php }
+                            $num=3;
+                            for ($i=1; $i<=$lastPage; $i++) {
+                                if ($i>$page+$num || $i<$page-$num)continue;
+                                ?>
+                                <li class="page-item <?php if ($page==$i)echo 'active';?>">
+                                    <a class="page-link" href="<?php echo $page_url;?>&paginate=<?php echo $i;?>">
+                                        <?php echo $i;?>
+                                    </a>
+                                </li>
+                                <?php
+                            }
+                            if ($page<$lastPage){ ?>
+                                <li class="page-item"><a class="page-link" href="<?php echo $page_url;?>&paginate=<?php echo $lastPage;?>">&gt;</a></li>
+                            <?php } ?>
+                        </ul>
                     </div>
                 </div>
             </div>

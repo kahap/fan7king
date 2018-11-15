@@ -108,7 +108,7 @@
 		}
 		
 		//根據會員取得訂單
-		public function getOrByMemberAndMethod($memNo,$orMethod){
+		public function getOrByMemberAndMethod($memNo,$orMethod, $p=0,$a=30){
 			$sql = "select
 						*
 					from
@@ -117,10 +117,25 @@
 						`memNo`=".$memNo."
 					and
 						`orMethod` = ".$orMethod."
-					order by orDate desc";
+					order by orDate desc 
+					limit ".$p.",".$a;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        //根據會員取得訂單Count
+        public function getOrByMemberAndMethodCount($memNo,$orMethod){
+            $sql = "select
+						count(`orNo`) as `count` 
+					from
+						`orders`
+					where
+						`memNo`=".$memNo."
+					and
+						`orMethod` = ".$orMethod;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
+        }
 		
 		//根據會員取得一筆訂單
 		public function getOnlyOrByMemberAndMethod($memNo,$orMethod){
