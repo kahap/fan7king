@@ -22,10 +22,12 @@
         $member->getWithWhereAndJoinClause();
         $apData = $member->getData();
         $memNo = $apData[0]["memNo"];    
-
-        $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
-        $api->customSql($sql);
-        $api->setInformation(TRUE, 1, 1, "密碼設定成功");
+        if ($memNo!="") {
+            $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
+            $api->customSql($sql);
+            $api->setInformation(TRUE, 1, 1, "密碼設定成功");
+        }
+        
     }else if($type=="forget"){
         $sql = "UPDATE member SET memPwd='".$password."' WHERE memCell='".$memCell."' ";
         $api->customSql($sql);

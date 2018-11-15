@@ -62,7 +62,7 @@
         var password = $('input[id=form-pwd]').val();
         var checkPassword = $('input[id=form-checkpwd]').val();
         var isStudent = (document.getElementById("FieldsetCheck").checked)?"0":"4";
-        var token ='<?php echo $_SESSION['user']["fb_access_token"];?>';
+        var token ='<?php echo $_SESSION['user']['fb_token'];?>';
         if (password!="" && password == checkPassword) {
             var url = "API/set_password";
             var cell = '<?php echo $_POST['phoneNumber'];?>';
@@ -73,24 +73,25 @@
                 "memClass":isStudent,
                 "type":"WebRegist"
             }
-            $.ajax({
-                url:url,
-                type:"POST",
-                data:form,
-                datatype:"json",
-                success:function(result){
-                    var J = JSON.parse(result);
-                    if (J.data) {
-                        location.href="?item=member_center&action=member_idnum_edit";
-                    }else{
-                        alert(J.message);
-                    }
+            alert(JSON.stringify(form));
+            // $.ajax({
+            //     url:url,
+            //     type:"POST",
+            //     data:form,
+            //     datatype:"json",
+            //     success:function(result){
+            //         var J = JSON.parse(result);
+            //         if (J.data) {
+            //             location.href="?item=member_center&action=member_idnum_edit";
+            //         }else{
+            //             alert(J.message);
+            //         }
                     
-                },
-                error:function(){
+            //     },
+            //     error:function(){
                     
-                }
-            });
+            //     }
+            // });
         }else{
             alert("新設密碼和再次確認密碼請設定一樣");
         }

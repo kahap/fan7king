@@ -85,6 +85,7 @@ if ( isset( $accessToken ) ) {
 	}
 	$accessToken = @$session->getToken();
 	$_SESSION['user']["fb_access_token"] = (string) $accessToken;
+	$_SESSION['user']['fb_token'] = $fbid;
 } else {
 	$scope = array('email', 'user_friends','public_profile', 'user_birthday','user_location','user_link');
 	$loginUrl = $helper->getLoginUrl($scope);

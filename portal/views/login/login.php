@@ -185,6 +185,7 @@
                 },
 
                 error:function(xhr, ajaxOptions, thrownError){
+                    aler("fffffffff");
                     alert(xhr.status);
                     alert(thrownError);
                 }
