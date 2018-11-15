@@ -441,13 +441,13 @@
                 case "information_edit":
                     include_once('portal/views/member/page_member_information.html');
                     break;
-                case "register2"
+                case "register2":
                     include_once('portal/views/register/register-2.php');
                     break;
-                case "register3"
+                case "register3":
                     include_once('portal/views/register/register-3.php');
                     break;
-                case "register4"                
+                case "register4":               
                     include_once('portal/views/register/register-4.php');
                     break;
 
