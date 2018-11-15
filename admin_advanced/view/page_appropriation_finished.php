@@ -91,7 +91,7 @@ $(function(){
 				"aauNoService":<?php echo $_SESSION['adminUserData']['aauNo']; ?>
 				};
 				
-			var url = "http://35.201.230.202:55501/api-bop/produce-barcode";
+			var url = "ajax/appropriation/confirm_appropriation_updata.php"
 			
 			$.ajax({
 				url:url,

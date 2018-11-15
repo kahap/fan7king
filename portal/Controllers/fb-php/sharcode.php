@@ -8,7 +8,7 @@ $helper = $fb->getRedirectLoginHelper();
 //friend後面那些，需要詢問權限
 $permissions = ['email'];
 $loginUrl = $helper->getLoginUrl('https://test.nowait.shop/fb-php/fbconfig.php', $permissions);
-	$_SESSION['user']['sharcode'] = $_GET['sharcode'];
-	header('Location: '.$loginUrl);
+$_SESSION['user']['sharcode'] = $_GET['sharcode'];
+header('Location: '.$loginUrl);
 
 ?>
