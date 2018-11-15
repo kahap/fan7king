@@ -125,7 +125,7 @@
                             include('portal/views/page_member_edit.html');
     						break;
                         case "member_idnum":
-                            include('portal/views/page_member_idnum_edit.html');
+                            include('portal/views/member/page_member_idnum_edit.html');
                             break;
                         case "fb_edit":
                             include_once('portal/views/page_member_fbedit.html');
