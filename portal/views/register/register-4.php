@@ -1,4 +1,6 @@
-
+<?php 
+    session_start();
+?>
     <main role="main">
         <h1><span>註冊</span><small>rigester</small></h1>
         <section id="login-zone">
