@@ -11,8 +11,18 @@
     $apData = $app_data->getData();
     $memNo = $apData[0]["memNo"];    
 
-    if ($type=="regist") {    
+    if ($type=="regist") {
         
+        $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
+        $api->customSql($sql);
+        $api->setInformation(TRUE, 1, 1, "密碼設定成功");
+    }else if($type=="WebRegist"){
+        $member = new API("member")        ;
+        $member->setWhereArray(array("memFBtoken"=>$token));    
+        $member->getWithWhereAndJoinClause();
+        $apData = $member->getData();
+        $memNo = $apData[0]["memNo"];    
+
         $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "密碼設定成功");

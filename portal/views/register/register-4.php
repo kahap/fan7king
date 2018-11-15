@@ -71,7 +71,7 @@
                 "password":password,
                 "token":token,
                 "memClass":isStudent,
-                "type":"regist"
+                "type":"WebRegist"
             }
             $.ajax({
                 url:url,
