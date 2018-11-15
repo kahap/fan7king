@@ -64,6 +64,25 @@
             // var str = "&share="+$('input[name=memRecommCode]').val();
             var str = "&cell="+$('input[id=form-phone]').val();
             if($("input[name='check']:checked").length == 1){
+                var d = new Date();
+                d = new Date(d.getTime() - 3000000);
+                var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00";
+
+                var url = "API/regist_phone"
+                var cell = $('input[id=form-phone]').val();
+                var form ={
+                    "phoneNumber":cell,
+                    "token":"",
+                    "time":date_format_str
+                }
+                $.ajax({
+                    url:url,
+                    type:"POST",
+                    data:form,
+                    datatype:"json",
+                    success:function(result){
+                    }                    
+                });
                 location.href="?item=register3"+str;
             }else{
                 alert("請勾選同意條款");
