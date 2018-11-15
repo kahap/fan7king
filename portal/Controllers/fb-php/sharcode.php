@@ -9,7 +9,6 @@ $helper = $fb->getRedirectLoginHelper();
 $permissions = ['email'];
 $loginUrl = $helper->getLoginUrl('https://nowait.kahap.com/fb-php/fbconfig.php', $permissions);
 $_SESSION['user']['sharcode'] = $_GET['sharcode'];
-echo $loginUrl;
-// header('Location: '.$loginUrl);
+header('Location: '.$loginUrl);
 
 ?>
