@@ -360,7 +360,7 @@
 
                         //會員資料
                         default:
-                            echo "here?";
+                            echo $itemVal."  ".$actionVal;
                             include('portal/views/member/member-info.php');
     						break;
                     }
