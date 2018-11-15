@@ -74,7 +74,7 @@
         $_SESSION['user']['sharcode'] = $_GET['share'];
     }
 
-
+    
     //會員已登入
     if($_SESSION['user']['memName'] != "")
     {
@@ -408,7 +408,7 @@
                     include_once('view/page_loan_cell.html'); // add jimmy
                     break;
                 case "information_edit":
-                    include_once('view/page_member_information.html');
+                    include_once('view/member/page_member_information.html');
     				break;
 
 
