@@ -360,6 +360,7 @@
 
                         //會員資料
                         default:
+                            echo "here?";
                             include('portal/views/member/member-info.php');
     						break;
                     }
@@ -441,6 +442,7 @@
                 case "information_edit":
                     include_once('portal/views/member/page_member_information.html');
                     break;
+                    
                 case "register2":
                     include_once('portal/views/register/register-2.php');
                     break;

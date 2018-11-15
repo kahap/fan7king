@@ -56,7 +56,7 @@
             </div>
         </section>
     </main>
-
+    
     <script>
     $(".btn-login").click(function(){
         var password = $('input[id=form-pwd]').val();
@@ -92,7 +92,7 @@
                 }
             });
         }else{
-            alert("請輸入密碼且兩次密碼相同。");
+            alert("新設密碼和再次確認密碼請設定一樣");
         }
         
         
