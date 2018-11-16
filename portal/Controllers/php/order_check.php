@@ -83,9 +83,9 @@
 			If(strrpos($_POST['memAccount'],'@') == false){
 				$errg[] = "認證Email不是確實的Email ";
 			}
-			if(strrpos($_POST['memAccount'],'edu') == false){
-				$errg[] = "請填寫學校Email做為認證 ";
-			}
+//			if(strrpos($_POST['memAccount'],'edu') == false){
+//				$errg[] = "請填寫學校Email做為認證 ";
+//			}
 //			$school = trim($_POST['school']);
 //			If($school==''){
 //				$errg[] = "請填寫學校";
