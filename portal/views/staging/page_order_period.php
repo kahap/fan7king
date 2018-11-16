@@ -28,7 +28,7 @@
 <main role="main">
     <h1><span>分期購買</span><small>staging</small></h1>
     <section id="staging-zone">
-        <form action="portal/Controllers/php/order_check.php" method="POST" id="order_add">
+        <form action="portal/Controllers/php/order_check.php" method="POST" id="order_add" enctype="multipart/form-data">
             <div class="container">
                 <div class="row justify-content-md-center">
                     <div class="col-lg-8">
@@ -113,21 +113,23 @@
                                         <div class="col-9 mb-3">
                                             <select class="input form-control school memSchool" id="memSchool" name="school">
                                                 <option value="">請選擇</option>
-<!--                                                --><?php //foreach($school_data as $key => $value){ ?>
-<!--                                                    <option value="--><?php //echo $value['schNo'];?><!--">--><?php //echo $value['schName'];?><!--</option>-->
-<!--                                                --><?// } ?>
+                                                <?php foreach($school_data as $keye => $valuee){ ?>
+                                                    <option value="<?php echo $valuee['schNo'];?>"><?php echo $valuee['schName'];?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <p class="col-3 ">系所</p>
                                         <div class="col-9 mb-3">
-                                            <select class="input form-control department memSchool" name="department[]" id="shool_<?=$key?>">
+                                            <select class="input form-control department memSchool" name="department[]" id="school_dept">
                                                 <option value="">請選擇</option>
                                                 <?php foreach($major_combine as $key => $value){ ?>
+                                                    <optgroup class="departmentList" label="科系列表" data-id="school<?php echo $key; ?>">
                                                     <?php foreach($value as $k => $v){ ?>
-                                                        <option value="<?=$v?>"><?=$v?></option>
+                                                        <option value="<?php echo $v ?>"><?php echo $v; ?></option>
                                                     <?php } ?>
+                                                    </optgroup>
                                                 <?php } ?>
                                             </select>
                                         </div>
@@ -160,7 +162,7 @@
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" required="required" class="form-control SchoolEmail" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
+                                    <input type="text" required class="form-control SchoolEmail" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
                                 </div>
                             </div>
                         </div>
@@ -168,25 +170,25 @@
                             <div class="form-group row">
                                 <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
+                                    <input type="text" required class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
                                     if($memberData[0]['memClass'] != '0' && $memberData[0]['memFBtoken'] == ""){
                                         echo $memberData[0]["memAccount"];
                                     }else{
                                         echo $memberData[0]["memSubEmail"];
                                     }
-                                    ?>" required>
+                                    ?>" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="NowTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>現住電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memPhone" id="NowTelephone" name="memPhone" value="<?php echo $memberData[0]['memPhone'] ?>" placeholder="ex: 02-22898878">
+                                    <input type="text" required class="form-control memPhone" id="NowTelephone" name="memPhone" value="<?php echo $memberData[0]['memPhone'] ?>" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="HomeTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>戶籍電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control orAppApplierBirthPhone" id="HomeTelephone" name="orAppApplierBirthPhone">
+                                    <input type="text" required class="form-control orAppApplierBirthPhone" id="HomeTelephone" name="orAppApplierBirthPhone" >
                                     <div class="float-right m-1">
                                         <input class="form-check-input" type="checkbox" id="SameForNowTelephone" name="SameForNowTelephone">
                                         <label class="form-check-label" for="SameForNowTelephone">同現住電話</label>
@@ -196,7 +198,7 @@
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-3 col-form-label"><span class="text-orange">*</span>行動電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memCell" id="Mobile" name="memCell" value="<?php echo $memberData[0]['memCell'] ?>" placeholder="ex: 0911222333">
+                                    <input type="text" required class="form-control memCell" id="Mobile" name="memCell" value="<?php echo $memberData[0]['memCell'] ?>" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -239,7 +241,7 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
                                 <div class="col-sm-9">
-                                    <input id="fileupload" type="file" name="mypic">
+                                    <input id="fileupload" type="file" name="mypic" required >
                                 </div>
                                 <div class="progress">
                                     <span class="bar"></span><span class="percent">0%</span >
@@ -254,7 +256,7 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
                                 <div class="col-sm-9">
-                                    <input id="fileupload_1" type="file" name="mypic_1">
+                                    <input id="fileupload_1" type="file" name="mypic_1" required >
                                 </div>
                                 <div class="progress_1">
                                     <span class="bar_1"></span><span class="percent_1">0%</span >
@@ -270,7 +272,7 @@
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
-                                    <input type="text" required class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" disabled>
+                                    <input type="text"  class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -281,7 +283,8 @@
                                         <select class="custom-select mb-3" name="year">
                                             <?php
                                             $year =  explode('-',$memberData[0]["memBday"]);
-                                            for($i=50;$i<=105;$i++){ ?>
+                                            $year = date('Y')-1911;
+                                            for($i=$year-70;$i<=$year;$i++){ ?>
                                                 <option value="<?=$i ?>" <?php echo ($year[0] == $i) ? 'selected':''; ?>><?=$i?></option>
                                             <?php } ?>
 <!--                                            <option selected>100</option>-->
@@ -317,10 +320,10 @@
                                 <div class="col-sm-9">
                                     <div class="form-inline">
                                         民國
-                                        <select class="custom-select mb-3" name="orIdIssueYear">
+                                        <select class="custom-select mb-3" name="orIdIssueYear" id="orIdIssueYear">
                                             <?php
-                                            $year = date('Y',time())-1911;
-                                            for($i=50;$i<=$year;$i++){ ?>
+                                            $year = date('Y')-1911;
+                                            for($i=$year-70;$i<=$year;$i++){ ?>
                                                 <option value="<?=$i ?>"><?=$i?></option>
                                             <?php } ?>
 <!--                                            <option selected>100</option>-->
@@ -328,7 +331,7 @@
 <!--                                            <option value="">21</option>-->
                                         </select>
                                         年
-                                        <select class="custom-select mb-3" name="orIdIssueMonth">
+                                        <select class="custom-select mb-3" name="orIdIssueMonth" id="orIdIssueMonth">
                                             <?php
                                             for($i=1;$i<=12;$i++){ ?>
                                                 <option value="<?=$i ?>"><?=$i?></option>
@@ -338,7 +341,7 @@
 <!--                                            <option value=2">03</option>-->
                                         </select>
                                         月
-                                        <select class="custom-select mb-3" name="orIdIssueDay">
+                                        <select class="custom-select mb-3" name="orIdIssueDay" id="orIdIssueDay">
                                             <?php
                                             for($i=1;$i<=31;$i++){ ?>
                                                 <option value="<?=$i ?>"><?=$i?></option>
@@ -354,9 +357,9 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group row">
-                                <label for="orIdIssuePlace" class="col-sm-3 col-form-label"><span class="text-orange"></span>發證地點</label>
+                                <label for="orIdIssuePlace" class="col-sm-3 col-form-label"><span class="text-orange">*</span>發證地點</label>
                                 <div class="col-sm-9">
-                                    <select class="input form-control" id="orIdIssuePlace" name="orIdIssuePlace">
+                                    <select class="input form-control" id="orIdIssuePlace" name="orIdIssuePlace" required >
                                         <option value="">請選擇</option>
                                         <?php
                                         foreach($IdPlace as $key => $value){
@@ -369,9 +372,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="orIdIssueType" class="col-sm-3 col-form-label"><span class="text-orange"></span>換補發類別</label>
+                                <label for="orIdIssueType" class="col-sm-3 col-form-label"><span class="text-orange">*</span>換補發類別</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="orIdIssueType" name="orIdIssueType">
+                                    <select class="form-control" id="orIdIssueType" name="orIdIssueType" required >
                                         <option value="初發" selected>初發</option>
                                         <option value="補發">補發</option>
                                         <option value="換發">換發</option>
@@ -383,20 +386,20 @@
                                 <div class="col-sm-9">
                                     <div class="row address-zone">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
+                                            <input type="text" class="form-control " id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" name="orAppApplierBirthCity">
+                                            <select class="form-control city" name="orAppApplierBirthCity" id="city" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" name="orAppApplierBirthTown">
+                                            <select class="form-control county" name="orAppApplierBirthTown" id="county" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control orAppApplierBirthAddr" id="orAppApplierBirthAddr" name="orAppApplierBirthAddr" value="">
+                                    <input type="text" required class="form-control orAppApplierBirthAddr" id="orAppApplierBirthAddr" name="orAppApplierBirthAddr" value="" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -404,20 +407,20 @@
                                 <div class="col-sm-9">
                                     <div class="row address-zone">
                                         <div class="col-4 mb-3">
-                                            <input type="text" class="form-control" id="memPostCode" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>" >
+                                            <input type="text" name="memPostCode" class="form-control memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>"  />
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" id="city" name="">
+                                            <select class="form-control city" id="city" name="" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" id="county" name="">
+                                            <select class="form-control county" id="county" name="" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control memAddr" id="memAddr" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>">
+                                    <input type="text" required class="form-control memAddr" id="memAddr" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>" >
                                     <div class="float-right m-1">
                                         <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="SameForNowAddr">
                                         <label class="form-check-label" for="SameForNowAddr" >同戶籍地址</label>
@@ -467,7 +470,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group row  orAppApplierCompany">
-                                <label for="Salary" class="col-sm-3 col-form-label required"><span class="text-orange"></span>月薪</label>
+                                <label for="Salary" class="col-sm-3 col-form-label "><span class="text-orange"></span>月薪</label>
                                 <div class="col-sm-9">
                                     <select name="orAppApplierMonthSalary" class="input form-control" id="Salary" >
                                         <option value="">請選擇</option>
@@ -539,7 +542,7 @@
 <!--                            </div>-->
                             <div class="form-group row">
                                 <label for="ComExtension" class="col-sm-3 col-form-label"><span class="text-orange"></span>信用卡有效期限</label>
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 ComExtension">
                                     <div class="form-inline">
                                         <select class="custom-select mb-3" name="orAppApplierCreditDueDate_1">
                                             <?php for($i=1;$i<=12;$i++){ ?>
@@ -551,7 +554,8 @@
                                         </select>
                                         月
                                         <select class="custom-select mb-3" name="orAppApplierCreditDueDate_2">
-                                            <?php for($i=2016;$i<=2030;$i++){ ?>
+                                            <?php
+                                            for($i=date('Y');$i<=date('Y')+32;$i++){ ?>
                                                 <option value="<?=$i?>"><?=$i; ?></option>
                                             <?php } ?>
 <!--                                            <option selected>19</option>-->
@@ -572,15 +576,7 @@
                             <div class="form-group row">
                                 <label for="orReceiveName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="orReceiveName" name="orReceiveName" value=
-                                        "<?php
-                                        foreach($columnName as $key=>$value){
-                                            //只顯示
-                                            if($value["COLUMN_NAME"] == "orReceiveName") {
-                                                echo ($orData[0][$value["COLUMN_NAME"]]);   break;
-                                            }
-                                        }
-                                        ?>">
+                                    <input type="text" required class="form-control" id="orReceiveName" name="orReceiveName" value="" >
                                     <div class="float-left m-1 mr-2">
                                         <input class="form-check-input" type="checkbox" id="SameForLive" name="sameofapplier_1">
                                         <label class="form-check-label" for="SameForLive">同申請人現住資料</label>
@@ -609,7 +605,7 @@
 <!--                                            </select>-->
 <!--                                        </div>-->
 <!--                                    </div>-->
-                                    <input type="text" class="form-control orReceiveAddr" id="orReceiveAddr" name="orReceiveAddr" value="">
+                                    <input type="text" required class="form-control orReceiveAddr" id="orReceiveAddr" name="orReceiveAddr" value="" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -623,7 +619,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>">
+                                    ?>" required >
                                 </div>
                             </div>
 
@@ -639,7 +635,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>">
+                                    ?>" required >
                                 </div>
                             </div>
                         </div>
@@ -716,13 +712,13 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>">
+                                    ?>" required >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="a8" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬關係</label>
                                 <div class="col-sm-9">
-                                    <select name="orAppContactRelaRelation" class="input form-control" id="a8">
+                                    <select name="orAppContactRelaRelation" class="input form-control" id="a8" required >
                                         <?php
                                         foreach($orAppContactRelaRelation as $key => $value){
                                             $select = ($or_data[0]['orAppContactRelaRelation'] == $key) ? 'selected':'';
@@ -757,7 +753,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" required>
+                                    ?>" required >
                                 </div>
                             </div>
                         </div>
@@ -773,15 +769,15 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>">
+                                    ?>" required >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="a5" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友關係</label>
                                 <div class="col-sm-9">
-                                    <select name="orAppContactFrdRelation" class="input form-control" id="a5">
+                                    <select name="orAppContactFrdRelation" class="input form-control" id="a5" required >
                                         <?php
-                                        foreach($orAppContactRelaRelation as $key => $value){
+                                        foreach($orAppContactFrdRelation as $key => $value){
                                             $select = ($or_data[0]['orAppContactRelaRelation'] == $key) ? 'selected':'';
                                             echo "<option value='".$key."'".$select.">".$value."</option>";
                                         }
@@ -814,7 +810,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" required>
+                                    ?>" required >
                                 </div>
                             </div>
                         </div>
@@ -827,7 +823,7 @@
                             <div class="form-group row">
                                 <label for="a2" class="col-sm-3 col-form-label"><span class="text-orange"></span>可照會時間</label>
                                 <div class="col-sm-9">
-                                    <input type="datetime-local" class="form-control" id="a2" name="orAppExtraAvailTime" value=
+                                    <input type="text" class="form-control" id="a2" name="orAppExtraAvailTime" value=
                                     "<?php
                                     foreach($columnName as $key=>$value){
                                         //只顯示
@@ -858,16 +854,16 @@
                     </div>
                 </div>
                 <div class="form-check form-check-inline mt-4">
-                    <input class="form-check-input" type="checkbox" name="agree" id="HaveCredit2" value="1">
-                    <label class="form-check-label" for="HaveCredit2">
+                    <input class="form-check-input" type="checkbox" name="agree" id="ddd" value="1">
+                    <label class="form-check-label" for="ddd">
                         申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）
 <!--                        <a class="text-orange secure" title="甚麼是保密照會？" href="#">甚麼是保密照會？</a>-->
                     </label>
                 </div>
                 <div class="section-staging">
                     <div class="form-group form-btn text-center">
-<!--                        <a class="btn btn-next bg-yellow next-btn">下一步</a>-->
-                        <input class="btn btn-next bg-yellow next-btn" type="submit" value="下一步" />
+                        <a class="btn btn-next bg-yellow next-btn">下一步</a>
+                        <input class="btn btn-next bg-yellow next-btn2" type="submit" value="下一步" style="display: none"/>
                     </div>
                 </div>
             </div>
@@ -878,6 +874,7 @@
 
 <script src="portal/assets/js/select/chosen.jquery.js" type="text/javascript"></script>
 <script type="text/javascript">
+
     //目前還沒看到這有甚麼用
     var config = {
         '.chosen-select'           : {},
@@ -896,12 +893,24 @@
     });
 
     $(".department").attr('disabled',true);     //系別選擇
-    $(".school").change(function(){
-        var school = $(this).val();
-        $(".department").attr('disabled',true);
-        // $("#default").hide();
-        $("#shool_"+school).attr('disabled',false);
+    $("#memSchool").on("change",function(){
+        if(this.value!=""){
+            $("#school_dept").val("").removeAttr("disabled");
+            $(".departmentList").hide();
+            $(".departmentList[data-id='school"+this.value+"']").show();
+        }else{
+            $("#school_dept").val("").attr("disabled","disabled");
+            $(".departmentList").hide();
+        }
     });
+    $(".departmentList").hide();
+
+    // $(".school").change(function(){
+    //     var school = $(this).val();
+    //     $(".department").attr('disabled',true);
+    //     // $("#default").hide();
+    //     $("#shool_"+school).attr('disabled',false);
+    // });
 
 
     //工作狀態
@@ -915,7 +924,9 @@
     $("#orAppApplierCreditstatus input").attr('disabled',true);    //持有信用卡
     $("#orAppApplierCreditIssueBank").attr('disabled',true);      //信用卡銀行
     $("#orBusinessNumNumber").attr("disabled","disabled");     //統一編號
-    // $("#orBusinessNumTitle").hide();     //公司抬頭
+    $("#orBusinessNumTitle").attr("disabled","disabled");     //公司抬頭
+    $(".ComExtension select").attr("disabled","disabled");     //信用卡有效期限
+    // $("#orBusinessNumTitle").hide();     //
     // $(".memother").hide();
     //身分別
     $(".memClass").change(function(){
@@ -933,12 +944,14 @@
             $("#SchoolEmail").attr('disabled',false);
             // $(".chosen-container").show();
             $(".memAccount").attr('disabled',false);
+            $(".memAccount").attr('','');
         }else{
             $(".memSchool").attr('disabled',true);
             $("#SchoolEmail").attr('disabled',true);
             // $(".chosen-container").hide();
             // $("#default").hide();
             $(".memAccount").attr('disabled',true);
+            $(".memAccount").attr('',false);
         }
     });
 
@@ -947,9 +960,9 @@
         var reader=new FileReader();
         reader.onloadend=function() {
             if(api=="front"){
-                $("#showimg").html("<img>").find("img").attr("src",reader.result);
+                $("#showimg").html("<img style='width: 400px'>").find("img").attr("src",reader.result);
             }else if(api=="back") {
-                $("#showimg_1").html("<img>").find("img").attr("src",reader.result);
+                $("#showimg_1").html("<img style='width: 400px'>").find("img").attr("src",reader.result);
             }
             var urlf="https://asia-northeast1-prod-nowait-shop.cloudfunctions.net/"+api+"-ocr?";
             $.ajax({
@@ -964,18 +977,19 @@
                 success:function(response){
                     if(api=="front"){
                         $("#IdentNumber").val(response.id);
-                        $("#year").val(response.birth_date.year);
-                        $("#month").val(response.birth_date.month);
-                        $("#date").val(response.birth_date.day);
+                        $("[name='year']").val(response.birth_date.year);
+                        $("[name='month']").val(response.birth_date.month);
+                        $("[name='date']").val(response.birth_date.day);
+                        $("[name='orIdIssuePlace']").val(response.apply_site);
                         $("#orIdIssueYear").val(response.apply_date.year);
                         $("#orIdIssueMonth").val(response.apply_date.month);
                         $("#orIdIssueDay").val(response.apply_date.day);
-                        $("#IdentKind").val(response.apply_style);
+                        $("#orIdIssueType").val(response.apply_style);
                         $("#CName").val(response.name);
                     }else if(api=="back"){
-                        $(".city").val(response.residential_parsed_addr.city);
-                        $(".county").val(response.residential_parsed_addr.district);
-                        $(".orAppApplierBirthAddr").val(
+                        $("[name='orAppApplierBirthCity']").val(response.residential_parsed_addr.city);
+                        $("[name='orAppApplierBirthTown']").val(response.residential_parsed_addr.district);
+                        $("[name='orAppApplierBirthAddr']").val(
                             response.residential_parsed_addr.neighbor+
                             response.residential_parsed_addr.near+
                             response.residential_parsed_addr.street+
@@ -1004,42 +1018,48 @@
 
 
     //下一步
-    // $(".next-btn").click(function(e){
-    //     if(checkname($("input[name=memName]").val()) &&
-    //         checkTwID($("input[name=memIdNum]").val()) &&
-    //         checkPhone2($("input[name=memCell]").val()) &&
-    //         checkDate($("select[name=year]").val(),$("select[name=month]").val(),$("select[name=date]").val()) &&
-    //         checkAllContact())
-    //     {
-    //         $.ajax({
-    //             url: 'portal/Controllers/php/order_check.php',
-    //             data: $('#order_add').serialize(),
-    //             type: "POST",
-    //             dataType: 'text',
-    //             success: function(msg){
-    //                 if(msg){
-    //                     e.preventDefault();
-    //                     if(msg == "1"){
-    //                         alert("請記得到會員中心->會員基本資料做認證信");
-    //                         location.href = "index.php?item=member_center&action=order_period&method=2";
-    //                     }else if(msg == "2"){
-    //                         location.href = "index.php?item=member_center&action=order_period&method=2";
-    //                     }else{
-    //                         alert(msg);
-    //                     }
-    //                 }else{
-    //                     alert(msg);
-    //                 }
-    //                 return false;
-    //             },
-    //             error:function(xhr, ajaxOptions, thrownError){
-    //                 alert(xhr.status);
-    //                 alert(thrownError);
-    //                 return false;
-    //             }
-    //         });
-    //     }
-    // });
+    $(".next-btn").click(function(e){
+        if( $("input[name=memClass]").val()==='0' && $("input[name=memAccount]").val().indexOf("edu") === -1){
+            alert("請填寫學校Email做為認證 ");
+            return false;
+        }
+        if(checkname($("input[name=memName]").val()) &&
+            checkTwID($("input[name=memIdNum]").val()) &&
+            checkPhone2($("input[name=memCell]").val()) &&
+            checkDate($("select[name=year]").val(),$("select[name=month]").val(),$("select[name=date]").val()) /*&&
+            checkAllContact()*/ )
+        {
+            $(".next-btn2").click();
+            // $.ajax({
+            //     url: 'portal/Controllers/php/order_check.php',
+            //     data: $('#order_add').serialize(),
+            //     type: "POST",
+            //     dataType: 'text',
+            //     success: function(msg){
+            //         if(msg){
+            //             e.preventDefault();
+            //             if(msg == "1"){
+            //                 alert("請記得到會員中心->會員基本資料做認證信");
+            //                 location.href = "index.php?item=member_center&action=order_period&method=2";
+            //             }else if(msg == "2"){
+            //                 location.href = "index.php?item=member_center&action=order_period&method=2";
+            //             }else{
+            //                 alert(msg);
+            //             }
+            //         }else{
+            //             alert(msg);
+            //         }
+            //         return false;
+            //     },
+            //     error:function(xhr, ajaxOptions, thrownError){
+            //         alert(xhr.status);
+            //         alert(thrownError);
+            //         return false;
+            //     }
+            // });
+        }
+        return false;
+    });
 
     //工作狀態
     $("input[name=orAppApplierCompanystatus]").change(function(){
@@ -1062,17 +1082,21 @@
         if($('input[name=orAppApplierCreditstatus]:checked').val() == 1){
             $("#orAppApplierCreditstatus input").attr('disabled',false);
             $("#orAppApplierCreditIssueBank").attr('disabled',false);
+            $(".ComExtension select").attr("disabled",false);     //信用卡有效期限
         }else{
             $("#orAppApplierCreditstatus input").attr('disabled',true);
             $("#orAppApplierCreditIssueBank").attr('disabled',true);
+            $(".ComExtension select").attr("disabled",true);     //信用卡有效期限
         }
     });
     //是否需要統一編號
     $("input[name=orBusinessNumIfNeed]").change(function(){
         if($('input[name=orBusinessNumIfNeed]:checked').val() == 1){
             $("#orBusinessNumNumber").removeAttr("disabled");
+            $("#orBusinessNumTitle").removeAttr("disabled");
         }else{
             $("#orBusinessNumNumber").attr("disabled","disabled");
+            $("#orBusinessNumTitle").attr("disabled","disabled");
         }
     });
     // checkbox:同現住電話

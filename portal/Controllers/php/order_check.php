@@ -83,9 +83,9 @@
 			If(strrpos($_POST['memAccount'],'@') == false){
 				$errg[] = "認證Email不是確實的Email ";
 			}
-			if(strrpos($_POST['memAccount'],'edu') == false){
-				$errg[] = "請填寫學校Email做為認證 ";
-			}
+//			if(strrpos($_POST['memAccount'],'edu') == false){
+//				$errg[] = "請填寫學校Email做為認證 ";
+//			}
 //			$school = trim($_POST['school']);
 //			If($school==''){
 //				$errg[] = "請填寫學校";
@@ -384,30 +384,31 @@
             $SystemDirPath = '../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
             $rand = rand(100, 999);
             $Default_file_name = date("YmdHis");
-            if ($File->FileCheck($_FILES['mypic']['tmp_name'],
+            if ($File->FileCheck(
+                $_FILES['mypic']['tmp_name'],
                 $_FILES['mypic']['type'],
                 $_FILES['mypic']['size'],
                 $_FILES['mypic']['error'],
                 $SystemDirPath,
                 $_FILES['mypic']['name'])){
                 $type = strstr($picname, '.');
-                $FileName = $Default_file_name.$type;
+                $FileName = $Default_file_name.$type."_front";
                 $aa = $File->SaveImageThumbnail($_FILES['mypic']['type'],$_FILES['mypic']['tmp_name'],$SystemDirPath,$FileName,'900','600');
                 $FileName1 = $SystemDirPath.$FileName;
                 $or->updateorAppAuthenIdImgTop(substr($FileName1,3),$_SESSION['ord_code']);
             }
 
-            if(!is_file($FileName1)){
-                $FileName = '';
-            }
-
-            $size = round($picsize/1024,2); //转换成kb
-            $arr = array(
-                'name'=>$picname,
-                'pic'=>$FileName,
-                'size'=>$size,
-                'status' => 1
-            );
+//            if(!is_file($FileName1)){
+//                $FileName = '';
+//            }
+//
+//            $size = round($picsize/1024,2); //转换成kb
+//            $arr = array(
+//                'name'=>$picname,
+//                'pic'=>$FileName,
+//                'size'=>$size,
+//                'status' => 1
+//            );
 
 
             $picname = $_FILES['mypic_1']['name'];
@@ -420,30 +421,31 @@
             $SystemDirPath = '../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
             $rand = rand(100, 999);
             $Default_file_name = date("YmdHis");
-            if ($File->FileCheck($_FILES['mypic_1']['tmp_name'],
+            if ($File->FileCheck(
+                $_FILES['mypic_1']['tmp_name'],
                 $_FILES['mypic_1']['type'],
                 $_FILES['mypic_1']['size'],
                 $_FILES['mypic_1']['error'],
                 $SystemDirPath,
                 $_FILES['mypic_1']['name'])){
                 $type = strstr($picname, '.');
-                $FileName = $Default_file_name.$type;
+                $FileName = $Default_file_name.$type."_back";
                 $aa = $File->SaveImageThumbnail($_FILES['mypic_1']['type'],$_FILES['mypic_1']['tmp_name'],$SystemDirPath,$FileName,'900','600');
                 $FileName1 = $SystemDirPath.$FileName;
-                $or->updateorAppAuthenIdImgTop(substr($FileName1,3),$_SESSION['ord_code']);
+                $or->updateorAppAuthenIdImgBot(substr($FileName1,3),$_SESSION['ord_code']);
             }
 
-            if(!is_file($FileName1)){
-                $FileName = '';
-            }
-
-            $size = round($picsize/1024,2); //转换成kb
-            $arr = array(
-                'name'=>$picname,
-                'pic'=>$FileName,
-                'size'=>$size,
-                'status' => 1
-            );
+//            if(!is_file($FileName1)){
+//                $FileName = '';
+//            }
+//
+//            $size = round($picsize/1024,2); //转换成kb
+//            $arr = array(
+//                'name'=>$picname,
+//                'pic'=>$FileName,
+//                'size'=>$size,
+//                'status' => 1
+//            );
 
 //        var_dump(123);
 //        exit();
