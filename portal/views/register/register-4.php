@@ -85,19 +85,14 @@
                         location.href="?item=member_center";
                     }else{
                         alert(J.message);
-                    }
-                    
+                    }                    
                 },
-                error:function(){
-                    
+                error:function(){                    
                 }
             });
         }else{
             alert("新設密碼和再次確認密碼請設定一樣");
         }
-        
-        
-        
     })
     
     </script>
