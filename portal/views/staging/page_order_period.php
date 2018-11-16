@@ -5,13 +5,15 @@
 <script type="text/javascript">
     $(function () {
         $('.address-zone').ajaddress({ city: "請選擇", county: "請選擇" });
-        if($(".memclass").val() == '0'){
+        if($(".memClass").val() == '0'){
             $(".memSchool").attr('disabled',false);
+            $(".SchoolEmail").attr('disabled',false);
             $(".department").attr('disabled',false);
             // $(".chosen-container").show();
             $(".memAccount").show();
         }else{
             $(".memSchool").attr('disabled',true);
+            $(".SchoolEmail").attr('disabled',true);
             $(".department").attr('disabled',true);
             // $(".chosen-container").hide();
             $(".memAccount").hide();
@@ -109,7 +111,7 @@
                                     <div class="form-group row">
                                         <p class="col-3 ">學校</p>
                                         <div class="col-9 mb-3">
-                                            <select id="memSchool" data-placeholder="Choose a Country..." class="form-control input school memSchool" tabindex="2" name="school">
+                                            <select class="input form-control school memSchool" id="memSchool" name="school">
                                                 <option value="">請選擇</option>
 <!--                                                --><?php //foreach($school_data as $key => $value){ ?>
 <!--                                                    <option value="--><?php //echo $value['schNo'];?><!--">--><?php //echo $value['schName'];?><!--</option>-->
@@ -158,23 +160,23 @@
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" required="required" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
-                                        if($memberData[0]['memClass'] != '0' && $memberData[0]['memFBtoken'] == ""){
-                                            echo $memberData[0]["memAccount"];
-                                        }else{
-                                            echo $memberData[0]["memSubEmail"];
-                                        }
-                                    ?>" required>
+                                    <input type="text" required="required" class="form-control SchoolEmail" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
+                            <div class="form-group row">
+                                <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
+                                    if($memberData[0]['memClass'] != '0' && $memberData[0]['memFBtoken'] == ""){
+                                        echo $memberData[0]["memAccount"];
+                                    }else{
+                                        echo $memberData[0]["memSubEmail"];
+                                    }
+                                    ?>" required>
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label for="NowTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>現住電話</label>
                                 <div class="col-sm-9">
@@ -451,15 +453,31 @@
                             <div class="form-group row  orAppApplierCompany">
                                 <label for="JobYear" class="col-sm-3 col-form-label"><span class="text-orange"></span>年資</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="JobYear" name="orAppApplierYearExperience" placeholder="一年">
+                                    <select name="orAppApplierYearExperience" class="input form-control" id="JobYear" >
+                                        <option value="">請選擇</option>
+                                        <option value="半年以下">半年以下</option>
+                                        <option value="半年到一年">半年到一年</option>
+                                        <option value="一年">一年</option>
+                                        <option value="兩年">兩年</option>
+                                        <option value="三年">三年</option>
+                                        <option value="三年以上">三年以上</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group row  orAppApplierCompany">
-                                <label for="Salary" class="col-sm-3 col-form-label"><span class="text-orange"></span>月薪</label>
+                                <label for="Salary" class="col-sm-3 col-form-label required"><span class="text-orange"></span>月薪</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="Salary" name="orAppApplierMonthSalary" placeholder="100000">
+                                    <select name="orAppApplierMonthSalary" class="input form-control" id="Salary" >
+                                        <option value="">請選擇</option>
+                                        <option value="0-5000">0-5000</option>
+                                        <option value="5000-10000">5000-10000</option>
+                                        <option value="10000-20000">10000-20000</option>
+                                        <option value="20000-30000">20000-30000</option>
+                                        <option value="30000-40000">30000-40000</option>
+                                        <option value="50000以上">50000以上</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row  orAppApplierCompany">
@@ -704,15 +722,14 @@
                             <div class="form-group row">
                                 <label for="a8" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬關係</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a8" name="orAppContactRelaRelation" value=
-                                    "<?php
-                                    foreach($columnName as $key=>$value){
-                                        //只顯示
-                                        if($value["COLUMN_NAME"] == "orAppContactRelaRelation") {
-                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                    <select name="orAppContactRelaRelation" class="input form-control" id="a8">
+                                        <?php
+                                        foreach($orAppContactRelaRelation as $key => $value){
+                                            $select = ($or_data[0]['orAppContactRelaRelation'] == $key) ? 'selected':'';
+                                            echo "<option value='".$key."'".$select.">".$value."</option>";
                                         }
-                                    }
-                                    ?>">
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -762,15 +779,14 @@
                             <div class="form-group row">
                                 <label for="a5" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友關係</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="a5" name="orAppContactFrdRelation" value=
-                                    "<?php
-                                    foreach($columnName as $key=>$value){
-                                        //只顯示
-                                        if($value["COLUMN_NAME"] == "orAppContactFrdRelation") {
-                                            echo ($orData[0][$value["COLUMN_NAME"]]);   break;
+                                    <select name="orAppContactFrdRelation" class="input form-control" id="a5">
+                                        <?php
+                                        foreach($orAppContactRelaRelation as $key => $value){
+                                            $select = ($or_data[0]['orAppContactRelaRelation'] == $key) ? 'selected':'';
+                                            echo "<option value='".$key."'".$select.">".$value."</option>";
                                         }
-                                    }
-                                    ?>">
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
