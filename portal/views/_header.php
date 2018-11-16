@@ -178,35 +178,35 @@
                     </div>
                     <div class="col-lg-5 col-md-12 order-md-1">
                         <ul class="list-inline">
-                            <li class="list-inline-item list-download">
-                                <a href="#" title="下載APP">下載APP</a>
-                                <div class="app d-none">
-                                    <dl>
-                                        <dt>下載NoWait</dt>
-                                        <dd>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <img class="img-fluid" src="portal/assets/images/icon-applestore.png" alt="Apple Store">
-                                                    <a href="#" title="下載NoWait">
-                                                        <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Apple Store">
-                                                    </a>
-                                                </div>
-                                                <div class="col">
-                                                    <img class="img-fluid" src="portal/assets/images/icon-googleplay.png" alt="Google Play">
-                                                    <a href="#" title="下載NoWait">
-                                                        <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Android">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </li>
+<!--                            <li class="list-inline-item list-download">-->
+<!--                                <a href="#" title="下載APP">下載APP</a>-->
+<!--                                <div class="app d-none">-->
+<!--                                    <dl>-->
+<!--                                        <dt>下載NoWait</dt>-->
+<!--                                        <dd>-->
+<!--                                            <div class="row">-->
+<!--                                                <div class="col">-->
+<!--                                                    <img class="img-fluid" src="portal/assets/images/icon-applestore.png" alt="Apple Store">-->
+<!--                                                    <a href="#" title="下載NoWait">-->
+<!--                                                        <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Apple Store">-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                                <div class="col">-->
+<!--                                                    <img class="img-fluid" src="portal/assets/images/icon-googleplay.png" alt="Google Play">-->
+<!--                                                    <a href="#" title="下載NoWait">-->
+<!--                                                        <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Android">-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </dd>-->
+<!--                                    </dl>-->
+<!--                                </div>-->
+<!--                            </li>-->
                             <li class="list-inline-item xs-none">
 <!--                                <a class="facebook" href="http://www.facebook.com/sharer.php?u=http://--><?//=DOMAIN?><!--/index.php%3Fshare%3D--><?php //echo $_SESSION['user']['memNo'] ?><!--" target="_blank">-->
 <!--                                    <img src="portal/assets/images/fb_share.png"/>-->
 <!--                                </a>-->
-                                <a class="facebook" href="#" title="追蹤Nowait">追蹤Nowait</a>
+<!--                                <a class="facebook" href="#" title="追蹤Nowait">追蹤Nowait</a>-->
                             </li>
                             <li class="list-inline-item xs-show">
                                 <a class="logout" href="#" title="登　　出">登　　出</a>

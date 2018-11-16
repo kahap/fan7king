@@ -4,10 +4,13 @@
     error_reporting(0);
 	include('../../model/php_model.php');
 
+
 	$or = new Orders();
 	$member = new Member();
 	$lg = new Loyal_Guest();
 	$orderContact = new API("orderContact");
+
+
 
 
 	$columnName = $or->getAllColumnNames("orders");
@@ -365,12 +368,98 @@
 			$or->updateorIfSecret('NULL',$orNo);
 		}
 
-		if($_SESSION['shopping_user'][0]['memEmailAuthen'] == '0'){
-			echo "2";
-		}else{
-			echo "2";
-		}
-	}else{
+
+//copy($_FILES['mypic']["tmp_name"],"");
+//
+//$_FILES['mypic_1'];
+
+
+            $picname = $_FILES['mypic']['name'];
+            $picsize = $_FILES['mypic']['size'];
+            if(!is_dir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){
+                mkdir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
+                chmod('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
+            }
+            $File = new File();
+            $SystemDirPath = '../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
+            $rand = rand(100, 999);
+            $Default_file_name = date("YmdHis");
+            if ($File->FileCheck($_FILES['mypic']['tmp_name'],
+                $_FILES['mypic']['type'],
+                $_FILES['mypic']['size'],
+                $_FILES['mypic']['error'],
+                $SystemDirPath,
+                $_FILES['mypic']['name'])){
+                $type = strstr($picname, '.');
+                $FileName = $Default_file_name.$type;
+                $aa = $File->SaveImageThumbnail($_FILES['mypic']['type'],$_FILES['mypic']['tmp_name'],$SystemDirPath,$FileName,'900','600');
+                $FileName1 = $SystemDirPath.$FileName;
+                $or->updateorAppAuthenIdImgTop(substr($FileName1,3),$_SESSION['ord_code']);
+            }
+
+            if(!is_file($FileName1)){
+                $FileName = '';
+            }
+
+            $size = round($picsize/1024,2); //转换成kb
+            $arr = array(
+                'name'=>$picname,
+                'pic'=>$FileName,
+                'size'=>$size,
+                'status' => 1
+            );
+
+
+            $picname = $_FILES['mypic_1']['name'];
+            $picsize = $_FILES['mypic_1']['size'];
+            if(!is_dir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){
+                mkdir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
+                chmod('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
+            }
+            $File = new File();
+            $SystemDirPath = '../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
+            $rand = rand(100, 999);
+            $Default_file_name = date("YmdHis");
+            if ($File->FileCheck($_FILES['mypic_1']['tmp_name'],
+                $_FILES['mypic_1']['type'],
+                $_FILES['mypic_1']['size'],
+                $_FILES['mypic_1']['error'],
+                $SystemDirPath,
+                $_FILES['mypic_1']['name'])){
+                $type = strstr($picname, '.');
+                $FileName = $Default_file_name.$type;
+                $aa = $File->SaveImageThumbnail($_FILES['mypic_1']['type'],$_FILES['mypic_1']['tmp_name'],$SystemDirPath,$FileName,'900','600');
+                $FileName1 = $SystemDirPath.$FileName;
+                $or->updateorAppAuthenIdImgTop(substr($FileName1,3),$_SESSION['ord_code']);
+            }
+
+            if(!is_file($FileName1)){
+                $FileName = '';
+            }
+
+            $size = round($picsize/1024,2); //转换成kb
+            $arr = array(
+                'name'=>$picname,
+                'pic'=>$FileName,
+                'size'=>$size,
+                'status' => 1
+            );
+
+//        var_dump(123);
+//        exit();
+
+$url = str_replace('action=order_period','action=order_period&method=2',$_SERVER["HTTP_REFERER"]);
+header("location:".$_SERVER["HTTP_REFERER"]);
+        if($_SESSION['shopping_user'][0]['memEmailAuthen'] == '0'){
+            echo "2";
+            header( "Location: ".$url );
+        }else{
+            echo "2";
+            header( "Location: ".$url );
+        }
+
+
+    }else{
 		echo $msg;
 	}
 
