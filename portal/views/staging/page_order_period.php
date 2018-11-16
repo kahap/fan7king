@@ -154,6 +154,43 @@
                                     <input type="text" required="required" class="form-control" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
                                 </div>
                             </div>
+
+
+
+                            <div class="form-group row">
+                                <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學籍資訊</label>
+                                <div class="col-sm-9">
+                                    <div class="form-group row">
+                                        <p class="col-3">學校名稱</p>
+                                        <div class="col-9 mb-3">
+                                            <input type="text" class="form-control" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <p class="col-3">系所</p>
+                                        <div class="col-9 mb-3">
+                                            <input type="text" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <p class="col-2">年級</p>
+                                        <div class="col-10 mb-3">
+                                            <select class="form-control">
+                                                <option selected>一</option>
+                                                <option selected>二</option>
+                                                <option selected>三</option>
+                                                <option selected>四</option>
+                                                <option selected>五</option>
+                                                <option selected>六</option>
+                                                <option selected>七</option>
+                                                <option selected>八</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
                                 <div class="col-sm-9">
@@ -226,18 +263,38 @@
                     <div class="section-order-title">身分資料</div>
                     <div class="row">
                         <div class="col-lg-6">
+
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" id="customFile">
+                                    <input id="fileupload" type="file" name="mypic">
+                                </div>
+                                <div class="progress">
+                                    <span class="bar"></span><span class="percent">0%</span >
+                                </div>
+                                <div class="files"></div>
+                                <div id="showimg">
+                                    <?php
+                                    if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgTop']."' />";
+                                    ?>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
                                 <div class="col-sm-9">
-                                    <input type="file" class="form-control" id="customFile">
+                                    <input id="fileupload_1" type="file" name="mypic_1">
+                                </div>
+                                <div class="progress_1">
+                                    <span class="bar_1"></span><span class="percent_1">0%</span >
+                                </div>
+                                <div class="files_1"></div>
+                                <div id="showimg_1">
+                                    <?php
+                                    if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgBot']."' />";
+                                    ?>
                                 </div>
                             </div>
+
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
@@ -888,6 +945,62 @@
             $(".memAccount").hide();
         }
     });
+
+    //
+    function OCR(api,fileData){
+        var reader=new FileReader();
+        reader.onloadend=function() {
+            var urlf="https://asia-northeast1-prod-nowait-shop.cloudfunctions.net/"+api+"-ocr?";
+            $.ajax({
+                method:"post",
+                url:urlf+$.param({
+                    "access_token":"8Mvxx_n3QKPrHX=D1254416AE954D390E153635C745A2947262A7B4F20C04E9CE2708070B6635EC@QEv!BkutgUSG*v%D"
+                }),
+                data:{
+                    img:reader.result.replace("data:image/jpeg;base64,","")
+                },
+                dataType:"json",
+                success:function(response){
+                    if(api=="front"){
+                        $("#IdentNumber").val(response.id);
+                        $("#year").val(response.birth_date.year);
+                        $("#month").val(response.birth_date.month);
+                        $("#date").val(response.birth_date.day);
+                        $("#orIdIssueYear").val(response.apply_date.year);
+                        $("#orIdIssueMonth").val(response.apply_date.month);
+                        $("#orIdIssueDay").val(response.apply_date.day);
+                        $("#IdentKind").val(response.apply_style);
+                        $("#CName").val(response.name);
+                    }else if(api=="back"){
+                        $(".city").val(response.residential_parsed_addr.city);
+                        $(".county").val(response.residential_parsed_addr.district);
+                        $(".orAppApplierBirthAddr").val(
+                            response.residential_parsed_addr.neighbor+
+                            response.residential_parsed_addr.near+
+                            response.residential_parsed_addr.street+
+                            response.residential_parsed_addr.section+
+                            response.residential_parsed_addr.lane+
+                            response.residential_parsed_addr.alley+
+                            response.residential_parsed_addr.no+
+                            response.residential_parsed_addr.floor
+                        );
+                    }
+                }
+            });
+        };
+        reader.readAsDataURL(fileData);
+    }
+    $("#fileupload").on("change",function(){
+        if(this.value!=""){
+            OCR("front",this.files[0])
+        }
+    });
+    $("#fileupload_1").on("change",function(){
+        if(this.value!=""){
+            OCR("back",this.files[0])
+        }
+    });
+
 
     //下一步
     $(".next-btn").click(function(e){
