@@ -386,12 +386,12 @@
                                             <input type="text" class="form-control" id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city">
+                                            <select class="form-control city" name="orAppApplierBirthCity">
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county">
+                                            <select class="form-control county" name="orAppApplierBirthTown">
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
@@ -407,12 +407,12 @@
                                             <input type="text" class="form-control" id="memPostCode" name="memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>" >
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" id="city">
+                                            <select class="form-control city" id="city" name="">
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" id="county">
+                                            <select class="form-control county" id="county" name="">
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
@@ -599,12 +599,12 @@
 <!--                                            <input type="text" class="form-control" id="orReceiveAddrCode" name="orReceiveAddrCode">-->
 <!--                                        </div>-->
 <!--                                        <div class="col-4 mb-3">-->
-<!--                                            <select class="form-control city" id="city"">-->
+<!--                                            <select class="form-control city" id="city" name="orReceiveCity">-->
 <!--                                                <option value="">請選擇</option>-->
 <!--                                            </select>-->
 <!--                                        </div>-->
 <!--                                        <div class="col-4 mb-3">-->
-<!--                                            <select class="form-control county" id="county"">-->
+<!--                                            <select class="form-control county" id="county" name="orReceiveTown">-->
 <!--                                                <option value="">請選擇</option>-->
 <!--                                            </select>-->
 <!--                                        </div>-->
@@ -912,8 +912,8 @@
     $('input[name=orAppApplierCompanyPhoneExt]').attr('disabled',true);
 
 
-    $("#orAppApplierCreditstatus").hide();      //持有信用卡
-    $("#orAppApplierCreditIssueBank").hide();      //信用卡銀行
+    $("#orAppApplierCreditstatus input").attr('disabled',true);    //持有信用卡
+    $("#orAppApplierCreditIssueBank").attr('disabled',true);      //信用卡銀行
     $("#orBusinessNumNumber").attr("disabled","disabled");     //統一編號
     // $("#orBusinessNumTitle").hide();     //公司抬頭
     // $(".memother").hide();
@@ -1060,11 +1060,11 @@
     //是否持有信用卡
     $("input[name=orAppApplierCreditstatus]").change(function(){
         if($('input[name=orAppApplierCreditstatus]:checked').val() == 1){
-            $("#orAppApplierCreditstatus").show();
-            $("#orAppApplierCreditIssueBank").show();
+            $("#orAppApplierCreditstatus input").attr('disabled',false);
+            $("#orAppApplierCreditIssueBank").attr('disabled',false);
         }else{
-            $("#orAppApplierCreditstatus").hide();
-            $("#orAppApplierCreditIssueBank").hide();
+            $("#orAppApplierCreditstatus input").attr('disabled',true);
+            $("#orAppApplierCreditIssueBank").attr('disabled',true);
         }
     });
     //是否需要統一編號
