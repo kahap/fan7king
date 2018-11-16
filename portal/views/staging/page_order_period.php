@@ -162,7 +162,7 @@
                             <div class="form-group row">
                                 <label for="SchoolEmail" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學校Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text"  class="form-control SchoolEmail" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
+                                    <input type="text" required class="form-control SchoolEmail" id="SchoolEmail" name="memAccount" value="<?php echo $memberData[0]["memAccount"]; ?>" disabled />
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                             <div class="form-group row">
                                 <label for="EmailAddress" class="col-sm-3 col-form-label"><span class="text-orange">*</span>常用Email</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
+                                    <input type="text" required class="form-control memSubEmail" id="EmailAddress" name="memSubEmail" value="<?php
                                     if($memberData[0]['memClass'] != '0' && $memberData[0]['memFBtoken'] == ""){
                                         echo $memberData[0]["memAccount"];
                                     }else{
@@ -182,13 +182,13 @@
                             <div class="form-group row">
                                 <label for="NowTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>現住電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memPhone" id="NowTelephone" name="memPhone" value="<?php echo $memberData[0]['memPhone'] ?>" >
+                                    <input type="text" required class="form-control memPhone" id="NowTelephone" name="memPhone" value="<?php echo $memberData[0]['memPhone'] ?>" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="HomeTelephone" class="col-sm-3 col-form-label"><span class="text-orange">*</span>戶籍電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control orAppApplierBirthPhone" id="HomeTelephone" name="orAppApplierBirthPhone" >
+                                    <input type="text" required class="form-control orAppApplierBirthPhone" id="HomeTelephone" name="orAppApplierBirthPhone" >
                                     <div class="float-right m-1">
                                         <input class="form-check-input" type="checkbox" id="SameForNowTelephone" name="SameForNowTelephone">
                                         <label class="form-check-label" for="SameForNowTelephone">同現住電話</label>
@@ -198,7 +198,7 @@
                             <div class="form-group row">
                                 <label for="Mobile" class="col-sm-3 col-form-label"><span class="text-orange">*</span>行動電話</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memCell" id="Mobile" name="memCell" value="<?php echo $memberData[0]['memCell'] ?>" >
+                                    <input type="text" required class="form-control memCell" id="Mobile" name="memCell" value="<?php echo $memberData[0]['memCell'] ?>" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -241,7 +241,7 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
                                 <div class="col-sm-9">
-                                    <input id="fileupload" type="file" name="mypic" >
+                                    <input id="fileupload" type="file" name="mypic" required >
                                 </div>
                                 <div class="progress">
                                     <span class="bar"></span><span class="percent">0%</span >
@@ -256,7 +256,7 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
                                 <div class="col-sm-9">
-                                    <input id="fileupload_1" type="file" name="mypic_1" >
+                                    <input id="fileupload_1" type="file" name="mypic_1" required >
                                 </div>
                                 <div class="progress_1">
                                     <span class="bar_1"></span><span class="percent_1">0%</span >
@@ -359,7 +359,7 @@
                             <div class="form-group row">
                                 <label for="orIdIssuePlace" class="col-sm-3 col-form-label"><span class="text-orange">*</span>發證地點</label>
                                 <div class="col-sm-9">
-                                    <select class="input form-control" id="orIdIssuePlace" name="orIdIssuePlace" >
+                                    <select class="input form-control" id="orIdIssuePlace" name="orIdIssuePlace" required >
                                         <option value="">請選擇</option>
                                         <?php
                                         foreach($IdPlace as $key => $value){
@@ -374,7 +374,7 @@
                             <div class="form-group row">
                                 <label for="orIdIssueType" class="col-sm-3 col-form-label"><span class="text-orange">*</span>換補發類別</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="orIdIssueType" name="orIdIssueType" >
+                                    <select class="form-control" id="orIdIssueType" name="orIdIssueType" required >
                                         <option value="初發" selected>初發</option>
                                         <option value="補發">補發</option>
                                         <option value="換發">換發</option>
@@ -389,17 +389,17 @@
                                             <input type="text" class="form-control " id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" name="orAppApplierBirthCity" id="city" >
+                                            <select class="form-control city" name="orAppApplierBirthCity" id="city" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" name="orAppApplierBirthTown" id="county" >
+                                            <select class="form-control county" name="orAppApplierBirthTown" id="county" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control orAppApplierBirthAddr" id="orAppApplierBirthAddr" name="orAppApplierBirthAddr" value="" >
+                                    <input type="text" required class="form-control orAppApplierBirthAddr" id="orAppApplierBirthAddr" name="orAppApplierBirthAddr" value="" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -410,17 +410,17 @@
                                             <input type="text" name="memPostCode" class="form-control memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>"  />
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" id="city" name="" >
+                                            <select class="form-control city" id="city" name="" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" id="county" name="" >
+                                            <select class="form-control county" id="county" name="" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <input type="text" class="form-control memAddr" id="memAddr" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>" >
+                                    <input type="text" required class="form-control memAddr" id="memAddr" name="memAddr" value="<?php echo $memberData[0]['memAddr'] ?>" >
                                     <div class="float-right m-1">
                                         <input class="form-check-input" type="checkbox" id="SameForNowAddr" name="SameForNowAddr">
                                         <label class="form-check-label" for="SameForNowAddr" >同戶籍地址</label>
@@ -576,15 +576,7 @@
                             <div class="form-group row">
                                 <label for="orReceiveName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>收貨人姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="orReceiveName" name="orReceiveName" value=
-                                        "<?php
-                                        foreach($columnName as $key=>$value){
-                                            //只顯示
-                                            if($value["COLUMN_NAME"] == "orReceiveName") {
-                                                echo ($orData[0][$value["COLUMN_NAME"]]);   break;
-                                            }
-                                        }
-                                        ?>" >
+                                    <input type="text" required class="form-control" id="orReceiveName" name="orReceiveName" value="" >
                                     <div class="float-left m-1 mr-2">
                                         <input class="form-check-input" type="checkbox" id="SameForLive" name="sameofapplier_1">
                                         <label class="form-check-label" for="SameForLive">同申請人現住資料</label>
@@ -613,7 +605,7 @@
 <!--                                            </select>-->
 <!--                                        </div>-->
 <!--                                    </div>-->
-                                    <input type="text" class="form-control orReceiveAddr" id="orReceiveAddr" name="orReceiveAddr" value="" >
+                                    <input type="text" required class="form-control orReceiveAddr" id="orReceiveAddr" name="orReceiveAddr" value="" >
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -627,7 +619,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" >
+                                    ?>" required >
                                 </div>
                             </div>
 
@@ -643,7 +635,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" >
+                                    ?>" required >
                                 </div>
                             </div>
                         </div>
@@ -720,13 +712,13 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" >
+                                    ?>" required >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="a8" class="col-sm-3 col-form-label"><span class="text-orange">*</span>親屬關係</label>
                                 <div class="col-sm-9">
-                                    <select name="orAppContactRelaRelation" class="input form-control" id="a8" >
+                                    <select name="orAppContactRelaRelation" class="input form-control" id="a8" required >
                                         <?php
                                         foreach($orAppContactRelaRelation as $key => $value){
                                             $select = ($or_data[0]['orAppContactRelaRelation'] == $key) ? 'selected':'';
@@ -761,7 +753,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" >
+                                    ?>" required >
                                 </div>
                             </div>
                         </div>
@@ -777,13 +769,13 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" >
+                                    ?>" required >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="a5" class="col-sm-3 col-form-label"><span class="text-orange">*</span>朋友關係</label>
                                 <div class="col-sm-9">
-                                    <select name="orAppContactFrdRelation" class="input form-control" id="a5" >
+                                    <select name="orAppContactFrdRelation" class="input form-control" id="a5" required >
                                         <?php
                                         foreach($orAppContactFrdRelation as $key => $value){
                                             $select = ($or_data[0]['orAppContactRelaRelation'] == $key) ? 'selected':'';
@@ -818,7 +810,7 @@
                                             echo ($orData[0][$value["COLUMN_NAME"]]);   break;
                                         }
                                     }
-                                    ?>" >
+                                    ?>" required >
                                 </div>
                             </div>
                         </div>
