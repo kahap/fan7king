@@ -22,6 +22,20 @@
             return $data[0];
         }
 
+        public function getSupplier_sales($supNo,$ssLogId,$ssPwd){
+            $sql = "select
+                        *
+                    from
+                        `supplier_sales`
+                    where
+                        `supNo`='".$supNo."'&&
+                        `ssLogId`='".$ssLogId."'&&
+                        `ssPwd` = '".$ssPwd."'
+                    ";
+            $data = $this->db->selectRecords($sql);
+            return $data[0];
+        }
+
         //編號取得單一供應商 encore
         public function getOneSupplier_salesByNo($supNo){
             $sql = "select

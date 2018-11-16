@@ -81,7 +81,7 @@
     <link rel="stylesheet" href="portal/assets/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="portal/assets/slick/slick.css" />
     <link rel="stylesheet" href="portal/assets/theme/css/theme.css" />
-
+    <link rel="stylesheet" href="portal/assets/css/kahap.css">
 
 </head>
 <body class="home">

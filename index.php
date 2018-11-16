@@ -59,7 +59,6 @@
     /************************* layout *******************************/
     $_SESSION['vTitle'] = 'Nowait';
     include_once('portal/views/_header.php');
-
     // share code
     if( $_SESSION['user']['sharcode'] == "" )
     {
@@ -389,8 +388,14 @@
                 case "sup_center":
                     //include_once('portal/views/page_sup_center.html');
                     include_once('portal/views/supplier/page_sup_center_new.php'); //encore
-    				break;
-
+                    break;
+                case "sup_center_page":
+                    if ($_SESSION['ss_supNo']!="") {
+                        include_once('portal/views/supplier/page_sup_center_new.html');
+                    }else{
+                        include_once('portal/views/supplier/page_sup_center_new.php');
+                    }                    
+                    break;
                 //商城
                 case "category":
                     include_once('portal/views/product/page_category.php');
@@ -567,8 +572,15 @@
         elseif($itemVal=="sup_center"){
             include_once('portal/views/supplier/page_sup_center_new.php'); //encore
             //include_once('portal/views/page_sup_center.html');
+        }elseif("sup_center_page") {
+            if ($_SESSION['ss_supNo']!="") {
+                include_once('portal/views/supplier/page_sup_center_new.html');
+            }else{
+                include_once('portal/views/supplier/page_sup_center_new.php');
+            }
+            
+            
         }
-
 
         //幫助中心
         elseif($itemVal=="faq"){
