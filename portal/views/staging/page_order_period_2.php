@@ -366,7 +366,7 @@
                 success: function(data) {
                     if(data.status && data.pic != ''){
                         var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                        showimg.html("<img src='"+img+"'>");
+                        showimg.html("<img src='"+img+"'  style='width: 400px'>");
                         btn.html("上傳檔案");
                     }else{
                         btn.html("上傳失敗");
@@ -412,7 +412,7 @@
                 success: function(data) {
                     if(data.pic != ''){
                         var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                        showimg_1.html("<img src='"+img+"'>");
+                        showimg_1.html("<img src='"+img+"' style='width: 400px'>");
                         btn_1.html("上傳檔案");
                     }else{
                         btn_1.html("上傳失敗");
@@ -457,7 +457,7 @@
                 success: function(data) {
                     if(data.pic != ''){
                         var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                        showimg_2.html("<img src='"+img+"'>");
+                        showimg_2.html("<img src='"+img+"' style='width: 400px'>");
                         btn_2.html("上傳檔案");
                     }else{
                         btn_2.html("上傳失敗");
@@ -502,7 +502,7 @@
                 success: function(data) {
                     if(data.pic != ''){
                         var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                        showimg_3.html("<img src='"+img+"'>");
+                        showimg_3.html("<img src='"+img+"' style='width: 400px'>");
                         btn_3.html("上傳檔案");
                     }else{
                         btn_3.html("上傳失敗");
@@ -542,7 +542,7 @@
                 },
                 success: function(data) {
                     var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                    showimg_4.html("<img src='"+img+"'>");
+                    showimg_4.html("<img src='"+img+"' style='width: 400px'>");
                     btn_4.html("上傳檔案");
                 },
                 error:function(xhr){
@@ -578,7 +578,7 @@
                 },
                 success: function(data) {
                     var img = "admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
-                    showimg_8.html("<img src='"+img+"'>");
+                    showimg_8.html("<img src='"+img+"' style='width: 400px'>");
                     btn_8.html("上傳檔案");
                 },
                 error:function(xhr){
