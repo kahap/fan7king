@@ -382,11 +382,16 @@
                         from
                             `member`
                         where
-                            `memCell` = '" . $memCell . "'&&
-                            `memPwd` = '" . $memPwd . "'";
+                            `memCell` = '" . $memCell . "'";
 
-            $data = $this->db->selectRecords($sql);
-            return $data[0];
+			$data = $this->db->selectRecords($sql);
+			
+
+			if (password_verify($memPwd,$data[0]['memPwd'])) {
+				return $data[0];
+			}else{
+				return "";
+			}
         }
 
 		// jimmy

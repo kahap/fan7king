@@ -10,10 +10,12 @@
     $app_data->getWithWhereAndJoinClause();
     $apData = $app_data->getData();
     $memNo = $apData[0]["memNo"];    
+    $Cpwd = password_hash($password,PASSWORD_DEFAULT);
+    
 
     if ($type=="regist") {
         
-        $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
+        $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$Cpwd."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "密碼設定成功");
     }else if($type=="WebRegist"){
@@ -23,26 +25,27 @@
         $apData = $member->getData();
         $memNo = $apData[0]["memNo"];    
         if ($memNo!="") {
-            $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$password."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
+            $sql = "UPDATE member SET memClass='".$memClass."', memPwd='".$Cpwd."' , memCell='".$memCell."' WHERE memNo='".$memNo."' ";
             $api->customSql($sql);
             $api->setInformation(TRUE, 1, 1, "密碼設定成功");
         }
         
     }else if($type=="forget"){
-        $sql = "UPDATE member SET memPwd='".$password."' WHERE memCell='".$memCell."' ";
+        $sql = "UPDATE member SET memPwd='".$Cpwd."' WHERE memCell='".$memCell."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "密碼設定成功");
     }else if($type=="change"){
-        $api->setWhereArray(array("memNo"=>$memNo,"memPwd"=>$passwordOld));    
+        $api->setWhereArray(array("memNo"=>$memNo);    
         $api->getWithWhereAndJoinClause();
         $result = $api->getData();
-        if (count($result)==0) {
-            $api->setInformation(FALSE, 1, 1, "原密碼錯誤");
-        }else{
-            $sql = "UPDATE member SET memPwd='".$password."' WHERE memNo='".$memNo."' and  memPwd='".$passwordOld."' ";
+        
+        if (password_verify($password,$result[0]['memPwd'])) {
+            $sql = "UPDATE member SET memPwd='".$Cpwd."' WHERE memNo='".$memNo."' ";
             $api->customSql($sql);
             $api->setInformation(TRUE, 1, 1, "密碼修改成功");
-        }        
+        }else{
+            $api->setInformation(FALSE, 1, 1, "原密碼錯誤");
+        }     
     }
     //返回修改狀態
     $api->setResult();
