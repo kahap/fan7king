@@ -1,10 +1,10 @@
 <?php
 
-$AppMode = "Dev" ;//Dev-測試, Prov--正式
-
 //預設日期
 define('DATE_START','2018-10-18');
+//define('DATE_START','2016-01-01');
 
+$AppMode = "Dev" ;//Dev-測試, Prov--正式
 /****************** 資料庫定義  ********************/
 //define ('SYSTEM_DBHOST','35.229.195.99');
 //define ('SYSTEM_DBHOST','35.194.183.49:3306');

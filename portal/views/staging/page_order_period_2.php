@@ -107,6 +107,7 @@
 <!--                </div>-->
 
 
+                <?php if ($or_data[0]['memClass']!='4'){ ?>
                 <div class="form-group row">
                     <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>學生證/ 軍人證正面上傳</label>
                     <div class="col-sm-9">
@@ -145,6 +146,7 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
 
 
                 <div class="form-group row">
