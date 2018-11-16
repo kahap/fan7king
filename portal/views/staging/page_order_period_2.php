@@ -66,45 +66,45 @@
                 <div class="section-order-title">證件資料<span class="text-orange">*圖檔大小不得超過10MB</span></div>
 
 
-                <div class="form-group row">
-                    <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>
-                    <div class="col-sm-9">
-                        <div class="demo">
-                            <div class="btn">
-                                <input id="fileupload" type="file" name="mypic">
+<!--                <div class="form-group row">-->
+<!--                    <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證正面</label>-->
+<!--                    <div class="col-sm-9">-->
+<!--                        <div class="demo">-->
+<!--                            <div class="btn">-->
+<!--                                <input id="fileupload" type="file" name="mypic">-->
 <!--                                <p>說明：圖片大小不能超過10M。</p>-->
-                            </div>
-                            <div class="progress">
-                                <span class="bar"></span><span class="percent">0%</span >
-                            </div>
-                            <div class="files"></div>
-                            <div id="showimg">
-                            <?php
-                                if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenIdImgTop']) ."' />";
-                            ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>
-                    <div class="col-sm-9">
-                        <div class="demo">
-                            <div class="btn_1">
-                                <input id="fileupload_1" type="file" name="mypic_1">
-                            </div>
-                            <div class="progress_1">
-                                <span class="bar_1"></span><span class="percent_1">0%</span >
-                            </div>
-                            <div class="files_1"></div>
-                            <div id="showimg_1">
-                            <?php
-                                if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenIdImgBot']) ."' />";
-                            ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                            </div>-->
+<!--                            <div class="progress">-->
+<!--                                <span class="bar"></span><span class="percent">0%</span >-->
+<!--                            </div>-->
+<!--                            <div class="files"></div>-->
+<!--                            <div id="showimg">-->
+<!--                            --><?php
+//                                if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenIdImgTop']) ."' />";
+//                            ?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="form-group row">-->
+<!--                    <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人身分證反面</label>-->
+<!--                    <div class="col-sm-9">-->
+<!--                        <div class="demo">-->
+<!--                            <div class="btn_1">-->
+<!--                                <input id="fileupload_1" type="file" name="mypic_1">-->
+<!--                            </div>-->
+<!--                            <div class="progress_1">-->
+<!--                                <span class="bar_1"></span><span class="percent_1">0%</span >-->
+<!--                            </div>-->
+<!--                            <div class="files_1"></div>-->
+<!--                            <div id="showimg_1">-->
+<!--                            --><?php
+//                                if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenIdImgBot']) ."' />";
+//                            ?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
 
 
                 <div class="form-group row">

@@ -40,6 +40,25 @@
                     echo $category_1[$_GET['type']];
                     echo '</li>';
                 }
+                if($_GET['pmSOO'] != ''){
+                    switch ($_GET['pmSOO']){
+                        case 'hot':
+                            echo '<li class="breadcrumb-item active" aria-current="page">';
+                            echo '限時商品';
+                            echo '</li>';
+                            break;
+                        case 'news':
+                            echo '<li class="breadcrumb-item active" aria-current="page">';
+                            echo '最新商品';
+                            echo '</li>';
+                            break;
+                        case 'special':
+                            echo '<li class="breadcrumb-item active" aria-current="page">';
+                            echo '精選商品';
+                            echo '</li>';
+                            break;
+                    }
+                }
                 ?>
                 <li class="breadcrumb-item active" aria-current="page">
                     <?php
