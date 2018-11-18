@@ -11,9 +11,9 @@ $member = new Member();
 
 
 $fb = new Facebook\Facebook([
-  'app_id' => '1557221921249508',
-  'app_secret' => 'aaf94a1bd83321900f71695a99f458b5',
-  'default_graph_version' => 'v2.6'
+	'app_id' => AutoloadAPPId,
+	'app_secret' => AutoloadAPPSecret,
+	'default_graph_version' => FbADVersion,
 ]);
 
 $helper = $fb->getCanvasHelper();

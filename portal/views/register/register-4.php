@@ -31,13 +31,13 @@
                                         <div class="form-group row">
                                             <label for="form-pwd" class="col-1 col-form-label text-hide label-password">密碼</label>
                                             <div class="col-11">
-                                                <input type="text" class="form-control input-black" id="form-pwd" placeholder="密碼">
+                                                <input type="password" class="form-control input-black" id="form-pwd" placeholder="密碼">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="form-checkpwd" class="col-1 col-form-label text-hide label-password">確認密碼</label>
                                             <div class="col-11">
-                                                <input type="text" class="form-control input-black" id="form-checkpwd" placeholder="確認密碼">
+                                                <input type="password" class="form-control input-black" id="form-checkpwd" placeholder="確認密碼">
                                                 <div class="form-check text-left m-3">
                                                     <input class="form-check-input" type="checkbox" id="FieldsetCheck">
                                                     <label class="form-check-label" for="FieldsetCheck">我是學生(勾選此選項可快速申請)</label>
@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group form-btn text-center">
-                                            <a href="?item=login" class="btn btn-login bg-yellow">完成</a>
+                                            <button type="button" class="btn btn-login bg-yellow">完成</button>
                                         </div>
                                     </form>
                                 </div>
@@ -56,3 +56,43 @@
             </div>
         </section>
     </main>
+   
+    <script>
+    $(".btn-login").click(function(){
+        var password = $('input[id=form-pwd]').val();
+        var checkPassword = $('input[id=form-checkpwd]').val();
+        var isStudent = (document.getElementById("FieldsetCheck").checked)?"0":"4";
+        var token ='<?php echo $_SESSION['user']['fb_token'];?>';
+        if (password!="" && password == checkPassword) {
+            var url = "API/set_password";
+            var cell = '<?php echo $_GET['cell'];?>';
+            var form ={
+                "memCell":cell,
+                "password":password,
+                "token":token,
+                "memClass":isStudent,
+                "type":"WebRegist"
+            }
+            // alert(JSON.stringify(form));
+            $.ajax({
+                url:url,
+                type:"POST",
+                data:form,
+                datatype:"json",
+                success:function(result){
+                    var J = JSON.parse(result);
+                    if (J.data) {
+                        location.href="?item=member_center";
+                    }else{
+                        alert(J.message);
+                    }                    
+                },
+                error:function(){                    
+                }
+            });
+        }else{
+            alert("新設密碼和再次確認密碼請設定一樣");
+        }
+    })
+    
+    </script>

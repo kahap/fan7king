@@ -1,11 +1,11 @@
 <?php
 
 
-$api->setJoinArray(array("product_manage"=>"proNo"));
+$api->setJoinArray(array("product_manage"=>"proNo","brand"=>"braNo","b_items"=>"biNo"));
 $api->setOrArray(array("product_manage`.`pmStatus"=>2));
 $api->setGroupArray(array("product`.`proNo"));
 $api->setLimitArray("3");
-$api->setRetrieveArray(array("product.proNo","product_manage.pmNo","product.catNo","product.braNo","product.biNo","proName","pmIfDirect","proImage","proSpec","pmDirectAmnt","pmPeriodAmnt","pmBuyAmnt","pmStatus"));
+$api->setRetrieveArray($api->getDataFieldName);
 
 for ($caseNumber=0; $caseNumber < 3; $caseNumber++) { 
     switch ($caseNumber) {
@@ -29,6 +29,6 @@ for ($caseNumber=0; $caseNumber < 3; $caseNumber++) {
     $result[$which] = $data;
 }
     
-    echo json_encode($result);
-
+    $api->setInformation($result, 1, count($result), "首頁商品");
+    $api->setResult(false);
 ?>

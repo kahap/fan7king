@@ -50,7 +50,7 @@ $data = $api->getWithConditions();
      					?>
      						<tr>
      							<td style="text-align: center;">
-     								<input data-no="<?php echo $value["rcNo"]; ?>" type="checkbox" class="tableflat for-checked">
+     								<input data-no="<?php echo $value["rcCaseNo"]; ?>" type="checkbox" class="tableflat for-checked">
      							</td>
      							<td><?php echo $key+1; ?></td>
      							<td><a target="_blank" href="?page=orders_view&type=view&no=<?php echo $value["rcNo"]; ?>"><?php echo $value["rcCaseNo"]; ?></a></td>
@@ -86,28 +86,64 @@ $(function(){
 			$(".for-checked:checked").each(function(){
 				selected.push($(this).data("no"));
 			});
-			var form = {"rcNo":selected};
-			var url = "ajax/appropriation/confirm_appropriation_final.php";
+			var form = {
+				"rcCaseNo":selected,
+				"aauNoService":<?php echo $_SESSION['adminUserData']['aauNo']; ?>
+				};
+				
+			var url = "ajax/appropriation/confirm_appropriation_updata.php"
 			
 			$.ajax({
 				url:url,
-				type:"post",
+				type:"POST",
 				data:form,
 				datatype:"json",
 				success:function(result){
-					if(result.indexOf("OK") != -1){
-						//匯出EXCEL
-						$("body").append('<form id="excel" method="post" action="view/print_excel.php"></form>');
-						for(var n=0; n<selected.length; n++){
-							$("#excel").append('<input type="hidden" name="rcNo[]" value="'+selected[n]+'">');
-						}
-						$("#excel").submit();
-						selected = [];
-					}else{
-						alert(result);
+					alert("success");
+					//匯出EXCEL
+					$("body").append('<form id="excel" method="post" action="view/print_excel.php"></form>');
+					for(var n=0; n<selected.length; n++){
+						$("#excel").append('<input type="hidden" name="rcNo[]" value="'+selected[n]+'">');
 					}
+					$("#excel").submit();
+					selected = [];	
+				},
+				error:function(result){
+					alert("error:"+result);
 				}
+				
 			});
+
+
+			// var selected = [];
+			// $(".for-checked:checked").each(function(){
+			// 	selected.push($(this).data("no"));
+			// });
+			// var form = {"rcNo":selected};
+			// var url = "ajax/appropriation/confirm_appropriation_final.php";
+			
+			// $.ajax({
+			// 	url:url,
+			// 	type:"post",
+			// 	data:form,
+			// 	datatype:"json",
+			// 	success:function(result){
+			// 		if(result.indexOf("OK") != -1){
+			// 			//匯出EXCEL
+			// 			$("body").append('<form id="excel" method="post" action="view/print_excel.php"></form>');
+			// 			for(var n=0; n<selected.length; n++){
+			// 				$("#excel").append('<input type="hidden" name="rcNo[]" value="'+selected[n]+'">');
+			// 			}
+			// 			$("#excel").submit();
+			// 			selected = [];
+			// 		}else{
+			// 			alert(result);
+			// 		}
+			// 	}
+			// });
+
+
+
 		}
 	});
 });

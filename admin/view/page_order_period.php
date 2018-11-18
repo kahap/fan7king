@@ -463,7 +463,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
                         <td class=" "><?php echo $value["orHandleOrderFromSupDate"] ?></td>
                         	<?php if($status == 8){ ?>
 	                        <td class=" "><input size="10" type="text" name="orHandleSupOutDate[]" value="<?php echo $value["orHandleSupOutDate"] ?>">
-							<a onclick="window.open('http://104.199.229.39/happyfan/v1/logistics/orders/<?php echo $value["orCaseNo"]; ?>', '物流目前狀態查詢', config='height=650,width=650');">查詢物流狀態</a>
+							<a onclick="window.open('https://inner.nowait.shop/v1/redirect-to-other-api-kO0w9jd/logistics/orders/<?php echo $value["orCaseNo"]; ?>', '物流目前狀態查詢', config='height=650,width=650');">查詢物流狀態</a>
 							</td>
 	                        <td class=" "><input size="10" type="text" name="orHandleTransportComp[]" value="<?php echo $value["orHandleTransportComp"] ?>"></td>
 	                        <td class=" "><input size="10" type="text" name="orHandleTransportSerialNum[]" value="<?php echo $value["orHandleTransportSerialNum"] ?>"></td>
@@ -640,8 +640,8 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 			}else{
 				for(var i=0; i<$(".for-checked:checked").length; i++){
 					var cur = $(".for-checked:checked").eq(i);
-					var curSupOutDate = cur.parent().parent().siblings("td").eq(9).find("input");
-					var curSupOutComp = cur.parent().parent().siblings("td").eq(10).find("input");
+					var curSupOutDate = cur.parent().parent().siblings("td").eq(10).find("input");
+					var curSupOutComp = cur.parent().parent().siblings("td").eq(11).find("input");
 					curSupOutDate.val(supOutDateVal);
 					curSupOutComp.val(supOutComp);
 				}
@@ -658,7 +658,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 			}else{
 				for(var i=0; i<$(".for-checked:checked").length; i++){
 					var cur = $(".for-checked:checked").eq(i);
-					var cursupArriveDate = cur.parent().parent().siblings("td").eq(12).find("input");
+					var cursupArriveDate = cur.parent().parent().siblings("td").eq(13).find("input");
 					cursupArriveDate.val(supArriveDateVal);
 				}
 			}
@@ -674,7 +674,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 			}else{
 				for(var i=0; i<$(".for-checked:checked").length; i++){
 					var cur = $(".for-checked:checked").eq(i);
-					var curPayDateVal = cur.parent().parent().siblings("td").eq(13).find("input");
+					var curPayDateVal = cur.parent().parent().siblings("td").eq(14).find("input");
 					curPayDateVal.val(supPayDateVal);
 				}
 			}
@@ -690,7 +690,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 			}else{
 				for(var i=0; i<$(".for-checked:checked").length; i++){
 					var cur = $(".for-checked:checked").eq(i);
-					var curPayDateVal = cur.parent().parent().siblings("td").eq(14).find("input");
+					var curPayDateVal = cur.parent().parent().siblings("td").eq(15).find("input");
 					curPayDateVal.val(supPayDateVal);
 				}
 			}
@@ -706,7 +706,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 			}else{
 				for(var i=0; i<$(".for-checked:checked").length; i++){
 					var cur = $(".for-checked:checked").eq(i);
-					var curPayDateVal = cur.parent().parent().siblings("td").eq(13).find("input");
+					var curPayDateVal = cur.parent().parent().siblings("td").eq(14).find("input");
 					curPayDateVal.val(supPayDateVal);
 				}
 			}
@@ -735,7 +735,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
 					success:function(result){
 						alert("更新成功！");
 						for(var i=0; i<$(".for-checked:checked").length; i++){
-							$(".for-checked:checked").eq(i).parent().parent().siblings("td").eq(15).text(result);
+							$(".for-checked:checked").eq(i).parent().parent().siblings("td").eq(16).text(result);
 						}
 					}
 				});

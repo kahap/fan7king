@@ -5,6 +5,13 @@
     <a href="?item=member_center&action=order" class="list-group-item list-group-item-action <?php if ($active==3) echo 'active';?>">訂單查詢</a>
     <a href="?item=member_center&action=pay" class="list-group-item list-group-item-action <?php if ($active==4) echo 'active';?>">我要繳款</a>
 </div>
+<div class="sell xs-none" style="height: 430px;">
+                        <img src="portal/images/Tmp/AD-1.jpg">
+</div>
+
+
+<?php 
+/*
 <div class="sell xs-none" style="height: 430px;background-image: linear-gradient(151deg, #ff7f00,#fff0c9); padding: 10px">
 
     <!-- left silide -->
@@ -35,3 +42,4 @@
     <!--./left silde-->
 
 </div>
+ ?>

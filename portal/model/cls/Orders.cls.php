@@ -18,7 +18,14 @@
 		public function status($key){
 			return $this->statusArr[$key];
 		}
-		
+		public function updateData($data,$memNo){
+			foreach ($data as $key => $value) {
+				$sqlv[]="`".$key."`='".mysqli_real_escape_string($this->db->oDbLink, $value)."'";
+			}
+			$this->db->updateRecords("
+				update `orders` set ".implode(",",$sqlv)." where `memNo`='".$memNo."'
+			");
+		}
 		//將代號轉換
 		public function changeToReadable(&$str,$method){
 			foreach($str as $key=>&$value){
@@ -108,7 +115,7 @@
 		}
 		
 		//根據會員取得訂單
-		public function getOrByMemberAndMethod($memNo,$orMethod){
+		public function getOrByMemberAndMethod($memNo,$orMethod, $p=0,$a=30){
 			$sql = "select
 						*
 					from
@@ -117,10 +124,25 @@
 						`memNo`=".$memNo."
 					and
 						`orMethod` = ".$orMethod."
-					order by orDate desc";
+					order by orDate desc 
+					limit ".$p.",".$a;
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
+        //根據會員取得訂單Count
+        public function getOrByMemberAndMethodCount($memNo,$orMethod){
+            $sql = "select
+						count(`orNo`) as `count` 
+					from
+						`orders`
+					where
+						`memNo`=".$memNo."
+					and
+						`orMethod` = ".$orMethod;
+            $q=mysqli_query($this->db->oDbLink,$sql);
+            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
+            return $a["count"];
+        }
 		
 		//根據會員取得一筆訂單
 		public function getOnlyOrByMemberAndMethod($memNo,$orMethod){
@@ -696,7 +718,54 @@
                     $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
                 }
 			}
-            $sql = "INSERT INTO `orders`(`orSupPrice`,`orCaseNo`,`memNo`,`memClass`, `pmNo`, `orProSpec`, `orAmount`, `orMethod`, `orStatus`, `supNo`,`orDate`,  `orPeriodAmnt`, `orPeriodTotal`,`orPayBy`,`orChosemethod`, `orIpAddress`, `orReceiveName`, `orReceiveAddr`, `orReceivePhone`, `orReceiveCell`, `orReceiveComment`, `orAppApplierBirthPhone`,`orAppApplierBirthAddrPostCode`, `orAppApplierBirthAddr`, `orAppApplierLivingOwnership`, `orAppApplierCompanystatus`, `orAppApplierCompanyName`, `orAppApplierYearExperience`, `orAppApplierMonthSalary`, `orAppApplierCompanyPhone`, `orAppApplierCompanyPhoneExt`, `orAppApplierCreditNum`, `orAppApplierCreditSecurityNum`, `orAppApplierCreditIssueBank`, `orAppApplierCreditDueDate`, `orBillAddr`, `orBusinessNumIfNeed`, `orBusinessNumNumber`, `orBusinessNumTitle`, `orAppContactRelaName`, `orAppContactRelaRelation`, `orAppContactRelaPhone`, `orAppContactRelaCell`, `orAppContactFrdName`, `orAppContactFrdRelation`, `orAppContactFrdPhone`, `orAppContactFrdCell`, `orAppAssureName`, `orAppAssureRelation`, `orAppAssureIdNum`, `orAppAssureBday`, `orAppAssureBirthPhone`, `orAppAssureAddr`, `orAppAssureCurPhone`, `orAppAssureCompName`, `orAppAssureCompPhone`, `orAppAssureCell`, `orAppExtraAvailTime`, `orAppExtraInfo`,`orReportPeriod110Date`, `pmPeriodAmnt`) VALUES ('".$orSupPrice."','".$orCaseNo."','".$memNo."','".$memClass."','".$pmNo."','".$orProSpec."','".$orAmount."','".$orMethod."','".$orStatus."','".$supNo."','".$orDate."','".$orPeriodAmnt."','".$orPeriodTotal."','".$orPayBy."','".$orChosemethod."','".$orIpAddress."','".$orReceiveName."','".$orReceiveAddr."','".$orReceivePhone."','".$orReceiveCell."','".$orReceiveComment."','".$orAppApplierBirthPhone."','".$orAppApplierBirthAddrPostCode."','".$orAppApplierBirthAddr."','".$orAppApplierLivingOwnership."','".$orAppApplierCompanystatus."','".$orAppApplierCompanyName."','".$orAppApplierYearExperience."','".$orAppApplierMonthSalary."','".$orAppApplierCompanyPhone."','".$orAppApplierCompanyPhoneExt."','".$orAppApplierCreditNum."','".$orAppApplierCreditSecurityNum."','".$orAppApplierCreditIssueBank."','".$orAppApplierCreditDueDate."','".$orBillAddr."','".$orBusinessNumIfNeed."','".$orBusinessNumNumber."','".$orBusinessNumTitle."','".$orAppContactRelaName."','".$orAppContactRelaRelation."','".$orAppContactRelaPhone."','".$orAppContactRelaCell."','".$orAppContactFrdName."','".$orAppContactFrdRelation."','".$orAppContactFrdPhone."','".$orAppContactFrdCell."','".$orAppAssureName."','".$orAppAssureRelation."','".$orAppAssureIdNum."','".$orAppAssureBday."','".$orAppAssureBirthPhone."','".$orAppAssureAddr."','".$orAppAssureCurPhone."','".$orAppAssureCompName."','".$orAppAssureCompPhone."','".$orAppAssureCell."','".$orAppExtraAvailTime."','".$orAppExtraInfo."','".$orReportPeriod110Date."','".$pmPeriodAmnt."')";
+            $sql = "
+            	INSERT INTO `orders`(
+            		`orSupPrice`,`orCaseNo`,`memNo`,
+            		`memClass`, `pmNo`, `orProSpec`, 
+            		`orAmount`, `orMethod`, `orStatus`, 
+            		`supNo`,`orDate`,  `orPeriodAmnt`, 
+            		`orPeriodTotal`,`orPayBy`,`orChosemethod`, 
+            		`orIpAddress`, `orReceiveName`, `orReceiveAddr`, 
+            		`orReceivePhone`, `orReceiveCell`, `orReceiveComment`, 
+            		`orAppApplierBirthPhone`,`orAppApplierBirthAddrPostCode`, `orAppApplierBirthAddr`, 
+            		`orAppApplierLivingOwnership`, `orAppApplierCompanystatus`, `orAppApplierCompanyName`, 
+            		`orAppApplierYearExperience`, `orAppApplierMonthSalary`, `orAppApplierCompanyPhone`, 
+            		`orAppApplierCompanyPhoneExt`, `orAppApplierCreditNum`, `orAppApplierCreditSecurityNum`, 
+            		`orAppApplierCreditIssueBank`, `orAppApplierCreditDueDate`, `orBillAddr`, 
+            		`orBusinessNumIfNeed`, `orBusinessNumNumber`, `orBusinessNumTitle`, 
+            		`orAppContactRelaName`, `orAppContactRelaRelation`, `orAppContactRelaPhone`, 
+            		`orAppContactRelaCell`, `orAppContactFrdName`, `orAppContactFrdRelation`, 
+            		`orAppContactFrdPhone`, `orAppContactFrdCell`, `orAppAssureName`, 
+            		`orAppAssureRelation`, `orAppAssureIdNum`, `orAppAssureBday`, 
+            		`orAppAssureBirthPhone`, `orAppAssureAddr`, `orAppAssureCurPhone`, 
+            		`orAppAssureCompName`, `orAppAssureCompPhone`, `orAppAssureCell`, 
+            		`orAppExtraAvailTime`, `orAppExtraInfo`,`orReportPeriod110Date`, 
+            		`pmPeriodAmnt`,`orIdIssueYear`,`orIdIssueMonth`,`orIdIssueDay`,
+            		`orIdIssuePlace`,`orIdIssueType`
+            	) VALUES (
+            		'".$orSupPrice."','".$orCaseNo."','".$memNo."',
+            		'".$memClass."','".$pmNo."','".$orProSpec."',
+            		'".$orAmount."','".$orMethod."','".$orStatus."',
+            		'".$supNo."','".$orDate."','".$orPeriodAmnt."',
+            		'".$orPeriodTotal."','".$orPayBy."','".$orChosemethod."',
+            		'".$orIpAddress."','".$orReceiveName."','".$orReceiveAddr."',
+            		'".$orReceivePhone."','".$orReceiveCell."','".$orReceiveComment."',
+            		'".$orAppApplierBirthPhone."','".$orAppApplierBirthAddrPostCode."','".$orAppApplierBirthAddr."',
+            		'".$orAppApplierLivingOwnership."','".$orAppApplierCompanystatus."','".$orAppApplierCompanyName."',
+            		'".$orAppApplierYearExperience."','".$orAppApplierMonthSalary."','".$orAppApplierCompanyPhone."',
+            		'".$orAppApplierCompanyPhoneExt."','".$orAppApplierCreditNum."','".$orAppApplierCreditSecurityNum."',
+            		'".$orAppApplierCreditIssueBank."','".$orAppApplierCreditDueDate."','".$orBillAddr."',
+            		'".$orBusinessNumIfNeed."','".$orBusinessNumNumber."','".$orBusinessNumTitle."',
+            		'".$orAppContactRelaName."','".$orAppContactRelaRelation."','".$orAppContactRelaPhone."',
+            		'".$orAppContactRelaCell."','".$orAppContactFrdName."','".$orAppContactFrdRelation."',
+            		'".$orAppContactFrdPhone."','".$orAppContactFrdCell."','".$orAppAssureName."',
+            		'".$orAppAssureRelation."','".$orAppAssureIdNum."','".$orAppAssureBday."',
+            		'".$orAppAssureBirthPhone."','".$orAppAssureAddr."','".$orAppAssureCurPhone."',
+            		'".$orAppAssureCompName."','".$orAppAssureCompPhone."','".$orAppAssureCell."',
+            		'".$orAppExtraAvailTime."','".$orAppExtraInfo."','".$orReportPeriod110Date."',
+            		'".$pmPeriodAmnt."','".$orIdIssueYear."','".$orIdIssueMonth."','".$orIdIssueDay."',
+            		'".$orIdIssuePlace."','".$orIdIssueType."'
+            	)";
             $aa = $this->db->insertRecords($sql);
 			return $aa;
 		}
@@ -815,6 +884,17 @@
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
+        public function updateorAppAuthenSelfImgTop($orAppAuthenSelfImgTop,$orNo){
+            $sql = "update
+						`orders`
+					set
+						`orAppAuthenSelfImgTop`='".$orAppAuthenSelfImgTop."'
+					where
+						`orNo`='".$orNo."'";
+
+            $update = $this->db->updateRecords($sql);
+            return $update;
+        }
 		public function updateorAppAuthenProvement($orAppAuthenProvement,$orNo){
 			$sql = "update
 						`orders`

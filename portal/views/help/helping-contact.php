@@ -10,7 +10,7 @@
                     </div>
                     <div class="col set-vertical-item">
                         <h2 class="text-yellow">FACEBOOK官方粉絲團客服</h2>
-                        <p><a href="https://www.facebook.com/nowait.shop/" title="FACEBOOK官方粉絲團客服" class="text-orange">https://www.facebook.com/nowait.shop/</a><br>有任何疑問，歡迎透過 FB客服進行線上詢問，服務時段：09:00 - 21:00，(國定例假日為公休日)。</p>
+                        <p><a href="https://www.facebook.com/nowait.shop/" title="FACEBOOK官方粉絲團客服" class="text-orange">https://www.facebook.com/685591428479643</a><br>有任何疑問，歡迎透過 FB客服進行線上詢問，服務時段：09:00 - 21:00，(國定例假日為公休日)。</p>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                     </div>
                     <div class="col set-vertical-item">
                         <h2 class="text-yellow">LINE @ 客服</h2>
-                        <p>客服 LINE ID：nowait.shop<br>歡迎透過 line@ 小幫手，輸入訂單號或顧客身份，進行查詢，專人線上服務時段：09:00 - 21:00 (國定例假日為公休日)。</p>
+                        <p>客服 LINE ID：@kwh9566z<br>歡迎透過 line@ 小幫手，輸入訂單號或顧客身份，進行查詢，專人線上服務時段：09:00 - 21:00 (國定例假日為公休日)。</p>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col set-vertical-item">
                         <h2 class="text-yellow">NoWait</h2>
-                        <p>地址：台北市內湖區瑞光路188巷52號3樓<br>客服專線：02-12344321<br>傳真：02-12344322<br>服務時段：09:00 - 21:00 (國定例假日為公休日 )<br>email：xxxx@nowait.com.tw</p>
+                        <p>地址：台北市內湖區瑞光路188巷52號3樓<br>客服專線：02-2656-0619#9<br>傳真：02-2656-0638<br>線上服務時段：09:00 - 18:00(國定例假日為公休日 )<br>email：support@nowait.com.tw</p>
                     </div>
                 </div>
             </div>

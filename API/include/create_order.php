@@ -50,7 +50,7 @@ foreach($memMustFill as $key=>$value){
 //orders table區
 $orMustFill = array(
 	"orIfSecret","orAppApplierBirthAddr","orAppApplierBirthPhone","orAppApplierLivingOwnership",
-	"orReceiveName","orReceiveAddr","orReceiveCell","orProSpec","orPeriodAmnt","pmNo",
+	"orReceiveName","orReceiveAddr","orReceiveCell","orReceivePhone","orProSpec","orPeriodAmnt","pmNo",
 	"orBusinessNumIfNeed","orAppContactRelaName","orAppContactRelaRelation","orAppContactRelaCell","orAppContactFrdName",
 	"orAppContactFrdRelation","orAppContactFrdCell"
 );

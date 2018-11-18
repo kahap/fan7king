@@ -75,7 +75,7 @@
 			$Record = "insert into service_record (rcNo,aauNoService,content,time) value('".$data['0']['rcNo']."','".$_SESSION['userdata']['smName']."','狀態由核准變成".$or->statusArr[$orOldData[0]["orStatus"]]."','".date('Y-m-d H:i:s',time())."')";
 			$or->getSql($Record);	
 		}
-		$push = push("happy.pem",'happy',$deviceTokenArr,$msgArr,$otherInfoArr);
+		// $push = push("happy.pem",'happy',$deviceTokenArr,$msgArr,$otherInfoArr);
 		echo "更新成功";
 	}else{
 		echo $errMsg;

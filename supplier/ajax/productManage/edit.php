@@ -74,15 +74,15 @@ if(isset($pmUpDate) && $pmUpDate != $origData[0]["pmUpDate"]){
 
 
 if(!isset($_POST["catNo"]) || $catNo == ""){
-    $errMsg["catErr"] = "請選擇所屬分類";
+    $errMsg["catErr"] = "請選擇產品分類";
 }
 
 if(!isset($_POST["braNo"]) || $braNo == ""){
-    $errMsg["braErr"] = "請選擇所屬品牌";
+    $errMsg["braErr"] = "請選擇產品品牌";
 }
 
 if(!isset($_POST["biNo"]) || $biNo == ""){
-    $errMsg["biNoErr"] = "請選擇所屬品項";
+    $errMsg["biNoErr"] = "請選擇產品品項";
 }
 
 //上架金額
@@ -207,7 +207,7 @@ if(!isset($_POST["pmPeriodAmnt2"]) || !is_numeric($pmPeriodAmnt2)){
         $dataS["proSpec"] = $proSpec;
         $dataS["proDetail"] = $proDetail;
         $dataS["proImage"] = $_POST["proImage"];
-        //
+		//
         $prod->update($dataS,$newProNo,$proNo);
 
 

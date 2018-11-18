@@ -24,10 +24,12 @@ body.nav-sm .navbar.nav_title a i {
     margin: 13px 0 0 3px;
 }
 
-.site_title i {
-    border: 1px solid #EAEAEA;
-    padding: 5px 6px;
-    border-radius: 50%;
+.site_title span {
+    margin-left: 20px;
+    margin-top: 90px;
+    font-size: 25px
+    padding-top:40px;
+
 }
 
 body.nav-sm .main_container .top_nav {
@@ -126,19 +128,31 @@ body.nav-sm .profile {
     padding: 25px 10px 10px;
     width: 65%;
     float: left;
+    
+
 }
 
 .profile_info span {
     font-size: 13px;
     line-height: 30px;
     color: #BAB8B8;
+
 }
 
 .profile_info h2 {
-    font-size: 14px;
+    padding: 6px;
+    font-size: 20px;
     color: #ECF0F1;
-    margin: 0;
-    font-weight: 300;
+    margin-left: 20px ;
+    margin-top: -30px;
+    margin-right: -60px;
+    font-weight: 900;
+    border:solid;
+    border-color: white;
+    border-width: 2px;
+    border-radius: 3px;
+
+
 }
 
 .profile.img_2 {

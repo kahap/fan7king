@@ -13,9 +13,9 @@ $pro = new Product();
         <div class="">
           <div class="page-title">
             <div class="title_left">
-              <h3>上架列表</h3>
+              <h3>產品列表</h3>
               <a style="text-decoration:none;" href="?page=product&type=productManage&action=insert">
-                <button class="btn btn-success">新增上架</button>
+                <button class="btn btn-success">新增產品</button>
               </a>
             </div>
           </div>
@@ -29,11 +29,11 @@ $pro = new Product();
                   <table id="example" class="table table-striped responsive-utilities jambo_table">
                     <thead>
                       <tr class="headings">
-                        <th>商品編號</th>
-                        <th>商品名稱</th>                     
-						<th>上架狀態</th>         
-                        <th>實際下單數 </th>
-                        <th>商品點擊數 </th>
+                        <th>產品編號</th>
+                        <th>產品名稱</th>                     
+                        <th>上架管理</th>         
+                        <th>訂單量 </th>
+                        <th>點擊量 </th>
                         <!-- <th>上架狀態</th>  -->
                       </tr>
                     </thead>
@@ -76,7 +76,8 @@ $pro = new Product();
                             ?>
                        </a></td>
                       
-                        <td class=" "><?php echo $value["pmStatus"]; ?></td>	
+                        <td class=" "><input name="pmData" data-valeu="<?php echo ($value['pmStatus'] == '上架中')?('1'):('0');?>" data-pmNo="<?php echo $value["pmNo"]; ?>" class="braIfDisplayBox" type="checkbox"  <?php if($value["pmStatus"] == "上架中") echo "checked";?>></td>	
+                        <!-- <td class=" "><?php// echo $value["pmStatus"]; ?></td>	 -->
                         <td class=" "><span><?php echo number_format($value["pmBuyAmnt"]); ?></span></td>
                         <td class=" "><?php echo number_format($value["pmClickNum"]); ?></td>
                         <!-- <td class=" "><?php //echo $value["pmStatus"]; ?></td> -->
@@ -192,8 +193,16 @@ $pro = new Product();
           "sSearch": "搜尋: "
         },
         'iDisplayLength': 100,
-        "sPaginationType": "full_numbers"
+        "sPaginationType": "full_numbers",
+        "columns":[
+          null,
+          {"orderDataType":"dom-text","type":"string"},
+          {"orderDataType":"dom-checkbox","type":"numic"},
+          null,
+          null
+        ]
       })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
+      
       $("tfoot input").keyup(function() {
         /* Filter on the column based on the index of this element's parent <th> */
         oTable.fnFilter(this.value, $("tfoot th").index($(this).parent()));
@@ -214,4 +223,26 @@ $pro = new Product();
         }
       });
     });
+
+    $.fn.dataTable.ext.order['dom-checkbox'] = function  ( settings, col )
+    {
+        return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+            return $('input', td).prop('checked') ? '1' : '0';
+        } );
+    }
+    $(document).on("change",".braIfDisplayBox",function(){
+			var val;
+			if($(this).is(":checked")){
+        val=1;
+			}else{
+        val=0;
+      }
+      
+
+      var pmNo = $(this).attr("data-pmNo");
+      var data = {"pmNo":pmNo, "pmStatus":val};
+      $.post("ajax/productManage/edit_up_status.php", data, function(result){
+        alert(result);
+      });
+		});
   </script>

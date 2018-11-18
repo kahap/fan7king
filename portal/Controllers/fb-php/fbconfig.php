@@ -14,8 +14,8 @@ $str = ($_SESSION['pro'] != "") ? "?item=product&pro=".$_SESSION['pro']:"";
 $str = ($_SESSION['item'] != "") ? "?item=product_sup&pro=".$_SESSION['pro']:"";
 
 $helper = $fb->getRedirectLoginHelper();
-$permissions = ['email'];
-$loginUrl = $helper->getLoginUrl('https://'.DONAME.'/fb-php/fbconfig.php', $permissions);
+// $permissions = ['email'];
+// $loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/fb-php/fbconfig.php', $permissions);
 
 try {
 	$accessToken = $helper->getAccessToken();
@@ -44,7 +44,7 @@ if ( isset( $accessToken ) ) {
             $_SESSION['user']['memNo'] = $member_data['memNo'];
             $_SESSION['user']['memClass'] = $member_data['memClass'];
             if($member_data['memIdNum'] == null || $member_data['memIdNum']=='' ){
-                header("Location: ../index.php?item=member_center&action=member_idnum");
+                header("Location: ../index.php?item=register2");
             }
             else
             {
@@ -81,7 +81,7 @@ if ( isset( $accessToken ) ) {
 		$_SESSION['user']['memNo'] = $id;
 		//print_r($array);
 		//header("Location: ../index.php$str");
-		header("Location: ../index.php?item=information_edit");
+		header("Location: ../index.php?item=register2");
 	}
 	$accessToken = @$session->getToken();
 	$_SESSION['user']["fb_access_token"] = (string) $accessToken;

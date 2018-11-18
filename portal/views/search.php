@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
     <meta name="rating" content="general" />
-    <meta name="author" content="Tsai. Cheng Peng (Canboo)"/>
+   
 
     <title>搜尋結果 @ Nowait</title>
 
@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </div>
-            <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved. Designed by <a href="http://kahap.com" title="kahap.com" target="_blank">kahap.com</a></p>
+            <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved.</p>
         </div>
     </footer>
 

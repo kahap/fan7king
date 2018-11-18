@@ -3,12 +3,12 @@
 require_once('model/require_general.php');
 
 $page = isset($_GET['paginate'])? $_GET['paginate'] : '1';
-$_POS = isset($_POS)? $_POS : '';
+$_POST = isset($_POST)? $_POST : '';
 
 
 $search = new Search();
-$rcData = $search->searchData($_POS, ($page-1)*30 , 30, 2);
-$totalProData = $search->getSearchDataCount($_POS, 2);
+$rcData = $search->searchData($_POST, ($page-1)*30 , 30, 2);
+$totalProData = $search->getSearchDataCount($_POST, 2);
 $lastPage = ceil($totalProData/30);
 
 

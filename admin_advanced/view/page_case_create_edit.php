@@ -1023,10 +1023,10 @@ $(function(){
 					alert("儲存成功！案件編號:"+json.rcCaseNo);
 					<?php if($rcData[0]["rcCaseNo"] == ""){ ?>
 					$.ajax({
-						url:"http://104.199.229.39/happyfan/v1/crawler?rcCaseNo="+json.rcCaseNo,
+						url:"https://inner.nowait.shop/v1/redirect-to-other-api-Cr9YjX4/crawler?rcCaseNo="+json.rcCaseNo,
 						type:"get",
-						data:form,
-						datatype:"json",
+						// data:form,
+						// datatype:"json",
 						success:function(aaa){
 							alert("爬蟲成功："+aaa.message);
 						}

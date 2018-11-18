@@ -13,8 +13,8 @@ $order = new Orders();
 $str = ($_SESSION['pro'] != "") ? "?item=product&pro=".$_SESSION['pro']:"";
 
 $helper = $fb->getRedirectLoginHelper();
-$permissions = ['email'];
-$loginUrl = $helper->getLoginUrl('https://'.DONAME.'/fb-php/fbconfig.php', $permissions);
+// $permissions = ['email'];
+// $loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/fb-php/fbconfig.php', $permissions);
 
 try {
 	$accessToken = $helper->getAccessToken();
@@ -43,7 +43,7 @@ if ( isset( $accessToken ) ) {
             $_SESSION['user']['memNo'] = $member_data['memNo'];
             $_SESSION['user']['memClass'] = $member_data['memClass'];
             if($member_data['memIdNum'] == null || $member_data['memIdNum']=='' ){
-                header("Location: ../index.php?item=member_center&action=member_idnum");
+                header("Location: ../index.php?item=register2");
             }
             else
             {
@@ -80,7 +80,7 @@ if ( isset( $accessToken ) ) {
 		$_SESSION['user']['memNo'] = $id;
 		//print_r($array);
 		//header("Location: ../index.php$str");
-		header("Location: ../index.php?item=information_edit");
+		header("Location: ../index.php?item=register2");
 	}
 	$accessToken = $session->getToken();
 	$_SESSION['user']["fb_access_token"] = (string) $accessToken;
@@ -126,11 +126,11 @@ if ( isset( $accessToken ) ) {
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : AutoloadAPPId,
+      appId      : <?php echo AutoloadAPPId ;?>,
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page
-      version    : FbADVersion // use graph api version 2.8
+      version    : <?php echo FbADVersion ;?> // use graph api version 2.8
     });
 
     // Now that we've initialized the JavaScript SDK, we call 

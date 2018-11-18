@@ -80,7 +80,7 @@
         }
     });
 
-    $("#update").click(function(){
+    $("#update").click(function(ev){
         var NewmemPwd = $(".NewmemPwd").val();
         var reNewmemPwd = $(".reNewmemPwd").val();
         if( NewmemPwd == reNewmemPwd){
@@ -106,6 +106,8 @@
         }else{
             alert("新設密碼和再次確認密碼請設定一樣");
         }
+        ev.preventDefault();
+        return false;
     });
 
 </script>

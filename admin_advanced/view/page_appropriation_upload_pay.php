@@ -13,7 +13,7 @@
 		<div class="col s12 m12 l12">
 			<div class="card">
 				<div class="card-content">
-					<form>
+					<!-- <form>
 						<div class="row">
 							<div class="input-field col s6">
 								<select id="which-bank">
@@ -34,7 +34,7 @@
 					<img id="loading" src="assets/images/loading.gif">
 					<div style="padding:20px 0;">
 						<a class="waves-effect waves-light btn green m-b-xs confirm-save">確認上傳</a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>
