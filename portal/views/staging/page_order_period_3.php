@@ -267,12 +267,7 @@
                             <div class="col">是否需要統一編號</div>
                             <div class="col">
                                 <?php
-                                foreach($columnName as $key=>$value){
-                                    //只顯示
-                                    if($value["COLUMN_NAME"] == "orBusinessNumIfNeed") {
-                                        echo ($orData[0][$value["COLUMN_NAME"]]);   break;
-                                    }
-                                }
+                                echo $or_data[0]["orBusinessNumIfNeed"];
                                 ?>
                             </div>
                         </div>
@@ -280,12 +275,7 @@
                             <div class="col">統一編號</div>
                             <div class="col">
                                 <?php
-                                foreach($columnName as $key=>$value){
-                                    //只顯示
-                                    if($value["COLUMN_NAME"] == "orBusinessNumNumber") {
-                                        echo ($orData[0][$value["COLUMN_NAME"]]);   break;
-                                    }
-                                }
+                                    echo $or_data[0]["orBusinessNumNumber"];
                                 ?>
                             </div>
                         </div>
@@ -295,12 +285,7 @@
                             <div class="col">公司抬頭</div>
                             <div class="col">
                                 <?php
-                                foreach($columnName as $key=>$value){
-                                    //只顯示
-                                    if($value["COLUMN_NAME"] == "orBusinessNumTitle") {
-                                        echo ($orData[0][$value["COLUMN_NAME"]]);   break;
-                                    }
-                                }
+                                echo $or_data[0]["orBusinessNumTitle"];
                                 ?>
                             </div>
                         </div>

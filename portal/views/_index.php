@@ -91,7 +91,7 @@
         <section id="nowait-limit" class="slick-zone">
             <div class="container">
                 <div class="slick-title">
-                    <h2 class="span-orange"><span>限時商品</span>TIME LIMIT</h2>
+                    <h2 class="span-orange"><span>限量推薦</span>TIME LIMIT</h2>
                     <p class="text-right text-orange"><a href="?item=category&pmSOO=hot" class="" title="看更多限時商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
@@ -151,7 +151,7 @@
         <section id="nowait-arrive" class="bg-white slick-zone">
             <div class="container">
                 <div class="slick-title">
-                    <h2 class="span-yellow"><span>最新商品</span>NEW ARRIVE</h2>
+                    <h2 class="span-yellow"><span>新品熱推</span>NEW ARRIVE</h2>
                     <p class="text-right text-orange"><a href="?item=category&pmSOO=news" class="" title="看更多最新商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
@@ -212,7 +212,7 @@
         <section id="nowait-featured" class="slick-zone">
             <div class="container">
                 <div class="slick-title">
-                    <h2 class="span-pale"><span>精選商品</span>FEATURED</h2>
+                    <h2 class="span-pale"><span>嚴選特賣</span>FEATURED</h2>
                     <p class="text-right text-orange"><a href="?item=category&pmSOO=special" class="" title="看更多精選商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">

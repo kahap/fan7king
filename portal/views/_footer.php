@@ -7,7 +7,7 @@
                 <address>
                     <strong>Nowait</strong>
                     <abbr title="address"></abbr>台北市內湖區瑞光路188巷52號3樓<br>
-                    <abbr title="phone"></abbr>02-1234-4321
+                    <abbr title="phone"></abbr>02-2656-0619#9
                 </address>
             </div>
             <div class="col">
@@ -20,7 +20,7 @@
                                     <li><a href="?item=aboutme" title="關於我們">關於我們</a></li>
                                     <li><a href="?item=member_center" title="會員中心">會員中心</a></li>
                                     <li><a href="?item=help_process" title="購物流程">購物流程</a></li>
-                                    <li><a href="" title="FB 粉絲團" target="_blank">FB 粉絲團</a></li>
+                                    <li><a href="https://www.facebook.com/685591428479643" title="FB 粉絲團" target="_blank">FB 粉絲團</a></li>
                                 </ul>
                             </dd>
                         </dl>
@@ -32,7 +32,7 @@
                                 <ul class="list-unstyled">
                                     <li><a href="?item=faq" title="常見問題">常見問題</a></li>
                                     <li><a href="?item=co_company" title="聯絡客服">聯絡客服</a></li>
-                                    <li><a href="?item=co_company" title="合作提案">合作提案</a></li>
+                                    <!-- <li><a href="?item=co_company" title="合作提案">合作提案</a></li> -->
                                 </ul>
                             </dd>
                         </dl>
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-<!--        <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved. Designed by <a href="http://www.kahap.com" title="kahap.com" target="_blank">kahap.com</a></p>-->
+        <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved.<!--  Designed by <a href="http://www.kahap.com" title="kahap.com" target="_blank">kahap.com</a> --></p>
 <!--        <p class="text-center">Copyrights &#169; 2016 樂分期-HappyFan7. All Rights Reserved. Designed by HappyFan7.com</p>-->
     </div>
 </footer>

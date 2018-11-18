@@ -480,7 +480,7 @@
                             <div class="form-group row  orAppApplierCompany">
                                 <label for="JobYear" class="col-sm-3 col-form-label"><span class="text-orange"></span>年資</label>
                                 <div class="col-sm-9">
-                                    <select name="orAppApplierYearExperience" class="input form-control" id="JobYear" >
+                                    <select name="orAppApplierYearExperience" class="input form-control" id="JobYear" required>
                                         <option value="">請選擇</option>
                                         <option value="半年以下">半年以下</option>
                                         <option value="半年到一年">半年到一年</option>
@@ -496,7 +496,7 @@
                             <div class="form-group row  orAppApplierCompany">
                                 <label for="Salary" class="col-sm-3 col-form-label "><span class="text-orange"></span>月薪</label>
                                 <div class="col-sm-9">
-                                    <select name="orAppApplierMonthSalary" class="input form-control" id="Salary" >
+                                    <select name="orAppApplierMonthSalary" class="input form-control" id="Salary" required>
                                         <option value="">請選擇</option>
                                         <option value="0-5000">0-5000</option>
                                         <option value="5000-10000">5000-10000</option>

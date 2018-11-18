@@ -215,21 +215,17 @@
                         echo ($ln > 5) ? $coin[$ex[1]]:'零';
                         ?>
                     </span>
-                    <span>　
-                        拾
-                        <span style=""><?php echo ($ln == 5) ? $coin[$ex[1]]:'零'; ?></span>
-                        <span>
-                        &nbsp;拾&nbsp;
-                        <span style=""><?php echo ($ln == 5) ? $coin[$ex[1]]:'零'; ?></span>
-                        &nbsp;萬&nbsp;
-                        <span style=""><?php echo $coin[$ex[2]]; ?></span>
-                        &nbsp;仟&nbsp;
-                        <span style=""><?php echo $coin[$ex[3]]; ?></span>
-                        &nbsp;佰&nbsp;
-                        <span style=""><?php echo $coin[$ex[4]]; ?></span>
-                        &nbsp;拾&nbsp;
-                        <span style=""><?php echo $coin[$ex[5]]; ?></span>
-                    　  元整<br>
+                    &nbsp;拾&nbsp;
+                    <span style=""><?php echo ($ln = 5) ? $coin[$ex[1]]:'零'; ?></span>
+                    &nbsp;萬&nbsp;
+                    <span style=""><?php echo $coin[$ex[2]]; ?></span>
+                    &nbsp;仟&nbsp;
+                    <span style=""><?php echo $coin[$ex[3]]; ?></span>
+                    &nbsp;佰&nbsp;
+                    <span style=""><?php echo $coin[$ex[4]]; ?></span>
+                    &nbsp;拾&nbsp;
+                    <span style=""><?php echo $coin[$ex[5]]; ?></span>
+                    &nbsp;&nbsp;  　元整
                     <br>此總額為您選擇之月付金X期數
                     <br>此本票免除作成拒絕證書及票據法第八十九條之通知義務，
                     <br>利息自到期日迄清償日止按年利率百分之二十計付，
