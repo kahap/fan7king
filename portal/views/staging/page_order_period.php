@@ -253,9 +253,9 @@
                                 <div class="col-sm-9">
                                     <input id="fileupload" type="file" name="mypic" required >
                                 </div>
-                                <div class="progress">
+                                <!-- <div class="progress">
                                     <span class="bar"></span><span class="percent">0%</span >
-                                </div>
+                                </div> -->
                                 <div class="files"></div>
                                 <div id="showimg">
                                     <?php
@@ -275,9 +275,9 @@
                                 <div class="col-sm-9">
                                     <input id="fileupload_1" type="file" name="mypic_1" required >
                                 </div>
-                                <div class="progress_1">
+                                <!-- <div class="progress_1">
                                     <span class="bar_1"></span><span class="percent_1">0%</span >
-                                </div>
+                                </div> -->
                                 <div class="files_1"></div>
                                 <div id="showimg_1">
                                     <?php

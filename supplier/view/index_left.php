@@ -18,15 +18,15 @@
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="admin.php" class="site_title"></i> <span >NoWait 夥伴商城</span></a>
+            <a href="admin.php" class="site_title" ><!-- </i> --> <span style="" >NoWait 夥伴商城</span></a>
           </div>
           <div class="clearfix"></div>
 
           <!-- menu prile quick info -->
           <div class="profile">
-            <div class="profile_pic">
+            <!-- <div class="profile_pic">
               <img src="images/img.png" alt="..." class="img-circle profile_img">
-            </div>
+            </div> -->
             <div class="profile_info">
               <span>　</span>
               <h2><?php echo $_SESSION['supplieruserdata']['supName']; ?></h2>
@@ -35,15 +35,17 @@
           <!-- /menu prile quick info -->
 
           <br />
+          <br>
 
           <!-- sidebar menu -->
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
             
-            <div class="menu_section">
+            <div class="menu_section" style="margin-top: 60px">
            <!--  <h3>供應商</h3> -->
+
               <ul class="nav side-menu">
-                <li><a><i class="fa "></i> 產品管理 <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa " ></i> 產品管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" >  
                     <li><a href="?page=product&type=productManage">產品登錄上架</a></li>                  
                   </ul>
