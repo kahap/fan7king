@@ -41,7 +41,7 @@
 
             
             <div class="menu_section">
-            <h3>供應商</h3>
+           <!--  <h3>供應商</h3> -->
               <ul class="nav side-menu">
                 <li><a><i class="fa "></i> 產品管理 <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu" >  
