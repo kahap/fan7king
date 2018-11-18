@@ -34,12 +34,13 @@
         $sql = "UPDATE member SET memPwd='".$Cpwd."' WHERE memCell='".$memCell."' ";
         $api->customSql($sql);
         $api->setInformation(TRUE, 1, 1, "密碼設定成功");
+
     }else if($type=="change"){
         $api->setWhereArray(array("memNo"=>$memNo));
         $api->getWithWhereAndJoinClause();
         $result = $api->getData();
         
-        if (password_verify($password,$result[0]['memPwd'])) {
+        if (password_verify($oldpassword,$result[0]['memPwd'])) {
             $sql = "UPDATE member SET memPwd='".$Cpwd."' WHERE memNo='".$memNo."' ";
             $api->customSql($sql);
             $api->setInformation(TRUE, 1, 1, "密碼修改成功");
