@@ -1,22 +1,17 @@
 <?php
 	session_start();
-	include('../../model/php_model.php');
-
+	include('../model/php_model.php');
 	$or = new Orders();
 	$member = new Member();
 	$email = new Email();
 	$pm = new Product_Manage();
 	$p = new Product();
-
 	$or_data = $or->getOneOrderByNo($_SESSION['ord_code']);
 	$memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
-
 	$re = new Recomm_Bonus_Apply();
-    $errg="";
 	if($_SESSION['shopping_user'][0]['memNo'] == ""){
 		$errg = "Session已過期";
 	}
-
 	if($errg == ""){
 		$orIfEditable = '1';
 		if($or_data[0]['orStatus'] == '5'){
@@ -32,7 +27,7 @@
 				}elseif($memberData[0]['memEmailAuthen'] == '1'){
 					$or->updateStatus('1',$_SESSION['ord_code']);
 					$or->updateStatusTime('1',$_SESSION['ord_code']);
-				}
+				} 
 			}elseif($memberData['0']['memFBtoken'] != ''){
 				$or->updateStatus('1',$_SESSION['ord_code']);
 				$or->updateStatusTime('1',$_SESSION['ord_code']);
@@ -43,8 +38,7 @@
 				$or->updateStatus('1',$_SESSION['ord_code']);
 				$or->updateStatusTime('1',$_SESSION['ord_code']);
 			}
-
-			//Email沒有驗證
+			
 			if($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0'){
 				$str_title = '已下單，Email未驗證';
 			}else{
@@ -52,19 +46,13 @@
 			}
 			
 		}
-
-		//是否可編輯
+		
 		$or->updateorIfEditable($orIfEditable,$_SESSION['ord_code']);
-
-        //實際購買人數+1
 		$pmBuyAmnt = $pm->getOnePMByNo($or_data[0]['pmNo']);
+		
 		$pm->updatepmBuyAmnt($or_data[0]['pmNo'],$pmBuyAmnt[0]['pmBuyAmnt']);
-
-
 		$p_data = $p->getOneProByNo($pmBuyAmnt[0]['proNo']);
 		$Class = ($memberData[0]['memClass'] == '0') ? '學生':'非學生';
-
-		/*
 		if($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0'){
 			$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部");
 		}elseif($or_data[0]['orStatus'] == '5'){
@@ -118,15 +106,15 @@
 								</tr>
 							</tbody>
 						</table>';
-			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);*/
-			/**if(in_array("Allan",$receiverNameAndEmails)){
+			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);
+			/*if(in_array("Allan",$receiverNameAndEmails)){
 				$ch = curl_init("http://test.happyfan7.com/php/index.php?inst=happyfan7&msg=".str_replace(" ","_",$title));
 				curl_setopt($ch, CURLOPT_HTTPHEADER, false);
 				$result = curl_exec($ch);
 				curl_close($ch);
-			}**/
+			}*/
 			
-        /*if($memberData[0]['memEmailAuthen'] == 0 && $memberData[0]['memClass'] == '0'){
+			if($memberData[0]['memEmailAuthen'] == 0 && $memberData[0]['memClass'] == '0'){
 			$email = new Email();
 			$receiverNameAndEmails1 = Array($memberData[0]['memAccount']=>$memberData[0]['memName'],'sinlenlin@gmail.com'=>'客服人員A','biglee2275@gmail.com'=>'客服人員B','min_yeon@kimo.com'=>'客服人員C','aa22760676@gmail.com'=>'客服人員D');
 			$title1 = "【樂分期購物網】學校Email認證信件";
@@ -214,15 +202,12 @@
 				';
 			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails2, "service@happyfan7.com", "樂分期", $title1, $content1);
 			
-		}*/
+		}
 		
 		
 		if($memberData[0]['memRecommCode'] != ""){
-            //訂單編號取得單一獎金
 			$re_data = $re->getOneRBAByOrNo($_SESSION['ord_code']);
-
 			if($re_data[0]['rbaRecMemNo'] == ''){
-			    //得到推薦獎金會員紀錄
 				$redata = $re->getOneRBAByOrNoRBAByMemNo($memberData[0]['memRecommCode'],$memberData[0]['memNo']);
 				if(count($redata) != 1){
 					$array['orNo'] = $_SESSION['ord_code'];
@@ -232,6 +217,7 @@
 					$re->insert($array);	
 				}
 			}
+			
 		}
 		
 		unset($_SESSION['ord_code']);

@@ -361,7 +361,6 @@ $supNoArr = array();
 <!-- pace -->
 <script src="js/pace/pace.min.js"></script>
 <script>
-<?php if(isset($_GET["pageIndex"])) echo "$(window).scrollTop($(document).height());"; ?>
 $(function(){
     var oTable = $('#example').dataTable({
         "paging": false,
@@ -370,7 +369,7 @@ $(function(){
             "sSearch": "搜尋: "
         },
         "sPaginationType": "full_numbers"
-    });
+    })<?php if(isset($_GET["pageIndex"])) echo "$(window).scrollTop($(document).height());"; ?>;
 
 
     $('#example_info').hide();

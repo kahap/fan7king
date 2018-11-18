@@ -229,25 +229,6 @@
 						`proImage`='".$proImage."'
 					where
 						`proNo`='".$proNo."'";
-
-			//商品型號註解前
-			$sql = "update
-						`product`
-					set
-						`proCaseNo`='".$newProNo."',
-						`catNo`='".$catNo."',
-						`braNo`='".$braNo."',
-						`biNo`='".$biNo."',
-						`proName`='".$proName."',
-						`proOffer`='".$proOffer."',
-						`proGift`='".$proGift."',
-						`proModelID`='".$proModelID."',
-						`proSpec`='".$proSpec."',
-						`proDetail`='".$proDetail."',
-						`proImage`='".$proImage."'
-					where
-						`proNo`='".$proNo."'";
-
 //			$sql = "update
 //						`product`
 //					set
@@ -261,6 +242,7 @@
 //						`proImage`='".$proImage."'
 //					where
 //						`proNo`='".$proNo."'";
+			
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}

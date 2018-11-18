@@ -441,10 +441,9 @@
                     $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
                 }
             }
-            $sql = "insert into `product_manage`(`proNo`,`pmStatus`,`supNo`)
+            $sql = "insert into `product_manage`(`proNo`,`pmStatus`)
 					values('".$proNo."',
-							'".$pmStatus."',
-							'".$supNo."')";
+							'".$pmStatus."')";
             $insert = $this->db->insertRecords($sql);
             return $insert;
         }

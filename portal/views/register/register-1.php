@@ -72,13 +72,11 @@
             var sharcode = $("input[name='memRecommCode']").val();
             if (!sharcode)sharcode='';
             <?php $_SESSION['pro'] = isset($_GET['pro'])? $_GET['pro'] : null; ?>
-            
             location.href="portal/Controllers/fb-php/sharcode.php?sharcode="+sharcode;
         // }else{
         //     alert("請勾選同意條款");
         //     $("input[name='check']").val('');
         // }
-        
     });
 
     // 建立一般帳號

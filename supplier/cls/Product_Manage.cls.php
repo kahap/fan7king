@@ -280,7 +280,7 @@
                     $$key = mysqli_real_escape_string($this->db->oDbLink, $value);
                 }
             }
-			$sql = "insert into `product_manage`(`proNo`, `supNo`, `pmPeriodAmnt`, `pmPeriodAmnt2`, `pmStatus`, `pmBuyAmnt`,`pmClickNum`,`pmBySup`,`pmUpDate`)
+			$sql = "insert into `product_manage`(`proNo`, `supNo`, `pmPeriodAmnt`, `pmPeriodAmnt2`, `pmStatus`, `pmBuyAmnt`,`pmClickNum`,`pmBySup`)
 					values('".$proNo."',
 							'".$supNo."',
 							'".$pmPeriodAmnt."',
@@ -288,8 +288,7 @@
 							'".$pmStatus."',
 							'0',
 							'0',
-							'1',
-							'".date("Y-m-d H:i:s")."')";
+							'1')";
 //            $sql = "insert into `product_manage`(`proNo`, `supNo` ,`pmSupPrice`,`pmMainSup`,
 //					`pmPeriodAmnt`,`pmPeriodAmnt2`,`pmUpDate`,`pmIfDirect`,`pmDirectAmnt`,`pmStatus`,`pmNewest`,
 //					`pmHot`,`pmSpecial`,`pmPopular`,`pmNewestOrder`,`pmHotOrder`,`pmSpecialOrder`,

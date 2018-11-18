@@ -85,7 +85,7 @@ $aaulist = $user->customSql($sql);
 								</div>
                               	<div class="input-field col s2">
 									<input type="text" name="supPeriod" value="<?php echo isset($supData) ? $supData[0]["supPeriod"] : ""; ?>">
-									<label class="">利率(ex: 5% 則輸入 0.05)</label>
+									<label class="">利率(%)</label>
 								</div>
 							</div>
 							<div class="row">

@@ -108,7 +108,7 @@
 		}
 		
 		//根據會員取得訂單
-		public function getOrByMemberAndMethod($memNo,$orMethod, $p=0,$a=30){
+		public function getOrByMemberAndMethod($memNo,$orMethod){
 			$sql = "select
 						*
 					from
@@ -117,25 +117,10 @@
 						`memNo`=".$memNo."
 					and
 						`orMethod` = ".$orMethod."
-					order by orDate desc 
-					limit ".$p.",".$a;
+					order by orDate desc";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
-        //根據會員取得訂單Count
-        public function getOrByMemberAndMethodCount($memNo,$orMethod){
-            $sql = "select
-						count(`orNo`) as `count` 
-					from
-						`orders`
-					where
-						`memNo`=".$memNo."
-					and
-						`orMethod` = ".$orMethod;
-            $q=mysqli_query($this->db->oDbLink,$sql);
-            $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
-            return $a["count"];
-        }
 		
 		//根據會員取得一筆訂單
 		public function getOnlyOrByMemberAndMethod($memNo,$orMethod){
@@ -830,17 +815,6 @@
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
-        public function updateorAppAuthenSelfImgTop($orAppAuthenSelfImgTop,$orNo){
-            $sql = "update
-						`orders`
-					set
-						`orAppAuthenSelfImgTop`='".$orAppAuthenSelfImgTop."'
-					where
-						`orNo`='".$orNo."'";
-
-            $update = $this->db->updateRecords($sql);
-            return $update;
-        }
 		public function updateorAppAuthenProvement($orAppAuthenProvement,$orNo){
 			$sql = "update
 						`orders`

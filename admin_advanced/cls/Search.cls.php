@@ -59,7 +59,7 @@ class Search{
             if ($orCaseNo != "") {
 
                 if (strlen($orCaseNo) == 13) {
-                    $sql = "select	 rc.rcStatus6Time,rc.rcPosition,
+                    $sql = "select	 rc.rcStatus6Time,
 rc.rcNo,rc.rcType,rc.memNo,rc.rcRelateDataNo,rc.rcCaseNo,ord.orCaseNo as CaseNo,
 rc.rcStatus,mem.memName,mem.memIdNum,mem.memClass,rc.rcIfCredit,rc.aauNoCredit,rc.aauNoAuthen,rc.rcIfAuthen,rc.rcDate,ord.orPeriodTotal as rcPeriodTotal,
 ord.orPeriodAmnt as rcPeriodAmount 
@@ -71,15 +71,12 @@ ord.orPeriodAmnt as rcPeriodAmount
                         $sql .= " and rc.rcType = '" . $rcType . "' ";
                     }
                     $sql .= "UNION
-						select	'' as rcStatus6Time,'' as rcPosition,
-rc.rcNo,rc.rcType,rc.memNo,rc.rcRelateDataNo,rc.rcCaseNo ,moto.mcoCaseNo as CaseNo,
-rc.rcStatus,mem.memName,mem.memIdNum,mem.memClass,rc.rcIfCredit,rc.aauNoCredit,rc.aauNoAuthen,rc.rcIfAuthen,rc.rcDate,moto.mcoPeriodTotal as rcPeriodTotal,
-moto.mcoMinMonthlyTotal as rcPeriodAmount from real_cases as rc
+				        select	rc.rcNo,rc.rcType,rc.memNo,rc.rcRelateDataNo,rc.rcCaseNo ,moto.mcoCaseNo as CaseNo,rc.rcStatus,mem.memName,mem.memIdNum,mem.memClass,rc.rcIfCredit,rc.aauNoCredit,rc.aauNoAuthen,rc.rcIfAuthen,rc.rcDate,moto.mcoPeriodTotal as rcPeriodTotal,moto.mcoMinMonthlyTotal as rcPeriodAmount from real_cases as rc
 					        inner join member as mem on rc.memNo = mem.memNo
 					        inner join motorbike_cellphone_orders as moto on rc.rcRelateDataNo = moto.mcoNo  where
 					        moto.mcoCaseNo='" . $orCaseNo . "'";
                 } else {
-                    $sql = "select	 rc.rcStatus6Time,rc.rcPosition,
+                    $sql = "select	 rc.rcStatus6Time,
 rc.rcNo,rc.rcType,rc.memNo,rc.rcRelateDataNo,rc.rcCaseNo,ord.orCaseNo as CaseNo,
 rc.rcStatus,mem.memName,mem.memIdNum,mem.memClass,rc.rcIfCredit,rc.aauNoCredit,rc.aauNoAuthen,rc.rcIfAuthen,rc.rcDate ,ord.orPeriodTotal as rcPeriodTotal,
 ord.orPeriodAmnt as rcPeriodAmount 
@@ -91,8 +88,7 @@ ord.orPeriodAmnt as rcPeriodAmount
                         $sql .= " and rc.rcType = '" . $rcType . "' ";
                     }
                     $sql .= "UNION
-						select	'' as rcStatus6Time,'' as rcPosition,
-						rc.rcNo,rc.rcType,rc.memNo,rc.rcRelateDataNo,rc.rcCaseNo ,moto.mcoCaseNo as CaseNo,rc.rcStatus,mem.memName,mem.memIdNum,mem.memClass,rc.rcIfCredit,rc.aauNoCredit,rc.aauNoAuthen,rc.rcIfAuthen,rc.rcDate ,moto.mcoPeriodTotal as rcPeriodTotal,moto.mcoMinMonthlyTotal as rcPeriodAmount from real_cases as rc
+				        select	rc.rcNo,rc.rcType,rc.memNo,rc.rcRelateDataNo,rc.rcCaseNo ,moto.mcoCaseNo as CaseNo,rc.rcStatus,mem.memName,mem.memIdNum,mem.memClass,rc.rcIfCredit,rc.aauNoCredit,rc.aauNoAuthen,rc.rcIfAuthen,rc.rcDate ,moto.mcoPeriodTotal as rcPeriodTotal,moto.mcoMinMonthlyTotal as rcPeriodAmount from real_cases as rc
 					        inner join member as mem on rc.memNo = mem.memNo
 					        inner join motorbike_cellphone_orders as moto on rc.rcRelateDataNo = moto.mcoNo  where
 					        moto.mcoCaseNo like '%" . $orCaseNo . "%'";

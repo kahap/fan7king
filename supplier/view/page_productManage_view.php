@@ -15,7 +15,6 @@ $proData = $pro->getOneProByNo($proNo);
 
 $sup = new Supplier();
 $supNoArr = array();
-$allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
 
 ?>
 <!-- page content -->
@@ -38,23 +37,15 @@ $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
                 <div class="x_content">
                   <br>
                   <div class="form-horizontal form-label-left">
-									<div class="form-group">
-                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-												購物站編號 : 
-                      </label>
-                      <h5 style="color:#999;"><?php echo $allSupData[0]["supLogId"]; ?></a></h5>
-                    </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-												產品名稱 : 
+                      	商品名稱 : 
                       </label>
-											<h5 style="color:#999;"><a style="color:blue;text-decoration:underline;" href="?page=product&type=product&action=view&prono=<?php echo $proNo; ?>"><?php 
-																				$cnt = strlen($allSupData[0]["supLogId"])+1;
-                                        echo substr($proData[0]["proName"],$cnt);  ?></a></h5>
+                      <h5 style="color:#999;"><a style="color:blue;text-decoration:underline;" href="?page=product&type=product&action=view&prono=<?php echo $proNo; ?>"><?php echo $proData[0]["proName"]; ?></a></h5>
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >
-												產品售價 : 
+                      	上架金額 : 
                       </label>
                       <h5 style="color:#999;"><?php echo number_format($pmData[0]["pmPeriodAmnt"]); ?></h5>
                     </div>
@@ -69,7 +60,7 @@ $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
                     </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-												點擊量 : 
+                      	商品點擊數 : 
                       </label>
                       <div style="display:inline-block;">
                       	<h5 style="color:#999;"><?php echo number_format($pmData[0]["pmClickNum"]); ?></h5>

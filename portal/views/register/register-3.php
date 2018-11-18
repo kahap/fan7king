@@ -3,6 +3,7 @@
 
     $cell = isset($_GET['cell'])? $_GET['cell'] : '';
     $cell = $cell!='' ? $cell : '沒有電話號碼';
+
 ?>
     <main role="main">
         <h1><span>註冊</span><small>rigester</small></h1>
@@ -45,7 +46,7 @@
                                         </div>
                                         <div class="form-group form-btn text-center">
                                             <a href="?item=register2" class="btn btn-next bg-yellow">重新輸入手機號碼</a>
-                                            <button type="button" class="btn btn-next1 bg-yellow">下一步</button>
+                                            <a href="?item=register4" class="btn btn-next bg-yellow">下一步</a>
                                         </div>
                                     </form>
                                 </div>
@@ -56,63 +57,3 @@
             </div>
         </section>
     </main>
-
-    <script>
-    $(".btn-resend").click(function(){           
-        var d = new Date();
-        d = new Date(d.getTime() - 3000000);
-        var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00";
-
-        var url = "API/regist_phone";
-        var cell = '<?php echo $cell; ?>';
-        var form ={
-            "phoneNumber":cell,
-            "token":"",
-            "time":date_format_str,
-            "type":"regist"
-        }
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:form,
-            datatype:"json",
-            success:function(result){                
-                var J = JSON.parse(result);
-                if (J.data) {
-                    
-                }else{
-                    alert(J.message);
-                }
-            }                    
-        });
-    })
-    $(".btn-next1").click(function(){
-        var passNumber=$('input[id=form-phone]').val();
-        
-        var url = "API/regist_phone_keyCheck";
-        var cell = '<?php echo $cell;?>';
-        var form ={
-            "phoneNumber":cell,
-            "token":"",
-            "passNumber":passNumber
-        }
-        $.ajax({
-            url:url,
-            type:"POST",
-            data:form,
-            datatype:"json",
-            success:function(result){
-                var J = JSON.parse(result);
-                if (J.data) {
-                    location.href="?item=register4&cell="+cell;
-                }else{
-                    alert(J.message);
-                }
-                
-            },
-            error:function(){
-                
-            }
-        });
-    })
-    </script>

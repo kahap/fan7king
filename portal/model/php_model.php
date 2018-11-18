@@ -5,7 +5,6 @@
 
 	function __autoload($ClassName){
 		require_once('../../model/cls/'.$ClassName.".cls.php");
-		
 	}
 
 	function alert_message($path,$message){

@@ -50,31 +50,31 @@
                             </dd>
                         </dl>
                     </div>
-<!--                    <div class="col-lg-3">-->
-<!--                        <dl>-->
-<!--                            <dt>下載NoWait</dt>-->
-<!--                            <dd>-->
-<!--                                <div class="row">-->
-<!--                                    <div class="col">-->
-<!--                                        <img class="img-fluid" src="portal/assets/images/icon-applestore.png" alt="Apple Store">-->
-<!--                                        <a href="#" title="下載NoWait">-->
-<!--                                            <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Apple Store">-->
-<!--                                        </a>-->
-<!--                                    </div>-->
-<!--                                    <div class="col">-->
-<!--                                        <img class="img-fluid" src="portal/assets/images/icon-googleplay.png" alt="Google Play">-->
-<!--                                        <a href="#" title="下載NoWait">-->
-<!--                                            <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Android">-->
-<!--                                        </a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </dd>-->
-<!--                        </dl>-->
-<!--                    </div>-->
+                    <div class="col-lg-3">
+                        <dl>
+                            <dt>下載NoWait</dt>
+                            <dd>
+                                <div class="row">
+                                    <div class="col">
+                                        <img class="img-fluid" src="portal/assets/images/icon-applestore.png" alt="Apple Store">
+                                        <a href="#" title="下載NoWait">
+                                            <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Apple Store">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <img class="img-fluid" src="portal/assets/images/icon-googleplay.png" alt="Google Play">
+                                        <a href="#" title="下載NoWait">
+                                            <img class="img-fluid" src="portal/assets/images/Tmp/qrcode.png" alt="Android">
+                                        </a>
+                                    </div>
+                                </div>
+                            </dd>
+                        </dl>
+                    </div>
                 </div>
             </div>
         </div>
-<!--        <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved. Designed by <a href="http://www.kahap.com" title="kahap.com" target="_blank">kahap.com</a></p>-->
+        <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved. Designed by <a href="http://www.kahap.com" title="kahap.com" target="_blank">kahap.com</a></p>
 <!--        <p class="text-center">Copyrights &#169; 2016 樂分期-HappyFan7. All Rights Reserved. Designed by HappyFan7.com</p>-->
     </div>
 </footer>

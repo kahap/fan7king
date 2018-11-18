@@ -1,10 +1,10 @@
 <?php
 
+$AppMode = "Dev" ;//Dev-測試, Prov--正式
+
 //預設日期
 define('DATE_START','2018-10-18');
-//define('DATE_START','2016-01-01');
 
-$AppMode = "Dev" ;//Dev-測試, Prov--正式
 /****************** 資料庫定義  ********************/
 //define ('SYSTEM_DBHOST','35.229.195.99');
 //define ('SYSTEM_DBHOST','35.194.183.49:3306');
@@ -40,10 +40,10 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
 //        define('DOMAIN', '127.0.0.1/fan7king_dev2');
 //        echo  $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 //        exit();
-        define('DOMAIN', $_SERVER['HTTP_HOST'].'/fan7king_dev2');
-        define('AutoloadAPPId','1845375422218419');
-        define('AutoloadAPPSecret','1184f8ce3bd0b4cb440f1dd066f3ab26');
-        define('FbADVersion', 'v3.2');
+        define('DOMAIN', $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+        define('AutoloadAPPId','1863095207092475');
+        define('AutoloadAPPSecret','2282176ea918f66b59307881d74014a');
+        define('FbADVersion', 'v2.9');
     }
 
 

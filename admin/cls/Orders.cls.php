@@ -816,7 +816,7 @@
 						`orNo`='".$orNo."'";
 			
 			$update = $this->db->updateRecords($sql);
-			$sql_realcases = "UPDATE  `real_cases` SET  `supNo` =  '".$supNo."' WHERE  `real_cases`.`rcRelateDataNo` ='".$orNo."'";
+			$sql_realcases = "UPDATE  `happyfan_system`.`real_cases` SET  `supNo` =  '".$supNo."' WHERE  `real_cases`.`rcRelateDataNo` ='".$orNo."'";
 			$this->db->updateRecords($sql_realcases);
 			return $update;
 		}
@@ -835,15 +835,10 @@
 		}
 		
 		function updaterealcase($supNo,$orNo){
-			$sql = "UPDATE  `real_cases` SET  `supNo` =  '".$supNo."' WHERE  `real_cases`.`rcRelateDataNo` ='".$orNo."'";
+			$sql = "UPDATE  `happyfan_system`.`real_cases` SET  `supNo` =  '".$supNo."' WHERE  `real_cases`.`rcRelateDataNo` ='".$orNo."'";
 			$this->db->updateRecords($sql);
 		}
 		
-		function updaterealcaseBankTransferAmount($rcBankTransferAmount,$orNo){
-			$sql = "UPDATE  `real_cases` SET  `rcBankTransferAmount` =  '".$rcBankTransferAmount."' WHERE  `real_cases`.`rcRelateDataNo` ='".$orNo."'";
-			$this->db->updateRecords($sql);
-		}
-
 		//查尋機車、手機資料
 		function getMcoData($mcoNo){
 			$sql = "SELECT * FROM `motorbike_cellphone_orders` where mcoNo = '".$mcoNo."'";

@@ -1419,12 +1419,12 @@ $(function(){
 	
 	$(".credit_view").click(function(){
 		$('.lean-overlay').hide();
-		window.open('https://inner.nowait.shop/v1/review-checking-table-uusQc82/credit?action=query&rcCaseNo=<?php echo $rcData[0]["rcCaseNo"]; ?>', '徵信查詢', "toolbar=yes,scrollbars=yes,resizable=yes,left=650,width=950,height=600");
+		window.open('http://104.199.229.39/happyfan/v1/credit?action=query&rcCaseNo=<?php echo $rcData[0]["rcCaseNo"]; ?>', '徵信查詢', "toolbar=yes,scrollbars=yes,resizable=yes,left=650,width=950,height=600");
 	})
 	
 	$(".credit_score").click(function(){
 		$('.lean-overlay').hide();
-		window.open('https://inner.nowait.shop/v1/review-checking-table-9cEiC0d/score-card/detail-page?rcCaseNo=<?php echo $rcData[0]["rcCaseNo"]; ?>', '自動評分項目', "toolbar=yes,scrollbars=yes,resizable=yes,left=650,width=950,height=600");
+		window.open('http://104.199.229.39/happyfan/v1/score-card/detail-page?rcCaseNo=<?php echo $rcData[0]["rcCaseNo"]; ?>', '自動評分項目', "toolbar=yes,scrollbars=yes,resizable=yes,left=650,width=950,height=600");
 	})
 	
 	$("#contactNdcNoA").change(function(){

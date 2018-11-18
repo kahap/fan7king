@@ -38,9 +38,9 @@
                         foreach($cate_head as $key => $value){
                             if($value['catIfDisplay'] != "0"){
                                 echo '<div class="col-2">
-                                        <div class="card">
+                                        <div class="card_1">
                                             <a class="cate-'.($key+1).'" href="?item=category&c='.$value['catOrder'].'" title="">
-                                                '.$value['catName'].'
+                                                <img class="icon-menu" src="assets/data/F'.$value['catOrder'].'.svg">'.$value['catName'].'
                                             </a>
                                         </div>
                                     </div>';
@@ -61,9 +61,9 @@
     $p = new Product();
     $ps = new Period_Setting();
     $month = $ps->getAllPS();
-    $news = $pm->getAllNew(12);
-    $special = $pm->getAllSpecial(12);
-    $hot = $pm->getAllHot(12);
+    $news = $pm->getAllNew();
+    $special = $pm->getAllSpecial();
+    $hot = $pm->getAllHot();
 
     if($hot != "") {
         ?>
@@ -71,7 +71,7 @@
             <div class="container">
                 <div class="slick-title">
                     <h2 class="span-orange"><span>限時商品</span>TIME LIMIT</h2>
-                    <p class="text-right text-orange"><a href="?item=category&pmSOO=hot" class="" title="看更多限時商品">看更多&gt;&gt;</a></p>
+                    <p class="text-right text-orange"><a href="#" class="" title="看更多限時商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
                 <?php
@@ -94,7 +94,7 @@
                                         <img src="<?php echo $img[0];?>" class="img-fluid img-responsive" alt="product">
                                         <div class="card-body">
                                             <p class="card-title"><?php echo $value['proName'] ?></p>
-<!--                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>-->
+                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
                                             <p class="card-text text-orange">
                                                 <?php echo "月付NT $".number_format(min($price)); ?>
                                                 <small><?php echo "*".array_search(min($price),$price)."期"; ?></small>
@@ -131,7 +131,7 @@
             <div class="container">
                 <div class="slick-title">
                     <h2 class="span-yellow"><span>最新商品</span>NEW ARRIVE</h2>
-                    <p class="text-right text-orange"><a href="?item=category&pmSOO=news" class="" title="看更多最新商品">看更多&gt;&gt;</a></p>
+                    <p class="text-right text-orange"><a href="#" class="" title="看更多最新商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
                 <?php
@@ -155,7 +155,7 @@
                                              alt="product">
                                         <div class="card-body">
                                             <p class="card-title"><?php echo $value['proName'] ?></p>
-<!--                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>-->
+                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
                                             <p class="card-text text-orange">
                                                 <?php echo "月付NT $" . number_format(min($price)); ?>
                                                 <small><?php echo "*" . array_search(min($price), $price) . "期"; ?></small>
@@ -192,7 +192,7 @@
             <div class="container">
                 <div class="slick-title">
                     <h2 class="span-pale"><span>精選商品</span>FEATURED</h2>
-                    <p class="text-right text-orange"><a href="?item=category&pmSOO=special" class="" title="看更多精選商品">看更多&gt;&gt;</a></p>
+                    <p class="text-right text-orange"><a href="#" class="" title="看更多精選商品">看更多&gt;&gt;</a></p>
                 </div>
                 <div class="slick-content card-deck">
                     <?php
@@ -216,7 +216,7 @@
                                              alt="product">
                                         <div class="card-body">
                                             <p class="card-title"><?php echo $value['proName'] ?></p>
-<!--                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>-->
+                                            <p class="nowait-badge text-left"><span class="bg-yellow">開學季優惠</span><span class="bg-yellow">滿千送百特惠方案</span></p>
                                             <p class="card-text text-orange">
                                                 <?php echo "月付NT $" . number_format(min($price)); ?>
                                                 <small><?php echo "*" . array_search(min($price), $price) . "期"; ?></small>

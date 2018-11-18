@@ -42,9 +42,8 @@ $scData = $sc->getWithConditions(true);*/
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="icon" href="../../assets/data/page_icon.png">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+	</head>
 	<body>
 		<h1 style="text-align: center;">分期付款申請案件回覆書</h1>
 		<table width="100%"  style="border:3px #FFAC55 solid;padding:5px;" rules="all" cellpadding='8'>
@@ -109,10 +108,9 @@ $scData = $sc->getWithConditions(true);*/
 		</table>
 			<img src="../../assets/images/logo_new.png" style="margin: 0 auto;display: block;"/>
 			<p style="text-align:center">
-				大方藝彩行銷顧問股份有限公司<br>
-				114 台北市內湖區瑞光路188巷52號3<br>
-				電話 : 02-2656-0619<br>
-				傳真 : 02-2656-0638<br>
+				廿一世紀數位有限公司<br>
+				電話:(02)7721-2177 傳真:(02) 2765-1011<br>
+				110台北市信義區基隆路一段163號5樓之2<br>
 			</p>	
 		
 	</body>

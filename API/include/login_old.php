@@ -42,7 +42,7 @@ if(!isset($errMsg)){
 			$api->setInformation(false, 0, 0, "您的帳戶已被停權，請洽客服人員。");
 		}
 	}else{
-		$api->setInformation(false, 0, 0, "帳號或密碼錯誤");
+		$api->setInformation(false, 0, 0, "錯誤的帳號密碼，或已經有FB註冊");
 	}
 }else{
 	$api->setInformation(false, 0, 0, $errMsg);

@@ -32,7 +32,7 @@
         {
 			unset($this->aSelectRecords);
             $this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery) or die(mysqli_error($this->oDbLink));
-			$this->iNoOfRecords = is_object($this->oQueryResult) ? mysqli_num_rows($this->oQueryResult) : 0;
+			$this->iNoOfRecords = mysqli_num_rows($this->oQueryResult);
 			if ($this->iNoOfRecords > 0) {
 				while($obj = mysqli_fetch_object($this->oQueryResult)) {
 					$this->aSelectRecords[] = $obj;
@@ -51,7 +51,7 @@
 		{
 			unset($this->aSelectRecords);
             $this->oQueryResult = mysqli_query($this->oDbLink, $sSqlQuery);// or die(mysqli_error($this->oDbLink));
-			$this->iNoOfRecords = is_object($this->oQueryResult) ? mysqli_num_rows($this->oQueryResult) : 0;
+			$this->iNoOfRecords = mysqli_num_rows($this->oQueryResult);
 			if ($this->iNoOfRecords > 0) {
 				while ($oRow = mysqli_fetch_array($this->oQueryResult,MYSQLI_ASSOC)) {
 					$this->aSelectRecords[] = $oRow;

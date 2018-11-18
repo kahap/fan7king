@@ -3,7 +3,7 @@
 		var $db;
 		
 		//建構函式
-		public function __construct(){
+		public function School(){
 			$this->db = new WADB(SYSTEM_DBHOST, SYSTEM_DBNAME, SYSTEM_DBUSER, SYSTEM_DBPWD);
 			return TRUE;
 		}

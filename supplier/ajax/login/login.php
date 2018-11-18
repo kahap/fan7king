@@ -10,9 +10,9 @@ foreach($_POST as $key=>$value){
 		$$key = $value;
 	}
 //判斷是否POST 過來
-if(count($_POST)>0) 
+if(count($_POST)>0)
 {	
-	if( $name!="" && $pwd!="" && $login->validate($name,$pwd)){
+	if($login->validate($name,$pwd)){
 		$_SESSION['supplieruserdata'] = $login->getuserdata();				
 		$ip = get_client_ip();		
 		date_default_timezone_set('Asia/Taipei');		

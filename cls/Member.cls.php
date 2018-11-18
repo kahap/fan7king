@@ -395,14 +395,10 @@
 					from
 						`member`
 					where
-						`memCell` = '" . $memCell . "'";
+						`memCell` = '" . $memCell . "'&&
+						`memPwd` = '" . $memPwd . "'";
 
 			$data = $this->db->selectRecords($sql);
-			if (password_verify($memPwd,$data[0]['memPwd'])) {
-				return $data[0];
-			}else{
-				return "";
-			}
 			return $data[0];
 		}
 		

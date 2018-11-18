@@ -1,7 +1,7 @@
 <?php
 	class Product_Period{
 		var $db;
-		var $periodArray = array("6","9","12","15","18","21","24");
+		
 		//建構函式
 		public function Product_Period(){
 			$this->db = new WADB(SYSTEM_DBHOST, SYSTEM_DBNAME, SYSTEM_DBUSER, SYSTEM_DBPWD);
@@ -81,7 +81,6 @@
 							'".$ppPercent."',
 							'".$ppIntroText."')";
 			$insert = $this->db->insertRecords($sql);
-
 			return $insert;
 		}
 		

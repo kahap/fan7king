@@ -89,19 +89,18 @@
 		}
 		
 		//取得所有商品上架
-		public function getAllPM_forCategory($p=0,$a=9999999){
-			$sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.biNo,c.proName, c.proImage 
+		public function getAllPM_forCategory($p=1,$a=30){
+			$sql = "select a.pmNo,a.supNo, a.proNo, a.supNo, a.pmPeriodAmnt,a.pmPeriodAmnt2, c.catNo,c.braNo,c.proName, c.proImage
 					from 
-						`product_manage` a inner join `product` c 
-					on 
-					    a.`proNo` = c.`proNo` 
+						`product_manage` a, product c
 					where
-						a.`pmMainSup` = '1' and
-						a.`pmStatus` = '1' 
+						a.`pmStatus` = '1' &&
+						/*a.pmMainSup = '1' && */
+						a.proNo = c.proNo 
 					group by 
-						a.`proNo` 
+						c.proNo
 					order by
-						a.pmUpDate desc 
+						c.catNo desc 
 					limit " .$p. " , " .$a ;
 						
 			$data = $this->db->selectRecords($sql);
@@ -110,18 +109,17 @@
 		//取得所有商品上架 total
         public function getAllPM_forCategoryCount(){
             $sql = "select 
-						count(a.`proNo`) as `count` 
+						count(`product_manage`.`proNo`) as `count` 
 					from 
-						`product_manage` a inner join `product` c 
-					on 
-					    a.`proNo` = c.`proNo` 
+						`product_manage` a, product c
 					where
-						a.`pmMainSup` = '1' and
-						a.`pmStatus` = '1' 
-					/*group by 
-						c.`proNo` */
+						a.`pmStatus` = '1' &&
+					/*	a.pmMainSup = '1' &&*/
+						a.proNo = c.proNo 
+					group by 
+						c.proNo
 					order by
-						a.`pmUpDate` desc";
+						a.pmUpDate desc";
             $q=mysqli_query($this->db->oDbLink,$sql);
             $a=mysqli_fetch_array($q,MYSQLI_ASSOC);
             return $a["count"];
@@ -421,7 +419,7 @@
 		}
 		
 		//依據最新取得該商品並且group
-		public function getAllNew($a=99999999){
+		public function getAllNew(){
 			$sql = "select
 						*
 					from
@@ -438,13 +436,13 @@
 						`product`.`proNo`
 					order by
 						`product_manage`.`pmUpDate` desc
-					limit 0,".$a;
+					limit 14	";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//依據精選取得該商品並且group
-		public function getAllSpecial($a=99999999){
+		public function getAllSpecial(){
 			$sql = "select
 						*
 					from
@@ -465,13 +463,13 @@
 						`product`.`proNo`
 					order by
 						`product_manage`.`pmSpecialOrder` asc
-					limit 0,".$a;
+					limit 14	";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//依據限時取得該商品並且group
-		public function getAllHot($a=99999999){
+		public function getAllHot(){
 			$sql = "select
 						*
 					from
@@ -492,7 +490,7 @@
 						`product`.`proNo`
 					order by
 						`product_manage`.`pmHotOrder` asc
-					limit 0,".$a;
+					limit 14";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}

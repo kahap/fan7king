@@ -96,29 +96,25 @@
 	//如果沒有錯誤訊息
 	if(empty(array_filter($errMsg))){
 		$insert = $pro->insert($_POST,$newProNo);
+
 		//
 		//多加的
 		//
-		$pp = new Product_Period();
-		$ppArray = $pp->periodArray;
-		$dataInsert = array();
-		foreach ($ppArray as $key => $value) {
-			$dataInsert["proNo"] = $insert;
-			$dataInsert["ppPeriodAmount"] = $value;
-			$dataInsert["ppPercent"] = "";
-			$dataInsert["ppIntroText"] = "";
-			$pp->insert($dataInsert);
-		}
-
+        $pp = new Product_Period();
+        $dataInsert = array();
+        $dataInsert["proNo"] = $proNo;
+        $dataInsert["ppPeriodAmount"] = $value;
+        $dataInsert["ppPercent"] = $ppPercentArr[$key];
+//            $dataInsert["ppIntroText"] = $ppIntroTextArr;
+        $pp->insert($dataInsert);
 
 
         $pm = new Product_Manage();
         $dataInsert = array();
-        $dataInsert["proNo"] = $insert;
-		$dataInsert["supNo"] = "99999";
-		$dataInsert["pmStatus"] = "0";
+        $dataInsert["proNo"] = $newProNo;
+        $dataInsert["pmStatus"] = 0;
 //            $dataInsert["ppIntroText"] = $ppIntroTextArr;
-        $pm->insert2($dataInsert);
+        $pm->insert($dataInsert);
 		//
 
 

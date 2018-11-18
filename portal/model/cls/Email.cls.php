@@ -1,5 +1,5 @@
 <?php
-include "../../model/cls/email/class.phpmailer.php"; //匯入PHPMailer類別
+include "../cls/email/class.phpmailer.php"; //匯入PHPMailer類別
 
 class Email extends PHPMailer{
 

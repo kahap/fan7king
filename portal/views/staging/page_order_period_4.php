@@ -36,10 +36,6 @@
                     </div>
                 </div>
             </div>
-            <?php
-            $member = new Member();
-            $memberData = $member->getOneMemberByNo($_SESSION['user']['memNo']);
-            ?>
             <div class="section-staging bg-white">
                 <h2><span>申請完成</span></h2>
                 <div class="text-center text-box">
@@ -55,11 +51,11 @@
                     </p>
                 </div>
                 <div class="form-group form-btn text-center">
-                    <a href="?item=member_center&action=order" class="btn btn-next bg-yellow">訂單查詢</a>
+                    <a href="member-order.htm" class="btn btn-next bg-yellow">訂單查詢</a>
                 </div>
             </div>
             <div class="down-rightnow">
-                <img src="portal/images/rightnow.png" data-src-base="portal/images/" data-src="<991:rightnow-m.png,>991:rightnow.png" class="img-fluid" alt="即刻下載NoWait APP">
+                <img src="images/rightnow.png" data-src-base="images/" data-src="<991:rightnow-m.png,>991:rightnow.png" class="img-fluid" alt="即刻下載NoWait APP">
             </div>
         </div>
     </section>

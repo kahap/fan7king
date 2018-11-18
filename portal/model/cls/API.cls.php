@@ -2,7 +2,7 @@
 //require_once("../admin/cls/Product_Manage.cls.php");
 //require_once("../admin/cls/Period_Setting.cls.php");
 //require_once("../admin/cls/Product.cls.php");
-require_once("../../../admin/cls/Product_Period.cls.php");
+require_once("../admin/cls/Product_Period.cls.php");
 	class API{
 		var $db;
 		private $table;
@@ -58,25 +58,6 @@ require_once("../../../admin/cls/Product_Period.cls.php");
 			"mcoRecentTransactionImgTop"=>true,
 			"mcoExtraInfoUpload"=>true
 		);
-        //API抓取欄位所需資料 四張表join product product_manage brand b_items
-        var $getDataFieldName=array(
-            "product.proNo",
-            "product_manage.pmNo",
-            "product.catNo",
-            "product.braNo",
-            "brand.braName",
-            "product.biNo",
-            "b_items.biName",
-            "proName",
-            "pmIfDirect",
-            "proImage",
-            "proSpec",
-            "proOffer",
-            "proGift",
-            "pmDirectAmnt",
-            "pmPeriodAmnt",
-            "pmBuyAmnt",
-            "pmStatus");
 
 		//建構函式
 		public function API($table){
@@ -527,202 +508,6 @@ require_once("../../../admin/cls/Product_Period.cls.php");
 			$this->orderArr = $string;
 		}
 
-        public function getWithConditions($desc=false){
-            $sql = "select ";
-            if(!empty($this->retrieveArr)){
-                // Get array keys
-                $arrayKeys = array_keys($this->retrieveArr);
-                // Fetch last array key
-                $lastArrayKey = array_pop($arrayKeys);
-                foreach($this->retrieveArr as $key=>$value){
-                    if($key != $lastArrayKey){
-                        $sql .= " ".$value.", ";
-                    }else{
-                        $sql .= " $value ";
-                    }
-                }
-            }else{
-                $sql .= " * ";
-            }
-            $sql .= " from `".$this->table."` ";
-            if (! empty ( $this->joinArr )) {
-                foreach ( $this->joinArr as $key => $value ) {
-                    if ($this->table == "admin_advanced_user" && $key == "admin_advanced_roles" && $value == "aarNo") {
-                        $sql .= "," . $key . " ";
-                        $this->aarNo_JOIN_admin_advanced_roles = true;
-                    } else {
-                        $sql .= " inner join " . $key . "
-								on `" . $this->table . "`.`" . $value . "` = `" . $key . "`.`" . $value . "` ";
-                    }
-                }
-            }
-            if(!empty($this->whereArr)){
-                $sql .= " where ";
-                // Get array keys
-                $arrayKeys = array_keys($this->whereArr);
-                // Fetch last array key
-                $lastArrayKey = array_pop($arrayKeys);
-                foreach($this->whereArr as $key=>$value){
-                    if($key != $lastArrayKey){
-                        $sql .= " `".$key."` = '".$value."'
-								 and ";
-                    }else{
-                        $sql .= " `".$key."` = '".$value."'";
-                    }
-                }
-            }
-            if(!empty($this->whereNotArr)){
-                if(!empty($this->whereArr)){
-                    $sql .= " and ";
-                    // Get array keys
-                    $arrayKeys = array_keys($this->whereNotArr);
-                    // Fetch last array key
-                    $lastArrayKey = array_pop($arrayKeys);
-                    foreach($this->whereNotArr as $key=>$value){
-                        if($key != $lastArrayKey){
-                            $sql .= " `".$key."` != '".$value."'
-								 and ";
-                        }else{
-                            $sql .= " `".$key."` != '".$value."'";
-                        }
-                    }
-                }else{
-                    $sql .= " where ";
-                    // Get array keys
-                    $arrayKeys = array_keys($this->whereNotArr);
-                    // Fetch last array key
-                    $lastArrayKey = array_pop($arrayKeys);
-                    foreach($this->whereNotArr as $key=>$value){
-                        if($key != $lastArrayKey){
-                            $sql .= " `".$key."` != '".$value."'
-								 and ";
-                        }else{
-                            $sql .= " `".$key."` != '".$value."'";
-                        }
-                    }
-                }
-            }
-            if(!empty($this->orArr)){
-                if(!empty($this->whereArr)){
-                    $sql .= " or ";
-                    // Get array keys
-                    $arrayKeys = array_keys($this->orArr);
-                    // Fetch last array key
-                    $lastArrayKey = array_pop($arrayKeys);
-                    foreach($this->orArr as $key=>$value){
-                        if($key != $lastArrayKey){
-                            $sql .= " `".$key."` = '".$value."'
-								 or ";
-                        }else{
-                            $sql .= " `".$key."` = '".$value."'";
-                        }
-                    }
-                }else{
-                    $sql .= " where ";
-                    // Get array keys
-                    $arrayKeys = array_keys($this->orArr);
-                    // Fetch last array key
-                    $lastArrayKey = array_pop($arrayKeys);
-                    foreach($this->orArr as $key=>$value){
-                        if($key != $lastArrayKey){
-                            $sql .= " `".$key."` = '".$value."'
-								 or ";
-                        }else{
-                            $sql .= " `".$key."` = '".$value."'";
-                        }
-                    }
-                }
-            }
-            if(isset($this->aarNo_JOIN_admin_advanced_roles)){
-                if(!empty($this->whereArr)){
-                    $sql .= " and ";
-                }else{
-                    $sql .= " where ";
-                    $this->whereArr =true;
-                }
-                $sql .= '  `admin_advanced_user`.`aarNo` LIKE CONCAT ("%\"",`admin_advanced_roles`.`aarNo`,"\"%" )';
-            }
-            if(!empty($this->orLikeArr)){
-                if(!empty($this->whereArr)){
-                    $sql .= " or ";
-                    // Get array keys
-                    $arrayKeys = array_keys($this->orLikeArr);
-                    // Fetch last array key
-                    $lastArrayKey = array_pop($arrayKeys);
-                    foreach($this->orLikeArr as $key=>$value){
-                        if($key != $lastArrayKey){
-                            $sql .= " `".$key."` like '%".$value."%'
-								 or ";
-                        }else{
-                            $sql .= " `".$key."` like '%".$value."%'";
-                        }
-                    }
-                }else{
-                    $sql .= " where ";
-                    // Get array keys
-                    $arrayKeys = array_keys($this->orLikeArr);
-                    // Fetch last array key
-                    $lastArrayKey = array_pop($arrayKeys);
-                    foreach($this->orLikeArr as $key=>$value){
-                        if($key != $lastArrayKey){
-                            $sql .= " `".$key."` like '%".$value."%'
-								 or ";
-                        }else{
-                            $sql .= " `".$key."` like '%".$value."%'";
-                        }
-                    }
-                }
-            }
-            if(!empty($this->groupArr)){
-                $sql .= " group by ";
-                // Get array keys
-                $arrayKeys = array_keys($this->groupArr);
-                // Fetch last array key
-                $lastArrayKey = array_pop($arrayKeys);
-                foreach($this->groupArr as $key=>$value){
-                    if($key != $lastArrayKey){
-                        $sql .= " `".$value."`, ";
-                    }else{
-                        $sql .= " `".$value."` ";
-                    }
-                }
-            }
-            if(!empty($this->orderArr)){
-                $sql .= " order by ";
-                $arrayKeys = array_keys($this->orderArr);
-                // Fetch last array key
-                $lastArrayKey = array_pop($arrayKeys);
-                foreach($this->orderArr as $key=>$value){
-                    if($value){
-                        if($key != $lastArrayKey){
-                            $sql .= $key." desc, ";
-                        }else{
-                            $sql .= $key." desc ";
-                        }
-                    }else{
-                        if($key != $lastArrayKey){
-                            $sql .= $key.", ";
-                        }else{
-                            $sql .= $key;
-                        }
-                    }
-                }
-            }else{
-                if($desc){
-                    $sql .= " order by ".$this->idColumn." desc";
-                }else{
-                    $sql .= " order by ".$this->idColumn;
-                }
-            }
-
-            if(!empty($this->limitArr)){
-                $sql .= " limit ".$this->limitArr." ";
-            }
-            $data = $this->db->selectRecords($sql);
-            $this->data = $data;
-            return $data;
-        }
-
 		public function setInformation($data,$status,$records,$msg){
 			$this->data = $data;
 			$this->status = $status;
@@ -777,17 +562,7 @@ require_once("../../../admin/cls/Product_Period.cls.php");
 										}
 									}
 								}
-                                //商品優惠轉陣列
-                                if($keyIn == "proOffer"){
-                                    $valueIn = explode("#",$valueIn);
-                                    foreach($valueIn as &$eachSpec){
-                                        if($eachSpec == "無"){
-                                            $eachSpec = "";
-                                        }
-                                    }
-                                }
-
-                            }
+							}
 						}
 					}
 				}
@@ -808,25 +583,11 @@ require_once("../../../admin/cls/Product_Period.cls.php");
 			foreach($array as $key => $value){
 				$$key= mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
-            $str = "";
-            $str .= ($catNo != "0") ? "`product`.catNo = '".$catNo."' &&":'';
-            $str .= ($braNo != "0") ? "`product`.braNo = '".$braNo."' &&":'';
-            $str .= ($biNo != "0") ? "`product`.biNo = '".$biNo."' &&":'';
-            $str .= "`product`.proName like '%".$search."%'";
-            switch ($orderby) {
-                case 'hot':
-                    $str .= " order by `product_manage`.`pmHotOrder` desc ";
-                    break;
-                case 'money':
-                    $str .= " order by `product_manage`.`pmDirectAmnt`  ";
-                    break;
-                default:
-                    $str .= " order by `product_manage`.`pmNewestOrder` desc ";
-                    break;
-            }
-            $sql = "select
-						`product_manage`.`proNo`,`product_manage`.`pmNo`,`product`.catNo,`product`.braNo,`brand`.braName,`product`.biNo,`b_items`.biName,
-						`product`.`proOffer`,`product`.`proGift`,`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
+			$str = ($catNo != "0") ? "`product`.catNo = '".$catNo."' &&":'';
+			$str .= "`product`.proName like '%".$search."%'";
+			$sql = "select
+						`product_manage`.`proNo`,`product_manage`.`pmNo`,
+						`pmStatus`,`pmBuyAmnt`,`proName`,`pmIfDirect`,`proImage`,`pmDirectAmnt`,`pmPeriodAmnt`,`proSpec`
 					from
 						`product_manage`
 					inner join

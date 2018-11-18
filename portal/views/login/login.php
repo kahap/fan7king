@@ -69,7 +69,7 @@
 
     $helper = $fb->getRedirectLoginHelper();
     $permissions = ['email'];
-    $loginUrl = $helper->getLoginUrl('https://nowait.kahap.com/fb-php/fbconfig.php', $permissions);
+    $loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/portal/Controllers/fb-php/fbconfig.php', $permissions);
 ?>
     <main role="main">
         <h1><span>登入</span><small>login</small></h1>
@@ -128,7 +128,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group form-btn text-center">
-                                    <button class="btn btn-login bg-yellow" id="login" type="button">登入</button>
+                                    <button class="btn btn-login bg-yellow" id="login">登入</button>
                                     <a class="btn btn-facebook" href="<?php echo $loginUrl; ?>">Facebook帳號登入
                                         <?php if($_GET['pro'] == '10190'){ ?>
                                         <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" />

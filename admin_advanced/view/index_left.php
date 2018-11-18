@@ -134,8 +134,8 @@
                             	<?php } ?>
 								<?php if(in_array(504,$rightsOwned)){ ?><li><a href="?page=accounting&type=export_file" <?php echo isset($page,$type) && $page == "accounting" && $type == "export_file" ? 'class="active-page"' : ""; ?>>會計匯出檔案</a></li>
 								<?php } ?>
-								<!-- <?php// if(in_array(505,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=export_file_cussup" <?php //echo isset($page,$type) && $page == "accounting" && $type == "export_file_cussup" ? 'class="active-page"' : ""; ?>>客供應報表</a></li> -->
-								<?php //} ?>
+								<?php if(in_array(505,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=export_file_cussup" <?php echo isset($page,$type) && $page == "accounting" && $type == "export_file_cussup" ? 'class="active-page"' : ""; ?>>匯出客供應報表</a></li>
+								<?php } ?>
 								<?php if(in_array(506,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=upload_file_cussup" <?php echo isset($page,$type) && $page == "accounting" && $type == "upload_file_cussup" ? 'class="active-page"' : ""; ?>>匯入文中發票檔</a></li>
 								<?php } ?>
 								<?php if(in_array(507,$rightsOwned)){ ?>								<li><a href="?page=accounting&type=queryPay" <?php echo isset($page,$type) && $page == "accounting" && $type == "queryPay" ? 'class="active-page"' : ""; ?>>入帳日查詢</a></li>
@@ -153,7 +153,7 @@
                             <ul>
 <?php if(in_array(601,$rightsOwned)){ ?><li><a href="?page=urge&type=my" <?php echo isset($page,$type) && $page == "urge" && $type =="my" ? 'class="active-page"' : ""; ?>>我的催收案件</a></li><?php } ?>
 <?php if(in_array(602,$rightsOwned)){ ?><li><a href="?page=urge&type=all" <?php echo isset($page,$type)  && $page == "urge" && $type =="all" ? 'class="active-page"' : ""; ?>>全部催收案件</a></li><?php } ?>
-<!-- <?php //if(in_array(603,$rightsOwned)){ ?><li><a href="?page=urge&type=txtmsg" <?php// echo isset($page,$type) && $page == "urge" && $type =="txtmsg" ? 'class="active-page"' : ""; ?>>簡訊紀錄</a></li><?php //} ?> -->
+<?php if(in_array(603,$rightsOwned)){ ?><li><a href="?page=urge&type=txtmsg" <?php echo isset($page,$type) && $page == "urge" && $type =="txtmsg" ? 'class="active-page"' : ""; ?>>簡訊紀錄</a></li><?php } ?>
 <?php if(in_array(605,$rightsOwned)){ ?><li><a href="?page=urge&type=edit_case" <?php echo isset($page,$type) && $page == "urge" && $type =="edit_case" ? 'class="active-page"' : ""; ?>>正常催記紀錄</a></li><?php } ?>
                                 
                                 <?php if(in_array(604,$rightsOwned)){ ?><li><a href="?page=urge&type=user" <?php echo isset($page,$type) && $page == "urge" && $type =="user" ? 'class="active-page"' : ""; ?>>催收人員管理</a></li>
@@ -208,7 +208,7 @@
 <?php if(in_array(1200,$rightsOwned)){ ?><li><a href="?page=sales&type=3month" <?php echo isset($page,$type) && $page == "sales" && $type == "3month" ? 'class="active-page"' : ""; ?>>業務人員前三個月報表</a></li><?php } ?>
 <?php /*if(in_array(903,$rightsOwned)){ ?><li><a href="?page=statistics&type=paydetail" <?php echo isset($page,$type) && $page == "statistics" && $type == "paydetail" ? 'class="active-page"' : ""; ?>>每月撥款明細</a></li><?php }*/ ?>
 <?php if(in_array(1300,$rightsOwned)){ ?><li><a href="?page=sales&type=periodid" <?php echo isset($page,$type) && $page == "sales" && $type == "periodid" ? 'class="active-page"' : ""; ?>>業務人員區間報表[含身分]</a></li><?php } ?>
-<!-- <?php// if(in_array(1400,$rightsOwned)){ ?><li><a href="?page=sales&type=3mothid" <?php// echo isset($page,$type) && $page == "sales" && $type == "3mothid" ? 'class="active-page"' : ""; ?>>業務人員前三個月報表[含身分]</a></li><?php// } ?> -->
+<?php if(in_array(1400,$rightsOwned)){ ?><li><a href="?page=sales&type=3mothid" <?php echo isset($page,$type) && $page == "sales" && $type == "3mothid" ? 'class="active-page"' : ""; ?>>業務人員前三個月報表[含身分]</a></li><?php } ?>
 <?php if(in_array(1500,$rightsOwned)){ ?><li><a href="?page=sales&type=rank" <?php echo isset($page,$type) && $page == "sales" && $type == "rank" ? 'class="active-page"' : ""; ?>>業務人員案件最多排名</a></li><?php } ?>
 
  

@@ -1066,7 +1066,7 @@ table tr td,table tr th{
 $(function(){
 	$(".credit_view").click(function(){
 		$('.lean-overlay').hide();
-		window.open('https://inner.nowait.shop/v1/review-checking-table-uusQc82/credit?action=query&rcCaseNo=<?php echo $rcData[0]["rcCaseNo"]; ?>', '徵信查詢', "toolbar=yes,scrollbars=yes,resizable=yes,left=650,width=950,height=600");
+		window.open('http://104.199.229.39/happyfan/v1/credit?action=query&rcCaseNo=<?php echo $rcData[0]["rcCaseNo"]; ?>', '徵信查詢', "toolbar=yes,scrollbars=yes,resizable=yes,left=650,width=950,height=600");
 	})
 	
 	$(".status").hide();

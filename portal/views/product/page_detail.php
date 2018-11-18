@@ -88,20 +88,20 @@ $_SESSION['pro'] = $proNo;
                                 if($value != ""){
                                     ?>
                                     <div>
-                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" />
+                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid"/>
                                     </div>
                                     <?php
                                 }
                             }
                             ?>
                         </div>
-                        <div class="img-thumbs row">
+                        <div class="img-thumbs">
                             <?php
                             foreach($img as $key => $value){
                                 if($value != ""){
                                     ?>
-                                    <div class="col-2">
-                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" />
+                                    <div>
+                                        <img src="<?php echo "admin/".$value ?>" alt="*" class="img-fluid" style="width: 71px; height: 71px;"/>
                                     </div>
                                     <?php
                                 }
@@ -129,9 +129,9 @@ $_SESSION['pro'] = $proNo;
                         <form id='shopping'>
                             <br>
                             <div class="selector selector-bd row">
-<!--                                <div class="col-lg-6">-->
+                                <div class="col-lg-6">
                                 <?php
-                                /*if($pm_detail[0]['proModelID'] != ""){
+                                if($pm_detail[0]['proModelID'] != ""){
                                     $model = explode('#',$pm_detail[0]['proModelID']);
                                     ?>
                                         <label for="product-model" class="d-none">型號</label>
@@ -144,9 +144,9 @@ $_SESSION['pro'] = $proNo;
                                             ?>
                                         </select>
                                     <?php
-                                }*/
+                                }
                                 ?>
-<!--                                </div>-->
+                                </div>
                                 <div class="col-lg-6">
                                 <?php
                                 if($pm_detail[0]['proSpec'] != ""){

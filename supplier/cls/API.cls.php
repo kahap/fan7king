@@ -8,21 +8,21 @@
 		private $message;
 		private $data;
 		private $result;
-		//where條件句
+		//where����y
 		private $whereArr = array(); //column=>value
-		//join table條件句
+		//join table����y
 		private $joinArr = array(); //table=>column
 		//group by
 		private $groupArr = array();
 		//order by
 		private $orderArr = "";
-		//想要抓取的資料
+		//�Q�n��������
 		private $retrieveArr = array();
 		//webView page
 		private $webViewArr = array("front_manage","front_manage2");
-		//當資料為陣列時
+		//���Ƭ��}�C��
 		private $arrayDataList = array("proImage","orAppAuthenExtraInfo");
-		//資料路徑(KEY:欄位 VAL:有無ADMIN(BOOL))
+		//��Ƹ��|(KEY:��� VAL:���LADMIN(BOOL))
 		private $pathArr = array(
 			"proImage"=>false,
 			"adImage"=>false,
@@ -40,16 +40,16 @@
 			"orAppAuthenPromiseLetter"=>true
 		);
 		
-		//建構函式
+		//�غc�禡
 		public function API($table){
-			//抓取資料庫定義內容
+			//�����Ʈw�w�q���e
 			$this->db = new WADB(SYSTEM_DBHOST, SYSTEM_DBNAME, SYSTEM_DBUSER, SYSTEM_DBPWD);
 			
 			if(mysqli_num_rows(mysqli_query($this->db->oDbLink, "SHOW TABLES LIKE '".$table."'"))==1){
-				//初始table名稱
+				//��ltable�W��
 				$this->table = $table;
 				
-				//初始pk欄位名
+				//��lpk���W
 				$metaSql = "SHOW KEYS FROM ".$table." WHERE Key_name = 'PRIMARY'";
 				$metaData = $this->db->selectRecords($metaSql);
 				$this->idColumn = $metaData[0]['Column_name'];
@@ -70,66 +70,66 @@
 								case "memClass":
 									switch($columnValue){
 										case "0":
-											$columnValue = "學生";
+											$columnValue = "�ǥ�";
 											break;
 										case "1":
-											$columnValue = "上班族";
+											$columnValue = "�W�Z��";
 											break;
 										case "2":
-											$columnValue = "家管";
+											$columnValue = "�a��";
 											break;
 										case "3":
-											$columnValue = "其他";
+											$columnValue = "��L";
 											break;
 									}
 									break;
 								case "memGender":
 									switch($columnValue){
 										case "0":
-											$columnValue = "女";
+											$columnValue = "�k";
 											break;
 										case "1":
-											$columnValue = "男";
+											$columnValue = "�k";
 											break;
 									}
 									break;
 								case "memRegistMethod":
 									switch($columnValue){
 										case "0":
-											$columnValue = "FB連結";
+											$columnValue = "FB�s��";
 											break;
 										case "1":
-											$columnValue = "一般申請";
+											$columnValue = "�@��ӽ�";
 											break;
 									}
 									break;
 								case "memEmailAuthen":
 									switch($columnValue){
 										case "0":
-											$columnValue = "尚未驗證";
+											$columnValue = "�|������";
 											break;
 										case "1":
-											$columnValue = "通過驗證";
+											$columnValue = "�q�L����";
 											break;
 									}
 									break;
 								case "memAllowLogin":
 									switch($columnValue){
 										case "0":
-											$columnValue = "停權";
+											$columnValue = "���v";
 											break;
 										case "1":
-											$columnValue = "允許登入";
+											$columnValue = "���\�n�J";
 											break;
 									}
 									break;
 								case "memAllowLogin":
 									switch($columnValue){
 										case "0":
-											$columnValue = "停權";
+											$columnValue = "���v";
 											break;
 										case "1":
-											$columnValue = "允許登入";
+											$columnValue = "���\�n�J";
 											break;
 									}
 									break;
@@ -226,9 +226,9 @@
 			$update = $this->db->updateRecords($sql);
 			
 			if($update){
-				$this->setInformation(true, 1, 1, "成功修改！");
+				$this->setInformation(true, 1, 1, "���\�ק�I");
 			}else{
-				$this->setInformation(false, 0, 0, "修改失敗！");
+				$this->setInformation(false, 0, 0, "�ק異�ѡI");
 			}
 				
 			$this->setResult();
@@ -254,7 +254,7 @@
 			values( $values )";
 			$insert = $this->db->insertRecords($sql);
 			
-			$this->setInformation($this->db->bInsertRecords, 1, $this->db->iNoOfRecords, "成功新增！");
+			$this->setInformation($this->db->bInsertRecords, 1, $this->db->iNoOfRecords, "���\�s�W�I");
 			
 			$this->setResult();
 		}
@@ -268,7 +268,7 @@
 						`".$key."` = '".$value."'";
 			$delete = $this->db->deleteRecords($sql);
 			
-			$this->setInformation(true, 1, 1, "成功刪除！");
+			$this->setInformation(true, 1, 1, "���\�R���I");
 				
 			$this->setResult();
 		}
@@ -402,7 +402,7 @@
 					foreach($curData as $key=>&$value){
 						if($value != null){
 							foreach($value as $keyIn=>&$valueIn){
-								//路徑轉成絕對路徑
+								//���|�ন������|
 								if(array_key_exists($keyIn,$this->pathArr)){
 									if(!empty(json_decode($valueIn))){
 										$curJsonObj = json_decode($valueIn);
@@ -424,19 +424,19 @@
 										}
 									}
 								}
-								//陣列字串轉換陣列
+								//�}�C�r���ഫ�}�C
 								if(in_array($keyIn,$this->arrayDataList)){
 									$valueIn = json_decode($valueIn);
 								}
-								//分期價轉為陣列
+								//�������ର�}�C
 								if($keyIn == "pmPeriodAmnt"){
 									$valueIn = $this->calculatePeriodAmount($value["pmNo"]);
 								}
-								//商品規格轉陣列
+								//�ӫ~�W����}�C
 								if($keyIn == "proSpec" || $keyIn == "memSchool"){
 									$valueIn = explode("#",$valueIn);
 									foreach($valueIn as &$eachSpec){
-										if($eachSpec == "無"){
+										if($eachSpec == "�L"){
 											$eachSpec = "";
 										}
 									}

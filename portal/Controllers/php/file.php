@@ -1,17 +1,21 @@
 <?php
 session_start();
-// 关闭错误报告
-error_reporting(0);
+<<<<<<< HEAD
+	include('../../model/php_model.php');
+	$or = new Orders();
+$action = isset($_GET['act'])? $_GET['act'] : '';
+if(isset($_SESSION['ord_code']) && $_SESSION['ord_code'] !=""){
+	if($action=='delimg'){ //删除图片 
+=======
 include('../../model/php_model.php');
-
 $or = new Orders();
-$action = $_GET['act'];
-
-if($_SESSION['ord_code'] != "" && isset($_SESSION['shopping_user'][0])){
+$action = isset($_GET['act'])? $_GET['act'] : '';
+if(isset($_SESSION['ord_code']) && $_SESSION['ord_code'] !=""){
     if($action=='delimg'){ //删除图片
+>>>>>>> ronghong
 		$filename = $_POST['imagename']; 
 		if(!empty($filename)){ 
-			unlink('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/".$filename);
+			unlink('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/".$filename);
 			$or->updateorAppAuthenIdImgTop('',$_SESSION['ord_code']);
 			echo '1'; 
 		}else{ 
@@ -20,12 +24,13 @@ if($_SESSION['ord_code'] != "" && isset($_SESSION['shopping_user'][0])){
 	}else{ //
 		$picname = $_FILES['mypic']['name']; 
 		$picsize = $_FILES['mypic']['size']; 
-		if(!is_dir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){
-			mkdir('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
-			chmod('../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
-		}
+		if(!is_dir('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'])){
+			mkdir('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']);
+			chmod('../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo'],0777);
+		} 
+
 		$File = new File();
-		$SystemDirPath = '../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
+		$SystemDirPath = '../../../../admin/file/'.$_SESSION['shopping_user'][0]['memNo']."/";
 		$rand = rand(100, 999); 
 		$Default_file_name = date("YmdHis");
 		if ($File->FileCheck($_FILES['mypic']['tmp_name'],
@@ -49,15 +54,10 @@ if($_SESSION['ord_code'] != "" && isset($_SESSION['shopping_user'][0])){
 		$arr = array( 
 			'name'=>$picname, 
 			'pic'=>$FileName, 
-			'size'=>$size,
-            'status' => 1
+			'size'=>$size 
 		); 
 		echo json_encode($arr); //输出json数据 
 	}
-}else{
-    $arr = array(
-        'message'=> "no find SESSION, 編號遺失，請重新操作",
-        'status' => 0
-    );
-    echo json_encode($arr); //输出json数据
 }
+
+?>

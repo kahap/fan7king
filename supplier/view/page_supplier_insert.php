@@ -14,9 +14,9 @@ if ($_GET["action"] == "edit") {
             <div class="page-title">
                 <div class="title_left">
                 <?php if($_GET["action"]=="edit"){ ?>
-                    <h3>編輯銷售員資料</h3>
+                    <h3>編輯業務人員資料</h3>
                 <?php }else{ ?>
-                    <h3>新增人銷售員</h3>
+                    <h3>新增業務人員</h3>
                 <?php } ?>
                 </div>
             </div>
@@ -27,7 +27,7 @@ if ($_GET["action"] == "edit") {
                         <div class="x_title">
                             <h2 style="text-align:center;float:none;">
                             <?php if ($_GET["action"]=="edit") { ?>
-                                銷售員編號: <?php echo $supNo; ?> &nbsp&nbsp&nbsp&nbsp
+                                供應商業務人員編號: <?php echo $supNo; ?> &nbsp&nbsp&nbsp&nbsp
                                 <?php if (isset($_SERVER['HTTP_REFERER'])) { ?>
                                     <a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
                                         <button class="btn btn-success">回上頁</button>
@@ -35,7 +35,7 @@ if ($_GET["action"] == "edit") {
                                 <?php }?>
                             <?php } else { ?>
                                 <a style="color:#FFF;" href="?page=supplier">
-                                    <button class="btn btn-success">回銷售人員列表</button>
+                                    <button class="btn btn-success">回業務人員列表</button>
                                 </a>
                             <?php }?>
                             </h2>
@@ -49,7 +49,7 @@ if ($_GET["action"] == "edit") {
                                 <?php } ?>  
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                        銷售員姓名 : 
+                                        業務人員姓名 : 
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input value="<?php if($_GET["action"]=="edit") echo $supData[0]["ssName"]; ?>" type="text" required="required" class="form-control" name="ssName" />
@@ -60,7 +60,7 @@ if ($_GET["action"] == "edit") {
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                        銷售員帳號 : 
+                                        業務人員登入帳號 : 
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input value="<?php if($_GET["action"]=="edit") echo $supData[0]["ssLogId"]; ?>" type="text" required="required" class="form-control" name="ssLogId" />
@@ -71,7 +71,7 @@ if ($_GET["action"] == "edit") {
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                        銷售員密碼 : 
+                                        業務人員登入密碼 : 
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input value="<?php if($_GET["action"]=="edit") echo $supData[0]["ssPwd"]; ?>" type="text" required="required" class="form-control" name="ssPwd" />

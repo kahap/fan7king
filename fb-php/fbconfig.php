@@ -14,8 +14,8 @@ $str = ($_SESSION['pro'] != "") ? "?item=product&pro=".$_SESSION['pro']:"";
 $str = ($_SESSION['item'] != "") ? "?item=product_sup&pro=".$_SESSION['pro']:"";
 
 $helper = $fb->getRedirectLoginHelper();
-// $permissions = ['email'];
-// $loginUrl = $helper->getLoginUrl('https://'.DOMAIN.'/fb-php/fbconfig.php', $permissions);
+$permissions = ['email'];
+$loginUrl = $helper->getLoginUrl('https://'.DONAME.'/fb-php/fbconfig.php', $permissions);
 
 try {
 	$accessToken = $helper->getAccessToken();
@@ -36,24 +36,23 @@ if ( isset( $accessToken ) ) {
  	    $fbfullname = $graphObject->getProperty('name');
 	    $femail = $graphObject->getProperty('email');
 		$gender = $graphObject->getProperty('gender') == "male" ? 1 : 0;
-		$member_data = $member->check_FBtoken($fbid);
-		$_SESSION['user']['fb_token'] = $fbid;
+	$member_data = $member->check_FBtoken($fbid);
 	if($member_data != ""){
 		$Iforder = $order->getOrByMember($member_data['memNo']);
 		if($member_data['memAllowLogin'] == 1){
             $_SESSION['user']['memName'] = $member_data['memName'];
             $_SESSION['user']['memNo'] = $member_data['memNo'];
             $_SESSION['user']['memClass'] = $member_data['memClass'];
-            if($member_data['memCell'] == null || $member_data['memCell']=='' ){
-                header("Location: ../index.php?item=register2");
+            if($member_data['memIdNum'] == null || $member_data['memIdNum']=='' ){
+                header("Location: ../index.php?item=member_center&action=member_idnum");
             }
             else
             {
                 $_SESSION['user']['memIdNum'] = $member_data['memIdNum'];
                 if($member_data['edit'] == '0' && $Iforder == '' && empty($_SESSION['user']['memClass'])){
-                    header("Location: ../index.php?item=member_center");
+                    header("Location: ../index.php?item=information_edit");
                 }else{
-					header("Location: ../index.php".$str);
+					header("Location: ../index.php$str");
                 }
             }
 		}else{
@@ -82,11 +81,10 @@ if ( isset( $accessToken ) ) {
 		$_SESSION['user']['memNo'] = $id;
 		//print_r($array);
 		//header("Location: ../index.php$str");
-		header("Location: ../index.php?item=register2");
+		header("Location: ../index.php?item=information_edit");
 	}
 	$accessToken = @$session->getToken();
 	$_SESSION['user']["fb_access_token"] = (string) $accessToken;
-	
 } else {
 	$scope = array('email', 'user_friends','public_profile', 'user_birthday','user_location','user_link');
 	$loginUrl = $helper->getLoginUrl($scope);
