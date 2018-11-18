@@ -77,14 +77,14 @@ session_start();
                         <p class="product-pick br-b-gray">
                             <span class="io io-list"></span>品項
                         </p>
-                        <p class="product-pick">
+                        <!-- <p class="product-pick">
                             <span class="io io-order"></span>排序
                             <span class="nowait-tag">
                                 <a href="#" title="依熱銷度">依熱銷度</a>
                                 <a href="#" title="價格低者優先">價格低者優先</a>
                                 <a href="#" title="依商品上架時間">依商品上架時間</a>
                             </span>
-                        </p>
+                        </p> -->
 
                         <h1 class="pd-less"><span>搜尋結果</span></h1>
                         <div class="grid-list-view text-right">

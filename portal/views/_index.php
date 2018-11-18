@@ -1,7 +1,7 @@
 
     <main role="main">
         <h1 class="d-none"><span>Nowait</span></h1>
-        <section id="carousel" class="bg-white">
+       <!--  <section id="carousel" class="bg-white">
             <div class="container">
                 <div class="slick-carorsel">
                     <?php
@@ -19,6 +19,27 @@
                         <?php
                     }
                     ?>
+                </div>
+            </div>
+        </section> -->
+         <section id="carousel" class="bg-white">
+            <div class="container">
+                <div class="slick-carorsel">
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="portal/images/Tmp/banner1.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="portal/images/Tmp/banner2.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="portal/images/Tmp/banner3.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="portal/images/Tmp/banner4.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="portal/images/Tmp/banner5.jpg" alt="First slide">
+                    </div>
                 </div>
             </div>
         </section>

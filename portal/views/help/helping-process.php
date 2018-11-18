@@ -1,6 +1,7 @@
 
 <main role="main">
-    <h1><span>購物流程</span><small>shopping process</small></h1>
+    <img src="portal/images/nowait_process.jpg" style="width: 100%;">
+   <!--  <h1><span>購物流程</span><small>shopping process</small></h1>
     <section id="helping-zone">
         <div class="container">
             <div class="box-process">
@@ -76,5 +77,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 </main>

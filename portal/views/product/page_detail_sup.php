@@ -241,9 +241,9 @@
 											if($reject_custom == ""){
 										?>
 										<button class="btn-add-cart period">立即分期
-										<?php if($_GET['pro'] == '10190'){ ?>
-											<img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" />
-										<?PHP } ?>
+										<?php //if($_GET['pro'] == '10190'){ ?>
+											<!-- <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" /> -->
+										<?PHP //} ?>
 										</button>
 										<?php
 											}else{

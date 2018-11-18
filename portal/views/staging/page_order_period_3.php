@@ -71,6 +71,10 @@
                     <div class="col-sm-9"><?php echo $or_data[0]['orProSpec']?></div>
                 </div>
                 <div class="form-group row">
+                    <div class="col-sm-3">商品總額</div>
+                    <div class="col-sm-9"><?php echo number_format(ceil($or_data[0]['orPeriodTotal']))?> 元</div>
+                </div>
+                <div class="form-group row">
                     <div class="col-sm-3">月付</div>
                     <div class="col-sm-9"><?php echo number_format(ceil($or_data[0]['orPeriodTotal']/$or_data[0]['orPeriodAmnt']))?> 元</div>
                 </div>
@@ -143,7 +147,10 @@
                         </div>
                         <div class="form-group row">
                             <div class="col">出生年月日</div>
-                            <div class="col">民國 <?php echo $year[0];?> 年 <?php echo $year[1];?> 月 <?php echo $year[2];?> 日</div>
+                            <?php
+                                $birthday=explode("-",$memberData['0']["memBday"]);
+                            ?>
+                            <div class="col">民國 <?php echo $birthday[0];?> 年 <?php echo $birthday[1];?> 月 <?php echo $birthday[2];?> 日</div>
                         </div>
                         <div class="form-group row">
                             <div class="col">申請人身份證發證日期</div>
@@ -482,11 +489,11 @@
 //                    }elseif(is_file($or_data[0]['orAppAuthenIdImgTop'])){
 //                        ?>
                         <a class="btn btn-next bg-yellow next-btn">
-                            <button >完成
-                            <?php if($_GET['pro'] == '10190'){ ?>
-                                <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:31" style="width:1px;height:1px;" alt="" />
-                            <?PHP } ?>
-                            </button>
+                            完成
+                            <?php //if($_GET['pro'] == '10190'){ ?>
+                                <!-- <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:31" style="width:1px;height:1px;" alt="" /> -->
+                            <?PHP //} ?>
+                            
                         </a>
 <!--                        --><?php
 //                    }else{

@@ -9,6 +9,18 @@
         $("#colors_sketch").jqScribble();
         $("#colors_sketch_1").jqScribble();
     });
+    function loadCanvas(cid,dataURL) {
+        var canvas = document.getElementById(cid);
+        var context = canvas.getContext('2d');
+
+        // load image from data url
+        var imageObj = new Image();
+        imageObj.onload = function() {
+        context.drawImage(this, 0, 0);
+        };
+
+        imageObj.src = dataURL;
+    }
 </script>
 
 <main role="main">
@@ -228,16 +240,20 @@
                     <br>約定說明：「此本票係供為分期付款買賣之分期款項總額憑證，俟分期付款完全清償完畢時，此本票自動失效，但如有一期未付，發票人願意就全部本票債務負責清償。」本人同意依法令規定應以書面為之者,得以電子文件為之.依法令規定應簽名或蓋章者，得以電子簽章為之。 </p>
                 <p>發票人中文正楷簽名</p>
 <!--                <div class="sign-zone"></div>-->
-                <canvas id="colors_sketch" style="border: 1px solid red;"></canvas>
+                <canvas id="colors_sketch" style="border: 1px solid red;">
+                </canvas>
+                <?php if ($or_data[0]['orAppAuthenProvement'] != ""): ?>
+                    <script type="text/javascript">
+                        loadCanvas("colors_sketch","<?php echo str_replace('../','',$or_data[0]['orAppAuthenProvement']); ?>");
+                    </script>
+                <?php endif ?>
                 <div class="form-group form-btn text-right">
                     <button class="btn bg-gray button" onclick='$("#colors_sketch").data("jqScribble").clear(); return false;'>清除</button>
                     <a id="upload"><button class="btn bg-yellow button">確認簽名</button></a>
-                    <?php
-                    if ($or_data[0]['orAppAuthenProvement'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenProvement']) ."' id='orAppAuthenProvement' />";
-                    ?>
+                    
                 </div>
                 <div class="section-order-title"></div>
-                <p>★分期付款期間未繳清以前禁止出售或典當，以免觸法<br>分期付款約定事項： 一、 申請人(即買方)及其連帶保證人向商品經銷商(即賣方)以分期付款方式購買消費性商品，並簽約本「分期付款申請書暨約定書」，業經申請人及其連帶保證人對本條約所有條款均已經合理天數詳細審閱，且已充份理解契約內容，同意與商品經銷商共同遵守「分期付款約定書(點文字可連結閱讀詳文)」之各項約定條款。<br>二、申請人及其連帶保證人於簽約時同意商品經銷商不另書面通知得將支付分期金額之權利及依本約定書約定所有之其他一切權利及利益轉讓與廿一世紀數位科技有限公司及其帳款收買人，受讓人對於分期付款買賣案件擁有核准與否同意權，並茲授權帳款收買人將分期付款總額或核准金額，逕行扣除手續費及相關費用，撥付與商品經銷商指定銀行帳戶，相關手續費金額之約定則按商品經銷商與 大方藝彩行銷顧問股份有限公司所簽訂相關之合約約定之，申請人及其連帶保證人絕無異議。<br>三、申請人（即買方）及其連帶保證人聲明確實填寫及簽訂本「分期付款申請書暨約定書」內容，且交付商品經銷商之任何文件中並無不實之陳述或說明之情事。 </p>
+                <p>★分期付款期間未繳清以前禁止出售或典當，以免觸法<br>分期付款約定事項： 一、 申請人(即買方)及其連帶保證人向商品經銷商(即賣方)以分期付款方式購買消費性商品，並簽約本「分期付款申請書暨約定書」，業經申請人及其連帶保證人對本條約所有條款均已經合理天數詳細審閱，且已充份理解契約內容，同意與商品經銷商共同遵守「分期付款約定書(點文字可連結閱讀詳文)」之各項約定條款。<br>二、申請人及其連帶保證人於簽約時同意商品經銷商不另書面通知得將支付分期金額之權利及依本約定書約定所有之其他一切權利及利益轉讓與大方藝彩行銷顧問股份有限公司及其帳款收買人，受讓人對於分期付款買賣案件擁有核准與否同意權，並茲授權帳款收買人將分期付款總額或核准金額，逕行扣除手續費及相關費用，撥付與商品經銷商指定銀行帳戶，相關手續費金額之約定則按商品經銷商與 大方藝彩行銷顧問股份有限公司所簽訂相關之合約約定之，申請人及其連帶保證人絕無異議。<br>三、申請人（即買方）及其連帶保證人聲明確實填寫及簽訂本「分期付款申請書暨約定書」內容，且交付商品經銷商之任何文件中並無不實之陳述或說明之情事。 </p>
                 <div class="form-check text-left m-2">
                     <input class="form-check-input" type="checkbox" id="check2" name="check" value="" >
                     <label class="form-check-label agree" for="check2">
@@ -259,12 +275,14 @@
                 <p>申請人中文正楷簽名</p>
 <!--                <div class="sign-zone"></div>-->
                 <canvas id="colors_sketch_1" style="border: 1px solid red;"></canvas>
+                <?php if ($or_data[0]['orAppAuthenPromiseLetter'] != ""): ?>
+                    <script type="text/javascript">
+                        loadCanvas("colors_sketch_1","<?php echo str_replace('../','',$or_data[0]['orAppAuthenPromiseLetter']); ?>");
+                    </script>
+                <?php endif ?>
                 <div class="form-group form-btn text-right">
                     <button class="btn bg-gray button" onclick='$("#colors_sketch_1").data("jqScribble").clear(); return false;'>清除</button>
                     <a id="upload_1"><button class="btn bg-yellow button">確認簽名</button></a>
-                    <?php
-                    if ($or_data[0]['orAppAuthenPromiseLetter'] != "") echo "<img src='". str_replace('../','',$or_data[0]['orAppAuthenPromiseLetter']) ."' id='orAppAuthenPromiseLetter' />";
-                    ?>
                 </div>
             </div>
             <div class="section-order">

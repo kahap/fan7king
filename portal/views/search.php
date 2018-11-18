@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </div>
-            <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved. Designed by <a href="http://kahap.com" title="kahap.com" target="_blank">kahap.com</a></p>
+            <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved.</p>
         </div>
     </footer>
 

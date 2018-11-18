@@ -92,11 +92,11 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-12">
                         <a href="index.php" title="Nowait" class="navbar-brand">
-                            <img class="img-fluid" src="portal/assets/images/svg/logo.svg" data-src-base="portal/images/svg/" data-src="<991:logo-mobile.svg,>991:logo.svg" width="284" height="85" alt="Nowait">
+                            <img class="img-fluid" src="portal/assets/images/svg/header_cat.png" data-src-base="portal/images/svg/" data-src="<991:logo-mobile.svg,>991:header_cat.svg" width="284" height="85" alt="Nowait">
                         </a>
                     </div>
                     <div class="col-4 d-flex align-items-center">
-                        <img src="portal/assets/images/slogan.png" class="img-fluid" alt="免卡分期 享購現在">
+                        <img src="portal/images/header_slogan.png" class="img-fluid" alt="免卡分期 享購現在">
                     </div>
                     <div class="col-5 d-flex align-items-center">
                         <form class="form form-search" action="index.php" method="GET" >
@@ -166,7 +166,7 @@
                     <div class="col-lg-4 col-md-12 order-md-6">
                         <ul class="list-inline">
                             <li class="list-inline-item <?php echo ($_GET['item'] == 'sup_center') ? 'active':''; ?>">
-                                <a href="?item=sup_center" title="廠商專區">廠商專區</a>
+                                <a href="?item=sup_center" title="商店購物網">商店購物網</a>
                             </li>
                             <li class="list-inline-item <?php echo ($_GET['item'] == 'faq') ? 'active':''; ?>">
                                 <a href="?item=help" title="幫助中心">幫助中心</a>

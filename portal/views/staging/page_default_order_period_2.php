@@ -331,7 +331,7 @@
 											}
 											?>
 											<input id="check4" type="checkbox" name="check4" value="" style="margin-top: 15px;margin-right: -5px;">
-											<label for="check4" class="agree">我已詳細閱讀並同意<a href="?item=fmFreeRespons" style="">免責聲明</a>、<a href="?item=fmServiceRules" style="">服務條款</a>、<a href="?item=fmPrivacy" style="">隱私權</a>聲明等條款</label><br>
+											<label for="check4" class="agree">我已詳細閱讀並同意<a href="?item=fmFreeRespons" style="" target="_blank">免責聲明</a>、<a href="?item=fmServiceRules" style="" target="_blank">服務條款</a>、<a href="?item=fmPrivacy" style="" target="_blank">隱私權聲明</a>等條款</label><br>
 										<h3>申請人中文正楷簽名：</h3>
 										<canvas id="colors_sketch_1" style="border: 1px solid red;"></canvas>
 										<button class="button" onclick='$("#colors_sketch_1").data("jqScribble").clear();'>清除</button>

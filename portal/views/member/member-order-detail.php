@@ -87,30 +87,30 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">申請人資料</div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">申請人中文姓名</div>
-                                        <div class="col"><?php echo $memberData[0]["memName"]; ?></div>
+                                        <div class="col-sm-3">申請人中文姓名</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memName"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">身分別</div>
-                                        <div class="col"><?php echo $memberData[0]["memClass"]; ?></div>
+                                        <div class="col-sm-3">身分別</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memClass"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">學校Email</div>
-                                        <div class="col"><?php echo $memberData[0]["memAccount"]; ?></div>
+                                        <div class="col-sm-3">學校Email</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memAccount"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">常用聯絡Email</div>
-                                        <div class="col"><?php echo $memberData[0]["memSubEmail"]; ?></div>
+                                        <div class="col-sm-3">常用聯絡Email</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memSubEmail"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">現住市話</div>
-                                        <div class="col"><?php echo $memberData[0]["memPhone"]; ?></div>
+                                        <div class="col-sm-3">現住市話</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memPhone"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">戶籍電話</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">戶籍電話</div>
+                                        <div class="col-sm-9">
                                         <?php
                                         foreach($columnName as $key=>$value){
                                             if($value["COLUMN_NAME"] == "orAppAssureBirthPhone") {
@@ -121,12 +121,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">行動電話</div>
-                                        <div class="col"><?php echo $memberData[0]["memCell"]; ?></div>
+                                        <div class="col-sm-3">行動電話</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memCell"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">住房所有權</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">住房所有權</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 //只顯示住房所有權
@@ -138,8 +138,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">戶籍地址</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">戶籍地址</div>
+                                        <div class="col-sm-9">
                                         <?php
                                         foreach($columnName as $key=>$value){
                                             //只顯示戶籍地址
@@ -151,42 +151,42 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">現住地址</div>
-                                        <div class="col"><?php echo $memberData[0]["memAddr"]; ?></div>
+                                        <div class="col-sm-3">現住地址</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memAddr"]; ?></div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">申請人身份證正面</div>
-                                        <div class="col-12">
-                                            <img id="showimg" src="<?php echo  str_replace('../','',$orData[0]['orAppAuthenIdImgTop']); ?>" alt="">
+                                        <div class="col-sm-3">申請人身份證正面</div>
+                                        <div class="col-sm-9">
+                                            <img id="showimg" style="width: 400px;" src="<?php echo  str_replace('../','',$orData[0]['orAppAuthenIdImgTop']); ?>" alt="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">申請人身份證反面</div>
-                                        <div class="col-12">
-                                            <img id="showimg" src="<?php echo  str_replace('../','',$orData[0]['orAppAuthenIdImgBot']); ?>" alt="">
+                                        <div class="col-sm-3">申請人身份證反面</div>
+                                        <div class="col-sm-9">
+                                            <img id="showimg" style="width: 400px;"src="<?php echo  str_replace('../','',$orData[0]['orAppAuthenIdImgBot']); ?>" alt="">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">身份證字號</div>
-                                        <div class="col"><?php echo $memberData[0]["memIdNum"]; ?></div>
+                                        <div class="col-sm-3">身份證字號</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memIdNum"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">出生年月日</div>
-                                        <div class="col"><?php echo $memberData[0]["memBday"]; ?></div>
+                                        <div class="col-sm-3">出生年月日</div>
+                                        <div class="col-sm-9"><?php echo $memberData[0]["memBday"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">申請人身份證發證日期</div>
-                                        <div class="col"><?php echo $orData[0]['orIdIssueYear']."-".$or_data[0]['orIdIssueMonth']."-".$or_data[0]['orIdIssueDay']; ?></div>
+                                        <div class="col-sm-3">申請人身份證發證日期</div>
+                                        <div class="col-sm-9"><?php echo $orData[0]['orIdIssueYear']."-".$or_data[0]['orIdIssueMonth']."-".$or_data[0]['orIdIssueDay']; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">申請人身份證發證地點</div>
-                                        <div class="col"><?php echo $orData[0]["orIdIssuePlace"]; ?></div>
+                                        <div class="col-sm-3">申請人身份證發證地點</div>
+                                        <div class="col-sm-9"><?php echo $orData[0]["orIdIssuePlace"]; ?></div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">申請人身份證發證類別</div>
-                                        <div class="col"><?php echo $orData[0]["orIdIssueType"]; ?></div>
+                                        <div class="col-sm-3">申請人身份證發證類別</div>
+                                        <div class="col-sm-9"><?php echo $orData[0]["orIdIssueType"]; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -194,14 +194,14 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">收貨人資料</div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-12">
                                     <?php
                                     foreach($columnName as $key=>$value){
                                         if(strrpos($value["COLUMN_NAME"], "orReceive") !== false){
                                             ?>
                                             <div class="form-group row">
-                                                <div class="col"><?php echo $value["COLUMN_COMMENT"]; ?></div>
-                                                <div class="col">
+                                                <div class="col-sm-3"><?php echo $value["COLUMN_COMMENT"]; ?></div>
+                                                <div class="col-sm-9">
                                                     <?php
                                                     if(strrpos($value["COLUMN_NAME"], "Comment") !== false){
                                                         echo "</h4><p>".$orData[0][$value['COLUMN_NAME']]."</p>";
@@ -216,14 +216,14 @@
                                     }
                                     ?>
                                 </div>
-                                <div class="col">
+                                <div class="col-12">
                                     <?php
                                     foreach($columnName as $key=>$value){
                                         if(strrpos($value["COLUMN_NAME"], "orAppExtra") !== false){
                                             ?>
                                             <div class="form-group row">
-                                                <div class="col"><?php echo $value["COLUMN_COMMENT"];?></div>
-                                                <div class="col-12"><?php echo $orData[0][$value["COLUMN_NAME"]];?></div>
+                                                <div class="col-sm-3"><?php echo $value["COLUMN_COMMENT"];?></div>
+                                                <div class="col-sm-9"><?php echo $orData[0][$value["COLUMN_NAME"]];?></div>
                                             </div>
                                             <?php
                                         }
@@ -235,10 +235,10 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">工作</div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">公司名稱</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">公司名稱</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierCompanyName") {
@@ -249,8 +249,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">年資</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">年資</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierYearExperience") {
@@ -261,10 +261,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">月薪</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">月薪</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierMonthSalary") {
@@ -275,8 +275,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">公司市話</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">公司市話</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierCompanyPhone") {
@@ -292,10 +292,10 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">信用卡</div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">信用卡號(僅供參考)</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">信用卡號(僅供參考)</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierCreditNum") {
@@ -306,8 +306,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">發卡銀行</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">發卡銀行</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierCreditIssueBank") {
@@ -318,10 +318,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">信用卡有效期限</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">信用卡有效期限</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orAppApplierCreditDueDate") {
@@ -337,10 +337,10 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">統一編號</div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">是否需要統一編號</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">是否需要統一編號</div>
+                                        <div class="col-sm-9">
                                         <?php
                                         foreach($columnName as $key=>$value){
                                             if(strrpos($value["COLUMN_NAME"], "orBusinessNum") !== false){
@@ -360,8 +360,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="col">統一編號</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">統一編號</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orBusinessNumNumber") {
@@ -372,10 +372,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col">
+                                <div class="col-12">
                                     <div class="form-group row">
-                                        <div class="col">公司抬頭</div>
-                                        <div class="col">
+                                        <div class="col-sm-3">公司抬頭</div>
+                                        <div class="col-sm-9">
                                             <?php
                                             foreach($columnName as $key=>$value){
                                                 if($value["COLUMN_NAME"] == "orBusinessNumTitle") {
@@ -394,42 +394,42 @@
                                 <?php
                                 foreach ($ocData as $val) {
                                     ?>
-                                    <div class="col">
+                                    <div class="col-12">
                                         <div class="form-group row">
-                                            <div class="col">聯絡人姓名</div>
-                                            <div class="col"><?php echo $val['rcContactName'];?></div>
+                                            <div class="col-sm-3">聯絡人姓名</div>
+                                            <div class="col-sm-9"><?php echo $val['rcContactName'];?></div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col">聯絡人關係</div>
-                                            <div class="col"><?php echo $val['rcContactRelation'];?></div>
+                                            <div class="col-sm-3">聯絡人關係</div>
+                                            <div class="col-sm-9"><?php echo $val['rcContactRelation'];?></div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col">聯絡人市話</div>
-                                            <div class="col"><?php echo $val['rcContactPhone'];?></div>
+                                            <div class="col-sm-3">聯絡人市話</div>
+                                            <div class="col-sm-9"><?php echo $val['rcContactPhone'];?></div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="col">聯絡人手機</div>
-                                            <div class="col"><?php echo $val['rcContactCell'];?></div>
+                                            <div class="col-sm-3">聯絡人手機</div>
+                                            <div class="col-sm-9"><?php echo $val['rcContactCell'];?></div>
                                         </div>
                                     </div>
                                     <?php
                                 }
                                 ?>
-<!--                                <div class="col">-->
+<!--                                <div class="col-12">-->
 <!--                                --><?php
 //                                foreach($columnName as $key=>$value){
 //                                    if(strrpos($value["COLUMN_NAME"], "orAppContact") !== false){
 //                                        $orContact = json_decode($orData[0][$value["COLUMN_NAME"]]);
 //                                        ?>
 <!--                                        <div class="form-group row">-->
-<!--                                            <div class="col">--><?php //echo $value["COLUMN_COMMENT"];?><!--</div>-->
-<!--                                            <div class="col">--><?php //echo $orContact[0];?><!--</div>-->
+<!--                                            <div class="col-12">--><?php //echo $value["COLUMN_COMMENT"];?><!--</div>-->
+<!--                                            <div class="col-12">--><?php //echo $orContact[0];?><!--</div>-->
 <!--                                        </div>-->
 <!--                                        --><?php
 //                                        if ($key==4){
 //                                        ?>
 <!--                                </div>-->
-<!--                                <div class="col">-->
+<!--                                <div class="col-12">-->
 <!--                                        --><?php
 //                                        }
 //                                    }
@@ -445,10 +445,10 @@
                                 foreach($columnName as $key=>$value){
                                     if(strrpos($value["COLUMN_NAME"], "orAppExtra") !== false){
                                         ?>
-                                        <div class="col">
+                                        <div class="col-12">
                                             <div class="form-group row">
-                                                <div class="col"><?php echo $value["COLUMN_COMMENT"];?></div>
-                                                <div class="col"><?php echo $orData[0][$value["COLUMN_NAME"]];?></div>
+                                                <div class="col-sm-3"><?php echo $value["COLUMN_COMMENT"];?></div>
+                                                <div class="col-sm-9"><?php echo $orData[0][$value["COLUMN_NAME"]];?></div>
                                             </div>
                                         </div>
                                         <?php
@@ -460,16 +460,16 @@
                         <div class="section-order bg-white">
                             <div class="section-order-title">證件資料</div>
                             <div class="form-group row">
-                                <div class="col">申請人學生證正面</div>
-                                <div class="col-12"><img id="showimg" src="<?php echo str_replace('../','',$orData[0]['orAppAuthenStudentIdImgTop']); ?>" class="img-fluid" alt=""></div>
+                                <div class="col-sm-3">申請人學生證正面</div>
+                                <div class="col-sm-9"><img id="showimg" src="<?php echo str_replace('../','',$orData[0]['orAppAuthenStudentIdImgTop']); ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
-                                <div class="col">申請人學生證反面</div>
-                                <div class="col-12"><img id="showimg" src="<?php echo str_replace('../','',$orData[0]['orAppAuthenStudentIdImgBot']); ?>" class="img-fluid" alt=""></div>
+                                <div class="col-sm-3">申請人學生證反面</div>
+                                <div class="col-sm-9"><img id="showimg" src="<?php echo str_replace('../','',$orData[0]['orAppAuthenStudentIdImgBot']); ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="form-group row">
-                                <div class="col">申請人自拍照</div>
-                                <div class="col-12"><img src="<?php echo str_replace('../','',$orData[0]['orAppAuthenSelfImgTop']); ?>" class="img-fluid" alt=""></div>
+                                <div class="col-sm-3">申請人自拍照</div>
+                                <div class="col-sm-9"><img src="<?php echo str_replace('../','',$orData[0]['orAppAuthenSelfImgTop']); ?>" class="img-fluid" alt=""></div>
                             </div>
                             <div class="section-order-title">請在下方兩處，以滑鼠或手寫功能簽上正楷簽名</div>
                             <p>本票： 憑票於中華民國 年 月 日無條件支付 大方藝彩行銷顧問股份有限公司或指定人
@@ -502,9 +502,9 @@
                                 <input class="form-check-input" id="check4" type="checkbox" name="check4" value="" disabled checked style="">
                                 <label class="form-check-label agree" for="check4">
                                     我已詳細閱讀並同意
-                                    <a href="?item=fmFreeRespons" class="text-orange">免責聲明</a>、
-                                    <a href="?item=fmServiceRules" class="text-orange">服務條款</a>、
-                                    <a href="?item=fmPrivacy" class="text-orange">隱私權聲明</a>
+                                    <a href="?item=fmFreeRespons" class="text-orange" target="_blank">免責聲明</a>、
+                                    <a href="?item=fmServiceRules" class="text-orange" target="_blank">服務條款</a>、
+                                    <a href="?item=fmPrivacy" class="text-orange" target="_blank">隱私權聲明</a>
                                     等條款
                                 </label>
                             </div>

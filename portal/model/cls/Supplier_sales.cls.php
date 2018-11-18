@@ -26,11 +26,13 @@
             $sql = "select
                         *
                     from
-                        `supplier_sales`
+                        `supplier_sales` a inner join `supplier` b 
+                    on 
+                        a.`supNo`=b.`supNo`
                     where
-                        `supNo`='".$supNo."'&&
-                        `ssLogId`='".$ssLogId."'&&
-                        `ssPwd` = '".$ssPwd."'
+                        b.`supLogId`='".$supNo."'&&
+                        a.`ssLogId`='".$ssLogId."'&&
+                        a.`ssPwd` = '".$ssPwd."'
                     ";
             $data = $this->db->selectRecords($sql);
             return $data[0];

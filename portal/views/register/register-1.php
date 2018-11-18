@@ -52,9 +52,9 @@
                             <p>
                                 <a class="btn btn-facebook" onclick="FacebookPixel();return false;">
                                     Facebook帳號登入
-                                    <?php if($_GET['pro'] == '10190'){ ?>
-                                        <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" />
-                                    <?PHP } ?>
+                                    <?php //if($_GET['pro'] == '10190'){ ?>
+                                        <!-- <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" /> -->
+                                    <?PHP //} ?>
                                 </a>
                             </p>
                             <p class="text-orange">實名註冊，請使用自己的Facebook帳號註冊</p>

@@ -382,11 +382,11 @@
                         from
                             `member`
                         where
-                            `memCell` = '" . $memCell . "'";
+                            `memCell` = '" . $memCell . "' and `memPwd`='".$memPwd."'";
 
 			$data = $this->db->selectRecords($sql);
 			
-
+			return $data[0];
 			if (password_verify($memPwd,$data[0]['memPwd'])) {
 				return $data[0];
 			}else{
@@ -663,6 +663,14 @@
 
 			$update = $this->db->updateRecords($sql);
 			return $update;
+		}
+		public function updateData($data,$memNo){
+			foreach ($data as $key => $value) {
+				$sqlv[]="`".$key."`='".mysqli_real_escape_string($this->db->oDbLink, $value)."'";
+			}
+			$this->db->updateRecords("
+				update `member` set ".implode(",",$sqlv)." where `memNo`='".$memNo."'
+			");
 		}
 		//前台編輯
 		public function updatememAddr($str,$memNo){

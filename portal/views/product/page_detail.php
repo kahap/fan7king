@@ -113,19 +113,19 @@ $_SESSION['pro'] = $proNo;
                 <div class="col-lg-6">
                     <div class="product-inner">
                         <h1 class="product"><?php echo $pm_detail[0]['proName'] ?></h1>
-                        <p>
+                        <!-- <p>
                             購買人數：
                             <span class="text-orange text-span">
                                 <?php echo ($pm_detail[0]['pmBuyAmnt'] != '') ? $pm_detail[0]['pmBuyAmnt']+$pm_detail[0]['pmPopular']:'1'."人"; ?>
                             </span>
                             商品加贈：
                             <span class="text-orange text-span">玻璃保護貼</span>
-                        </p>
-                        <p class="nowait-tag nm">
+                        </p> -->
+                        <!-- <p class="nowait-tag nm">
                             <a href="#">主機+手把組合包</a>
                             <a href="#">ipad + ipod 限量搶購</a>
                             <a href="#">送亞太399上網吃到飽 + 手機Fun心險</a>
-                        </p>
+                        </p> -->
                         <form id='shopping'>
                             <br>
                             <div class="selector selector-bd row">
@@ -181,7 +181,7 @@ $_SESSION['pro'] = $proNo;
                                                 $first = $key;
                                                 ?>
                                                 <label class="btn bg-gray <?php echo $active;?> staging select_per" data-id="<?php echo $key;?>" data-gt="<?php echo $key;?>">
-                                                    <input type="radio" name="staging" value="<?php echo $key;?>" autocomplete="off" id="<?php echo $key;?>"> <?php echo $key;?>期
+                                                    <input type="radio" name="staging" value="<?php echo $key;?>" autocomplete="off" id="<?php echo $key;?>"> <?php echo sprintf("%02d",$key);?>期
                                                 </label>
                                                 <?php
                                             }
@@ -190,7 +190,7 @@ $_SESSION['pro'] = $proNo;
 //                                                echo "<li style='background:rgba(12, 59, 144, 0.09);text-align:center;margin: 5px;' class='select_per ".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
                                                 ?>
                                                 <label class="btn bg-gray <?php echo $active;?> staging select_per" data-id="<?php echo $key;?>" data-gt="<?php echo $key;?>">
-                                                    <input type="radio" name="staging" value="<?php echo $key;?>" checked autocomplete="off" id="<?php echo $key;?>"> <?php echo $key;?>期
+                                                    <input type="radio" name="staging" value="<?php echo $key;?>" checked autocomplete="off" id="<?php echo $key;?>"> <?php echo sprintf("%02d",$key);?>期
                                                 </label>
                                                 <?php
                                             }
@@ -208,9 +208,9 @@ $_SESSION['pro'] = $proNo;
                                     ?>
                                     <button class="btn bg-orange period">
                                         立即分期
-                                        <?php if($proNo == '10190'){ ?>
-                                            <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" />
-                                        <?PHP } ?>
+                                        <?php //if($proNo == '10190'){ ?>
+                                            <!-- <img src="https://farm-tw.plista.com/activity2;domainid:718601;campaignid:717271;event:30" style="width:1px;height:1px;" alt="" /> -->
+                                        <?PHP //} ?>
                                     </button>
                                     <?php
                                 }else{
@@ -337,7 +337,7 @@ $_SESSION['pro'] = $proNo;
 
     //立即分期
     $('.period').click(function(e){
-
+        e.preventDefault();
         if($('input[name=period]').val() != ""){
 
             if($('input[name=user]').val() != ""){
@@ -372,6 +372,7 @@ $_SESSION['pro'] = $proNo;
             return false;
 
         }
+        return false;
     });
 
     /*

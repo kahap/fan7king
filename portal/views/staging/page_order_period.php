@@ -1,4 +1,14 @@
-
+<style type="text/css">
+    .creditcard {
+        margin: 0;
+        padding:0 2px;
+    }
+    .creditcard input {
+        margin:0;
+        padding:0 2px;
+        text-align: center;
+    }
+</style>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="portal/assets/js/select/chosen.css">
 <script src="portal/assets/js/aj-address.js" type="text/javascript"></script>
@@ -92,7 +102,7 @@
                             <div class="form-group row">
                                 <label for="CName" class="col-sm-3 col-form-label"><span class="text-orange">*</span>申請人姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control memName" id="CName" name="memName" value="<?php echo $memberData[0]["memName"]; ?>" disabled>
+                                    <input type="text" class="form-control memName" id="CName" name="memName" value="<?php echo $memberData[0]["memName"]; ?>" required>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -249,7 +259,14 @@
                                 <div class="files"></div>
                                 <div id="showimg">
                                     <?php
-                                    if ($or_data[0]['orAppAuthenIdImgTop'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgTop']."' />";
+                                    if ($or_data[0]['orAppAuthenIdImgTop'] != ""){
+                                    ?>
+                                        <script type="text/javascript">
+                                            $("[name='mypic']").removeAttr("required");
+                                        </script>
+                                        <img src='<?php echo $or_data[0]['orAppAuthenIdImgTop']; ?>' style='width: 400px' />
+                                    <?php
+                                    }
                                     ?>
                                 </div>
                             </div>
@@ -264,7 +281,14 @@
                                 <div class="files_1"></div>
                                 <div id="showimg_1">
                                     <?php
-                                    if ($or_data[0]['orAppAuthenIdImgBot'] != "") echo "<img src='".$or_data[0]['orAppAuthenIdImgBot']."' />";
+                                    if ($or_data[0]['orAppAuthenIdImgBot'] != ""){
+                                    ?>
+                                        <script type="text/javascript">
+                                            $("[name='mypic_1']").removeAttr("required");
+                                        </script>
+                                        <img src='<?php echo $or_data[0]['orAppAuthenIdImgBot']; ?>' style='width: 400px' />
+                                    <?php
+                                    }
                                     ?>
                                 </div>
                             </div>
@@ -272,7 +296,7 @@
                             <div class="form-group row">
                                 <label for="IdentNumber" class="col-sm-3 col-form-label"><span class="text-orange">*</span>身份證字號</label>
                                 <div class="col-sm-9">
-                                    <input type="text"  class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>" disabled>
+                                    <input type="text"  class="form-control memIdNum" id="IdentNumber" name="memIdNum" value="<?php echo $memberData[0]["memIdNum"]; ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -389,12 +413,12 @@
                                             <input type="text" class="form-control " id="orAppApplierBirthAddrPostCode" name="orAppApplierBirthAddrPostCode" value="">
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" name="orAppApplierBirthCity" id="city" required >
+                                            <select class="form-control city" name="orAppApplierBirthCity" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" name="orAppApplierBirthTown" id="county" required >
+                                            <select class="form-control county" name="orAppApplierBirthTown" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
@@ -410,12 +434,12 @@
                                             <input type="text" name="memPostCode" class="form-control memPostCode" value="<?php echo $memberData['0']['memPostCode'];?>"  />
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control city" id="city" name="" required >
+                                            <select class="form-control city" name="memCity" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
                                         <div class="col-4 mb-3">
-                                            <select class="form-control county" id="county" name="" required >
+                                            <select class="form-control county" name="memTown" required >
                                                 <option value="">請選擇</option>
                                             </select>
                                         </div>
@@ -519,10 +543,10 @@
                                 <label for="CreditNo" class="col-sm-3 col-form-label"><span class="text-orange"></span>信用卡號</label>
                                 <div class="col-sm-9" id="orAppApplierCreditstatus">
                                     <div class="row">
-                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_1" value=""></div>
-                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_2" value=""></div>
-                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_3" value=""></div>
-                                        <div class="col-3"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_4" value=""></div>
+                                        <div class="col-3 creditcard"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_1" value=""></div>
+                                        <div class="col-3 creditcard"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_2" value=""></div>
+                                        <div class="col-3 creditcard"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_3" value=""></div>
+                                        <div class="col-3 creditcard"><input type="text" class="form-control" maxlength='4' name="orAppApplierCreditNum_4" value=""></div>
                                     </div>
                                 </div>
                             </div>
@@ -985,7 +1009,7 @@
                         $("#orIdIssueMonth").val(response.apply_date.month);
                         $("#orIdIssueDay").val(response.apply_date.day);
                         $("#orIdIssueType").val(response.apply_style);
-                        $("#CName").val(response.name);
+                        // $("#CName").val(response.name);
                     }else if(api=="back"){
                         $("[name='orAppApplierBirthCity']").val(response.residential_parsed_addr.city);
                         $("[name='orAppApplierBirthTown']").val(response.residential_parsed_addr.district);
@@ -1110,11 +1134,16 @@
     // checkbox:同現住地址
     $("input[name=SameForNowAddr]").change(function(){
         if($('input[name=SameForNowAddr]:checked').val() == "on"){
-            $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
+            
             $("input[name=memPostCode]").val($("input[name=orAppApplierBirthAddrPostCode]").val());
+            $("select[name=memCity]").val($("select[name=orAppApplierBirthCity]").val()).trigger("change");
+            $("select[name=memTown]").val($("select[name=orAppApplierBirthTown]").val());
+            $("input[name=memAddr]").val($("input[name=orAppApplierBirthAddr]").val());
         }else{
             $("input[name=memAddr]").val('');
             $("input[name=memPostCode]").val('');
+            $("select[name=memCity]").val('');
+            $("select[name=memTown]").val('');
         }
     });
     //同申請人現住資料
@@ -1171,32 +1200,45 @@
 
 
 
-    $(".city").change(function(){
-        if($(".city").val() != ""){
-            $("input[name=orAppApplierBirthAddr]").val($(".city").val());
+    $("[name='orAppApplierBirthCity']").change(function(){
+        if($(this).val() != ""){
+            $("input[name=orAppApplierBirthAddr]").val($(this).val());
         }
     });
-    $(".county").change(function(){
-        if($(".county").val() != ""){
+    $("[name='orAppApplierBirthTown']").change(function(){
+        if($(this).val() != ""){
             var NewArray = new Array();
-            var NewArray = $(".county").val().split(" ");
-            $("input[name=orAppApplierBirthAddr]").val($(".city").val()+NewArray[0]);
-            $(".orAppApplierBirthAddrPostCode").val(NewArray[1]);
+            var NewArray = $(this).val().split(" ");
+            $("input[name=orAppApplierBirthAddr]").val(NewArray[1]+$("select[name=orAppApplierBirthCity]").val()+NewArray[0]);
+            $("[name='orAppApplierBirthAddrPostCode']").val(NewArray[1]);
         }
     });
-    $("#city").change(function(){
-        if($("#city").val() != ""){
-            $("input[name=memAddr]").val($("#city").val());
+    $("[name='memCity']").change(function(){
+        if($(this).val() != ""){
+            $("input[name=memAddr]").val($(this).val());
         }
     });
-    $("#county").change(function(){
-        if($("#county").val() != ""){
+    $("[name='memTown']").change(function(){
+        if($(this).val() != ""){
             var NewArray = new Array();
-            var NewArray = $("#county").val().split(" ");
-            $("input[name=memAddr]").val($("#city").val()+NewArray[0]);
-            $(".memPostCode").val(NewArray[1]);
+            var NewArray = $(this).val().split(" ");
+            $("input[name=memAddr]").val(NewArray[1]+$("select[name=memCity]").val()+NewArray[0]);
+            $("[name='memPostCode']").val(NewArray[1]);
         }
     });
+    // $("#city").change(function(){
+    //     if($("#city").val() != ""){
+    //         $("input[name=memAddr]").val($("#city").val());
+    //     }
+    // });
+    // $("#county").change(function(){
+    //     if($("#county").val() != ""){
+    //         var NewArray = new Array();
+    //         var NewArray = $("#county").val().split(" ");
+    //         $("input[name=memAddr]").val($("#city").val()+NewArray[0]);
+    //         $(".memPostCode").val(NewArray[1]);
+    //     }
+    // });
 
 
     function checkAllContact(){

@@ -17,7 +17,7 @@
 
     //系統其他設定
     $fb = new Other_Setting();
-
+    
     //計算瀏覽網站人數
     if(!isset($_COOKIE["viewed"])){
         setcookie("viewed","viewed",time()+86400);
@@ -82,7 +82,7 @@
             $itemVal = "member_center" ;
             $actionVal = "member_idnum" ;
         }
-
+        
         if($itemVal != ""  ){
             switch($itemVal){
 				case "loading":
@@ -92,7 +92,7 @@
 					include('views/page_award.html');
 				break;
 
-                //免責聲明、 服務條款、 隱私權聲明等條款
+                //免責聲明、 服務條款、 隱私權聲明等條款、分期付款約定書(點文字可連結閱讀詳文)
                 case "fmFreeRespons":
                     echo '<p align="center"> 此功能還未開放</p>';
                     include_once('views/other/fmFreeRespons.php');
@@ -104,6 +104,10 @@
                 case "fmPrivacy":
                     echo '<p align="center"> 此功能還未開放</p>';
                     include_once('views/other/fmPrivacy.php');
+                    break;
+                case "fmPeriodDeclare":
+                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('views/other/fmPeriodDeclare.php');
                     break;
 
 				//會員中心
@@ -124,11 +128,11 @@
                             include('views/page_member_edit.html');
                             break;
                         case "member_idnum":
-<<<<<<< HEAD
+// <<<<<<< HEAD
                             include_once('views/member/page_member_idnum_edit.html');
-=======
-                            include('views/page_member_idnum_edit.html');
->>>>>>> ronghong
+// =======
+                            // include('views/page_member_idnum_edit.html');
+// >>>>>>> ronghong
                             break;
                         case "fb_edit":
                             include_once('views/page_member_fbedit.html');
@@ -442,13 +446,13 @@
                     include_once('views/page_loan_cell.html'); // add jimmy
                     break;
                 case "information_edit":
-<<<<<<< HEAD
+// <<<<<<< HEAD
                     include_once('view/member/page_member_information.html');
     				break;
-=======
-                    include_once('views/page_member_information.html');
-                    break;
->>>>>>> ronghong
+// =======
+                    // include_once('views/page_member_information.html');
+                    // break;
+// >>>>>>> ronghong
 
 
                 default:

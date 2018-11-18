@@ -101,7 +101,7 @@
 					include('portal/views/page_award.html');
 				break;
 
-                //免責聲明、 服務條款、 隱私權聲明等條款
+                //免責聲明、 服務條款、 隱私權聲明等條款、分期付款約定書
                 case "fmFreeRespons":
 //                    echo '<p align="center"> 此功能還未開放</p>';
                     include_once('portal/views/other/fmFreeRespons.php');
@@ -113,6 +113,10 @@
                 case "fmPrivacy":
 //                    echo '<p align="center"> 此功能還未開放</p>';
                     include_once('portal/views/other/fmPrivacy.php');
+                    break;
+                case "fmPeriodDeclare":
+//                    echo '<p align="center"> 此功能還未開放</p>';
+                    include_once('portal/views/other/fmPeriodDeclare.php');
                     break;
 
 				//會員中心
@@ -476,170 +480,179 @@
 //            include_once('portal/views/page_content.html');
             include_once('portal/views/_index.php');
         }
-    }
+    }else{
+        //目標頁面(未登入)
+        if($itemVal != ""){
+    //         if(array_key_exists($itemVal,$page_other ) || array_key_exists($itemVal,$page_other2 )){
+    //             switch($itemVal){
+    //                 case $itemVal:
+    //                     switch($itemVal){
 
-    //目標頁面(未登入)
-    elseif($itemVal != ""){
-        if(array_key_exists($itemVal,$page_other ) || array_key_exists($itemVal,$page_other2 )){
-            switch($itemVal){
-                case $itemVal:
-                    switch($itemVal){
+
+    //                         default:
+    //                             $Front_Manage = new Front_Manage();
+    //                             $Front_Manage2 = new Front_Manage2();
+    //                             if(array_key_exists($itemVal,$page_other )){
+    //                                 $page_data = $Front_Manage->getAllFM($itemVal);
+    //                             }else if(array_key_exists($itemVal,$page_other2 )){
+    //                                 $page_data2 = $Front_Manage2->getAllFM($itemVal);
+    //                             }
+    //                             include_once('portal/views/page_other.html');
+    //     						break;
+    //                     }
+    //     				break;
+
+    //                 default:
+    //                     //首頁(沒有目標頁面itemVal)
+    // //            include_once('portal/views/slider.php');
+    // //            include_once('portal/views/page_top.html');
+    // //            include_once('portal/views/page_content.html');
+    //                     include_once('portal/views/_index.php');
+    //     				break;
+    //             }
+    //         }
+
+            if($itemVal=="member_center"){
+                include_once('portal/views/login/login.php');
+            }
+
+            //免責聲明、 服務條款、 隱私權聲明等條款
+            elseif($itemVal=="fmFreeRespons"){
+    //            echo '<p align="center"> 此功能還未開放</p>';
+                include_once('portal/views/other/fmFreeRespons.php');
+            }elseif($itemVal=="fmServiceRules"){
+    //            echo '<p align="center"> 此功能還未開放</p>';
+                include_once('portal/views/other/fmServiceRules.php');
+            }elseif($itemVal=="fmPrivacy"){
+    //            echo '<p align="center"> 此功能還未開放</p>';
+                include_once('portal/views/other/fmPrivacy.php');
+            }
+
+            // ---------------- register ------------------
+            elseif($itemVal=="register"){
+                include_once('portal/views/register/register-1.php');
+            }
+            elseif($itemVal=="register2"){
+                include_once('portal/views/register/register-2.php');
+            }
+            elseif($itemVal=="register3"){
+                include_once('portal/views/register/register-3.php');
+            }
+            elseif($itemVal=="register4"){
+                include_once('portal/views/register/register-4.php');
+            }
+
+            // ---------------- login ------------------
+            elseif($itemVal=="login" /*or $itemVal=="login_register"*/){
+                include_once('portal/views/login/login.php');
+            }
+            elseif($itemVal=="forgetpwd1"){
+                include_once('portal/views/login/forgetpwd-1.php');
+            }
+            elseif($itemVal=="forgetpwd2"){
+                include_once('portal/views/login/forgetpwd-2.php');
+            }
+            elseif($itemVal=="forgetpwd3"){
+                include_once('portal/views/login/forgetpwd-3.php');
+            }
 
 
-                        default:
-                            $Front_Manage = new Front_Manage();
-                            $Front_Manage2 = new Front_Manage2();
-                            if(array_key_exists($itemVal,$page_other )){
-                                $page_data = $Front_Manage->getAllFM($itemVal);
-                            }else if(array_key_exists($itemVal,$page_other2 )){
-                                $page_data2 = $Front_Manage2->getAllFM($itemVal);
-                            }
-                            include_once('portal/views/page_other.html');
-    						break;
-                    }
-    				break;
+            // ---------------- other ------------------
+            elseif($itemVal == "category"){
+                include_once('portal/views/product/page_category.php');
+            }
+            elseif($itemVal == 'product'){
+                include_once('portal/views/product/page_detail.php');
+            }
+            elseif($itemVal == 'product_sup'){
+                include_once('portal/views/product/page_detail_sup.php');
+            }
+            elseif($itemVal == "search"){
+                include_once('portal/views/product/page_search.php');
+            }
 
-                default:
-                    //首頁(沒有目標頁面itemVal)
-//            include_once('portal/views/slider.php');
-//            include_once('portal/views/page_top.html');
-//            include_once('portal/views/page_content.html');
-                    include_once('portal/views/_index.php');
-    				break;
+            //廠商專區
+            elseif($itemVal=="sup_center"){
+                include_once('portal/views/supplier/page_sup_center_new.php'); //encore
+                //include_once('portal/views/page_sup_center.html');
+            }elseif($itemVal=="sup_center_page") {
+                if ($_SESSION['ss_supNo']!="") {
+                    include_once('portal/views/supplier/page_sup_center_new.html');
+                }else{
+                    include_once('portal/views/supplier/page_sup_center_new.php');
+                }
+                
+                
+            }
+            //幫助中心
+            elseif($itemVal=="help"){
+                include_once('portal/views/help/helping.php');
+            }
+            //幫助中心
+            elseif($itemVal=="faq"){
+                include_once('portal/views/help/helping-faq.php');
+            }
+            //聯絡客服
+            elseif($itemVal=="co_company"){
+                include_once('portal/views/help/helping-contact.php');
+            }
+            //關於我們
+            elseif($itemVal=="aboutme"){
+                include_once('portal/views/help/helping-about.php');
+            }
+            //購物流程
+            elseif($itemVal=="help_process"){
+                include_once('portal/views/help/helping-process.php');
+            }
+
+
+
+
+            //貸款VIP服務
+            elseif($itemVal=="loan_vip"){
+                include_once('portal/views/page_loanVIP.html');
+            }
+            //我要借款
+            elseif($itemVal=="loan_menu"){
+                include_once('portal/views/page_loan_menu.html');
+            }
+            //
+            elseif($itemVal=="information_edit"){
+                include_once('portal/views/page_member_information.html');
+            }
+            //手機貸款服務
+            elseif($itemVal=="loan_Cell"){
+                include_once('portal/views/page_loanCell.html');
+            }
+            //機車貸款服務
+            elseif($itemVal=="loan_Moto"){
+                include_once('portal/views/page_loanMoto.html');
+            }
+            //
+            elseif($itemVal=="loan_cell"){
+                include_once('portal/views/page_loan_cell.html'); // add jimmy
+                echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
+            }
+            //
+            elseif($itemVal=="loan_moto"){
+                include_once('portal/views/page_loan_moto.html'); // add jimmy
+                echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
+            }
+            else{
+                //首頁(沒有目標頁面itemVal)
+    //            include_once('portal/views/slider.php');
+    //            include_once('portal/views/page_top.html');
+    //            include_once('portal/views/page_content.html');
+                include_once('portal/views/_index.php');
             }
         }
 
-        elseif($itemVal=="member_center"){
-            include_once('portal/views/login/login.php');
-        }
-
-        //免責聲明、 服務條款、 隱私權聲明等條款
-        elseif($itemVal=="fmFreeRespons"){
-//            echo '<p align="center"> 此功能還未開放</p>';
-            include_once('portal/views/other/fmFreeRespons.php');
-        }elseif($itemVal=="fmServiceRules"){
-//            echo '<p align="center"> 此功能還未開放</p>';
-            include_once('portal/views/other/fmServiceRules.php');
-        }elseif($itemVal=="fmPrivacy"){
-//            echo '<p align="center"> 此功能還未開放</p>';
-            include_once('portal/views/other/fmPrivacy.php');
-        }
-
-        // ---------------- register ------------------
-        elseif($itemVal=="register"){
-            include_once('portal/views/register/register-1.php');
-        }
-        elseif($itemVal=="register2"){
-            include_once('portal/views/register/register-2.php');
-        }
-        elseif($itemVal=="register3"){
-            include_once('portal/views/register/register-3.php');
-        }
-        elseif($itemVal=="register4"){
-            include_once('portal/views/register/register-4.php');
-        }
-
-        // ---------------- login ------------------
-        elseif($itemVal=="login" /*or $itemVal=="login_register"*/){
-            include_once('portal/views/login/login.php');
-        }
-        elseif($itemVal=="forgetpwd1"){
-            include_once('portal/views/login/forgetpwd-1.php');
-        }
-        elseif($itemVal=="forgetpwd2"){
-            include_once('portal/views/login/forgetpwd-2.php');
-        }
-        elseif($itemVal=="forgetpwd3"){
-            include_once('portal/views/login/forgetpwd-3.php');
-        }
-
-
-        // ---------------- other ------------------
-        elseif($itemVal == "category"){
-            include_once('portal/views/product/page_category.php');
-        }
-        elseif($itemVal == 'product'){
-            include_once('portal/views/product/page_detail.php');
-        }
-        elseif($itemVal == 'product_sup'){
-            include_once('portal/views/product/page_detail_sup.php');
-        }
-        elseif($itemVal == "search"){
-            include_once('portal/views/product/page_search.php');
-        }
-
-        //廠商專區
-        elseif($itemVal=="sup_center"){
-            include_once('portal/views/supplier/page_sup_center_new.php'); //encore
-            //include_once('portal/views/page_sup_center.html');
-        }elseif("sup_center_page") {
-            if ($_SESSION['ss_supNo']!="") {
-                include_once('portal/views/supplier/page_sup_center_new.html');
-            }else{
-                include_once('portal/views/supplier/page_sup_center_new.php');
-            }
-            
-            
-        }
-
-        //幫助中心
-        elseif($itemVal=="faq"){
-            include_once('portal/views/help/helping-faq.php');
-        }
-        //聯絡客服
-        elseif($itemVal=="co_company"){
-            include_once('portal/views/help/helping-contact.php');
-        }
-        //關於我們
-        elseif($itemVal=="aboutme"){
-            include_once('portal/views/help/helping-about.php');
-        }
-
-
-        //貸款VIP服務
-        elseif($itemVal=="loan_vip"){
-            include_once('portal/views/page_loanVIP.html');
-        }
-        //我要借款
-        elseif($itemVal=="loan_menu"){
-            include_once('portal/views/page_loan_menu.html');
-        }
-        //
-        elseif($itemVal=="information_edit"){
-            include_once('portal/views/page_member_information.html');
-        }
-        //手機貸款服務
-        elseif($itemVal=="loan_Cell"){
-            include_once('portal/views/page_loanCell.html');
-        }
-        //機車貸款服務
-        elseif($itemVal=="loan_Moto"){
-            include_once('portal/views/page_loanMoto.html');
-        }
-        //
-        elseif($itemVal=="loan_cell"){
-            include_once('portal/views/page_loan_cell.html'); // add jimmy
-            echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
-        }
-        //
-        elseif($itemVal=="loan_moto"){
-            include_once('portal/views/page_loan_moto.html'); // add jimmy
-            echo "<script>alert('請先登入!!'); location.href='index.php?item=login';</script>";
-        }
+        //首頁(沒有目標頁面itemVal)
         else{
-            //首頁(沒有目標頁面itemVal)
-//            include_once('portal/views/slider.php');
-//            include_once('portal/views/page_top.html');
-//            include_once('portal/views/page_content.html');
             include_once('portal/views/_index.php');
+    //        include_once('portal/views/page_top.html');
+    //        include_once('portal/views/page_content.html');
         }
-    }
-
-    //首頁(沒有目標頁面itemVal)
-    else{
-        include_once('portal/views/_index.php');
-//        include_once('portal/views/page_top.html');
-//        include_once('portal/views/page_content.html');
     }
 
 

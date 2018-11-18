@@ -169,7 +169,7 @@
                             <span class="io io-list"></span>品項
                             <span class="nowait-tag orange">
                                 <?php
-                                $b_item_data = $b_item->getAllItems();
+                                /*b_item_data = $b_item->getAllItems();
                                 foreach($b_item_data as $key => $value){
                                     @$active = ($value['biNo'] == $_GET['bino']) ? ' class="active"':'';
                                     if($_GET['c'] != ""){
@@ -191,7 +191,7 @@
                                             <?php
 //                                            }
                                     }
-                                }
+                                }*/
                                 ?>
                                 <?php
 //                                foreach ($b_item_data as $item){
@@ -339,10 +339,11 @@
                                                 $image = str_replace('../','',$image);
                                                 $image = str_replace('admin/admin/','admin/',$image);
                                                 ?>
-                                                <img src="<?php echo $image;?>" class="img-fluid" alt="<?php echo $value['proName'];?>">
+                                                <img src="<?php echo $image;?>" class="img-fluid" alt="<?php echo $value['proName'];?>" style="width:190px;">
                                                 <div class="card-body">
                                                     <p class="card-title">
-                                                        <a href="?item=product&pro=<?php echo $value['proNo'];  ?>"><?php echo $value['proName'];?></a>
+                                                        <!-- <a href="?item=product&pro=<?php echo $value['proNo'];  ?>"></a> -->
+                                                        <?php echo $value['proName'];?>
                                                     </p>
                                                     <p class="nowait-badge text-left">
                                                         <span class="bg-yellow">開學季優惠</span>
@@ -400,7 +401,7 @@
                                                 $image = str_replace('../','',$image);
                                                 $image = str_replace('admin/admin/','admin/',$image);
                                                 ?>
-                                                <img src="<?php echo $image;?>" class="img-fluid" alt="product">
+                                                <img src="<?php echo $image;?>" class="img-fluid" alt="product" style="width:190px;">
                                                 <div class="card-body">
                                                     <p class="card-title"><?php echo $value['proName'];?></p>
                                                     <p class="nowait-badge text-left">
@@ -459,7 +460,7 @@
                                                 $image = str_replace('../','',$image);
                                                 $image = str_replace('admin/admin/','admin/',$image);
                                                 ?>
-                                                <img src="<?php echo $image;?>" class="img-fluid" alt="product">
+                                                <img src="<?php echo $image;?>" class="img-fluid" alt="product" style="width:190px;">
                                                 <div class="card-body">
                                                     <p class="card-title"><?php echo $value['proName'];?></p>
                                                     <p class="nowait-badge text-left">

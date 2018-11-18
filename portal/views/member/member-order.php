@@ -89,11 +89,13 @@
                                                     }
                                                     ?>
                                                     <br>
-                                                    <?php if($value["orIfEditable"] == '0' or $value["orStatus"] == '待補'){
+                                                    <?php 
+                                                    if($value["orIfEditable"] == '0' or $value["orStatus"] == '待補'){
                                                         if($value["orStatus"] != '取消訂單' && $value["orStatus"] != '已完成' && $value["orStatus"] != '審查中'){
-                                                            echo "<a class='text-orange' href='?item=member_center&action=order_edit&method=1&orno=".$value["orNo"]."&front_mange=1'>編輯</a>";
+                                                            echo "<a class='text-orange' href='?item=member_center&action=order_period&method=2&orno=".$value["orNo"]."&front_mange=1'>編輯</a>";
                                                         }
-                                                    } ?>
+                                                    } 
+                                                    ?>
                                                     <?php if($value["orStatus"] == '我要繳款'){ ?><a class='text-orange' href="?item=member_center&action=purchase&orno=<?php echo $value["orNo"]; ?>&query=p">前往</a><?Php } ?>
                                                 </td>
                                             </tr>

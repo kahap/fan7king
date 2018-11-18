@@ -18,10 +18,9 @@
                             <dd>
                                 <ul class="list-unstyled" >
                                     <li><a href="?item=aboutme" title="關於我們">關於我們</a></li>
-                                    <li><a href="#" title="會員相關">會員相關</a></li>
                                     <li><a href="?item=member_center" title="會員中心">會員中心</a></li>
                                     <li><a href="?item=help_process" title="購物流程">購物流程</a></li>
-                                    <li><a href="https://www.facebook.com/21happyfan7/" title="FB 粉絲團" target="_blank">FB 粉絲團</a></li>
+                                    <li><a href="" title="FB 粉絲團" target="_blank">FB 粉絲團</a></li>
                                 </ul>
                             </dd>
                         </dl>
@@ -44,8 +43,8 @@
                             <dd>
                                 <ul class="list-unstyled">
                                     <li><a href="?item=fmFreeRespons" title="免責聲明">免責聲明</a></li>
-                                    <li><a href="?item=fmServiceRules" title="隱私聲明">隱私聲明</a></li>
-                                    <li><a href="#" title="服務條款">服務條款</a></li>
+                                    <li><a href="?item=fmPrivacy" title="隱私聲明">隱私聲明</a></li>
+                                    <li><a href="?item=fmServiceRules" title="服務條款">服務條款</a></li>
                                 </ul>
                             </dd>
                         </dl>
@@ -82,7 +81,7 @@
 
     <a href="#" class="scroll_top" title="Scroll to Top" style="display: inline;">Scroll</a>
     <!-- Script-->
-    <script type="text/javascript" src="portal/assets/lib/bootstrap/js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="portal/assets/lib/bootstrap/js/bootstrap.min.js"></script> -->
     <script type="text/javascript" src="portal/assets/lib/select2/js/select2.min.js"></script>
     <script type="text/javascript" src="portal/assets/lib/jquery.bxslider/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="portal/assets/lib/owl.carousel/owl.carousel.min.js"></script>
@@ -90,7 +89,7 @@
     <script type="text/javascript" src="portal/assets/lib/jquery.elevatezoom.js"></script>
     <script type="text/javascript" src="portal/assets/lib/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="portal/assets/js/jquery.actual.min.js"></script>
-    <script type="text/javascript" src="portal/assets/js/theme-script.js"></script>
+    <!-- <script type="text/javascript" src="portal/assets/js/theme-script.js"></script> -->
 
 <!--	<script type="text/javascript" src="assets/lib/jquery/jquery-1.11.2.min.js"></script>-->
 <script src="portal/assets/js/jquery.placeholder.js"></script>

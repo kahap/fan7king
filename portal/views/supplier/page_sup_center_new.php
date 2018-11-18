@@ -43,6 +43,7 @@
 </main>
 
 <script>
+    alert("會員本人同意以現場面交點收產品，非適用線上購物7天鑑賞期，產品維修保固與售後服務皆由選購的實體商店(蓋發票章)負責處理，本公司只提供分期購物與付款服務，不提供產品相關售後服務。");
     $('.btn-login').click(function(){
         var url ='portal/Controllers/php/login_sales.php';
         var supno=document.getElementById("form-supno").value;

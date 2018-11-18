@@ -1,6 +1,5 @@
 <?php
 	session_start();
-    // 关闭错误报告
     error_reporting(0);
 	include('../../model/php_model.php');
 
@@ -10,8 +9,22 @@
 	$lg = new Loyal_Guest();
 	$orderContact = new API("orderContact");
 
+	$memData=array();
+	$orData=array();
+	foreach ($_POST as $key => $value) {
+		if(strchr($key,"mem")==$key){
+			$memData[$key]=$value;
+		}elseif(strchr($key,"or")==$key){
+			$orData[$key]=$value;
+		}
+	}
+	
+	
+	// $orData['orAppApplierCreditNum'] = $_POST['orAppApplierCreditNum_1']."-".$_POST['orAppApplierCreditNum_2']."-".$_POST['orAppApplierCreditNum_3']."-".$_POST['orAppApplierCreditNum_4'];
+	// unset($orData['orAppApplierCreditstatus']);
+	// $or->updateData($orData,$_SESSION['user']['memNo']);
 
-
+	
 
 	$columnName = $or->getAllColumnNames("orders");
 	foreach($columnName as $key => $value){
@@ -78,11 +91,11 @@
 	}
 
 	//如果有學校email身分又是學生
-	if( $_POST['memAccount'] != ""){
-		if($_POST['memClass'] == 0){
-			If(strrpos($_POST['memAccount'],'@') == false){
-				$errg[] = "認證Email不是確實的Email ";
-			}
+	// if( $_POST['memAccount'] != ""){
+	// 	if($_POST['memClass'] == 0){
+			// If(strrpos($_POST['memAccount'],'@') == false){
+			// 	$errg[] = "認證Email不是確實的Email ";
+			// }
 //			if(strrpos($_POST['memAccount'],'edu') == false){
 //				$errg[] = "請填寫學校Email做為認證 ";
 //			}
@@ -102,12 +115,12 @@
 //			if($department_data == ""){
 //				$errg[] = "請選擇系所";
 //			}
-		}
-	}else{
-		if($memberData[0]["memFBtoken"] != "" && $_POST['memClass'] == 0){
-			$errg[] = "認證Email不能為空";
-		}
-	}
+	// 	}
+	// }else{
+	// 	if($memberData[0]["memFBtoken"] != "" && $_POST['memClass'] == 0){
+	// 		$errg[] = "認證Email不能為空";
+	// 	}
+	// }
 
 //	if($_POST['memClass'] == 'x'){
 //		$errg[] = "請選擇身分別";
@@ -122,14 +135,14 @@
 		}
 	}
 
-	If(strrpos($_POST['memSubEmail'],'@') == false){
-		$errg[] = "'常用聯絡Email不是確實的Email ";
-	}
+	// If(strrpos($_POST['memSubEmail'],'@') == false){
+	// 	$errg[] = "'常用聯絡Email不是確實的Email ";
+	// }
 
 
 	if($_POST['memIdNum'] != ""){
-		$sql = "SELECT count(aa.orStatus) as number,aa.orStatus, aa.memNo, bb.memIdNum FROM `orders` aa, member bb WHERE aa.memNo = bb.memNo && bb.memIdNum='".$_POST['memIdNum']."' group by aa.orStatus,aa.memNo";
-		/*$data = $or->customsql($sql);
+		/*$sql = "SELECT count(aa.orStatus) as number,aa.orStatus, aa.memNo, bb.memIdNum FROM `orders` aa, member bb WHERE aa.memNo = bb.memNo && bb.memIdNum='".$_POST['memIdNum']."' group by aa.orStatus,aa.memNo";
+		$data = $or->customsql($sql);
 		$score = 0;
 		foreach($data as $key => $value){
 			if($value['orStatus'] == '4'){
@@ -144,6 +157,9 @@
 	}
 	$msg = implode("," ,$errg);
 	if($msg == ""){ //錯誤訊息等於空
+		$memData['memBday'] = $_POST['year']."-".$_POST['month']."-".$_POST['date'];
+		$member->updateData($memData,$_SESSION['user']['memNo']);
+
 		$_POST['orCaseNo'] = $or->product_number('1');
 		//$_POST['orRealCaseNo'] = $or->getRealCaseNo();
 		$_POST['memNo'] = $_SESSION['shopping_user'][0]['memNo'];
@@ -212,49 +228,49 @@
 
 
 
-		$_array['memBday'] = $_POST['year']."-".$_POST['month']."-".$_POST['date'];
-		$_array['memSchool'] = $_POST['memSchool'];
-		$_array['memClass'] = $_POST['memClass'];
-		$_array['memOther'] = $_POST['memOther'];
-		$_array['memName'] = $_POST['memName'];
-		$_array['memIdNum'] = $_POST['memIdNum'];
-		$_array['memGender'] = (substr($_POST['memIdNum'],1,1) == 1) ? '1':'0';
-		$_array['memPhone'] = $_POST['memPhone'];
-		$_array['memCell'] = $_POST['memCell'];
-		$_array['memAddr'] = $_POST['memAddr'];
-		$_array['memAccount'] = $_POST['memAccount'];
-		$_array['memSubEmail'] = $_POST['memSubEmail'];
+		// $_array['memBday'] = $_POST['year']."-".$_POST['month']."-".$_POST['date'];
+		// $_array['memSchool'] = $_POST['memSchool'];
+		// $_array['memClass'] = $_POST['memClass'];
+		// $_array['memOther'] = $_POST['memOther'];
+		// $_array['memName'] = $_POST['memName'];
+		// $_array['memIdNum'] = $_POST['memIdNum'];
+		// $_array['memGender'] = (substr($_POST['memIdNum'],1,1) == 1) ? '1':'0';
+		// $_array['memPhone'] = $_POST['memPhone'];
+		// $_array['memCell'] = $_POST['memCell'];
+		// $_array['memAddr'] = $_POST['memAddr'];
+		// $_array['memAccount'] = $_POST['memAccount'];
+		// $_array['memSubEmail'] = $_POST['memSubEmail'];
 
 
 
-		if($_POST['memAddr'] != $memberData[0]['memAddr']){
-			$array_1['memAddr'] = $_POST['memAddr'];
-			$member->updatememAddr($array_1,$_SESSION['user']['memNo']);
-		}
-		if($_POST['memCell'] != $memberData[0]['memCell']){
-			$array_2['memCell'] = $_POST['memCell'];
-			$member->updatememAddr($array_2,$_SESSION['user']['memNo']);
-		}
-		if($_POST['memPhone'] != $memberData[0]['memPhone']){
-			$array_3['memPhone'] = $_POST['memPhone'];
-			$member->updatememAddr($array_3,$_SESSION['user']['memNo']);
-		}
-		if($_POST['memSubEmail'] != $memberData[0]['memSubEmail']){
-			$array_4['memSubEmail'] = $_POST['memSubEmail'];
-			$member->updatememAddr($array_4,$_SESSION['user']['memNo']);
-		}
-		if($iforder == ''){
-			$array_5['memIdNum'] = $_POST['memIdNum'];
-			$member->updatememAddr($array_5,$_SESSION['user']['memNo']);
-		}
-		if($iforder == ''){
-			$array_6['memName'] = $_POST['memName'];
-			$member->updatememAddr($array_6,$_SESSION['user']['memNo']);
-		}
-		if($_POST['memClass'] != $memberData[0]['memClass']){
-			$array_7['memClass'] = $_POST['memClass'];
-			$member->updatememAddr($array_7,$_SESSION['user']['memNo']);
-		}
+		// if($_POST['memAddr'] != $memberData[0]['memAddr']){
+		// 	$array_1['memAddr'] = $_POST['memAddr'];
+		// 	$member->updatememAddr($array_1,$_SESSION['user']['memNo']);
+		// }
+		// if($_POST['memCell'] != $memberData[0]['memCell']){
+		// 	$array_2['memCell'] = $_POST['memCell'];
+		// 	$member->updatememAddr($array_2,$_SESSION['user']['memNo']);
+		// }
+		// if($_POST['memPhone'] != $memberData[0]['memPhone']){
+		// 	$array_3['memPhone'] = $_POST['memPhone'];
+		// 	$member->updatememAddr($array_3,$_SESSION['user']['memNo']);
+		// }
+		// if($_POST['memSubEmail'] != $memberData[0]['memSubEmail']){
+		// 	$array_4['memSubEmail'] = $_POST['memSubEmail'];
+		// 	$member->updatememAddr($array_4,$_SESSION['user']['memNo']);
+		// }
+		// if($iforder == ''){
+		// 	$array_5['memIdNum'] = $_POST['memIdNum'];
+		// 	$member->updatememAddr($array_5,$_SESSION['user']['memNo']);
+		// }
+		// if($iforder == ''){
+		// 	$array_6['memName'] = $_POST['memName'];
+		// 	$member->updatememAddr($array_6,$_SESSION['user']['memNo']);
+		// }
+		// if($_POST['memClass'] != $memberData[0]['memClass']){
+		// 	$array_7['memClass'] = $_POST['memClass'];
+		// 	$member->updatememAddr($array_7,$_SESSION['user']['memNo']);
+		// }
 
 		/*if($_POST['school'] != ''){
 			$school = new School();
@@ -267,23 +283,28 @@
 
 
 
-		if($iforder == ''){
-			$array_9['memBday'] = $_array['memBday'];
-			$member->updatememAddr($array_9,$_SESSION['user']['memNo']);
-		}
+		// if($iforder == ''){
+		// 	$array_9['memBday'] = $_array['memBday'];
+		// 	$member->updatememAddr($array_9,$_SESSION['user']['memNo']);
+		// }
 
-		if($_POST['memClass'] == '0' && $_POST['memAccount'] != ''){
-			if($_POST['memAccount'] != $memberData[0]['memAccount']){
-				$array_10['memAccount'] = $_POST['memAccount'];
-				$member->updatememAddr($array_10,$_SESSION['user']['memNo']);
-			}
-		}
+		// if($_POST['memClass'] == '0' && $_POST['memAccount'] != ''){
+		// 	if($_POST['memAccount'] != $memberData[0]['memAccount']){
+		// 		$array_10['memAccount'] = $_POST['memAccount'];
+		// 		$member->updatememAddr($array_10,$_SESSION['user']['memNo']);
+		// 	}
+		// }
 		//jimmy
 		$pm = new Product_Manage();
 		$pmData = $pm->getOnePMByNo($_POST['pmNo']);
 		$_POST['pmPeriodAmnt'] = $pmData[0]['pmPeriodAmnt'];
 		//jimmy
+		
 		$orNo = $or->insertorder($_POST);
+		
+		// $orData['orAppApplierCreditNum'] = $_POST['orAppApplierCreditNum_1']."-".$_POST['orAppApplierCreditNum_2']."-".$_POST['orAppApplierCreditNum_3']."-".$_POST['orAppApplierCreditNum_4'];
+		// unset($orData['orAppApplierCreditstatus']);
+		// $or->updateData($orData,$_SESSION['user']['memNo']);
 
 		//新增聯絡人
 		$rc = new API("real_cases");
@@ -355,10 +376,10 @@
 		$_SESSION['ord_code'] = $orNo;
 
 		//郵政區號
-		if($_POST['memPostCode'] != $memberData[0]['memPostCode']){
-			$array['memPostCode'] = $_POST['memPostCode'];
-			$member->updatememAddr($array,$_SESSION['user']['memNo']);
-		}
+		// if($_POST['memPostCode'] != $memberData[0]['memPostCode']){
+		// 	$array['memPostCode'] = $_POST['memPostCode'];
+		// 	$member->updatememAddr($array,$_SESSION['user']['memNo']);
+		// }
 
 
         //申請案件如需保密請打勾（照會親友聯絡人時，不告知購買事由）
@@ -450,16 +471,18 @@
 //        var_dump(123);
 //        exit();
 
-$url = str_replace('action=order_period','action=order_period&method=2',$_SERVER["HTTP_REFERER"]);
-header("location:".$_SERVER["HTTP_REFERER"]);
-        if($_SESSION['shopping_user'][0]['memEmailAuthen'] == '0'){
-            echo "2";
-            header( "Location: ".$url );
-        }else{
-            echo "2";
-            header( "Location: ".$url );
-        }
-
+		// $url = "?item=member_center&action=order_period&method=2";
+		// str_replace('action=order_period','action=order_period&method=2',$_SERVER["HTTP_REFERER"]);
+		// header("location:".$_SERVER["HTTP_REFERER"]);
+        // if($_SESSION['shopping_user'][0]['memEmailAuthen'] == '0'){
+        //     // echo "2";
+        //     header( "Location: ".$url );
+        // }else{
+        //     // echo "2";
+        //     header( "Location: ".$url );
+        // }
+		header("Location:../../../index.php?item=member_center&action=order_period&method=2" );
+        exit();
 
     }else{
 		echo $msg;
