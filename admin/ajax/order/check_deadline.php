@@ -30,7 +30,7 @@ foreach($orArr as $value){
 			$emailAddr = $memData[0]["memAccount"];
 		}
 		
-		$title = "【樂分期購物網】分期繳款通知".$deadlineYear."年".$deadlineMonth."月";
+		$title = "【NoWait購物網】分期繳款通知".$deadlineYear."年".$deadlineMonth."月";
 		
 		$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
@@ -53,7 +53,7 @@ foreach($orArr as $value){
 						</tr>
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
-								<p>提醒您於<a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>消費訂單編號之<span style="color:blue;">'.$orData[0]["orCaseNo"].'</span>訂單，共分 <b style="text-decoration:underline;">'.$orData[0]["orPeriodAmnt"].'</b> 期，最近一期繳款期限為<span style="color:red;">'.$deadlineDateStr.'</span>，應繳款金額為 <b style="text-decoration:underline;">'.number_format($orData[0]["orPeriodTotal"]/$orData[0]["orPeriodAmnt"]).'</b> 元。 </p>
+								<p>提醒您於<a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>消費訂單編號之<span style="color:blue;">'.$orData[0]["orCaseNo"].'</span>訂單，共分 <b style="text-decoration:underline;">'.$orData[0]["orPeriodAmnt"].'</b> 期，最近一期繳款期限為<span style="color:red;">'.$deadlineDateStr.'</span>，應繳款金額為 <b style="text-decoration:underline;">'.number_format($orData[0]["orPeriodTotal"]/$orData[0]["orPeriodAmnt"]).'</b> 元。 </p>
 								<p>
 									請您點選<span style="color:blue;">會員中心</span>><span style="color:blue;">我要繳款</span>>對應訂單編號<span style="color:blue;">'.$orData[0]["orCaseNo"].'</span>點選
 									<span style="color:red;">【我要繳款】</span>下之<span style="color:red;">【前往】</span>連結，畫面中找到<b>應繳款日</b><span style="color:red;">'.$deadlineDateStr.'</span>，
@@ -69,7 +69,7 @@ foreach($orArr as $value){
 					</tbody>
 				</table>
 				';
-		$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "樂分期", $title, $content);
+		$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "NoWait", $title, $content);
 	}
 }
 

@@ -20,7 +20,7 @@
 		//收貨日期
 		$orGetFromSupData = $or->getOrdersForSupplierPayment($availDate, $value["supNo"]);
 		if($orGetFromSupData != null){
-			$title = "【樂分期-到貨日期】提醒供應商「".$value['supName']."」，可請款共".sizeof($orGetFromSupData)."筆訂單(如為現金交易，則無需理會此信)";
+			$title = "【NoWait-到貨日期】提醒供應商「".$value['supName']."」，可請款共".sizeof($orGetFromSupData)."筆訂單(如為現金交易，則無需理會此信)";
 			
 			//訂購商品內容
 			$tableContent = "";
@@ -79,7 +79,7 @@
 									</table>
 								</p>
 								<p>
-									請您儘速備妥相關請款資料與樂分期聯繫，謝謝您的配合！<br>
+									請您儘速備妥相關請款資料與NoWait聯繫，謝謝您的配合！<br>
 									<span style="color:red;">(如為現金交易，則無需理會此信)</span>
 								</p>
 							</td>
@@ -87,14 +87,14 @@
 					</tbody>
 				</table>
 				';
-			$sendSup = $email->SendEmail_smtp($supEmailAddr,$value['supName'], "happyfan7@21-finance.com", "樂分期", $title, $content);
-			$sendEc = $email2->SendEmail_smtp($ecEmailAddr,$value['supName'], "happyfan7@21-finance.com", "樂分期", $title, $content);
+			$sendSup = $email->SendEmail_smtp($supEmailAddr,$value['supName'], "happyfan7@21-finance.com", "NoWait", $title, $content);
+			$sendEc = $email2->SendEmail_smtp($ecEmailAddr,$value['supName'], "happyfan7@21-finance.com", "NoWait", $title, $content);
 		}
 		
 		//換貨簽收
 		$orChangeProData = $or->getOrdersForSupplierPaymentAfterProChange($availDate, $value["supNo"]);
 		if($orChangeProData != null){
-			$title = "【樂分期-換貨日期】提醒供應商「".$value['supName']."」，可請款共".sizeof($orChangeProData)."筆訂單(如為現金交易，則無需理會此信)";
+			$title = "【NoWait-換貨日期】提醒供應商「".$value['supName']."」，可請款共".sizeof($orChangeProData)."筆訂單(如為現金交易，則無需理會此信)";
 			
 			//訂購商品內容
 			$tableContent = "";
@@ -153,7 +153,7 @@
 									</table>
 								</p>
 								<p>
-									請您儘速備妥相關請款資料與樂分期聯繫，謝謝您的配合！<br>
+									請您儘速備妥相關請款資料與NoWait聯繫，謝謝您的配合！<br>
 									<span style="color:red;">(如為現金交易，則無需理會此信)</span>
 								</p>
 							</td>
@@ -161,8 +161,8 @@
 					</tbody>
 				</table>
 				';
-			$sendSup = $email3->SendEmail_smtp($supEmailAddr,$value['supName'], "happyfan7@21-finance.com", "樂分期", $title, $content);
-			$sendEc = $email4->SendEmail_smtp($ecEmailAddr,$value['supName'], "happyfan7@21-finance.com", "樂分期", $title, $content);
+			$sendSup = $email3->SendEmail_smtp($supEmailAddr,$value['supName'], "happyfan7@21-finance.com", "NoWait", $title, $content);
+			$sendEc = $email4->SendEmail_smtp($ecEmailAddr,$value['supName'], "happyfan7@21-finance.com", "NoWait", $title, $content);
 		}
 	}
 	

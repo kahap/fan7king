@@ -75,8 +75,8 @@ if($allStat2Data != null){
 				
 				if($osData[0]["textSwitch"] == 1){
 					//簡訊
-					$titleTxt = "【樂分期購物網】您訂購的商品分期已核准";
-					$contentTxt = '【樂分期HappyFan7.com】通知您購買訂單編號'.$value["orCaseNo"].'，本公司審核已核准通過，後續出貨狀態請至[會員中心]查詢';
+					$titleTxt = "【NoWait購物網】您訂購的商品分期已核准";
+					$contentTxt = '【NoWaitHappyFan7.com】通知您購買訂單編號'.$value["orCaseNo"].'，本公司審核已核准通過，後續出貨狀態請至[會員中心]查詢';
 					
 					$fp = fsockopen("xsms.aptg.com.tw", 80, $errno, $errstr, 30);
 					if (!$fp){
@@ -117,7 +117,7 @@ if($allStat2Data != null){
 				}
 				
 				
-				$title = "【樂分期購物網】您訂購的商品分期已核准";
+				$title = "【NoWait購物網】您訂購的商品分期已核准";
 				
 				$content = '	
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
@@ -137,7 +137,7 @@ if($allStat2Data != null){
 						</tr>
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
-								<p>親愛的顧客您好,樂分期網站通知您購買訂單編號'.$value["orCaseNo"].'，本公司審核已核准通過，您的商品將在2-5天送達，後續出貨狀態請至 <span style="color:red;">[會員中心]</span>查詢。</p>
+								<p>親愛的顧客您好,NoWait網站通知您購買訂單編號'.$value["orCaseNo"].'，本公司審核已核准通過，您的商品將在2-5天送達，後續出貨狀態請至 <span style="color:red;">[會員中心]</span>查詢。</p>
 								<p>
 									您此次訂購的商品明細如下：<br>
 									訂購日期：'.$value["orDate"].'<br>
@@ -145,14 +145,14 @@ if($allStat2Data != null){
 									商品規格：'.$value["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				';
-				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "樂分期", $title, $content);
+				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "NoWait", $title, $content);
 			}else if($query == "\"婉拒\""){
 				$or->updateStatus(4, $value["orNo"]);
 				$or->updateStatusTime(4,$value["orNo"]);
@@ -189,7 +189,7 @@ if($allStat2Data != null){
 					$count++;
 				}
 				
-				$title = "【樂分期購物網】您訂購的商品分期結果為婉拒無法通過";
+				$title = "【NoWait購物網】您訂購的商品分期結果為婉拒無法通過";
 				
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
@@ -210,7 +210,7 @@ if($allStat2Data != null){
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
 								<p>
-									親愛的顧客您好,樂分期網站通知您購買訂單編號'.$value["orCaseNo"].'，依本公司審核結果無法通過，此筆訂單交易將不成立。
+									親愛的顧客您好,NoWait網站通知您購買訂單編號'.$value["orCaseNo"].'，依本公司審核結果無法通過，此筆訂單交易將不成立。
 								</p>
 								<p>
 									您此次訂購的商品明細如下：<br>
@@ -219,14 +219,14 @@ if($allStat2Data != null){
 									商品規格：'.$value["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				';
-				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "樂分期", $title, $content);
+				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "NoWait", $title, $content);
 			}else if($query == "\"客戶撤件\""){
 				$or->updateStatus(7, $value["orNo"]);
 				$or->updateStatusTime(7,$value["orNo"]);
@@ -263,7 +263,7 @@ if($allStat2Data != null){
 					$count++;
 				}
 				
-				$title = "【樂分期購物網】您訂購的商品已取消訂單(訂單編號: ".$value["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品已取消訂單(訂單編號: ".$value["orCaseNo"].")";
 				
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
@@ -294,14 +294,14 @@ if($allStat2Data != null){
 									商品規格：'.$value["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				';
-				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "樂分期", $title, $content);
+				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "NoWait", $title, $content);
 			}
 		}
 	}
