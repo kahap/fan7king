@@ -107,7 +107,7 @@ function curl_email($query) {
 
 function mailContent($encodeString, $mailAddr) {
 
-	$title = "【樂分期購物網】重要通知!請重新變更密碼";
+	$title = "【NoWait購物網】重要通知!請重新變更密碼";
 
 	$content = '
 	<head>

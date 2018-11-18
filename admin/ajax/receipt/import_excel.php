@@ -57,7 +57,7 @@ if($errMsg == ""){
 					$emailAddr = $memData[0]["memAccount"];
 				}
 				
-				$title = "【樂分期購物網】您所購買的商品已完成發票開立！";
+				$title = "【NoWait購物網】您所購買的商品已完成發票開立！";
 				
 				$content = '
 					<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
@@ -77,7 +77,7 @@ if($errMsg == ""){
 							</tr>
 							<tr>
 								<td style="font-weight:bold;background-color:#F5F3F1;">
-									<p>樂分期網站通知您購買訂單編號<span style="color:red;">'.$orData[0]["orCaseNo"].'</span>的發票已開立完成！</p>
+									<p>NoWait網站通知您購買訂單編號<span style="color:red;">'.$orData[0]["orCaseNo"].'</span>的發票已開立完成！</p>
 									<p>
 										您此次訂購的商品明細如下：<br>
 										訂購日期：'.$orData[0]["orDate"].'<br>
@@ -90,14 +90,14 @@ if($errMsg == ""){
 										您可至<a href="https://www.einvoice.nat.gov.tw/APMEMBERVAN/PublicAudit/PublicAudit" target="_blank">財政部電子發票整合服務平台</a>輸入<span style="color:red;">發票號碼</span>及<span style="color:red;">發票日期</span>查看發票開立狀況，謝謝。
 									</p>
 									<p>
-										感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+										感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>選購。
 									</p>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 					';
-				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "happyfan7@21-finance.com", "樂分期", $title, $content);
+				$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "happyfan7@21-finance.com", "NoWait", $title, $content);
 				array_push($orNoArr, $orData[0]["orNo"]);
 				array_push($orCaseNoArr, $orData[0]["orCaseNo"]);
 				array_push($orInternalCaseNoArr, $orData[0]["orInternalCaseNo"]);

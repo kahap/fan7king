@@ -45,11 +45,11 @@
 			}
 
 			//Email沒有驗證
-			if($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0'){
-				$str_title = '已下單，Email未驗證';
-			}else{
-				$str_title = '未進件';
-			}
+			// if($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0'){
+			// 	$str_title = '已下單，Email未驗證';
+			// }else{
+			// 	$str_title = '未進件';
+			// }
 			
 		}
 
