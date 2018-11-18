@@ -63,19 +63,19 @@ if(isset($_POST["orNo"]) && $_POST["orNo"] != ""){
 	
 	
 	if($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0'){
-		$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部");
+		$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部");
 	}elseif($or_data[0]['orStatus'] == '5'){
-		$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1",'aa22760676@gmail.com'=>'客服人員D');
+		$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1",'aa22760676@gmail.com'=>'客服人員D');
 	}else{
-		$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1","achappyfan7@gmail.com"=>"allan","tom200e@yahoo.com.tw"=>"tom");
+		$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1","achappyfan7@gmail.com"=>"allan","tom200e@yahoo.com.tw"=>"tom");
 	}
-	$title = "【樂分期-".$str_title."】".$or_data[0]['orDate'].",流水號:".$_POST["orNo"].",".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
+	$title = "【NoWait-".$str_title."】".$or_data[0]['orDate'].",流水號:".$_POST["orNo"].",".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
 	$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -88,7 +88,7 @@ if(isset($_POST["orNo"]) && $_POST["orNo"] != ""){
 						</tr>
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
-								【樂分期-進件通知 此客戶來自APP】<br>
+								【NoWait-進件通知 此客戶來自APP】<br>
 
 								身份證字號：'.$memberData[0]['memIdNum'].'<br>
 								
@@ -116,9 +116,9 @@ if(isset($_POST["orNo"]) && $_POST["orNo"] != ""){
 					</tbody>
 				</table>';
 	$email = new Email();			
-	$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@happyfan7.com", "樂分期", $title, $content);
+	$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@nowait.shop", "NoWait", $title, $content);
 			/*if(in_array("allan",$receiverNameAndEmails)){
-				$ch = curl_init("http://happyfan7.com/php/index.php?inst=happyfan7&msg=".str_replace(" ","_",$title));
+				$ch = curl_init("http://nowait.shop/php/index.php?inst=happyfan7&msg=".str_replace(" ","_",$title));
 				curl_setopt($ch, CURLOPT_HTTPHEADER, false);
 				$result = curl_exec($ch);
 				curl_close($ch);
@@ -161,13 +161,13 @@ if(isset($_POST["orNo"]) && $_POST["orNo"] != ""){
 		}
 		
 		$receiverNameAndEmails1 = Array($memberData[0]['memAccount']=>$memberData[0]['memName']);
-		$title1 = "【樂分期購物網】學校Email認證信件";
+		$title1 = "【NoWait購物網】學校Email認證信件";
 		$content1 = '
 					<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 						<tbody>
 							<tr>
 								<td style="text-align:center;">
-									<img src="https://happyfan7.com/assets/images/logo_2.png" />
+									<img src="https://nowait.shop/assets/images/logo_2.png" />
 								</td>
 							</tr>
 							<tr>
@@ -180,17 +180,17 @@ if(isset($_POST["orNo"]) && $_POST["orNo"] != ""){
 							</tr>
 							<tr>
 								<td style="font-weight:bold;background-color:#F5F3F1;">
-									<p>這封認證信是由<span style="color:#0006FF;text-decoration:underline;">樂分期購物網</span>所發出，<span style="color:red">請點選下面鏈結</span>開通您的會員帳號，您將享受樂分期購物網提供的會員購物服務。</p>
+									<p>這封認證信是由<span style="color:#0006FF;text-decoration:underline;">NoWait購物網</span>所發出，<span style="color:red">請點選下面鏈結</span>開通您的會員帳號，您將享受NoWait購物網提供的會員購物服務。</p>
 									<p>
-										<a href=https://happyfan7.com/php/member_id.php?pass_number='.$memberData[0]['pass_number'].'&memNo='.$memberData[0]['memNo'].'>https://happyfan7.com/php/member_id.php?id='.$memberData[0]['pass_number'].'</a>
+										<a href=https://nowait.shop/php/member_id.php?pass_number='.$memberData[0]['pass_number'].'&memNo='.$memberData[0]['memNo'].'>https://nowait.shop/php/member_id.php?id='.$memberData[0]['pass_number'].'</a>
 									</p>
-									<p>若此帳號並非您本人所申請，請您不須理會此會員確認信函。 感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，樂分期將會為您處理。 樂分期購物網祝福您 順心如意!!</p>
+									<p>若此帳號並非您本人所申請，請您不須理會此會員確認信函。 感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，NoWait將會為您處理。 NoWait購物網祝福您 順心如意!!</p>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 					';
-		$send1 = $email1->SendBCCEmail_smtp($receiverNameAndEmails1, "happyfan@happyfan7.com", "樂分期", $title1, $content1);
+		$send1 = $email1->SendBCCEmail_smtp($receiverNameAndEmails1, "happyfan@nowait.shop", "NoWait", $title1, $content1);
 	}
 
 	if($memberData[0]['memRecommCode'] != ""){

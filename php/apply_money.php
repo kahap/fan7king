@@ -18,14 +18,14 @@
 	
 	if($msg == ""){
 	$status = $rbs->updatDATA($_POST,$_SESSION['rbs_id']);
-			$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部",'lainelinlin@gmail.com'=>'客服人員C',"sinlenlin@gmail.com"=>"林青嵐");
-			$title = "【樂分期購物網】 ".$memberData[0]['memName']."  先生/小姐，申請推薦碼獎金".$_SESSION['rbsTotal']."元";
+			$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部",'lainelinlin@gmail.com'=>'客服人員C',"sinlenlin@gmail.com"=>"林青嵐");
+			$title = "【NoWait購物網】 ".$memberData[0]['memName']."  先生/小姐，申請推薦碼獎金".$_SESSION['rbsTotal']."元";
 			$content = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="http://happyfan7.com/assets/images/logo_2.png" />
+										<img src="http://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -46,7 +46,7 @@
 								</tr>
 							</tbody>
 						</table>';
-			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@happyfan7.com", "樂分期", $title, $content);
+			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@nowait.shop", "NoWait", $title, $content);
 	
 
 

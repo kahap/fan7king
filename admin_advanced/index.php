@@ -115,7 +115,7 @@ if (isset ( $_SESSION ["adminUserData"] )) {
 												$sql1 = "delete FROM `urge_request_records` where uuNo = '".$_GET["uuNo"]."' && urrCurMValue = 'M".($_GET['upNo']-1)."' && urrStatus = '0'";
 												$apiMem->customSql($sql1);
 												
-												$ch = curl_init("http://happyfan7.com/admin_advanced/ajax/urge/auto_calc_urge_user.php");
+												$ch = curl_init("http://nowait.shop/admin_advanced/ajax/urge/auto_calc_urge_user.php");
 												curl_setopt($ch, CURLOPT_HTTPHEADER, false);
 												$result = curl_exec($ch);
 												curl_close($ch);

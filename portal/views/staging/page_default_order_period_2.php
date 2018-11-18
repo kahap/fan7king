@@ -446,7 +446,7 @@
         		percent.html(percentVal);
     		},
 			success: function(data) {
-				var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+				var img = "https://nowait.shop/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
 				showimg.html("<img src='"+img+"'>");
 				btn.html("上傳檔案");
 			},
@@ -482,7 +482,7 @@
         		percent_1.html(percentVal);
     		},
 			success: function(data) {
-				var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+				var img = "https://nowait.shop/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
 				showimg_1.html("<img src='"+img+"'>");
 				btn_1.html("上傳檔案");
 			},
@@ -517,7 +517,7 @@
         		percent_2.html(percentVal);
     		},
 			success: function(data) {
-				var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+				var img = "https://nowait.shop/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
 				showimg_2.html("<img src='"+img+"'>");
 				btn_2.html("上傳檔案");
 			},
@@ -552,7 +552,7 @@
         		percent_3.html(percentVal);
     		},
 			success: function(data) {
-				var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+				var img = "https://nowait.shop/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
 				showimg_3.html("<img src='"+img+"'>");
 				btn_3.html("上傳檔案");
 			},
@@ -587,7 +587,7 @@
         		percent_4.html(percentVal);
     		},
 			success: function(data) {
-				var img = "https://happyfan7.com/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
+				var img = "https://nowait.shop/admin/file/<?php echo $memberData[0]['memNo'];?>/"+data.pic;
 				showimg_4.html("<img src='"+img+"'>");
 				btn_4.html("上傳檔案");
 			},

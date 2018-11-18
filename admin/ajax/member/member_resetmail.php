@@ -15,7 +15,7 @@
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -30,9 +30,9 @@
 							<td style="font-weight:bold;background-color:#F5F3F1;">
 								<p>這封認證信是由<span style="color:#0006FF;text-decoration:underline;">NoWait購物網</span>所發出，<span style="color:red">請點選下面鏈結</span>開通您的會員帳號，您將享受NoWait購物網提供的會員購物服務。</p>
 								<p>
-									<a href=https://happyfan7.com/php/member_id.php?pass_number='.$memData[0]['pass_number'].'&memNo='.$memData[0]['memNo'].'>https://happyfan7.com/php/member_id.php?pass_number='.$memData[0]['pass_number'].'&memNo='.$memData[0]['memNo'].'</a>
+									<a href=https://nowait.shop/php/member_id.php?pass_number='.$memData[0]['pass_number'].'&memNo='.$memData[0]['memNo'].'>https://nowait.shop/php/member_id.php?pass_number='.$memData[0]['pass_number'].'&memNo='.$memData[0]['memNo'].'</a>
 								</p>
-								<p>若此帳號並非您本人所申請，請您不須理會此會員確認信函。 感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=contact" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，NoWait將會為您處理。 NoWait購物網祝福您 順心如意!!</p>
+								<p>若此帳號並非您本人所申請，請您不須理會此會員確認信函。 感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/index.php?item=contact" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，NoWait將會為您處理。 NoWait購物網祝福您 順心如意!!</p>
 							</td>
 						</tr>
 					</tbody>
@@ -42,8 +42,8 @@
 	
 	
 
-	//$send = $email->SendEmail_smtp($memData[0]["memAccount"],$memData[0]['memName'], "service@happyfan7.com", "NoWait", $title, $content);
-	$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "NoWait", $title, $content);
+	//$send = $email->SendEmail_smtp($memData[0]["memAccount"],$memData[0]['memName'], "service@nowait.shop", "NoWait", $title, $content);
+	$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@nowait.shop", "NoWait", $title, $content);
 	if($send != ""){
 		echo $send;
 	}else{

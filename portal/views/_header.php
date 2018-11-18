@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 	$src = (isset($_GET['pro']) && $_GET['pro'] != "") ?
         'https://'.DOMAIN.'/index.php?item=product&pro='.$_GET['pro'].'&share='.$_SESSION['user']['memNo']:
@@ -48,7 +48,7 @@
     <title><?php echo $_SESSION['vTitle'];?></title>
 
 
-<!--	<title>樂分期-HappyFan7</title>-->
+<!--	<title>NoWait-HappyFan7</title>-->
 	<meta property="og:url"           content="<?php echo $src; ?>" />
 	<meta property="og:type"          content="website" />
 	<meta property="og:title"         content="<?php echo ($pm_detail && $pm_detail[0]['proName'] != '')? $pm_detail[0]['proName'] : 'Nowait 商城'; ?>" />

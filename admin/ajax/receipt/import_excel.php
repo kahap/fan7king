@@ -64,7 +64,7 @@ if($errMsg == ""){
 						<tbody>
 							<tr>
 								<td style="text-align:center;">
-									<img src="https://happyfan7.com/assets/images/logo_2.png" />
+									<img src="https://nowait.shop/assets/images/logo_2.png" />
 								</td>
 							</tr>
 							<tr>
@@ -90,7 +90,7 @@ if($errMsg == ""){
 										您可至<a href="https://www.einvoice.nat.gov.tw/APMEMBERVAN/PublicAudit/PublicAudit" target="_blank">財政部電子發票整合服務平台</a>輸入<span style="color:red;">發票號碼</span>及<span style="color:red;">發票日期</span>查看發票開立狀況，謝謝。
 									</p>
 									<p>
-										感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>選購。
+										感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 									</p>
 								</td>
 							</tr>

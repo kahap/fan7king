@@ -46,7 +46,7 @@ td {mso-number-format: \@}
 	<div class="card">
 				<div class="card-content">
 					<div style="padding-bottom:20px;">
-						<a href="http://happyfan7.com/report/casebySup.php?date=<?php echo $_POST['Todate'] ?>&type=<?php echo $_POST['type']; ?>" class="waves-effect waves-light btn green m-b-xs confirm-save">匯出Excel</a>
+						<a href="http://nowait.shop/report/casebySup.php?date=<?php echo $_POST['Todate'] ?>&type=<?php echo $_POST['type']; ?>" class="waves-effect waves-light btn green m-b-xs confirm-save">匯出Excel</a>
 					</div>
    					<table id="example" class="display responsive-table datatable-example">
 						<thead>

@@ -1,5 +1,5 @@
 <?php
-
+    
     //
     session_start();
     // 关闭错误报告
@@ -246,13 +246,14 @@
                         case "order_period":
                             switch($_GET['method']){
                                 case "2":
-                                    $or = new Orders();
-                                    $or_data = $or->getTwinOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
-                                    if($or_data[1]['orNo'] != ''){
+                                    // $or = new Orders();
+                                    // $or_data = $or->getTwinOrByMemberAndMethod($_SESSION['user']['memNo'],'1');
+                                    // if($or_data[1]['orNo'] != ''){
 //                                        include('views/staging/page_default_order_period_2.php');
 //                                    }else{
-                                        include('views/staging/page_order_period_2.php');
-                                    }
+                                    //     include('views/staging/page_order_period_2.php');
+                                    // }
+                                    include('views/staging/page_order_period_2.php');
                                     break;
                                 case "3":
                                     include('views/staging/page_order_period_3.php');

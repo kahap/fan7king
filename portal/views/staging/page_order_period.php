@@ -121,7 +121,7 @@
                                     <div class="form-group row">
                                         <p class="col-3 ">學校</p>
                                         <div class="col-9 mb-3">
-                                            <select class="input form-control school memSchool" id="memSchool" name="school">
+                                            <select class="input form-control school memSchool" id="memSchool" name="school" required>
                                                 <option value="">請選擇</option>
                                                 <?php foreach($school_data as $keye => $valuee){ ?>
                                                     <option value="<?php echo $valuee['schNo'];?>"><?php echo $valuee['schName'];?></option>
@@ -132,7 +132,7 @@
                                     <div class="form-group row">
                                         <p class="col-3 ">系所</p>
                                         <div class="col-9 mb-3">
-                                            <select class="input form-control department memSchool" name="department[]" id="school_dept">
+                                            <select class="input form-control department memSchool" name="department[]" id="school_dept" required>
                                                 <option value="">請選擇</option>
                                                 <?php foreach($major_combine as $key => $value){ ?>
                                                     <optgroup class="departmentList" label="科系列表" data-id="school<?php echo $key; ?>">
@@ -147,7 +147,7 @@
                                     <div class="form-group row">
                                         <p class="col-3 ">年級</p>
                                         <div class="col-9 mb-3">
-                                            <select class="form-control memSchool" name="classyear">
+                                            <select class="form-control memSchool" name="classyear" required>
                                                 <option value="">請選擇</option>
                                                 <option value="一年級" <?php echo ($School[2]=="一年級") ? "selected":""; ?>>一年級</option>
                                                 <option value="二年級" <?php echo ($School[2]=="二年級") ? "selected":""; ?>>二年級</option>

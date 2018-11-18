@@ -118,14 +118,14 @@ function mailContent($encodeString, $mailAddr) {
 			<tr>
 				<td style="color:#FF3333;font-weight:bold;text-align:center;">
 					此為系統自動通知信，請勿直接回信！<br>
-					若您有任何問題，請透過網站<a href="https://develop.happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a>人員查詢。
+					若您有任何問題，請透過網站<a href="https://develop.nowait.shop/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a>人員查詢。
 				</td>
 			</tr>
 			<tr>
 				<td style="color:black;font-weight:bold;background-color:#F5F3F1;">
 					<p>親愛的會員您好，請點選以下連結進行密碼變更作業。</p>
-					<a href="https://develop.happyfan7.com/index.php?item=member_center&action=password_edit&key='
-					. $encodeString. '">http://develop.happyfan7.com/index.php?item=member_center&action=password_edit&key=' . $encodeString . '</a>
+					<a href="https://develop.nowait.shop/index.php?item=member_center&action=password_edit&key='
+					. $encodeString. '">http://develop.nowait.shop/index.php?item=member_center&action=password_edit&key=' . $encodeString . '</a>
 				</td>
 			</tr>
 		</tbody>

@@ -17,7 +17,7 @@ $data = $api->customSql($sql);
 $sql2 = "SELECT b.aauNo,count(a.supNo) as 'total' FROM `real_cases` a,supplier b where a.supNo = b.supNo && a.rcDate BETWEEN '".$_POST['startday']."' and '".$_POST['endday']."' group by a.supNo";
 $applyData = $api->customSql($sql2);
 foreach($applyData as $key => $value){
-	$value['aauNo'] = ($value['aauNo'] != "") ? $value['aauNo']:"樂分期";
+	$value['aauNo'] = ($value['aauNo'] != "") ? $value['aauNo']:"NoWait";
 	$userApply[$value['aauNo']] +=1;
 }
 
@@ -31,7 +31,7 @@ foreach($MoneyData as $key => $value){
 	$communication['平均單筆金額'] += ($value['aauNo'] != "") ? $value['平均單筆金額']:0;
 	$communication['平均期數'] +=  ($value['aauNo'] != "") ? $value['平均期數']:0;
 	$communication['總件數']+= ($value['aauNo'] != "") ? 1:0;
-	$value['aauNo'] = ($value['aauNo'] != "") ? $value['aauNo']:"樂分期";
+	$value['aauNo'] = ($value['aauNo'] != "") ? $value['aauNo']:"NoWait";
 	
 	
 	
@@ -56,7 +56,7 @@ foreach($user as $key => $value){
 $sql4 = "SELECT a.rcType,count(a.rcCaseNo) as '申請案件數',sum(CASE a.rcStatus WHEN 3 THEN 1 END) as '核准件',b.`撥款件數`,b.`撥款總金額`,b.`平均單筆金額`,b.`平均期數` from real_cases a left JOIN (SELECT rcType,count(rcCaseNo) as '撥款件數',sum(rcBankTransferAmount) as '撥款總金額',AVG(rcPeriodTotal) as '平均單筆金額',AVG(rcPeriodAmount) as '平均期數' FROM `real_cases` where rcPredictGetDate BETWEEN '".$_POST['startday']."' and '".$_POST['endday']."' && rcStatus = '3' && rcApproStatus = '4' group by rcType) as b on a.rcType = b.rcType where a.rcCaseNo BETWEEN '".$start."' and '".$end."' group by a.rcType";
 $total_other = $api->customSql($sql4);
 
-$user['樂分期'] = "樂分期";
+$user['NoWait'] = "NoWait";
 ?>
 
 			<div class="card">
@@ -87,10 +87,10 @@ $user['樂分期'] = "樂分期";
 							$communication['已送店家數'] += $userApply[(($value['aauNo'] != "") ? $value['aauNo']:"")];
 							$communication['已簽約家數'] += ($value['aauNo'] != '') ? $value['已簽約家數']:0;
 							
-							$value['aauNo'] = ($value['aauNo'] != '') ? $value['aauNo']:"樂分期";
+							$value['aauNo'] = ($value['aauNo'] != '') ? $value['aauNo']:"NoWait";
 							$total +=$value['申請案件數'];
 							$total_agree +=$value['核准件'];
-							$total_sent +=$userApply[(($value['aauNo'] != "") ? $value['aauNo']:"樂分期")];
+							$total_sent +=$userApply[(($value['aauNo'] != "") ? $value['aauNo']:"NoWait")];
 							$total_asign +=$value['已簽約家數'];
 							
 							$total_money +=$Usermoney[$value['aauNo']]['撥款總金額'];
@@ -100,9 +100,9 @@ $user['樂分期'] = "樂分期";
 								<td><?=$value['申請案件數'];?></td>
 								<td><?=$value['核准件'];?></td>
 								<td><?=(round($value['核准件']/$value['申請案件數'],2)*100)."%";?></td>
-								<td><?=$userApply[(($value['aauNo'] != "") ? $value['aauNo']:"樂分期")];?></td>
+								<td><?=$userApply[(($value['aauNo'] != "") ? $value['aauNo']:"NoWait")];?></td>
 								<td><?=$value['已簽約家數'];?></td>
-								<td><?=(round($value['申請案件數']/$userApply[(($value['aauNo'] != "") ? $value['aauNo']:"樂分期")],2));?></td>
+								<td><?=(round($value['申請案件數']/$userApply[(($value['aauNo'] != "") ? $value['aauNo']:"NoWait")],2));?></td>
 								<td><?=$count[$value['aauNo']]['撥款件數'];?></td>
 								<td><?=number_format($Usermoney[$value['aauNo']]['撥款總金額'])?></td>
 								<td><?=round($Usermoney[$value['aauNo']]['撥款總金額']/$count[$value['aauNo']]['撥款件數'],2)?></td>
@@ -129,7 +129,7 @@ $user['樂分期'] = "樂分期";
 								<th><?=round($communication['平均期數']/$communication['總件數'],2);?></th>
      						</tr>
 							<tr>
-								<th>樂分期-總計</th>
+								<th>NoWait-總計</th>
 								<th><?=$total_other['0']['申請案件數']?></th>
 								<th><?=$total_other['0']['核准件']?></th>
 								<th><?=(round($total_other['0']['核准件']/$total_other['0']['申請案件數'],2)*100)."%"?></th>
@@ -142,7 +142,7 @@ $user['樂分期'] = "樂分期";
 								<th><?=round($Usermoney['company']['平均期數']/$count['company']['總件數'],2);?></th>
 							</tr>
 							<tr>
-								<th>樂分期-機車</th>
+								<th>NoWait-機車</th>
 								<th><?=$total_other['2']['申請案件數']?></th>
 								<th><?=$total_other['2']['核准件']?></th>
 								<th><?=(round($total_other['2']['核准件']/$total_other['2']['申請案件數'],2)*100)."%"?></th>
@@ -155,7 +155,7 @@ $user['樂分期'] = "樂分期";
 								<th><?=round($total_other['2']['平均期數'],2)?></th>
 							</tr>
 							<tr>
-								<th>樂分期-手機</th>
+								<th>NoWait-手機</th>
 								<th><?=$total_other['1']['申請案件數']?></th>
 								<th><?=$total_other['1']['核准件']?></th>
 								<th><?=(round($total_other['1']['核准件']/$total_other['1']['申請案件數'],2)*100)."%"?></th>

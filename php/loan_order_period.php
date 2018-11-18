@@ -9,7 +9,7 @@
     if ($_SESSION['user']['memNo'] != "") {
         
         if ($memberData[0]['memFBtoken'] == '' && $memberData[0]['memEmailAuthen'] == '0') {
-            echo "您尚未完成Email驗證,請您先至註冊時填寫之帳號(Email)收信並點選驗證網址,才能進行後續借款,如您仍有問題,請聯絡客服人員,樂分期將為您服務,謝謝!!";
+            echo "您尚未完成Email驗證,請您先至註冊時填寫之帳號(Email)收信並點選驗證網址,才能進行後續借款,如您仍有問題,請聯絡客服人員,NoWait將為您服務,謝謝!!";
         } else {
             $_SESSION['shopping_user'] = $memberData;
             $_SESSION['mco_data'] = $_POST;

@@ -6,7 +6,7 @@
 	$proNo = @$_POST["proNo"] ;
 	
 	$newProNo = "";
-	$last3Num = "";
+	$last5Num = "";
 	
 	$proData = isset($proNo)? $pro->getOneProByNo($proNo) : null;
 	
@@ -18,20 +18,21 @@
 	//最後一筆
 	$lastData = $pro->getAllProDescWithCatAndBra($_POST["braNo"], $_POST["catNo"]);
 	if($lastData != null){
-		if(substr($lastData[0]["proCaseNo"], -3)<9){
-			$old3Num = substr($lastData[0]["proCaseNo"], -3);
-			$last3Num = "00".++$old3Num;
-		}else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
-			$old3Num = substr($lastData[0]["proCaseNo"], -3);
-			$last3Num = "0".++$old3Num;
-		}else{
-			$old3Num = substr($lastData[0]["proCaseNo"], -3);
-			$last3Num = ++$old3Num;
-		}
+		// if(substr($lastData[0]["proCaseNo"], -3)<9){
+		// 	$old3Num = substr($lastData[0]["proCaseNo"], -3);
+		// 	$last3Num = "00".++$old3Num;
+		// }else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
+		// 	$old3Num = substr($lastData[0]["proCaseNo"], -3);
+		// 	$last3Num = "0".++$old3Num;
+		// }else{
+		// 	$old3Num = substr($lastData[0]["proCaseNo"], -3);
+		// 	$last3Num = ++$old3Num;
+		// }
+		$last5Num = substr($lastData[0]["proCaseNo"], -5)+1;
 	}else{
-		$last3Num = "001";
+		$last5Num = 1;
 	}
-	$newProNo = $_POST["catNo"].$_POST["braNo"].$last3Num;
+	$newProNo = $_POST["catNo"].$_POST["biNo"].sprintf("%05d",$last5Num);
 	
 	$pro->insert($_POST, $newProNo);
 	

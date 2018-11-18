@@ -143,7 +143,7 @@ if(isset($supno) && is_numeric($supno)){
                       	<td class=" "><?php echo $value["pmNo"]; ?></td>
                       	<td class=" "><?php echo $catData[0]["catName"]; ?></td>
                       	<td class=" "><?php echo $braData[0]["braName"]; ?></td>
-                        <td class=" "><a target="_blank" style="color:blue;text-decoration:underline;" href="https://happyfan7.com/?item=product&pro=<?php echo $proData[0]["proNo"]; ?>"><?php echo $proData[0]["proName"]; ?></td>
+                        <td class=" "><a target="_blank" style="color:blue;text-decoration:underline;" href="https://nowait.shop/?item=product&pro=<?php echo $proData[0]["proNo"]; ?>"><?php echo $proData[0]["proName"]; ?></td>
                         <td class=" "><?php echo $proData[0]["proModelID"]; ?></td>
                         <td class=" "><?php echo $proData[0]["proSpec"]; ?></td>
                         <td class=" "><?php echo number_format($value["pmSupPrice"]); ?></td>

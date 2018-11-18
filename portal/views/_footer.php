@@ -74,7 +74,7 @@
             </div>
         </div>
         <p class="copyright">Copyrights © 2018 NoWait. All Rights Reserved.<!--  Designed by <a href="http://www.kahap.com" title="kahap.com" target="_blank">kahap.com</a> --></p>
-<!--        <p class="text-center">Copyrights &#169; 2016 樂分期-HappyFan7. All Rights Reserved. Designed by HappyFan7.com</p>-->
+<!--        <p class="text-center">Copyrights &#169; 2016 NoWait-HappyFan7. All Rights Reserved. Designed by HappyFan7.com</p>-->
     </div>
 </footer>
 

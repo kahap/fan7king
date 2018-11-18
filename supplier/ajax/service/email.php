@@ -49,7 +49,7 @@
 	}
 	
 	if($errMsg == ""){
-		$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);
+		$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@nowait.shop", "NoWait", $title, $content);
 		if($send != ""){
 			$errMsg .= $send."\n\n";
 			echo $errMsg;

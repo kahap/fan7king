@@ -110,7 +110,7 @@ foreach($request as $key=>$value){
 		$table = "sys_parm";
 		$action = $value;
 	//手機驗證碼	
-	} else if ($value == "regist_phone" || $value == "regist_phone_keyCheck"){
+	} else if ($value == "regist_phone2" || $value == "regist_phone" || $value == "regist_phone_keyCheck"){
 		$table = "regist_phone";
 		$action = $value;
 	} else if ($value == "set_password"){
@@ -294,6 +294,9 @@ if(isset($table) && isset($action)){
 				break;
 			case "regist_phone":
 				include "include/regist_phone.php";			
+				break;
+			case "regist_phone2":
+				include "include/regist_phone2.php";			
 				break;
 			case "set_password":
 				include "include/set_password.php";

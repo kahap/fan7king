@@ -136,7 +136,7 @@ if(!isset($errMsg)){
 	
 	$apiMem->update($memInputData,$memInputData["memNo"]);
 	$apiOr->update($inputDataOr,$inputDataOr["rcNo"]);
-	//樂分期若補件
+	//NoWait若補件
 	if($rcStatus == "5"){
 		if($rcData[0]["rcType"] == "0"){
 			$or = new API("orders");
@@ -164,7 +164,7 @@ if(!isset($errMsg)){
 	
 	//推播+EMAIL
 	if($rcStatus != "1"){
-		//樂分期
+		//NoWait
 		if($rcData[0]["rcType"] == "0"){
 			//EMAIL
 			$or = new API("orders");

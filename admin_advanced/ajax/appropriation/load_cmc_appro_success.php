@@ -104,7 +104,7 @@ if(!isset($errMsg)){
 						"rcPeriodAmount"=>$rcNewData[0]["rcPeriodAmount"],
 						"rcPeriodTotalEach"=>$tpiPeriodTotal
 					);
-					//若為樂分期改到已完成
+					//若為NoWait改到已完成
 					if($rcData[0]["rcType"] == "0"){
 						$or = new API("orders");
 						$or->update(array("orStatus"=>"10","orReportPeriod10Date"=>date('Y-m-d H:i:s',time())),$rcData[0]["rcRelateDataNo"]);
@@ -196,7 +196,7 @@ if(!isset($errMsg)){
 							"rcPeriodAmount"=>$rcNewData[0]["rcPeriodAmount"],
 							"rcPeriodTotalEach"=>$tpiPeriodTotal
 						);
-						//若為樂分期改到已完成
+						//若為NoWait改到已完成
 						if($rcData[0]["rcType"] == "0"){
 							$or = new API("orders");
 							$or->update(array("orStatus"=>"10","orReportPeriod10Date"=>date('Y-m-d H:i:s',time())),$rcData[0]["rcRelateDataNo"]);

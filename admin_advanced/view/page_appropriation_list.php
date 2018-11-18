@@ -10,7 +10,7 @@ $api->setWhereArray(array("rcStatus"=>3,"rcApproStatus"=>0));
 $rcData = $api->getWithConditions();
 
 $data = array();
-//樂分期訂單狀態到已到貨才可開始撥款
+//NoWait訂單狀態到已到貨才可開始撥款
 if($rcData != null){
 	foreach($rcData as $key=>$value){
 		if($value["rcType"] == "0"){

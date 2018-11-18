@@ -24,7 +24,7 @@ $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
 
           <div class="page-title">
             <div class="title_left">
-              <h3>商品上架詳細資料</h3>
+              <h3>產品上架詳細資料</h3>
             </div>
           </div>
           <div class="clearfix"></div>
@@ -32,8 +32,8 @@ $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
             <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
                 <div class="x_title">
-                  <h2 style="text-align:center;float:none;">商品上架資訊</h2>
-                  <div class="clearfix"></div>
+                  <h2 style="text-align:center;float:none;">產品上架資訊</h2>
+                  <!-- <div class="clearfix"></div> -->
                 </div>
                 <div class="x_content">
                   <br>
@@ -59,22 +59,22 @@ $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
                       <h5 style="color:#999;"><?php echo number_format($pmData[0]["pmPeriodAmnt"]); ?></h5>
                     </div>
                   
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                       	實際購買人數 : 
                       </label>
                       <div style="display:inline-block;">
                       	<h5 style="color:#999;"><?php echo number_format($pmData[0]["pmBuyAmnt"]); ?></h5>
                       </div>
-                    </div>
-                    <div class="form-group">
+                    </div> -->
+                  <!--   <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
 												點擊量 : 
                       </label>
                       <div style="display:inline-block;">
                       	<h5 style="color:#999;"><?php echo number_format($pmData[0]["pmClickNum"]); ?></h5>
                       </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                       	上架日期 : 
@@ -94,7 +94,7 @@ $allSupData = $sup->getOneSupplierByNo($_SESSION['supplieruserdata']['supNo']);
 					
                     <div class="form-group not-print">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                      	採取動作 : 
+                      	<!-- 採取動作 :  -->
                       </label>
                       <a style="text-decoration:none;" href="?page=product&type=productManage&action=edit&prono=<?php echo $proNo; ?>">
                       	<button class="btn btn-success">編輯</button>

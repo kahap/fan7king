@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$src = ($_GET['pro'] != "") ? 'https://'.DOMAIN.'/index.php?item=product&pro='.$_GET['pro'].'&share='.$_SESSION['user']['memNo']:'https://'.DOMAIN.'/index.php';
 	$pm = new Product_Manage();
 	if($_GET['pro'] != ""){
@@ -23,10 +23,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>樂分期-HappyFan7</title>
+	<title>NoWait</title>
 	<meta property="og:url"           content="<?php echo $src; ?>" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="<?php echo ($pm_detail[0]['proName'] != '')? $pm_detail[0]['proName']:'樂分期-HappyFan7'; ?>" />
+	<meta property="og:title"         content="<?php echo ($pm_detail[0]['proName'] != '')? $pm_detail[0]['proName']:'NoWait'; ?>" />
 	<meta property="og:description"   content="<?php echo $str_price; ?>" />
 	<meta property="og:image"         content="https://<?=DOMAIN?>/<?php echo ($img[0] !="") ? "admin/".$img[0]:"admin/images/indexImg/20160607062650.jpg";?>" />
    

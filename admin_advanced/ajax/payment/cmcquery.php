@@ -24,7 +24,7 @@ tr:nth-child(2n) td{
 			<th scope="col">案件編號</th>
 			<th>RcNo</th>
 			<th>還款日期</th>
-			<th scope="col">是否是樂分期案件</th>
+			<th scope="col">是否是NoWait案件</th>
 		</tr>
 		<?php
 			foreach($data as $key => $value){

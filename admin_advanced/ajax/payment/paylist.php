@@ -35,7 +35,7 @@ tr:nth-child(2n) td{
 			<td><?php echo $value["tpiActualDate"]; ?></td>
 			<td><?php echo $value["tpiPeriodTotal"]+(($value["tpiIfCancelPenalty"] == 0) ? $value["tpiPenalty"]:0); ?></td>
 			<td><?php echo $value["tpiPaidTotal"]; ?></td>
-			<td><a href="http://happyfan7.com/admin_advanced/ajax/payment/payment_period.php?id=<?php echo $value["tpiNo"]; ?>" target="_blank">開啟</a></td>
+			<td><a href="http://nowait.shop/admin_advanced/ajax/payment/payment_period.php?id=<?php echo $value["tpiNo"]; ?>" target="_blank">開啟</a></td>
 		</tr>
 		<?php }?>
 	</tbody>

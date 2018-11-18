@@ -9,7 +9,7 @@ $searchDateEnd = $searchDateEnd == "" ? date("Y-m-d",time()) : $_GET['searchDate
 $selectType = $_GET['selectType'];
 $rcData = $rc->getFinishedApproForDate($searchDate,$searchDateEnd,$selectType);
 $tbData = array(1=>"CMC",2=>"彰銀");
-$caseTypeArr = array(0=>"樂分期",1=>"手機貸款",2=>"機車貸款");
+$caseTypeArr = array(0=>"NoWait",1=>"手機貸款",2=>"機車貸款");
 
 ?>
 <main class="mn-inner">

@@ -127,7 +127,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
             <?php if($_GET["action"]=="edit"){ ?>
               <h3>編輯上架資料</h3>
             <?php }else{ ?>
-              <h3>新增商品上架</h3>
+              <h3>新增產品上架</h3>
             <?php } ?>
             </div>
           </div>
@@ -138,7 +138,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                 <div class="x_title">
                   <h2 style="text-align:center;float:none;">
                   <?php if($_GET["action"]=="edit"){ ?>
-                  	  商品編號: <?php echo $proData[0]["proCaseNo"]; ?> &nbsp&nbsp&nbsp&nbsp
+                  	  <!-- 產品編號 --><?php echo $proData[0]["proCaseNo"]; ?> &nbsp&nbsp&nbsp&nbsp
                   	<?php if(isset($_SERVER['HTTP_REFERER'])){ ?>
                           <a style="color:#FFF;" onclick="window.history.back();">
                               <button class="btn btn-primary">回上頁</button>
@@ -242,7 +242,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
                     </div>
 
-                      <div class="form-group">
+                    <!--   <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                               主題優惠(#號分開內容) :
                           </label>
@@ -259,11 +259,11 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proGift"]; ?>' type="text" class="form-control" name="proGift" />
                               <ul class="parsley-errors-list"><li id="productGiftErr"></li></ul>
                           </div>
-                      </div>
+                      </div> -->
 
                       <div style="display:none" class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品型號(#號分開內容) :
+                              產品型號(#號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value="<?php if($_GET["action"]=="edit") echo $proData[0]["proModelID"]; ?>" type="text" class="form-control" name="proModelID" />
@@ -272,7 +272,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品規格(#號分開內容) :
+                              產品規格(#號分開內容) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <input value="<?php if($_GET["action"]=="edit") echo $proData[0]["proSpec"]; ?>" type="text" class="form-control" name="proSpec" />
@@ -300,7 +300,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
 
 
-                      <?php if($_GET["action"]=="edit"){?>
+                      <!-- <?php if($_GET["action"]=="edit"){?>
                           <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                   實際購買人數 :
@@ -313,13 +313,13 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       <?php if($_GET["action"]=="edit"){?>
                           <div class="form-group">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                  商品點擊數:
+                                  產品點擊數:
                               </label>
                               <div class="col-md-6 col-sm-6 col-xs-12">
                                   <input readonly value="<?php echo $origPmData[0]["pmClickNum"]; ?>" type="text" class="form-control" name="pmClickNum" />
                               </div>
                           </div>
-                      <?php }?>
+                      <?php }?> -->
 
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
@@ -339,7 +339,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       </div>
 
-                      <div class="form-group">
+                     <!--  <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                             產品分期 :
                           </label>
@@ -352,11 +352,11 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <input type="hidden" name="ppPeriodAmount[]" value="21">21期：<input data-period="21" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp21Percent; ?>" readonly=true>每期 : <input data-pmoney="21" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                               <input type="hidden" name="ppPeriodAmount[]" value="24">24期：<input data-period="24" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp24Percent; ?>" readonly=true>每期 : <input data-pmoney="24" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                           </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                           <label style="text-align:left;" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品說明 :
+                              產品說明 :
                           </label><br>
                           <div class="col-md-12 col-sm-12 col-xs-12">
                               <div id="alerts"></div>
@@ -440,7 +440,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
                       <div class="form-group">
                           <label style="height:100px;" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                              商品圖片(可上傳多張) :
+                              產品圖片(可上傳多張) :
                           </label>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="x_panel">
@@ -594,7 +594,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                                                                }*/
                                                           ?>
                                                           <div role="tabpanel" class="tab-pane fade" id="tab_content<?php echo $tabIndex; ?>">
-                                                              請輸入商品名稱關鍵字
+                                                              請輸入產品名稱關鍵字
                                                           </div>
                                                       </div>
                                                       <?php

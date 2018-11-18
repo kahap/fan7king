@@ -37,7 +37,7 @@ foreach($orArr as $value){
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -53,7 +53,7 @@ foreach($orArr as $value){
 						</tr>
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
-								<p>提醒您於<a href="https://happyfan7.com/" target="_blank">NoWait購物網</a>消費訂單編號之<span style="color:blue;">'.$orData[0]["orCaseNo"].'</span>訂單，共分 <b style="text-decoration:underline;">'.$orData[0]["orPeriodAmnt"].'</b> 期，最近一期繳款期限為<span style="color:red;">'.$deadlineDateStr.'</span>，應繳款金額為 <b style="text-decoration:underline;">'.number_format($orData[0]["orPeriodTotal"]/$orData[0]["orPeriodAmnt"]).'</b> 元。 </p>
+								<p>提醒您於<a href="https://nowait.shop/" target="_blank">NoWait購物網</a>消費訂單編號之<span style="color:blue;">'.$orData[0]["orCaseNo"].'</span>訂單，共分 <b style="text-decoration:underline;">'.$orData[0]["orPeriodAmnt"].'</b> 期，最近一期繳款期限為<span style="color:red;">'.$deadlineDateStr.'</span>，應繳款金額為 <b style="text-decoration:underline;">'.number_format($orData[0]["orPeriodTotal"]/$orData[0]["orPeriodAmnt"]).'</b> 元。 </p>
 								<p>
 									請您點選<span style="color:blue;">會員中心</span>><span style="color:blue;">我要繳款</span>>對應訂單編號<span style="color:blue;">'.$orData[0]["orCaseNo"].'</span>點選
 									<span style="color:red;">【我要繳款】</span>下之<span style="color:red;">【前往】</span>連結，畫面中找到<b>應繳款日</b><span style="color:red;">'.$deadlineDateStr.'</span>，
@@ -62,14 +62,14 @@ foreach($orArr as $value){
 								</p>
 								<div style="margin:20px 0;border-top:1px solid #000;width:100%;height:1px;"></div>
 								<p>
-									<span style="color:red;">★註：請準時繳款以維護自身信用、超過繳款期限將依「<a href="https://happyfan7.com/index.php?item=fmPeriodDeclare" target="_blank">分期付款約定書</a>」之約定條款，可能會導致遲繳違約金及滯納金的產生。</span>
+									<span style="color:red;">★註：請準時繳款以維護自身信用、超過繳款期限將依「<a href="https://nowait.shop/index.php?item=fmPeriodDeclare" target="_blank">分期付款約定書</a>」之約定條款，可能會導致遲繳違約金及滯納金的產生。</span>
 								</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				';
-		$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@happyfan7.com", "NoWait", $title, $content);
+		$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "service@nowait.shop", "NoWait", $title, $content);
 	}
 }
 

@@ -18,13 +18,13 @@
 	$receiverNameAndEmails = array();
 	$receiverNameAndEmails[$memData[0]["memAccount"]] = $memData[0]["memName"];
 	
-	$title = "【樂分期購物網】請驗證您的Email信箱";
+	$title = "【NoWait購物網】請驗證您的Email信箱";
 	
 	$content = "感謝您申請";
 	
 	
 	if($errMsg == ""){
-		$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan7@21-finance.com", "樂分期", $title, $content);
+		$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan7@21-finance.com", "NoWait", $title, $content);
 		if($send != ""){
 			$errMsg .= $send."\n\n";
 			echo $errMsg;

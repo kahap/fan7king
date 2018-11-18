@@ -57,7 +57,7 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
                                 </div>                    
                                 <div class="form-group not-print">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
-                                    採取動作 : 
+                                    <!-- 採取動作 :  -->
                                     </label>
                                     <a style="text-decoration:none;" href="?page=supplier&action=edit&supno=<?php echo $supNo; ?>">
                                         <button class="btn btn-success">編輯</button>

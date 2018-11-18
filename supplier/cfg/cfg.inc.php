@@ -21,11 +21,11 @@ if($AppMode !="Dev")
 {
     if($AppMode == "Prod")
     {
-        define ('DOMAIN','happyfan7.com');
+        define ('DOMAIN','nowait.shop');
     }
     else
     {
-//        define ('DOMAIN','test.happyfan7.com');
+//        define ('DOMAIN','test.nowait.shop');
         define ('DOMAIN','test.perfecthome.com.tw');
     }
     define('FbADVersion','v2.6');

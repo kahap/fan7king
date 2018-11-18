@@ -60,7 +60,7 @@ foreach($_POST as $key=>$value){
 }
 
 if(!isset($errMsg)){
-	//樂分期若補件
+	//NoWait若補件
 	if($rcStatus == "5"){
 		if($rcData[0]["rcType"] == "0"){
 			$or = new API("orders");
@@ -101,7 +101,7 @@ if(!isset($errMsg)){
 	
 	//推播+EMAIL
 	if($rcStatus != "2"){
-		//樂分期
+		//NoWait
 		if($rcData[0]["rcType"] == "0"){
 			//EMAIL
 			$or = new API("orders");

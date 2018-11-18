@@ -95,12 +95,12 @@ if(!isset($errMsg)){
 		$rbsNo = $api->db->getIdForInsertedRecord();
 		//發送EMAIL
 		$email = new Email();
-		$title = "【樂分期購物網】 ".$memberData[0]['memName']."  先生/小姐，申請推薦碼獎金".$_POST["rbsTotal"]."元";
+		$title = "【NoWait購物網】 ".$memberData[0]['memName']."  先生/小姐，申請推薦碼獎金".$_POST["rbsTotal"]."元";
 		$content = '<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="http://happyfan7.com/assets/images/logo_2.png" />
+										<img src="http://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -121,7 +121,7 @@ if(!isset($errMsg)){
 								</tr>
 							</tbody>
 						</table>';
-		$send = $email->SendEmail_smtp('service@happyfan7.com',"EC部", "happyfan7@21-finance.com", "樂分期", $title, $content);
+		$send = $email->SendEmail_smtp('service@nowait.shop',"EC部", "happyfan7@21-finance.com", "NoWait", $title, $content);
 		//並對原資料做更改
 		$forRba = new API("recomm_bonus_apply");
 		$rbaNoArr = json_decode($rbaNoForApply);

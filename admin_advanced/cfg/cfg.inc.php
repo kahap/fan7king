@@ -22,11 +22,11 @@ if($AppMode !="Dev")
 {
     if($AppMode == "Prod")
     {
-        define ('DOMAIN','happyfan7.com');
+        define ('DOMAIN','nowait.shop');
     }
     else
     {
-        // define ('DOMAIN','test.happyfan7.com');
+        // define ('DOMAIN','test.nowait.shop');
         define ('DOMAIN','test.perfecthome.com.tw');
     }
     define('FbADVersion','v2.6');
@@ -37,7 +37,7 @@ else
     define ('DOMAIN','127.0.0.1/fan7king_dev2');
     define('FbADVersion','v2.9');
 }
-    $allowed_hosts = array("localhost","127.0.0.1","nowait.kahap.com","happyfan7.com","test.happyfan7.com","inner.nowait.shop","test.nowait.shop");
+    $allowed_hosts = array("localhost","127.0.0.1","nowait.kahap.com","nowait.shop","test.nowait.shop","inner.nowait.shop","test.nowait.shop");
     define("ALLOWED_HOSTS",json_encode($allowed_hosts));
 // define ('IMG_ROOT','../admin/');
     define ('IMG_ROOT','../');

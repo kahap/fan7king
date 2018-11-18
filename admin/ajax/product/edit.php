@@ -14,7 +14,7 @@
 	}
 	
 	$newProNo = $origData[0]["proCaseNo"];
-	$last3Num = "";
+	$last5Num = "";
 	
 	//取得商品編號
 	if((trim($_POST["catNo"]) != "" && trim($_POST["braNo"]) != "") && (trim($_POST["catNo"]) != $origData[0]["catNo"] || trim($_POST["braNo"]) != $origData[0]["braNo"])){
@@ -23,25 +23,26 @@
 		if($lastData != null){
             if($lastData[0]["proCaseNo"] <>"")
             {
-			    if(substr($lastData[0]["proCaseNo"], -3)<9){
-				    $old3Num = substr($lastData[0]["proCaseNo"], -3);
-				    $last3Num = "00".++$old3Num;
-			    }else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
-				    $old3Num = substr($lastData[0]["proCaseNo"], -3);
-				    $last3Num = "0".++$old3Num;
-			    }else{
-				    $old3Num = substr($lastData[0]["proCaseNo"], -3);
-				    $last3Num = ++$old3Num;
-			    }
+			    // if(substr($lastData[0]["proCaseNo"], -3)<9){
+				   //  $old3Num = substr($lastData[0]["proCaseNo"], -3);
+				   //  $last3Num = "00".++$old3Num;
+			    // }else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
+				   //  $old3Num = substr($lastData[0]["proCaseNo"], -3);
+				   //  $last3Num = "0".++$old3Num;
+			    // }else{
+				   //  $old3Num = substr($lastData[0]["proCaseNo"], -3);
+				   //  $last3Num = ++$old3Num;
+			    // }
+			    $last5Num = substr($lastData[0]["proCaseNo"], -5)+1;
             }
             else
             {
-                 $last3Num = "001";
+                 $last5Num = 1;
             }
 		}else{
-			$last3Num = "001";
+			$last5Num = 1;
 		}
-		$newProNo = $catNo.$braNo.$last3Num;
+		$newProNo = $catNo.$origData[0]["biNo"].sprintf("%05d",$last5Num);
 	}
 	
    

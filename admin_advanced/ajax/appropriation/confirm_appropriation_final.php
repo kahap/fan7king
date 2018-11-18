@@ -202,7 +202,7 @@ if(isset($_POST["rcNo"])){
 				$rc->update(array("rcFinishStatus"=>5,"rcApproStatus"=>4), $rcNo);
 				//增加萬用帳號
 				$rc->update(array("rcVirtualAccount"=>"959170".substr($rcData[0]["rcCaseNo"],2)), $rcNo);
-				//若為樂分期改到已完成
+				//若為NoWait改到已完成
 				if($rcData[0]["rcType"] == "0"){
 					$or = new API("orders");
 					$or->update(array("orStatus"=>"10","orReportPeriod10Date"=>date('Y-m-d H:i:s',time())),$rcData[0]["rcRelateDataNo"]);

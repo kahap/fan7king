@@ -59,7 +59,7 @@ foreach($_POST["rcNo"] as $key => $rcNo){
 			  </tr>';
 			  
 } 
-$title = ($rcData[0]['rcType'] == 2) ? "景華有限公司帳款申請撥款明細表":"樂分期帳款申請撥款明細表";
+$title = ($rcData[0]['rcType'] == 2) ? "景華有限公司帳款申請撥款明細表":"NoWait帳款申請撥款明細表";
 header("Content-type:application/vnd.ms-excel");
 header("Content-Disposition:filename=" . $file . "");
 

@@ -22,13 +22,13 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
     {
         if($AppMode == "Prod")
         {
-            define('DOMAIN', 'happyfan7.com');
+            define('DOMAIN', 'nowait.shop');
             define('AutoloadAPPId', '1557221921249508');
             define('AutoloadAPPSecret', 'aaf94a1bd83321900f71695a99f458b5');
         }
         else
         {
-            define('DOMAIN', 'test.happyfan7.com');
+            define('DOMAIN', 'test.nowait.shop');
             define('AutoloadAPPId', '358306487860510');
             define('AutoloadAPPSecret', 'bbff3360de628c59397f27261daceb02');
         }

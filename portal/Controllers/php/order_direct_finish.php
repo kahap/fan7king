@@ -20,18 +20,18 @@
 	if($errg == ""){
 		$orIfEditable = '1';
 		$or->updateorIfEditable($orIfEditable,$_SESSION['ord_code']);
-		$receiverNameAndEmails = Array($_SESSION['shopping_user'][0]['memAccount']=>$_SESSION['shopping_user'][0]['memName'],'lainelinlin@gmail.com'=>'客服人員C','service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐",'aa22760676@gmail.com'=>'客服人員D');/*memSubEmail
+		$receiverNameAndEmails = Array($_SESSION['shopping_user'][0]['memAccount']=>$_SESSION['shopping_user'][0]['memName'],'lainelinlin@gmail.com'=>'客服人員C','service@nowait.shop'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐",'aa22760676@gmail.com'=>'客服人員D');/*memSubEmail
 								'hsiang_chou@21-finance.com'=>"客服部",
 								'tiffany_chen@21-finance.com'=>"客服部",
-								'service@happyfan7.com'=>"EC部"
+								'service@nowait.shop'=>"EC部"
 		*/
-			$title = "標題:【樂分期-未進件】".$or_data[0]['orDate'].",流水號:".$_SESSION['ord_code'].", ".$_SESSION['shopping_user'][0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
+			$title = "標題:【NoWait-未進件】".$or_data[0]['orDate'].",流水號:".$_SESSION['ord_code'].", ".$_SESSION['shopping_user'][0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
 			$content = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="http://happyfan7.com/assets/images/logo_2.png" />
+										<img src="http://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -44,7 +44,7 @@
 								</tr>
 								<tr>
 									<td style="font-weight:bold;background-color:#F5F3F1;">
-										【樂分期-進件通知】<br>
+										【NoWait-進件通知】<br>
 
 										身份證字號：'.$_SESSION['shopping_user'][0]['memIdNum'].'<br>
 
@@ -69,7 +69,7 @@
 								</tr>
 							</tbody>
 						</table>';
-			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@happyfan7.com", "樂分期", $title, $content);
+			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@nowait.shop", "NoWait", $title, $content);
 		echo true;
 	}else{
 		echo false;
