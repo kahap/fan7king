@@ -22,7 +22,7 @@
 	}
 	echo "<table border='1'><thead><th>編號</th><th>姓名</th><th>身分證正面</th><th>身分證反面</th></thead><tbody>";
 	foreach($array as $key => $value){
-			echo "<tr><td>".$value['memNo']."</td><td>".$value['memName']."</td><td><img src='http://happyfan7.com/".$value['orAppAuthenIdImgTop']."' width='320px' height='160px'></td><td><img src='http://happyfan7.com/".$value['orAppAuthenIdImgBot']."' width='320px' height='160px'></td></tr>";
+			echo "<tr><td>".$value['memNo']."</td><td>".$value['memName']."</td><td><img src='http://nowait.shop/".$value['orAppAuthenIdImgTop']."' width='320px' height='160px'></td><td><img src='http://nowait.shop/".$value['orAppAuthenIdImgBot']."' width='320px' height='160px'></td></tr>";
 		
 	}
 	echo "</tbody></table>";

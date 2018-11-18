@@ -3,7 +3,7 @@
     <a href="?item=member_center" class="list-group-item list-group-item-action <?php if ($active==1) echo 'active';?>">基本資料</a>
     <a href="?item=member_center&action=password_edit" class="list-group-item list-group-item-action <?php if ($active==2) echo 'active';?>">變更密碼</a>
     <a href="?item=member_center&action=order" class="list-group-item list-group-item-action <?php if ($active==3) echo 'active';?>">訂單查詢</a>
-    <a href="?item=member_center&action=pay" class="list-group-item list-group-item-action <?php if ($active==4) echo 'active';?>">我要繳款</a>
+    <!-- <a href="?item=member_center&action=pay" class="list-group-item list-group-item-action <?php if ($active==4) echo 'active';?>">我要繳款</a> -->
 </div>
 <div class="sell xs-none" style="height: 430px;">
                         <img src="portal/images/Tmp/AD-1.jpg">

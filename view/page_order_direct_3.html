@@ -61,7 +61,7 @@
 									"ItemName" => $_SESSION['shopping_product'][0]['proName'],
 									"ChoosePayment" => $chosemethod,
 									"PaymentInfoURL"=>"http://www.allpay.com.tw/paymentinfo.php",
-									"ReturnURL"=>"http://happyfan7.com/php/ATM.php",
+									"ReturnURL"=>"http://nowait.shop/php/ATM.php",
 									"NeedExtraPaidInfo" => "Y");
 							ksort($form_array);	
 							$form_array['CheckMacValue'] = $allpay->_getMacValue(HashKey,HashIV, $form_array);
@@ -73,15 +73,15 @@
 							$html_code .= "</form>";
 							echo $html_code;
 					mb_internal_encoding('UTF-8');
-					$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1");
+					$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1");
 					$paymethod = ($or_data[0]['orPayBy'] != '2') ? 'ATM':'WebATM';
-					$title = "【樂分期-直購通知】".$or_data[0]['orDate'].",流水號:".$_SESSION['ord_code'].", ".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
+					$title = "【NoWait-直購通知】".$or_data[0]['orDate'].",流水號:".$_SESSION['ord_code'].", ".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
 					$content = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+										<img src="https://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -94,7 +94,7 @@
 								</tr>
 								<tr>
 									<td style="font-weight:bold;background-color:#F5F3F1;">
-										【樂分期-直購通知】<br>
+										【NoWait-直購通知】<br>
 
 										身份證字號：'.$memberData[0]['memIdNum'].'<br>
 
@@ -118,17 +118,17 @@
 							</tbody>
 						</table>';
 					$email = new Email1();					
-					$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);
+					$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@nowait.shop", "NoWait", $title, $content);
 					
 					
 					$receiverNameAndEmails2 = Array($memberData[0]['memAccount']=>$memberData[0]['memName']);
-					$title1 = "【樂分期購物網】您訂購的商品(訂單編號: ".$or_data[0]['orCaseNo'].")";
+					$title1 = "【NoWait購物網】您訂購的商品(訂單編號: ".$or_data[0]['orCaseNo'].")";
 					$content1 = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+										<img src="https://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -161,8 +161,8 @@
 								<tr>
 									<td>
 										<p>
-											感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
-											樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">樂分期購物網</span></a> 選購。
+											感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
+											NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">NoWait購物網</span></a> 選購。
 										</p>
 									</td>
 								</tr>						
@@ -170,7 +170,7 @@
 						</table>
 						';
 					$email = new Email1();	
-					$send = $email->SendBCCEmail_smtp($receiverNameAndEmails2, "service@happyfan7.com", "樂分期", $title1, $content1);
+					$send = $email->SendBCCEmail_smtp($receiverNameAndEmails2, "service@nowait.shop", "NoWait", $title1, $content1);
 					
 							//$or_data[0]['orPeriodTotal']
 							

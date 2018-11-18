@@ -27,7 +27,7 @@ if(!isset($errMsg)){
 				 <MDN>0906815981</MDN>
 				 <UID>0906815981</UID>
 				 <UPASS>123456</UPASS>
-				 <Subject>樂分期</Subject>
+				 <Subject>NoWait</Subject>
 				 <Retry>Y</Retry>
 				 <Message>'.$utrDetails.'</Message>
 				 <MDNList><MSISDN>'.$utrNumber.'</MSISDN></MDNList>

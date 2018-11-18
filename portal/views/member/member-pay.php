@@ -65,7 +65,7 @@
                                                         "ItemName" => $proData[0]["proName"],
                                                         "ChoosePayment" => $chosemethod,
                                                         "PaymentInfoURL"=>"http://www.allpay.com.tw/paymentinfo.php",
-                                                        "ReturnURL"=>"http://happyfan7.com/php/ATM.php",
+                                                        "ReturnURL"=>"http://nowait.shop/php/ATM.php",
                                                         "NeedExtraPaidInfo" => "Y"
                                                     );
                                                     ksort($form_array);

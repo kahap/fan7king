@@ -54,14 +54,14 @@ src="https://www.facebook.com/tr?id=1786588334914903&ev=PageView
 		}
 			if(!in_array('0',$state)){
 				
-				$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","achappyfan7@gmail.com"=>"Allan",'21car7751@gmail.com'=>'客服1','aa22760676@gmail.com'=>'客服人員D','elsa0822@gmail.com'=>'客服人員E');
-				$title = "【樂分期-貸款VIP通知】".$_POST['name']."先生/小姐";
+				$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","achappyfan7@gmail.com"=>"Allan",'21car7751@gmail.com'=>'客服1','aa22760676@gmail.com'=>'客服人員D','elsa0822@gmail.com'=>'客服人員E');
+				$title = "【NoWait-貸款VIP通知】".$_POST['name']."先生/小姐";
 				$content = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+										<img src="https://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -74,7 +74,7 @@ src="https://www.facebook.com/tr?id=1786588334914903&ev=PageView
 								</tr>
 								<tr>
 									<td style="font-weight:bold;background-color:#F5F3F1;">
-										【樂分期-貸款通知】<br>
+										【NoWait-貸款通知】<br>
 										貸款類別：'.$_POST['category'].'<br>
 										車號：'.$_POST['email'].'<br>
 										電話：'.$_POST['phone'].'<br>
@@ -84,7 +84,7 @@ src="https://www.facebook.com/tr?id=1786588334914903&ev=PageView
 								</tr>
 							</tbody>
 						</table>';
-				$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);
+				$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@nowait.shop", "NoWait", $title, $content);
 				$co_company->inser_loanVIP($_POST);
 				echo "<script>fbq('track', 'InitiateCheckout');<script>";
 				echo "<script>gtag('event', 'conversion', {'send_to': 'AW-872321587/YWw3CPy7hWwQs6T6nwM'});</script>";

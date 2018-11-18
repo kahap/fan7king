@@ -57,3 +57,4 @@ if($_SESSION['ord_code'] != "" && isset($_SESSION['shopping_user'][0])){
     );
     echo json_encode($arr); //输出json数据
 }
+?>

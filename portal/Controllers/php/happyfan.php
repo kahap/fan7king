@@ -1,6 +1,6 @@
 <html>
 	<meta charset="utf8">
-	<form id="happyfan" action="https://happyfan7.com" method="POST" target="_blank">
+	<form id="happyfan" action="https://nowait.shop" method="POST" target="_blank">
 	訂單編號<input type="text" name="orCaseNo"><br>
 	會員編號<input type="text" name="memNo"><br>
 	產品名稱<input type="text" name="orProductName"><br>
@@ -16,7 +16,7 @@
 <script>
 $('.btn').click(function(){
 	$.ajax({
-		'url' : 'https://happyfan7.com',
+		'url' : 'https://nowait.shop',
 		'type' : 'POST',
 		'data' : $("#happyfan").serialize(),
 		dataType : 'json',

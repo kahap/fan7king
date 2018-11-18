@@ -24,15 +24,15 @@
 							$p_data = $p->getOneProByNo($pmBuyAmnt[0]['proNo']);
 							$Class = ($member_data['memClass'] == '0') ? '學生':'非學生';
 			$email = new Email();				
-			$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","achappyfan7@gmail.com"=>"Allan","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1",'aa22760676@gmail.com'=>'客服人員D');
+			$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部","happyfan7@21-finance.com"=>"客服部","sinlenlin@gmail.com"=>"林青嵐","achappyfan7@gmail.com"=>"Allan","andy_kuo@21-finance.com"=>"郭原彰","dan_chang@21-finance.com"=>"客服1",'aa22760676@gmail.com'=>'客服人員D');
 			
-			$title = "【樂分期-未進件】".$value['orDate'].",流水號:".$value['orNo'].",".$member_data['memName']."先生/小姐,訂單編號:".$value['orCaseNo'];
+			$title = "【NoWait-未進件】".$value['orDate'].",流水號:".$value['orNo'].",".$member_data['memName']."先生/小姐,訂單編號:".$value['orCaseNo'];
 			$content = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+										<img src="https://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -45,7 +45,7 @@
 								</tr>
 								<tr>
 									<td style="font-weight:bold;background-color:#F5F3F1;">
-										【樂分期-進件通知】<br>
+										【NoWait-進件通知】<br>
 
 										身份證字號：'.$member_data['memIdNum'].'<br>
 										
@@ -72,9 +72,9 @@
 								</tr>
 							</tbody>
 						</table>';
-			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@happyfan7.com", "樂分期", $title, $content);
+			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@nowait.shop", "NoWait", $title, $content);
 			/*if(in_array("Allan",$receiverNameAndEmails)){
-				$ch = curl_init("http://happyfan7.com/php/index.php?inst=happyfan7&msg=".str_replace(" ","_",$title));
+				$ch = curl_init("http://nowait.shop/php/index.php?inst=happyfan7&msg=".str_replace(" ","_",$title));
 				curl_setopt($ch, CURLOPT_HTTPHEADER, false);
 				$result = curl_exec($ch);
 				curl_close($ch);

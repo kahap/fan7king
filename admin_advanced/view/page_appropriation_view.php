@@ -26,7 +26,7 @@ if(isset($no)){
 		//撥款人員
 		$aauData = $aau->getOne($rcData[0]["aauNoAppro"]);
 		
-		//樂分期商品
+		//NoWait商品
 		if($rcData[0]["rcType"] == "0"){
 			$orData = $or->getOne($rcData[0]["rcRelateDataNo"]);
 			$pmData = $pm->getOne($orData[0]["pmNo"]);

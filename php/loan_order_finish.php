@@ -54,10 +54,10 @@
         $Class = ($memberData[0]['memClass'] == '0') ? '學生' : '非學生';
 
         if ($memberData[0]['memEmailAuthen'] == '0' && $memberData[0]['memClass'] == '0') {
-            $receiverNameAndEmails = array('service@happyfan7.com' => 'EC部');
+            $receiverNameAndEmails = array('service@nowait.shop' => 'EC部');
         } else if ($mco_data[0]['mcoStatus'] == '5') {
             $receiverNameAndEmails = array(
-                'service@happyfan7.com' => 'EC部',
+                'service@nowait.shop' => 'EC部',
                 'happyfan7@21-finance.com' => '客服部',
                 'sinlenlin@gmail.com' => '林青嵐',
                 'andy_kuo@21-finance.com' => '郭原彰',
@@ -66,7 +66,7 @@
             );
         } else {
             $receiverNameAndEmails = array(
-                'service@happyfan7.com' => 'EC部',
+                'service@nowait.shop' => 'EC部',
                 'happyfan7@21-finance.com' => '客服部',
                 'sinlenlin@gmail.com' => '林青嵐',
                 'achappyfan7@gmail.com' => 'Allan',
@@ -76,13 +76,13 @@
             );
         }
             
-        $titles = "【樂分期-" . $str_title . "】" . $mco_data[0]['mcoDate'] . ",流水號:" . $_SESSION['mco_code'] . "," . $memberData[0]['memName'] . "先生/小姐,訂單編號:" . $mco_data[0]['mcoCaseNo'];
+        $titles = "【NoWait-" . $str_title . "】" . $mco_data[0]['mcoDate'] . ",流水號:" . $_SESSION['mco_code'] . "," . $memberData[0]['memName'] . "先生/小姐,訂單編號:" . $mco_data[0]['mcoCaseNo'];
         $contents = content1($memberData[0]['memName'], $memberData[0]['memIdNum'], $Class, $str_title $mco_data[0]['mcoCaseNo'], $mco_data[0]['mcoDate'], $mco_data[0]['mcoPeriodAmount'], $mco_data[0]['mcoPeriodTotal']);
 
-        $send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $titles, $contents);
+        $send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@nowait.shop", "NoWait", $titles, $contents);
 
         if (in_array("Allan", $receiverNameAndEmails)) {
-            $ch = curl_init("http://happyfan7.com/php/index.php?inst=happyfan7&msg=" . str_replace(" ", "_", $titles));
+            $ch = curl_init("http://nowait.shop/php/index.php?inst=happyfan7&msg=" . str_replace(" ", "_", $titles));
             curl_setopt($ch, CURLOPT_HTTPHEADER, false);
             $result = curl_exec($ch);
             curl_close($ch);
@@ -98,21 +98,21 @@
                 'aa22760676@gmail.com' => '客服人員D'
             );
 
-            $titles = "【樂分期購物網】學校Email認證信件";
+            $titles = "【NoWait購物網】學校Email認證信件";
 
             $contents = content($_SESSION['shopping_user'][0]['memName'], $memberData[0]['pass_number'], $_SESSION['user']['memNo']);
 
-            $send = $email->SendBCCEmail_smtp($receiverNameAndEmail, "service@happyfan7.com", "樂分期", $titles, $contents);
+            $send = $email->SendBCCEmail_smtp($receiverNameAndEmail, "service@nowait.shop", "NoWait", $titles, $contents);
 
         } else {
 
             $receiverNameAndEmail = array($memberData[0]['memAccount'] => $memberData[0]['memName']);
 
-            $titles = "【樂分期購物網】您訂購的商品審核中(訂單編號: " . $mco_data[0]['mcoCaseNo'] . ")";
+            $titles = "【NoWait購物網】您訂購的商品審核中(訂單編號: " . $mco_data[0]['mcoCaseNo'] . ")";
             
             $contents = content2($_SESSION['shopping_user'][0]['memName'], $mco_data[0]['mcoCaseNo'], $mco_data[0]['mcoDate'], $mco_data[0]['mcoPeriodAmount'], $mco_data[0]['mcoPeriodTotal']);
 
-            $send = $email->SendBCCEmail_smtp($receiverNameAndEmail, "service@happyfan7.com", "樂分期", $titles, $contents);
+            $send = $email->SendBCCEmail_smtp($receiverNameAndEmail, "service@nowait.shop", "NoWait", $titles, $contents);
         }
         */
         unset($mco);
@@ -133,7 +133,7 @@ function content1($memName, $memIdNum, $class, $str_title, $mcoCaseNo, $mcoDate,
     <tbody>
         <tr>
             <td style="text-align:center;">
-                <img src="https://happyfan7.com/assets/images/logo_2.png" />
+                <img src="https://nowait.shop/assets/images/logo_2.png" />
             </td>
         </tr>
         <tr>
@@ -146,7 +146,7 @@ function content1($memName, $memIdNum, $class, $str_title, $mcoCaseNo, $mcoDate,
         </tr>
         <tr>
             <td style="font-weight:bold;background-color:#F5F3F1;">
-                【樂分期-進件通知】<br>
+                【NoWait-進件通知】<br>
 
                 身份證字號：'. $memIdNum . '<br />
 
@@ -176,7 +176,7 @@ function content($memName, $passNumber, $memNo) {
     <tbody>
         <tr>
             <td style="text-align:center;">
-                <img src="https://happyfan7.com/assets/images/logo_2.png" />
+                <img src="https://nowait.shop/assets/images/logo_2.png" />
             </td>
         </tr>
         <tr>
@@ -189,11 +189,11 @@ function content($memName, $passNumber, $memNo) {
         </tr>
         <tr>
             <td style="font-weight:bold;background-color:#F5F3F1;">
-                <p>這封認證信是由<span style="color:#0006FF;text-decoration:underline;">樂分期購物網</span>所發出，<span style="color:red">請點選下面鏈結</span>開通您的會員帳號，您將享受樂分期購物網提供的會員購物服務。</p>
+                <p>這封認證信是由<span style="color:#0006FF;text-decoration:underline;">NoWait購物網</span>所發出，<span style="color:red">請點選下面鏈結</span>開通您的會員帳號，您將享受NoWait購物網提供的會員購物服務。</p>
                 <p>
-                    <a href=https://happyfan7.com/php/member_id.php?pass_number=' . $passNumber . '&memNo=' . $memNo . '>https://happyfan7.com/php/member_id.php?pass_number=' . $passNumber . '&memNo=' . $memNo . '</a>
+                    <a href=https://nowait.shop/php/member_id.php?pass_number=' . $passNumber . '&memNo=' . $memNo . '>https://nowait.shop/php/member_id.php?pass_number=' . $passNumber . '&memNo=' . $memNo . '</a>
                 </p>
-                <p>若此帳號並非您本人所申請，請您不須理會此會員確認信函。 感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，樂分期將會為您處理。 樂分期購物網祝福您 順心如意!!</p>
+                <p>若此帳號並非您本人所申請，請您不須理會此會員確認信函。 感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，NoWait將會為您處理。 NoWait購物網祝福您 順心如意!!</p>
             </td>
         </tr>
     </tbody>
@@ -207,7 +207,7 @@ function content2($memName, $mcoCaseNo, $mcoDate, $mcoPeriodAmount, $mcoPeriodTo
     <tbody>
         <tr>
             <td style="text-align:center;">
-                <img src="https://happyfan7.com/assets/images/logo_2.png" />
+                <img src="https://nowait.shop/assets/images/logo_2.png" />
             </td>
         </tr>
         <tr>
@@ -236,8 +236,8 @@ function content2($memName, $mcoCaseNo, $mcoDate, $mcoPeriodAmount, $mcoPeriodTo
         <tr>
             <td>
                 <p>
-                    感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
-                    樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">樂分期購物網</span></a> 選購。
+                    感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
+                    NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">NoWait購物網</span></a> 選購。
                 </p>
             </td>
         </tr>                       

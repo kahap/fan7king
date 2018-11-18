@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: text/html; charset=utf8');
 require_once('../../model/require_ajax.php');
-/*	$url = 'http://happyfan7.com/admin_advanced/ajax/appropriation/generate_barcode.php';
+/*	$url = 'http://nowait.shop/admin_advanced/ajax/appropriation/generate_barcode.php';
 					$myvars = 'bank=21數位&MonthlyPayment=1941&ExpectedRepaymentDate=20181204&ID=201706165018';
 						
 					$ch = curl_init( $url );

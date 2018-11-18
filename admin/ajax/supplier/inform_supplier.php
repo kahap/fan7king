@@ -15,7 +15,7 @@
 	
 	foreach($allSupData as $key=>$value){
 		$supEmailAddr = $value["supEmail"];
-		$ecEmailAddr = "service@happyfan7.com";
+		$ecEmailAddr = "service@nowait.shop";
 		
 		//收貨日期
 		$orGetFromSupData = $or->getOrdersForSupplierPayment($availDate, $value["supNo"]);
@@ -47,7 +47,7 @@
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -121,7 +121,7 @@
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>

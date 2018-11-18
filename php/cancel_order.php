@@ -19,15 +19,15 @@
 	if($errg == ""){
 			$or->updateStatus('7',$_GET['orno']);
 			$or->updateStatusTime('7',$_GET['orno']);
-			$receiverNameAndEmails = Array('service@happyfan7.com'=>"EC部",'aa22760676@gmail.com'=>'客服人員D');
+			$receiverNameAndEmails = Array('service@nowait.shop'=>"EC部",'aa22760676@gmail.com'=>'客服人員D');
 			//'hsiang_chou@21-finance.com'=>"客服部",'tiffany_chen@21-finance.com'=>"客服部",
-			$title = "標題:【樂分期-取消訂單】".$or_data[0]['orDate'].",流水號:".$or_data['0']['orNo'].", ".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
+			$title = "標題:【NoWait-取消訂單】".$or_data[0]['orDate'].",流水號:".$or_data['0']['orNo'].", ".$memberData[0]['memName']."先生/小姐,訂單編號:".$or_data[0]['orCaseNo'];
 			$content = '	
 						<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 							<tbody>
 								<tr>
 									<td style="text-align:center;">
-										<img src="https://happyfan7.com/assets/images/logo_2.png" />
+										<img src="https://nowait.shop/assets/images/logo_2.png" />
 									</td>
 								</tr>
 								<tr>
@@ -40,7 +40,7 @@
 								</tr>
 								<tr>
 									<td style="font-weight:bold;background-color:#F5F3F1;">
-										【樂分期-取消訂單】<br>
+										【NoWait-取消訂單】<br>
 
 										身份證字號：'.$memberData[0]['memIdNum'].'<br>
 
@@ -65,16 +65,16 @@
 								</tr>
 							</tbody>
 						</table>';
-			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@happyfan7.com", "樂分期", $title, $content);
+			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "happyfan@nowait.shop", "NoWait", $title, $content);
 			
 			$email = new Email();
 			$receiverNameAndEmails1 = Array($memberData[0]['memAccount']=>$memberData[0]['memName']);
-			$title1 = "【樂分期購物網】您訂購的商品已取消訂單(訂單編號:".$or_data[0]['orCaseNo'].")";
+			$title1 = "【NoWait購物網】您訂購的商品已取消訂單(訂單編號:".$or_data[0]['orCaseNo'].")";
 			$content1 = '<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -108,14 +108,14 @@
 						<tr>
 							<td>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
-									樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">樂分期購物網</span></a> 選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/index.php?item=fmContactService" target="_blank"><span style="#FF9900;text-decoration:underline;">聯絡客服</span></a> 反應，
+									NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/index.php" target="_blank"><span style="color:blue;text-decoration:underline;">NoWait購物網</span></a> 選購。
 								</p>
 							</td>
 						</tr>						
 					</tbody>
 				</table>';
-			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails1, "happyfan@happyfan7.com", "樂分期", $title1, $content1);
+			$send = $email->SendBCCEmail_smtp($receiverNameAndEmails1, "happyfan@nowait.shop", "NoWait", $title1, $content1);
 			echo "<script>alert('已取消訂單');</script>";
 			echo "<script>location.href='index.php?item=member_center&action=purchase&orno=".$_GET['orno']."';</script>";
 	}

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	$src = ($_GET['pro'] != "") ? 'https://'.DOMAIN.'/index.php?item=product&pro='.$_GET['pro'].'&share='.$_SESSION['user']['memNo']:'https://'.DOMAIN.'/index.php';
 	$pm = new Product_Manage();
 	if($_GET['pro'] != ""){
@@ -21,10 +21,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>樂分期-HappyFan7</title>
+	<title>NoWait</title>
 	<meta property="og:url"           content="<?php echo $src; ?>" />
 	<meta property="og:type"          content="website" />
-	<meta property="og:title"         content="<?php echo ($pm_detail[0]['proName'] != '')? $pm_detail[0]['proName']:'樂分期-HappyFan7'; ?>" />
+	<meta property="og:title"         content="<?php echo ($pm_detail[0]['proName'] != '')? $pm_detail[0]['proName']:'NoWait'; ?>" />
 	<meta property="og:description"   content="<?php echo $str_price; ?>" />
 	<meta property="og:image"         content="https://<?=DOMAIN?>/<?php echo ($img[0] !="") ? "admin/".$img[0]:"admin/images/indexImg/20160607062650.jpg";?>" />
    
@@ -206,7 +206,7 @@
     <div class="top-header">
         <div class="container">
             <div class="nav-top-links">
-                <?php /* <a href="mailto:service@happyfan7.com"><img alt="email" src="assets/images/email.png" /> 客服信箱</a> */ ?>
+                <?php /* <a href="mailto:service@nowait.shop"><img alt="email" src="assets/images/email.png" /> 客服信箱</a> */ ?>
 				
 				
 				 <a href="http://www.facebook.com/sharer.php?u=http://<?=DOMAIN?>/index.php%3Fshare%3D<?php echo $_SESSION['user']['memNo'] ?>" target="_blank"><img src="assets/images/fb_share.png"/></a>

@@ -10,10 +10,10 @@ $pro = new Product();
 ?>
 <!-- page content -->
       <div class="right_col" role="main">
-        <div class="">
-          <div class="page-title">
+        <div >
+          <div class="page-title" style="margin-left: 390px;text-align: center;">
             <div class="title_left">
-              <h3>產品列表</h3>
+              <h3 >產品列表</h3>
               <a style="text-decoration:none;" href="?page=product&type=productManage&action=insert">
                 <button class="btn btn-success">新增產品</button>
               </a>
@@ -32,8 +32,8 @@ $pro = new Product();
                         <th>產品編號</th>
                         <th>產品名稱</th>                     
                         <th>上架管理</th>         
-                        <th>訂單量 </th>
-                        <th>點擊量 </th>
+                        <!-- <th>訂單量 </th>
+                        <th>點擊量 </th> -->
                         <!-- <th>上架狀態</th>  -->
                       </tr>
                     </thead>
@@ -78,8 +78,12 @@ $pro = new Product();
                       
                         <td class=" "><input name="pmData" data-valeu="<?php echo ($value['pmStatus'] == '上架中')?('1'):('0');?>" data-pmNo="<?php echo $value["pmNo"]; ?>" class="braIfDisplayBox" type="checkbox"  <?php if($value["pmStatus"] == "上架中") echo "checked";?>></td>	
                         <!-- <td class=" "><?php// echo $value["pmStatus"]; ?></td>	 -->
-                        <td class=" "><span><?php echo number_format($value["pmBuyAmnt"]); ?></span></td>
-                        <td class=" "><?php echo number_format($value["pmClickNum"]); ?></td>
+
+                        
+                       <!--  <td class=" "><span><?php echo number_format($value["pmBuyAmnt"]); ?></span></td>
+                        <td class=" "><?php echo number_format($value["pmClickNum"]); ?></td> -->
+
+
                         <!-- <td class=" "><?php //echo $value["pmStatus"]; ?></td> -->
                         <!--  若欄位少
                         <td class=" last">

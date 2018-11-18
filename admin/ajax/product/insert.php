@@ -8,7 +8,7 @@
 	$catData = array();
 	
 	$newProNo = "";
-	$last3Num = "";
+	$last5Num = "";
 	
 	
 	foreach($_POST as $key=>$value){
@@ -43,20 +43,22 @@
 		//最後一筆
 		$lastData = $pro->getAllProDescWithCatAndBraAndItem($braNo, $catNo, $biNo);
 		if($lastData != null){
-			if(substr($lastData[0]["proCaseNo"], -3)<9){
-				$old3Num = substr($lastData[0]["proCaseNo"], -3);
-				$last3Num = "00".++$old3Num;
-			}else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
-				$old3Num = substr($lastData[0]["proCaseNo"], -3);
-				$last3Num = "0".++$old3Num;
-			}else{
-				$old3Num = substr($lastData[0]["proCaseNo"], -3);
-				$last3Num = ++$old3Num;
-			}
+			// if(substr($lastData[0]["proCaseNo"], -3)<9){
+			// 	$old3Num = substr($lastData[0]["proCaseNo"], -3);
+			// 	$last3Num = "00".++$old3Num;
+			// }else if(substr($lastData[0]["proCaseNo"], -3)<99 && substr($lastData[0]["proCaseNo"], -3)>=9){
+			// 	$old3Num = substr($lastData[0]["proCaseNo"], -3);
+			// 	$last3Num = "0".++$old3Num;
+			// }else{
+			// 	$old3Num = substr($lastData[0]["proCaseNo"], -3);
+			// 	$last3Num = ++$old3Num;
+			// }
+			$last5Num = substr($lastData[0]["proCaseNo"], -5)+1;
 		}else{
-			$last3Num = "001";
+			$last5Num = 1;
 		}
-		$newProNo = $catNo.$braNo.$last3Num;
+		// $newProNo = $catNo.$braNo.$last3Num;
+		$newProNo = $catNo.$biNo.sprintf("%05d",$last5Num);
 	}
 	
 	//upload part

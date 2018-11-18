@@ -44,17 +44,17 @@
                     switch ($_GET['pmSOO']){
                         case 'hot':
                             echo '<li class="breadcrumb-item active" aria-current="page">';
-                            echo '限時商品';
+                            echo '限量推薦';
                             echo '</li>';
                             break;
                         case 'news':
                             echo '<li class="breadcrumb-item active" aria-current="page">';
-                            echo '最新商品';
+                            echo '新品熱推 ';
                             echo '</li>';
                             break;
                         case 'special':
                             echo '<li class="breadcrumb-item active" aria-current="page">';
-                            echo '精選商品';
+                            echo '嚴選特賣';
                             echo '</li>';
                             break;
                     }
@@ -345,10 +345,10 @@
                                                         <!-- <a href="?item=product&pro=<?php echo $value['proNo'];  ?>"></a> -->
                                                         <?php echo $value['proName'];?>
                                                     </p>
-                                                    <p class="nowait-badge text-left">
+                                                    <!-- <p class="nowait-badge text-left">
                                                         <span class="bg-yellow">開學季優惠</span>
                                                         <span class="bg-yellow">滿千送百特惠方案</span>
-                                                    </p>
+                                                    </p> -->
                                                     <p class="card-text text-orange">
                                                         月付：NT$<?php echo number_format(min($price));?>
                                                         <small>*<?php echo array_search(min($price),$price);?>期</small>

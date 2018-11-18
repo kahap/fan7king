@@ -93,7 +93,7 @@
 					if($osData[0]["textSwitch"] == 1){
 						//簡訊
 						$titleTxt = "【NoWait購物網】您訂購的商品分期已核准";
-						$contentTxt = '【NoWaitHappyFan7.com】通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，本公司審核已核准通過，後續出貨狀態請至[會員中心]查詢';
+						$contentTxt = '【NoWait.com】通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，本公司審核已核准通過，後續出貨狀態請至[會員中心]查詢';
 						
 						$fp = fsockopen("xsms.aptg.com.tw", 80, $errno, $errstr, 30);
 						if (!$fp){

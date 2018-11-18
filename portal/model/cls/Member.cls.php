@@ -664,6 +664,21 @@
 			$update = $this->db->updateRecords($sql);
 			return $update;
 		}
+		//前台編輯
+		public function update_fornMember_password2($array,$memCell){
+			foreach($array as $key =>$value){
+				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
+			}
+			$sql = "update
+						`member`
+					set
+						`memPwd`='".$NewmemPwd."'
+					where
+						`memCell`='".$memCell."'";
+
+			$update = $this->db->updateRecords($sql);
+			return $update;
+		}
 		public function updateData($data,$memNo){
 			foreach ($data as $key => $value) {
 				$sqlv[]="`".$key."`='".mysqli_real_escape_string($this->db->oDbLink, $value)."'";

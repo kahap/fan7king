@@ -130,7 +130,7 @@
 													"ItemName" => $proData[0]["proName"],
 													"ChoosePayment" => $chosemethod,
 													"PaymentInfoURL"=>"http://www.allpay.com.tw/paymentinfo.php",
-													"ReturnURL"=>"http://happyfan7.com/php/ATM.php",
+													"ReturnURL"=>"http://nowait.shop/php/ATM.php",
 													"NeedExtraPaidInfo" => "Y");
 											ksort($form_array);	
 											$form_array['CheckMacValue'] = $allpay->_getMacValue(HashKey,HashIV, $form_array);
@@ -186,7 +186,7 @@
 								<td><?php echo $value["mcoPeriodTotal"]; ?></td>
 								<td><?php echo $value["mcoPeriodAmount"]; ?></td>
 								<td>
-									<?php if($value["mcoStatus"] == "3"){ ?><a href="http://happyfan7.com/admin_advanced/ajax/payment/paylist.php?id=<?=$value["mcoNo"]?>&rctype=1" target="_blank">前往</a><?Php } ?>
+									<?php if($value["mcoStatus"] == "3"){ ?><a href="http://nowait.shop/admin_advanced/ajax/payment/paylist.php?id=<?=$value["mcoNo"]?>&rctype=1" target="_blank">前往</a><?Php } ?>
 								</td>
 							</tr>
 							 <?php 
@@ -231,7 +231,7 @@
 								<td><?php echo $value["mcoPeriodTotal"]; ?></td>
 								<td><?php echo $value["mcoPeriodAmount"]; ?></td>
 								<td>
-									<?php if($value["mcoStatus"] == "3"){ ?><a href="http://happyfan7.com/admin_advanced/ajax/payment/paylist.php?id=<?=$value["mcoNo"]?>&rctype=2" target="_blank">前往</a><?Php } ?>
+									<?php if($value["mcoStatus"] == "3"){ ?><a href="http://nowait.shop/admin_advanced/ajax/payment/paylist.php?id=<?=$value["mcoNo"]?>&rctype=2" target="_blank">前往</a><?Php } ?>
 								</td>
 							</tr>
 							 <?php 

@@ -154,7 +154,7 @@ $_SESSION['pro'] = $proNo;
                                     ?>
                                         <label for="product-specification" class="d-none">規格</label>
                                         <select class="form-control" name="spec" id="product-specification">
-                                            <option value="選擇規格">選擇規格</option>
+                                            <option value="">選擇規格</option>
                                             <?php
                                             foreach($spec as $key  => $value){
                                                 echo "<option value='".$value."'>".$value."</option>";
@@ -175,7 +175,7 @@ $_SESSION['pro'] = $proNo;
                                     $i=0;
                                     $active = '';
                                     foreach($priceProduct as $key  => $value){
-                                        if($i == 0){
+                                        // if($i == 0){
                                             if($value > 1000){
 //                                                echo "<li style='background:rgba(12, 59, 144, 0.09); text-align:center;margin: 5px;' class='select_per active".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
                                                 $first = $key;
@@ -185,17 +185,17 @@ $_SESSION['pro'] = $proNo;
                                                 </label>
                                                 <?php
                                             }
-                                        }else{
+                                        /*}else{
                                             if($value > 1000){
 //                                                echo "<li style='background:rgba(12, 59, 144, 0.09);text-align:center;margin: 5px;' class='select_per ".$active."' dat-gt=".$key."><a href='javascript:' id=".$key.">".$key."期</a></li>";
                                                 ?>
-                                                <label class="btn bg-gray <?php echo $active;?> staging select_per" data-id="<?php echo $key;?>" data-gt="<?php echo $key;?>">
+                                                <label class="btn bg-gray <?php echo $active;?> staging select_per active" data-id="<?php echo $key;?>" data-gt="<?php echo $key;?>">
                                                     <input type="radio" name="staging" value="<?php echo $key;?>" checked autocomplete="off" id="<?php echo $key;?>"> <?php echo sprintf("%02d",$key);?>期
                                                 </label>
                                                 <?php
                                             }
                                         }
-                                        $i++;
+                                        $i++;*/
                                     }
                                     ?>
                                 </div>
@@ -273,7 +273,7 @@ $_SESSION['pro'] = $proNo;
             </div>
         </div>
     </section>
-    <section id="relation" class="bg-white">
+    <!-- <section id="relation" class="bg-white">
         <div class="container">
             <div class="slick-title ">
                 <h2 class="span-yellow text-left"><span>關聯商品</span></h2>
@@ -305,7 +305,7 @@ $_SESSION['pro'] = $proNo;
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
 <?php
     include_once ('portal/views/_page_service.php');

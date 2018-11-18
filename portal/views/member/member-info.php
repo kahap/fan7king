@@ -50,7 +50,10 @@
                             <div class="form-group row">
                                 <label for="staticSex" class="col-sm-3 col-form-label">性別</label>
                                 <div class="col-sm-9">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticSex" value="<?php echo $memberData[0]["memGender"]; ?>">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticSex" value="<?php
+                                        // echo $memberData[0]["memGender"];
+                                        echo substr($memberData[0]["memIdNum"],1,1)=="1"?"男":"女";
+                                    ?>">
                                 </div>
                             </div>
                             <div class="form-group row">

@@ -1701,7 +1701,7 @@
 		}
 		$api->setResult(false);
 		break;
-		//樂分期訂單繳費列表
+		//NoWait訂單繳費列表
 		case "get_payment_orders_new":
 		$memNo = getMemberNo();
 		$api->setWhereArray(array("memNo"=>$memNo,"orMethod"=>"1"));
@@ -1761,7 +1761,7 @@
 		}
 		$api->setResult(false);
 		break;
-			//樂分期每期繳款資訊
+			//NoWait每期繳款資訊
 		case "get_each_period_payment_new":
 		$orNo = $which;
 		$api->setWhereArray(array("orNo"=>$orNo));
@@ -1882,7 +1882,7 @@
 		}
 		$api->setResult(false);
 		break;
-		//樂分期當期繳款條碼
+		//NoWait當期繳款條碼
 		case "get_barcode_by_period_new":
 		$orNo = $_POST["orNo"];
 		$curPeriod = $_POST["period"];

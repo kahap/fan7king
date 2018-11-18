@@ -92,8 +92,8 @@
 				if($orStatusArr[$key] == 3){
 					if($osData[0]["textSwitch"] == 1){
 						//簡訊
-						$titleTxt = "【樂分期購物網】您訂購的商品分期已核准";
-						$contentTxt = '【樂分期HappyFan7.com】通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，本公司審核已核准通過，後續出貨狀態請至[會員中心]查詢';
+						$titleTxt = "【NoWait購物網】您訂購的商品分期已核准";
+						$contentTxt = '【NoWait.com】通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，本公司審核已核准通過，後續出貨狀態請至[會員中心]查詢';
 						
 						$fp = fsockopen("xsms.aptg.com.tw", 80, $errno, $errstr, 30);
 						if (!$fp){

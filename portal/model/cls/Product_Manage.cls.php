@@ -97,7 +97,8 @@
 					    a.`proNo` = c.`proNo` 
 					where
 						a.`pmMainSup` = '1' and
-						a.`pmStatus` = '1' 
+						a.`pmStatus` = '1' and 
+						a.`pmBySup` = '0'
 					group by 
 						a.`proNo` 
 					order by
@@ -117,7 +118,8 @@
 					    a.`proNo` = c.`proNo` 
 					where
 						a.`pmMainSup` = '1' and
-						a.`pmStatus` = '1' 
+						a.`pmStatus` = '1' and 
+						a.`pmBySup` = '0'
 					/*group by 
 						c.`proNo` */
 					order by
@@ -432,6 +434,7 @@
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
 						`product_manage`.`pmNewest`= '1' &&
+						`product_manage`.`pmBySup`='0' && 
 						`product_manage`.`pmStatus`!= '0' /*&& 
 						`product_manage`.`pmMainSup`= '1' */
 					group by
@@ -458,7 +461,8 @@
 					on
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
-						`product_manage`.`pmSpecial`= '1' &&
+						`product_manage`.`pmSpecial`= '1' && 
+						`product_manage`.`pmBySup`='0' && 
 						`product_manage`.`pmStatus`!= '0' /*&& 
 						`product_manage`.`pmMainSup`= '1' */
 					group by
@@ -485,7 +489,8 @@
 					on
 						`product`.`proNo` = `product_manage`.`proNo`
 					where
-						`product_manage`.`pmHot`= '1' &&
+						`product_manage`.`pmHot`= '1' && 
+						`product_manage`.`pmBySup`='0' && 
 						`product_manage`.`pmStatus`!= '0' /*&& 
 						`product_manage`.`pmMainSup`= '1' */
 					group by

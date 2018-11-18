@@ -268,13 +268,13 @@
 		
 		switch($orStatusTo){
 			case 2:
-				$title = "【樂分期購物網】您訂購的商品審核中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品審核中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -297,7 +297,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -306,13 +306,13 @@
 				';
 				break;
 			case 3:
-				$title = "【樂分期購物網】您訂購的商品分期已核准";
+				$title = "【NoWait購物網】您訂購的商品分期已核准";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -325,7 +325,7 @@
 						</tr>
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
-								<p>親愛的顧客您好,樂分期網站通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，本公司審核已核准通過，您的商品將在「3-7個工作天送達（不含預購商品）」，後續出貨狀態請至 <span style="color:red;">[會員中心]</span>查詢。</p>
+								<p>親愛的顧客您好,NoWait網站通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，本公司審核已核准通過，您的商品將在「3-7個工作天送達（不含預購商品）」，後續出貨狀態請至 <span style="color:red;">[會員中心]</span>查詢。</p>
 								<p>
 									您此次訂購的商品明細如下：<br>
 									訂購日期：'.$orOldData[0]["orDate"].'<br>
@@ -333,7 +333,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -342,13 +342,13 @@
 				';
 				break;
 			case 4:
-				$title = "【樂分期購物網】您訂購的商品分期結果為婉拒無法通過";
+				$title = "【NoWait購物網】您訂購的商品分期結果為婉拒無法通過";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -362,7 +362,7 @@
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
 								<p>
-									親愛的顧客您好,樂分期網站通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，依本公司審核結果無法通過，此筆訂單交易將不成立。
+									親愛的顧客您好,NoWait網站通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，依本公司審核結果無法通過，此筆訂單交易將不成立。
 								</p>
 								<p style="color:#ff0000">										本公司都是電腦評分，客服無法得知婉拒原因，如有需要請您增補資料，我們在婉拒後的2個工作天內會有專人跟您聯絡，謝謝！如果可以補資料會再主動和您連絡，如果沒有辦法補就不會再和您連絡，一般【婉拒】六個月後才能再下單，謝謝！
 								</p>
@@ -373,7 +373,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -383,7 +383,7 @@
 				break;
 			case 5:
 				$or = new Orders();
-				$title = "【樂分期購物網】您訂購的商品分期申請須補件";
+				$title = "【NoWait購物網】您訂購的商品分期申請須補件";
 				if(is_numeric($orOldData[0]["orDocProvideReason"]) && $orOldData[0]["orDocProvideReason"] != "0" && $orOldData[0]["orDocProvideReason"] != "1"){
 					$reason = $or->reasonArr[$orOldData[0]["orDocProvideReason"]]."。".$orOldData[0]["orDocProvideComment"];
 				}else{
@@ -394,7 +394,7 @@
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -408,7 +408,7 @@
 						<tr>
 							<td style="font-weight:bold;background-color:#F5F3F1;">
 								<p>
-									親愛的顧客您好,樂分期網站通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，
+									親愛的顧客您好,NoWait網站通知您購買訂單編號'.$orOldData[0]["orCaseNo"].'，
 									'.$reason.'，請至<span style="color:red;">[會員中心>分期訂單查詢]</span>找到相對應的訂單編號，
 									點選<b>修改</b>欄位下的[<span style="color:red;">編輯</span>]按鈕進行資料修改，
 									並重新送出到【確認訂單資訊】點選[<span style="color:red;">完成</span>]即完成補件，審核時間約1個工作天，我們將再次與您聯絡，
@@ -421,7 +421,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -430,13 +430,13 @@
 				';
 				break;
 			case 7:
-				$title = "【樂分期購物網】您訂購的商品已取消訂單(訂單編號: ".$orOldData[0]["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品已取消訂單(訂單編號: ".$orOldData[0]["orCaseNo"].")";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -460,7 +460,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -469,13 +469,13 @@
 				';
 				break;
 			case 8:
-				$title = "【樂分期購物網】您訂購的商品備貨中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品備貨中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -502,7 +502,7 @@
 									您的訂單狀態現在為【備貨中】，約1-3天會變成【出貨中】，當變成【出貨中】時，您就可以點【訂單編號】進入訂單查詢，裡面就會顯示目前配送的【宅配公司】和【宅配單號】，您就可以上物流公司網站進行查詢運送狀況。
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -511,13 +511,13 @@
 				';
 				break;
 			case 9:
-				$title = "【樂分期購物網】您訂購的商品已收貨(訂單編號: ".$orOldData[0]["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品已收貨(訂單編號: ".$orOldData[0]["orCaseNo"].")";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -541,7 +541,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -550,13 +550,13 @@
 				';
 				break;
 			case 11:
-				$title = "【樂分期購物網】您訂購的商品換貨中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品換貨中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -580,7 +580,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -589,13 +589,13 @@
 				';
 				break;
 			case 12:
-				$title = "【樂分期購物網】您訂購的商品退貨中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
+				$title = "【NoWait購物網】您訂購的商品退貨中(訂單編號: ".$orOldData[0]["orCaseNo"].")";
 				$content = '
 				<table width="660" align="center" cellpadding="10" cellspacing="1" style="border:3px solid #999;">
 					<tbody>
 						<tr>
 							<td style="text-align:center;">
-								<img src="https://happyfan7.com/assets/images/logo_2.png" />
+								<img src="https://nowait.shop/assets/images/logo_2.png" />
 							</td>
 						</tr>
 						<tr>
@@ -619,7 +619,7 @@
 									商品規格：'.$orOldData[0]["orProSpec"].'<br>
 								</p>
 								<p>
-									感謝您的支持，如有疑問歡迎到 <a href="https://happyfan7.com/?item=fmContactService" target="_blank">聯絡客服</a> 反應，樂分期將會為您處理。如需訂購其他商品請至 <a href="https://happyfan7.com/" target="_blank">樂分期購物網</a>選購。
+									感謝您的支持，如有疑問歡迎到 <a href="https://nowait.shop/?item=fmContactService" target="_blank">聯絡客服</a> 反應，NoWait將會為您處理。如需訂購其他商品請至 <a href="https://nowait.shop/" target="_blank">NoWait購物網</a>選購。
 								</p>
 							</td>
 						</tr>
@@ -630,8 +630,8 @@
 			
 		}
 		
-		//$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "happyfan7@21-finance.com", "樂分期", $title, $content);
-		$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@happyfan7.com", "樂分期", $title, $content);	
+		//$send = $email->SendEmail_smtp($emailAddr,$memData[0]['memName'], "happyfan7@21-finance.com", "NoWait", $title, $content);
+		$send = $email->SendBCCEmail_smtp($receiverNameAndEmails, "service@nowait.shop", "NoWait", $title, $content);	
 		return $send;
 	}
 	

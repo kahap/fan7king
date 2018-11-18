@@ -12,7 +12,7 @@ class Email extends PHPMailer{
 	  *	$SMTPusername	信箱帳號
 	  *	$SMTPpassword	信箱密碼
 	**/
-	public function Email($useOtherSMTP=true,$SMTPusername='service@happyfan7.com',$SMTPpassword='21-finance',$SMTPAuth=true,$SMTPSecure='',$SMTPhost='mail.21-finance.com',$SMTPport='25'){
+	public function Email($useOtherSMTP=true,$SMTPusername='service@nowait.shop',$SMTPpassword='21-finance',$SMTPAuth=true,$SMTPSecure='',$SMTPhost='mail.21-finance.com',$SMTPport='25'){
 		if($useOtherSMTP){
 			//parent::IsSMTP(); //設定使用SMTP方式寄信
 			$this->SMTPAuth = $SMTPAuth; //設定SMTP需要驗證

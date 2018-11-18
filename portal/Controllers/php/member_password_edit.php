@@ -13,7 +13,7 @@
 			$reciemail = ($memberData[0]['memClass'] == '0') ? $memberData[0]['memSubEmail']:$memberData[0]['memAccount'];
 			$receiverNameAndEmails = Array($reciemail=>$memberData[0]['memName']);
 
-			$title = "【樂分期購物網】通知密碼已變更成功";
+			$title = "【NoWait購物網】通知密碼已變更成功";
 			$content = '';
 			// TODO 寄簡訊通知
 		echo true;
