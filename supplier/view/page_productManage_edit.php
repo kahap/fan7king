@@ -339,11 +339,11 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       </div>
 
-                     <!--  <div class="form-group">
+                      <div class="form-group" style="display: none;">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                             產品分期 :
                           </label>
-                          <div class="col-md-6 col-sm-6 col-xs-12">
+                          <div class="col-md-6 col-sm-6 col-xs-12" >
                               <input type="hidden" name="ppPeriodAmount[]" value="6">06期：<input data-period="6" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp6Percent; ?>" readonly=true>每期 : <input data-pmoney="6" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                               <input type="hidden" name="ppPeriodAmount[]" value="9">09期：<input data-period="9" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp9Percent; ?>" readonly=true>每期 : <input data-pmoney="9" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                               <input type="hidden" name="ppPeriodAmount[]" value="12">12期：<input data-period="12" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp12Percent; ?>" readonly=true>每期 : <input data-pmoney="12" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
@@ -352,7 +352,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <input type="hidden" name="ppPeriodAmount[]" value="21">21期：<input data-period="21" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp21Percent; ?>" readonly=true>每期 : <input data-pmoney="21" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                               <input type="hidden" name="ppPeriodAmount[]" value="24">24期：<input data-period="24" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp24Percent; ?>" readonly=true>每期 : <input data-pmoney="24" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                           </div>
-                      </div> -->
+                      </div>
 
                       <div class="form-group">
                           <label style="text-align:left;" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">

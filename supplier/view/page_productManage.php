@@ -11,11 +11,11 @@ $pro = new Product();
 <!-- page content -->
       <div class="right_col" role="main">
         <div >
-          <div class="page-title" style="margin-left: 390px;text-align: center;">
+          <div class="page-title" >
             <div class="title_left">
               <h3 >產品列表</h3>
               <a style="text-decoration:none;" href="?page=product&type=productManage&action=insert">
-                <button class="btn btn-success">新增產品</button>
+                <button class="btn btn-success" style="margin-left: 900px;">新增產品</button>
               </a>
             </div>
           </div>
@@ -201,7 +201,9 @@ $pro = new Product();
         "columns":[
           null,
           {"orderDataType":"dom-text","type":"string"},
-          {"orderDataType":"dom-checkbox","type":"numic"}
+          {"orderDataType":"dom-checkbox","type":"numic"},
+          null,
+          null
         ]
       })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
       
