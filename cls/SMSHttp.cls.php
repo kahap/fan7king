@@ -14,8 +14,8 @@ class SMSHttp{
 		$this->batchID = "";
 		$this->credit = 0.0;
 		$this->processMsg = "";
-		$this->userID="0972071120";	//發送帳號
-		$this->password="Ss123456";	//發送密碼
+		$this->userID="0968978001";	//發送帳號
+		$this->password="8dking";	//發送密碼
 	}
 
 	/// <summary>
