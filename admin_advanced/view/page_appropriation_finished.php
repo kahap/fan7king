@@ -80,7 +80,7 @@ $data = $api->getWithConditions();
 $(function(){
 	$(".confirm-save").click(function(){
 		if($(".for-checked:checked").length == 0){
-			alert("請先勾選要匯出Excel的案件");
+			alert("請先勾選要匯出Excel的案件");			
 		}else{
 			var selected = [];
 			$(".for-checked:checked").each(function(){
@@ -103,7 +103,7 @@ $(function(){
 					//匯出EXCEL
 					$("body").append('<form id="excel" method="post" action="view/print_excel.php"></form>');
 					for(var n=0; n<selected.length; n++){
-						$("#excel").append('<input type="hidden" name="rcNo[]" value="'+selected[n]+'">');
+						$("#excel").append('<input type="hidden" name="rcCaseNo[]" value="'+selected[n]+'">');
 					}
 					$("#excel").submit();
 					selected = [];	
