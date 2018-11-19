@@ -456,11 +456,14 @@ if (isset ( $_SESSION ["adminUserData"] )) {
 							break;
 						
 						case "account" :
-							if ($action == "edit") {
-								include "view/page_insert_edit_general.php";
-							} elseif ($action == "insert") {
-								include "view/page_insert_edit_general.php";
-							} else {
+							if(isset($action)){
+								if ($action == "edit") {
+									include "view/page_insert_edit_general.php";
+								} elseif ($action == "insert") {
+									include "view/page_insert_edit_general.php";
+								}
+								//todo:page_insert_edit_general出錯
+							}else {
 								include "view/page_param_setting.php";
 							}
 							break;

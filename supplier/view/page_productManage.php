@@ -201,9 +201,7 @@ $pro = new Product();
         "columns":[
           null,
           {"orderDataType":"dom-text","type":"string"},
-          {"orderDataType":"dom-checkbox","type":"numic"},
-          null,
-          null
+          {"orderDataType":"dom-checkbox","type":"numic"}
         ]
       })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
       

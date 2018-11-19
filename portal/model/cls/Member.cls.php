@@ -382,7 +382,7 @@
                         from
                             `member`
                         where
-                            `memCell` = '" . $memCell . "' and `memPwd`='".$memPwd."'";
+                            `memCell` = '" . $memCell . "'";
 
 			$data = $this->db->selectRecords($sql);
 			

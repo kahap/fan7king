@@ -59,6 +59,7 @@
 <!--	<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<link rel="icon" href="assets/data/page_icon.png">
     <script type='text/javascript' src='portal/assets/lib/jquery/jquery-1.11.2.min.js'></script>
+    <script type='text/javascript' src='portal/assets/js/theme-script.js'></script>
 
 
     <!--    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />-->

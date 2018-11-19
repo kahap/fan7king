@@ -1,14 +1,12 @@
 
     <main role="main">
         <h1 class="d-none"><span>Nowait</span></h1>
-       <!--  <section id="carousel" class="bg-white">
+        <section id="carousel" class="bg-white">
             <div class="container">
                 <div class="slick-carorsel">
                     <?php
                     $ad = new Advertise();
                     $adData = $ad->getAllOrderBy(0,false);
-                    $rightBannerData = $ad->getAllOrderBy(1,1);
-
                     foreach($adData as $key => $value){
                         ?>
                         <div class="carousel-item">
@@ -21,8 +19,8 @@
                     ?>
                 </div>
             </div>
-        </section> -->
-         <section id="carousel" class="bg-white">
+        </section>
+         <!-- <section id="carousel" class="bg-white">
             <div class="container">
                 <div class="slick-carorsel">
                     <div class="carousel-item">
@@ -42,7 +40,8 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+
         <section id="nowait-cate" class="bg-white">
             <div class="container">
                 <?php
