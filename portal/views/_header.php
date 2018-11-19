@@ -104,7 +104,16 @@
                             <input type="hidden" name="item" value="search" />
 
                             <div class="input-group input-serach">
-                                <input type="text" class="form-control" placeholder="熱門關鍵字：Mac , Apple " name="search" value=""/>
+                                <input type="text" class="form-control" placeholder="熱門關鍵字：<?php
+                                    $string = new Hotkeys();
+                                    $string_key = $string->getAllHK();
+                                    if($string_key[0]['hkEnable'] != '0'){
+                                        echo $string_key[0]['hkKey'];
+                                        $string_key2 = explode(',' , $string_key[0]['hkKey']) ;
+                                    }else{
+                                        echo 'Apple, Sony, Phone';
+                                    }
+                                ?>" name="search" value=""/>
                                 <div class="input-group-append">
                                     <span class="input-group-btn">
                                         <button class="btn btn-dark btn-searc" type="submit">
