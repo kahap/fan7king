@@ -58,8 +58,8 @@ if(isset($orDateFrom) && isset($orDateTo)){
 <!--                        <th>身分證字號</th>-->
                         <th>產品名稱 </th>
                         <th>規格 </th>
-                        <th>分期金 </th>
-                        <th>期數 </th>
+                       <!--  <th>分期金 </th>
+                        <th>期數 </th> -->
                         <th>實撥金額 </th>
 <!--                        <th>供應商</th>-->
                       </tr>
@@ -84,8 +84,8 @@ if(isset($orDateFrom) && isset($orDateTo)){
 <!--                        <td class=" ">--><?php //echo $memData[0]["memIdNum"]; ?><!--</td>-->
                         <td class=" "><?php echo $proData[0]["proName"]; ?></td>
                         <td class=" "><?php echo $value["orProSpec"]; ?></td>
-                        <td class=" "><?php echo number_format($value["orPeriodTotal"]/$value["orPeriodAmnt"]); ?></td>
-                        <td class=" "><?php echo $value["orPeriodAmnt"]; ?></td>
+                        <!-- <td class=" "><?php echo number_format($value["orPeriodTotal"]/$value["orPeriodAmnt"]); ?></td>
+                        <td class=" "><?php echo $value["orPeriodAmnt"]; ?></td> -->
                         <td class=" "><?php echo number_format($pmData[0]["pmPeriodAmnt2"]); ?></td>
 <!--                        <td class=" ">--><?php //echo $supData[0]["supName"]; ?><!--</td>-->
                       </tr>
