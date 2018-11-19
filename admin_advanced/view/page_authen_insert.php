@@ -858,10 +858,10 @@ table tr td,table tr th{
 									<input type="text" id="riskTotal" name="rcBankRiskFeeTotal" data-val="<?php echo $rcData[0]["rcBankRiskFeeTotal"]; ?>" value="<?php echo $rcData[0]["rcBankRiskFeeTotal"]; ?>">
 									<label class="">風管費(總額累加)</label>
 								</div>
-								<div class="input-field col s3" style="display:none">
+								<div class="input-field col s3" >
 <!-- 									<input type="text" name="rcBankTransferAmount" value="<?php echo $rcData[0]["rcBankTransferAmount"]; ?>"> -->
 <!-- sander -->
-									<input type="text" name="rcBankTransferAmount" value=
+									<input type="text" readonly name="rcBankTransferAmount" value=
 									    "<?php if ($rcData[0]["rcBankTransferAmount"] != 0){
 									    	       echo $rcData[0]["rcBankTransferAmount"]; 
 									    	    }else{
@@ -876,11 +876,11 @@ table tr td,table tr th{
 									>
 									<label class="">撥款金額</label>
 								</div>
-								<div class="input-field col s3" style="display:none">
-									<select name="tbNo">
+								<div class="input-field col s3" >
+									<select disabled name="tbNo">
 										<option <?php echo $rcData[0]["tbNo"] == "" ? "selected" : ""; ?> value="">請選擇</option>
 										<?php foreach($tbData as $key=>$value){?>
-										<option <?php echo $rcData[0]["tbNo"] != "" && $rcData[0]["tbNo"] == $value["tbNo"] ? "selected" : ""; ?> value="<?php echo $value["tbNo"]; ?>"><?php echo $value["tbName"]; ?></option>
+										<option <?php echo ($rcData[0]["tbNo"] != "" && $rcData[0]["tbNo"] == $value["tbNo"]) ? "selected" : ""; ?> value="<?php echo $value["tbNo"]; ?>"><?php echo $value["tbName"]; ?></option>
 										<?php } ?>
 									</select>
 									<label class="">撥款銀行</label>
