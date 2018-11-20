@@ -39,9 +39,9 @@
                                                 <div class="form-check text-left m-2">
                                                     <input class="form-check-input" type="checkbox" id="FieldsetCheck" name="check">
                                                     <label class="form-check-label sz-12" for="FieldsetCheck">我已詳細閱讀並同意
-                                                        <a href="?item=fmFreeRespons" class="text-orange">免責聲明</a>、
-                                                        <a href="?item=fmServiceRules" class="text-orange">服務條款</a>、
-                                                        <a href="?item=fmPrivacy" class="text-orange">隱私權聲明</a>等條款
+                                                        <a href="?item=fmFreeRespons" target="_blank" class="text-orange">免責聲明</a>、
+                                                        <a href="?item=fmServiceRules" target="_blank" class="text-orange">服務條款</a>、
+                                                        <a href="?item=fmPrivacy" target="_blank" class="text-orange">隱私權聲明</a>等條款
                                                     </label>
                                                 </div>
                                             </div>

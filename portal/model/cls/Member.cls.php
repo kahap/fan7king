@@ -654,10 +654,11 @@
 			foreach($array as $key =>$value){
 				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
+			$Cpwd = password_hash($NewmemPwd,PASSWORD_DEFAULT);
 			$sql = "update
 						`member`
 					set
-						`memPwd`='".$NewmemPwd."'
+						`memPwd`='".$Cpwd."'
 					where
 						`memNo`='".$memNo."'";
 

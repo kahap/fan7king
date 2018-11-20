@@ -1,3 +1,14 @@
+<!-- <style>div .col-2 .card .Iconcate-1{background-image:url('portal/images/category/3.png');}</style> -->
+
+<?php
+    echo "<style>";
+    $i=1;
+    foreach($cate_head as $key => $value){
+        echo "div .col-2 .card .Iconcate-".$value['catOrder']."{background-image:url('".$value['catImage']."');}";
+        $i++;
+    }
+    echo "</style>";
+?>
 
     <main role="main">
         <h1 class="d-none"><span>Nowait</span></h1>
@@ -59,7 +70,7 @@
                             if($value['catIfDisplay'] != "0"){
                                 echo '<div class="col-2">
                                         <div class="card">
-                                            <a class="cate-'.($key+1).'" href="?item=category&c='.$value['catOrder'].'" title="">
+                                            <a class="Iconcate-'.$value['catOrder'].'" href="?item=category&c='.$value['catOrder'].'" title="">
                                                 '.$value['catName'].'
                                             </a>
                                         </div>
