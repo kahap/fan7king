@@ -133,7 +133,7 @@ session_start();
                                         <div class="item col-lg-4 col-6">
                                             <div class="card">
                                                 <a href="?item=product&pro=<?php echo $value['proNo'];?>" title="<?php echo $value['proName'];?>">
-                                                    <img src="<?php echo $img[0];?>" class="img-fluid" alt="product">
+                                                    <img src="<?php echo $img[0];?>" class="img-fluid" alt="product"  style="width:190px;">
                                                     <div class="card-body">
                                                         <p class="card-title"><?php echo $value['proName'];?></p>
                                                         <p class="nowait-badge text-left">
