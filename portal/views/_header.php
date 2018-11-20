@@ -32,8 +32,20 @@
 	}
 
 
-	$category = new Category();
+    $category = new Category();
 	$cate_head = $category->getAllCatDisplayAndOrder();
+	
+	$category_1_Tmp = array();
+	$cat_number_Tmp = array();
+	$cat_key = array();
+	foreach ($cate_head as $key => $value) {
+		$cate = $cate_head[$key];
+		array_push($cat_key,$cate['catOrder']);
+		array_push($category_1_Tmp,$cate['catName']);
+		array_push($cat_number_Tmp,$cate['catNo']);    
+	}
+	$category_1=array_combine($cat_key,$category_1_Tmp);
+	$cat_number=array_combine($cat_key,$cat_number_Tmp);
 
 ?>
 

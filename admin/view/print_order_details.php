@@ -534,7 +534,7 @@ table tr td{
 				憑票於中華民國_____年_____月_____日無條件支付大方藝彩行銷顧問股份有限公司或指定人<br><br>
 				新台幣　<span style="color:red;"><?php echo $hundThou; ?></span>　拾　<span style="color:red;"><?php echo $tenThou; ?></span>　萬　<span style="color:red;"><?php echo $thou; ?></span>　仟　<span style="color:red;"><?php echo $hund; ?></span>　佰　<span style="color:red;"><?php echo $ten; ?></span>　拾　<span style="color:red;"><?php echo $sing; ?></span>　元整<br>
 				此本票免除作成拒絕證書及票據法第八十九條之通知義務，利息自到期日迄清償日止按年利率百分之二十計付，發票人授權持票人得填載到期日。<br>
-				付款地：台北市信義區基隆路一段163號2樓之2<br>
+				付款地：桃園市桃園區文中路493號4樓<br>
 				此據<br><br>
 				中華民國　<?php echo $orDateArr[0]-1911;?>　年　<?php echo $orDateArr[1];?>　月　<?php echo $orDateArr[2];?>　日
 				<div class="assure-signature">

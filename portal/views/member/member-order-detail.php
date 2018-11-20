@@ -37,7 +37,83 @@
     $orderContact = new API2("orderContact");
     $orderContact->setWhereArray(array("rcNo"=>$rcNo));
     $orderContact->getWithWhereAndJoinClause();
-    $ocData = $orderContact->getData();
+    $ocData = $orderContact->getData();    
+
+
+    $totalArr = array_reverse(str_split($orData[0]["orPeriodTotal"]));
+    foreach($totalArr as $key=>$value){
+    $chineseChar = "";
+    switch($value){
+    case 0:
+    $chineseChar = "零";
+    break;
+    case 1:
+    $chineseChar = "壹";
+    break;
+    case 2:
+    $chineseChar = "貳";
+    break;
+    case 3:
+    $chineseChar = "參";
+    break;
+    case 4:
+    $chineseChar = "肆";
+    break;
+    case 5:
+    $chineseChar = "伍";
+    break;
+    case 6:
+    $chineseChar = "陸";
+    break;
+    case 7:
+    $chineseChar = "柒";
+    break;
+    case 8:
+    $chineseChar = "捌";
+    break;
+    case 9:
+    $chineseChar = "玖";
+    break;
+    }
+    switch($key){
+    case 0:
+    $sing = $chineseChar;
+    break;
+    case 1:
+    $ten = $chineseChar;
+    break;
+    case 2:
+    $hund = $chineseChar;
+    break;
+    case 3:
+    $thou = $chineseChar;
+    break;
+    case 4:
+    $tenThou = $chineseChar;
+    break;
+    case 5:
+    $hundThou = $chineseChar;
+    break;
+    }
+    }
+    if(!isset($hundThou)){
+    $hundThou = "零";
+    }
+    if(!isset($tenThou)){
+    $tenThou = "零";
+    }
+    if(!isset($thou)){
+    $thou = "零";
+    }
+    if(!isset($hund)){
+    $hund = "零";
+    }
+    if(!isset($ten)){
+    $ten = "零";
+    }
+    if(!isset($sing)){
+    $sing = "零";
+    }
 ?>
 
 
@@ -473,7 +549,7 @@
                             </div>
                             <div class="section-order-title">請在下方兩處，以滑鼠或手寫功能簽上正楷簽名</div>
                             <p>本票： 憑票於中華民國 年 月 日無條件支付 大方藝彩行銷顧問股份有限公司或指定人
-                            <br>新台幣　 零  拾  柒  萬  肆  仟  陸  佰  陸  拾  肆   　元整
+                            <br><span style="color:#f00;"><?php echo $hundThou; ?></span>拾<span style="color:#f00;"><?php echo $tenThou; ?></span>萬<span style="color:#f00;"><?php echo $thou; ?></span>仟<span style="color:#f00;"><?php echo $hund; ?></span>佰<span style="color:#f00;"><?php echo $ten; ?></span>拾<span style="color:#f00;"><?php echo $sing; ?></span>元整
                             <br>此總額為您選擇之月付金X期數
                             <br>此本票免除作成拒絕證書及票據法第八十九條之通知義務，
                             <br>利息自到期日迄清償日止按年利率百分之二十計付，

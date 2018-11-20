@@ -123,7 +123,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
         <div class="">
           <input type="hidden" id="supNo" 
           <div class="page-title">
-            <div class="title_left">
+            <div class="title_left" style="text-align: center;">
             <?php if($_GET["action"]=="edit"){ ?>
               <h3>編輯上架資料</h3>
             <?php }else{ ?>
@@ -148,9 +148,9 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 <!--	                </a>-->
 	                <?php } ?>
                   <?php }else{ ?>
-                  	<a style="color:#FFF;" href="?page=product&type=productManage">
+                  	<!-- <a style="color:#FFF;" href="?page=product&type=productManage">
 	                  <button class="btn btn-success">回上架列表</button>
-	                </a>
+	                </a> -->
                   <?php }?>
                   </h2>
                   <div class="clearfix"></div>
@@ -242,7 +242,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
                     </div>
 
-                    <!--   <div class="form-group">
+                      <div class="form-group" style="display:none">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                               主題優惠(#號分開內容) :
                           </label>
@@ -251,7 +251,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <ul class="parsley-errors-list"><li id="themeOfferErr"></li></ul>
                           </div>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group" style="display:none">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                               商品加贈(,號分開內容) :
                           </label>
@@ -259,7 +259,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <input value='<?php if($_GET["action"]=="edit") echo $proData[0]["proGift"]; ?>' type="text" class="form-control" name="proGift" />
                               <ul class="parsley-errors-list"><li id="productGiftErr"></li></ul>
                           </div>
-                      </div> -->
+                      </div>
 
                       <div style="display:none" class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
@@ -300,8 +300,8 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                       </div>
 
 
-                      <!-- <?php if($_GET["action"]=="edit"){?>
-                          <div class="form-group">
+                      <?php if($_GET["action"]=="edit"){?>
+                          <div class="form-group" style="display:none">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                   實際購買人數 :
                               </label>
@@ -311,7 +311,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       <?php }?>
                       <?php if($_GET["action"]=="edit"){?>
-                          <div class="form-group">
+                          <div class="form-group" style="display:none">
                               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                                   產品點擊數:
                               </label>
@@ -319,7 +319,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                                   <input readonly value="<?php echo $origPmData[0]["pmClickNum"]; ?>" type="text" class="form-control" name="pmClickNum" />
                               </div>
                           </div>
-                      <?php }?> -->
+                      <?php }?> 
 
                       <div class="form-group">
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
@@ -339,8 +339,13 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       </div>
 
+<<<<<<< HEAD
                      
                     <!--   <div class="form-group">
+=======
+                      <div class="form-group" style="display: none;">
+                      <!-- <div class="form-group"> -->
+>>>>>>> b86da46059784ee8d2a3b03614e307e1714f089c
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                             產品分期 :
                           </label>

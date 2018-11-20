@@ -56,7 +56,7 @@ if($ppData != null){
     }
 }
 
-if($followDefault){
+if($followDefault || true){
     foreach($month as $k => $v){
         $priceProduct[$v['psMonthNum']] = ceil($v['psRatio']*$pm_detail[0]['pmPeriodAmnt']/$v['psMonthNum']);
     }
