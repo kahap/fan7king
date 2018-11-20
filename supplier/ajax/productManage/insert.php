@@ -170,14 +170,16 @@ if(empty(array_filter($errMsg))){
 			    $pp->update($dataInsert);
 		    }
 	    }else{
-		    foreach($ppPeriodAmountArr as $key=>$value){
-			    $dataInsert = array();
-			    $dataInsert["proNo"] = $proNo;
-			    $dataInsert["ppPeriodAmount"] = $value;
-			    $dataInsert["ppPercent"] = $ppPercentArr[$key];
-                $dataInsert["ppIntroText"] = '';
-			    $pp->insert($dataInsert);
-		    }
+			if(isset($ppPeriodAmountArr)){
+				foreach($ppPeriodAmountArr as $key=>$value){
+					$dataInsert = array();
+					$dataInsert["proNo"] = $proNo;
+					$dataInsert["ppPeriodAmount"] = $value;
+					$dataInsert["ppPercent"] = $ppPercentArr[$key];
+					$dataInsert["ppIntroText"] = '';
+					$pp->insert($dataInsert);
+				}
+			}
 	    }	
 
 		unset($_POST["ppPeriodAmount"]);

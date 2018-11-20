@@ -21,10 +21,16 @@ function get_client_ip() {
 
 function AgeOver20($memBday){
 	$birthDate = explode('-',$memBday);
-	$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]+1911))) > date("md")
-												? ((date("Y") - ($birthDate[0]+1911)) - 1)
-												: (date("Y") - ($birthDate[0]+1911)));
+	if(is_numeric($birthDate[1])){
+		$age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]+1911))) > date("md")
+																				? ((date("Y") - ($birthDate[0]+1911)) - 1)
+																				: (date("Y") - ($birthDate[0]+1911)));
+	} else{
+		$age = 50;
+	};
+	
 	return $age;
+
 }
 
 $rcPosition = array("職軍");

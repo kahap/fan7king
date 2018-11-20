@@ -18,25 +18,14 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
 // define ('SYSTEM_DBUSER','root');
 // define ('SYSTEM_DBPWD','1234');
 
-if($AppMode !="Dev")
-{
-    if($AppMode == "Prod")
-    {
+    if($AppMode == "Dev"){
+        define ('DOMAIN','127.0.0.1/fan7king_dev2');
+    } else if ($AppMode == "Test"){
+        define ('DOMAIN','test.nowait.shop');
+    } else if ($AppMode == "Prod"){
         define ('DOMAIN','nowait.shop');
-    }
-    else
-    {
-        // define ('DOMAIN','test.nowait.shop');
-        define ('DOMAIN','test.perfecthome.com.tw');
-    }
-    define('FbADVersion','v2.6');
-}
-else
-{
-//    define ('DOMAIN','develop.perfecthome.com.tw');
-    define ('DOMAIN','127.0.0.1/fan7king_dev2');
-    define('FbADVersion','v2.9');
-}
+    };
+
     $allowed_hosts = array("localhost","127.0.0.1","nowait.kahap.com","nowait.shop","test.nowait.shop","inner.nowait.shop","test.nowait.shop");
     define("ALLOWED_HOSTS",json_encode($allowed_hosts));
 // define ('IMG_ROOT','../admin/');

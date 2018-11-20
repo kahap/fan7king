@@ -15,30 +15,21 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
 // define ('SYSTEM_DBNAME','happyfan_system');
 // define ('SYSTEM_DBUSER','nowait-web');
 // define ('SYSTEM_DBPWD','');
-if($AppMode !="Dev")
-{
-    if($AppMode == "Prod")
-    {
-        define ('DOMAIN','nowait.shop');
-        define('AutoloadAPPId','1557221921249508');
-        define('AutoloadAPPSecret','aaf94a1bd83321900f71695a99f458b5');
-    }
-    else
-    {
-        define ('DOMAIN','test.nowait.shop');
-        define('AutoloadAPPId','358306487860510');
-        define('AutoloadAPPSecret','bbff3360de628c59397f27261daceb02');
-    }
-    define('FbADVersion','v2.6');
-}
-else
-{
-//    define ('DOMAIN','127.0.0.1/happyfan7');
+
+if($AppMode == "Dev"){
     define ('DOMAIN',$_SERVER['HTTP_HOST']."/fan7king_dev2");
     define('AutoloadAPPId','1947763301978389');
     define('AutoloadAPPSecret','d6f451301cdbc78083712d574d55c201');
-    define('FbADVersion','v3.2');
-}
+  } else if ($AppMode == "Test"){
+    define ('DOMAIN','test.nowait.shop');
+    define('AutoloadAPPId','1011631165676168');
+    define('AutoloadAPPSecret','7002699819af19678edf92f3790def4b');
+  } else if ($AppMode == "Prod"){
+    define ('DOMAIN','nowait.shop');
+    define('AutoloadAPPId','1845375422218419');
+    define('AutoloadAPPSecret','1184f8ce3bd0b4cb440f1dd066f3ab26');
+  };
+  define('FbADVersion','v3.2');
 
 define('MerchantID','1292961');
 define('HashKey','30GyZwBZjs2bgqDt');

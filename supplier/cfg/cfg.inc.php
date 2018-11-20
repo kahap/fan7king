@@ -17,23 +17,11 @@ define ('SYSTEM_DBPWD','b7Jl7qzubC635rkg');
 // define ('SYSTEM_DBUSER','nowait-web');
 // define ('SYSTEM_DBPWD','vJv9-dv=_p2ssfivlw[pf');
 
-if($AppMode !="Dev")
-{
-    if($AppMode == "Prod")
-    {
-        define ('DOMAIN','nowait.shop');
-    }
-    else
-    {
-//        define ('DOMAIN','test.nowait.shop');
-        define ('DOMAIN','test.perfecthome.com.tw');
-    }
-    define('FbADVersion','v2.6');
-}
-else
-{
-//    define ('DOMAIN','develop.perfecthome.com.tw');
+if($AppMode == "Dev"){
     define ('DOMAIN','127.0.0.1/fan7king_dev2');
-    define('FbADVersion','v2.9');
-}
+  } else if ($AppMode == "Test"){
+    define ('DOMAIN','test.nowait.shop');
+  } else if ($AppMode == "Prod"){
+    define ('DOMAIN','nowait.shop');
+  };
 ?>
