@@ -123,11 +123,11 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
         <div class="">
           <input type="hidden" id="supNo" 
           <div class="page-title">
-            <div class="title_left" style="text-align: center;">
+            <div class="title_left">
             <?php if($_GET["action"]=="edit"){ ?>
               <h3>編輯上架資料</h3>
             <?php }else{ ?>
-              <h3>新增產品上架</h3>
+              <h3>新增產品上架哈</h3>
             <?php } ?>
             </div>
           </div>
@@ -148,11 +148,10 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
 <!--	                </a>-->
 	                <?php } ?>
                   <?php }else{ ?>
-                  	<a style="color:#FFF;float: right;" href="?page=product&type=productManage">
+                  	<a style="color:#FFF;" href="?page=product&type=productManage">
 	                  <button class="btn btn-success">回上架列表</button>
-	                </a> 
+	                </a>
                   <?php }?>
-
                   </h2>
                   <div class="clearfix"></div>
                 </div>
@@ -340,12 +339,8 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </div>
                       </div>
 
-
-               
-              
-<!-- 
                       <div class="form-group" style="display: none;">
-                     
+                      <!-- <div class="form-group"> -->
                           <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                             產品分期 :
                           </label>
@@ -358,7 +353,7 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <input type="hidden" name="ppPeriodAmount[]" value="21">21期：<input data-period="21" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp21Percent; ?>" readonly=true>每期 : <input data-pmoney="21" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                               <input type="hidden" name="ppPeriodAmount[]" value="24">24期：<input data-period="24" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp24Percent; ?>" readonly=true>每期 : <input data-pmoney="24" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                           </div>
-                      </div>  -->
+                      </div> -->
 
                       <div class="form-group">
                           <label style="text-align:left;" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
@@ -366,7 +361,6 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                           </label><br>
                           <div class="col-md-12 col-sm-12 col-xs-12">
                               <div id="alerts"></div>
-
                               <?php /* ?>
                               <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
                                   <div class="btn-group">
@@ -520,7 +514,6 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                          <button id="confirm-form" type="submit" class="btn btn-primary">
                          	<?php if($_GET["action"]=="edit") echo "確認修改"; else echo "確認新增" ?>
                          </button>
-
                       </div>
                     </div>
                   </form>
@@ -529,7 +522,6 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
             </div>
           </div>
         </div>
-
         <!-- /page content -->
 
           <!-- 相簿區 -->
