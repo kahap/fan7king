@@ -424,51 +424,74 @@
 		
 		//依據最新取得該商品並且group
 		public function getAllNew($a=99999999){
-			$sql = "select
-						*
-					from
-						`product_manage`
-					inner join
-						`product`
-					on
-						`product`.`proNo` = `product_manage`.`proNo`
-					where
-						`product_manage`.`pmNewest`= '1' &&
-						`product_manage`.`pmBySup`='0' && 
-						`product_manage`.`pmStatus`!= '0' /*&& 
-						`product_manage`.`pmMainSup`= '1' */
-					group by
-						`product`.`proNo`
-					order by
-						`product_manage`.`pmUpDate` desc
-					limit 0,".$a;
+			// $sql = "select
+			// 			*
+			// 		from
+			// 			`product_manage`
+			// 		inner join
+			// 			`product`
+			// 		on
+			// 			`product`.`proNo` = `product_manage`.`proNo`
+			// 		where
+			// 			`product_manage`.`pmNewest`= '1' &&
+			// 			`product_manage`.`pmBySup`='0' && 
+			// 			`product_manage`.`pmStatus`!= '0' /*&& 
+			// 			`product_manage`.`pmMainSup`= '1' */
+			// 		group by
+			// 			`product`.`proNo`
+			// 		order by
+			// 			`product_manage`.`pmUpDate` desc
+			// 		limit 0,".$a;
+			$sql = "SELECT
+					p.proImage, p.proNo,
+					p.proName, st.pmPeriodAmnt
+					FROM (
+							SELECT pm.proNo , pm.pmPeriodAmnt
+							FROM product_manage as pm
+							WHERE pm.pmNewest = 1 AND pm.pmStatus = 1
+							GROUP BY pm.proNo
+							ORDER BY pm.pmUpDate desc
+							limit 0,".$a."
+					) as st
+					INNER JOIN product as p
+					ON st.proNo = p.proNo ;";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}
 		
 		//依據精選取得該商品並且group
 		public function getAllSpecial($a=99999999){
-			$sql = "select
-						*
-					from
-						`product_manage`
-					inner join
-						`supplier`
-					on
-						`supplier`.`supNo` = `product_manage`.`supNo`
-					inner join
-						`product`
-					on
-						`product`.`proNo` = `product_manage`.`proNo`
-					where
-						`product_manage`.`pmSpecial`= '1' && 
-						`product_manage`.`pmBySup`='0' && 
-						`product_manage`.`pmStatus`!= '0' /*&& 
-						`product_manage`.`pmMainSup`= '1' */
-					group by
-						`product`.`proNo`
-					order by
-						`product_manage`.`pmSpecialOrder` asc
+			// $sql = "select
+			// 			*
+			// 		from
+			// 			`product_manage`
+			// 		inner join
+			// 			`supplier`
+			// 		on
+			// 			`supplier`.`supNo` = `product_manage`.`supNo`
+			// 		inner join
+			// 			`product`
+			// 		on
+			// 			`product`.`proNo` = `product_manage`.`proNo`
+			// 		where
+			// 			`product_manage`.`pmSpecial`= '1' && 
+			// 			`product_manage`.`pmBySup`='0' && 
+			// 			`product_manage`.`pmStatus`!= '0' /*&& 
+			// 			`product_manage`.`pmMainSup`= '1' */
+			// 		group by
+			// 			`product`.`proNo`
+			// 		order by
+			// 			`product_manage`.`pmSpecialOrder` asc
+			// 		limit 0,".$a;
+			$sql = "SELECT
+					p.proImage, p.proNo,
+					p.proName, pm.pmPeriodAmnt
+					FROM product_manage as pm
+					INNER JOIN product as p
+					ON pm.proNo = p.proNo
+					WHERE pm.pmSpecial= 1 AND pm.pmStatus= 1
+					GROUP BY p.proNo
+					ORDER BY pm.pmSpecialOrder asc
 					limit 0,".$a;
 			$data = $this->db->selectRecords($sql);
 			return $data;
@@ -476,28 +499,41 @@
 		
 		//依據限時取得該商品並且group
 		public function getAllHot($a=99999999){
-			$sql = "select
-						*
-					from
-						`product_manage`
-					inner join
-						`supplier`
-					on
-						`supplier`.`supNo` = `product_manage`.`supNo`
-					inner join
-						`product`
-					on
-						`product`.`proNo` = `product_manage`.`proNo`
-					where
-						`product_manage`.`pmHot`= '1' && 
-						`product_manage`.`pmBySup`='0' && 
-						`product_manage`.`pmStatus`!= '0' /*&& 
-						`product_manage`.`pmMainSup`= '1' */
-					group by
-						`product`.`proNo`
-					order by
-						`product_manage`.`pmHotOrder` asc
-					limit 0,".$a;
+			// $sql = "select
+			// 			*
+			// 		from
+			// 			`product_manage`
+			// 		inner join
+			// 			`supplier`
+			// 		on
+			// 			`supplier`.`supNo` = `product_manage`.`supNo`
+			// 		inner join
+			// 			`product`
+			// 		on
+			// 			`product`.`proNo` = `product_manage`.`proNo`
+			// 		where
+			// 			`product_manage`.`pmHot`= '1' && 
+			// 			`product_manage`.`pmBySup`='0' && 
+			// 			`product_manage`.`pmStatus`!= '0' /*&& 
+			// 			`product_manage`.`pmMainSup`= '1' */
+			// 		group by
+			// 			`product`.`proNo`
+			// 		order by
+			// 			`product_manage`.`pmHotOrder` asc
+			// 		limit 0,".$a;
+			$sql = "SELECT
+					p.proImage, p.proNo,
+					p.proName, st.pmPeriodAmnt
+			FROM (
+					SELECT pm.proNo , pm.pmPeriodAmnt
+					FROM product_manage as pm
+					WHERE pm.pmHot= 1 AND pm.pmStatus= 1
+					GROUP BY pm.proNo
+					ORDER BY pm.pmHotOrder asc
+					limit 0,".$a."
+			) as st
+					INNER JOIN product as p
+					ON st.proNo = p.proNo ;";
 			$data = $this->db->selectRecords($sql);
 			return $data;
 		}

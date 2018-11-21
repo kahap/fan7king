@@ -22,8 +22,11 @@ $file = "撥款明細表_" . date('Y-m-d_His') . ".xls";
 $row = '';
 $count = 0;
 $transferTotal = 0;
-foreach($_POST["rcNo"] as $key => $rcNo){
-	$rcData = $rc->getOne($rcNo);
+foreach($_POST["rcCaseNo"] as  $rcCaseNo){
+	$rc->setWhereArray(array("rcCaseNo"=>$rcCaseNo));
+	$rcData = $rc->getWithConditions();
+
+	// $rcData = $rc->getOne($rcNo);
 	$tbData = $tb->getOne($rcData[0]["tbNo"]);
 	$memData = $mem->getOne($rcData[0]["memNo"]);
 	$supData = $sup->getOne($rcData[0]["supNo"]);

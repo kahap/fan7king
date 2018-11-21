@@ -32,8 +32,20 @@
 	}
 
 
-	$category = new Category();
+    $category = new Category();
 	$cate_head = $category->getAllCatDisplayAndOrder();
+	
+	$category_1_Tmp = array();
+	$cat_number_Tmp = array();
+	$cat_key = array();
+	foreach ($cate_head as $key => $value) {
+		$cate = $cate_head[$key];
+		array_push($cat_key,$cate['catOrder']);
+		array_push($category_1_Tmp,$cate['catName']);
+		array_push($cat_number_Tmp,$cate['catNo']);    
+	}
+	$category_1=array_combine($cat_key,$category_1_Tmp);
+	$cat_number=array_combine($cat_key,$cat_number_Tmp);
 
 ?>
 
@@ -59,6 +71,7 @@
 <!--	<meta name="viewport" content="width=device-width, initial-scale=1">-->
 	<link rel="icon" href="assets/data/page_icon.png">
     <script type='text/javascript' src='portal/assets/lib/jquery/jquery-1.11.2.min.js'></script>
+    <script type='text/javascript' src='portal/assets/js/theme-script.js'></script>
 
 
     <!--    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap/css/bootstrap.min.css" />-->

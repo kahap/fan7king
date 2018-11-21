@@ -15,22 +15,13 @@ if(isset($_POST["orNo"]) && !empty($_POST["orNo"])){
 
 	//必填欄位
 	if($memData[0]["memClass"] == 0){
-		$mustFill = array(
-			"orIdIssueYear","orIdIssueMonth","orIdIssueDay","orIdIssuePlace","orIdIssueType",
-			"orAppAuthenIdImgTop","orAppAuthenIdImgBot","orAppAuthenStudentIdImgTop","orAppAuthenStudentIdImgBot","orAppAuthenProvement","orAppAuthenPromiseLetter"
-		);
+		$mustFill = array("orAppAuthenStudentIdImgTop","orAppAuthenStudentIdImgBot","orAppAuthenProvement","orAppAuthenPromiseLetter");
 	}else{
-		$mustFill = array(
-			"orIdIssueYear","orIdIssueMonth","orIdIssueDay","orIdIssuePlace","orIdIssueType",
-			"orAppAuthenIdImgTop","orAppAuthenIdImgBot","orAppAuthenProvement","orAppAuthenPromiseLetter"
-		);
+		$mustFill = array("orAppAuthenProvement","orAppAuthenPromiseLetter");
 	}
 	//圖片的欄位
-	$orInputColumns = array(
-			"orIdIssueYear","orIdIssueMonth","orIdIssueDay","orIdIssuePlace","orIdIssueType"
-	);
 	$imgType = array(
-			"orAppAuthenIdImgTop","orAppAuthenIdImgBot","orAppAuthenStudentIdImgTop","orAppAuthenStudentIdImgBot",
+			"orAppAuthenStudentIdImgTop","orAppAuthenStudentIdImgBot",
 			"orAppAuthenProvement","orAppAuthenPromiseLetter","orAppAuthenExtraInfo"
 	);
 
@@ -71,7 +62,7 @@ if(isset($_POST["orNo"]) && !empty($_POST["orNo"])){
 		}
 		//去除不必要的資料
 		foreach($_POST as $key=>$value){
-			if(!in_array($key,$imgType) && !in_array($key,$orInputColumns)){
+			if(!in_array($key,$imgType) ){
 				unset($_POST[$key]);
 			}
 		}

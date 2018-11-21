@@ -39,7 +39,7 @@ $proData = $pro->getOneProByNo($pmData[0]["proNo"]);
 
 //供應商
 $supData = $sup->getOneSupplierByNo($orData[0]["supNo"]);
-
+$supPeriod = $supData[0]["supPeriod"];		
 //會員
 $memData = $mem->getOneMemberByNo($orData[0]["memNo"]);
 $mem->changeToReadable($memData[0]);
@@ -358,10 +358,10 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
                           "<?php if ($orData[0]["orSupPrice"] != 0){
                                      echo $orData[0]["orSupPrice"];
                                  }else{
-                                     echo floor($orData[0]["pmPeriodAmnt"] *0.95);
+                                     echo floor($orData[0]["pmPeriodAmnt"] *(1-$supPeriod));
                                  }  
-                            ?>"
-                      > <input class="form-control" type="text" name="orSupPrice" value="<?php echo $orData[0]["orSupPrice"]; ?>">                     
+                            ?>"> 
+                      <!-- <input class="form-control" type="text" name="orSupPrice" value="<?php echo $orData[0]["orSupPrice"]; ?>">                      -->
                       </h5>
                     </div>
                     <div style="margin:30px;"></div>
@@ -458,7 +458,7 @@ $memberClass_array = array('0'=>'學生','1'=>'上班族','2'=>'家管','3'=>'�
                         <?php if ($orData[0]["orSupPrice"] != 0){
                                      echo $orData[0]["orSupPrice"];
                                  }else{
-                                     echo floor($orData[0]["pmPeriodAmnt"] *0.95);
+                                     echo floor($orData[0]["pmPeriodAmnt"] *(1-$supPeriod));
                                  }  
                         ?> 
                       </h5>
