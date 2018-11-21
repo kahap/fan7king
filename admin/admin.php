@@ -97,6 +97,12 @@
 							//關於我們
 							case "fmAboutUs":
 								include('view/page_fm.php');
+                                break;
+
+                            //聯絡我們
+                            case "co_company":
+                                include('view/page_fm.php');
+                                break;
 								
 							//分期付款約定事項
 							case "fmInstallPromise":

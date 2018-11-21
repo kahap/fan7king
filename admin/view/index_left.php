@@ -394,6 +394,7 @@
 					<li><a href="?page=edit_front&type=fmPeriodDeclare">分期付款約定書</a></li>
 					<li><a href="?page=edit_front&type=fmInstallPromise">分期付款約定事項</a></li>
 					<li><a href="?page=edit_front&type=fmAboutUs">關於我們</a></li>
+                      <li><a href="?page=edit_front&type=co_company">聯絡我們</a></li>
                   </ul>
                 </li>
                 <?php } ?>

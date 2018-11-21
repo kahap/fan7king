@@ -73,6 +73,10 @@ $which = 1;
               		echo "關於我們";
               		$which = 2;
               		break;
+                  case "co_company":
+                      echo "聯絡我們";
+                      $which = 2;
+                      break;
               }?>
               	編輯頁
               </h3>

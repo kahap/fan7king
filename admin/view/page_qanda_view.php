@@ -11,6 +11,27 @@ if($qaData[0]["qaIfShow"] == 1){
 	$ifShow = "否";
 }
 
+switch ($qaData[0]["qaType"]){
+    case '1':
+        $qaData[0]["qaType"]="會員註冊";
+        break;
+    case '2':
+        $qaData[0]["qaType"]="訂購申請";
+        break;
+    case '3':
+        $qaData[0]["qaType"]="配送物流";
+        break;
+    case '4':
+        $qaData[0]["qaType"]="商品退換";
+        break;
+    case '5':
+        $qaData[0]["qaType"]="付款方式";
+        break;
+    case '6':
+        $qaData[0]["qaType"]="其他相關";
+        break;
+}
+
 ?>
 <!-- page content -->
       <div class="right_col" role="main" style="min-height: 949px;">
@@ -32,6 +53,12 @@ if($qaData[0]["qaIfShow"] == 1){
                 <div class="x_content">
                   <br>
                   <div class="form-horizontal form-label-left">
+                      <div class="form-group">
+                          <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                              種類 :
+                          </label>
+                          <h5 style="color:#999;"><?php echo $qaData[0]["qaType"]; ?></h5>
+                      </div>
                     <div class="form-group">
                       <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
                       	問題 : 

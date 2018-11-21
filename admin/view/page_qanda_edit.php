@@ -43,6 +43,24 @@ if($_GET["action"] == "edit"){
 					<?php if($_GET["action"]=="edit"){ ?>
 					  <input type="hidden" name="qaNo" value="<?php echo $qaNo; ?>">
 					<?php } ?>
+                    <div class="form-group">
+                        <label style="font-size:20px;font-weight:initial;" class="control-label col-xs-12" for="first-name">
+                            種類 :
+                        </label>
+                        <div class="col-md-12 col-sm-6 col-xs-12">
+                            <select required="required" type="text" class="form-control" name="qaType" >
+                                <option value="1" <?php if($qaData[0]["qaType"]=="1") echo 'selected'; ?>>會員註冊</option>
+                                <option value="2" <?php if($qaData[0]["qaType"]=="2") echo 'selected'; ?>>訂購申請</option>
+                                <option value="3" <?php if($qaData[0]["qaType"]=="3") echo 'selected'; ?>>配送物流</option>
+                                <option value="4" <?php if($qaData[0]["qaType"]=="4") echo 'selected'; ?>>商品退換</option>
+                                <option value="5" <?php if($qaData[0]["qaType"]=="5") echo 'selected'; ?>>付款方式</option>
+                                <option value="6" <?php if($qaData[0]["qaType"]=="6") echo 'selected'; ?>>其他相關</option>
+<!--                                <option value="7">預留1</option>-->
+<!--                                <option value="8">預留2</option>-->
+                            </select>
+                            <ul class="parsley-errors-list"><li id="qaQuesErr"></li></ul>
+                        </div>
+                    </div>
 				  <div class="form-group">
                       <label style="font-size:20px;font-weight:initial;" class="control-label col-xs-12" for="first-name">
                       	問題 : 

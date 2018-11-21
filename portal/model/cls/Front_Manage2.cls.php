@@ -10,7 +10,7 @@
 		
 		
 		//取得所有分類
-		public function getAllFM($column){
+		public function getAllFM($column='*'){
 			$sql = "select
 						".$column."
 					from

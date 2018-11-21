@@ -41,11 +41,12 @@
 			}
 			date_default_timezone_set('Asia/Taipei');
 			$date = date('Y-m-d h:i:s', time());
-			$sql = "insert into `que_and_ans`(`qaQues`,`qaOrder`,`qaDate`, `qaAnsw` )
+            $sql = "insert into `que_and_ans`(`qaQues`,`qaOrder`,`qaDate`, `qaAnsw`, `qaType` )
 					values('".$qaQues."',
 							'".$qaOrder."',
 							'".$date."',
-							'".$qaAnsw."')";
+							'".$qaAnsw."',
+							'".$qaType."')";
 			$insert = $this->db->insertRecords($sql);
 			return $insert;
 		}
@@ -74,7 +75,8 @@
 						`qaQues`='".$qaQues."',
 						`qaOrder`='".$qaOrder."',
 						`qaAnsw`='".$qaAnsw."',
-						`qaIfShow`='".$qaIfShow."'
+						`qaIfShow`='".$qaIfShow."',
+						`qaType`='".$qaType."'
 					where
 						`qaNo`=".$qaNo;
 			

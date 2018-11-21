@@ -27,6 +27,7 @@ $allQAData = $qa->getAllQA();
                     <thead>
                       <tr class="headings">
                         <th>編號 </th>
+                          <th>種類 </th>
                         <th>問題 </th>
                         <th>成立時間 </th>
                         <th>排序 </th>
@@ -38,9 +39,31 @@ $allQAData = $qa->getAllQA();
                     <?php 
 	                    if($allQAData != null){
 	                    	foreach($allQAData as $key=>$value){
+
+                                switch ($value["qaType"]){
+                                    case '1':
+                                        $value["qaType"]="會員註冊";
+                                        break;
+                                    case '2':
+                                        $value["qaType"]="訂購申請";
+                                        break;
+                                    case '3':
+                                        $value["qaType"]="配送物流";
+                                        break;
+                                    case '4':
+                                        $value["qaType"]="商品退換";
+                                        break;
+                                    case '5':
+                                        $value["qaType"]="付款方式";
+                                        break;
+                                    case '6':
+                                        $value["qaType"]="其他相關";
+                                        break;
+                                }
                     ?>
                       <tr class="pointer">
                         <td class=" "><?php echo $value["qaNo"]; ?></td>
+                          <td class=" "><?php echo $value["qaType"]; ?></td>
                         <td class=" "><?php echo $value["qaQues"]; ?></td>
                         <td class=" "><?php echo $value["qaDate"]; ?></td>
                         <td class=" "><?php echo $value["qaOrder"]; ?></td>
