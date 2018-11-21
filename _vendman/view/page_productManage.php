@@ -12,7 +12,7 @@ $pro = new Product();
       <div class="right_col" role="main">
         <div >
           <div class="page-title" >
-            <div class="title_left">
+            <div class="title_left" style="text-align: right;">
               <h3 >產品列表</h3>
               <a style="text-decoration:none;" href="?page=product&type=productManage&action=insert">
                 <button class="btn btn-success" style="margin-left: 900px;">新增產品</button>

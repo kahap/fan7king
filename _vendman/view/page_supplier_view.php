@@ -13,6 +13,18 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
                 <div class="title_left">
                     <h3>銷售員資料</h3>
                 </div>
+                <div class="form-group not-print" style="margin-left: 500px">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <a style="color:#FFF;" href="?page=supplier">
+                                            <button class="btn btn-success">回銷售人員列表</button>
+                                        </a>
+                                    <?php if (isset($_SERVER['HTTP_REFERER'])) {?>
+                                        <a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
+                                        <button class="btn btn-success">回上頁</button>
+                                        </a>
+                                    <?php } ?>
+                                    </div>
+                                </div>
             </div>
             <div class="clearfix"></div>
             <div class="row">
@@ -63,20 +75,21 @@ $supData = $sup->getOneSupplier_salesByssNo($supNo);
                                         <button class="btn btn-success">編輯</button>
                                     </a>
                                     <button id="content-remove" class="btn btn-danger">刪除</button>
+
                                 </div>
-                                <div style="margin:30px;"></div>
-                                <div class="form-group not-print">
+                               
+                                <!-- <div class="form-group not-print">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                         <a style="color:#FFF;" href="?page=supplier">
-                                            <button class="btn btn-primary">回銷售人員列表</button>
+                                            <button class="btn btn-success">回銷售人員列表</button>
                                         </a>
                                     <?php if (isset($_SERVER['HTTP_REFERER'])) {?>
                                         <a style="color:#FFF;" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">
-                                        <button class="btn btn-primary">回上頁</button>
+                                        <button class="btn btn-success">回上頁</button>
                                         </a>
                                     <?php } ?>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

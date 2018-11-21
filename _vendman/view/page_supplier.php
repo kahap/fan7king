@@ -8,10 +8,10 @@ $allSupData = $sup->getOneSupplier_salesByNo($_SESSION['supplieruserdata']['supN
     <div class="right_col" role="main">
         <div class="">
             <div class="page-title">
-                <div class="title_left">
+                <div class="title_left" style="margin-left: 400px">
                     <h3>銷售人員列表</h3>
                     <a style="text-decoration:none;" href="?page=supplier&action=insert">
-                        <button class="btn btn-success">新增銷售員</button>
+                        <button class="btn btn-success" style="margin-left: 450px;">新增銷售員</button>
                     </a>
                 </div>
             </div>
