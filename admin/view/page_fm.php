@@ -192,10 +192,12 @@ $which = 1;
     	    <?php if($which == 1){ ?>
     	    $.post("ajax/frontManage/edit.php",data,function(result){
     			alert(result);
+    			return false;
     		});
     		<?php }else{ ?>
     		$.post("ajax/frontManage/edit2.php",data,function(result){
     			alert(result);
+                return false;
     		});
     		<?php } ?>
         });

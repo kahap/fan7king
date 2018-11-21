@@ -31,7 +31,7 @@
                             <dd>
                                 <ul class="list-unstyled">
                                     <li><a href="?item=faq" title="常見問題">常見問題</a></li>
-                                    <li><a href="?item=co_company" title="聯絡客服">聯絡客服</a></li>
+                                    <li><a href="?item=co_company" title="聯絡客服">聯絡我們</a></li>
                                     <!-- <li><a href="?item=co_company" title="合作提案">合作提案</a></li> -->
                                 </ul>
                             </dd>

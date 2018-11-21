@@ -5,7 +5,7 @@ $Front_Manage2 = new Front_Manage2();
 //if(array_key_exists($itemVal,$page_other )){
 //    $page_data = $Front_Manage->getAllFM($itemVal);
 //}else if(array_key_exists($itemVal,$page_other2 )){
-    $page_data2 = $Front_Manage2->getAllFM('fmAboutUs,fmAboutUs2');
+    $page_data2 = $Front_Manage2->getAllFM('fmAboutUs');
 //}
 
 ?>
