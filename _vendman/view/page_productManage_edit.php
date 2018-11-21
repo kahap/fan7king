@@ -353,7 +353,11 @@ if($_GET["action"] == "insert" && isset($_GET["procaseno"])){
                               <input type="hidden" name="ppPeriodAmount[]" value="21">21期：<input data-period="21" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp21Percent; ?>" readonly=true>每期 : <input data-pmoney="21" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                               <input type="hidden" name="ppPeriodAmount[]" value="24">24期：<input data-period="24" type="text" size="7" name="ppPercent1[]" value="<?php if($_GET["action"]=="edit" && $ppData != null) echo $pp24Percent; ?>" readonly=true>每期 : <input data-pmoney="24" type="text" size="7" name="ppMoney[]" value="" readonly=true><br>
                           </div>
+<<<<<<< HEAD
                       </div> 
+=======
+                      </div> -->
+>>>>>>> a6d629b82537d9a027d76111da099c39cebc26ee
 
                       <div class="form-group">
                           <label style="text-align:left;" class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
