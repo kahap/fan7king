@@ -20,7 +20,11 @@ if(isset($no)){
 		$pro = new API("product");
 		$pm = new API("product_manage");
 		$orderContact = new API("orderContact");
-		
+
+		$sup = new API("supplier");
+		$allSupData = $sup->getOne($rcData[0]['supNo']);		
+		$supPeriod = $allSupData[0]["supPeriod"];		
+	
 		$memData = $mem->getOne($rcData[0]["memNo"]);
 		$tbData = $tb->getAll();
 		
@@ -858,15 +862,15 @@ table tr td,table tr th{
 									<input type="text" id="riskTotal" name="rcBankRiskFeeTotal" data-val="<?php echo $rcData[0]["rcBankRiskFeeTotal"]; ?>" value="<?php echo $rcData[0]["rcBankRiskFeeTotal"]; ?>">
 									<label class="">風管費(總額累加)</label>
 								</div>
-								<div class="input-field col s3" style="display:none">
+								<div class="input-field col s3" >
 <!-- 									<input type="text" name="rcBankTransferAmount" value="<?php echo $rcData[0]["rcBankTransferAmount"]; ?>"> -->
 <!-- sander -->
-									<input type="text" name="rcBankTransferAmount" value=
+									<input type="text" readonly name="rcBankTransferAmount" value=
 									    "<?php if ($rcData[0]["rcBankTransferAmount"] != 0){
 									    	       echo $rcData[0]["rcBankTransferAmount"]; 
 									    	    }else{
 									    	    	if($orData[0]["orSupPrice"] == 0){
-									    	    		echo floor($orData[0]["pmPeriodAmnt"] * 0.95);
+									    	    		echo floor($orData[0]["pmPeriodAmnt"] * (1-$supPeriod));
 									    	    	}else{
 									    	    		echo floor($orData[0]["orSupPrice"]);
 									    	    	}
@@ -876,11 +880,11 @@ table tr td,table tr th{
 									>
 									<label class="">撥款金額</label>
 								</div>
-								<div class="input-field col s3" style="display:none">
-									<select name="tbNo">
+								<div class="input-field col s3" style="display:none" >
+									<select disabled name="tbNo">
 										<option <?php echo $rcData[0]["tbNo"] == "" ? "selected" : ""; ?> value="">請選擇</option>
 										<?php foreach($tbData as $key=>$value){?>
-										<option <?php echo $rcData[0]["tbNo"] != "" && $rcData[0]["tbNo"] == $value["tbNo"] ? "selected" : ""; ?> value="<?php echo $value["tbNo"]; ?>"><?php echo $value["tbName"]; ?></option>
+										<option <?php echo ($rcData[0]["tbNo"] != "" && $rcData[0]["tbNo"] == $value["tbNo"]) ? "selected" : ""; ?> value="<?php echo $value["tbNo"]; ?>"><?php echo $value["tbName"]; ?></option>
 										<?php } ?>
 									</select>
 									<label class="">撥款銀行</label>

@@ -32,6 +32,7 @@ if($_POST["memClass"] == '學生'){
 	$memMustFill[] = "memAccount";
 	$memMustFill[] = "memSchool";
 	$memColumnsCheck = array("memName","memIdNum","memBday","memCompanyName","memSalary","memYearWorked","memClass","memPostCode","memAddr","memPhone","memCell","memAccount","memSchool");
+	
 }else if($_POST["memClass"] == '非學生'){
 	$memMustFill[] = "memSubEmail";
 	$memColumnsCheck = array("memName","memIdNum","memBday","memCompanyName","memSalary","memYearWorked","memClass","memSubEmail","memPostCode","memAddr","memPhone","memCell");
@@ -39,6 +40,7 @@ if($_POST["memClass"] == '學生'){
 	$errMsg[] = "沒有填入身分別。";
 }
 
+	$imgType = array("orAppAuthenIdImgTop","orAppAuthenIdImgBot");
 $memDataInputArr = array();
 //確認必填
 foreach($memMustFill as $key=>$value){
@@ -47,12 +49,13 @@ foreach($memMustFill as $key=>$value){
 	}
 }
 
+
 //orders table區
 $orMustFill = array(
 	"orIfSecret","orAppApplierBirthAddr","orAppApplierBirthPhone","orAppApplierLivingOwnership",
 	"orReceiveName","orReceiveAddr","orReceiveCell","orReceivePhone","orProSpec","orPeriodAmnt","pmNo",
 	"orBusinessNumIfNeed","orAppContactRelaName","orAppContactRelaRelation","orAppContactRelaCell","orAppContactFrdName",
-	"orAppContactFrdRelation","orAppContactFrdCell"
+	"orAppContactFrdRelation","orAppContactFrdCell","orIdIssueYear","orIdIssueMonth","orIdIssueDay","orIdIssuePlace","orIdIssueType","orAppAuthenIdImgTop","orAppAuthenIdImgBot"
 );
 $orColumnsCheck = array(
 	"orIfSecret","orAppApplierBirthAddr","orAppApplierBirthPhone","orAppApplierLivingOwnership","orAppApplierBirthAddrPostCode",
@@ -62,8 +65,9 @@ $orColumnsCheck = array(
 	"orAppApplierCompanyPhone","orAppApplierCompanyPhoneExt","orAppApplierCreditNum","orAppApplierCreditSecurityNum","orAppApplierCreditIssueBank",
 	"orAppApplierCreditDueDate","orReceivePhone","orReceiveComment","orBusinessNumNumber","orBusinessNumTitle",
 	"orAppContactRelaPhone","orAppContactFrdPhone","orAppExtraAvailTime","orAppExtraInfo",
-	"orIdIssueYear","orIdIssueMonth","orIdIssueDay","orIdIssuePlace","orIdIssueType"
+	"orIdIssueYear","orIdIssueMonth","orIdIssueDay","orIdIssuePlace","orIdIssueType","orAppAuthenIdImgTop","orAppAuthenIdImgBot"
 );
+
 $orDataInputArr = array();
 //確認必填
 foreach($orMustFill as $key=>$value){
@@ -89,6 +93,22 @@ if(!isset($errMsg)){
 	//取得會員編號
 	$memNo = getMemberNo();
 	$memberData = $mem->getOneMemberByNo($memNo);
+
+	//檢查有無資料夾並放置檔案
+	if(!is_dir('../admin/file/'.$memNo)){
+		mkdir('../admin/file/'.$memNo);
+		chmod('../admin/file/'.$memNo,0777);
+	}
+	//base64轉換
+	foreach($imgType as $key=>$value){
+		if(!empty($_POST[$value])){
+			$data = base64_decode($_POST[$value]);
+			file_put_contents('../admin/file/'.$memNo.'/'.date("YmdHis").'-'.$key.'.jpg', $data);
+			// $_POST[$value] = 'admin/file/'.$memNo.'/'.date("YmdHis").'-'.$key.'.jpg';
+			$orDataInputArr[$value] = 'admin/file/'.$memNo.'/'.date("YmdHis").'-'.$key.'.jpg';
+		
+		}
+	}
 	
 	//初次下單式需登錄GPS
 	$forGps = new API("gps");

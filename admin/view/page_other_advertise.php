@@ -125,7 +125,17 @@ $allData = $ad->getAll();
         },
         "order": [[ 2, "asc" ]],
         'iDisplayLength': 100,
-        "sPaginationType": "full_numbers"
+        "sPaginationType": "full_numbers",
+        "columns":[
+          null,
+          null,
+          {"orderDataType":"dom-checkbox","type":"numic"},
+          null,
+          null,
+          {"orderDataType":"dom-checkbox","type":"numic"},
+          null,
+          null
+        ]
       })<?php if(isset($_GET["pageIndex"]) && $_GET["pageIndex"]=='last') echo ".fnPageChange( 'last' );$(window).scrollTop($(document).height())";?>;
       $("tfoot input").keyup(function() {
         /* Filter on the column based on the index of this element's parent <th> */

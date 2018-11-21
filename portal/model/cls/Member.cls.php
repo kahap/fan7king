@@ -382,7 +382,7 @@
                         from
                             `member`
                         where
-                            `memCell` = '" . $memCell . "' and `memPwd`='".$memPwd."'";
+                            `memCell` = '" . $memCell . "'";
 
 			$data = $this->db->selectRecords($sql);
 			
@@ -654,10 +654,11 @@
 			foreach($array as $key =>$value){
 				$$key = mysqli_real_escape_string($this->db->oDbLink, $value);
 			}
+			$Cpwd = password_hash($NewmemPwd,PASSWORD_DEFAULT);
 			$sql = "update
 						`member`
 					set
-						`memPwd`='".$NewmemPwd."'
+						`memPwd`='".$Cpwd."'
 					where
 						`memNo`='".$memNo."'";
 
